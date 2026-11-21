@@ -84,6 +84,7 @@ def _squash(s: str) -> str:
     # voltage notation: 480Y/277, 480/277 and 277/480 V all name the same system
     s = re.sub(r"\b(\d{3,5})\s*y?\s*/\s*(\d{3,5})\b",
                lambda m: "/".join(sorted((m.group(1), m.group(2)), key=int)), s)
+    s = re.sub(r"(\d)\s*(?:volts?|vac|vdc|v)\b", r"\1v", s)  # '480 volts' == '480 VAC' == '480 V'
     return re.sub(r"[\s\-_.]+", "", s)
 
 

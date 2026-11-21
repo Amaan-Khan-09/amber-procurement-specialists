@@ -136,3 +136,10 @@ def test_unit_spellings():
     assert unit_in_text("gph", "Fuel Consumption L/hr (gal./hr) 528.3 (139.6) gal./hr")
     assert not unit_in_text("kVA", "Motor starting 380 416")
     assert unit_in_text("", "anything")
+
+
+def test_voltage_unit_spellings_match():
+    req = {"kind": "text", "terms": ["480 volts", "3-phase", "3-wire"], "match": "all"}
+    assert V(req, {"values": ["480 VAC, 3 Phase, 3 Wire plus ground"], "selected": True}) == Verdict.complies
+    assert V(req, {"values": ["277/480 V 3-phase 3-wire"], "selected": True}) == Verdict.complies
+    assert V(req, {"values": ["400 V 3-phase 3-wire"], "selected": True}) == Verdict.deviates
