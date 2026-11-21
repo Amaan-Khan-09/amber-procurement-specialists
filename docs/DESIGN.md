@@ -1,7 +1,8 @@
 # Amber Procurement Specialists — Design
 
 Kaya AI Grand Challenge (Edition 2), **Track 03: Vertical Agents**, Students division.
-Round 1: 30 Nov – 6 Dec 2026. Working name; rename before submitting.
+Round 1 (build) runs 9 Nov – **6 Dec 2026**. Top 10 announced 12 Dec; live finale in Mumbai 17 Dec. Working name; rename before submitting.
+Rules that shape the design: original work made during the hackathon; any model allowed but **name it and report cost per run**; public data must be cited; fabricated sources, vendors, products or model numbers are heavily penalised; **no working repo + demo video = ineligible**.
 
 ## 1. The problem we pick
 
@@ -96,17 +97,17 @@ Every run logs the model, tokens, cost (USD) and latency into `run`.
 
 ## 8. Build plan
 
-**Before 30 Nov (no project code):** this design, data downloaded and cited, answer keys written by hand, synthetic bid and schedule documents written, final name and track confirmed.
+The round started on 9 Nov, so code written now counts as hackathon work. We have 15 days.
 
-| Day | Date | Goal |
-|---|---|---|
-| 1 | Mon 30 Nov | Repo, shared schema, PDF → page/paragraph text with locators, quote verifier, eval harness |
-| 2 | Tue 1 Dec | `check_submittal` end to end on the dev set; MCP server with one tool working in an MCP client |
-| 3 | Wed 2 Dec | `level_bids` end to end; cross-check against submittal results |
-| 4 | Thu 3 Dec | `assess_delivery_risk` + `run_package_review`; offline mode via Ollama |
-| 5 | Fri 4 Dec | Held-out eval, fix failure classes (not individual cases), cost/latency table, README |
-| 6 | Sat 5 Dec | Demo video (≤5 min), deck (8–10 slides), stretch goal only if all green |
-| 7 | Sun 6 Dec | Buffer, fresh-clone install test, submit **by afternoon IST** |
+| Dates | Goal |
+|---|---|
+| 21–22 Nov | Repo, shared schema, PDF → pages/paragraphs with locators (OCR for scanned pages), quote verifier, eval harness. Teammate labels G1–G2 |
+| 23–25 Nov | `check_submittal` end to end on the dev cases; MCP server working in a real MCP client. Switchgear + UPS specs |
+| 26–28 Nov | `level_bids` with synthetic bids + keys; cross-check against submittal results |
+| 29 Nov–1 Dec | `assess_delivery_risk` + `run_package_review`; offline mode via Ollama |
+| 2–3 Dec | Held-out eval; fix failure classes (not individual cases); cost/latency table; README |
+| 4–5 Dec | Demo video (≤5 min), deck (8–10 slides); stretch goal only if everything is green |
+| 6 Dec | Fresh-clone install test, submit **by afternoon IST** |
 
 ## 9. Risks
 

@@ -11,3 +11,5 @@ data/leadtime_sources/*.pdf
 __pycache__/
 *.pyc
 .pytest_cache/
+runs/
+.cache/

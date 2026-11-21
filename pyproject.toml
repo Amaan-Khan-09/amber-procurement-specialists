@@ -1,0 +1,28 @@
+[project]
+name = "amber-procure"
+version = "0.1.0"
+description = "Procurement specialist agents for construction (Kaya AI Grand Challenge, Track 03)"
+requires-python = ">=3.11"
+dependencies = [
+  "pydantic>=2.8",
+  "mcp>=1.2",
+  "pymupdf>=1.24",
+  "pint>=0.24",
+  "httpx>=0.27",
+  "python-dotenv>=1.0",
+  "rapidfuzz>=3.9",
+  "openpyxl>=3.1",
+]
+
+[project.optional-dependencies]
+dev = ["pytest>=8"]
+
+[project.scripts]
+amber-mcp = "amber.server:main"
+
+[tool.setuptools]
+packages = ["amber"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["."]
