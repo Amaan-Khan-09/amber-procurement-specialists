@@ -40,6 +40,7 @@ Rules:
   - text: {"cid","attribute","kind":"text","terms":[...],"match":"any|all"} where terms are 1-3 short words a supplier would print (e.g. "brushless", "electronic", "class h"). Use "any" for alternatives (e.g. ["8 cylinder","12 cylinder","16 cylinder"] or ["class f","class h"] for "Class F or better").
 - Direction of op: capabilities and ratings the product must reach (kW, kVA, motor-starting kVA, max ambient it can run in, tank hours, short-circuit rating) use ">="; limits it must stay under (fuel consumption, THD, voltage dip, regulation band, rpm, noise) use "<=". Fixed characteristics (voltage, phases, Hz, pole count) use "==" or text terms.
 - Where the clause says "as scheduled"/"scheduled on the drawings", take the value from the schedule row and set source "schedule".
+- A qualifier or test condition of another attribute ("at 30% voltage dip", "at 0.8 power factor", "at standby rating", "at full load") is NOT its own condition: keep it inside that attribute's name (e.g. "motor_starting_kva_at_30pct_dip").
 - Keep one electrical system together: voltage, phases and wires are ONE text condition (terms like ["277/480","3 phase","4 wire"], match "all"); frequency may be its own numeric condition. Starting-system voltage and electric/motor type are one text condition.
 Reply with JSON: {"requirements": [{"req_id","locator","requirement":"plain words","quote","conditions":[...]}]}"""
 
@@ -140,6 +141,16 @@ def structure_requirements(llm: LLM, spec_doc: docs.Document, row: dict, schedul
     return out
 
 
+CONFIG_CHARS = 3000
+_CONFIG_RX = re.compile(r"bill of materials?|bom|scope of supply|equipment list|feature code", re.I)
+
+
+def _config_pages(doc: docs.Document, max_pages: int = 2) -> list[int]:
+    """Pages that list the supplied configuration (bill of material etc.): short, high-value, easy to miss."""
+    found = [p.number for p in doc.pages if p.text and len(p.text) < 6000 and _CONFIG_RX.search(p.text[:600])]
+    return found[:max_pages]
+
+
 def _context(doc: docs.Document, conds: list[dict], k: int = PASSAGES_PER_COND, limit: int = MAX_CONTEXT_CHARS) -> str:
     chosen: list[tuple[int, str]] = []
     for c in conds:
@@ -149,6 +160,8 @@ def _context(doc: docs.Document, conds: list[dict], k: int = PASSAGES_PER_COND, 
             if p not in chosen:
                 chosen.append(p)
     blocks, used = [], 0
+    for n in _config_pages(doc):  # a bill of material states what is actually supplied: always show it
+        blocks.append(f"[page {n}]\n{doc.page(n).text.strip()[:CONFIG_CHARS]}")
     for page, text in chosen:
         if used + len(text) > limit:
             break
@@ -234,6 +247,12 @@ def _decide_condition(c: dict, o: dict | None, sub_doc: docs.Document):
         # the wording differs from the expected terms but the verified quote may still satisfy it
         d = checks.Decision(Verdict.complies, f"model judgement on verified quote: {cite.quote!r}", False)
         exact, judged = False, True
+    if not judged and meets in ("yes", "no") and d.verdict in (Verdict.complies, Verdict.deviates):
+        model_says = Verdict.complies if meets == "yes" else Verdict.deviates
+        if model_says != d.verdict:  # two independent readings disagree: neither is asserted
+            d = checks.Decision(Verdict.unclear, f"model reading ({model_says.value}) and code check ({d.verdict.value}) "
+                                                 f"disagree: {d.why}", False)
+            exact, judged = False, True
     conf = (0.95 if exact else 0.74) * MATCH_TRUST.get(cite.match, 0.8)
     if judged:
         conf = min(conf, JUDGEMENT_CAP)

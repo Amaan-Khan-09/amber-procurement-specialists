@@ -91,9 +91,10 @@ def main() -> None:
     ap = argparse.ArgumentParser()
     ap.add_argument("--run", action="store_true")
     ap.add_argument("--split", default="all")
+    ap.add_argument("--case", help="only this case id, e.g. G1")
     ap.add_argument("--provider")
     a = ap.parse_args()
-    cases = labelled_cases(a.split)
+    cases = [c for c in labelled_cases(a.split) if not a.case or c["case_id"] == a.case]
     if not cases:
         print("No fully labelled cases yet. See eval/answer_keys/README.md.")
         return

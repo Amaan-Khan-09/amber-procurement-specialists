@@ -27,7 +27,7 @@
       "expected": "complies",
       "submittal_page": 15,
       "submittal_quote": "480  Wye, 3-phase  80  S  8412",
-      "notes": "BOM selects B601 (480 V, 80C, standby): 8412 kVA max starting at >=90% voltage (10% dip) vs spec >=3000 kVA at 30% dip."
+      "notes": "BOM selects B601 (480 V, 80C, standby): 8412 kVA max starting at >=90% voltage (10% dip) vs spec >=3000 kVA at 30% dip. Note: p44 'Voltage dip: 39.2%' is the full-load-acceptance test of a prototype (100% load step), a different test from motor starting; it is not the spec's motor-starting dip."
     },
     {
       "req_id": "R04",

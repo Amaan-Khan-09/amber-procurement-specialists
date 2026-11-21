@@ -88,3 +88,22 @@ def test_derate_sentence_becomes_a_capped_judgement_not_a_confident_verdict():
              "page": 1, "meets": "no"}
     d, cite, conf = _decide_condition(cond, offer, doc)
     assert d.verdict == Verdict.deviates and cite and conf <= JUDGEMENT_CAP < 0.70
+
+
+def test_model_and_code_disagreement_goes_to_a_person():
+    from amber.docs import Document, Page
+    from amber.submittal import _decide_condition
+    doc = Document("d", "d.pdf", pages=[Page(1, "Standby rating  1500  kW  at 0.8 PF " * 4)])
+    cond = {"cid": "R01a", "kind": "numeric", "op": ">=", "value": 2000, "unit": "kW"}
+    offer = {"cid": "R01a", "stated": True, "values": [1500], "unit": "kW", "quote": "Standby rating  1500  kW", "page": 1,
+             "meets": "yes"}  # model wrongly says yes; code says deviates
+    d, cite, conf = _decide_condition(cond, offer, doc)
+    assert d.verdict == Verdict.unclear and conf < 0.70 and "disagree" in d.why
+
+
+def test_bill_of_material_page_is_always_found():
+    from amber.docs import Document, Page
+    from amber.submittal import _config_pages
+    doc = Document("d", "d.pdf", pages=[Page(1, "intro " * 50), Page(2, "Bill of Material\nFeature Code Description Qty\nA416 Heater 1"),
+                                        Page(3, "long page " * 900)])
+    assert _config_pages(doc) == [2]
