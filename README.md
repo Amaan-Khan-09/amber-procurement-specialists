@@ -60,7 +60,8 @@ File arguments are paths under `data/`; paths outside it are refused.
 | Reading specs, submittals and bids (default) | `openai/gpt-oss-120b` (reasoning effort low) | Groq |
 | Lighter runs and development | `openai/gpt-oss-20b` | Groq |
 | Reading **scanned** pages (OCR), cached per page | `gemini-3.8-flash` | Google |
-| Private / offline mode | a small open-weight model served by Ollama (see below) | local |
+| Structuring a spec into requirements (once per spec, cached) | `gemini-3.8-flash` | Google |
+| Private / offline mode | `qwen3:4b` served by Ollama (measured below; not recommended on a CPU-only laptop) | local |
 | Delivery forecast | none (pure code) | local |
 
 Measured on Project Alpha (cost is estimated at list prices from token counts; every run reports its own models, tokens,
@@ -75,6 +76,26 @@ cost and latency in the `run` field of the result):
 | OCR of 87 scanned pages (one time, then cached) | | $0.41 | 17 min |
 
 Times are on free API tiers, which allow 8,000 tokens per minute; a paid tier is several times faster.
+### Private (offline) mode: what we measured
+
+`AMBER_PROVIDER=ollama AMBER_OCR=off python -m amber.server` runs everything locally: no document, prompt or answer
+leaves the machine, and a scanned page is never sent to a vision model. Structuring a spec into typed requirements is
+done once per spec and cached (`data/requirements/`, built with `scripts/build_requirements.py`), so the local model
+only has to read each submittal.
+
+Tested on our own hardware, a laptop with **no GPU** (Intel Core i5-1334U, 16 GB RAM) and `qwen3:4b` through Ollama:
+
+| | Result |
+|---|---|
+| One isolated extraction call (2.6k tokens in) | 154 s, three correct values |
+| Full check of G2 (21 requirements) | **about 5 hours** wall-clock (also while the laptop was doing other work) |
+| Accuracy on G2 | 38 % correct, 1 false approval, **no deviation found**, 0 fabricated citations |
+| Cost | $0 |
+
+So on this laptop private mode works mechanically but is too slow and too inaccurate to recommend; quotes were still
+verified and nothing was invented. It needs a GPU workstation and a larger open-weight model (for example a 20-30B
+class model) to be useful; we have not been able to test that and do not claim it.
+
 Spend on the paid API is capped by a persistent ledger (`AMBER_GEMINI_BUDGET_USD`, default $1.50) and a Groq outage
 never silently switches to a paid provider (`AMBER_FALLBACK=gemini` opts in). Set `AMBER_OCR=off` to never send a
 scanned page to a vision model.
@@ -91,12 +112,14 @@ against its page. They have not yet had an independent review. How to read them:
 | G2 | Kohler KD2000 spec sheet, 6 pages | dev | 12 · 2 · 1 · 6 |
 | G3 | Kohler KD1000 project submittal, 105 pages (46 scanned) | **held out** | 14 · 2 · 0 · 5 |
 | G4 | Cummins C1000 family spec sheet, 4 pages | **held out** | 8 · 1 · 5 · 7 |
+| U1 | Vertiv UPS package: India brochure + US site-planning sheet, 17 pages, against a UPS spec | **held out** (new equipment class) | 9 · 2 · 1 · 4 |
 | BL1 | four generator bids (3 PDF + 1 email) | dev | 44 scope cells, leveled totals, award decision |
 
 Latest development results (small `gpt-oss-20b` model, free tier): G1 67–71 %, G2 57 % correct; **0 fabricated citations**
 in every run. Run-to-run variation on that model is several points. `level_bids` on BL1: 41 of 44 scope cells correct, all four base
 prices and all four products right, ranking correct, award correctly withheld.
-**Held-out results (G3, G4) are not in yet**: they will be run once, on the 120b model, with no tuning, and reported here.
+**Held-out results (G3, G4, U1) are not in yet**: they will be run once (`--final`), on the 120b model, with no tuning, and
+reported here. The scorer refuses to run held-out cases without that flag.
 
 Score any case with `python scripts/eval_submittal.py --run --case G3`.
 
