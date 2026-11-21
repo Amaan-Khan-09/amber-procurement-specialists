@@ -143,3 +143,10 @@ def test_voltage_unit_spellings_match():
     assert V(req, {"values": ["480 VAC, 3 Phase, 3 Wire plus ground"], "selected": True}) == Verdict.complies
     assert V(req, {"values": ["277/480 V 3-phase 3-wire"], "selected": True}) == Verdict.complies
     assert V(req, {"values": ["400 V 3-phase 3-wire"], "selected": True}) == Verdict.deviates
+
+
+def test_bom_word_alone_marks_a_configuration_page():
+    from amber.docs import Document, Page
+    from amber.submittal import _config_pages
+    doc = Document("d", "d.pdf", pages=[Page(1, "intro " * 40), Page(2, "BOM\nA416 Alternator heater\nA334 Starter 24 V"), Page(3, "bombastic " * 50)])
+    assert _config_pages(doc) == [2]  # whole word only: 'bombastic' is not a BOM

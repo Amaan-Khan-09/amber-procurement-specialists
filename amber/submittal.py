@@ -167,7 +167,7 @@ def _structure_requirements(llm: LLM, spec_doc: docs.Document, row: dict, schedu
 
 
 CONFIG_CHARS = 3000
-_CONFIG_RX = re.compile(r"bill of materials?|bom|scope of supply|equipment list|feature code", re.I)
+_CONFIG_RX = re.compile(r"bill of materials?|\bbom\b|scope of supply|equipment list|feature code", re.I)
 
 
 def _config_pages(doc: docs.Document, max_pages: int = 2) -> list[int]:
