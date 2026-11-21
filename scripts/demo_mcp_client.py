@@ -50,7 +50,7 @@ async def main(case: str | None) -> None:
 
             if case:
                 key = json.loads((ROOT / f"eval/answer_keys/{case}.json").read_text(encoding="utf-8"))
-                checklist = json.loads((ROOT / "eval/answer_keys/genset_requirements.json").read_text(encoding="utf-8"))["requirements"]
+                checklist = json.loads((ROOT / "eval/answer_keys" / key.get("checklist", "genset_requirements.json")).read_text(encoding="utf-8"))["requirements"]
                 strip = lambda p: str(Path(p).relative_to("data")) if p.startswith("data") else p
                 print(f"\nCalling check_submittal on {case} ({key['submittal']}) ...")
                 res = payload(await s.call_tool("check_submittal", {

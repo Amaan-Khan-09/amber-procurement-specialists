@@ -27,12 +27,13 @@ from amber.verify import match_level  # noqa: E402
 KEYS = ROOT / "eval/answer_keys"
 RUNS = ROOT / "runs"
 VERDICTS = ["complies", "deviates", "missing", "unclear"]
+COLS = VERDICTS + ["no_answer"]
 
 
 def labelled_cases(split: str) -> list[dict]:
     out = []
     for f in sorted(KEYS.glob("*.json")):
-        if not re.fullmatch(r"G\d+\.json", f.name):  # Windows globs ignore case: genset_*.json
+        if not re.fullmatch(r"[GU]\d+\.json", f.name):  # Windows globs ignore case: genset_*.json
             continue
         c = json.loads(f.read_text(encoding="utf-8"))
         if split != "all" and c["split"] != split:
@@ -66,7 +67,7 @@ def score(case: dict, run: dict) -> dict:
     n = ok = fa = fr = pages_both = pages_ok = 0
     for l in case["labels"]:
         f = got.get(l["req_id"])
-        pred = f["status"] if f else "missing"
+        pred = f["status"] if f else "no_answer"
         conf[(l["expected"], pred)] += 1
         n += 1
         ok += pred == l["expected"]
@@ -92,6 +93,7 @@ def main() -> None:
     ap.add_argument("--run", action="store_true")
     ap.add_argument("--split", default="all")
     ap.add_argument("--case", help="only this case id, e.g. G1")
+    ap.add_argument("--final", action="store_true", help="allow RUNNING held-out cases (do this once, at the end, without tuning)")
     ap.add_argument("--provider")
     a = ap.parse_args()
     cases = [c for c in labelled_cases(a.split) if not a.case or c["case_id"] == a.case]
@@ -101,10 +103,13 @@ def main() -> None:
     results = []
     for c in cases:
         run_file = RUNS / f"{c['case_id']}.json"
+        if (a.run or not run_file.exists()) and c["split"] == "heldout" and not a.final:
+            print(f"skip {c['case_id']}: held-out case, not run (use --final once, at the end, without tuning)")
+            continue
         if a.run or not run_file.exists():
             from amber.llm import LLM
             from amber.submittal import check_submittal
-            checklist = json.loads((KEYS / "genset_requirements.json").read_text(encoding="utf-8"))["requirements"]
+            checklist = json.loads((KEYS / c.get("checklist", "genset_requirements.json")).read_text(encoding="utf-8"))["requirements"]
             res = check_submittal(str(ROOT / c["spec"]), str(ROOT / c["submittal"]), c["tag"],
                                   str(ROOT / "data/schedules/equipment_schedule.csv"), checklist=checklist,
                                   llm=LLM(provider=a.provider))
@@ -121,9 +126,9 @@ def main() -> None:
     for r in results:
         total.update(r["confusion"])
     print("\nconfusion (rows = label, cols = agent):")
-    print(" " * 10 + "".join(f"{v:>10}" for v in VERDICTS))
+    print(" " * 10 + "".join(f"{v:>10}" for v in COLS))
     for t in VERDICTS:
-        print(f"{t:10}" + "".join(f"{total[(t, p)]:10}" for p in VERDICTS))
+        print(f"{t:10}" + "".join(f"{total[(t, p)]:10}" for p in COLS))
 
 
 if __name__ == "__main__":

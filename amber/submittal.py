@@ -12,6 +12,7 @@ Pipeline (the model extracts, code decides, every quote is verified):
 from __future__ import annotations
 
 import csv
+import hashlib
 import json
 import os
 import re
@@ -91,8 +92,31 @@ def _schedule_citation(cond: dict, row: dict, schedule_id: str) -> Citation | No
     return Citation(doc_id=schedule_id, page=1, locator=f"{row['tag']} / {field}", quote=f"{field} = {row[field]}")
 
 
+REQ_CACHE = Path(os.getenv("AMBER_REQ_CACHE", Path(__file__).resolve().parents[1] / "data" / "requirements"))
+
+
+def _req_cache_file(spec_doc: docs.Document, row: dict, checklist) -> Path:
+    """Structured requirements depend only on the spec, the equipment row and the checklist, so they are
+    computed once and reused for every submittal checked against that spec."""
+    key = json.dumps([spec_doc.sha256, row, checklist], sort_keys=True, ensure_ascii=False)
+    return REQ_CACHE / (hashlib.sha256(key.encode()).hexdigest()[:16] + ".json")
+
+
 def structure_requirements(llm: LLM, spec_doc: docs.Document, row: dict, schedule_id: str,
                            checklist: list[dict] | None = None) -> list[dict]:
+    cf = _req_cache_file(spec_doc, row, checklist)
+    if cf.exists():
+        return json.loads(cf.read_text(encoding="utf-8"))["requirements"]
+    out = _structure_requirements(llm, spec_doc, row, schedule_id, checklist)
+    if out and all(r.get("conditions") for r in out):  # cache only a complete, error-free structuring
+        REQ_CACHE.mkdir(parents=True, exist_ok=True)
+        cf.write_text(json.dumps({"spec": spec_doc.doc_id, "tag": row.get("tag"), "model": llm.model,
+                                  "requirements": out}, indent=1, ensure_ascii=False), encoding="utf-8")
+    return out
+
+
+def _structure_requirements(llm: LLM, spec_doc: docs.Document, row: dict, schedule_id: str,
+                            checklist: list[dict] | None = None) -> list[dict]:
     clauses = spec.products(spec.parse(spec_doc))
     if checklist:
         payload = []

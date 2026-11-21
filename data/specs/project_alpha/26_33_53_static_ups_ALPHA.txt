@@ -1,0 +1,28 @@
+PART 1 - GENERAL
+1.1 SUMMARY
+A. Section includes four (4) single-module static uninterruptible power supply (UPS) units, tags UPS-A to UPS-D, each feeding one data hall power block, as scheduled on Drawing E-601.
+1.2 SUBMITTALS
+A. Product Data: Manufacturer's catalog data for each UPS, including electrical ratings, efficiency, heat dissipation, dimensions and weights, and one-line diagram.
+B. Where product data covers more than one voltage or frequency, mark the configuration supplied for this project.
+PART 2 - PRODUCTS
+2.1 UPS MODULE
+A. Rating: Each UPS shall have a continuous output rating of not less than 1200 kVA and 1200 kW at unity power factor, at 480 volts.
+B. Ambient Rating: The full rating in paragraph A shall be available at an ambient temperature of 40 degrees C.
+C. System Voltage: Input, bypass and output shall be 480 volts, 3-phase, 3-wire plus ground, 60 Hz.
+D. Topology: Double-conversion (online) design, classified VFI under IEC 62040-3.
+E. Efficiency: Double-conversion AC-to-AC efficiency shall be not less than 96 percent at 100 percent load.
+F. Input Characteristics: Input power factor shall be not less than 0.99 and input current distortion (THDi) shall not exceed 5 percent at full load.
+G. Output Voltage Regulation: Steady-state output voltage shall be held within plus or minus 1 percent for balanced load changes from 0 to 100 percent.
+H. Overload: The inverter shall carry 125 percent of rated load for not less than 10 minutes.
+I. Static Bypass: Provide an automatic static bypass switch within the UPS.
+J. Maintenance Bypass: Provide a manual maintenance bypass, furnished with the UPS.
+K. Batteries: Valve-regulated lead-acid or lithium-ion, sized for not less than 10 minutes at full load.
+L. Paralleling: The UPS shall be capable of operating in parallel with at least 3 additional units of the same rating.
+M. Listing: The UPS shall be listed to UL 1778.
+N. Seismic: The UPS shall be certified for seismic installation in accordance with the International Building Code.
+2.2 PHYSICAL REQUIREMENTS
+A. Dimensions: Each UPS shall fit within 110 inches wide, 40 inches deep and 84 inches high.
+B. Heat Dissipation: Heat released at full load shall not exceed 150,000 BTU per hour.
+PART 3 - EXECUTION
+3.1 INSTALLATION
+A. Install the UPS in accordance with the manufacturer's written instructions.

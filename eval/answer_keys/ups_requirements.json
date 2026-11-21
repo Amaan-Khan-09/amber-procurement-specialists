@@ -1,0 +1,117 @@
+{
+  "spec": "data/specs/project_alpha/26_33_53_static_ups_ALPHA.pdf",
+  "requirements": [
+    {
+      "req_id": "U01",
+      "spec_locator": "2.1.A",
+      "spec_page": 1,
+      "spec_anchor": "A. Rating",
+      "requirement": "Output rating >= 1200 kVA and 1200 kW at 480 V"
+    },
+    {
+      "req_id": "U02",
+      "spec_locator": "2.1.B",
+      "spec_page": 1,
+      "spec_anchor": "B. Ambient Rating",
+      "requirement": "Full rating available at 40 C ambient"
+    },
+    {
+      "req_id": "U03",
+      "spec_locator": "2.1.C",
+      "spec_page": 1,
+      "spec_anchor": "C. System Voltage",
+      "requirement": "Input, bypass and output 480 V, 3-phase, 3-wire plus ground, 60 Hz"
+    },
+    {
+      "req_id": "U04",
+      "spec_locator": "2.1.D",
+      "spec_page": 1,
+      "spec_anchor": "D. Topology",
+      "requirement": "Double-conversion (online) topology, VFI"
+    },
+    {
+      "req_id": "U05",
+      "spec_locator": "2.1.E",
+      "spec_page": 1,
+      "spec_anchor": "E. Efficiency",
+      "requirement": "Double-conversion efficiency >= 96% at 100% load"
+    },
+    {
+      "req_id": "U06",
+      "spec_locator": "2.1.F",
+      "spec_page": 1,
+      "spec_anchor": "F. Input Characteristics",
+      "requirement": "Input power factor >= 0.99 and THDi <= 5%"
+    },
+    {
+      "req_id": "U07",
+      "spec_locator": "2.1.G",
+      "spec_page": 1,
+      "spec_anchor": "G. Output Voltage Regulation",
+      "requirement": "Output voltage regulation within +/-1% for 0-100% load changes"
+    },
+    {
+      "req_id": "U08",
+      "spec_locator": "2.1.H",
+      "spec_page": 1,
+      "spec_anchor": "H. Overload",
+      "requirement": "Inverter carries 125% load for at least 10 minutes"
+    },
+    {
+      "req_id": "U09",
+      "spec_locator": "2.1.I",
+      "spec_page": 1,
+      "spec_anchor": "I. Static Bypass",
+      "requirement": "Automatic static bypass switch within the UPS"
+    },
+    {
+      "req_id": "U10",
+      "spec_locator": "2.1.J",
+      "spec_page": 1,
+      "spec_anchor": "J. Maintenance Bypass",
+      "requirement": "Manual maintenance bypass furnished with the UPS"
+    },
+    {
+      "req_id": "U11",
+      "spec_locator": "2.1.K",
+      "spec_page": 1,
+      "spec_anchor": "K. Batteries",
+      "requirement": "VRLA or lithium-ion batteries sized for at least 10 minutes at full load"
+    },
+    {
+      "req_id": "U12",
+      "spec_locator": "2.1.L",
+      "spec_page": 1,
+      "spec_anchor": "L. Paralleling",
+      "requirement": "Parallel operation with at least 3 additional units"
+    },
+    {
+      "req_id": "U13",
+      "spec_locator": "2.1.M",
+      "spec_page": 1,
+      "spec_anchor": "M. Listing",
+      "requirement": "Listed to UL 1778"
+    },
+    {
+      "req_id": "U14",
+      "spec_locator": "2.1.N",
+      "spec_page": 1,
+      "spec_anchor": "N. Seismic",
+      "requirement": "Seismic certification per the International Building Code"
+    },
+    {
+      "req_id": "U15",
+      "spec_locator": "2.2.A",
+      "spec_page": 1,
+      "spec_anchor": "A. Dimensions",
+      "requirement": "Fits within 110 in W x 40 in D x 84 in H"
+    },
+    {
+      "req_id": "U16",
+      "spec_locator": "2.2.B",
+      "spec_page": 1,
+      "spec_anchor": "B. Heat Dissipation",
+      "requirement": "Heat at full load not above 150,000 BTU/h"
+    }
+  ]
+}

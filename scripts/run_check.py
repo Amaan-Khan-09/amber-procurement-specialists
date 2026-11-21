@@ -21,7 +21,7 @@ def main() -> None:
     ap.add_argument("--out", default="runs")
     a = ap.parse_args()
     case = json.loads((ROOT / f"eval/answer_keys/{a.case}.json").read_text(encoding="utf-8"))
-    checklist = json.loads((ROOT / "eval/answer_keys/genset_requirements.json").read_text(encoding="utf-8"))["requirements"]
+    checklist = json.loads((ROOT / "eval/answer_keys" / case.get("checklist", "genset_requirements.json")).read_text(encoding="utf-8"))["requirements"]
     res = check_submittal(str(ROOT / case["spec"]), str(ROOT / case["submittal"]), case["tag"],
                           str(ROOT / "data/schedules/equipment_schedule.csv"), checklist=checklist,
                           llm=LLM(provider=a.provider))

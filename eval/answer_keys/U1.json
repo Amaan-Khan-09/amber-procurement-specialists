@@ -1,0 +1,129 @@
+{
+  "case_id": "U1",
+  "split": "heldout",
+  "tool": "check_submittal",
+  "spec": "data/specs/project_alpha/26_33_53_static_ups_ALPHA.pdf",
+  "tag": "UPS-A",
+  "submittal": "data/submittals/vertiv_EXL_S1_package.pdf",
+  "checklist": "ups_requirements.json",
+  "labeller": "Project author, with AI assistance, from the source PDFs, per eval/answer_keys/README.md. Labelled BEFORE any agent run on this case; HELD-OUT: a new equipment class the pipeline was not tuned on.",
+  "labelled_on": "2026-11-22",
+  "reviewed_by": "",
+  "case_notes": [
+    "The package merges two public Vertiv documents: the EXL S1 brochure (India edition, 2019: 400 V / 50 Hz, 14 pages) and the US site planning sheet SL-26092 (480 V, 3 pages). Pages 1-14 are the brochure, 15-17 the site planning sheet."
+  ],
+  "labels": [
+    {
+      "req_id": "U01",
+      "expected": "complies",
+      "submittal_page": 15,
+      "submittal_quote": "1200  1200  480  1499  1574  1600",
+      "notes": "US site planning sheet lists the 1200 kVA / 1200 kW module at 480 VAC."
+    },
+    {
+      "req_id": "U02",
+      "expected": "deviates",
+      "submittal_page": 12,
+      "submittal_quote": "Output active power at 40 °C (kW)  270  360  450  540  720  900  1080",
+      "notes": "1200 kW is only available at 35 C; at 40 C the 1200 kVA unit gives 1080 kW (90%)."
+    },
+    {
+      "req_id": "U03",
+      "expected": "unclear",
+      "submittal_page": 12,
+      "submittal_quote": "Nominal output voltage (V)  400 (380/415 selectable)",
+      "notes": "The package contradicts itself: the brochure (India edition) offers 400 V (380/415), 50 Hz with 60 Hz selectable and never 480 V; the US site planning sheet p15 says 480 VAC 3-wire plus ground. No configuration is marked as supplied."
+    },
+    {
+      "req_id": "U04",
+      "expected": "complies",
+      "submittal_page": 4,
+      "submittal_quote": "Double Conversion Mode (VFI)",
+      "notes": "Also 'VFI-SS-111' on p12."
+    },
+    {
+      "req_id": "U05",
+      "expected": "complies",
+      "submittal_page": 15,
+      "submittal_quote": "≥96.3%  ≥96.3%  148502  6700",
+      "notes": "US sheet: at least 96.3% at 100% rated load; brochure says up to 97%."
+    },
+    {
+      "req_id": "U06",
+      "expected": "complies",
+      "submittal_page": 12,
+      "submittal_quote": "Input Power Factor ≥ 0.99",
+      "notes": "Input current distortion THDi <= 3% in the same table."
+    },
+    {
+      "req_id": "U07",
+      "expected": "complies",
+      "submittal_page": 12,
+      "submittal_quote": "Output voltage stability by load variation 0-100% (%)",
+      "notes": "Static +/-1 in the same row."
+    },
+    {
+      "req_id": "U08",
+      "expected": "complies",
+      "submittal_page": 12,
+      "submittal_quote": "110% continuous, 125% for 10mins, 150% for 1min",
+      "notes": ""
+    },
+    {
+      "req_id": "U09",
+      "expected": "complies",
+      "submittal_page": 6,
+      "submittal_quote": "unit has a dedicated static bypass switch",
+      "notes": "Stated for the distributed-parallel configuration; the one-line diagram p17 also shows a bypass AC input."
+    },
+    {
+      "req_id": "U10",
+      "expected": "deviates",
+      "submittal_page": 12,
+      "submittal_quote": "Manual Maintenance Bypass Included 300-500 kW Not included 600-1200 kW",
+      "notes": "Not included for 600-1200 kW; p17 shows the maintenance bypass panelboard 'Furnished by Others'."
+    },
+    {
+      "req_id": "U11",
+      "expected": "unclear",
+      "submittal_page": 2,
+      "submittal_quote": "standard VRLA and new Li-ion batteries",
+      "notes": "Chemistries are stated; runtime and battery sizing are not."
+    },
+    {
+      "req_id": "U12",
+      "expected": "complies",
+      "submittal_page": 12,
+      "submittal_quote": "Parallel configuration up to 8 units in parallel",
+      "notes": ""
+    },
+    {
+      "req_id": "U13",
+      "expected": "missing",
+      "submittal_page": null,
+      "submittal_quote": "",
+      "notes": "Only IEC/EN 62040-3 is mentioned; UL 1778 appears nowhere."
+    },
+    {
+      "req_id": "U14",
+      "expected": "unclear",
+      "submittal_page": 3,
+      "submittal_quote": "Seismic compliance",
+      "notes": "A feature bullet only; no code, certificate or rating is given."
+    },
+    {
+      "req_id": "U15",
+      "expected": "unclear",
+      "submittal_page": 16,
+      "submittal_quote": "104.5 x 36.0 x 79.1",
+      "notes": "The base 1200 kVA unit is 104.5 x 36.0 x 79.1 in, but installed options (back-feed disconnect, inductors) widen it up to 128.1 in and no options are marked as selected."
+    },
+    {
+      "req_id": "U16",
+      "expected": "complies",
+      "submittal_page": 15,
+      "submittal_quote": "148502  6700",
+      "notes": "148,502 BTU/h, just under the limit."
+    }
+  ]
+}
