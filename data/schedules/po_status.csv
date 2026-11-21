@@ -1,0 +1,6 @@
+tag_group,tags,status,po_date,vendor,submittal_approved,quoted_min_weeks,quoted_max_weeks,quote_basis,quote_source,quote_text
+GEN,GEN-A;GEN-B;GEN-C;GEN-D,not_placed,,,,,,,,
+GEN-M,GEN-M,not_placed,,,,,,,,
+UPS,UPS-A;UPS-B;UPS-C;UPS-D,placed,2026-10-15,Synthetic UPS vendor (fictional),2026-11-20,30,36,after_submittal_approval,PO-26-311 vendor acknowledgement (fictional),"Shipment 30-36 weeks after approved submittals"
+SWGR,SWGR-A;SWGR-B;SWGR-C;SWGR-D,placed,2026-08-10,Synthetic switchgear vendor (fictional),2026-09-25,44,52,after_submittal_approval,PO-26-207 vendor acknowledgement (fictional),"Ship date 44-52 weeks after receipt of approved drawings"
+TX,TX-A;TX-B;TX-C;TX-D,placed,2026-06-01,Synthetic transformer vendor (fictional),,52,60,after_order,PO-26-118 vendor acknowledgement (fictional),"Delivery 52-60 weeks ARO"

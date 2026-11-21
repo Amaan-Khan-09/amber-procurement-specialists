@@ -20,6 +20,8 @@ from mcp.server.mcpserver.exceptions import ToolError
 from . import __version__
 from .llm import LLM
 from .bids import level_bids as _level_bids
+from .delivery import assess_delivery_risk as _assess
+from .package import run_package_review as _package
 from .submittal import check_submittal as _check_submittal
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -80,6 +82,48 @@ async def level_bids(bid_form_path: str, bids: dict[str, str], provider: str | N
     paths = {k: _path(v) for k, v in bids.items()}
     llm = LLM(provider=provider)
     res = await anyio.to_thread.run_sync(lambda: _level_bids(form, paths, llm=llm))
+    return res.model_dump(mode="json")
+
+
+@server.tool(
+    name="assess_delivery_risk",
+    title="Forecast delivery risk",
+    description=(
+        "For each long-lead item group in the equipment schedule: P10/P50/P90 arrival dates, chance of missing "
+        "the need date, latest order date for an 80% on-time chance, and actions. Built in code (no model calls) "
+        "from cited published lead-time ranges and vendor quotes; dissenting sources are flagged. Optionally "
+        "compares bidders' lead times for items not yet ordered (bid_lead_times: {tag_group: {bidder: "
+        "{min_weeks, max_weeks, basis, resubmittal}}})."),
+)
+async def assess_delivery_risk(as_of: str, schedule_path: str = "schedules/equipment_schedule.csv",
+                               po_status_path: str = "schedules/po_status.csv",
+                               evidence_path: str = "leadtime_sources/leadtime_evidence.csv",
+                               bid_lead_times: dict[str, Any] | None = None) -> dict[str, Any]:
+    args = (_path(schedule_path), _path(po_status_path), _path(evidence_path), as_of)
+    res = await anyio.to_thread.run_sync(lambda: _assess(*args, bid_lead_times=bid_lead_times))
+    return res.model_dump(mode="json")
+
+
+@server.tool(
+    name="run_package_review",
+    title="Review a procurement package end to end",
+    description=(
+        "Runs the specialists together for one package: levels the bids, checks each bidder's product submittal "
+        "against the spec, forecasts delivery per bidder (adding a resubmittal cycle where the product deviates), "
+        "and returns one comparison table (leveled cost, scope gaps, submittal verdict, P50/P90 arrival, P(late)) "
+        "with a recommendation only when it is safe to make one."),
+)
+async def run_package_review(bid_form_path: str, bids: dict[str, str], spec_path: str, tag: str, tag_group: str,
+                             as_of: str, submittals: dict[str, str] | None = None,
+                             schedule_path: str = "schedules/equipment_schedule.csv",
+                             po_status_path: str = "schedules/po_status.csv",
+                             evidence_path: str = "leadtime_sources/leadtime_evidence.csv",
+                             provider: str | None = None) -> dict[str, Any]:
+    kw = dict(bid_form=_path(bid_form_path), bids={k: _path(v) for k, v in bids.items()}, spec=_path(spec_path),
+              tag=tag, tag_group=tag_group, schedule=_path(schedule_path), po_status=_path(po_status_path),
+              evidence=_path(evidence_path), as_of=as_of,
+              submittals={k: _path(v) for k, v in (submittals or {}).items()}, llm=LLM(provider=provider))
+    res = await anyio.to_thread.run_sync(lambda: _package(**kw))
     return res.model_dump(mode="json")
 
 
