@@ -14,6 +14,7 @@ from dataclasses import dataclass, field
 import httpx
 from dotenv import load_dotenv
 
+from . import budget
 from .schema import ModelUsage
 
 load_dotenv()
@@ -48,6 +49,8 @@ class Meter:
         u.calls += 1
         pin, pout = PRICES.get(model, (0.0, 0.0))
         u.cost_usd = round(u.tokens_in / 1e6 * pin + u.tokens_out / 1e6 * pout, 6)
+        if provider == "gemini":  # paid: every call goes on the persistent ledger
+            budget.record(tin / 1e6 * pin + tout / 1e6 * pout)
 
     def models(self) -> list[ModelUsage]:
         return list(self.usage.values())
@@ -84,7 +87,8 @@ class LLM:
         self.client = httpx.Client(timeout=timeout)
         # When the primary provider is unavailable (rate limit longer than we wait, outage), calls move to
         # the next provider that has a key. Usage is metered under the model that actually answered.
-        chain = [p.strip() for p in os.getenv("AMBER_FALLBACK", "groq,gemini").split(",") if p.strip()]
+        # Default: no automatic fallback to a paid provider. Opt in with AMBER_FALLBACK=gemini (still capped).
+        chain = [p.strip() for p in os.getenv("AMBER_FALLBACK", "").split(",") if p.strip()]
         self.fallbacks = [p for p in chain if p != self.provider and p in DEFAULTS and _has_key(p)]
         self.switched: list[str] = []
 
@@ -113,6 +117,8 @@ class LLM:
 
     # ---- providers -------------------------------------------------------------------------
     def _post(self, url: str, headers: dict, body: dict) -> dict:
+        if "generativelanguage.googleapis.com" in url:
+            budget.check()  # refuse before sending once the spending cap is reached
         max_wait = float(os.getenv("AMBER_MAX_WAIT", "65"))  # free tiers refill per minute
         r = None
         for attempt in range(4):

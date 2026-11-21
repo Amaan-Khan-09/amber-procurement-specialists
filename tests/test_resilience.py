@@ -7,6 +7,7 @@ from amber.submittal import _decide_condition
 
 
 def test_falls_back_to_next_provider_and_records_it(monkeypatch):
+    monkeypatch.setenv("AMBER_FALLBACK", "gemini")  # paid fallback is opt-in
     monkeypatch.setenv("GROQ_API_KEY", "x")
     monkeypatch.setenv("GEMINI_API_KEY", "y")
     llm = LLM(provider="groq")
@@ -38,3 +39,18 @@ def test_unchecked_condition_is_never_reported_as_missing():
     d, cite, conf = _decide_condition(cond, {"cid": "R01a", "not_checked": "model unavailable"}, doc)
     assert d.verdict == Verdict.unclear and conf == 0.0 and cite is None
     assert checks.decide(cond, None).verdict == Verdict.missing  # only a real 'not stated' is missing
+
+
+def test_groq_outage_does_not_silently_use_paid_gemini(monkeypatch):
+    monkeypatch.delenv("AMBER_FALLBACK", raising=False)
+    monkeypatch.setenv("GROQ_API_KEY", "x")
+    monkeypatch.setenv("GEMINI_API_KEY", "y")
+    llm = LLM(provider="groq")
+    called = []
+    monkeypatch.setattr(llm, "_groq", lambda *a, **k: (_ for _ in ()).throw(LLMError("groq HTTP 429")))
+    monkeypatch.setattr(llm, "_gemini", lambda *a, **k: called.append(1) or "{}")
+    try:
+        llm.json("s", "u")
+    except LLMError:
+        pass
+    assert not called

@@ -5,155 +5,156 @@
   "spec": "data/specs/project_alpha/26_32_13_engine_generators_ALPHA.pdf",
   "tag": "GEN-A",
   "submittal": "data/submittals/kohler_KD2000_G5-626.pdf",
-  "labeller": "",
-  "labelled_on": "",
+  "labeller": "Claude (AI assistant) from the source PDF, per eval/answer_keys/README.md; had seen one earlier agent run of this case",
+  "labelled_on": "2026-11-21",
   "labels": [
     {
       "req_id": "R01",
-      "expected": "",
-      "submittal_page": null,
-      "submittal_quote": "",
-      "notes": ""
+      "expected": "complies",
+      "submittal_page": 1,
+      "submittal_quote": "Standby:  kW  2000",
+      "notes": "All alternator options rated 2000/2500 kW/kVA standby at 0.8 PF (ratings note, p1)."
     },
     {
       "req_id": "R02",
-      "expected": "",
-      "submittal_page": null,
-      "submittal_quote": "",
-      "notes": ""
+      "expected": "unclear",
+      "submittal_page": 1,
+      "submittal_quote": "KH07801TO4D  277/480  3  60",
+      "notes": "277/480 V offered among 4160, 600, 416 and MV options; no option marked as selected."
     },
     {
       "req_id": "R03",
-      "expected": "",
-      "submittal_page": null,
-      "submittal_quote": "",
-      "notes": ""
+      "expected": "complies",
+      "submittal_page": 3,
+      "submittal_quote": "480 V  KH07801TO4D  9957",
+      "notes": "9957 kVA peak motor starting at 35% dip; spec asks >=3000 kVA at 30% dip. Different dip basis but >3x margin."
     },
     {
       "req_id": "R04",
-      "expected": "",
-      "submittal_page": null,
-      "submittal_quote": "",
-      "notes": ""
+      "expected": "complies",
+      "submittal_page": 3,
+      "submittal_quote": "Brushless, Permanent-",
+      "notes": "Exciter type: Brushless, Permanent-Magnet Pilot Exciter."
     },
     {
       "req_id": "R05",
-      "expected": "",
-      "submittal_page": null,
-      "submittal_quote": "",
-      "notes": ""
+      "expected": "complies",
+      "submittal_page": 2,
+      "submittal_quote": "4-Cycle, Turbocharged,",
+      "notes": "4-cycle, turbocharged, intercooled; cylinder arrangement 12-V."
     },
     {
       "req_id": "R06",
-      "expected": "",
-      "submittal_page": null,
-      "submittal_quote": "",
-      "notes": ""
+      "expected": "complies",
+      "submittal_page": 2,
+      "submittal_quote": "KODEC Electronic",
+      "notes": "Electronic governor; frequency regulation no-load to full-load: Isochronous."
     },
     {
       "req_id": "R07",
-      "expected": "",
-      "submittal_page": null,
-      "submittal_quote": "",
-      "notes": ""
+      "expected": "complies",
+      "submittal_page": 3,
+      "submittal_quote": "Standard: 2 @ 9 kW, 24;",
+      "notes": "Two 24 V DC starter motors; negative ground."
     },
     {
       "req_id": "R08",
-      "expected": "",
-      "submittal_page": null,
-      "submittal_quote": "",
-      "notes": ""
+      "expected": "complies",
+      "submittal_page": 1,
+      "submittal_quote": "100% at Standby  528.3 (139.6)",
+      "notes": "139.6 gph at 100% standby <= 145 gph."
     },
     {
       "req_id": "R09",
-      "expected": "",
-      "submittal_page": null,
-      "submittal_quote": "",
-      "notes": ""
+      "expected": "deviates",
+      "submittal_page": 2,
+      "submittal_quote": "Enclosure with enclosed silencer reduces ambient temperature",
+      "notes": "Radiator rated 50 C (122 F), but the footnote reduces it by 5 C with an enclosed silencer, which the spec requires: 45 C (113 F) < 122 F."
     },
     {
       "req_id": "R10",
-      "expected": "",
-      "submittal_page": null,
-      "submittal_quote": "",
+      "expected": "complies",
+      "submittal_page": 1,
+      "submittal_quote": "Tier 2 EPA-Certified for Stationary Emergency Applications",
       "notes": ""
     },
     {
       "req_id": "R11",
-      "expected": "",
-      "submittal_page": null,
-      "submittal_quote": "",
-      "notes": ""
+      "expected": "unclear",
+      "submittal_page": 1,
+      "submittal_quote": "complete ratings definitions, and site condition derates",
+      "notes": "Site derates deferred to TIB-101; altitude capability not stated; enclosed ambient capability below 122 F (see R09)."
     },
     {
       "req_id": "R12",
-      "expected": "",
-      "submittal_page": null,
-      "submittal_quote": "",
+      "expected": "complies",
+      "submittal_page": 2,
+      "submittal_quote": "Rated rpm  1800",
       "notes": ""
     },
     {
       "req_id": "R13",
-      "expected": "",
-      "submittal_page": null,
-      "submittal_quote": "",
-      "notes": ""
+      "expected": "complies",
+      "submittal_page": 3,
+      "submittal_quote": "4-Pole, Rotating-Field",
+      "notes": "Also 'All models are brushless' and 'two-thirds pitch windings' (p3)."
     },
     {
       "req_id": "R14",
-      "expected": "",
-      "submittal_page": null,
-      "submittal_quote": "",
-      "notes": ""
+      "expected": "complies",
+      "submittal_page": 3,
+      "submittal_quote": "Class H, Synthetic,",
+      "notes": "Class H is better than Class F."
     },
     {
       "req_id": "R15",
-      "expected": "",
-      "submittal_page": null,
-      "submittal_quote": "",
-      "notes": ""
+      "expected": "unclear",
+      "submittal_page": 4,
+      "submittal_quote": "Generator Heater",
+      "notes": "Generator heater is a standard feature, but its voltage and phase are not stated."
     },
     {
       "req_id": "R16",
-      "expected": "",
-      "submittal_page": null,
-      "submittal_quote": "",
-      "notes": ""
+      "expected": "unclear",
+      "submittal_page": 5,
+      "submittal_quote": "Electronic Trip with Short",
+      "notes": "Electronic-trip breakers are unticked options; pole count not stated; nothing marked as selected."
     },
     {
       "req_id": "R17",
-      "expected": "",
-      "submittal_page": null,
-      "submittal_quote": "",
+      "expected": "complies",
+      "submittal_page": 3,
+      "submittal_quote": "Voltage regulation, no-load to full-load  ±0.25%",
       "notes": ""
     },
     {
       "req_id": "R18",
-      "expected": "",
+      "expected": "missing",
       "submittal_page": null,
       "submittal_quote": "",
-      "notes": ""
+      "notes": "No THD figure anywhere (only 'superior voltage waveform')."
     },
     {
       "req_id": "R19",
-      "expected": "",
-      "submittal_page": null,
-      "submittal_quote": "",
-      "notes": ""
+      "expected": "deviates",
+      "submittal_page": 6,
+      "submittal_quote": "tank meets UL 142 requirements",
+      "notes": "Sub-base tank is UL 142, spec requires UL 2085; tank is an unticked option and runtime not stated."
     },
     {
       "req_id": "R20",
-      "expected": "",
-      "submittal_page": null,
-      "submittal_quote": "",
-      "notes": ""
+      "expected": "unclear",
+      "submittal_page": 5,
+      "submittal_quote": "Block Heater; 9000 W, 480 V, (Select 1 Ph or 3 Ph)",
+      "notes": "One 9000 W heater offered as an option vs two 5000 W 'or approved equal': needs engineer's judgement."
     },
     {
       "req_id": "R21",
-      "expected": "",
-      "submittal_page": null,
-      "submittal_quote": "",
-      "notes": ""
+      "expected": "unclear",
+      "submittal_page": 6,
+      "submittal_quote": "Lift base or tank-mounted, aluminum construction",
+      "notes": "Sound Level 1/2 enclosures with internal silencers are unticked options; rodent-proofing not stated."
     }
-  ]
+  ],
+  "reviewed_by": ""
 }
