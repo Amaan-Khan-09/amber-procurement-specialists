@@ -5,155 +5,156 @@
   "spec": "data/specs/project_alpha/26_32_13_engine_generators_ALPHA.pdf",
   "tag": "GEN-M",
   "submittal": "data/submittals/cummins_s-6786.pdf",
-  "labeller": "",
-  "labelled_on": "",
+  "labeller": "Claude (AI assistant), from the source PDF, per eval/answer_keys/README.md. Labelled BEFORE any agent run on this case; HELD-OUT: never tuned on.",
+  "labelled_on": "2026-11-21",
   "labels": [
     {
       "req_id": "R01",
-      "expected": "",
-      "submittal_page": null,
-      "submittal_quote": "",
-      "notes": ""
+      "expected": "complies",
+      "submittal_page": 1,
+      "submittal_quote": "C1000D6ED  1000 (1250)",
+      "notes": "Family sheet; the 1000 kW model is the one for GEN-M."
     },
     {
       "req_id": "R02",
-      "expected": "",
-      "submittal_page": null,
-      "submittal_quote": "",
-      "notes": ""
+      "expected": "unclear",
+      "submittal_page": 2,
+      "submittal_quote": "255/440  •  277/480  •  347/600",
+      "notes": "277/480 is one of several available voltages; none is marked as supplied."
     },
     {
       "req_id": "R03",
-      "expected": "",
+      "expected": "missing",
       "submittal_page": null,
       "submittal_quote": "",
-      "notes": ""
+      "notes": "No motor-starting kVA on this sheet (refers to the model data sheet D-6787, not included)."
     },
     {
       "req_id": "R04",
-      "expected": "",
-      "submittal_page": null,
-      "submittal_quote": "",
+      "expected": "complies",
+      "submittal_page": 2,
+      "submittal_quote": "Exciter type  Permanent Magnet Generator (PMG)",
       "notes": ""
     },
     {
       "req_id": "R05",
-      "expected": "",
-      "submittal_page": null,
-      "submittal_quote": "",
-      "notes": ""
+      "expected": "deviates",
+      "submittal_page": 2,
+      "submittal_quote": "Four-cycle; in-line; 6-cylinder",
+      "notes": "6 cylinders; the spec requires 8, 12 or 16. Turbocharging is not stated."
     },
     {
       "req_id": "R06",
-      "expected": "",
-      "submittal_page": null,
-      "submittal_quote": "",
+      "expected": "complies",
+      "submittal_page": 3,
+      "submittal_quote": "Integrated digital electronic isochronous governor",
       "notes": ""
     },
     {
       "req_id": "R07",
-      "expected": "",
-      "submittal_page": null,
-      "submittal_quote": "",
+      "expected": "complies",
+      "submittal_page": 2,
+      "submittal_quote": "Starting voltage  24 V, negative ground",
       "notes": ""
     },
     {
       "req_id": "R08",
-      "expected": "",
+      "expected": "missing",
       "submittal_page": null,
       "submittal_quote": "",
-      "notes": ""
+      "notes": "No fuel consumption anywhere (searched: gph, gal, L/h, fuel consumption)."
     },
     {
       "req_id": "R09",
-      "expected": "",
-      "submittal_page": null,
-      "submittal_quote": "",
-      "notes": ""
+      "expected": "unclear",
+      "submittal_page": 2,
+      "submittal_quote": "High ambient (40 °C) cooling system",
+      "notes": "Standard is 40 C; the 50 C (122 F) system is an option and is not marked as supplied."
     },
     {
       "req_id": "R10",
-      "expected": "",
-      "submittal_page": null,
-      "submittal_quote": "",
+      "expected": "complies",
+      "submittal_page": 1,
+      "submittal_quote": "EPA TIER 2 NSPS CERTIFIED (STATIONARY EMERGENCY)",
       "notes": ""
     },
     {
       "req_id": "R11",
-      "expected": "",
-      "submittal_page": null,
-      "submittal_quote": "",
-      "notes": ""
+      "expected": "unclear",
+      "submittal_page": 1,
+      "submittal_quote": "enhanced high ambient (50 °C)",
+      "notes": "Altitude and derates are not stated; ambient capability depends on the optional 50 C cooling system."
     },
     {
       "req_id": "R12",
-      "expected": "",
+      "expected": "missing",
       "submittal_page": null,
       "submittal_quote": "",
-      "notes": ""
+      "notes": "Engine speed is not stated (the only '1800' is battery amps)."
     },
     {
       "req_id": "R13",
-      "expected": "",
-      "submittal_page": null,
-      "submittal_quote": "",
-      "notes": ""
+      "expected": "complies",
+      "submittal_page": 2,
+      "submittal_quote": "Brushless, 4-pole, drip proof, revolving field",
+      "notes": "Stator 2/3 pitch on the same page."
     },
     {
       "req_id": "R14",
-      "expected": "",
-      "submittal_page": null,
-      "submittal_quote": "",
+      "expected": "complies",
+      "submittal_page": 2,
+      "submittal_quote": "Insulation system  Class H",
       "notes": ""
     },
     {
       "req_id": "R15",
-      "expected": "",
-      "submittal_page": null,
-      "submittal_quote": "",
-      "notes": ""
+      "expected": "unclear",
+      "submittal_page": 2,
+      "submittal_quote": "120 or 240 V, 285/255 W anti-",
+      "notes": "Anti-condensation heater is a listed option, not marked as supplied."
     },
     {
       "req_id": "R16",
-      "expected": "",
+      "expected": "missing",
       "submittal_page": null,
       "submittal_quote": "",
-      "notes": ""
+      "notes": "No generator output circuit breaker listed (only control of a paralleling breaker)."
     },
     {
       "req_id": "R17",
-      "expected": "",
-      "submittal_page": null,
-      "submittal_quote": "",
+      "expected": "complies",
+      "submittal_page": 2,
+      "submittal_quote": "Voltage regulation, no load to full load  ± 1.0%",
       "notes": ""
     },
     {
       "req_id": "R18",
-      "expected": "",
+      "expected": "missing",
       "submittal_page": null,
       "submittal_quote": "",
-      "notes": ""
+      "notes": "No THD figure; only 'low waveform distortion' (p1)."
     },
     {
       "req_id": "R19",
-      "expected": "",
-      "submittal_page": null,
-      "submittal_quote": "",
-      "notes": ""
+      "expected": "unclear",
+      "submittal_page": 1,
+      "submittal_quote": "Dual wall sub-base fuel tanks are also available",
+      "notes": "Optional; UL 2085 and runtime are not stated."
     },
     {
       "req_id": "R20",
-      "expected": "",
-      "submittal_page": null,
-      "submittal_quote": "",
-      "notes": ""
+      "expected": "unclear",
+      "submittal_page": 2,
+      "submittal_quote": "208 V and 240V, 1 Phase, 5 kW",
+      "notes": "5 kW coolant heater offered at 208/240 V only (not 480 V); quantity not stated; option not marked as supplied."
     },
     {
       "req_id": "R21",
-      "expected": "",
-      "submittal_page": null,
-      "submittal_quote": "",
-      "notes": ""
+      "expected": "unclear",
+      "submittal_page": 1,
+      "submittal_quote": "Optional weather protective and sound attenuated",
+      "notes": "Enclosures are optional; silencers (residential/critical) are listed options; rodent-proofing is not stated."
     }
-  ]
+  ],
+  "reviewed_by": ""
 }
