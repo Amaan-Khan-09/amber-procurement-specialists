@@ -114,3 +114,23 @@ The round started on 9 Nov, so code written now counts as hackathon work. We hav
 - **Groq free tier is 8k tokens per minute.** Long specs won't fit in one call. Mitigation: parse the spec into paragraphs first and send only Part 2 (Products) paragraphs in batches, with Gemini for long reads.
 - **CPU-only offline mode is slow.** Mitigation: offline mode runs extraction only, on small batches. We report its real time per run honestly.
 - **Bid documents are synthetic.** Mitigation: say so on slide 1 of the data section, ship the generator, and keep the planted issues realistic. The variety comes from writing them by hand.
+
+## 10. What changed from the plan (as built, 22 Nov)
+
+The plan above held up; these are the differences and the reasons, each one driven by a measured error.
+
+- **Requirements are structured once per spec and cached** (`data/requirements/`, keyed by spec, equipment row and
+  checklist hash). Structuring depends only on the spec, so it is done once with a capable model; every later submittal
+  check, including offline on a small local model, only has to read the submittal. A 4B model could not write the
+  structured list itself (it produced nothing) but could read datasheets correctly.
+- **Two more guards on every claim** (section 4): the reported number must appear in its own verified quote, and a
+  number whose unit is not in the quote cannot be a confident claim. The first caught a verified quote that did not
+  support the value claimed ("Ambient design, F 104" for a reported 122); the second caught voltage-header numbers read as kVA.
+- **Model and code disagreement goes to a person**, and any verdict that rests on the model's reading of a quote
+  (for example a derate sentence) is capped below the handoff line.
+- **A second look for "not stated"**: a false `missing` is a risky claim, so conditions the first pass gave up on are
+  re-read with a wider net before `missing` is accepted. Bill-of-material pages are always shown to the model.
+- **Qualifiers stay inside their parent condition** ("at 30% dip" is part of the motor-starting rating, not a separate check).
+- **Paid-API spending is capped** by a persistent ledger, and a failed model call degrades to "not checked", never to a claim.
+- **Held-out discipline**: G3, G4 and U1 are labelled but the scorer refuses to run them without `--final`.
+- **Offline mode is real but slow on a laptop CPU** (minutes per call). The README reports the measured time and accuracy.
