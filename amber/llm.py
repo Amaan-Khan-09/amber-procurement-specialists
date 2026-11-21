@@ -84,7 +84,8 @@ class LLM:
             raise LLMError(f"unknown provider {self.provider}")
         self.model = model or DEFAULTS[self.provider]
         self.meter = meter or Meter()
-        self.client = httpx.Client(timeout=timeout)
+        # a laptop CPU needs minutes per call: local models get a long timeout instead of dying at 120 s
+        self.client = httpx.Client(timeout=max(timeout, 1800.0) if self.provider == "ollama" else timeout)
         # When the primary provider is unavailable (rate limit longer than we wait, outage), calls move to
         # the next provider that has a key. Usage is metered under the model that actually answered.
         # Default: no automatic fallback to a paid provider. Opt in with AMBER_FALLBACK=gemini (still capped).
