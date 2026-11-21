@@ -17,7 +17,7 @@ PROMPT = ("Transcribe ALL text on this scanned document page exactly as printed:
           "translate, correct or add anything. If the page has no text, reply with an empty string.")
 
 VISION = {"groq": os.getenv("AMBER_GROQ_VISION_MODEL", "qwen/qwen3.8-27b"),
-          "gemini": os.getenv("AMBER_GEMINI_MODEL", "gemini-2.5-flash")}
+          "gemini": os.getenv("AMBER_GEMINI_MODEL", "gemini-3.8-flash")}
 
 
 def _shrink(png: bytes, max_side: int = 1600) -> bytes:
@@ -36,6 +36,10 @@ class VisionOCR:
         has_gemini = bool(os.getenv("GEMINI_API_KEY") or os.getenv("GOOGLE_API_KEY"))
         self.provider = provider or ("gemini" if has_gemini and os.getenv("AMBER_OCR", "") != "groq" else "groq")
         self.llm = LLM(provider=self.provider, model=VISION[self.provider], meter=meter)
+
+    @property
+    def cache_tag(self) -> str:
+        return self.llm.model.replace("/", "_")
 
     def __call__(self, png: bytes) -> str:
         try:

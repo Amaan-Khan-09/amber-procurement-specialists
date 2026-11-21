@@ -77,7 +77,8 @@ def load(path: str | Path, doc_id: str | None = None, ocr=None) -> Document:
 
 def _ocr_cached(sha: str, number: int, pg: "pymupdf.Page", ocr) -> str:
     CACHE.mkdir(parents=True, exist_ok=True)
-    f = CACHE / f"{sha[:16]}-p{number}.json"
+    tag = getattr(ocr, "cache_tag", "ocr")  # which engine read it, so engines never mix silently
+    f = CACHE / f"{sha[:16]}-p{number}-{tag}.json"
     if f.exists():
         return json.loads(f.read_text(encoding="utf-8"))["text"]
     png = pg.get_pixmap(dpi=200).tobytes("png")

@@ -23,12 +23,12 @@ load_dotenv()
 PRICES = {
     "openai/gpt-oss-120b": (0.15, 0.60),
     "openai/gpt-oss-20b": (0.075, 0.30),
-    "gemini-2.5-flash": (0.30, 2.50),
+    "gemini-3.8-flash": (0.75, 3.75),  # intro rate to 2026-12-31 (third-party reports; check ai.google.dev/pricing)
 }
 
 DEFAULTS = {
     "groq": os.getenv("AMBER_GROQ_MODEL", "openai/gpt-oss-120b"),
-    "gemini": os.getenv("AMBER_GEMINI_MODEL", "gemini-2.5-flash"),
+    "gemini": os.getenv("AMBER_GEMINI_MODEL", "gemini-3.8-flash"),
     "ollama": os.getenv("AMBER_OLLAMA_MODEL", "qwen3:4b"),
 }
 
@@ -90,9 +90,16 @@ class LLM:
     # ---- providers -------------------------------------------------------------------------
     def _post(self, url: str, headers: dict, body: dict) -> dict:
         max_wait = float(os.getenv("AMBER_MAX_WAIT", "65"))  # free tiers refill per minute
+        r = None
         for attempt in range(4):
-            r = self.client.post(url, headers=headers, json=body)
-            if r.status_code in (429, 500, 502, 503) and attempt < 3:
+            try:
+                r = self.client.post(url, headers=headers, json=body)
+            except httpx.TransportError as e:  # dropped connection, timeout: retry, then give up cleanly
+                if attempt == 3:
+                    raise LLMError(f"{self.provider} network error: {e}") from e
+                time.sleep(2 * (attempt + 1))
+                continue
+            if r.status_code in (429, 500, 502, 503, 504) and attempt < 3:
                 wait = float(r.headers.get("retry-after", 2 * (attempt + 1))) + 2
                 if wait > max_wait:
                     break
