@@ -233,8 +233,14 @@ def _decide_condition(c: dict, o: dict | None, sub_doc: docs.Document):
     if cite is None:
         return (checks.Decision(Verdict.unclear, f"reported quote not found in the submittal ({o.get('quote', '')[:60]!r}); "
                                                  "value discarded", False), None, 0.4)
+    if c.get("kind", "numeric") == "numeric":
+        unsupported = checks.values_in_quote([v for v in (o.get("values") or []) if v not in (None, "")], cite.quote)
+        if unsupported:  # the quote is real but does not contain what was claimed: no source, no claim
+            return (checks.Decision(Verdict.unclear, f"reported value(s) {unsupported} do not appear in the quote "
+                                                     f"{cite.quote!r}; discarded", False), cite, 0.4)
     d = checks.decide(c, o, evidence=cite.quote)
     exact = d.exact
+    unit_shown = c.get("kind", "numeric") != "numeric" or checks.unit_in_text(o.get("unit") or c.get("unit"), cite.quote)
     meets = str(o.get("meets", "")).lower()
     values = [v for v in (o.get("values") or []) if v not in (None, "")]
     judged = False
@@ -256,6 +262,10 @@ def _decide_condition(c: dict, o: dict | None, sub_doc: docs.Document):
     conf = (0.95 if exact else 0.74) * MATCH_TRUST.get(cite.match, 0.8)
     if judged:
         conf = min(conf, JUDGEMENT_CAP)
+    if not unit_shown and d.verdict in (Verdict.complies, Verdict.deviates):
+        # a number whose unit is not written in its own quote may belong to a different row or column
+        conf = min(conf, JUDGEMENT_CAP)
+        d = checks.Decision(d.verdict, d.why + f"; unit {o.get('unit') or c.get('unit')} is not shown in the quote, confirm", d.exact)
     if cite.ocr:
         # vision OCR can misread digits and model numbers (seen: KD1000 read as KD2000), so evidence from
         # a scanned page is a candidate for a person to confirm, never an automatic pass or fail

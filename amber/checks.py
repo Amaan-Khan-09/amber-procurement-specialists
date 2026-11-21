@@ -185,6 +185,47 @@ def _single_numbers(values: list, u: str | None) -> tuple[list, str | None]:
     return out, None
 
 
+UNIT_WORDS = {"kva": ["kva"], "kw": ["kw", "kwe", "ekw"], "w": ["watt", " w", "w "], "v": ["v", "volt"], "a": ["amp", " a "],
+              "hz": ["hz"], "rpm": ["rpm"], "gph": ["gph", "gal/hr", "gal./hr", "gal/h"], "l/hr": ["l/hr", "lph", "l/h"],
+              "°f": ["°f", "deg f", "degf", "(f)", "f)"], "°c": ["°c", "deg c", "degc", "(c)"], "%": ["%", "percent"],
+              "h": ["hour", "hr", " h"], "hp": ["hp", "horsepower"], "ft": ["ft", "feet", "'"], "psi": ["psi"],
+              "ka": ["ka"], "db": ["db"], "gal": ["gal"], "l": ["liter", "litre", " l"]}
+
+
+def unit_in_text(unit: str | None, text: str) -> bool:
+    """Is the unit (or a common spelling of it) written in `text`? Dimensionless / unknown units pass."""
+    if not unit:
+        return True
+    key = unit.strip().lower()
+    words = UNIT_WORDS.get(key)
+    if words is None:
+        return True
+    t = " " + re.sub(r"\s+", " ", text.lower()) + " "
+    return any(w in t for w in words)
+
+
+def numbers_in(text: str) -> list[float]:
+    out = []
+    for m in re.finditer(r"-?\d[\d,]*\.?\d*", text):
+        try:
+            out.append(float(m.group(0).replace(",", "").rstrip(".")))
+        except ValueError:
+            pass
+    return out
+
+
+def values_in_quote(values: list, quote: str) -> list:
+    """Reported numeric values that do NOT occur as numbers in the quote (a real quote can still not
+    support the claim: 'Ambient design, F 104' does not support a reported 122)."""
+    have = numbers_in(quote)
+    bad = []
+    for v in values:
+        nums = numbers_in(str(v))
+        if nums and not any(abs(nums[0] - h) <= 1e-9 + abs(h) * 1e-6 for h in have):
+            bad.append(v)
+    return bad
+
+
 def _family(u: str | None) -> str | None:
     """pint gives kW and kVA the same dimension; procurement must not. Returns 'W', 'VA' or None."""
     if not u:

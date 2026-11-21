@@ -107,3 +107,32 @@ def test_bill_of_material_page_is_always_found():
     doc = Document("d", "d.pdf", pages=[Page(1, "intro " * 50), Page(2, "Bill of Material\nFeature Code Description Qty\nA416 Heater 1"),
                                         Page(3, "long page " * 900)])
     assert _config_pages(doc) == [2]
+
+
+def test_reported_value_must_be_in_its_own_quote():
+    from amber.docs import Document, Page
+    from amber.submittal import _decide_condition
+    doc = Document("d", "d.pdf", pages=[Page(1, "Standard radiator   Ambient design, °F  104   Fan load 77 HP " * 3)])
+    cond = {"cid": "R11a", "kind": "numeric", "op": ">=", "value": 122, "unit": "°F"}
+    offer = {"cid": "R11a", "stated": True, "values": [122], "unit": "°F", "quote": "Ambient design, °F  104", "page": 1, "meets": "yes"}
+    d, cite, conf = _decide_condition(cond, offer, doc)
+    assert d.verdict == Verdict.unclear and conf < 0.70 and "do not appear" in d.why
+
+
+def test_number_without_its_unit_in_the_quote_cannot_be_confident():
+    from amber.docs import Document, Page
+    from amber.submittal import _decide_condition
+    doc = Document("d", "d.pdf", pages=[Page(1, "3 Motor starting  380  416  440  480  600   Voltage " * 3)])
+    cond = {"cid": "R03a", "kind": "numeric", "op": ">=", "value": 3000, "unit": "kVA"}
+    offer = {"cid": "R03a", "stated": True, "values": [380, 416, 440, 480, 600], "unit": "kVA",
+             "quote": "3 Motor starting  380  416  440  480  600", "page": 1, "meets": "no"}
+    d, cite, conf = _decide_condition(cond, offer, doc)
+    assert conf < 0.70 and "unit" in d.why
+
+
+def test_unit_spellings():
+    from amber.checks import unit_in_text
+    assert unit_in_text("kVA", "Maximum kVA (90% sustained voltage) 7944")
+    assert unit_in_text("gph", "Fuel Consumption L/hr (gal./hr) 528.3 (139.6) gal./hr")
+    assert not unit_in_text("kVA", "Motor starting 380 416")
+    assert unit_in_text("", "anything")
