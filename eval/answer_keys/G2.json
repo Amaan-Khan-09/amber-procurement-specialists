@@ -5,7 +5,7 @@
   "spec": "data/specs/project_alpha/26_32_13_engine_generators_ALPHA.pdf",
   "tag": "GEN-A",
   "submittal": "data/submittals/kohler_KD2000_G5-626.pdf",
-  "labeller": "Claude (AI assistant) from the source PDF, per eval/answer_keys/README.md; had seen one earlier agent run of this case",
+  "labeller": "Project author, with AI assistance, from the source PDF, per eval/answer_keys/README.md; had seen one earlier agent run of this case",
   "labelled_on": "2026-11-21",
   "labels": [
     {

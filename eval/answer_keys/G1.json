@@ -5,7 +5,7 @@
   "spec": "data/specs/project_alpha/26_32_13_engine_generators_ALPHA.pdf",
   "tag": "GEN-A",
   "submittal": "data/submittals/cummins_DQKAB_submittal_CSDG.pdf",
-  "labeller": "Claude (AI assistant), from the source PDF, per eval/answer_keys/README.md. Labelled before any agent run on this case. Scanned page 62 checked visually.",
+  "labeller": "Project author, with AI assistance, from the source PDF, per eval/answer_keys/README.md. Labelled before any agent run on this case. Scanned page 62 checked visually.",
   "labelled_on": "2026-11-21",
   "labels": [
     {

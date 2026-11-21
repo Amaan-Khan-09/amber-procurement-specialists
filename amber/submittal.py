@@ -13,6 +13,7 @@ from __future__ import annotations
 
 import csv
 import json
+import os
 import re
 import time
 from pathlib import Path
@@ -295,7 +296,7 @@ def check_submittal(spec_path: str, submittal_path: str, tag: str, schedule_path
     t0 = time.time()
     llm = llm or LLM()
     reader = None
-    if ocr:
+    if ocr and os.getenv("AMBER_OCR", "").lower() != "off":  # AMBER_OCR=off: never send scanned pages to a vision model
         from .ocr import VisionOCR
         reader = VisionOCR(meter=llm.meter)
     spec_doc, sub_doc = docs.load(spec_path, ocr=reader), docs.load(submittal_path, ocr=reader)
