@@ -65,6 +65,14 @@ def _parse_json(text: str) -> dict:
     return obj if isinstance(obj, dict) else {"items": obj}
 
 
+def _has_key(provider: str) -> bool:
+    if provider == "groq":
+        return bool(os.getenv("GROQ_API_KEY"))
+    if provider == "gemini":
+        return bool(os.getenv("GEMINI_API_KEY") or os.getenv("GOOGLE_API_KEY"))
+    return provider == "ollama"
+
+
 class LLM:
     def __init__(self, provider: str | None = None, model: str | None = None, meter: Meter | None = None,
                  timeout: float = 120.0):
@@ -74,9 +82,25 @@ class LLM:
         self.model = model or DEFAULTS[self.provider]
         self.meter = meter or Meter()
         self.client = httpx.Client(timeout=timeout)
+        # When the primary provider is unavailable (rate limit longer than we wait, outage), calls move to
+        # the next provider that has a key. Usage is metered under the model that actually answered.
+        chain = [p.strip() for p in os.getenv("AMBER_FALLBACK", "groq,gemini").split(",") if p.strip()]
+        self.fallbacks = [p for p in chain if p != self.provider and p in DEFAULTS and _has_key(p)]
+        self.switched: list[str] = []
 
     def json(self, system: str, user: str, max_tokens: int = 4000) -> dict:
-        """Ask for a JSON object. One repair retry if the reply is not valid JSON."""
+        """Ask for a JSON object. One repair retry if the reply is not valid JSON; provider fallback on outage."""
+        while True:
+            try:
+                return self._json_once(system, user, max_tokens)
+            except LLMError as e:
+                if "invalid JSON" in str(e) or not self.fallbacks:
+                    raise
+                nxt = self.fallbacks.pop(0)
+                self.switched.append(f"{self.provider}->{nxt}: {str(e)[:120]}")
+                self.provider, self.model = nxt, DEFAULTS[nxt]
+
+    def _json_once(self, system: str, user: str, max_tokens: int) -> dict:
         last = None
         for attempt in range(2):
             prompt = user if attempt == 0 else user + "\n\nYour previous reply was not valid JSON. Reply with JSON only."

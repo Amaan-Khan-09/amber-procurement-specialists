@@ -17,7 +17,7 @@ import re
 import time
 
 from . import docs
-from .llm import LLM
+from .llm import LLM, LLMError
 from .schema import Citation, Finding, RunInfo, ToolResult, Verdict
 from .verify import MATCH_TRUST, verify
 
@@ -216,9 +216,19 @@ def level_bids(form_path: str, bid_paths: dict[str, str], llm: LLM | None = None
     form_doc = docs.load(form_path)
     form = read_form(llm, form_doc)
     bid_docs = {k: docs.load(p) for k, p in bid_paths.items()}
-    bids = {k: read_bid(llm, d, form) for k, d in bid_docs.items()}
+    bids, unread = {}, {}
+    for k, d in bid_docs.items():
+        try:
+            bids[k] = read_bid(llm, d, form)
+        except LLMError as e:  # one unreadable bid must not stop the comparison; it is reported, not ranked
+            unread[k] = f"model unavailable: {str(e)[:100]}"
+    if not bids:
+        raise LLMError("no bid could be read: " + "; ".join(unread.values()))
     table = level(form, bids)
     decision = award(table, bids)
+    if unread:  # an award can't be safe while some bids were never read
+        decision["auto_award"], decision["recommend"] = False, None
+        decision["why"] = f"bids not read: {', '.join(unread)} | " + decision["why"]
 
     findings = []
     for bid_id, b in bids.items():
@@ -250,7 +260,11 @@ def level_bids(form_path: str, bid_paths: dict[str, str], llm: LLM | None = None
               "matrix": {k: {sid: i["status"] for sid, i in b["items"].items()} for k, b in bids.items()},
               "products": {k: b.get("offered_product") for k, b in bids.items()},
               "leveling": table, "lead_time": {k: b.get("lead_time") for k, b in bids.items()},
-              "terms": {k: b.get("terms") for k, b in bids.items()}, "award": decision}
+              "terms": {k: b.get("terms") for k, b in bids.items()}, "award": decision,
+              "unread_bids": unread, "provider_switches": list(llm.switched)}
+    for k, why in unread.items():
+        findings.append(Finding(id=f"F-{k}-unread", claim=f"{k} could not be read", status=Verdict.unclear,
+                                confidence=0.0, why=why, data={"bid": k}))
     res = ToolResult(tool="level_bids", findings=findings, result=result,
                      run=RunInfo(models=llm.meter.models(), latency_ms=int((time.time() - t0) * 1000)))
     return res.finalize()

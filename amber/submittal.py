@@ -17,7 +17,7 @@ import time
 from pathlib import Path
 
 from . import checks, docs, retrieve, spec
-from .llm import LLM
+from .llm import LLM, LLMError
 from .schema import Citation, Finding, RunInfo, ToolResult, Verdict
 from .verify import MATCH_TRUST, verify
 
@@ -105,8 +105,14 @@ def structure_requirements(llm: LLM, spec_doc: docs.Document, row: dict, schedul
         user = ("Equipment schedule row for this tag:\n" + json.dumps(row) +
                 "\n\nClauses. When 'focus' is given, write exactly one requirement for that focus, with that req_id:\n" +
                 json.dumps(part, ensure_ascii=False))
-        reply = llm.json(REQ_SYSTEM, user, max_tokens=3500)
         src = {p["req_id"]: p for p in part}
+        try:
+            reply = llm.json(REQ_SYSTEM, user, max_tokens=3500)
+        except LLMError as e:  # keep going: these requirements are reported as not checked, never as missing
+            for p in part:
+                out.append({"req_id": p["req_id"], "locator": p["locator"], "requirement": p.get("focus") or p["clause"][:120],
+                            "conditions": [], "error": f"model unavailable: {str(e)[:100]}"})
+            continue
         for r in _items(reply.get("requirements", reply), "req_id"):
             s = src.get(r.get("req_id"), {})
             cite = verify(spec_doc, r.get("quote", ""), s.get("page"), s.get("locator", r.get("locator", "")))
@@ -155,8 +161,13 @@ def extract_offers(llm: LLM, sub_doc: docs.Document, reqs: list[dict]) -> dict[s
             continue
         ask = [{k: c.get(k) for k in ("cid", "attribute", "requirement", "kind", "op", "value", "min", "max", "unit", "terms")
                 if c.get(k) not in (None, [], "")} for c in batch]
-        reply = llm.json(EXTRACT_SYSTEM, "Conditions:\n" + json.dumps(ask, ensure_ascii=False) +
-                         "\n\nSubmittal excerpts:\n" + ctx, max_tokens=2000)
+        try:
+            reply = llm.json(EXTRACT_SYSTEM, "Conditions:\n" + json.dumps(ask, ensure_ascii=False) +
+                             "\n\nSubmittal excerpts:\n" + ctx, max_tokens=2000)
+        except LLMError as e:
+            for c in batch:
+                offers[c["cid"]] = {"cid": c["cid"], "not_checked": f"model unavailable: {str(e)[:100]}"}
+            continue
         for o in _items(reply.get("offers", reply), "cid"):
             offers[o.get("cid")] = o
     return offers
@@ -164,6 +175,8 @@ def extract_offers(llm: LLM, sub_doc: docs.Document, reqs: list[dict]) -> dict[s
 
 def _decide_condition(c: dict, o: dict | None, sub_doc: docs.Document):
     """-> (Decision, submittal Citation | None, confidence)"""
+    if o and o.get("not_checked"):
+        return checks.Decision(Verdict.unclear, f"not checked ({o['not_checked']})", False), None, 0.0
     if not o or not o.get("stated"):
         d = checks.decide(c, None)
         return d, None, (0.8 if not sub_doc.scanned_pages else 0.55)
@@ -225,7 +238,8 @@ def check_submittal(spec_path: str, submittal_path: str, tag: str, schedule_path
         spec_cite = Citation(**r["spec_citation"]) if r.get("spec_citation") else None
         parts = [_decide_condition(c, offers.get(c["cid"]), sub_doc) for c in r["conditions"]]
         if not parts:
-            verdict, why, conf = Verdict.unclear, "requirement could not be turned into a checkable condition", 0.3
+            verdict, why, conf = Verdict.unclear, r.get("error") or "requirement could not be turned into a checkable condition", \
+                0.0 if r.get("error") else 0.3
         else:
             verdict, why, conf = _combine(parts)
         if spec_cite is None:
@@ -247,6 +261,7 @@ def check_submittal(spec_path: str, submittal_path: str, tag: str, schedule_path
                      result={"tag": tag, "spec": spec_doc.doc_id, "submittal": sub_doc.doc_id, "summary": counts,
                              "overall": "reject" if counts["deviates"] else
                                         ("review" if counts["unclear"] or counts["missing"] else "approve"),
-                             "rows": rows, "unread_scanned_pages": sub_doc.scanned_pages},
+                             "rows": rows, "unread_scanned_pages": sub_doc.scanned_pages,
+                             "provider_switches": list(llm.switched)},
                      run=RunInfo(models=llm.meter.models(), latency_ms=int((time.time() - t0) * 1000)))
     return res.finalize()
