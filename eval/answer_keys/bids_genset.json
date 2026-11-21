@@ -1,0 +1,60 @@
+{
+  "case_id": "BL1",
+  "split": "dev",
+  "tool": "level_bids",
+  "package": "BP-26-04 Standby Generators (GEN-A..D), 4 sets",
+  "bid_form": "data/bids/00_bid_form_generators.pdf",
+  "bids": {
+    "B1": "data/bids/B1_northline_power.pdf",
+    "B2": "data/bids/B2_tidewater_generator.pdf",
+    "B3": "data/bids/B3_keystone_energy.pdf",
+    "B4": "data/bids/B4_ridgeway_power_email.txt"
+  },
+  "drafted_by": "the bid author (planted answers); REVIEW by a team member before use",
+  "reviewed_by": "",
+  "status_vocabulary": "included | excluded | qualified (offered but short of the scope) | silent (not mentioned) | alternate (priced separately by the bidder)",
+  "matrix": {
+    "S1":  {"B1": "included", "B2": "included", "B3": "included", "B4": "included"},
+    "S2":  {"B1": "included", "B2": "qualified", "B3": "included", "B4": "included"},
+    "S3":  {"B1": "included", "B2": "qualified", "B3": "alternate", "B4": "included"},
+    "S4":  {"B1": "included", "B2": "included", "B3": "excluded", "B4": "silent"},
+    "S5":  {"B1": "included", "B2": "included", "B3": "excluded", "B4": "silent"},
+    "S6":  {"B1": "included", "B2": "excluded", "B3": "included", "B4": "included"},
+    "S7":  {"B1": "excluded", "B2": "excluded", "B3": "excluded", "B4": "silent"},
+    "S8":  {"B1": "included", "B2": "included", "B3": "included", "B4": "included"},
+    "S9":  {"B1": "excluded", "B2": "included", "B3": "included", "B4": "silent"},
+    "S10": {"B1": "included", "B2": "included", "B3": "qualified", "B4": "silent"},
+    "S11": {"B1": "alternate", "B2": "included", "B3": "qualified", "B4": "silent"}
+  },
+  "why": {
+    "B2.S2": "weather protective enclosure, not sound-attenuated",
+    "B2.S3": "12-hour tank offered; 24 hours required",
+    "B3.S3": "tank excluded unless Option O1 (62,000 per set) is selected",
+    "B3.S10": "2 hours of training offered; 4 required",
+    "B3.S11": "standard 2-year warranty; 5 years required",
+    "B1.S11": "2-year standard; Alternate A1 adds 5-year for 96,000 total"
+  },
+  "ambiguous_for_review": {
+    "S8": "Scope says start-up 'by manufacturer's representative'. B1 (distributor) and B2 ('factory-trained technicians') are keyed 'included'; the agent says 'qualified'. Reviewer: decide which reading a procurement manager would use, and record it here. Do not change it just to match the agent."
+  },
+  "base_bid": {"B1": 4316000, "B2": 4415000, "B3": 3980000, "B4": 4240000},
+  "adjustments": {
+    "B1": {"S7": 38000, "S9": 56000, "S11": 96000},
+    "B2": {"S2": 152000, "S3": 220000, "S6": 74000, "S7": 38000},
+    "B3": {"S3": 248000, "S4": 12800, "S5": 24000, "S7": 38000, "S10": 3000, "S11": 96000},
+    "B4": {"S4": 12800, "S5": 24000, "S7": 38000, "S9": 56000, "S10": 3000, "S11": 96000}
+  },
+  "adjusted_total": {"B1": 4506000, "B2": 4899000, "B3": 4401800, "B4": 4469800},
+  "rank_by_adjusted": ["B3", "B4", "B1", "B2"],
+  "commercial_flags": {
+    "B1": ["price valid 30 days (60 requested)", "metals surcharge at shipment (unquantified escalation)", "lead 56-62 weeks after approved submittals"],
+    "B2": ["no escalation; firm to 2027-01-17", "lead 50-54 weeks after approved submittals (fastest)"],
+    "B3": ["tariff/duty adjustment clause (unquantified)", "validity not stated", "lead 68-74 weeks from order (slowest)"],
+    "B4": ["budget number, not a firm bid", "price firm 15 days", "6 scope items not mentioned: clarify before award", "lead approx 60 weeks"]
+  },
+  "award": {
+    "auto_award": false,
+    "expected": "Do not auto-award. B3 has the lowest leveled cost but the longest lead time and an open tariff clause; every bid misses the 2027-10-04 need date, so schedule risk decides. Ask a person to choose between B3 (cheapest) and B2 (fastest, +497,200), and send B4 a clarification request.",
+    "must_mention": ["B3", "lead time", "tariff", "B4 clarification"]
+  }
+}

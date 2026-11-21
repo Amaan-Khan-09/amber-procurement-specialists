@@ -22,7 +22,7 @@ def test_lists_check_submittal_with_schema():
     async def go(s):
         return await s.list_tools()
     tools = {t.name: t for t in anyio.run(_with_session, go).tools}
-    assert "check_submittal" in tools
+    assert {"check_submittal", "level_bids"} <= set(tools)
     props = tools["check_submittal"].input_schema["properties"]
     assert {"spec_path", "submittal_path", "tag"} <= set(props)
 

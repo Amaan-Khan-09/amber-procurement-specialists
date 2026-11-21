@@ -19,6 +19,7 @@ from mcp.server.mcpserver.exceptions import ToolError
 
 from . import __version__
 from .llm import LLM
+from .bids import level_bids as _level_bids
 from .submittal import check_submittal as _check_submittal
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -61,6 +62,24 @@ async def check_submittal(spec_path: str, submittal_path: str, tag: str,
     args = (_path(spec_path), _path(submittal_path), tag, _path(schedule_path))
     llm = LLM(provider=provider)
     res = await anyio.to_thread.run_sync(lambda: _check_submittal(*args, checklist=checklist, llm=llm))
+    return res.model_dump(mode="json")
+
+
+@server.tool(
+    name="level_bids",
+    title="Level competing bids",
+    description=(
+        "Line up 2-6 bids for one package against the bid form's scope. For every scope item and bid: included / "
+        "excluded / qualified / silent / alternate, with the bid's exact quote. Adds the owner's allowances (or the "
+        "bidder's own alternate price) for every gap, ranks the leveled totals, flags commercial risks (escalation, "
+        "tariffs, short validity, budget pricing) and lead times, and recommends an award only when it is safe; "
+        "otherwise it lays out the options for a person. bids maps a bidder label to a file path."),
+)
+async def level_bids(bid_form_path: str, bids: dict[str, str], provider: str | None = None) -> dict[str, Any]:
+    form = _path(bid_form_path)
+    paths = {k: _path(v) for k, v in bids.items()}
+    llm = LLM(provider=provider)
+    res = await anyio.to_thread.run_sync(lambda: _level_bids(form, paths, llm=llm))
     return res.model_dump(mode="json")
 
 

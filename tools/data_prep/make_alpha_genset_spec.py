@@ -42,6 +42,12 @@ POST = [
     (r"shall be rated for a continuous standby capacity of .*? while generating 480Y/277 volt",
      "shall be rated for the continuous standby capacity (kW and kVA at 0.8 PF) and output amperes "
      "scheduled on Drawing E-601 for its tag, while generating 480Y/277 volt"),
+    (r"Texas Commission on Environmental Quality \(TCEQ\) Regulations and Requirements for Houston-Galveston",
+     "Virginia Department of Environmental Quality (DEQ) Regulations and Requirements for Northern Virginia"),
+    (r"conducted in Houston, Texas,", "conducted in Ashburn, Virginia,"),
+    (r"in effect for the Houston-Galveston area", "in effect for the Northern Virginia area"),
+    (r"turned over to UH Utility Services\.", "turned over to the Owner's Facilities Team."),
+    (r"UH Utility Services must be present", "The Owner's Facilities Team must be present"),
     (r"capable of developing 2000 kW and 2500 kVA for motor starting",
      "capable of developing not less than 3000 kVA (2000 kW sets) and 1500 kVA (1000 kW sets) for motor starting"),
 ]
