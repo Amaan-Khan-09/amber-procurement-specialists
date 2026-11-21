@@ -1,0 +1,152 @@
+{
+  "spec": "data/specs/project_alpha/26_32_13_engine_generators_ALPHA.pdf",
+  "requirements": [
+    {
+      "req_id": "R01",
+      "spec_locator": "2.1.C",
+      "spec_page": 3,
+      "spec_anchor": "C. System Capacity",
+      "requirement": "Standby rating per schedule at 0.8 PF: GEN-A..D 2000 kW / 2500 kVA; GEN-M 1000 kW / 1250 kVA"
+    },
+    {
+      "req_id": "R02",
+      "spec_locator": "2.1.C",
+      "spec_page": 3,
+      "spec_anchor": "C. System Capacity",
+      "requirement": "Output 480Y/277 V, 3-phase, 4-wire, 60 Hz"
+    },
+    {
+      "req_id": "R03",
+      "spec_locator": "2.1.C.1",
+      "spec_page": 3,
+      "spec_anchor": "1. The engine generator set short circuit",
+      "requirement": "Motor starting at max 30% voltage dip: >= 3000 kVA (2000 kW sets), >= 1500 kVA (1000 kW sets)"
+    },
+    {
+      "req_id": "R04",
+      "spec_locator": "2.1.C.2",
+      "spec_page": 4,
+      "spec_anchor": "2. A permanent magnet generator",
+      "requirement": "Permanent magnet generator (PMG) excitation"
+    },
+    {
+      "req_id": "R05",
+      "spec_locator": "2.1.D",
+      "spec_page": 4,
+      "spec_anchor": "D. Diesel Engine",
+      "requirement": "Diesel engine: 8, 12 or 16 cylinder, 4-cycle, turbocharged/aftercooled or naturally aspirated"
+    },
+    {
+      "req_id": "R06",
+      "spec_locator": "2.1.D.3 (Governor)",
+      "spec_page": 4,
+      "spec_anchor": "3. Governor",
+      "requirement": "Electronic governor, isochronous no load to full load"
+    },
+    {
+      "req_id": "R07",
+      "spec_locator": "2.1.D.5 (Starting System)",
+      "spec_page": 4,
+      "spec_anchor": "5. Starting System",
+      "requirement": "24 V DC electric starting"
+    },
+    {
+      "req_id": "R08",
+      "spec_locator": "2.1.D.1 (Diesel Fuel System)",
+      "spec_page": 4,
+      "spec_anchor": "1. Diesel Fuel System",
+      "requirement": "Fuel consumption at full standby load: <= 145 gph (2000 kW) / <= 75 gph (1000 kW)"
+    },
+    {
+      "req_id": "R09",
+      "spec_locator": "2.1.D.2 (Cooling System)",
+      "spec_page": 4,
+      "spec_anchor": "2. Cooling System",
+      "requirement": "Unit-mounted radiator rated for 122 °F (50 °C) maximum ambient"
+    },
+    {
+      "req_id": "R10",
+      "spec_locator": "2.1.D.3 (Emissions Compliance)",
+      "spec_page": 4,
+      "spec_anchor": "3. Emissions Compliance",
+      "requirement": "EPA Tier 2 certified, stationary emergency"
+    },
+    {
+      "req_id": "R11",
+      "spec_locator": "2.1.E.1",
+      "spec_page": 4,
+      "spec_anchor": "1. Ambient conditions",
+      "requirement": "Full rating at 300 ft altitude and 10–122 °F ambient (no derate)"
+    },
+    {
+      "req_id": "R12",
+      "spec_locator": "2.1.E.3",
+      "spec_page": 4,
+      "spec_anchor": "3. The rpm of the engine",
+      "requirement": "Engine speed <= 1800 rpm"
+    },
+    {
+      "req_id": "R13",
+      "spec_locator": "2.1.G",
+      "spec_page": 5,
+      "spec_anchor": "G. Generator:",
+      "requirement": "Alternator 4-pole, brushless, 2/3 pitch"
+    },
+    {
+      "req_id": "R14",
+      "spec_locator": "2.1.G.1",
+      "spec_page": 5,
+      "spec_anchor": "1. NEMA Class F",
+      "requirement": "Insulation NEMA Class F or better"
+    },
+    {
+      "req_id": "R15",
+      "spec_locator": "2.1.G.5",
+      "spec_page": 5,
+      "spec_anchor": "5. A 120 volt, single phase space heater",
+      "requirement": "Alternator space heater, 120 V 1-phase"
+    },
+    {
+      "req_id": "R16",
+      "spec_locator": "2.1.H",
+      "spec_page": 5,
+      "spec_anchor": "H. Generator Output Circuit Breaker",
+      "requirement": "3-pole output circuit breaker(s) with solid-state trip"
+    },
+    {
+      "req_id": "R17",
+      "spec_locator": "2.1.I.2",
+      "spec_page": 6,
+      "spec_anchor": "2. Voltage Regulation",
+      "requirement": "Voltage regulation within ±2% no load to rated load"
+    },
+    {
+      "req_id": "R18",
+      "spec_locator": "2.1.I.4",
+      "spec_page": 6,
+      "spec_anchor": "4. Total Harmonic Distortion",
+      "requirement": "Voltage THD <= 5% no load to full linear load"
+    },
+    {
+      "req_id": "R19",
+      "spec_locator": "2.1.K.1 (In Skid Diesel Fuel Tank)",
+      "spec_page": 9,
+      "spec_anchor": "1. In Skid Diesel Fuel Tank",
+      "requirement": "UL 2085 sub-base fuel tank, >= 24 h at full standby load"
+    },
+    {
+      "req_id": "R20",
+      "spec_locator": "2.1.K.2",
+      "spec_page": 8,
+      "spec_anchor": "2. Jacket-Water Heater",
+      "requirement": "Two 5000 W jacket-water heaters, 480 V 1-phase"
+    },
+    {
+      "req_id": "R21",
+      "spec_locator": "2.1.K (Generator Outdoor Housing)",
+      "spec_page": 10,
+      "spec_anchor": "9. Generator Outdoor Housing",
+      "requirement": "Weatherproof, rodent-proof outdoor enclosure with silencer inside"
+    }
+  ]
+}

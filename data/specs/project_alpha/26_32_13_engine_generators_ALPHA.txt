@@ -1,0 +1,216 @@
+SECTION 26 32 13 ENGINE GENERATOR SETS
+PART 1 - GENERAL
+1.1 RELATED DOCUMENTS:
+A. The Conditions of the Contract and applicable requirements of Divisions 0 and 1 and Section 26 00 01, “Electrical General Provisions”, govern this Section.
+1.2 DESCRIPTION OF WORK:
+A. Work Included:  Provide standby engine-driven generator set work as shown, scheduled, indicated, and as specified.
+B. Type:  The type of standby engine-driven generator sets required for the project include, but are not limited to, diesel engine-driven generator sets.  Refer to Section 26 32 15, "Generator Paralleling Switchgear", for generator paralleling switchgear.
+1.3 STANDARDS:
+A. Equipment shall comply with applicable sections of the latest edition of the following standards:
+1. NEC.
+2. NFPA 37 and NFPA 110.
+3. IEEE.
+4. NEMA.
+5. ANSI.
+6. TCEQ Requirements (EPA Tier Levels for Non-Road Engines) Latest effective requirements.
+1.4 QUALITY ASSURANCE:
+A. Manufacturers:  Provide products complying with these specifications and produced by one of the following:
+1. Caterpillar Tractor Company.
+2. Cummins Power Generation/Onan Corporation..
+3. Detroit Diesel Allison Division.
+4. Kohler Company.
+5. Stewart & Stevenson.
+6. Waukesha-Pearce Industries.
+B. NEC and NFPA Compliance:  Comply with applicable portions of the NEC (NFPA 70) including, but not limited to, emergency and standby power generation systems and with NFPA 37, "Installation and Use of Stationary Combustion Engines and Gas Turbines", and NFPA 110, "Emergency and Standby Power Systems".
+C. IEEE Compliance:  Comply with applicable Institute of Electrical and Electronics Engineers, Inc. (IEEE) standards pertaining to generator construction.
+D. Emissions Compliance:  The generator set engine shall comply with all applicable Texas Commission on Environmental Quality (TCEQ) Regulations and Requirements for Houston-Galveston and shall comply with all applicable EPA Tier Levels for Non-Road Engines that is currently in effect for the Houston-Galveston area.
+E. Testing:
+1. The entire generator system and paralleling switchgear shall be assembled on the factory test bed and shall be submitted to the full factory standard test to demonstrate automatic operation, start time, full capacity acceptance, regulation, motor starting capability and function of all system safeties, prior to shipping to the job site.  System shall be tested at 0.8 pf.  A strip chart recording shall be made of each unit to verify frequency, voltage transient, and output power.
+2. The reporting form for the factory test shall be submitted to the Engineer for review with the Shop Drawings submittal and the Engineer shall be notified a minimum of one month prior to the factory test so that an Owner's Representative can witness the test.  These tests shall be conducted in Houston, Texas, or Contractor shall pay for air fare, accommodations, and similar expenses, so that the Owner's Representative can witness the test.
+F. Performance Tests:  The performance tests of the generating set series shall be in accordance with procedures certified by an independent testing laboratory.  The manufacturer shall have successfully tested a prototype of the generating set series offered which shall include:
+1. Maximum power level.
+2. Maximum motor starting capacity.
+3. Structural soundness.
+4. Torsigraph analysis per MIL-STD-705B, Method 504.2.
+5. Fuel consumption.
+6. Engine-alternator cooling airflow.
+7. Transient response and steady state governing.
+8. Alternator temperature rise per NEMA MG1-22.40.
+9. Single step load pickup per NFPA 76A-822.
+10. Harmonic analysis and voltage waveform deviation per MIL-STD-705B, Method 601.4.
+11. Three-phase short circuit test for mechanical and electrical strength.
+G. Manufacturer:  The system shall be built, tested, and shipped by the manufacturer of the Standby Electric Power System, who has been engaged in the production of engine- alternator sets and associated controls for a minimum of 10 years, so there is one source of supply and responsibility.
+H. Warranty:  All equipment bearing a manufacturer's guarantee, such as electrical equipment, devices, components, and similar items, shall be construed to have a 5 year parts, travel, and labor guarantee to the Owner by the manufacturer.  Any such equipment that proves defective in materials or workmanship within the guarantee period is to be replaced by the Contractor in accordance with the manufacturer's guarantee.
+1.5 SUBMITTALS:
+A. Shop Drawing submittals shall include, but not be limited to, the following:
+1. A written description of the system operation (written the this specification format) with all exceptions and/or deviations clearly hi-lited or identified.
+2. Completely identified and marked catalog cuts of all associated equipment and devices, with all non-applicable items crossed out, and applicable equipment or devices clearly hi-lited or identified.
+3. A written description of the maximum "starting" and "running" kVAs and kWs of the system equipment (charts and graphs will not be acceptable).
+4. A floor plan sketch complete with a dimensional description of the standby electric power system and associated equipment, locating the system equipment and accessories within the allotted space.
+5. Interconnection wiring diagrams to indicate terminal connections between the remote alarm annunciator panel and the electric set.
+6. Complete bill of material for all equipment.
+7. Complete warranty information as specified.
+8. A notarized letter from the system supplier certifying compliance with all requirements of this Specification.
+9. Performance test as specified in Paragraph 1.04/E of this Section.
+10. Additional information as required in Section 16002.
+1.6 STORAGE AND HANDLING:
+A. The standby generator set(s) shall be stored at the factory until they must be shipped to the job site to prevent building construction delay.
+B. The standby generator set(s) shall be crated and covered to protect it from damage during shipment and subsequent storage at the job site.
+PART 2 - PRODUCTS
+2.1 ENGINE-GENERATOR SETS:
+A. General:  Provide new diesel outdoor rated engine-driven generator sets, complete with safety devices,main output breaker, sound-attenuated weatherproof enclosure and vibration isolators.  Installation shall be complete with all necessary fuel connections, radiator cooling and engine exhaust from the building.  Engine fuel tank fill, supply, return and vent line, natural gas piping are specified under Division 22.  Engine exhaust piping, silencer and exhaust system installation, cooling air supply and exhaust ductwork and dampers are specified under Division 23.  Units shall be capable of continuous standby service.
+B. Design Basis:  The standby generator set(s) specified and shown on the Drawings is scheduled on the Engine-Generator Equipment Schedule (Drawing E-601); basis-of-design sizing was selected from data derived from manufacturer's engineering manuals.
+C. System Capacity:  The engine-generator set, as a unit, shall be rated for the continuous standby capacity (kW and kVA at 0.8 PF) and output amperes scheduled on Drawing E-601 for its tag, while generating 480Y/277 volt, 3-phase, 4-wire, 60 Hz power, and with performance as specified herein.
+1. The engine generator set short circuit current response shall be adequate for first cycle tripping of circuit breakers and clearing of fuses, and the motor generator set shall be capable of developing not less than 3000 kVA (2000 kW sets) and 1500 kVA (1000 kW sets) for motor starting with a maximum voltage dip of 30% and while complying with the performance requirements specified herein.
+2. A permanent magnet generator (PMG) or equal shall provide excitation power to the automatic voltage regulator for immunity from voltage distortion caused by nonlinear SCR controlled loads on the generator.  The PMG shall sustain main field excitation power for optimum motor starting and to sustain short circuit current for selective operation and coordination of system overcurrent devices.
+D. Diesel Engine:  Engine shall be an 8, 12, or 16 cylinder, 4 cycle, turbocharged/aftercooled or normally aspirated fuel injected full diesel engine, water-cooled with mounted water pump.  Following items shall be included:
+1. Valves:  Intake and exhaust valves shall be heat-resisting alloy steel, free rotating. Exhaust valve seat inserts shall be replaceable.
+2. Battery Charging:  Belt-driven engine alternator; 24 volt negative ground 35 amp dc, with transistorized voltage regulator.
+3. Governor:  electronic speed-sensing governor capable of isochronous frequency regulation from no load to full rated load.  Speed droop shall be externally adjustable from isochronous to 5%.
+4. Filters:  Air cleaner, fuel and lube oil filters shall have replaceable elements + clear glass.
+5. Starting System:  Remote 24 volt, 2-wire, negative ground, starting system, positive shift, gear engaging electric starter, cranking limiter.
+6. Lubrication System:  Forced feed gear design lube oil pump; full pressure lubrication to all bearings; dual, full flow oil filters; oil level indicator; low oil pressure shutdown; lube oil cooler; and oil pressure gauge.
+1. Diesel Fuel System:  Recommended No. 2 diesel fuel.  System shall be fuel injected and shall include a fuel transfer pump, automatic fuel shutoff, fuel oil/water separator, and fuel filters.  Average fuel consumption at full standby load shall not exceed 145 gph for 2000 kW sets and 75 gph for 1000 kW sets.
+2. Cooling System:  The cooling system shall be unit mounted radiator cooled, self- sealing prelubricated coolant pump; belt driven pusher fan with wire guard; thermostat temperature control; high coolant temperature shutdown; low coolant level shutdown; intercooler.  The cooling system shall be tested for leaks.  As soon as the system has been tested, it shall be filled with ethylene glycol rust inhibiting and antifreeze solution sufficient to protect the system to -10°F.  Engine-driven pusher type cooling fan shall be sized to maintain safe operation at 122°F maximum ambient temperature.  Airflow restriction from static pressure at the radiator discharge shall not be more than 0.5" of water.
+3. Emissions Compliance:  The generator set engine shall comply with all applicable Virginia Department of Environmental Quality (DEQ) Regulations and Requirements for Northern Virginia and shall comply with all applicable EPA Tier Levels for Non-Road Engines that is currently in effect for the Northern Virginia area at the time of installation.
+E. Set Characteristics:  Set manufacturer shall certify that reserve horsepower is available from the engine with all accessories operating in the ambient conditions hereinbelow.  The diesel engine-generator set shall be capable of picking up 100% of nameplate kW and power factor, less applicable derating factors, in one step with the engine-generator set at operating temperature, in accordance with NFPA 110, Paragraph 5.13.2.6, and including the following constraints:
+1. Ambient conditions of 300' altitude and an ambient temperature of 10 to 122°F.
+2. The BMEP of a turbocharged engine producing rated generator capacity shall not exceed 306 psi for four cycle engines and 225 psi for two cycle engines.
+3. The rpm of the engine shall not exceed 1800 rpm and the engine piston speed shall not exceed 2000'per minute.
+F. Engine Protective Devices:
+1. The engine protective devices shall provide automatic shutdown for overcrank, overspeed, high coolant temperature and low oil pressure.  A low coolant level protective device shall be provided but shall alarm only and not initiate engine shutdown
+2. The high coolant temperature and low oil pressure shall have pre-shutdown signals.
+3. The overcrank alarm shall be the output of a solid-state cranking device preset at a 10 second cranking cycle and a 15 second rest cycle.  If the engine fails to start on the third cranking cycle, the overcrank alarm shall sound and cranking shall stop.  Unit shall be capable of repeating the above cranking cycle after the trouble has been cleared.
+G. Generator:  Generator shall be 4-pole, revolving field type, brushless, dynamically balanced, skewed laminated, two thirds pitch wound, rotating rectifier exciter, temperature compensated solid-state voltage regulator, open dripproof, single bearing, permanently aligned generator connected to engine with flexible disc coupling, including the following:
+1. NEMA Class F or better insulation as defined by NEMA MG1.65.
+2. Temperature rise at rated load within NEMA MG1-22.40 definition.
+3. Double-sealed ball bearings, lubricated for life.
+4. Direct-drive centrifugal blower cooling.
+5. A 120 volt, single phase space heater shall be provided to prevent condensation in the generator.
+6. AC output leads shall be brought out to field connection busbars accessible through removable plates in the generator output junction box.
+7. The automatic voltage regulator shall be a solid state design and include overvoltage and undervoltage protection functions.  The voltage regulator shall be equipped with 3-phase RMS sensing.  The regulator shall control buildup of ac generator voltage to provide a linear rise and limit overshoot.  Overvoltage protection shall sense the ac generator output voltage and in the event of regulator failure or loss of reference, shutdown regulator output on a sustained overvoltage of one second duration.  Over excitation protection shall sense regulator output and shutdown regulator output if overloads exceed 10 seconds duration.  Both overvoltage and over excitation protection shutdowns shall be latched, requiring generator set shutdown to reset.
+8. The regulator shall include an under-frequency roll-off torque-matching characteristic, which shall reduce output voltage in proportion to frequency below a threshold of 58-59 Hz.  The torque-matching characteristic shall include differential rate of frequency change compensation to use maximum available engine torque and provide optimal transient load response.  Regulators which use fixed volts per Hertz characteristics are not acceptable.
+H. Generator Output Circuit Breaker(s):  Generator set shall have 3 pole output circuit breaker(s) with solid state trip units as shown on the drawings.  Breaker frame and trip ratings shall be as shown on the drawings.  Breakers serving emergency and standby loads shall have breaker position indicating contacts.  Breaker position indicating contacts shall be wired to initiate a generator control panel alarm when the breaker is open or tripped.  Circuit breaker manufacturer and type for all breakers serving emergency and standby loads shall match the project electrical gear package to provide compatibility for selective coordination required by the NEC.
+I. Engine/Generator Set Performance:
+1. Frequency Regulation:  Isochronous from no load to full rated load.
+2. Voltage Regulation:  Plus 2% no load to rated load; rheostat for _5% voltage adjustment.
+3. Voltage Dip:  Instantaneous voltage dip shall be less than 15% of rated voltage when full, 3-phase load and rated power factor is applied to the generator.  Recovery to stable operation shall occur within 5 seconds.  Stable or steady state operation is defined as operation with terminal voltage remaining constant with _1% of rated voltage.  All unit performance characteristics shall be verified using an oscilloscope.
+4. Total Harmonic Distortion (THD):  The sum of ac voltage waveform harmonies, from no load to full linear load shall not exceed 5% of the rated voltage (L-N, LL, L-L-L) and no single harmonic shall exceed 3% of rated voltage.  Telephone Influence Factor (TIF) shall be less than 50 per NEMA MG1-22.43.  Temperature rise at rated load and power factor shall be within NEMA MG1-22.40 definition.
+5. Motor Starting:  The largest motor to be started is a 100 hp fire pump (star-delta reduced voltage starting).
+6. Non-Linear Loads:  Generator shall also serve a 1200 kVA UPS System with input filters.  The UPS system will be interlocked to limit the UPS rectifier 480 volt, 3 phase input current to 1600 amps when operating on generator power.
+7. Voltage Dip Performance:  A light beam oscilloscope test for the specific generator set, by model and serial number shall be provided for the four step loads listed hereinbelow.  Certified test results shall be reported via a strip chart recorder and submitted with generator factory test results.
+a. 0% to 25% kW load at 0.4 lagging PF.
+b. 0% to 50% kW load at 0.4 lagging PF.
+c. 0% to 75% kW load at 0.4 lagging PF.
+d. 0% to 100% kW load at 0.4 lagging PF.
+J. Engine-Generator Instrument Panel:  The instrument panel shall be mounted on vibration isolators and shall have dc controls, ac controls, and panel lighting.  The top of the instrument panel shall not be more than 6'-6" above finished floor.
+1. DC engine controls (2-wire, 24 volt system) including but are not limited to run-stop- automatic test-manual switch, remote start-stop terminals, oil pressure gauge, coolant temperature gauge, charge rate ammeter and running time hour meter.
+2. Solid state engine monitoring system with monitors in accordance with NEC Section 700, NFPA 110 and local code requirements with lamps, audible alarm, lamp test switch, individual alarm contacts and a common alarm contact for:
+a. Overcrank shutdown
+b. Low coolant temperature warning
+c. Pre-warning for high engine temperature
+d. High engine temperature shutdown
+e. Pre-warning for low lube oil pressure
+f. Low lube oil pressure shutdown
+g. Overspeed shutdown
+h. Low fuel in main tank warning
+i. Low coolant level warning
+j. Generator (EPS) supplying load.
+k. Generator control switch not in auto position warning
+l. High battery voltage warning
+m. Low cranking voltage warning
+n. Low battery voltage warning
+o. Battery charger failure
+p. Generator output breaker(s) open warning q.
+r. Customer alarm
+s. Customer alarm t.  Customer alarm
+3. Provide two dry auxiliary contacts one for common alarm and one for engine running to be monitored by the BAS.
+4. AC output controls include, but are not limited to, an ac voltmeter; ac ammeter; voltmeter-ammeter phase selector with an "off" position; voltage adjusting rheostat; frequency meter; manual reset exciter circuit breaker and fine speed control potentiometer.
+5. Two sets of double pole auxiliary contacts shall change state when engine starts; one set shall be monitored by the BAS and one set is spare.
+K. Accessories:
+1. Remote Annunciator(s):  Surface mounted remote annunciators shall be microprocessor based annunciator with network communication type, located as shown on the Drawings, and shall have audible and LED visual signal devices, powered by the electric set lead acid battery set, to provide a warning of derangement or alarm conditions in the electric set in compliance with the National Electrical Code Section 700, NFPA 110 level 1, 20 lamp and the requirements of these Specifications.  The enclosure shall be constructed of sturdy sheet steel with white finish, and shall have removable front panel and adapter ring for flush mounting.  The face of the front panel shall contain LED’s (visual signals), and audible alarm, an alarm silence push button, and a LED test push button.  The internal wiring, terminal block, and battery voltage sensors shall be accessible by removing the front panel of the enclosure. Remote annunciators shall indicate the following conditions:
+a. Visible and audible alarm for:
+1) Overcrank shutdown
+2) Low coolant temperature warning
+3) Pre-warning for high engine temperature
+4) High engine temperature shutdown
+5) Low lube oil pressure shutdown
+6) Overspeed shutdown
+7) Low coolant level warning
+8) Generator control switch not in auto position warning
+9) Low cranking voltage warning
+10) Low battery voltage warning
+11) Generator output breaker(s) open warning
+12) Generator power available
+13) Low fuel in main tank warning
+14) Fuel in outer tank
+15) Spare/Customer alarm
+16) Spare/Customer alarm
+17) Spare/Customer alarm
+18) Spare/Customer alarm
+19) Spare/Customer alarm
+b. Visible indicator for:
+1) Battery voltage okay.
+2. Jacket-Water Heater:  The engine shall have two KIM #Hotstart (480 volt, 1-phase) or approved equal, 5000W jacket-water heaters supplied from a "normal" branch circuit.  The jacket-water heater shall be complete with a thermostat capable of maintaining a water temperature of 25°C, with an ambient temperature of 0°C.  A water temperature alarm, consisting of a contact closed when the jacket water temperature is below 20°C, shall be supplied.
+3. Exhaust System:  Exhaust silencer(s) of the "critical" type, with side or end inlet as required shall be shipped pre-installed and piped on top of the generator enclosure.  The exhaust silencer(s) shall be of chambered construction and shall provide maximum degree silencing, and shall be sized to assure proper operation without excessive back pressure when installed in the exhaust system. The exhaust silencer(s) shall be supplied with condensation drains, flexible exhaust tubing, wall thimbles and rain caps, as required.
+4. Starting Batteries:  Furnish and install fully charged 24 volt lead acid, impact resistant, storage batteries mounted on the unit or on a separate rack.  Batteries shall have sufficient capacity for 60 seconds of continuous cranking per NFPA 99.  Provide all required battery cables, connections, electrolyte and a battery hydrometer.
+5. Solid-State Battery Float Charger:  A suitable 120 volt automatic SCR voltage regulated battery charger with a maximum charge rate, as recommended by the manufacturer, but not less than 10 amperes shall be provided to maintain each set of batteries at full capacity during standby conditions The maximum charging time to bring the batteries up to full charge shall not exceed 12 hours.  The charger shall be provided with a remote alarm contact to indicate a charger failure condition.  An ammeter shall indicate the charge rate and the circuit shall be protected by either fuses or circuit breakers.  The charger shall be so designed that it will not be damaged during the engine cranking and shall be interlocked such that it is not damaged during generator set operation.  The charger may be furnished as a separate item with necessary cables and leads.
+1.  In Skid Diesel Fuel Tank:  Each generator set shall be provided with a UL 2085 listed manufacturer's standard in skid fuel transfer day tank.  The tank shall have usable capacity for not less than 24 hours of operation at full standby load, factory-installed in the generator set skid base with engine supply and return lines pre-plumbed.  The tank shall not extend outside the dimensions of the standard generator set skid base.  The fuel tank shall be new and unused and shall not be galvanized.  The fuel system piping to the generator shall be no smaller than the minimum recommended by the engine manufacturer to avoid fuel flow restriction.  Flexible connections shall be provided in the generator full supply and return piping.  Each fuel oil tank shall have a SPDT low fuel level sensing device set to change state when a 2 hour usable fule level remains in the tank.  Each tank shall be provided with a fill connection, tank normal and emergency vent connection with UL listed caps and a tank fuel level gauge calibrated in gallons.  Tanks shall be provided with EPA approved secondary containment and shall include leak detection in the containment section and a leak detection alarm output to be wired to the remote annunciator. The second set of fuel level switch contacts shall be wired to a terminal block for field wiring to the fuel oil control panel.
+2. Fuel Oil Transfer Pump:  Engine generator set skid assembly shall incorporate an integral fuel oil transfer pump and control panel.  Pump capacity shall be 2 gpm at 20 ft. lift using a 120 volt, single phase, 1/4 hp motor.  The control panel shall incorporate an on/off emergency run switch, a test/reset switch, ac circuit breaker, dc circuit breaker and indicator with test button for the following:
+a. System ready (green) - ac and dc power available.
+b. High fuel (red) - pump shutdown and N.O. contact closure.
+c. Low fuel ((red) - pump start and N.O. contact closure.
+d. Low fuel shutdown (red) - N.O. contact closure.
+e. Overflow to basin (red) - pump shutdown and N.O. contact closure.
+f. Spare lamp (red) - with N.O. and N.C. contacts.
+g. Pump running (green).
+3. Remote Day Tank:  Provide a remote 400 gallon UL 2085 listed dry tank with rupture basin.  Tank shall be constructed of minimum 12 gauge black steel and shall have an epoxy coated interior for rust prevention and primed and finished painted exterior.  Fuel pipe connection sizes from the remote storage tank shall be as shown on the plumbing drawings.  Supply and return line sizes from the generator shall be coordinated with the generator supplier.  Day tank shall be Tramont TRS Series less transfer pump or an approved equal.  Day tank shall have a factory mounted, UL listed 120 volt input control panel, complete with the following controls and indicator LED's for each function:
+a. Pump run (for start of remote fuel transfer pumps).
+b. High fuel alarm.
+c. Low fuel alarm.
+d. Low fuel engine shutdown.
+e. No fuel in basin.
+f. Malfunction warning for failure of level sensor, controls or power.
+g. Controller ON, OFF and TEST switch.
+h. Form C remote signal alarm contacts 1 amp @ 120 Volts for all warning functions to be monitored by Division 23.
+5. Vibration Isolation:  Suitable aluminum housed, spring type vibration isolators be provided.  Isolators shall be sized to properly support the generator set and to isolate 99% of the generators vibration from the supporting structure.
+7. Skid Base:  The entire packaged unit shall be mounted on a skid base of welded structural steel, of box type construction suitable for mounting on spring vibration isolators.  A sloped drip pan shall be provided for containing engine fluid spills. Provisions for stub up of electrical and fuel connections shall be within the footprint of the generator set base rails.
+8. Painting:  The entire engine generator set shall have all exposed metal surfaces primed with a rust inhibiting primer and multiple finish coats of the manufacturer's standard machinery enamel finish.
+9. Generator Outdoor Housing:  Provide a weatherproof and rodent-proof outdoor shelter to entirely enclose each generator set, including batteries.  Silencers shall be installed inside enclosure.  Enclosure shall have a fixed intake louver with bird screen and a grill protected radiator discharge opening.  Enclosure shall have hinges and gasketed access doors and access panels to allow complete unit operation and maintenance without removal of the enclosure.  All doors shall be lockable.  All sheet metal shall be primed for corrosion protection and finish painted in the manufacturer's standard color.
+PART 3 - EXECUTION
+3.1 INSTALLATION OF ENGINE-DRIVEN GENERATOR SETS:
+A. General:  Install standby engine-driven generator sets where shown, in accordance with the equipment manufacturer's written instructions and recognized industry practices, to ensure that the sets comply with the specified requirements and serve the intended purposes.
+B. Standards:  Comply with NEMA standards, requirements of the NEC and applicable portions of NECA's "Standard of Installation" pertaining to installation of standby engine-driven generator sets and accessories.
+C. Vibration Mounts:  Install units on properly sized inertia base with spring type vibration mounts and ribbed neoprene vibration isolators; comply with manufacturer's indicated installation method as applicable.
+D. Concrete Pad:  Install generator set on a 6" reinforced concrete pad. The generator pad shall extend 6" beyond the generator set base, unless shown otherwise.  Furnish the exact position of any block-outs, mounting bolts, and the dimensions and location of the generator pad in a timely manner so as to prevent delay of the concrete work.  Refer to Section 26 05 01, "Basic Materials and Methods", for additional requirements.
+F. Wiring:  All feeders/conduits for generator and emergency power feeders shall be installed as follows:
+1. Horizontal feeder/conduits shall be installed below grade, below a slab on grade, be enclosed in an approved 2 hour enclosure or utilize UL listed 2 hour rated conductors. Where a 2 hour enclosure is required, coordinate enclosure with the General Contractor.
+2. Vertical feeders/conduits shall be installed in a 2 hour rated chase or room, be enclosed in an approved 2 hour enclosure or utilize UL listed 2 hour rated conductors..  Where a 2 hour enclosure is required, coordinate enclosure with the General Contractor.
+3.2 GROUNDING:
+A. General:  Install the generator(s) as a separately derived system.  Ground the generator neutral at the paralleling gear.  Refer to Section 26 05 26, "Grounding and Bonding for Electrical Systems", for additional requirements.
+3.3 CONTROL WIRING:
+A. General:  Provide generator start-up control wiring from each the paralleling switchgear to each standby generator set.
+B. Annunciators:  Provide control wiring to remote generator annunciators in locations specified and as shown on the Drawings.
+C. Fuel Oil Control Wiring:  Provide all control wiring from generator/day tank to remote fuel transfer pump control panel as shown on the drawings and as required.
+3.4 COORDINATION:
+A. Exhaust:  Exhaust piping shall be furnished, installed and insulated under Division 23.  This division shall furnish a ventilated wall thimble, exhaust flex connection(s), condensation trap, rain cap, and critical type silencer for installation and insulation under Division 23. All exhaust piping shall be routed away from windows, no less than 25 ft. from air intakes.
+B. Cooling Air:  Cooling air supply and exhaust air ductwork and dampers shall be furnished and installed under Division 23.
+C. Fuel Oil Tank Fill and Vent Lines:  Fuel oil tank fill and vent lines shall be furnished and installed under Division 22.
+3.5 INITIAL START-UP AND SYSTEM CHECKOUT:
+A. A complete installation shall be initially inspected, adjusted and started and checked out for operational compliance by representatives of the manufacturer.  All start-up documentation shall be turned over to UH Utility Services.
+B. The engine lubrication oil and antifreeze shall be provided by the supplier of the electric set for operation under environmental conditions as recommended by the manufacturer.
+3.6 TESTING:
+A. General:  Upon completion of installation of engine-driven generator set(s), transfer switches and paralleling gear, and after building circuitry has been energized with normal power source, test emergency power system to demonstrate standby capability and compliance with specified requirements, including automatic start-up, controls, and full load acceptance.  Tests shall include operation of standby power system with voltage check while the system is loaded to ensure proper operation of the emergency generator, transfer switches, paralleling gear, fuel oil system, and other system components.  Operation of the system shall simulate standby power conditions, that is, loss of main electrical power to the building.  Test period shall be a minimum of 2 hours continuous trouble- free operation with at least four automatic transfer switch operations for each switch within the period of operation.  All diesel fuel for for testing and filling all day tanks and fuel oil tanks at completion of successful testing shall be provided under the project scope.
+B. Test Load:  Testing shall be performed at 0.8 PF with loads as specified hereinbelow.  Where the specific set has been factory tested at 0.8 PF as specified hereinbelow, field-testing may be performed at 1.0 PF.  The supplier of the engine-generator set shall provide a load bank of sufficient capacity to complement the available building load for testing.  The field test shall include running the emergency power system under loads as specified below:
+1. 30 minutes at 25% of rated load (field load bank).
+2. 1hour at 50% of rated load (field load bank).
+3. 4 hours at 75% of rated load (field load bank).
+4. 4 hourss at 100% of rated load (field load bank).
+5. Miscellaneous building loads may be used to supplement load bank.
+C. Test Readings:  The voltage current and frequency readings shall be recorded at 15 minute intervals throughout the test.  Each automatic transfer switch shall automatically operate a minimum of four times during the test.  There shall be a 15 minute unloaded run at the conclusion of the test to allow engine to cool before shutdown.  The Contractor shall make all necessary hook-ups to facilitate field-test and shall furnish all fuel necessary for field-testing. Refer to Section 16020, "Electrical Testing", for additional testing requirements.  UH Utility Services must be present during load testing.
+D. Submittals:  Contractor shall furnish all instruments and personnel required for tests.  Submit four copies of certified test results to Architect for review.  Test reports shall include date and time of test, relative humidity, temperature, and weather conditions.  Contractor shall provide minimum 15% of replacement parts plus 3 spare filters.
+3.7 OPERATOR TRAINING:
+A. The manufacturer's start-up representative shall provide a minimum of 4 hours of operating and maintenance training to the Owner's maintenance personnel. Training shall be provided at times convenient to the Owner.  Approved Operating and Maintenance Manuals shall be available to the Owner prior to the training session.
+B. Instructions and Drawings:  Complete instructions, consisting of operating and maintenance manuals, parts book, dimensional drawings, separate unit wiring diagrams and schematics and interconnecting wiring diagrams shall be provided as part of the project operating and maintenance manuals.
+3.8 IDENTIFICATION:
+A. General:  Refer to Section 26 05 53, "Identification for Electrical Systems", for requirements concerning painting, nameplates, and labeling. END OF SECTION 26 32 13

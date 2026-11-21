@@ -1,0 +1,13 @@
+# third-party documents: downloaded by tools/data_prep/fetch_data.py, never committed
+data/specs/*.pdf
+data/submittals/
+data/leadtime_sources/*.pdf
+
+# our own generated spec PDFs are committed; their text twins too
+!data/specs/project_alpha/
+
+.env
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
