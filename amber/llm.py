@@ -149,8 +149,16 @@ class LLM:
                 "messages": [{"role": "system", "content": system}, {"role": "user", "content": user}]}
         if "gpt-oss" in self.model:
             body["reasoning_effort"] = "low"
-        j = self._post("https://api.groq.com/openai/v1/chat/completions",
-                       {"Authorization": f"Bearer {key}"}, body)
+        url, hdr = "https://api.groq.com/openai/v1/chat/completions", {"Authorization": f"Bearer {key}"}
+        try:
+            j = self._post(url, hdr, body)
+        except LLMError as e:
+            # Groq's strict JSON mode sometimes rejects a reply ("Failed to generate JSON", HTTP 400). Ask again
+            # without strict mode; _parse_json still validates the reply, so nothing unchecked gets through.
+            if "HTTP 400" not in str(e) or "json" not in str(e).lower():
+                raise
+            body.pop("response_format", None)
+            j = self._post(url, hdr, body)
         u = j.get("usage", {})
         self.meter.add("groq", self.model, u.get("prompt_tokens", 0), u.get("completion_tokens", 0))
         return j["choices"][0]["message"]["content"] or ""

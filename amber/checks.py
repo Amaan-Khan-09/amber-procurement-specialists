@@ -87,6 +87,13 @@ def _squash(s: str) -> str:
     return re.sub(r"[\s\-_.]+", "", s)
 
 
+def _squash_keep_words(s: str) -> str:
+    """Lowercase with hyphens as word breaks and voltage notation unified, but words kept apart."""
+    s = s.lower().translate(str.maketrans({"‑": " ", "–": " ", "—": " ", "-": " "}))
+    return re.sub(r"\b(\d{3,5})\s*y?\s*/\s*(\d{3,5})\b",
+                  lambda m: "".join(sorted((m.group(1), m.group(2)), key=int)), s)
+
+
 def terms_of(req: dict) -> tuple[list[str], str]:
     if req.get("terms"):
         return list(req["terms"]), req.get("match", "all")

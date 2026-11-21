@@ -69,3 +69,22 @@ def test_keyword_feature():
 
 def test_qty_parses_commas():
     assert qty("2,500 kVA", "kVA").magnitude == 2500
+
+
+def test_grounding_is_word_based_not_substring():
+    from amber.submittal import _grounded
+    assert _grounded(["Electronic governor"], "Integrated digital electronic isochronous governor")
+    assert not _grounded(["Hydraulic governor"], "Integrated digital electronic isochronous governor")
+    assert _grounded(["277/480"], "Voltage - 480Y/277, 3 Phase")
+    assert not _grounded([], "anything")
+
+
+def test_derate_sentence_becomes_a_capped_judgement_not_a_confident_verdict():
+    from amber.docs import Document, Page
+    from amber.submittal import JUDGEMENT_CAP, _decide_condition
+    doc = Document("d", "d.pdf", pages=[Page(1, "Derating factors. For temp above 40C engine derates at 17.6% per 10C. " * 3)])
+    cond = {"cid": "R11a", "kind": "numeric", "op": ">=", "value": 122, "unit": "°F"}
+    offer = {"cid": "R11a", "stated": True, "values": [], "quote": "For temp above 40C engine derates at 17.6% per 10C",
+             "page": 1, "meets": "no"}
+    d, cite, conf = _decide_condition(cond, offer, doc)
+    assert d.verdict == Verdict.deviates and cite and conf <= JUDGEMENT_CAP < 0.70

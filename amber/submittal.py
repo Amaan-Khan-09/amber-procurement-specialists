@@ -13,6 +13,7 @@ from __future__ import annotations
 
 import csv
 import json
+import re
 import time
 from pathlib import Path
 
@@ -24,6 +25,9 @@ from .verify import MATCH_TRUST, verify
 BATCH = 6  # conditions per extraction call
 PASSAGES_PER_COND = 3
 MAX_CONTEXT_CHARS = 9000  # submittal text per extraction call
+SECOND_PASS_PASSAGES = 8  # passages per condition on the second look
+SECOND_PASS_CHARS = 12000
+JUDGEMENT_CAP = 0.65  # a verdict resting on the model's reading of a verified quote is always for a person to confirm
 OCR_CAP = 0.65  # max confidence for anything resting on OCR text (always below the 0.70 handoff line)
 
 REQ_SYSTEM = """You turn construction specification clauses into checkable requirements for a product submittal review.
@@ -36,6 +40,7 @@ Rules:
   - text: {"cid","attribute","kind":"text","terms":[...],"match":"any|all"} where terms are 1-3 short words a supplier would print (e.g. "brushless", "electronic", "class h"). Use "any" for alternatives (e.g. ["8 cylinder","12 cylinder","16 cylinder"] or ["class f","class h"] for "Class F or better").
 - Direction of op: capabilities and ratings the product must reach (kW, kVA, motor-starting kVA, max ambient it can run in, tank hours, short-circuit rating) use ">="; limits it must stay under (fuel consumption, THD, voltage dip, regulation band, rpm, noise) use "<=". Fixed characteristics (voltage, phases, Hz, pole count) use "==" or text terms.
 - Where the clause says "as scheduled"/"scheduled on the drawings", take the value from the schedule row and set source "schedule".
+- Keep one electrical system together: voltage, phases and wires are ONE text condition (terms like ["277/480","3 phase","4 wire"], match "all"); frequency may be its own numeric condition. Starting-system voltage and electric/motor type are one text condition.
 Reply with JSON: {"requirements": [{"req_id","locator","requirement":"plain words","quote","conditions":[...]}]}"""
 
 EXTRACT_SYSTEM = """You read excerpts of a supplier's product submittal and report what it states for each condition.
@@ -48,6 +53,7 @@ Rules:
 - Checkbox lists (❑, ☐) mark OPTIONAL accessories: an unticked option is not "stated" as supplied; say so in "note".
 - "selected": true only if the submittal clearly marks which option is supplied for this project, otherwise null.
 - "meets": "yes", "no" or "unknown": does what is stated satisfy the condition?
+- Derating: if a condition is about operating altitude or ambient temperature and the excerpts state a derate or reduction that applies at that condition (e.g. "derates 17.6% per 10 C above 40 C"), set "stated": true, quote that derate sentence, leave "values" empty, and set "meets": "no" when full rating is not kept at the required condition.
 - For ratings, report STANDBY when the condition is about standby; never substitute prime.
 Reply with JSON: {"offers": [{"cid","stated","values":[...],"unit","selected","quote","page","meets","note"}]}"""
 
@@ -134,17 +140,17 @@ def structure_requirements(llm: LLM, spec_doc: docs.Document, row: dict, schedul
     return out
 
 
-def _context(doc: docs.Document, conds: list[dict]) -> str:
+def _context(doc: docs.Document, conds: list[dict], k: int = PASSAGES_PER_COND, limit: int = MAX_CONTEXT_CHARS) -> str:
     chosen: list[tuple[int, str]] = []
     for c in conds:
         q = " ".join([str(c.get("attribute", "")).replace("_", " "), str(c.get("unit") or ""),
                       " ".join(c.get("terms") or []), str(c.get("value") or ""), str(c.get("requirement") or "")])
-        for p in retrieve.rank_passages(doc, q, k=PASSAGES_PER_COND):
+        for p in retrieve.rank_passages(doc, q, k=k):
             if p not in chosen:
                 chosen.append(p)
     blocks, used = [], 0
     for page, text in chosen:
-        if used + len(text) > MAX_CONTEXT_CHARS:
+        if used + len(text) > limit:
             break
         blocks.append(f"[page {page}]\n{text.strip()}")
         used += len(text)
@@ -170,7 +176,37 @@ def extract_offers(llm: LLM, sub_doc: docs.Document, reqs: list[dict]) -> dict[s
             continue
         for o in _items(reply.get("offers", reply), "cid"):
             offers[o.get("cid")] = o
+
+    # Second chance for "not stated": a false 'missing' is a risky claim, so look again with a wider net
+    # (more passages per condition) before accepting it. Only conditions the first pass gave up on cost anything.
+    again = [c for c in conds if not (offers.get(c["cid"]) or {}).get("stated")
+             and not (offers.get(c["cid"]) or {}).get("not_checked")]
+    for i in range(0, len(again), 8):
+        batch = again[i:i + 8]
+        ctx = _context(sub_doc, batch, k=SECOND_PASS_PASSAGES, limit=SECOND_PASS_CHARS)
+        if not ctx:
+            continue
+        ask = [{k: c.get(k) for k in ("cid", "attribute", "requirement", "kind", "op", "value", "min", "max", "unit", "terms")
+                if c.get(k) not in (None, [], "")} for c in batch]
+        try:
+            reply = llm.json(EXTRACT_SYSTEM, "A first read found nothing for these conditions. Read the excerpts again "
+                             "carefully, including tables and lists, and report anything that addresses them.\n"
+                             "Conditions:\n" + json.dumps(ask, ensure_ascii=False) + "\n\nSubmittal excerpts:\n" + ctx,
+                             max_tokens=2000)
+        except LLMError:
+            continue  # keep the first-pass answer
+        for o in _items(reply.get("offers", reply), "cid"):
+            if o.get("stated"):
+                o["second_pass"] = True
+                offers[o.get("cid")] = o
     return offers
+
+
+def _grounded(values: list, quote: str) -> bool:
+    """Every word and number of each reported value occurs in the verified quote (any order, so
+    'Electronic governor' is grounded in '...digital electronic isochronous governor')."""
+    qt = set(re.findall(r"[a-z0-9]+", checks._squash_keep_words(quote)))
+    return bool(values) and all(set(re.findall(r"[a-z0-9]+", checks._squash_keep_words(str(v)))) <= qt for v in values)
 
 
 def _decide_condition(c: dict, o: dict | None, sub_doc: docs.Document):
@@ -187,12 +223,20 @@ def _decide_condition(c: dict, o: dict | None, sub_doc: docs.Document):
     d = checks.decide(c, o, evidence=cite.quote)
     exact = d.exact
     meets = str(o.get("meets", "")).lower()
-    grounded = all(checks._squash(str(v)) in checks._squash(cite.quote) for v in (o.get("values") or []))
-    if c.get("kind") == "text" and d.verdict == Verdict.deviates and meets == "yes" and grounded:
+    values = [v for v in (o.get("values") or []) if v not in (None, "")]
+    judged = False
+    if not values and meets in ("yes", "no") and cite.match in ("exact", "normalized", "compact"):
+        # Nothing to compare in code (e.g. a derate sentence), but the model read a quote that is really on the
+        # page. Its verdict is used, flagged as judgement and capped so a person always confirms it.
+        v = Verdict.complies if meets == "yes" else Verdict.deviates
+        d, exact, judged = checks.Decision(v, f"model judgement on verified quote: {cite.quote!r}", False), False, True
+    elif c.get("kind") == "text" and d.verdict == Verdict.deviates and meets == "yes" and _grounded(values, cite.quote):
         # the wording differs from the expected terms but the verified quote may still satisfy it
         d = checks.Decision(Verdict.complies, f"model judgement on verified quote: {cite.quote!r}", False)
-        exact = False
+        exact, judged = False, True
     conf = (0.95 if exact else 0.74) * MATCH_TRUST.get(cite.match, 0.8)
+    if judged:
+        conf = min(conf, JUDGEMENT_CAP)
     if cite.ocr:
         # vision OCR can misread digits and model numbers (seen: KD1000 read as KD2000), so evidence from
         # a scanned page is a candidate for a person to confirm, never an automatic pass or fail

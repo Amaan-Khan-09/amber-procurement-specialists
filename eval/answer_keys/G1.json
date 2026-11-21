@@ -5,155 +5,162 @@
   "spec": "data/specs/project_alpha/26_32_13_engine_generators_ALPHA.pdf",
   "tag": "GEN-A",
   "submittal": "data/submittals/cummins_DQKAB_submittal_CSDG.pdf",
-  "labeller": "",
-  "labelled_on": "",
+  "labeller": "Claude (AI assistant), from the source PDF, per eval/answer_keys/README.md. Labelled before any agent run on this case. Scanned page 62 checked visually.",
+  "labelled_on": "2026-11-21",
   "labels": [
     {
       "req_id": "R01",
-      "expected": "",
-      "submittal_page": null,
-      "submittal_quote": "",
-      "notes": ""
+      "expected": "complies",
+      "submittal_page": 13,
+      "submittal_quote": "Ratings  2000 (2500)",
+      "notes": "2000 kW (2500 kVA) standby. BOM p5 lists Qty 2 sets; the project buys 4 (note only)."
     },
     {
       "req_id": "R02",
-      "expected": "",
-      "submittal_page": null,
-      "submittal_quote": "",
-      "notes": ""
+      "expected": "complies",
+      "submittal_page": 5,
+      "submittal_quote": "R002-2  Voltage - 277/480, 3 Phase, Wye, 4 Wire",
+      "notes": "Selected in the BOM; 60 Hz in the BOM model line."
     },
     {
       "req_id": "R03",
-      "expected": "",
-      "submittal_page": null,
-      "submittal_quote": "",
-      "notes": ""
+      "expected": "complies",
+      "submittal_page": 15,
+      "submittal_quote": "480  Wye, 3-phase  80  S  8412",
+      "notes": "BOM selects B601 (480 V, 80C, standby): 8412 kVA max starting at >=90% voltage (10% dip) vs spec >=3000 kVA at 30% dip."
     },
     {
       "req_id": "R04",
-      "expected": "",
-      "submittal_page": null,
-      "submittal_quote": "",
+      "expected": "complies",
+      "submittal_page": 8,
+      "submittal_quote": "Exciter type  Permanent Magnet Generator (PMG)",
       "notes": ""
     },
     {
       "req_id": "R05",
-      "expected": "",
-      "submittal_page": null,
-      "submittal_quote": "",
-      "notes": ""
+      "expected": "complies",
+      "submittal_page": 42,
+      "submittal_quote": "4 Cycle, 60°V, 16 Cylinder Diesel",
+      "notes": "Turbocharged and low-temperature aftercooled (p13); V16."
     },
     {
       "req_id": "R06",
-      "expected": "",
-      "submittal_page": null,
-      "submittal_quote": "",
-      "notes": ""
+      "expected": "complies",
+      "submittal_page": 10,
+      "submittal_quote": "Integrated digital electronic isochronous governor",
+      "notes": "Also 'Frequency regulation Isochronous' p8."
     },
     {
       "req_id": "R07",
-      "expected": "",
-      "submittal_page": null,
-      "submittal_quote": "",
-      "notes": ""
+      "expected": "complies",
+      "submittal_page": 5,
+      "submittal_quote": "A334-2  Engine Starter - 24 Volt DC Motor",
+      "notes": "Negative ground on p8."
     },
     {
       "req_id": "R08",
-      "expected": "",
-      "submittal_page": null,
-      "submittal_quote": "",
-      "notes": ""
+      "expected": "complies",
+      "submittal_page": 13,
+      "submittal_quote": "US gph  47.7  76.9  106.1  135.3",
+      "notes": "135.3 gph at full standby <= 145 gph."
     },
     {
       "req_id": "R09",
-      "expected": "",
-      "submittal_page": null,
-      "submittal_quote": "",
-      "notes": ""
+      "expected": "unclear",
+      "submittal_page": 41,
+      "submittal_quote": "Standby  2000  52.6  49.4  46.1  43.5  41.6",
+      "notes": "Unhoused: 52.6 C at zero restriction, falling to 41.6 C at 1.0 in. The spec requires an outdoor enclosure, and every housed configuration (Weather, Sound 1, Sound 2) is N/A. Ambient capability in the required configuration is unknown."
     },
     {
       "req_id": "R10",
-      "expected": "",
-      "submittal_page": null,
-      "submittal_quote": "",
-      "notes": ""
+      "expected": "complies",
+      "submittal_page": 13,
+      "submittal_quote": "Emissions level:  EPA NSPS Stationary Emergency Tier 2",
+      "notes": "Also BOM L170-2 and EPA statement p42."
     },
     {
       "req_id": "R11",
-      "expected": "",
-      "submittal_page": null,
-      "submittal_quote": "",
-      "notes": ""
+      "expected": "deviates",
+      "submittal_page": 15,
+      "submittal_quote": "For temp above 40°C engine derates at 17.6% per 10°C",
+      "notes": "Altitude is fine (full power to 447 m / 1466 ft) but the engine derates above 40 C (104 F); the spec requires full rating to 122 F (50 C)."
     },
     {
       "req_id": "R12",
-      "expected": "",
-      "submittal_page": null,
-      "submittal_quote": "",
+      "expected": "complies",
+      "submittal_page": 13,
+      "submittal_quote": "Rated speed, rpm  1800",
       "notes": ""
     },
     {
       "req_id": "R13",
-      "expected": "",
-      "submittal_page": null,
-      "submittal_quote": "",
-      "notes": ""
+      "expected": "complies",
+      "submittal_page": 8,
+      "submittal_quote": "Brushless, 4 pole, drip proof revolving field",
+      "notes": "Stator 2/3 pitch on the same page."
     },
     {
       "req_id": "R14",
-      "expected": "",
-      "submittal_page": null,
-      "submittal_quote": "",
-      "notes": ""
+      "expected": "complies",
+      "submittal_page": 8,
+      "submittal_quote": "Class H on low and medium voltage",
+      "notes": "480 V is low voltage: Class H, better than F."
     },
     {
       "req_id": "R15",
-      "expected": "",
-      "submittal_page": null,
-      "submittal_quote": "",
-      "notes": ""
+      "expected": "complies",
+      "submittal_page": 5,
+      "submittal_quote": "A416-2  Alternator Heater, 110/220 (120/240) Volt AC",
+      "notes": "Selected in the BOM; the heater drawing p62 says 120-240V/1400W."
     },
     {
       "req_id": "R16",
-      "expected": "",
-      "submittal_page": null,
-      "submittal_quote": "",
-      "notes": ""
+      "expected": "deviates",
+      "submittal_page": 5,
+      "submittal_quote": "KP78-2  Circuit Breaker or Entrance Box - None",
+      "notes": "BOM selects no breaker; the spec requires a 3-pole output breaker with solid-state trip. AmpSentry is a protective relay, not a breaker."
     },
     {
       "req_id": "R17",
-      "expected": "",
-      "submittal_page": null,
-      "submittal_quote": "",
+      "expected": "complies",
+      "submittal_page": 8,
+      "submittal_quote": "Voltage regulation, no load to full load  ± 0.5%",
       "notes": ""
     },
     {
       "req_id": "R18",
-      "expected": "",
-      "submittal_page": null,
-      "submittal_quote": "",
-      "notes": ""
+      "expected": "complies",
+      "submittal_page": 8,
+      "submittal_quote": "< 5% no load to full linear load",
+      "notes": "THDV < 5% no load to full linear load."
     },
     {
       "req_id": "R19",
-      "expected": "",
+      "expected": "missing",
       "submittal_page": null,
       "submittal_quote": "",
-      "notes": ""
+      "notes": "No fuel tank anywhere in the package (searched: tank, sub-base, UL 2085, day tank)."
     },
     {
       "req_id": "R20",
-      "expected": "",
-      "submittal_page": null,
-      "submittal_quote": "",
-      "notes": ""
+      "expected": "unclear",
+      "submittal_page": 62,
+      "submittal_quote": "COOLANT HEATER 208-240-480V 3744-4992W",
+      "notes": "SCANNED drawing, read visually: two coolant heaters, 208-240-480 V, 3744-4992 W each. Two heaters matches; 5000 W is not stated and the wattage depends on the voltage; 4992 W is about 5000 W if that is the 480 V figure. The drawing is titled DQGAx-QSK95, a different engine family.",
+      "scanned": true
     },
     {
       "req_id": "R21",
-      "expected": "",
+      "expected": "missing",
       "submittal_page": null,
       "submittal_quote": "",
-      "notes": ""
+      "notes": "BOM lists no enclosure; the only sound data is 'Standard - Unhoused' (p40) and all housed cooling data is N/A (p41). Reviewer could reasonably call this 'deviates'."
     }
+  ],
+  "reviewed_by": "",
+  "case_notes": [
+    "BOM (p5) is for 2 sets; Project Alpha buys 4 (GEN-A..D). Quantity is not a spec requirement, so it is not scored.",
+    "Heater drawing p62 is titled DQGAx-QSK95; this generator is a QSK60 (DQKAB): the package mixes in a drawing for another engine family.",
+    "Alternator heater is 300 W on p9 and 1400 W on p62: the package contradicts itself."
   ]
 }
