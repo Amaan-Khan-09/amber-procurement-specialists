@@ -30,6 +30,15 @@ def test_p_late():
     assert _p_late([ev(40, 60)], 30) == 1.0
 
 
+def test_single_figure_quote_is_widened_not_zero_width():
+    from amber.delivery import _span
+    lo, hi, note = _span(60, 60, "Lead time approx 60 wks right now")
+    assert (lo, hi) == (54, 66) and "±10%" in note
+    later = _p_late([ev(50, 66), ev(*_span(60, 60, "approx")[:2], w=2.0)], 50)
+    earlier = _p_late([ev(50, 66), ev(*_span(40, 40, "approx")[:2], w=2.0)], 50)
+    assert later > earlier  # a slower quote can never lower the chance of being late
+
+
 @pytest.fixture(scope="module")
 def result():
     bids = {"GEN": {"B2": {"min_weeks": 50, "max_weeks": 54, "basis": "after_submittal_approval"},

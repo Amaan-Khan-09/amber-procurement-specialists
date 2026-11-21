@@ -136,6 +136,14 @@ def _p_late(ev: list[Evidence], weeks_available: float) -> float:
     return late / total
 
 
+def _span(lo: float, hi: float | None, quote: str = "") -> tuple[float, float, str | None]:
+    """A quoted single figure ('approx 60 wks') is not a zero-width certainty: widen it honestly."""
+    if hi is not None and hi > lo:
+        return lo, hi, None
+    pct = 0.10 if "approx" in quote.lower() or "about" in quote.lower() or "~" in quote else 0.05
+    return lo * (1 - pct), lo * (1 + pct), f"single figure quoted ({lo:g} wk); treated as ±{pct:.0%}"
+
+
 def _d(s: str | None) -> date | None:
     return date.fromisoformat(s) if s else None
 
@@ -174,7 +182,9 @@ def assess_delivery_risk(schedule_path: str, po_path: str, evidence_path: str, a
             if quoted is not None:
                 vc = Citation(doc_id="po-status", page=1, locator=f"{po['tag_group']} / {po['quote_source']}",
                               quote=po["quote_text"])
-                ev.append(Evidence("VENDOR", quoted, _f(po["quoted_max_weeks"]), 2.0, f"vendor quote ({po['quote_source']})", vc))
+                lo, hi, note = _span(quoted, _f(po["quoted_max_weeks"]), po.get("quote_text", ""))
+                ev.append(Evidence("VENDOR", lo, hi, 2.0, f"vendor quote ({po['quote_source']})", vc,
+                                   notes=[note] if note else []))
                 if po["quote_basis"] == "after_submittal_approval":
                     if approved:
                         start, notes = approved, notes + [f"lead time counts from submittal approval {approved}"]
@@ -193,8 +203,11 @@ def assess_delivery_risk(schedule_path: str, po_path: str, evidence_path: str, a
                 if mn is None:
                     continue
                 cit = Citation(**q["citation"]) if q.get("citation") else None
-                ev = [e for e in market] + [Evidence("VENDOR", mn, mx or mn, 2.0, f"{bidder} bid lead time",
-                                                     cit or Citation(doc_id=bidder, page=1, quote=f"{mn}-{mx} weeks"))]
+                qtext = (cit.quote if cit else "") or str(q.get("quote") or "")
+                lo, hi, note = _span(mn, mx, qtext)
+                ev = [e for e in market] + [Evidence("VENDOR", lo, hi, 2.0, f"{bidder} bid lead time",
+                                                     cit or Citation(doc_id=bidder, page=1, quote=f"{mn}-{mx} weeks"),
+                                                     notes=[note] if note else [])]
                 resub = q.get("resubmittal", submittal_results.get(po["tag_group"]) == "reject")
                 sw = (SUBMITTAL_PREP + SUBMITTAL_REVIEW + (RESUBMITTAL if resub else 0.0)) \
                     if q.get("basis") == "after_submittal_approval" else (RESUBMITTAL if resub else 0.0)
