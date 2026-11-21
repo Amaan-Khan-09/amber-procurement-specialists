@@ -67,7 +67,10 @@ def load(path: str | Path, doc_id: str | None = None, ocr=None) -> Document:
         text = pg.get_text("text", sort=True)
         page = Page(i, text)
         if len(text.strip()) < MIN_TEXT_CHARS and ocr is not None:
-            page.text, page.ocr = _ocr_cached(doc.sha256, i, pg, ocr), True
+            try:
+                page.text, page.ocr = _ocr_cached(doc.sha256, i, pg, ocr), True
+            except Exception:  # OCR unavailable: the page stays unread and is reported as such
+                pass
         doc.pages.append(page)
     return doc
 

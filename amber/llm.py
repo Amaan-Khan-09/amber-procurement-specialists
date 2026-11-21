@@ -119,9 +119,9 @@ class LLM:
         return j["choices"][0]["message"]["content"] or ""
 
     def _gemini(self, system: str, user: str, max_tokens: int) -> str:
-        key = os.getenv("GEMINI_API_KEY") or ""
+        key = (os.getenv("GEMINI_API_KEY") or os.getenv("GOOGLE_API_KEY") or "").strip()
         if not key:
-            raise LLMError("GEMINI_API_KEY not set")
+            raise LLMError("GEMINI_API_KEY / GOOGLE_API_KEY not set")
         url = f"https://generativelanguage.googleapis.com/v1beta/models/{self.model}:generateContent"
         body = {"systemInstruction": {"parts": [{"text": system}]},
                 "contents": [{"role": "user", "parts": [{"text": user}]}],

@@ -24,6 +24,7 @@ from .verify import MATCH_TRUST, verify
 BATCH = 6  # conditions per extraction call
 PASSAGES_PER_COND = 3
 MAX_CONTEXT_CHARS = 9000  # submittal text per extraction call
+OCR_CAP = 0.65  # max confidence for anything resting on OCR text (always below the 0.70 handoff line)
 
 REQ_SYSTEM = """You turn construction specification clauses into checkable requirements for a product submittal review.
 Rules:
@@ -178,7 +179,13 @@ def _decide_condition(c: dict, o: dict | None, sub_doc: docs.Document):
         # the wording differs from the expected terms but the verified quote may still satisfy it
         d = checks.Decision(Verdict.complies, f"model judgement on verified quote: {cite.quote!r}", False)
         exact = False
-    conf = (0.95 if exact else 0.74) * MATCH_TRUST.get(cite.match, 0.8) * (0.85 if cite.ocr else 1.0)
+    conf = (0.95 if exact else 0.74) * MATCH_TRUST.get(cite.match, 0.8)
+    if cite.ocr:
+        # vision OCR can misread digits and model numbers (seen: KD1000 read as KD2000), so evidence from
+        # a scanned page is a candidate for a person to confirm, never an automatic pass or fail
+        conf = min(conf, OCR_CAP)
+        d = checks.Decision(d.verdict, d.why + f"; read from scanned page {cite.page} by OCR, confirm against the scan",
+                            d.exact)
     return d, cite, conf
 
 
@@ -198,10 +205,14 @@ def _combine(parts: list[tuple]) -> tuple[Verdict, str, float]:
 
 
 def check_submittal(spec_path: str, submittal_path: str, tag: str, schedule_path: str,
-                    checklist: list[dict] | None = None, llm: LLM | None = None) -> ToolResult:
+                    checklist: list[dict] | None = None, llm: LLM | None = None, ocr: bool = True) -> ToolResult:
     t0 = time.time()
     llm = llm or LLM()
-    spec_doc, sub_doc = docs.load(spec_path), docs.load(submittal_path)
+    reader = None
+    if ocr:
+        from .ocr import VisionOCR
+        reader = VisionOCR(meter=llm.meter)
+    spec_doc, sub_doc = docs.load(spec_path, ocr=reader), docs.load(submittal_path, ocr=reader)
     schedule_id = docs.doc_id_for(schedule_path)
     row = load_schedule(schedule_path, tag)
 
