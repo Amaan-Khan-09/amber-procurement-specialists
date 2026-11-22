@@ -60,12 +60,22 @@ def main() -> int:
             r.raise_for_status()
         except httpx.HTTPError as e:
             failed += 1
-            print(f"FAILED   {rel}: {e}  (download it by hand from {url})")
+            code = getattr(getattr(e, "response", None), "status_code", None)
+            why = "the site refuses automated downloads" if code in (401, 403) else str(e).splitlines()[0]
+            print(f"FAILED   {rel}: {why}.\n         Open {url} in a browser and save the file as {rel}")
             continue
         dst.write_bytes(r.content)
         got = hashlib.sha256(r.content).hexdigest()
         note = "" if got.startswith(sha) else "  (content differs from the version used for the answer keys; check page numbers)"
         print(f"fetched  {rel}{note}")
+
+    # derived test input: the two Vertiv documents merged into one submittal package (case U1)
+    try:
+        sys.path.insert(0, str(Path(__file__).resolve().parent))
+        from make_ups_spec import merge
+        merge()
+    except Exception as e:  # never fail the whole fetch over the derived file
+        print(f"skip     UPS package: {e}")
     return 1 if failed else 0
 
 

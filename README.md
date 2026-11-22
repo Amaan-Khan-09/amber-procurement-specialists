@@ -36,14 +36,27 @@ The judging criteria weigh trust heavily, so every rule below is enforced in cod
 ## Quick start
 
 ```bash
-python -m venv .venv && .venv/Scripts/activate          # Python 3.11+
+python -m venv .venv                                     # Python 3.11+
+source .venv/bin/activate                                # Windows: .venv\Scripts\activate
 pip install -e ".[dev]"
 python tools/data_prep/fetch_data.py                     # downloads the public test documents (not committed)
-cp .env.example .env                                     # then add GROQ_API_KEY (and optionally GEMINI_API_KEY)
-python -m pytest -q                                      # unit tests, no network needed
+python -m pytest -q                                      # 66 tests, no API key and no network needed
+python scripts/demo_mcp_client.py                        # starts the MCP server and calls a tool (no key needed)
+cp .env.example .env                                     # add GROQ_API_KEY for the steps below
 python scripts/run_package.py                            # full package review on Project Alpha
+python scripts/make_report.py runs/package_GEN.json      # the same result as an HTML page
 python -m amber.server                                   # MCP server on stdio (--http for streamable HTTP)
 ```
+
+Notes for a fresh clone:
+
+* One public file (the Kohler KD1000 submittal, case G3) is on a site that refuses automated downloads; the fetch
+  script prints its link and the exact path to save it under after downloading it in a browser.
+* Scanned pages are read from a local cache that is not in the repository (it is derived from copyrighted documents).
+  On a fresh clone they are reported as unread and sent to a person, unless you set `AMBER_OCR=gemini` (about $0.41 to
+  read all 87 scanned test pages once).
+* The structured requirements for the three Project Alpha specs are committed (`data/requirements/`), so no model is
+  needed to re-derive them.
 
 MCP client config (e.g. Claude Desktop or Amber):
 
