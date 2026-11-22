@@ -138,8 +138,31 @@ against its page. They have not yet had an independent review. How to read them:
 Latest development results (small `gpt-oss-20b` model, free tier): G1 67–71 %, G2 57 % correct; **0 fabricated citations**
 in every run. Run-to-run variation on that model is several points. `level_bids` on BL1: 41 of 44 scope cells correct, all four base
 prices and all four products right, ranking correct, award correctly withheld.
-**Held-out results (G3, G4, U1) are not in yet**: they will be run once (`--final`), on the 120b model, with no tuning, and
-reported here. The scorer refuses to run held-out cases without that flag.
+### Held-out results (run once, 22 Nov 2026, `gpt-oss-120b`, no tuning)
+
+The held-out cases were labelled before any agent run and run exactly once (`--final`; the scorer refuses otherwise).
+No call failed, so every finding is a real answer.
+
+| Case | Correct | False approvals | False rejections | Fabricated citations | Sent to a person | Cost | Time |
+|---|---|---|---|---|---|---|---|
+| G4 Cummins C1000 spec sheet | 15 / 21 (71 %) | 0 | 1 | 0 | 29 % | $0.006 | 2.7 min |
+| U1 Vertiv UPS package (new equipment class) | 8 / 16 (50 %) | 2 | 0 | 0 | 56 % | $0.005 | 2.2 min |
+| G3 Kohler 105-page project submittal | 11 / 21 (52 %) | 0 | 0 | 0 | 48 % | $0.008 | 4.2 min |
+| **All held-out** | **34 / 58 (59 %)** | **2** | **1** | **0** | | **$0.02** | |
+
+What this means, plainly: most errors are cautious ones (an answer sent to a person as `unclear` instead of a firm
+verdict), there were **no fabricated citations**, and there were two false approvals, both on the UPS case:
+
+* U02 "full rating at 40 °C": approved from the operating range "0-40 °C", missing a separate row that derates the unit
+  to 1080 kW at 40 °C. This was a capped model judgement, so it was already **sent to a person**, not auto-approved.
+* U10 "maintenance bypass furnished": approved at high confidence because the quote contains the required words
+  ("Manual Maintenance Bypass Included 300-500 kW"), although the same row says "Not included 600-1200 kW". **This is
+  the one automatic false approval in 58 held-out requirements.**
+
+After this run we added a guard: a check cannot pass while its own evidence says "not included", "excluded", "by
+others" or "optional" (`tests/test_checks.py::test_required_words_next_to_a_negation_do_not_pass`). The held-out
+numbers above are from **before** that fix and were not re-run, because re-running after a fix would no longer be a
+held-out measurement.
 
 Score any case with `python scripts/eval_submittal.py --run --case G3`.
 

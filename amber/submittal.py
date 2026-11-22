@@ -259,6 +259,8 @@ def extract_offers(llm: LLM, sub_doc: docs.Document, reqs: list[dict]) -> dict[s
     return offers
 
 
+_NEGATION = re.compile(r"\bnot\s+(?:included|provided|supplied|available|furnished|offered)\b|\bexcluded\b|\bexclusions?\b"
+                       r"|\bby others\b|\bfurnished by others\b|\boptional\b|\bn/?a\b|\bnone\b", re.I)
 _DUAL = re.compile(r"(-?\d[\d,]*\.?\d*)\s*\(\s*(-?\d[\d,]*\.?\d*)\s*\)")
 _DUAL_HEADER = re.compile(r"([A-Za-z][A-Za-z./°³ ]{0,12}?)\s*\(\s*([A-Za-z][A-Za-z./°³ ]{0,12}?)\s*\)")
 
@@ -348,9 +350,17 @@ def _decide_condition(c: dict, o: dict | None, sub_doc: docs.Document):
     else:
         # Text conditions are judged on the verified quote, plus only those reported values that are themselves
         # grounded in it: a reported 'UL 2085' next to a quote saying 'UL 2200' must not count as UL 2085.
+        raw = " | ".join(str(v) for v in (o.get("values") or []))
         vals = [v for v in (o.get("values") or []) if v not in (None, "") and _grounded([v], cite.quote)]
-        o = dict(o, values=vals or [cite.quote], quote_only=not vals and bool(o.get("values")))
+        o = dict(o, values=vals or [cite.quote], quote_only=not vals and bool(o.get("values")),
+                 negated=bool(_NEGATION.search(raw + " | " + cite.quote)))
     d = checks.decide(c, o, evidence=cite.quote)
+    if o.get("negated") and d.verdict == Verdict.complies:
+        # the required words are there, but so is a negation or a limit ('Included 300-500 kW', 'Not included
+        # 600-1200 kW', 'by others'): finding the words is not the same as the requirement being met
+        return (checks.Decision(Verdict.unclear, f"the evidence also says something is not included, optional or by "
+                                                 f"others ({(raw or cite.quote)[:90]!r}); a person must read it", False),
+                cite, 0.5)
     if o.get("quote_only"):
         # none of the reported values is in the quote, so the quote may be about something else: judge it,
         # but never confidently (it goes to a person)

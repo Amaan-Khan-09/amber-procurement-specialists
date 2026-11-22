@@ -201,3 +201,25 @@ def test_label_returned_as_a_value_is_not_read_as_a_number():
     assert V(req, {"values": ["Peak motor starting kVA: (35% dip for voltages"], "unit": "kVA"}) == Verdict.unclear
     assert V(req, {"values": ["9957 kVA"], "unit": "kVA"}) == Verdict.complies
     assert V({"kind": "numeric", "op": ">=", "value": 2000, "unit": "kW"}, {"values": ["Standby 2000 kW"], "unit": "kW"}) == Verdict.complies
+
+
+def test_required_words_next_to_a_negation_do_not_pass():
+    from amber.docs import Document, Page
+    from amber.submittal import _decide_condition
+    doc = Document("d", "d.pdf", pages=[Page(1, "Bypass  Manual Maintenance Bypass  Included 300-500 kW  Not included 600-1200 kW " * 2)])
+    cond = {"cid": "U10a", "kind": "text", "terms": ["manual maintenance bypass", "maintenance bypass"], "match": "any"}
+    offer = {"cid": "U10a", "stated": True, "values": ["Included 300-500 kW", "Not included 600-1200 kW"],
+             "quote": "Manual Maintenance Bypass  Included 300-500 kW", "page": 1, "meets": "yes", "selected": True}
+    d, cite, conf = _decide_condition(cond, offer, doc)
+    assert d.verdict == Verdict.unclear and conf < 0.70  # was a confident 'complies' in the held-out run (U1, U10)
+
+
+def test_plain_inclusion_still_passes():
+    from amber.docs import Document, Page
+    from amber.submittal import _decide_condition
+    doc = Document("d", "d.pdf", pages=[Page(1, "Features: integral manual maintenance bypass switch, static bypass " * 2)])
+    cond = {"cid": "X1a", "kind": "text", "terms": ["maintenance bypass"], "match": "any"}
+    offer = {"cid": "X1a", "stated": True, "values": ["integral manual maintenance bypass switch"],
+             "quote": "integral manual maintenance bypass switch", "page": 1, "meets": "yes", "selected": True}
+    d, cite, conf = _decide_condition(cond, offer, doc)
+    assert d.verdict == Verdict.complies
