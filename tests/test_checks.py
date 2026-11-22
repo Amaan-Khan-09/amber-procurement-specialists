@@ -194,3 +194,10 @@ def test_one_quote_cannot_be_evidence_for_two_attributes():
     assert "shared_with" not in offers["R17a"]           # 'regulation' is in the quote: it keeps the evidence
     assert offers["R18a"]["shared_with"] == "R17"        # THD does not: goes to a person
     assert "shared_with" not in offers["R01a"]
+
+
+def test_label_returned_as_a_value_is_not_read_as_a_number():
+    req = {"kind": "numeric", "op": ">=", "value": 3000, "unit": "kVA"}
+    assert V(req, {"values": ["Peak motor starting kVA: (35% dip for voltages"], "unit": "kVA"}) == Verdict.unclear
+    assert V(req, {"values": ["9957 kVA"], "unit": "kVA"}) == Verdict.complies
+    assert V({"kind": "numeric", "op": ">=", "value": 2000, "unit": "kW"}, {"values": ["Standby 2000 kW"], "unit": "kW"}) == Verdict.complies

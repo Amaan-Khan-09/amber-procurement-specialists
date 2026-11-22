@@ -61,7 +61,7 @@ File arguments are paths under `data/`; paths outside it are refused.
 | Lighter runs and development | `openai/gpt-oss-20b` | Groq |
 | Reading **scanned** pages (OCR), cached per page | `gemini-3.8-flash` | Google |
 | Structuring a spec into requirements (once per spec, cached) | `gemini-3.8-flash` | Google |
-| Private / offline mode | `qwen3:4b` served by Ollama (measured below; not recommended on a CPU-only laptop) | local |
+| Private / offline mode | `qwen3:8b` served by Ollama on a laptop's integrated GPU (measured below) | local |
 | Delivery forecast | none (pure code) | local |
 
 Measured on Project Alpha (cost is estimated at list prices from token counts; every run reports its own models, tokens,
@@ -83,18 +83,19 @@ leaves the machine, and a scanned page is never sent to a vision model. Structur
 done once per spec and cached (`data/requirements/`, built with `scripts/build_requirements.py`), so the local model
 only has to read each submittal.
 
-Tested on our own hardware, a laptop with **no GPU** (Intel Core i5-1334U, 16 GB RAM) and `qwen3:4b` through Ollama:
+Measured on our own laptop: Intel Core i5-1334U, 16 GB RAM, **integrated Intel Iris Xe graphics only**, Ollama with
+the Vulkan backend (`OLLAMA_VULKAN=1`, `OLLAMA_IGPU_ENABLE=1`). Full check of dev case G2, 21 requirements:
 
-| | Result |
-|---|---|
-| One isolated extraction call (2.6k tokens in) | 154 s, three correct values |
-| Full check of G2 (21 requirements) | **about 5 hours** wall-clock (also while the laptop was doing other work) |
-| Accuracy on G2 | 38 % correct, 1 false approval, **no deviation found**, 0 fabricated citations |
-| Cost | $0 |
+| Setup | Time | Correct | Sent to a person | False approvals | Fabricated citations |
+|---|---|---|---|---|---|
+| First attempt: `qwen3:4b` on the CPU, 16k context (the laptop was swapping) | ~5 h | 38 % | 19 % | 1 | 0 |
+| `qwen3:4b` on the Iris Xe GPU, 4k context, small schema-constrained prompts | 14.5 min | 57 % | 67 % | 1 | 0 |
+| **`qwen3:8b` on the Iris Xe GPU (default)** | **20 min** | **67 %** | 43 % | 1 | 0 |
 
-So on this laptop private mode works mechanically but is too slow and too inaccurate to recommend; quotes were still
-verified and nothing was invented. It needs a GPU workstation and a larger open-weight model (for example a 20-30B
-class model) to be useful; we have not been able to test that and do not claim it.
+Cost is $0. What made it practical: a 4k context window (a 16k one alone needed ~2.4 GB and pushed the laptop into
+swapping), at most three conditions and ~3,500 characters of excerpts per call, JSON-schema-constrained decoding, and
+the integrated GPU. The remaining false approval is the radiator-footnote case listed under known limits; it is the
+same one the cloud models miss. A workstation GPU would be several times faster; we have not tested one.
 
 Spend on the paid API is capped by a persistent ledger (`AMBER_GEMINI_BUDGET_USD`, default $1.50) and a Groq outage
 never silently switches to a paid provider (`AMBER_FALLBACK=gemini` opts in). Set `AMBER_OCR=off` to never send a

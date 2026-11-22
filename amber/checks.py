@@ -173,6 +173,11 @@ def _single_numbers(values: list, u: str | None) -> tuple[list, str | None]:
         if not isinstance(v, str):
             out.append(v)
             continue
+        # A table label returned as a value ('Peak motor starting kVA: (35% dip for voltages') is not a number:
+        # its '35' would be read as 35 kVA. Allow a unit and at most two other words around the number.
+        words = [w for w in re.findall(r"[a-z]+", v.lower()) if w not in UNIT_ALIASES and w not in UNIT_WORDS]
+        if len(words) > 2:
+            return [], f"reported value {v!r} reads like a label, not a number; not guessing"
         nums = _NUM.findall(v)
         if len(nums) <= 1:
             out.append(v)

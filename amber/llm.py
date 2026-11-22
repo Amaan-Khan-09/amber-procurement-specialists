@@ -30,7 +30,7 @@ PRICES = {
 DEFAULTS = {
     "groq": os.getenv("AMBER_GROQ_MODEL", "openai/gpt-oss-120b"),
     "gemini": os.getenv("AMBER_GEMINI_MODEL", "gemini-3.8-flash"),
-    "ollama": os.getenv("AMBER_OLLAMA_MODEL", "qwen3:4b"),
+    "ollama": os.getenv("AMBER_OLLAMA_MODEL", "qwen3:8b"),
 }
 
 
