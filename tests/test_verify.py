@@ -52,3 +52,11 @@ def test_fuzzy_only_for_long_wordy_quotes():
     page = "The enclosure shall be weatherproof and rodent proof with lockable doors"
     assert match_level("enclosure shall be weatherprof and rodent proof", page) == "fuzzy"
     assert match_level("weatherprof", page) is None
+
+
+def test_word_quote_across_interleaved_columns():
+    page = ("Exhaust System  60 Hz   Alternator Specifications  60 Hz\nExhaust flow at rated kW,  Type  4-Pole, Rotating-Field\n"
+            "m3/min. (cfm)  443 (15635)  Exciter type  Brushless, Permanent-\nExhaust temperature at rated kW at  Magnet Pilot Exciter\n")
+    assert match_level("Exciter type  Brushless, Permanent- Magnet Pilot Exciter", page) == "table"
+    assert match_level("Exciter type  Brushless, Permanent- Magnet Pilot Exciter", "Exciter type: static, brush type") is None
+    assert match_level("Brushless exciter", page) is None  # too few words for this rule

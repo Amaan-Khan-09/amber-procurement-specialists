@@ -59,7 +59,28 @@ def match_level(quote: str, page_text: str) -> str | None:
             return "fuzzy"
     if _in_window(q, normalize(page_text)):
         return "table"
+    if _in_window_words(quote, page_text):
+        return "table"
     return None
+
+
+def _in_window_words(quote: str, page: str, window: int = 220, min_words: int = 4) -> bool:
+    """Two-column datasheets interleave their columns in extracted text ('Permanent-' / other column / 'Magnet
+    Pilot Exciter'). A word-only quote is accepted if at least `min_words` distinct words of 3+ letters all occur
+    within one short stretch of the page. Quotes with numbers never use this rule (see _in_window)."""
+    if re.search(r"\d", quote):
+        return False
+    norm = lambda s: re.sub(r"[^a-z]+", " ", unicodedata.normalize("NFKC", s).lower())
+    words = sorted({w for w in norm(quote).split() if len(w) >= 3})
+    if len(words) < min_words:
+        return False
+    p = norm(page)
+    rare = min(words, key=lambda w: len(re.findall(rf"\b{w}\b", p)) or 10**9)
+    for m in re.finditer(rf"\b{rare}\b", p):
+        span = p[max(0, m.start() - window):m.end() + window]
+        if all(re.search(rf"\b{w}\b", span) for w in words):
+            return True
+    return False
 
 
 def _in_window(q: str, page: str, window: int = 260) -> bool:
