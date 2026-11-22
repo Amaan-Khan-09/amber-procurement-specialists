@@ -288,8 +288,46 @@ def _grounded(values: list, quote: str) -> bool:
     return bool(values) and all(set(re.findall(r"[a-z0-9]+", checks._squash_keep_words(str(v)))) <= qt for v in values)
 
 
+_GENERIC = {"the", "and", "for", "with", "load", "full", "rated", "rating", "voltage", "type", "value", "set", "sets",
+             "generator", "engine", "system", "standby", "max", "min", "maximum", "minimum", "shall", "must", "per", "from"}
+
+
+def _attr_words(c: dict) -> set[str]:
+    words = re.findall(r"[a-z]{3,}", str(c.get("attribute", "")).lower().replace("_", " "))
+    return {w for w in words if w not in _GENERIC}
+
+
+def _flag_shared_evidence(reqs: list[dict], offers: dict[str, dict]) -> None:
+    """One line of a datasheet cannot be the evidence for two different requirements with the same value
+    (seen: 'Voltage regulation ... +/-0.25%' offered both as voltage regulation and as THD). When that happens, the
+    condition whose own attribute words appear in the quote keeps it; the others are marked for a person."""
+    owner = {c["cid"]: (r["req_id"], c) for r in reqs for c in r["conditions"]}
+    groups: dict[tuple, list[str]] = {}
+    for cid, o in offers.items():
+        if cid not in owner or not o.get("stated") or not o.get("quote") or not o.get("values"):
+            continue
+        key = (re.sub(r"\W+", "", str(o["quote"]).lower()), tuple(sorted(str(v) for v in o["values"])))
+        groups.setdefault(key, []).append(cid)
+    for cids in groups.values():
+        if len({owner[c][0] for c in cids}) < 2:
+            continue  # several conditions of one requirement may share a quote naturally
+        quote = str(offers[cids[0]]["quote"]).lower()
+        score = {c: sum(w in quote for w in _attr_words(owner[c][1])) for c in cids}
+        best = max(score.values())
+        winners = [c for c in cids if score[c] == best] if best > 0 else []
+        keep = winners[0] if len(winners) == 1 else None
+        for c in cids:
+            if c != keep:
+                others = ", ".join(owner[x][0] for x in cids if x != c)
+                offers[c] = dict(offers[c], shared_with=others)
+
+
 def _decide_condition(c: dict, o: dict | None, sub_doc: docs.Document):
     """-> (Decision, submittal Citation | None, confidence)"""
+    if o and o.get("shared_with"):
+        return (checks.Decision(Verdict.unclear, f"the same quote and value ({str(o.get('quote'))[:60]!r}) are also the "
+                                                 f"evidence for {o['shared_with']}: probably a different attribute", False),
+                None, 0.4)
     if o and o.get("not_checked"):
         return checks.Decision(Verdict.unclear, f"not checked ({o['not_checked']})", False), None, 0.0
     if not o or not o.get("stated"):
@@ -382,6 +420,7 @@ def check_submittal(spec_path: str, submittal_path: str, tag: str, schedule_path
 
     reqs = structure_requirements(llm, spec_doc, row, schedule_id, checklist)
     offers = extract_offers(llm, sub_doc, reqs)
+    _flag_shared_evidence(reqs, offers)
 
     findings, rows = [], []
     for r in reqs:

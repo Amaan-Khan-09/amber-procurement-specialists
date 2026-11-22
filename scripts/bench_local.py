@@ -29,7 +29,7 @@ def main() -> None:
         os.environ["AMBER_OLLAMA_CTX"] = a.ctx
     from amber import docs
     from amber.llm import LLM
-    from amber.submittal import _combine, _decide_condition, _req_cache_file, extract_offers, load_schedule
+    from amber.submittal import _combine, _decide_condition, _flag_shared_evidence, _req_cache_file, extract_offers, load_schedule
 
     case = json.loads((ROOT / "eval/answer_keys/G2.json").read_text(encoding="utf-8"))
     checklist = json.loads((ROOT / "eval/answer_keys/genset_requirements.json").read_text(encoding="utf-8"))["requirements"]
@@ -43,6 +43,7 @@ def main() -> None:
     llm = LLM(provider=a.provider, model=a.model)
     t0 = time.time()
     offers = extract_offers(llm, sub, reqs)
+    _flag_shared_evidence(reqs, offers)
     secs = time.time() - t0
     ok, rows = 0, []
     for r in reqs:

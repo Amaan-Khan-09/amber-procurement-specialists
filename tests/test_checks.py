@@ -179,3 +179,18 @@ def test_text_value_not_in_the_quote_is_not_believed():
              "page": 1, "meets": "unknown"}
     d, cite, conf = _decide_condition(cond, offer, doc)
     assert d.verdict == Verdict.deviates and conf < 0.70  # quote shows UL 2200, not the claimed UL 2085: a person confirms
+
+
+def test_one_quote_cannot_be_evidence_for_two_attributes():
+    from amber.submittal import _flag_shared_evidence
+    reqs = [{"req_id": "R17", "conditions": [{"cid": "R17a", "attribute": "voltage_regulation_percent"}]},
+            {"req_id": "R18", "conditions": [{"cid": "R18a", "attribute": "voltage_thd_no_load_to_full_linear_load"}]},
+            {"req_id": "R01", "conditions": [{"cid": "R01a", "attribute": "standby_kw"}]}]
+    q = "Voltage regulation, no-load to full-load  ±0.25%"
+    offers = {"R17a": {"stated": True, "quote": q, "values": ["±0.25%"]},
+              "R18a": {"stated": True, "quote": q, "values": ["±0.25%"]},
+              "R01a": {"stated": True, "quote": "Standby: kW 2000", "values": ["2000"]}}
+    _flag_shared_evidence(reqs, offers)
+    assert "shared_with" not in offers["R17a"]           # 'regulation' is in the quote: it keeps the evidence
+    assert offers["R18a"]["shared_with"] == "R17"        # THD does not: goes to a person
+    assert "shared_with" not in offers["R01a"]
