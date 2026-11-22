@@ -411,9 +411,9 @@ def check_submittal(spec_path: str, submittal_path: str, tag: str, schedule_path
     t0 = time.time()
     llm = llm or LLM()
     reader = None
-    if ocr and os.getenv("AMBER_OCR", "").lower() != "off":  # AMBER_OCR=off: never send scanned pages to a vision model
-        from .ocr import VisionOCR
-        reader = VisionOCR(meter=llm.meter)
+    if ocr:  # default: cached scan text only, no model calls; AMBER_OCR=gemini|groq|ollama to read new scans; off: none
+        from .ocr import reader_from_env
+        reader = reader_from_env(meter=llm.meter)
     spec_doc, sub_doc = docs.load(spec_path, ocr=reader), docs.load(submittal_path, ocr=reader)
     schedule_id = docs.doc_id_for(schedule_path)
     row = load_schedule(schedule_path, tag)

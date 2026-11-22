@@ -59,7 +59,7 @@ File arguments are paths under `data/`; paths outside it are refused.
 |---|---|---|
 | Reading specs, submittals and bids (default) | `openai/gpt-oss-120b` (reasoning effort low) | Groq |
 | Lighter runs and development | `openai/gpt-oss-20b` | Groq |
-| Reading **scanned** pages (OCR), cached per page | `gemini-3.8-flash` | Google |
+| Reading **scanned** pages (OCR): only when `AMBER_OCR=gemini`; cached per page and reused by default | `gemini-3.8-flash` | Google |
 | Structuring a spec into requirements (once per spec, cached) | `gemini-3.8-flash` | Google |
 | Private / offline mode | `qwen3:8b` served by Ollama on a laptop's integrated GPU (measured below) | local |
 | Delivery forecast | none (pure code) | local |
@@ -78,7 +78,7 @@ cost and latency in the `run` field of the result):
 Times are on free API tiers, which allow 8,000 tokens per minute; a paid tier is several times faster.
 ### Private (offline) mode: what we measured
 
-`AMBER_PROVIDER=ollama AMBER_OCR=off python -m amber.server` runs everything locally: no document, prompt or answer
+`AMBER_PROVIDER=ollama python -m amber.server` runs everything locally: no document, prompt or answer
 leaves the machine, and a scanned page is never sent to a vision model. Structuring a spec into typed requirements is
 done once per spec and cached (`data/requirements/`, built with `scripts/build_requirements.py`), so the local model
 only has to read each submittal.
@@ -98,8 +98,14 @@ the integrated GPU. The remaining false approval is the radiator-footnote case l
 same one the cloud models miss. A workstation GPU would be several times faster; we have not tested one.
 
 Spend on the paid API is capped by a persistent ledger (`AMBER_GEMINI_BUDGET_USD`, default $1.50) and a Groq outage
-never silently switches to a paid provider (`AMBER_FALLBACK=gemini` opts in). Set `AMBER_OCR=off` to never send a
-scanned page to a vision model.
+never silently switches to a paid provider (`AMBER_FALLBACK=gemini` opts in).
+
+**Scanned pages.** By default OCR is *cache-only*: scan text read earlier is reused, and a new scanned page is never
+sent anywhere; it is reported as unread and goes to a person. Set `AMBER_OCR=gemini` (or `groq` / `ollama`) to read new
+scans, or `AMBER_OCR=off` to ignore scans entirely. We tested OCR on the laptop's GPU (`qwen3-vl:4b`): it writes at
+5.4 tokens/s, about 6 minutes per dense datasheet page, and the variant we tried spent its output on hidden reasoning
+and returned nothing, so we do not offer local OCR. Gemini read all 87 scanned test pages once, for $0.41, and read the
+two drawings we checked by eye exactly (`python scripts/bench_ocr.py --provider gemini --cached-only`).
 
 ## Evaluation
 

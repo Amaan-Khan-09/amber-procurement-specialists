@@ -81,6 +81,12 @@ def _ocr_cached(sha: str, number: int, pg: "pymupdf.Page", ocr) -> str:
     f = CACHE / f"{sha[:16]}-p{number}-{tag}.json"
     if f.exists():
         return json.loads(f.read_text(encoding="utf-8"))["text"]
+    prefer = getattr(ocr, "prefer_cached", None)  # cache-only reader: any engine's earlier reading, never a new call
+    if prefer is not None:
+        for t in prefer:
+            g = CACHE / f"{sha[:16]}-p{number}-{t}.json"
+            if g.exists():
+                return json.loads(g.read_text(encoding="utf-8"))["text"]
     png = pg.get_pixmap(dpi=200).tobytes("png")
     text = ocr(png) or ""
     f.write_text(json.dumps({"text": text}), encoding="utf-8")
