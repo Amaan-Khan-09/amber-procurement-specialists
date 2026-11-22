@@ -195,19 +195,38 @@ def _context(doc: docs.Document, conds: list[dict], k: int = PASSAGES_PER_COND, 
     return "\n\n---\n\n".join(blocks)
 
 
+OFFER_SCHEMA = {"type": "object", "required": ["offers"], "properties": {"offers": {"type": "array", "items": {
+    "type": "object", "required": ["cid", "stated", "values", "unit", "quote", "page", "meets"],
+    "properties": {"cid": {"type": "string"}, "stated": {"type": "boolean"},
+                   "values": {"type": "array", "items": {"type": "string"}}, "unit": {"type": "string"},
+                   "selected": {"type": "boolean"}, "quote": {"type": "string"}, "page": {"type": "integer"},
+                   "meets": {"type": "string", "enum": ["yes", "no", "unknown"]}, "note": {"type": "string"}}}}}}
+
+
+def _limits(llm: LLM) -> dict:
+    """Cloud models read big batches; a small local model on a CPU gets small, focused questions instead
+    (fewer conditions per call, fewer and shorter excerpts), which is both faster and easier for it."""
+    if llm.local:
+        return {"batch": 3, "k": 2, "chars": 3500, "k2": 4, "chars2": 5000, "batch2": 3}
+    return {"batch": BATCH, "k": PASSAGES_PER_COND, "chars": MAX_CONTEXT_CHARS, "k2": SECOND_PASS_PASSAGES,
+            "chars2": SECOND_PASS_CHARS, "batch2": 8}
+
+
 def extract_offers(llm: LLM, sub_doc: docs.Document, reqs: list[dict]) -> dict[str, dict]:
     conds = [dict(c, requirement=r.get("requirement")) for r in reqs for c in r["conditions"]]
     offers: dict[str, dict] = {}
-    for i in range(0, len(conds), BATCH):
-        batch = conds[i:i + BATCH]
-        ctx = _context(sub_doc, batch)
+    lim = _limits(llm)
+    for i in range(0, len(conds), lim["batch"]):
+        batch = conds[i:i + lim["batch"]]
+        ctx = _context(sub_doc, batch, k=lim["k"], limit=lim["chars"])
         if not ctx:
             continue
         ask = [{k: c.get(k) for k in ("cid", "attribute", "requirement", "kind", "op", "value", "min", "max", "unit", "terms")
                 if c.get(k) not in (None, [], "")} for c in batch]
         try:
             reply = llm.json(EXTRACT_SYSTEM, "Conditions:\n" + json.dumps(ask, ensure_ascii=False) +
-                             "\n\nSubmittal excerpts:\n" + ctx, max_tokens=2000)
+                             "\n\nSubmittal excerpts:\n" + ctx, max_tokens=2000 if not llm.local else 700,
+                             schema=OFFER_SCHEMA)
         except LLMError as e:
             for c in batch:
                 offers[c["cid"]] = {"cid": c["cid"], "not_checked": f"model unavailable: {str(e)[:100]}"}
@@ -219,9 +238,9 @@ def extract_offers(llm: LLM, sub_doc: docs.Document, reqs: list[dict]) -> dict[s
     # (more passages per condition) before accepting it. Only conditions the first pass gave up on cost anything.
     again = [c for c in conds if not (offers.get(c["cid"]) or {}).get("stated")
              and not (offers.get(c["cid"]) or {}).get("not_checked")]
-    for i in range(0, len(again), 8):
-        batch = again[i:i + 8]
-        ctx = _context(sub_doc, batch, k=SECOND_PASS_PASSAGES, limit=SECOND_PASS_CHARS)
+    for i in range(0, len(again), lim["batch2"]):
+        batch = again[i:i + lim["batch2"]]
+        ctx = _context(sub_doc, batch, k=lim["k2"], limit=lim["chars2"])
         if not ctx:
             continue
         ask = [{k: c.get(k) for k in ("cid", "attribute", "requirement", "kind", "op", "value", "min", "max", "unit", "terms")
@@ -230,7 +249,7 @@ def extract_offers(llm: LLM, sub_doc: docs.Document, reqs: list[dict]) -> dict[s
             reply = llm.json(EXTRACT_SYSTEM, "A first read found nothing for these conditions. Read the excerpts again "
                              "carefully, including tables and lists, and report anything that addresses them.\n"
                              "Conditions:\n" + json.dumps(ask, ensure_ascii=False) + "\n\nSubmittal excerpts:\n" + ctx,
-                             max_tokens=2000)
+                             max_tokens=2000 if not llm.local else 700, schema=OFFER_SCHEMA)
         except LLMError:
             continue  # keep the first-pass answer
         for o in _items(reply.get("offers", reply), "cid"):
@@ -238,6 +257,28 @@ def extract_offers(llm: LLM, sub_doc: docs.Document, reqs: list[dict]) -> dict[s
                 o["second_pass"] = True
                 offers[o.get("cid")] = o
     return offers
+
+
+_DUAL = re.compile(r"(-?\d[\d,]*\.?\d*)\s*\(\s*(-?\d[\d,]*\.?\d*)\s*\)")
+_DUAL_HEADER = re.compile(r"([A-Za-z][A-Za-z./°³ ]{0,12}?)\s*\(\s*([A-Za-z][A-Za-z./°³ ]{0,12}?)\s*\)")
+
+
+def _pick_dual_unit(o: dict, c: dict, cite: Citation, doc: docs.Document) -> dict | None:
+    """Datasheets often print 'metric (imperial)': '528.3 (139.6)' under a header 'L/hr (gal./hr)'.
+    If the quote is such a pair and the page has a header whose bracketed (or leading) unit is the condition's
+    unit, keep the matching number. Otherwise return None and the pair stays ambiguous (unclear)."""
+    m = _DUAL.search(cite.quote)
+    unit = c.get("unit")
+    if not m or not unit or len(o.get("values") or []) < 2:
+        return None
+    page = doc.page(cite.page)
+    for h in _DUAL_HEADER.finditer(page.text if page else ""):
+        first, second = h.group(1).strip(), h.group(2).strip()
+        if checks.unit_in_text(unit, f" {second} ") and not checks.unit_in_text(unit, f" {first} ") and checks.UNIT_WORDS.get(unit.strip().lower()):
+            return dict(o, values=[m.group(2)], unit=unit, dual_unit=f"picked {m.group(2)} by header '{h.group(0).strip()}'")
+        if checks.unit_in_text(unit, f" {first} ") and not checks.unit_in_text(unit, f" {second} ") and checks.UNIT_WORDS.get(unit.strip().lower()):
+            return dict(o, values=[m.group(1)], unit=unit, dual_unit=f"picked {m.group(1)} by header '{h.group(0).strip()}'")
+    return None
 
 
 def _grounded(values: list, quote: str) -> bool:
@@ -263,12 +304,24 @@ def _decide_condition(c: dict, o: dict | None, sub_doc: docs.Document):
         if unsupported:  # the quote is real but does not contain what was claimed: no source, no claim
             return (checks.Decision(Verdict.unclear, f"reported value(s) {unsupported} do not appear in the quote "
                                                      f"{cite.quote!r}; discarded", False), cite, 0.4)
+        picked = _pick_dual_unit(o, c, cite, sub_doc)
+        if picked:
+            o = picked
+    else:
+        # Text conditions are judged on the verified quote, plus only those reported values that are themselves
+        # grounded in it: a reported 'UL 2085' next to a quote saying 'UL 2200' must not count as UL 2085.
+        vals = [v for v in (o.get("values") or []) if v not in (None, "") and _grounded([v], cite.quote)]
+        o = dict(o, values=vals or [cite.quote], quote_only=not vals and bool(o.get("values")))
     d = checks.decide(c, o, evidence=cite.quote)
+    if o.get("quote_only"):
+        # none of the reported values is in the quote, so the quote may be about something else: judge it,
+        # but never confidently (it goes to a person)
+        d = checks.Decision(d.verdict, d.why + "; the reported value is not in the quote, judged on the quote text only", False)
     exact = d.exact
     unit_shown = c.get("kind", "numeric") != "numeric" or checks.unit_in_text(o.get("unit") or c.get("unit"), cite.quote)
     meets = str(o.get("meets", "")).lower()
     values = [v for v in (o.get("values") or []) if v not in (None, "")]
-    judged = False
+    judged = bool(o.get("quote_only"))  # judged on quote text alone: capped below the handoff line
     if not values and meets in ("yes", "no") and cite.match in ("exact", "normalized", "compact"):
         # Nothing to compare in code (e.g. a derate sentence), but the model read a quote that is really on the
         # page. Its verdict is used, flagged as judgement and capped so a person always confirms it.

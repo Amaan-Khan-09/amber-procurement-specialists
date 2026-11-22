@@ -150,3 +150,32 @@ def test_bom_word_alone_marks_a_configuration_page():
     from amber.submittal import _config_pages
     doc = Document("d", "d.pdf", pages=[Page(1, "intro " * 40), Page(2, "BOM\nA416 Alternator heater\nA334 Starter 24 V"), Page(3, "bombastic " * 50)])
     assert _config_pages(doc) == [2]  # whole word only: 'bombastic' is not a BOM
+
+
+def test_quote_copied_across_a_hyphenated_line_break_verifies():
+    from amber.verify import match_level
+    assert match_level("Exciter type  Brushless, Permanent- Magnet Pilot Exciter",
+                       "Exciter type  Brushless, Permanent-\nMagnet Pilot Exciter") is not None
+
+
+def test_metric_imperial_pair_is_resolved_by_its_header():
+    from amber.docs import Document, Page
+    from amber.submittal import _decide_condition
+    text = "Fuel Consumption, L/hr (gal./hr)\n100% at Standby  528.3 (139.6)\n75% at Standby  455.9 (120.4)\n" * 2
+    doc = Document("d", "d.pdf", pages=[Page(1, text)])
+    cond = {"cid": "R08a", "kind": "numeric", "op": "<=", "value": 145, "unit": "gph"}
+    offer = {"cid": "R08a", "stated": True, "values": ["528.3", "139.6"], "unit": "gph",
+             "quote": "100% at Standby  528.3 (139.6)", "page": 1, "meets": "yes"}
+    d, cite, conf = _decide_condition(cond, offer, doc)
+    assert d.verdict == Verdict.complies, d.why
+
+
+def test_text_value_not_in_the_quote_is_not_believed():
+    from amber.docs import Document, Page
+    from amber.submittal import _decide_condition
+    doc = Document("d", "d.pdf", pages=[Page(1, "Approvals: cULus listing (UL 2200 and CSA C22.2 No. 100) " * 3)])
+    cond = {"cid": "R19a", "kind": "text", "terms": ["ul 2085"], "match": "all"}
+    offer = {"cid": "R19a", "stated": True, "values": ["UL 2085"], "quote": "cULus listing (UL 2200 and CSA C22.2 No. 100)",
+             "page": 1, "meets": "unknown"}
+    d, cite, conf = _decide_condition(cond, offer, doc)
+    assert d.verdict == Verdict.deviates and conf < 0.70  # quote shows UL 2200, not the claimed UL 2085: a person confirms

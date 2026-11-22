@@ -93,8 +93,15 @@ class LLM:
         self.fallbacks = [p for p in chain if p != self.provider and p in DEFAULTS and _has_key(p)]
         self.switched: list[str] = []
 
-    def json(self, system: str, user: str, max_tokens: int = 4000) -> dict:
-        """Ask for a JSON object. One repair retry if the reply is not valid JSON; provider fallback on outage."""
+    @property
+    def local(self) -> bool:
+        return self.provider == "ollama"
+
+    def json(self, system: str, user: str, max_tokens: int = 4000, schema: dict | None = None) -> dict:
+        """Ask for a JSON object. One repair retry if the reply is not valid JSON; provider fallback on outage.
+        `schema` (JSON Schema) constrains decoding where the provider supports it (Ollama), which keeps
+        small local models on format."""
+        self._schema = schema
         while True:
             try:
                 return self._json_once(system, user, max_tokens)
@@ -182,8 +189,12 @@ class LLM:
 
     def _ollama(self, system: str, user: str, max_tokens: int) -> str:
         host = os.getenv("OLLAMA_HOST", "http://127.0.0.1:11434")
-        body = {"model": self.model, "stream": False, "format": "json", "think": False,
-                "options": {"temperature": 0, "num_predict": max_tokens, "num_ctx": 16384},
+        # Small context window: the KV cache for 16k tokens alone is ~2.4 GB on a 4B model, which pushed a 16 GB
+        # laptop into swapping. Prompts for local runs are kept under ~3k tokens instead (see submittal._limits).
+        body = {"model": self.model, "stream": False, "think": False, "keep_alive": "30m",
+                "format": getattr(self, "_schema", None) or "json",
+                "options": {"temperature": 0, "num_predict": max_tokens,
+                            "num_ctx": int(os.getenv("AMBER_OLLAMA_CTX", "4096"))},
                 "messages": [{"role": "system", "content": system}, {"role": "user", "content": user}]}
         j = self._post(f"{host}/api/chat", {}, body)
         self.meter.add("ollama", self.model, j.get("prompt_eval_count", 0), j.get("eval_count", 0))

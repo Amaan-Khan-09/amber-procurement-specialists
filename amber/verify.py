@@ -30,7 +30,9 @@ def collapse(s: str) -> str:
 def normalize(s: str) -> str:
     s = unicodedata.normalize("NFKC", s).translate(_QUOTES)
     s = re.sub(r"(\w)-\s*\n\s*(\w)", r"\1\2", s)  # join "turbo-\ncharged"
-    return collapse(s).lower()
+    s = collapse(s).lower()
+    # a quote copied across a line break often keeps the hyphen and a space: "permanent- magnet"
+    return re.sub(r"([a-z])- ([a-z])", r"\1\2", s)
 
 
 def compact(s: str) -> str:
