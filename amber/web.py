@@ -22,13 +22,15 @@ from datetime import datetime
 from pathlib import Path
 from typing import Any
 
+import anyio
 import httpx
 from starlette.applications import Starlette
 from starlette.requests import Request
-from starlette.responses import HTMLResponse, JSONResponse
+from starlette.responses import FileResponse, HTMLResponse, JSONResponse, Response
 from starlette.routing import Route
 
 from . import __version__, budget
+from . import sources as _sources
 from .bids import level_bids
 from .delivery import assess_delivery_risk
 from .followups import draft_follow_ups
@@ -65,6 +67,7 @@ PRESET = {
 SCHEDULE, PO_STATUS, EVIDENCE = "schedules/equipment_schedule.csv", "schedules/po_status.csv", "leadtime_sources/leadtime_evidence.csv"
 
 _jobs: dict[str, dict[str, Any]] = {}
+_src_index: dict[str, Path] = {}
 _lock = threading.Lock()
 
 
@@ -291,7 +294,7 @@ def _saved() -> list[dict]:
     out = []
     for key, m in _index().items():
         if (WEB / f"{key}.json").exists():
-            out.append(dict(m, id=f"web:{key}"))
+            out.append(dict(m, id=f"web:{key}", reviewed=_reviewed(f"web:{key}")))
     for f in sorted(RUNS.glob("*.json")):
         try:
             r = json.loads(f.read_text(encoding="utf-8"))
@@ -305,8 +308,23 @@ def _saved() -> list[dict]:
                     "finished": datetime.fromtimestamp(f.stat().st_mtime).isoformat(timespec="seconds"),
                     "findings": len(r["findings"]), "needs_human": len(r.get("needs_human") or []),
                     "cost_usd": round(sum(m.get("cost_usd") or 0 for m in (r.get("run") or {}).get("models") or []), 4),
-                    "source": "command line"})
+                    "source": "command line", "reviewed": _reviewed(f"runs:{f.stem}")})
     return sorted(out, key=lambda m: m.get("finished") or "", reverse=True)
+
+
+def _reviewed(rid: str) -> int:
+    f = WEB / "reviews" / (rid.replace(":", "__") + ".json")
+    try:
+        return len(json.loads(f.read_text(encoding="utf-8"))) if f.exists() else 0
+    except (json.JSONDecodeError, OSError):
+        return 0
+
+
+def _source_path(doc_id: str) -> Path | None:
+    global _src_index
+    if doc_id not in _src_index:  # new upload, or a held-out document whose final run has now happened
+        _src_index = _sources.index(DATA, exclude=_sealed())
+    return _src_index.get(doc_id)
 
 
 # ---------- HTTP ----------
@@ -409,6 +427,44 @@ async def result(req: Request) -> JSONResponse:
         return _err(e, 404)
 
 
+async def source(req: Request) -> JSONResponse:
+    """A cited page with the quote highlighted (PDF), or the text / table with the quote or row marked."""
+    q = req.query_params
+    doc = q.get("doc", "")
+    path = _source_path(doc) if re.fullmatch(r"[a-z0-9-]{1,48}", doc) else None
+    if not path:
+        return _err(BadRequest("that document is not available on this page"), 404)
+    try:
+        page_no = int(q.get("page", "1"))
+    except ValueError:
+        page_no = 1
+    out = await anyio.to_thread.run_sync(lambda: _sources.show(path, page_no, q.get("q", "")[:600], q.get("loc", "")[:120]))
+    out["doc_id"] = doc
+    return JSONResponse(out)
+
+
+MEDIA = {".pdf": "application/pdf", ".csv": "text/csv; charset=utf-8", ".txt": "text/plain; charset=utf-8",
+         ".md": "text/plain; charset=utf-8", ".eml": "text/plain; charset=utf-8"}
+
+
+async def original(req: Request) -> Response:
+    """The original document, opened in the browser's own viewer (only documents the citations can name)."""
+    doc = req.path_params["doc"]
+    path = _source_path(doc) if re.fullmatch(r"[a-z0-9-]{1,48}", doc) else None
+    if not path:
+        return _err(BadRequest("that document is not available on this page"), 404)
+    return FileResponse(path, media_type=MEDIA.get(path.suffix.lower(), "application/octet-stream"),
+                        headers={"Content-Disposition": "inline", "X-Content-Type-Options": "nosniff"})
+
+
+async def overview(_: Request) -> JSONResponse:
+    """The project at a glance: delivery risk for every long-lead group (code only, instant, no tokens)."""
+    res = await anyio.to_thread.run_sync(lambda: assess_delivery_risk(
+        str(DATA / SCHEDULE), str(DATA / PO_STATUS), str(DATA / EVIDENCE), PRESET["as_of"]))
+    rows = [f.data | {"citations": [c.model_dump() for c in f.citations]} for f in res.findings if f.data.get("arrival")]
+    return JSONResponse({"as_of": PRESET["as_of"], "rows": rows})
+
+
 async def report(req: Request) -> HTMLResponse:
     try:
         res = _load(req.path_params["rid"])
@@ -458,6 +514,7 @@ async def review(req: Request) -> JSONResponse:
 app = Starlette(routes=[
     Route("/", page), Route("/api/state", state), Route("/api/upload", upload, methods=["POST"]),
     Route("/api/run", run, methods=["POST"]), Route("/api/jobs/{jid}", job_status),
+    Route("/api/source", source), Route("/api/overview", overview), Route("/api/file/{doc}", original),
     Route("/api/results/{rid}", result), Route("/api/results/{rid}/report", report),
     Route("/api/results/{rid}/drafts", drafts, methods=["POST"]), Route("/api/results/{rid}/review", review, methods=["POST"]),
 ])

@@ -68,7 +68,12 @@ Notes for a fresh clone:
 
 * **Package review, Check a submittal, Level bids, Delivery risk:** choose documents from `data/` or upload a PDF
   (or a bid e-mail as .txt), choose the model, run. Progress shows the model calls as they happen.
-* **Every answer shows its sources:** the spec paragraph and the datasheet or bid page, quoted word for word.
+* **Overview:** the project at a glance (which equipment will be late, by how much, from which sources), with no
+  model calls.
+* **Every answer shows its sources, one click away:** "View on the page" opens the original PDF page with the quoted
+  words highlighted (all 376 citations in our saved runs are located on their page), a bid e-mail with the quote
+  marked, or a lead-time record with its publisher, date and a link to the website. Any cited page has a shareable
+  link.
 * **"For you to review"** lists only what the agent handed to a person. For each item you can agree, or change the
   verdict, and add a note. Decisions are saved beside the result (`runs/web/reviews/`).
 * **Vendor follow-ups** are drafted from the gaps: copy or download them, then send them yourself.
@@ -185,6 +190,22 @@ After this run we added a guard: a check cannot pass while its own evidence says
 others" or "optional" (`tests/test_checks.py::test_required_words_next_to_a_negation_do_not_pass`). The held-out
 numbers above are from **before** that fix and were not re-run, because re-running after a fix would no longer be a
 held-out measurement.
+
+### Held-out set 2: after the fixes (run once, 24 Nov 2026, `gpt-oss-120b`, no tuning)
+
+To measure the fixes honestly we needed documents the agent had never seen. Two more public generator datasheets were
+labelled on 23 Nov, **after** the fixes and **before** any agent run, then run exactly once.
+
+| Case | Correct | False approvals | False rejections | Fabricated citations | Sent to a person | Decided alone, and right | Cost | Time |
+|---|---|---|---|---|---|---|---|---|
+| G5 mtu 16V4000 DS2250 datasheet | 13 / 21 (62 %) | 0 | 0 | 0 | 71 % | 6 / 6 | $0.006 | 2.9 min |
+| G6 Kohler 2000ROZD-4 spec sheet | 15 / 21 (71 %) | 1 (sent to a person) | 0 | 0 | 76 % | 5 / 5 | $0.007 | 3.5 min |
+| **Set 2** | **28 / 42 (67 %)** | **0 automatic** | **0** | **0** | | **11 / 11** | **$0.013** | |
+
+Plainly: accuracy on unseen documents went from 59 % to 67 %, and **every answer the agent gave on its own was right
+(11 of 11)**. The price is caution: about three answers in four go to a person, mostly as `unclear` where the label is
+`missing` (the agent found related words but no value, and asks rather than guesses). The one false approval (G6 R09,
+radiator rated for 122 °F) was a capped model judgement and was **sent to a person**, not auto-approved.
 
 Score any case with `python scripts/eval_submittal.py --run --case G3`.
 

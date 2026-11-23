@@ -102,3 +102,35 @@ def test_follow_up_drafts_from_a_saved_command_line_run(client):
     (web.RUNS / "BLX.json").write_text(json.dumps(run), encoding="utf-8")
     d = client.post("/api/results/runs:BLX/drafts", json={}).json()["drafts"]
     assert len(d) == 1 and "Rigging by others." in d[0]["body"]
+
+
+def test_source_viewer_highlights_the_quote_on_the_cited_page(client):
+    r = client.get("/api/source", params={"doc": "26-32-13-engine-generators-alpha", "page": 3,
+                                          "q": "shall be rated for the continuous standby capacity (kW and kVA at 0.8 PF)"})
+    assert r.status_code == 200
+    out = r.json()
+    assert out["kind"] == "pdf" and out["page"] == 3 and out["found"] >= 1 and out["image"].startswith("data:image/png;base64,")
+
+
+def test_source_viewer_marks_the_cited_row_and_links_the_website(client):
+    out = client.get("/api/source", params={"doc": "leadtime-evidence", "q": "", "loc": "LT-002 (1500-2000 kW)"}).json()
+    assert out["kind"] == "table" and len(out["hl"]) == 1
+    assert out["rows"][out["hl"][0]][0] == "LT-002"
+    assert all(u.startswith("https://") for u in out["links"].values())
+
+
+def test_source_viewer_and_originals_refuse_unknown_or_sealed_documents(client):
+    for doc in ("../.env", "nope", "C:/Windows/win.ini"):
+        assert client.get("/api/source", params={"doc": doc}).status_code == 404
+        assert client.get(f"/api/file/{doc}").status_code == 404
+    for rel in web._sealed():  # held-out documents stay unseen until their final run
+        from amber.docs import doc_id_for
+        assert client.get("/api/source", params={"doc": doc_id_for(rel)}).status_code == 404
+    orig = client.get("/api/file/26-32-13-engine-generators-alpha")
+    assert orig.status_code == 200 and orig.headers["content-type"] == "application/pdf"
+
+
+def test_overview_needs_no_model(client, monkeypatch):
+    monkeypatch.delenv("GROQ_API_KEY", raising=False)
+    o = client.get("/api/overview").json()
+    assert o["rows"] and all(r["arrival"]["P50"] and r["citations"] for r in o["rows"])

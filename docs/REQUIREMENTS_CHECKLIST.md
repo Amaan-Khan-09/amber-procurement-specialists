@@ -8,7 +8,7 @@ this repository a judge can check. Status: **met**, **partly met** (with the gap
 | Requirement (contest wording) | Status | Evidence |
 |---|---|---|
 | Return structured output (for example JSON), not only free text | met | Every tool returns `ToolResult` (`amber/schema.py`); the MCP server publishes its JSON Schema (`tests/test_server.py::test_tools_publish_a_typed_output_schema`) |
-| Be callable by another agent: run as an MCP server | met | `python -m amber.server` (stdio or `--http`), four tools; `scripts/demo_mcp_client.py` calls it as an agent would |
+| Be callable by another agent: run as an MCP server | met | `python -m amber.server` (stdio or `--http`), five tools; `scripts/demo_mcp_client.py` calls it as an agent would |
 | Show its sources for every answer: document, page, row, photo, recording or website | met | Every finding carries `citations` (document, page, paragraph or row, exact quote); quotes are verified on the page (`amber/verify.py`); award and package decisions cite the clauses they rest on (`tests/test_bids.py::test_award_answer_cites_its_evidence`); lead-time figures cite the website, date and quote (`data/leadtime_sources/leadtime_evidence.csv`) |
 | Give a confidence score with each answer, and hand off to a human when it isn't sure | met | `confidence` on every finding, built from evidence; under 0.70 → `needs_human` with a reason |
 | Never make things up | met | 0 fabricated citations in every scored run, dev and held-out; the scorer re-checks each citation independently (`scripts/eval_submittal.py`); numbers must appear in their own quote |
@@ -33,10 +33,10 @@ this repository a judge can check. Status: **met**, **partly met** (with the gap
 
 | Criterion | Where we stand |
 |---|---|
-| Accuracy | Held-out (run once, 120b): 34/58 requirements correct, most errors cautious (sent to a person); bid leveling 41/44 scope cells, prices and ranking right |
-| Customer value | Package review answers the real question (who to award, what is missing, what will be late) in one table; HTML report |
+| Accuracy | Held-out set 1 (run once, before fixes): 34/58 (59 %). Held-out set 2 (run once, after fixes): 28/42 (67 %), every answer it gave on its own right (11/11), 0 automatic false approvals, 0 fabricated citations. Bid leveling 41/44 scope cells, prices and ranking right |
+| Customer value | Package review answers the real question (who to award, what is missing, what will be late) in one table; follow-up drafts for every gap; a web page for managers with a one-click source viewer (the cited page, quote highlighted) and a review queue |
 | Trustworthiness | Sources on every answer, verified quotes, 0 fabricated citations, cautious handoffs, failures never become claims |
-| Build quality | 73 tests, fresh-clone install verified, cost and time per run measured |
+| Build quality | 91 tests, fresh-clone install verified, cost and time per run measured |
 
 ## What to submit (Round 1, by Sunday 6 December 2026)
 
