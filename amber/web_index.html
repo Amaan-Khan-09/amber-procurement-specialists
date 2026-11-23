@@ -469,7 +469,7 @@ function renderResult() {
   const human = res.findings.filter(f => f.needs_human).length, done = res.findings.filter(f => f.needs_human && current.reviews[f.id]).length;
   const back = TAB_OF[res.tool] || "saved";
   let h = `<div class="row" style="margin-bottom:6px"><button class="btn sm" id="back">← ${back === "saved" ? "Saved results" : "Back to the form"}</button><button class="btn sm" id="tosaved">All saved results</button></div>`;
-  h += `<h1>${esc(TOOL[res.tool] || res.tool)}: ${esc(meta.label || R.package || (R.submittal ? R.submittal + " vs " + R.tag : ""))}</h1>`;
+  h += `<h1>${esc(TOOL[res.tool] || res.tool)}: ${esc(meta.label || R.package || (R.submittal ? R.submittal + " vs " + R.tag : R.tag ? "products in the library for " + R.tag : ""))}</h1>`;
   if (current.cachedFrom) h += `<div class="card banner note"><div class="row"><div class="grow">Opened the saved result for these exact documents (from ${esc(meta.finished || meta.started || "earlier")}). No tokens used.</div><button class="btn sm" id="rerun">Run again</button></div></div>`;
   h += `<div class="tiles" style="margin-top:12px">${headlineTile(res)}
     <div class="tile infot"><div class="k">For you to review</div><div class="v">${done} of ${human}</div><div class="progress"><i style="width:${human ? Math.round(done / human * 100) : 100}%"></i></div><div class="s">items the agent was not sure about</div></div>
@@ -553,7 +553,7 @@ function productsSummary(R, findings) {
         ids.map(r => { const s = by[r]; if (!s) return `<td>-</td>`;
           return `<td><span class="cell ${STATUS[s.status] || "mute"}" title="${esc(req[r] + ": " + s.why)}">${esc(s.status)}</span></td>`; }).join("") +
         `<td class="nw">${sub ? `<button class="btn sm" data-fullcheck="${esc(sub)}">Full check</button>` : ""}</td></tr>`; }).join("") + `</table>
-    <p class="small">Columns: ${ids.map(r => `<b>${esc(r)}</b> ${esc(req[r] || "")}`).join(" · ")}. Hover a cell for the reason; the quotes are in the findings below.</p></div>`;
+    <p class="small">Columns: ${ids.map(r => `<b>${esc(r)}</b> ${esc((req[r] || "").replace(/\.$/, ""))}`).join(" · ")}. Hover a cell for the reason; the quotes are in the findings below.</p></div>`;
   if ((R.skipped || []).length) h += `<details class="card"><summary>${R.skipped.length} document(s) not screened</summary><ul>${R.skipped.map(s => `<li>${esc(s.product)}: ${esc(s.reason)}</li>`).join("")}</ul></details>`;
   return h;
 }

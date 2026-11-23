@@ -210,6 +210,15 @@ radiator rated for 122 °F) was a capped model judgement and was **sent to a per
 
 Score any case with `python scripts/eval_submittal.py --run --case G3`.
 
+### Product discovery (24 Nov 2026, `gpt-oss-120b`)
+
+`python scripts/run_discovery.py GEN-A` screened the 10 datasheets in the library for the 2000 kW generator: the 3 UPS
+documents were set aside in code as other equipment, and the 7 generator datasheets were screened on 5 key ratings
+(19 model calls, $0.014, 7 minutes, cached afterwards). One **likely fits** (the Cummins DQKAB, which also passed its
+full check with no deviation), two **do not fit** (a 1000 kW unit and a shop drawing set of a different rating and
+voltage, both shown failing the rating with quotes), and four **need a closer look**, each naming the rating the
+datasheet does not show clearly. No product outside the library was named.
+
 ## Data
 
 Everything is public or made by us, and cited in `data/SOURCES.md`.
