@@ -452,7 +452,9 @@ def _combine(parts: list[tuple]) -> tuple[Verdict, str, float]:
 
 
 def check_submittal(spec_path: str, submittal_path: str, tag: str, schedule_path: str,
-                    checklist: list[dict] | None = None, llm: LLM | None = None, ocr: bool = True) -> ToolResult:
+                    checklist: list[dict] | None = None, llm: LLM | None = None, ocr: bool = True,
+                    only: list[str] | None = None) -> ToolResult:
+    """only: check just these requirement ids (product discovery screens a few key ratings this way)."""
     t0 = time.time()
     llm = llm or LLM()
     reader = None
@@ -464,6 +466,8 @@ def check_submittal(spec_path: str, submittal_path: str, tag: str, schedule_path
     row = load_schedule(schedule_path, tag)
 
     reqs = structure_requirements(llm, spec_doc, row, schedule_id, checklist)
+    if only:
+        reqs = [r for r in reqs if r["req_id"] in set(only)]
     offers = extract_offers(llm, sub_doc, reqs)
     _flag_shared_evidence(reqs, offers)
 

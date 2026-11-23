@@ -22,6 +22,7 @@ from .llm import LLM
 from .schema import ToolResult
 from .bids import level_bids as _level_bids
 from .delivery import assess_delivery_risk as _assess
+from .discovery import find_products as _find
 from .followups import draft_follow_ups as _drafts
 from .package import run_package_review as _package
 from .submittal import check_submittal as _check_submittal
@@ -127,6 +128,32 @@ async def run_package_review(bid_form_path: str, bids: dict[str, str], spec_path
               submittals={k: _path(v) for k, v in (submittals or {}).items()}, llm=LLM(provider=provider))
     res = await anyio.to_thread.run_sync(lambda: _package(**kw))
     return res
+
+
+@server.tool(
+    name="find_products",
+    title="Find products that could meet the spec",
+    description=(
+        "Product discovery from documents only: screens every datasheet in the library folder (default: submittals/) "
+        "on the key ratings for the equipment tag (for a generator: standby rating, voltage and frequency, cooling at "
+        "site ambient, EPA tier, engine speed) with the same verified check as check_submittal. Returns the candidates "
+        "ranked likely fits / needs a closer look / does not fit, each rating cited. Never names a product that is "
+        "not in a document; a screen is never an approval (every candidate goes to a person)."),
+)
+async def find_products(tag: str, spec_path: str, library: list[str] | None = None,
+                        schedule_path: str = "schedules/equipment_schedule.csv",
+                        checklist: list[dict[str, Any]] | None = None, provider: str | None = None) -> ToolResult:
+    files = [_path(p) for p in (library or [])] or sorted(
+        str(p) for p in (DATA_ROOT / "submittals").glob("*") if p.suffix.lower() in (".pdf", ".txt"))
+    spec, sched = _path(spec_path), _path(schedule_path)
+    if checklist is None:
+        from .web import _checklist
+        checklist = _checklist(tag)
+    llm = LLM(provider=provider)
+    try:
+        return await anyio.to_thread.run_sync(lambda: _find(spec, tag, sched, files, checklist, llm=llm))
+    except ValueError as e:
+        raise ToolError(str(e)) from e
 
 
 @server.tool(

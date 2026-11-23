@@ -99,6 +99,7 @@ mark{background:var(--mark);color:inherit;border-radius:2px;padding:0 1px}tr.hlr
     <button role="tab" data-tab="overview">Overview</button>
     <button role="tab" data-tab="package">Package review</button>
     <button role="tab" data-tab="submittal">Check a submittal</button>
+    <button role="tab" data-tab="products">Find products</button>
     <button role="tab" data-tab="bids">Level bids</button>
     <button role="tab" data-tab="delivery">Delivery risk</button>
     <button role="tab" data-tab="saved">Saved results</button>
@@ -114,6 +115,7 @@ mark{background:var(--mark);color:inherit;border-radius:2px;padding:0 1px}tr.hlr
     <div class="actions">
       <button class="card action" data-go="package"><h3>Review a whole package</h3><p>Level the bids, check each bidder's product against the spec, forecast delivery for each award option, draft the follow-ups.</p><span class="b info">uses the model · a few minutes</span></button>
       <button class="card action" data-go="submittal"><h3>Check a supplier's submittal</h3><p>Requirement by requirement against the spec, with both documents quoted and the page shown.</p><span class="b info">uses the model · 2-4 minutes</span></button>
+      <button class="card action" data-go="products"><h3>Find a product that fits</h3><p>Screen every datasheet you hold against the key ratings, and see which could replace one that fails the spec.</p><span class="b info">uses the model once per datasheet · then free</span></button>
       <button class="card action" data-go="bids"><h3>Compare bids like for like</h3><p>What each bid includes, excludes or qualifies, priced with the owner's allowances, and the risky terms.</p><span class="b info">uses the model · about 1 minute</span></button>
       <button class="card action" data-go="saved"><h3>Pick up where you left off</h3><p>Open any saved result for free, finish reviewing the items handed to you, and send the follow-ups.</p><span class="b ok">free · instant</span></button>
     </div>
@@ -151,6 +153,19 @@ mark{background:var(--mark);color:inherit;border-radius:2px;padding:0 1px}tr.hlr
       </div>
       <div class="row" style="margin-top:16px"><button class="btn primary" id="s-run">Check submittal</button><span class="small">About 8-10 model calls on the free tier; 2-4 minutes.</span></div>
       <p class="small hidden" id="sealed-note"></p>
+    </div>
+  </section>
+
+  <section id="tab-products" class="tab hidden">
+    <h1>Find products that could meet the spec</h1>
+    <p class="lead">Screens every datasheet in the library on the ratings a buyer checks first (for a generator: standby rating, voltage and frequency, cooling at site ambient, EPA tier, engine speed), each rating quoted from the datasheet. Only products in documents you hold are named, never anything from the model's memory. A screen is not an approval: run a full submittal check on the ones you like.</p>
+    <div class="card">
+      <div class="grid">
+        <div><label for="d2-tag">Equipment tag</label><select id="d2-tag" data-list="tags"></select></div>
+        <div><label for="d2-spec">Specification</label><select id="d2-spec" data-list="specs"></select></div>
+        <div><label for="d2-up">Add a datasheet to the library (PDF)</label><input type="file" id="d2-up" accept=".pdf,application/pdf" data-kind="submittals"></div>
+      </div>
+      <div class="row" style="margin-top:16px"><button class="btn primary" id="d2-run">Find products</button><span class="small" id="d2-note"></span></div>
     </div>
   </section>
 
@@ -206,8 +221,8 @@ const STATUS = {complies:"ok", deviates:"bad", missing:"warn", unclear:"warn"};
 const CELL = {included:"ok", excluded:"bad", qualified:"warn", silent:"mute", alternate:"info", unclear:"warn"};
 const OVERALL = {approve:"ok", reject:"bad", review:"warn"};
 const RISK = {high:"bad", medium:"warn", low:"ok"};
-const TOOL = {check_submittal:"Submittal check", level_bids:"Bid leveling", assess_delivery_risk:"Delivery risk", run_package_review:"Package review", draft_follow_ups:"Follow-ups"};
-const TAB_OF = {check_submittal: "submittal", level_bids: "bids", assess_delivery_risk: "delivery", run_package_review: "package"};
+const TOOL = {find_products:"Product discovery", check_submittal:"Submittal check", level_bids:"Bid leveling", assess_delivery_risk:"Delivery risk", run_package_review:"Package review", draft_follow_ups:"Follow-ups"};
+const TAB_OF = {find_products: "products", check_submittal: "submittal", level_bids: "bids", assess_delivery_risk: "delivery", run_package_review: "package"};
 let S = null, current = null, filter = "human", search = "", CITES = [];
 
 function toast(msg) { const t = document.createElement("div"); t.className = "toast"; t.setAttribute("role", "status"); t.textContent = msg; document.body.append(t); setTimeout(() => t.remove(), 2400); }
@@ -321,7 +336,7 @@ async function loadState(first) {
   } else {
     fill("#p-form", S.files.bids, P.bid_form); fill("#b-form", S.files.bids, P.bid_form);
     fill("#p-spec", S.files.specs, P.spec); fill("#s-spec", S.files.specs, P.spec);
-    fill("#p-tag", tagOpts(), P.tag); fill("#s-tag", tagOpts(), P.tag);
+    fill("#p-tag", tagOpts(), P.tag); fill("#s-tag", tagOpts(), P.tag); fill("#d2-tag", tagOpts(), P.tag); fill("#d2-spec", S.files.specs, P.spec);
     fill("#s-sub", S.files.submittals, P.submittals.B3);
     $("#p-asof").value = P.as_of; $("#d-asof").value = P.as_of;
     Object.entries(P.bids).forEach(([k, v]) => bidRow($("#p-bids"), k, v, P.submittals[k], true));
@@ -330,10 +345,12 @@ async function loadState(first) {
   const note = $("#sealed-note");
   note.classList.toggle("hidden", !S.sealed);
   note.textContent = S.sealed ? `${S.sealed} held-out test datasheet(s) are hidden until their one final scored run, so the published accuracy stays honest.` : "";
+  $("#d2-note").textContent = `${S.files.submittals.length} datasheets in the library. About one model call per datasheet the first time; free after that.`;
   renderSaved(); renderRecent();
 }
 $("#s-tag").onchange = e => { const s = specFor(e.target.value); if (s) $("#s-spec").value = s; };
 $("#p-tag").onchange = e => { const s = specFor(e.target.value); if (s) $("#p-spec").value = s; };
+$("#d2-tag").onchange = e => { const s = specFor(e.target.value); if (s) $("#d2-spec").value = s; };
 $("#p-add").onclick = () => { const n = $("#p-bids").children.length; if (n < 6) bidRow($("#p-bids"), "B" + (n + 1), null, "", true); };
 $("#b-add").onclick = () => { const n = $("#b-bids").children.length; if (n < 6) bidRow($("#b-bids"), "B" + (n + 1), null, null, false); };
 document.querySelectorAll("input[type=file]").forEach(inp => inp.onchange = async () => {
@@ -429,6 +446,7 @@ $("#p-run").onclick = () => { const {bids, subs} = readBids($("#p-bids"));
 $("#s-run").onclick = () => run("check_submittal", {spec: $("#s-spec").value, submittal: $("#s-sub").value, tag: $("#s-tag").value});
 $("#b-run").onclick = () => run("level_bids", {bid_form: $("#b-form").value, bids: readBids($("#b-bids")).bids});
 $("#d-run").onclick = () => run("assess_delivery_risk", {as_of: $("#d-asof").value});
+$("#d2-run").onclick = () => run("find_products", {tag: $("#d2-tag").value, spec: $("#d2-spec").value});
 
 // ---------- results ----------
 async function openResult(rid, cachedFrom) {
@@ -461,6 +479,7 @@ function renderResult() {
   if (res.tool === "level_bids") h += bidsSummary(R, res.findings);
   if (res.tool === "assess_delivery_risk") h += deliverySummary(res.findings);
   if (res.tool === "run_package_review") h += packageSummary(R, res.findings);
+  if (res.tool === "find_products") h += productsSummary(R, res.findings);
   h += findingsBlock(res.findings);
   h += `<h2>Vendor follow-ups</h2><div id="drafts"></div>`;
   $("#out").innerHTML = h;
@@ -468,6 +487,10 @@ function renderResult() {
   $("#tosaved").onclick = () => { showTab("saved"); loadState(false); };
   if ($("#rerun")) $("#rerun").onclick = () => run(current.cachedFrom.tool, current.cachedFrom.args, true);
   wireFindings();
+  document.querySelectorAll("[data-fullcheck]").forEach(b => b.onclick = () => {
+    showTab("submittal"); $("#s-tag").value = R.tag || $("#s-tag").value; const sp = specFor($("#s-tag").value); if (sp) $("#s-spec").value = sp;
+    $("#s-sub").value = b.dataset.fullcheck; toast("Ready: press Check submittal for the full spec check"); });
+  if (res.tool === "find_products") { $("#drafts").previousElementSibling.remove(); $("#drafts").remove(); return; }
   renderDrafts(R.follow_ups);
 }
 function headlineTile(res) {
@@ -477,6 +500,8 @@ function headlineTile(res) {
   if (res.tool === "level_bids" || res.tool === "run_package_review") { const A = res.tool === "level_bids" ? (R.award || {}) : (R.decision || {});
     const auto = A.auto_award;
     return `<div class="tile ${auto ? "okt" : "warnt"}"><div class="k">Award</div><div class="v" style="font-size:20px">${auto ? "Recommend " + esc(A.recommend) : "A person decides"}</div><div class="s">${auto ? "safe to award on the evidence" : "the agent does not auto-award with open risks"}</div></div>`; }
+  if (res.tool === "find_products") { const fit = res.findings.filter(f => f.data.verdict === "likely fits").length;
+    return `<div class="tile ${fit ? "okt" : "warnt"}"><div class="k">Likely fit</div><div class="v">${fit} of ${res.findings.length}</div><div class="s">datasheets screened (${(R.skipped || []).length} other equipment skipped)</div></div>`; }
   const rows = res.findings.filter(f => (f.data || {}).arrival), high = rows.filter(f => f.data.risk === "high").length;
   return `<div class="tile ${high ? "badt" : "okt"}"><div class="k">Likely late</div><div class="v">${high} of ${rows.length}</div><div class="s">item groups at high risk</div></div>`;
 }
@@ -514,6 +539,20 @@ function packageSummary(R, findings) {
     .map(f => ({...f.data, label: f.data.scenario.startsWith("award") ? f.data.scenario.replace("award to ", "Award to ") : "Market average (no bidder)"}));
   if (rows.length) h += `<h2>When will it arrive?</h2><div class="card">${deliveryChart(rows)}</div>`;
   return h + `<div class="row" style="margin-bottom:6px"><a class="btn" href="/api/results/${encodeURIComponent(current.id)}/report" target="_blank" rel="noopener">Open the printable report</a></div>`;
+}
+function productsSummary(R, findings) {
+  const ids = R.screen || [], V = {"likely fits": "ok", "needs a closer look": "warn", "does not fit": "bad"};
+  const req = {}; findings.forEach(f => f.data.screen.forEach(s => req[s.req_id] = s.requirement));
+  let h = `<div class="card scroll"><table><tr><th>Product (from your datasheets)</th><th>Screen</th>${ids.map(r => `<th title="${esc(req[r] || "")}">${esc(r)}</th>`).join("")}<th></th></tr>` +
+    findings.map(f => { const by = Object.fromEntries(f.data.screen.map(s => [s.req_id, s]));
+      const sub = S.files.submittals.find(p => short(p) === f.data.file);
+      return `<tr><td><b>${esc(f.data.product)}</b>${f.data.cached ? ` <span class="b mute">saved screen</span>` : ""}</td><td><span class="b ${V[f.data.verdict] || "mute"}">${esc(f.data.verdict)}</span></td>` +
+        ids.map(r => { const s = by[r]; if (!s) return `<td>-</td>`;
+          return `<td><span class="cell ${STATUS[s.status] || "mute"}" title="${esc(req[r] + ": " + s.why)}">${esc(s.status)}</span></td>`; }).join("") +
+        `<td class="nw">${sub ? `<button class="btn sm" data-fullcheck="${esc(sub)}">Full check</button>` : ""}</td></tr>`; }).join("") + `</table>
+    <p class="small">Columns: ${ids.map(r => `<b>${esc(r)}</b> ${esc(req[r] || "")}`).join(" · ")}. Hover a cell for the reason; the quotes are in the findings below.</p></div>`;
+  if ((R.skipped || []).length) h += `<details class="card"><summary>${R.skipped.length} document(s) not screened</summary><ul>${R.skipped.map(s => `<li>${esc(s.product)}: ${esc(s.reason)}</li>`).join("")}</ul></details>`;
+  return h;
 }
 function deliverySummary(findings) {
   const rows = findings.filter(f => (f.data || {}).arrival).map(f => ({...f.data, label: (ITEM[f.data.tag_group] || f.data.tag_group) + ": " + f.data.scenario}));

@@ -33,6 +33,7 @@ from . import __version__, budget
 from . import sources as _sources
 from .bids import level_bids
 from .delivery import assess_delivery_risk
+from .discovery import find_products
 from .followups import draft_follow_ups
 from .llm import LLM, Meter, _has_key
 from .package import run_package_review
@@ -177,6 +178,19 @@ def _prepare(tool: str, a: dict) -> tuple[dict, list[Path]]:
         if not 2 <= len(bids) <= 6:
             raise BadRequest("choose 2 to 6 bids")
         return dict(form_path=str(form), bid_paths={k: str(v) for k, v in bids.items()}), [form, *bids.values()]
+    if tool == "find_products":
+        tag = a.get("tag") or ""
+        row = next((r for r in _schedule() if r["tag"] == tag), None)
+        if not row:
+            raise BadRequest(f"unknown equipment tag: {tag}")
+        spec = _data_path(a.get("spec"))
+        sealed = _sealed()
+        lib = [_data_path(f) for f in _list("submittals") + _list("uploads/submittals") if f not in sealed]
+        checklist = _checklist(tag)
+        if not checklist:
+            raise BadRequest(f"product discovery is set up for generators and UPS; not yet for {row['item']}")
+        return dict(spec_path=str(spec), tag=tag, schedule_path=str(_data_path(SCHEDULE)), library=[str(p) for p in lib],
+                    checklist=checklist), [spec, _data_path(SCHEDULE), *lib]
     if tool == "assess_delivery_risk":
         files = [_data_path(SCHEDULE), _data_path(PO_STATUS), _data_path(EVIDENCE)]
         as_of = _date(a.get("as_of"))
@@ -218,6 +232,8 @@ def _call(tool: str, kw: dict, llm: LLM | None):
         return level_bids(kw["form_path"], kw["bid_paths"], llm=llm)
     if tool == "assess_delivery_risk":
         return assess_delivery_risk(kw["schedule_path"], kw["po_path"], kw["evidence_path"], kw["as_of"])
+    if tool == "find_products":
+        return find_products(kw["spec_path"], kw["tag"], kw["schedule_path"], kw["library"], kw["checklist"], llm=llm)
     return run_package_review(**kw, llm=llm)
 
 
@@ -234,6 +250,8 @@ def _label(tool: str, a: dict) -> str:
         return f"{len(a['bids'])} bids on {Path(a['bid_form']).stem}"
     if tool == "assess_delivery_risk":
         return f"all long-lead items, as of {a['as_of']}"
+    if tool == "find_products":
+        return f"products in the library for {a['tag']}"
     return f"{a['tag']}: {len(a['bids'])} bids, {len(a.get('submittals') or {})} submittals"
 
 
@@ -255,7 +273,7 @@ def _worker(job: dict, tool: str, kw: dict, llm: LLM | None, key: str, meta: dic
     try:
         res = _call(tool, kw, llm)
         out = res.model_dump(mode="json")
-        if tool != "run_package_review" and out.get("findings"):
+        if tool not in ("run_package_review", "find_products") and out.get("findings"):
             out["result"]["follow_ups"] = [f.data for f in draft_follow_ups(out).findings]
         meta.update(finished=_now(), seconds=round(time.time() - job["t0"]), cost_usd=res.run.cost_usd,
                     needs_human=len(res.needs_human), findings=len(res.findings))

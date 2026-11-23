@@ -12,6 +12,7 @@ and share one data format, so one tool's output is the next tool's input.
 | `level_bids` | Which bid is really cheapest, and what does each one leave out? | scope matrix (included / excluded / qualified / silent / alternate), leveled totals, commercial risks, lead times, and an award only when it is safe |
 | `assess_delivery_risk` | Which items will make us late? | P10 / P50 / P90 arrival dates, chance of missing the need date, latest order date, actions; **no model calls** |
 | `run_package_review` | All of the above for one package | one comparison table per bidder: leveled cost, scope gaps, submittal verdict, arrival range |
+| `find_products` | Which products could meet this spec (for example, to replace one that fails)? | candidates from the datasheets we hold, ranked likely fits / needs a closer look / does not fit, each key rating quoted from the datasheet; never a product from model memory, never an approval |
 | `draft_follow_ups` | What do we send the vendors now? | submittal review comments, bid clarification requests and expediting requests, built only from verified quotes; **no model calls**, never sent automatically |
 
 A **web page for project managers** (`python -m amber.web`) runs the same specialists from a browser: see below.
@@ -43,7 +44,7 @@ python -m venv .venv                                     # Python 3.11+
 source .venv/bin/activate                                # Windows: .venv\Scripts\activate
 pip install -e ".[dev]"
 python tools/data_prep/fetch_data.py                     # downloads the public test documents (not committed)
-python -m pytest -q                                      # 87 tests, no API key and no network needed
+python -m pytest -q                                      # 95 tests, no API key and no network needed
 python -m amber.web                                      # the web page: http://127.0.0.1:8000 (opens the browser)
 python scripts/demo_mcp_client.py                        # starts the MCP server and calls a tool (no key needed)
 cp .env.example .env                                     # add GROQ_API_KEY for the steps below
@@ -66,7 +67,7 @@ Notes for a fresh clone:
 
 `python -m amber.web` starts a local page at http://127.0.0.1:8000 for a project manager who does not use an MCP client:
 
-* **Package review, Check a submittal, Level bids, Delivery risk:** choose documents from `data/` or upload a PDF
+* **Package review, Check a submittal, Find products, Level bids, Delivery risk:** choose documents from `data/` or upload a PDF
   (or a bid e-mail as .txt), choose the model, run. Progress shows the model calls as they happen.
 * **Overview:** the project at a glance (which equipment will be late, by how much, from which sources), with no
   model calls.
