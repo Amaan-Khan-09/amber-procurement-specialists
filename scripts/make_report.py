@@ -159,6 +159,15 @@ def main() -> None:
                         f'<td>{E(f["why"][:230])}<details><summary>sources</summary>{cites(f)}</details></td></tr>')
         body.append("</table></div>")
 
+    drafts = R.get("follow_ups") or []
+    if drafts:
+        body.append(f"<h2>Next action: {len(drafts)} follow-up drafts ready for review</h2><div class='card'>"
+                    "<p class='small'>Built only from verified findings: every quoted fact has its document and page. "
+                    "Nothing is sent automatically.</p>")
+        for d in drafts:
+            body.append(f"<details><summary>{E(d['to'])}: {E(d['subject'])} ({d['items']} items)</summary>"
+                        f"<pre style='white-space:pre-wrap;font-size:12.5px'>{E(d['body'])}</pre></details>")
+        body.append("</div>")
     out.write_text(f'<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">'
                    f'<title>{E(R.get("package") or "Package review")}</title><style>{CSS}</style></head><body><main>{"".join(body)}</main></body></html>',
                    encoding="utf-8")

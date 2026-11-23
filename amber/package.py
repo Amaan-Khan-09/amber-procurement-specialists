@@ -86,4 +86,8 @@ def run_package_review(bid_form: str, bids: dict[str, str], spec: str, tag: str,
                                        "submittals": {b: s.result for b, s in sub_res.items()}}},
                      run=RunInfo(models=llm.meter.models(), latency_ms=int((time.time() - t0) * 1000),
                                  steps=list(llm.meter.steps)))
-    return res.finalize()
+    res = res.finalize()
+    # the next action: ready-to-send follow-ups for every gap found, built only from verified findings
+    from .followups import draft_follow_ups
+    res.result["follow_ups"] = [f.data for f in draft_follow_ups(res.model_dump(mode="json")).findings]
+    return res

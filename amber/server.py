@@ -22,6 +22,7 @@ from .llm import LLM
 from .schema import ToolResult
 from .bids import level_bids as _level_bids
 from .delivery import assess_delivery_risk as _assess
+from .followups import draft_follow_ups as _drafts
 from .package import run_package_review as _package
 from .submittal import check_submittal as _check_submittal
 
@@ -126,6 +127,22 @@ async def run_package_review(bid_form_path: str, bids: dict[str, str], spec_path
               submittals={k: _path(v) for k, v in (submittals or {}).items()}, llm=LLM(provider=provider))
     res = await anyio.to_thread.run_sync(lambda: _package(**kw))
     return res
+
+
+@server.tool(
+    name="draft_follow_ups",
+    title="Draft vendor follow-ups",
+    description=(
+        "Turn the gaps found by check_submittal, level_bids, assess_delivery_risk or run_package_review into ready-to-send "
+        "vendor messages: submittal review comments, bid clarification requests and expediting requests. Pass the JSON "
+        "result of one of those tools as `result`. No model is used: every fact in a draft is a verified quote with its "
+        "document and page. Drafts are never sent; each is marked for a person to review and send."),
+)
+async def draft_follow_ups(result: dict[str, Any], project: str = "Project Alpha") -> ToolResult:
+    try:
+        return _drafts(result, project=project)
+    except ValueError as e:
+        raise ToolError(str(e)) from e
 
 
 def main() -> None:
