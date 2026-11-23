@@ -1,0 +1,416 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Amber procurement specialists</title>
+<style>
+:root{--bg:#f6f7f9;--card:#fff;--ink:#18212d;--mute:#5f6b7c;--line:#e2e6ec;--soft:#f0f2f5;--accent:#1d4f91;--accentink:#fff;
+--ok:#0f7a41;--okbg:#e3f4e9;--bad:#b42318;--badbg:#fde7e5;--warn:#935600;--warnbg:#fff0d4;--info:#1b5fc1;--infobg:#e3edfb;--focus:#7aa7e8}
+@media (prefers-color-scheme:dark){:root{--bg:#0e131a;--card:#161d27;--ink:#e5eaf1;--mute:#98a4b5;--line:#283241;--soft:#1c2531;--accent:#7db2ff;--accentink:#0e131a;
+--ok:#5ad08b;--okbg:#11301e;--bad:#ff8a80;--badbg:#3a1714;--warn:#f3b74c;--warnbg:#3a2a0c;--info:#7db2ff;--infobg:#162a47;--focus:#7db2ff}}
+*{box-sizing:border-box}html,body{margin:0}body{background:var(--bg);color:var(--ink);font:15px/1.5 system-ui,"Segoe UI",Roboto,sans-serif}
+header{background:var(--card);border-bottom:1px solid var(--line);position:sticky;top:0;z-index:5}
+.bar{max-width:1180px;margin:0 auto;padding:10px 16px;display:flex;gap:14px;align-items:center;flex-wrap:wrap}
+.brand{font-weight:700;font-size:16px}.brand span{color:var(--mute);font-weight:500}.grow{flex:1}
+nav{max-width:1180px;margin:0 auto;padding:0 16px;display:flex;gap:2px;overflow-x:auto}
+nav button{border:0;background:none;color:var(--mute);padding:9px 12px;font:inherit;font-weight:600;cursor:pointer;border-bottom:3px solid transparent;white-space:nowrap}
+nav button[aria-selected=true]{color:var(--ink);border-bottom-color:var(--accent)}
+main{max-width:1180px;margin:0 auto;padding:18px 16px 80px}
+h1{font-size:21px;margin:0 0 4px}h2{font-size:17px;margin:26px 0 10px}h3{font-size:15px;margin:0 0 6px}
+.lead{color:var(--mute);margin:0 0 14px;max-width:820px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px;margin-bottom:14px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px}
+label{display:block;font-size:12.5px;font-weight:600;color:var(--mute);margin-bottom:4px}
+select,input[type=text],input[type=date],textarea{width:100%;font:inherit;font-size:14px;color:var(--ink);background:var(--card);border:1px solid var(--line);border-radius:8px;padding:7px 9px}
+select:focus,input:focus,textarea:focus,button:focus-visible{outline:2px solid var(--focus);outline-offset:1px}
+.btn{font:inherit;font-weight:600;font-size:14px;border-radius:8px;padding:8px 14px;cursor:pointer;border:1px solid var(--line);background:var(--card);color:var(--ink)}
+.btn.primary{background:var(--accent);color:var(--accentink);border-color:var(--accent)}.btn:disabled{opacity:.5;cursor:not-allowed}
+.btn.sm{padding:4px 10px;font-size:13px}.row{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.bidrow{display:grid;grid-template-columns:70px 1fr 1fr 32px;gap:8px;align-items:end;margin-bottom:8px}
+@media (max-width:700px){.bidrow{grid-template-columns:1fr}}
+.b{display:inline-block;padding:1px 9px;border-radius:99px;font-size:12px;font-weight:600;white-space:nowrap}
+.ok{color:var(--ok);background:var(--okbg)}.bad{color:var(--bad);background:var(--badbg)}.warn{color:var(--warn);background:var(--warnbg)}
+.info{color:var(--info);background:var(--infobg)}.mute{color:var(--mute);background:var(--soft)}
+.small{font-size:12.5px;color:var(--mute)}.muted{color:var(--mute)}
+.banner{border-left:5px solid var(--warn);background:var(--warnbg)}.banner.safe{border-left-color:var(--ok);background:var(--okbg)}
+.banner.err{border-left-color:var(--bad);background:var(--badbg)}.banner.note{border-left-color:var(--info);background:var(--infobg)}
+.banner ul{margin:6px 0 0;padding-left:20px}
+table{border-collapse:collapse;width:100%}th,td{padding:7px 9px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top;font-size:14px}
+th{color:var(--mute);font-weight:600;font-size:12px;text-transform:uppercase;letter-spacing:.04em}.n{text-align:right;font-variant-numeric:tabular-nums}
+.scroll{overflow-x:auto}.cell{text-align:center;font-size:12px;font-weight:600;border-radius:6px;padding:3px 6px;white-space:nowrap;cursor:help}
+tr.click{cursor:pointer}tr.click:hover td{background:var(--soft)}
+.chips{display:flex;gap:6px;flex-wrap:wrap;margin:0 0 10px}.chip{border:1px solid var(--line);background:var(--card);color:var(--ink);border-radius:99px;padding:3px 11px;font:inherit;font-size:13px;cursor:pointer}
+.chip[aria-pressed=true]{background:var(--accent);color:var(--accentink);border-color:var(--accent)}
+.f{border:1px solid var(--line);border-radius:10px;padding:11px 13px;margin-bottom:8px;background:var(--card)}
+.f.human{border-left:4px solid var(--info)}.f.done{border-left-color:var(--ok)}
+.fhead{display:flex;gap:10px;align-items:flex-start}.fhead .claim{flex:1;font-weight:600}
+.conf{width:60px;height:6px;background:var(--soft);border-radius:4px;overflow:hidden;display:inline-block;vertical-align:middle}.conf i{display:block;height:100%;background:var(--accent)}
+.cite{font-size:12.5px;color:var(--mute);margin:6px 0 0;padding-left:10px;border-left:2px solid var(--line)}.cite b{color:var(--ink)}
+.cite q{display:block;font-style:italic}
+details>summary{cursor:pointer;color:var(--accent);font-size:13px;margin-top:4px}
+.rev{margin-top:9px;padding-top:9px;border-top:1px dashed var(--line);display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.rev input{flex:1;min-width:180px}.rev select{width:auto}
+pre.draft{white-space:pre-wrap;font:12.5px/1.5 ui-monospace,Consolas,monospace;background:var(--soft);padding:12px;border-radius:8px;margin:8px 0 0;max-height:420px;overflow:auto}
+.spin{width:16px;height:16px;border:3px solid var(--line);border-top-color:var(--accent);border-radius:50%;animation:s 1s linear infinite;display:inline-block;vertical-align:middle}
+@keyframes s{to{transform:rotate(360deg)}}
+iframe{width:100%;border:1px solid var(--line);border-radius:12px;height:900px;background:var(--bg)}
+.pill{display:inline-flex;gap:6px;align-items:center;font-size:13px;color:var(--mute)}.dot{width:8px;height:8px;border-radius:50%;background:var(--mute)}
+.dot.on{background:var(--ok)}.hidden{display:none!important}.nw{white-space:nowrap}
+.grid>*,.bidrow>*,.row>*{min-width:0}select{max-width:100%;text-overflow:ellipsis}main,header{overflow-x:clip}
+svg text{fill:var(--mute);font-size:11px}
+.toast{position:fixed;bottom:18px;left:50%;transform:translateX(-50%);background:var(--ink);color:var(--bg);padding:8px 14px;border-radius:8px;font-size:14px;z-index:9}
+</style>
+</head>
+<body>
+<header>
+  <div class="bar">
+    <div class="brand">Amber procurement specialists <span>· Project Alpha</span></div>
+    <div class="grow"></div>
+    <div class="pill"><label for="provider" style="margin:0">Model</label><select id="provider" style="width:auto"></select></div>
+    <div class="pill" id="paid" title="The paid model is never used from this page."></div>
+  </div>
+  <nav role="tablist" id="tabs">
+    <button role="tab" data-tab="package">Package review</button>
+    <button role="tab" data-tab="submittal">Check a submittal</button>
+    <button role="tab" data-tab="bids">Level bids</button>
+    <button role="tab" data-tab="delivery">Delivery risk</button>
+    <button role="tab" data-tab="saved">Saved results</button>
+  </nav>
+</header>
+<main>
+  <section id="tab-package" class="tab">
+    <h1>Review a procurement package</h1>
+    <p class="lead">Levels the bids, checks each bidder's product against the spec, forecasts delivery for each award option and drafts the vendor follow-ups. It recommends an award only when that is safe; otherwise it lays out the options for you.</p>
+    <div class="card">
+      <div class="grid">
+        <div><label for="p-form">Bid form (scope and allowances)</label><select id="p-form" data-list="bids"></select></div>
+        <div><label for="p-spec">Specification</label><select id="p-spec" data-list="specs"></select></div>
+        <div><label for="p-tag">Equipment tag</label><select id="p-tag" data-list="tags"></select></div>
+        <div><label for="p-asof">Forecast as of</label><input type="date" id="p-asof"></div>
+      </div>
+      <h3 style="margin-top:16px">Bidders</h3>
+      <p class="small" style="margin:0 0 8px">For each bidder: their bid, and (if you have it) their product submittal to check against the spec.</p>
+      <div id="p-bids"></div>
+      <div class="row" style="margin-top:6px"><button class="btn sm" id="p-add">+ Add bidder</button></div>
+      <div class="row" style="margin-top:16px"><button class="btn primary" id="p-run">Run package review</button><span class="small">About 40-60 model calls on the free tier; a few minutes.</span></div>
+    </div>
+  </section>
+
+  <section id="tab-submittal" class="tab hidden">
+    <h1>Check a submittal against the spec</h1>
+    <p class="lead">One answer per requirement (complies, deviates, missing or unclear), each with the spec paragraph and the datasheet page quoted word for word. Anything the agent is not sure about goes to you.</p>
+    <div class="card">
+      <div class="grid">
+        <div><label for="s-tag">Equipment tag</label><select id="s-tag" data-list="tags"></select></div>
+        <div><label for="s-spec">Specification</label><select id="s-spec" data-list="specs"></select></div>
+        <div><label for="s-sub">Product submittal</label><select id="s-sub" data-list="submittals"></select></div>
+        <div><label for="s-up">Or upload a submittal (PDF)</label><input type="file" id="s-up" accept=".pdf,application/pdf" data-kind="submittals" data-target="s-sub"></div>
+      </div>
+      <div class="row" style="margin-top:16px"><button class="btn primary" id="s-run">Check submittal</button><span class="small">About 15-25 model calls on the free tier.</span></div>
+      <p class="small hidden" id="sealed-note"></p>
+    </div>
+  </section>
+
+  <section id="tab-bids" class="tab hidden">
+    <h1>Level competing bids</h1>
+    <p class="lead">Lines up every bid against the bid form's scope, prices the gaps with the owner's allowances (or the bidder's own alternate), flags risky commercial terms and lead times, and ranks the leveled totals.</p>
+    <div class="card">
+      <div class="grid">
+        <div><label for="b-form">Bid form</label><select id="b-form" data-list="bids"></select></div>
+        <div><label for="b-up">Upload a bid (PDF or .txt email)</label><input type="file" id="b-up" accept=".pdf,.txt" data-kind="bids"></div>
+      </div>
+      <h3 style="margin-top:16px">Bids</h3>
+      <div id="b-bids"></div>
+      <div class="row" style="margin-top:6px"><button class="btn sm" id="b-add">+ Add bid</button></div>
+      <div class="row" style="margin-top:16px"><button class="btn primary" id="b-run">Level bids</button><span class="small">About 10-15 model calls.</span></div>
+    </div>
+  </section>
+
+  <section id="tab-delivery" class="tab hidden">
+    <h1>Delivery risk for long-lead equipment</h1>
+    <p class="lead">For every item group in the equipment schedule: likely arrival dates (P10 / P50 / P90), the chance of missing the need date, the latest order date for an 80% on-time chance, and what to do. Calculated in code from cited lead-time sources, so no model calls and no tokens.</p>
+    <div class="card"><div class="grid"><div><label for="d-asof">As of</label><input type="date" id="d-asof"></div></div>
+      <div class="row" style="margin-top:16px"><button class="btn primary" id="d-run">Forecast delivery</button><span class="small">Instant. No model calls.</span></div></div>
+  </section>
+
+  <section id="tab-saved" class="tab hidden">
+    <h1>Saved results</h1>
+    <p class="lead">Every run from this page and from the command line. Opening one costs nothing. Your review decisions are saved with each result.</p>
+    <div class="card scroll"><table id="saved"></table></div>
+  </section>
+
+  <div id="progress" class="card hidden"></div>
+  <div id="out"></div>
+</main>
+<script>
+"use strict";
+const $ = (s, el = document) => el.querySelector(s);
+const esc = s => String(s ?? "").replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const money = x => x == null ? "-" : "$" + Math.round(x).toLocaleString("en-US");
+const pct = x => x == null ? "-" : Math.round(x * 100) + "%";
+const STATUS = {complies:"ok", deviates:"bad", missing:"warn", unclear:"warn"};
+const CELL = {included:"ok", excluded:"bad", qualified:"warn", silent:"mute", alternate:"info", unclear:"warn"};
+const OVERALL = {approve:"ok", reject:"bad", review:"warn"};
+const TOOL = {check_submittal:"Submittal check", level_bids:"Bid leveling", assess_delivery_risk:"Delivery risk", run_package_review:"Package review", draft_follow_ups:"Follow-ups"};
+let S = null, current = null, filter = "human";
+
+function toast(msg) { const t = document.createElement("div"); t.className = "toast"; t.textContent = msg; document.body.append(t); setTimeout(() => t.remove(), 2200); }
+async function api(path, opts = {}) {
+  const r = await fetch(path, opts.body && !(opts.body instanceof FormData) ? {...opts, headers: {"Content-Type": "application/json"}, body: JSON.stringify(opts.body)} : opts);
+  const j = await r.json().catch(() => ({error: "server error " + r.status}));
+  if (!r.ok) throw new Error(j.error || ("error " + r.status));
+  return j;
+}
+const short = p => p.split("/").pop();
+
+// ---------- state, forms ----------
+function fill(sel, items, value) {
+  const el = typeof sel === "string" ? $(sel) : sel;
+  const opts = items.map(it => typeof it === "string" ? {v: it, t: short(it)} : it);
+  el.innerHTML = opts.map(o => `<option value="${esc(o.v)}">${esc(o.t)}</option>`).join("");
+  if (value != null && opts.some(o => o.v === value)) el.value = value;
+}
+function tagOpts() { return S.tags.map(t => ({v: t.tag, t: `${t.tag}: ${t.item} (spec ${t.spec_section})`})); }
+function specFor(tag) {
+  const t = S.tags.find(x => x.tag === tag); if (!t) return null;
+  const code = t.spec_section.replace(/ /g, "_");
+  return S.files.specs.find(f => f.includes("project_alpha") && f.includes(code)) || null;
+}
+function bidRow(container, label, bid, sub, withSub) {
+  const d = document.createElement("div"); d.className = "bidrow";
+  d.innerHTML = `<div><label>Bidder</label><input type="text" class="lbl" value="${esc(label)}" maxlength="12"></div>
+    <div><label>Bid</label><select class="bid"></select></div>` +
+    (withSub ? `<div><label>Product submittal (optional)</label><select class="sub"></select></div>` : `<div></div>`) +
+    `<button class="btn sm rm" title="Remove" aria-label="Remove bidder">×</button>`;
+  fill($(".bid", d), S.files.bids.filter(f => !/bid_form/.test(f)), bid);
+  if (withSub) { fill($(".sub", d), [{v: "", t: "(none)"}, ...S.files.submittals.map(f => ({v: f, t: short(f)}))], sub || ""); }
+  $(".rm", d).onclick = () => d.remove();
+  container.append(d);
+}
+function readBids(container) {
+  const bids = {}, subs = {};
+  container.querySelectorAll(".bidrow").forEach(r => {
+    const k = $(".lbl", r).value.trim(); if (!k) return;
+    bids[k] = $(".bid", r).value; const s = $(".sub", r); if (s && s.value) subs[k] = s.value;
+  });
+  return {bids, subs};
+}
+async function loadState(first) {
+  S = await api("/api/state");
+  const P = S.preset, av = S.providers.filter(p => p.available);
+  const prev = $("#provider").value;
+  $("#provider").innerHTML = S.providers.map(p => `<option value="${p.id}" ${p.available ? "" : "disabled"}>${esc(p.name)}${p.available ? "" : " (not set up)"}</option>`).join("");
+  if (prev && av.some(p => p.id === prev)) $("#provider").value = prev; else if (av.length) $("#provider").value = av[0].id;
+  $("#paid").innerHTML = `<span class="dot ${av.length ? "on" : ""}"></span>${av.length ? "ready" : "no model set up: saved results and delivery risk still work"}`;
+  $("#paid").title = `Paid model: never used from this page (overall spend so far $${S.paid_model.spent_usd} of the $${S.paid_model.cap_usd} cap).`;
+  if (!first) { // refresh lists only, keep choices
+    document.querySelectorAll("select[data-list]").forEach(el => { const v = el.value; fill(el, el.dataset.list === "tags" ? tagOpts() : S.files[el.dataset.list], v); });
+    document.querySelectorAll(".bidrow").forEach(r => { const b = $(".bid", r), v = b.value; fill(b, S.files.bids.filter(f => !/bid_form/.test(f)), v);
+      const s = $(".sub", r); if (s) { const sv = s.value; fill(s, [{v: "", t: "(none)"}, ...S.files.submittals.map(f => ({v: f, t: short(f)}))], sv); } });
+  } else {
+    fill("#p-form", S.files.bids, P.bid_form); fill("#b-form", S.files.bids, P.bid_form);
+    fill("#p-spec", S.files.specs, P.spec); fill("#s-spec", S.files.specs, P.spec);
+    fill("#p-tag", tagOpts(), P.tag); fill("#s-tag", tagOpts(), P.tag);
+    fill("#s-sub", S.files.submittals, P.submittals.B3);
+    $("#p-asof").value = P.as_of; $("#d-asof").value = P.as_of;
+    Object.entries(P.bids).forEach(([k, v]) => bidRow($("#p-bids"), k, v, P.submittals[k], true));
+    Object.entries(P.bids).forEach(([k, v]) => bidRow($("#b-bids"), k, v, null, false));
+  }
+  if (S.sealed) { $("#sealed-note").textContent = `${S.sealed} held-out test datasheet(s) are hidden until their one final scored run, so the published accuracy stays honest.`; $("#sealed-note").classList.remove("hidden"); }
+  renderSaved();
+}
+$("#s-tag").onchange = e => { const s = specFor(e.target.value); if (s) $("#s-spec").value = s; };
+$("#p-tag").onchange = e => { const s = specFor(e.target.value); if (s) $("#p-spec").value = s; };
+$("#p-add").onclick = () => { const n = $("#p-bids").children.length; if (n < 6) bidRow($("#p-bids"), "B" + (n + 1), null, "", true); };
+$("#b-add").onclick = () => { const n = $("#b-bids").children.length; if (n < 6) bidRow($("#b-bids"), "B" + (n + 1), null, null, false); };
+document.querySelectorAll("input[type=file]").forEach(inp => inp.onchange = async () => {
+  if (!inp.files.length) return;
+  const fd = new FormData(); fd.append("kind", inp.dataset.kind); fd.append("file", inp.files[0]);
+  try { const r = await api("/api/upload", {method: "POST", body: fd}); await loadState(false);
+    if (inp.dataset.target) $("#" + inp.dataset.target).value = r.path; toast("Uploaded " + short(r.path)); }
+  catch (e) { toast(e.message); } finally { inp.value = ""; }
+});
+
+// ---------- tabs and routing ----------
+const TAB_OF = {check_submittal: "submittal", level_bids: "bids", assess_delivery_risk: "delivery", run_package_review: "package"};
+function showTab(t) {
+  document.querySelectorAll("#tabs button").forEach(b => b.setAttribute("aria-selected", b.dataset.tab === t));
+  document.querySelectorAll(".tab").forEach(s => s.classList.toggle("hidden", s.id !== "tab-" + t));
+  $("#out").innerHTML = ""; current = null;
+  if (location.hash) history.replaceState(null, "", location.pathname);
+}
+document.querySelectorAll("#tabs button").forEach(b => b.onclick = () => { showTab(b.dataset.tab); if (b.dataset.tab === "saved") loadState(false); });
+
+// ---------- running ----------
+async function run(tool, args, force) {
+  const btns = document.querySelectorAll(".btn.primary"); btns.forEach(b => b.disabled = true);
+  try {
+    const r = await api("/api/run", {method: "POST", body: {tool, args, provider: $("#provider").value || null, force: !!force}});
+    if (r.result_id) { await openResult(r.result_id, r.cached ? {tool, args} : null); return; }
+    await poll(r.job, tool);
+  } catch (e) { showError(e.message); } finally { btns.forEach(b => b.disabled = false); }
+}
+function showError(msg) { const p = $("#progress"); p.className = "card banner err"; p.innerHTML = `<h3>Could not run</h3><div>${esc(msg)}</div>`; }
+async function poll(jid, tool) {
+  const p = $("#progress"); p.className = "card"; $("#out").innerHTML = "";
+  for (;;) {
+    const j = await api("/api/jobs/" + jid);
+    const m = Math.floor(j.seconds / 60), s = String(j.seconds % 60).padStart(2, "0");
+    p.innerHTML = `<div class="row"><span class="spin"></span><b>${esc(TOOL[tool])} running</b><span class="muted">${m}:${s} · ${j.calls} model calls on ${esc(j.provider)}${j.failed_calls ? ` · ${j.failed_calls} retried` : ""}</span></div>
+      <div class="small" style="margin-top:6px">${j.last ? "Now: " + esc(j.last) : "Reading the documents"}</div>
+      <div class="small">You can keep this page open; the result is saved even if you close it.</div>`;
+    if (j.state === "done") { p.classList.add("hidden"); await openResult(j.result_id); loadState(false); return; }
+    if (j.state === "error") { showError(j.error); return; }
+    await new Promise(r => setTimeout(r, 1500));
+  }
+}
+$("#p-run").onclick = () => { const {bids, subs} = readBids($("#p-bids"));
+  run("run_package_review", {bid_form: $("#p-form").value, bids, submittals: subs, spec: $("#p-spec").value, tag: $("#p-tag").value, as_of: $("#p-asof").value}); };
+$("#s-run").onclick = () => run("check_submittal", {spec: $("#s-spec").value, submittal: $("#s-sub").value, tag: $("#s-tag").value});
+$("#b-run").onclick = () => run("level_bids", {bid_form: $("#b-form").value, bids: readBids($("#b-bids")).bids});
+$("#d-run").onclick = () => run("assess_delivery_risk", {as_of: $("#d-asof").value});
+
+// ---------- results ----------
+async function openResult(rid, cachedFrom) {
+  $("#progress").classList.add("hidden");
+  current = await api("/api/results/" + encodeURIComponent(rid));
+  current.cachedFrom = cachedFrom || null;
+  const tab = TAB_OF[current.result.tool] || "saved";
+  document.querySelectorAll("#tabs button").forEach(b => b.setAttribute("aria-selected", b.dataset.tab === tab));
+  document.querySelectorAll(".tab").forEach(s => s.classList.add("hidden"));
+  filter = current.result.findings.some(f => f.needs_human) ? "human" : "all";
+  if (location.hash !== "#result=" + rid) history.replaceState(null, "", "#result=" + rid);
+  renderResult();
+  window.scrollTo(0, 0);
+}
+function renderResult() {
+  const {result: res, meta} = current, R = res.result || {}, run = res.run || {};
+  const models = (run.models || []).map(m => `${m.name} (${m.calls} calls)`).join(", ") || "no model calls";
+  const human = res.findings.filter(f => f.needs_human).length, done = res.findings.filter(f => f.needs_human && current.reviews[f.id]).length;
+  const back = TAB_OF[res.tool] || "saved";
+  let h = `<div class="row" style="margin-bottom:4px"><button class="btn sm" id="back">← ${back === "saved" ? "Saved results" : "Back to the form"}</button><button class="btn sm" id="tosaved">All saved results</button></div>`;
+  h += `<h2 style="margin-top:8px">${esc(TOOL[res.tool] || res.tool)}: ${esc(meta.label || R.package || (R.submittal ? R.submittal + " vs " + R.tag : ""))}</h2>`;
+  if (current.cachedFrom) h += `<div class="card banner note"><div class="row"><div class="grow">Opened the saved result for these exact documents (from ${esc(meta.finished || meta.started || "earlier")}). No tokens used.</div><button class="btn sm" id="rerun">Run again</button></div></div>`;
+  h += `<p class="small">${res.findings.length} findings · ${human} for a person (${done} reviewed) · ${esc(models)} · est. cost $${(run.models || []).reduce((a, m) => a + (m.cost_usd || 0), 0).toFixed(3)} · ${Math.round((run.latency_ms || 0) / 1000)}s</p>`;
+  if (res.tool === "check_submittal") h += submittalSummary(R);
+  if (res.tool === "level_bids") h += bidsSummary(R, res.findings);
+  if (res.tool === "assess_delivery_risk") h += deliverySummary(res.findings);
+  if (res.tool === "run_package_review") h += `<div class="row" style="margin-bottom:10px"><a class="btn" href="/api/results/${encodeURIComponent(current.id)}/report" target="_blank" rel="noopener">Open printable report</a></div><iframe title="Package review report" src="/api/results/${encodeURIComponent(current.id)}/report"></iframe>`;
+  h += findingsBlock(res.findings);
+  h += `<h2>Vendor follow-ups</h2><div id="drafts"></div>`;
+  $("#out").innerHTML = h;
+  $("#back").onclick = () => showTab(back);
+  $("#tosaved").onclick = () => { showTab("saved"); loadState(false); };
+  if ($("#rerun")) $("#rerun").onclick = () => run(current.cachedFrom.tool, current.cachedFrom.args, true);
+  wireFindings();
+  renderDrafts(R.follow_ups);
+}
+function submittalSummary(R) {
+  const sm = R.summary || {};
+  const cls = OVERALL[R.overall] || "mute";
+  return `<div class="card"><div class="row"><span class="b ${cls}" style="font-size:14px;padding:4px 14px">${esc(R.overall || "-")}</span>
+    <span>${Object.entries(sm).map(([k, v]) => `<span class="b ${STATUS[k] || "mute"}">${v} ${esc(k)}</span>`).join(" ")}</span></div>
+    <div class="small" style="margin-top:6px">Spec: ${esc(R.spec || "")} · Submittal: ${esc(R.submittal || "")} · Tag ${esc(R.tag || "")}${(R.unread_scanned_pages || []).length ? ` · scanned pages not read: ${esc(R.unread_scanned_pages.join(", "))}` : ""}</div></div>`;
+}
+function bidsSummary(R, findings) {
+  const A = R.award || {}, scope = R.scope || [], M = R.matrix || {}, bids = Object.keys(M);
+  const q = {}; findings.forEach(f => { const d = f.data || {}; if (d.bid && d.scope_id && f.citations.length) q[d.bid + "|" + d.scope_id] = f.citations[0].quote; });
+  let h = `<div class="card banner ${A.auto_award ? "safe" : ""}"><h3>${A.auto_award ? "Award recommended: " + esc(A.recommend) : "No automatic award: a person should decide"}</h3><div>${esc(A.why || "")}</div>
+    ${(A.blockers || []).length ? `<ul>${A.blockers.map(b => `<li>${esc(b)}</li>`).join("")}</ul>` : ""}</div>`;
+  h += `<div class="card scroll"><table><tr><th>Bid</th><th>Product</th><th class="n">Base</th><th class="n">Leveled</th><th>Lead time</th><th>Adjustments</th></tr>` +
+    Object.entries(R.leveling || {}).map(([b, v]) => { const lt = (R.lead_time || {})[b] || {};
+      return `<tr><td><b>${esc(b)}</b></td><td>${esc((R.products || {})[b] || "")}</td><td class="n">${money(v.base)}</td><td class="n"><b>${money(v.adjusted)}</b></td>
+      <td>${lt.min_weeks ? `${lt.min_weeks}-${lt.max_weeks} wk` : "-"}<div class="small">${esc((lt.basis || "").replace(/_/g, " "))}</div></td><td class="small">${(v.notes || []).map(esc).join("<br>")}</td></tr>`; }).join("") + `</table></div>`;
+  h += `<div class="card scroll"><table><tr><th>Scope item</th>${bids.map(b => `<th>${esc(b)}</th>`).join("")}</tr>` +
+    scope.map(s => `<tr><td><b>${esc(s.id)}</b> ${esc(s.item)}</td>${bids.map(b => { const st = M[b][s.id] || "?";
+      return `<td><div class="cell ${CELL[st] || "mute"}" title="${esc(q[b + "|" + s.id] || "no quote")}">${esc(st)}</div></td>`; }).join("")}</tr>`).join("") +
+    `</table><p class="small">Hover a cell to see the bid's own words.</p></div>`;
+  return h;
+}
+function deliverySummary(findings) {
+  const rows = findings.filter(f => (f.data || {}).arrival).map(f => f.data);
+  if (!rows.length) return "";
+  const d = s => new Date(s + "T00:00:00Z").getTime() / 864e5;
+  let lo = Math.min(...rows.map(r => Math.min(d(r.arrival.P10), d(r.need_on_site)))) - 20, hi = Math.max(...rows.map(r => Math.max(d(r.arrival.P90), d(r.need_on_site)))) + 20;
+  const W = 1000, L = 250, Rm = 70, H = 30, x = o => L + (o - lo) / (hi - lo) * (W - L - Rm), h = 30 + H * rows.length;
+  let s = `<svg viewBox="0 0 ${W} ${h}" width="100%" role="img" aria-label="Arrival forecast per item group against its need date">`;
+  for (let o = Math.ceil(lo); o < hi; o++) { const dt = new Date(o * 864e5); if (dt.getUTCDate() === 1 && dt.getUTCMonth() % 3 === 0)
+    s += `<line x1="${x(o)}" x2="${x(o)}" y1="14" y2="${h - 4}" stroke="var(--line)"/><text x="${x(o) + 3}" y="11">${dt.toLocaleString("en-US", {month: "short", year: "numeric", timeZone: "UTC"})}</text>`; }
+  rows.forEach((r, i) => { const y = 24 + i * H, col = r.risk === "high" ? "var(--bad)" : r.risk === "medium" ? "var(--warn)" : "var(--ok)";
+    s += `<text x="${L - 8}" y="${y + 12}" text-anchor="end" style="fill:var(--ink);font-size:12px">${esc(r.tag_group + ": " + r.scenario)}</text>
+      <rect x="${x(d(r.arrival.P10))}" y="${y}" width="${Math.max(2, x(d(r.arrival.P90)) - x(d(r.arrival.P10)))}" height="15" rx="4" fill="${col}" opacity=".35"/>
+      <line x1="${x(d(r.arrival.P50))}" x2="${x(d(r.arrival.P50))}" y1="${y - 2}" y2="${y + 17}" stroke="${col}" stroke-width="3"/>
+      <path d="M${x(d(r.need_on_site))} ${y - 3} l5 10 l-5 10 l-5 -10z" fill="var(--info)"><title>need on site ${esc(r.need_on_site)}</title></path>
+      <text x="${Math.max(x(d(r.arrival.P90)), x(d(r.need_on_site)) + 6) + 6}" y="${y + 12}">${pct(r.p_late)} late</text>`; });
+  s += `</svg>`;
+  return `<div class="card">${s}<p class="small">Bar: earliest to latest likely arrival (P10 to P90). Tick: typical (P50). Diamond: need-on-site date.</p></div>
+    <div class="card scroll"><table><tr><th>Group</th><th>Scenario</th><th>Typical arrival</th><th>Need on site</th><th class="n">Chance late</th><th>Order by (80% on time)</th><th>Actions</th></tr>` +
+    rows.map(r => `<tr><td><b>${esc(r.tag_group)}</b><div class="small">${esc((r.tags || []).join(", "))}</div></td><td>${esc(r.scenario)}</td><td class="nw">${esc(r.arrival.P50)}<div class="small">${esc(r.arrival.P10)} to<br>${esc(r.arrival.P90)}</div></td>
+      <td class="nw">${esc(r.need_on_site)}</td><td class="n"><span class="b ${r.risk === "high" ? "bad" : r.risk === "medium" ? "warn" : "ok"}">${pct(r.p_late)}</span></td><td class="nw">${esc(r.latest_order_date_80pct || "-")}</td>
+      <td class="small">${(r.actions || []).map(esc).join("<br>")}</td></tr>`).join("") + `</table></div>`;
+}
+function findingsBlock(fs) {
+  const human = fs.filter(f => f.needs_human), counts = {};
+  fs.forEach(f => counts[f.status] = (counts[f.status] || 0) + 1);
+  const chips = [["human", `For you to review (${human.length})`], ["all", `All (${fs.length})`], ...Object.entries(counts).map(([k, v]) => [k, `${k} (${v})`])];
+  const shown = fs.filter(f => filter === "all" || (filter === "human" ? f.needs_human : f.status === filter));
+  return `<h2>Findings</h2><div class="chips" role="group" aria-label="Filter findings">${chips.map(([k, t]) => `<button class="chip" data-filter="${k}" aria-pressed="${filter === k}">${esc(t)}</button>`).join("")}</div>` +
+    (shown.length ? shown.map(findingCard).join("") : `<p class="muted">Nothing here.</p>`);
+}
+function findingCard(f) {
+  const r = current.reviews[f.id];
+  const cites = f.citations.map(c => `<div class="cite"><b>${esc(c.doc_id)}</b> p.${c.page} ${esc(c.locator || "")}${c.ocr ? " (scanned page, read by OCR)" : ""}${c.match && c.match !== "exact" ? ` <span class="b mute">${esc(c.match)} match</span>` : ""}<q>${esc(c.quote)}</q></div>`).join("");
+  let rev = "";
+  if (f.needs_human) {
+    rev = r ? `<div class="rev"><span class="b ok">${r.decision === "agree" ? "You agreed" : "You changed it to " + esc(r.decision)}</span><span class="small">${esc(r.note)} · ${esc(r.at)}</span><button class="btn sm" data-clear="${esc(f.id)}">Undo</button></div>`
+      : `<div class="rev" data-fid="${esc(f.id)}"><button class="btn sm" data-agree>Agree</button><select aria-label="Change the verdict"><option value="">Change to…</option>${["complies", "deviates", "missing", "unclear"].map(s => `<option>${s}</option>`).join("")}</select>
+        <input type="text" placeholder="Note (optional): why, or what you checked" maxlength="1000" aria-label="Review note"><button class="btn sm" data-save>Save</button></div>`;
+  }
+  return `<div class="f ${f.needs_human ? "human" : ""} ${r ? "done" : ""}"><div class="fhead"><span class="b ${STATUS[f.status] || "mute"}">${esc(f.status)}</span><div class="claim">${esc(f.claim)}${(f.data || {}).locator ? ` <span class="small">${esc(f.data.locator)}</span>` : ""}</div>
+    <span class="small" title="confidence">${f.confidence.toFixed(2)} <span class="conf"><i style="width:${Math.round(f.confidence * 100)}%"></i></span></span></div>
+    <div class="small" style="margin-top:4px">${esc(f.why)}</div>${f.citations.length ? `<details><summary>${f.citations.length} source${f.citations.length > 1 ? "s" : ""}</summary>${cites}</details>` : ""}${rev}</div>`;
+}
+function wireFindings() {
+  document.querySelectorAll("[data-filter]").forEach(b => b.onclick = () => { filter = b.dataset.filter; renderResult(); });
+  const send = async (fid, decision, note) => { const r = await api(`/api/results/${encodeURIComponent(current.id)}/review`, {method: "POST", body: {finding: fid, decision, note}}); current.reviews = r.reviews; renderResult(); };
+  document.querySelectorAll(".rev[data-fid]").forEach(el => {
+    const fid = el.dataset.fid, note = () => $("input", el).value;
+    $("[data-agree]", el).onclick = () => send(fid, "agree", note()).catch(e => toast(e.message));
+    $("[data-save]", el).onclick = () => { const v = $("select", el).value; if (!v) { toast("Choose a verdict, or press Agree"); return; } send(fid, v, note()).catch(e => toast(e.message)); };
+  });
+  document.querySelectorAll("[data-clear]").forEach(b => b.onclick = () => send(b.dataset.clear, "clear", "").catch(e => toast(e.message)));
+}
+async function renderDrafts(pre) {
+  const el = $("#drafts");
+  let ds = pre;
+  if (!ds) { try { ds = (await api(`/api/results/${encodeURIComponent(current.id)}/drafts`, {method: "POST", body: {}})).drafts; } catch (e) { el.innerHTML = `<p class="muted">${esc(e.message)}</p>`; return; } }
+  if (!ds.length) { el.innerHTML = `<p class="muted">No gaps that need a vendor follow-up.</p>`; return; }
+  el.innerHTML = `<p class="small">Drafts built only from verified findings: every fact quoted has its document and page. Nothing is sent: review, edit and send them yourself.</p>` +
+    ds.map((d, i) => `<div class="card"><div class="row"><div class="grow"><b>${esc(d.to)}</b> · ${esc(d.subject)} <span class="b mute">${d.items} items</span></div>
+      <button class="btn sm" data-copy="${i}">Copy</button><button class="btn sm" data-dl="${i}">Download .txt</button></div>
+      <details><summary>Show the message</summary><pre class="draft">${esc(d.body)}</pre></details></div>`).join("");
+  const text = d => `To: ${d.to}\nSubject: ${d.subject}\n\n${d.body}`;
+  el.querySelectorAll("[data-copy]").forEach(b => b.onclick = async () => { try { await navigator.clipboard.writeText(text(ds[b.dataset.copy])); toast("Copied"); } catch { toast("Copy blocked by the browser: use Download"); } });
+  el.querySelectorAll("[data-dl]").forEach(b => b.onclick = () => { const d = ds[b.dataset.dl], a = document.createElement("a");
+    a.href = URL.createObjectURL(new Blob([text(d)], {type: "text/plain"})); a.download = (d.kind + "_" + d.to).replace(/[^A-Za-z0-9_-]+/g, "_") + ".txt"; a.click(); URL.revokeObjectURL(a.href); });
+}
+function renderSaved() {
+  const t = $("#saved");
+  if (!S.saved.length) { t.innerHTML = `<tr><td class="muted">Nothing saved yet. Run something, or try Delivery risk: it needs no model.</td></tr>`; return; }
+  t.innerHTML = `<tr><th>Result</th><th>Specialist</th><th>When</th><th class="n">Findings</th><th class="n">For a person</th><th class="n">Cost</th><th>From</th></tr>` +
+    S.saved.map(m => `<tr class="click" data-rid="${esc(m.id)}" tabindex="0"><td><b>${esc(m.label)}</b></td><td>${esc(TOOL[m.tool] || m.tool)}</td><td class="small">${esc((m.finished || m.started || "").replace("T", " "))}</td>
+      <td class="n">${m.findings ?? "-"}</td><td class="n">${m.needs_human ?? "-"}</td><td class="n">${m.cost_usd == null ? "-" : "$" + Number(m.cost_usd).toFixed(3)}</td><td class="small">${esc(m.source || "")}</td></tr>`).join("");
+  t.querySelectorAll("tr[data-rid]").forEach(r => { r.onclick = () => openResult(r.dataset.rid).catch(e => toast(e.message)); r.onkeydown = e => { if (e.key === "Enter") r.click(); }; });
+}
+
+(async () => {
+  const m = location.hash.match(/^#result=(.+)$/);
+  showTab("package");
+  try { await loadState(true); } catch (e) { showError("Could not reach the local server: " + e.message); return; }
+  if (S.running.length) { poll(S.running[0].id, S.running[0].tool).catch(e => showError(e.message)); return; }
+  if (m) openResult(decodeURIComponent(m[1])).catch(() => history.replaceState(null, "", "#"));
+})();
+</script>
+</body>
+</html>

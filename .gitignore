@@ -13,3 +13,6 @@ __pycache__/
 .pytest_cache/
 runs/
 .cache/
+
+# files uploaded through the web page
+data/uploads/

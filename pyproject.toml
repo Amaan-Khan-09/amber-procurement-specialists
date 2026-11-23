@@ -19,9 +19,13 @@ dev = ["pytest>=8"]
 
 [project.scripts]
 amber-mcp = "amber.server:main"
+amber-web = "amber.web:main"
 
 [tool.setuptools]
 packages = ["amber"]
+
+[tool.setuptools.package-data]
+amber = ["web_index.html"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
