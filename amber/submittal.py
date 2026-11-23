@@ -324,6 +324,27 @@ def _flag_shared_evidence(reqs: list[dict], offers: dict[str, dict]) -> None:
                 offers[c] = dict(offers[c], shared_with=others)
 
 
+def _mentioned(doc: docs.Document, c: dict) -> dict | None:
+    """Pages where the condition's distinctive words (4+ letters, not generic) occur. Used to double-check a
+    'not stated' answer against the whole document instead of the few passages the model read."""
+    words = set(_attr_words(c))
+    for t in c.get("terms") or []:
+        words |= {w for w in re.findall(r"[a-z]{4,}", str(t).lower()) if w not in _GENERIC}
+    words = {w for w in words if len(w) >= 4}
+    if not words:
+        return None
+    hits: dict[str, list[int]] = {}
+    for p in doc.pages:
+        low = p.text.lower()
+        for w in words:
+            if re.search(rf"\b{re.escape(w)}", low):
+                hits.setdefault(w, []).append(p.number)
+    if not hits:
+        return None
+    pages = sorted({n for ns in hits.values() for n in ns})
+    return {"words": sorted(hits, key=lambda w: -len(hits[w])), "pages": pages}
+
+
 def _decide_condition(c: dict, o: dict | None, sub_doc: docs.Document):
     """-> (Decision, submittal Citation | None, confidence)"""
     if o and o.get("shared_with"):
@@ -333,6 +354,13 @@ def _decide_condition(c: dict, o: dict | None, sub_doc: docs.Document):
     if o and o.get("not_checked"):
         return checks.Decision(Verdict.unclear, f"not checked ({o['not_checked']})", False), None, 0.0
     if not o or not o.get("stated"):
+        # "Not stated" is a claim about the whole document, made after reading a few passages: verify it. If the
+        # condition's distinctive words appear anywhere, it is mentioned (partly, as an option...) -> a person reads it.
+        seen = _mentioned(sub_doc, c)
+        if seen:
+            return (checks.Decision(Verdict.unclear, f"no value found, but the submittal mentions "
+                                                     f"{', '.join(seen['words'][:3])} on page(s) {seen['pages'][:6]}", False),
+                    None, 0.5)
         d = checks.decide(c, None)
         return d, None, (0.8 if not sub_doc.scanned_pages else 0.55)
     cite = verify(sub_doc, o.get("quote", ""), o.get("page"))
@@ -385,6 +413,11 @@ def _decide_condition(c: dict, o: dict | None, sub_doc: docs.Document):
             d = checks.Decision(Verdict.unclear, f"model reading ({model_says.value}) and code check ({d.verdict.value}) "
                                                  f"disagree: {d.why}", False)
             exact, judged = False, True
+    if not judged and c.get("kind") == "text" and d.verdict == Verdict.deviates and meets != "no":
+        # a quote that lacks the expected words is not the same as a quote that states something different
+        d = checks.Decision(Verdict.unclear, d.why + "; the expected words are missing from the quote but nothing "
+                                                     "contradicts the requirement", False)
+        exact, judged = False, True
     conf = (0.95 if exact else 0.74) * MATCH_TRUST.get(cite.match, 0.8)
     if judged:
         conf = min(conf, JUDGEMENT_CAP)

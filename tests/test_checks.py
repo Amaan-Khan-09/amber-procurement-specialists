@@ -223,3 +223,26 @@ def test_plain_inclusion_still_passes():
              "quote": "integral manual maintenance bypass switch", "page": 1, "meets": "yes", "selected": True}
     d, cite, conf = _decide_condition(cond, offer, doc)
     assert d.verdict == Verdict.complies
+
+
+def test_not_stated_is_verified_against_the_whole_document():
+    from amber.docs import Document, Page
+    from amber.submittal import _decide_condition
+    cond = {"cid": "R15a", "kind": "text", "attribute": "alternator_space_heater_voltage", "terms": ["120 v"], "match": "all"}
+    mentioned = Document("d", "d.pdf", pages=[Page(1, "intro " * 20), Page(2, "Accessories: Generator heater, wired " * 3)])
+    d, cite, conf = _decide_condition(cond, {"cid": "R15a", "stated": False}, mentioned)
+    assert d.verdict == Verdict.unclear and conf < 0.70 and "page(s) [2]" in d.why
+    silent = Document("d", "d.pdf", pages=[Page(1, "Engine data: bore, stroke, displacement " * 5)])
+    d, cite, conf = _decide_condition(cond, {"cid": "R15a", "stated": False}, silent)
+    assert d.verdict == Verdict.missing and conf >= 0.70  # genuinely absent: a confident 'missing' is fine
+
+
+def test_missing_words_in_a_quote_are_not_a_contradiction():
+    from amber.docs import Document, Page
+    from amber.submittal import _decide_condition
+    doc = Document("d", "d.pdf", pages=[Page(1, "Starting voltage  24 V, negative ground " * 3)])
+    cond = {"cid": "R07a", "kind": "text", "terms": ["24 volt", "electric starter"], "match": "all"}
+    offer = {"cid": "R07a", "stated": True, "values": ["24 V"], "quote": "Starting voltage  24 V, negative ground",
+             "page": 1, "meets": "unknown"}
+    d, cite, conf = _decide_condition(cond, offer, doc)
+    assert d.verdict == Verdict.unclear and conf < 0.70  # was a confident 'deviates' (held-out G4 R07)
