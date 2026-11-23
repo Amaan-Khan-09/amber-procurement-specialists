@@ -74,3 +74,33 @@ def test_every_model_call_is_logged_with_its_purpose(monkeypatch):
     s1, s2 = llm.meter.steps
     assert s1["purpose"] == "read bid B1" and s1["ok"] and s1["tokens_in"] == 100 and s1["tokens_out"] == 20
     assert s2["purpose"] == "read bid B2" and not s2["ok"] and "down" in s2["error"]
+
+
+def test_free_hosts_of_the_same_model_take_over_in_order(monkeypatch):
+    monkeypatch.delenv("AMBER_FALLBACK", raising=False)
+    for k in ("GROQ_API_KEY", "OPENROUTER_API_KEY", "CEREBRAS_API_KEY"):
+        monkeypatch.setenv(k, "x")
+    monkeypatch.setenv("GEMINI_API_KEY", "y")
+    llm = LLM(provider="groq")
+    assert llm.fallbacks == ["openrouter", "cerebras"]  # free hosts only; paid Gemini is never automatic
+    sent = []
+
+    def fake_post(url, headers, body):
+        sent.append((url, body["model"]))
+        if "groq" in url:
+            raise LLMError("groq HTTP 429: tokens per day")
+        return {"choices": [{"message": {"content": '{"ok": true}'}}], "usage": {"prompt_tokens": 50, "completion_tokens": 5}}
+
+    monkeypatch.setattr(llm, "_post", fake_post)
+    assert llm.json("s", "u", purpose="read bid B1") == {"ok": True}
+    assert sent[-1] == ("https://openrouter.ai/api/v1/chat/completions", "openai/gpt-oss-120b:free")
+    assert llm.meter.steps[-1]["provider"] == "openrouter" and llm.meter.steps[-1]["ok"]
+    assert "groq->openrouter" in llm.switched[0]
+
+
+def test_a_host_without_a_key_is_skipped(monkeypatch):
+    monkeypatch.delenv("AMBER_FALLBACK", raising=False)
+    monkeypatch.setenv("GROQ_API_KEY", "x")
+    monkeypatch.delenv("OPENROUTER_API_KEY", raising=False)
+    monkeypatch.setenv("CEREBRAS_API_KEY", "x")
+    assert LLM(provider="groq").fallbacks == ["cerebras"]

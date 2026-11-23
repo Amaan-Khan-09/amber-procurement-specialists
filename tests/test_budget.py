@@ -37,4 +37,4 @@ def test_no_automatic_paid_fallback_by_default(monkeypatch):
     monkeypatch.delenv("AMBER_FALLBACK", raising=False)
     monkeypatch.setenv("GROQ_API_KEY", "x")
     monkeypatch.setenv("GEMINI_API_KEY", "y")
-    assert LLM(provider="groq").fallbacks == []
+    assert "gemini" not in LLM(provider="groq").fallbacks  # free hosts may be fallbacks; paid Gemini never automatically

@@ -72,6 +72,7 @@ File arguments are paths under `data/`; paths outside it are refused.
 |---|---|---|
 | Reading specs, submittals and bids (default) | `openai/gpt-oss-120b` (reasoning effort low) | Groq |
 | Lighter runs and development | `openai/gpt-oss-20b` | Groq |
+| Same model when Groq is out of capacity (optional, free tiers, only if a key is set) | `openai/gpt-oss-120b:free`, then `gpt-oss-120b` | OpenRouter, then Cerebras |
 | Reading **scanned** pages (OCR): only when `AMBER_OCR=gemini`; cached per page and reused by default | `gemini-3.8-flash` | Google |
 | Structuring a spec into requirements (once per spec, cached) | `gemini-3.8-flash` | Google |
 | Private / offline mode | `qwen3:8b` served by Ollama on a laptop's integrated GPU (measured below) | local |

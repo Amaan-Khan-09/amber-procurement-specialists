@@ -33,6 +33,24 @@ DEFAULTS = {
     "ollama": os.getenv("AMBER_OLLAMA_MODEL", "qwen3:8b"),
 }
 
+# Other hosts of the same open-weight model through an OpenAI-compatible API. Each is used only if its key is set.
+# Free tiers by default, so they may serve as automatic fallbacks (unlike a paid provider, which is opt-in).
+COMPAT = {
+    "openrouter": {"base": "https://openrouter.ai/api/v1", "key": "OPENROUTER_API_KEY",
+                   "model": os.getenv("AMBER_OPENROUTER_MODEL", "openai/gpt-oss-120b:free"),
+                   "extra": {"reasoning": {"effort": "low"}}},
+    "cerebras": {"base": "https://api.cerebras.ai/v1", "key": "CEREBRAS_API_KEY",
+                 "model": os.getenv("AMBER_CEREBRAS_MODEL", "gpt-oss-120b"),
+                 "extra": {"reasoning_effort": "low"}},
+}
+for _name, _cfg in COMPAT.items():
+    DEFAULTS[_name] = _cfg["model"]
+PRICES.setdefault("openai/gpt-oss-120b:free", (0.0, 0.0))  # OpenRouter free variant
+# Cerebras free-trial credit: reported at the same list price as gpt-oss-120b elsewhere, so cost per run stays honest
+PRICES.setdefault("gpt-oss-120b", PRICES["openai/gpt-oss-120b"])
+
+FREE_FALLBACKS = "openrouter,cerebras"  # tried in this order after the primary, only if their keys are set
+
 
 class LLMError(RuntimeError):
     pass
@@ -75,6 +93,8 @@ def _has_key(provider: str) -> bool:
         return bool(os.getenv("GROQ_API_KEY"))
     if provider == "gemini":
         return bool(os.getenv("GEMINI_API_KEY") or os.getenv("GOOGLE_API_KEY"))
+    if provider in COMPAT:
+        return bool(os.getenv(COMPAT[provider]["key"]))
     return provider == "ollama"
 
 
@@ -90,8 +110,9 @@ class LLM:
         self.client = httpx.Client(timeout=max(timeout, 1800.0) if self.provider == "ollama" else timeout)
         # When the primary provider is unavailable (rate limit longer than we wait, outage), calls move to
         # the next provider that has a key. Usage is metered under the model that actually answered.
-        # Default: no automatic fallback to a paid provider. Opt in with AMBER_FALLBACK=gemini (still capped).
-        chain = [p.strip() for p in os.getenv("AMBER_FALLBACK", "").split(",") if p.strip()]
+        # Default: free hosts of the same model (if their keys are set); never a paid provider unless opted in with
+        # AMBER_FALLBACK=...,gemini (still capped). The local model is never a silent fallback for a cloud run.
+        chain = [p.strip() for p in os.getenv("AMBER_FALLBACK", FREE_FALLBACKS).split(",") if p.strip()]
         self.fallbacks = [p for p in chain if p != self.provider and p in DEFAULTS and _has_key(p)]
         self.switched: list[str] = []
 
@@ -187,6 +208,31 @@ class LLM:
         u = j.get("usage", {})
         self.meter.add("groq", self.model, u.get("prompt_tokens", 0), u.get("completion_tokens", 0))
         return j["choices"][0]["message"]["content"] or ""
+
+    def _compat(self, system: str, user: str, max_tokens: int) -> str:
+        """Any OpenAI-compatible host of the same model (OpenRouter, Cerebras)."""
+        cfg = COMPAT[self.provider]
+        key = os.getenv(cfg["key"]) or ""
+        if not key:
+            raise LLMError(f"{cfg['key']} not set")
+        body = {"model": self.model, "temperature": 0, "max_tokens": max_tokens,
+                "response_format": {"type": "json_object"},
+                "messages": [{"role": "system", "content": system}, {"role": "user", "content": user}], **cfg["extra"]}
+        url = f"{cfg['base']}/chat/completions"
+        hdr = {"Authorization": f"Bearer {key}", "X-Title": "amber-procurement-specialists"}
+        try:
+            j = self._post(url, hdr, body)
+        except LLMError as e:  # some hosts reject strict JSON mode for some models: ask again without it
+            if "HTTP 400" not in str(e):
+                raise
+            body.pop("response_format", None)
+            j = self._post(url, hdr, body)
+        u = j.get("usage") or {}
+        self.meter.add(self.provider, self.model, u.get("prompt_tokens", 0), u.get("completion_tokens", 0))
+        return (j.get("choices") or [{}])[0].get("message", {}).get("content") or ""
+
+    _openrouter = _compat
+    _cerebras = _compat
 
     def _gemini(self, system: str, user: str, max_tokens: int) -> str:
         key = (os.getenv("GEMINI_API_KEY") or os.getenv("GOOGLE_API_KEY") or "").strip()
