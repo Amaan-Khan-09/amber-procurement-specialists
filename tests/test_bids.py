@@ -59,3 +59,15 @@ def test_clean_cheapest_bid_is_awarded():
         b["items"] = {k: {"status": "included"} for k in b["items"]}
     d = award(level(FORM, bids), bids)
     assert d["auto_award"] is True and d["recommend"] == "B3"
+
+
+def test_award_answer_cites_its_evidence():
+    from amber.bids import _award_citations
+    cite = {"doc_id": "b3", "page": 1, "locator": "", "quote": "Prices are subject to adjustment for tariffs", "match": "exact", "ocr": False}
+    base = {"doc_id": "b3", "page": 1, "locator": "", "quote": "Total 3,980,000", "match": "exact", "ocr": False}
+    bids = bids_from_key()
+    bids["B3"]["terms"] = [{"note": "tariff clause", "risk": "unquantified_cost", "citation": cite}]
+    bids["B3"]["base_citation"] = base
+    d = award(level(FORM, bids), bids)
+    quotes = [c.quote for c in _award_citations(d, bids)]
+    assert "Prices are subject to adjustment for tariffs" in quotes and "Total 3,980,000" in quotes

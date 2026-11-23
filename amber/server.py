@@ -19,6 +19,7 @@ from mcp.server.mcpserver.exceptions import ToolError
 
 from . import __version__
 from .llm import LLM
+from .schema import ToolResult
 from .bids import level_bids as _level_bids
 from .delivery import assess_delivery_risk as _assess
 from .package import run_package_review as _package
@@ -60,11 +61,11 @@ def _path(p: str) -> str:
 async def check_submittal(spec_path: str, submittal_path: str, tag: str,
                           schedule_path: str = "schedules/equipment_schedule.csv",
                           checklist: list[dict[str, Any]] | None = None,
-                          provider: str | None = None) -> dict[str, Any]:
+                          provider: str | None = None) -> ToolResult:
     args = (_path(spec_path), _path(submittal_path), tag, _path(schedule_path))
     llm = LLM(provider=provider)
     res = await anyio.to_thread.run_sync(lambda: _check_submittal(*args, checklist=checklist, llm=llm))
-    return res.model_dump(mode="json")
+    return res
 
 
 @server.tool(
@@ -77,12 +78,12 @@ async def check_submittal(spec_path: str, submittal_path: str, tag: str,
         "tariffs, short validity, budget pricing) and lead times, and recommends an award only when it is safe; "
         "otherwise it lays out the options for a person. bids maps a bidder label to a file path."),
 )
-async def level_bids(bid_form_path: str, bids: dict[str, str], provider: str | None = None) -> dict[str, Any]:
+async def level_bids(bid_form_path: str, bids: dict[str, str], provider: str | None = None) -> ToolResult:
     form = _path(bid_form_path)
     paths = {k: _path(v) for k, v in bids.items()}
     llm = LLM(provider=provider)
     res = await anyio.to_thread.run_sync(lambda: _level_bids(form, paths, llm=llm))
-    return res.model_dump(mode="json")
+    return res
 
 
 @server.tool(
@@ -98,10 +99,10 @@ async def level_bids(bid_form_path: str, bids: dict[str, str], provider: str | N
 async def assess_delivery_risk(as_of: str, schedule_path: str = "schedules/equipment_schedule.csv",
                                po_status_path: str = "schedules/po_status.csv",
                                evidence_path: str = "leadtime_sources/leadtime_evidence.csv",
-                               bid_lead_times: dict[str, Any] | None = None) -> dict[str, Any]:
+                               bid_lead_times: dict[str, Any] | None = None) -> ToolResult:
     args = (_path(schedule_path), _path(po_status_path), _path(evidence_path), as_of)
     res = await anyio.to_thread.run_sync(lambda: _assess(*args, bid_lead_times=bid_lead_times))
-    return res.model_dump(mode="json")
+    return res
 
 
 @server.tool(
@@ -118,13 +119,13 @@ async def run_package_review(bid_form_path: str, bids: dict[str, str], spec_path
                              schedule_path: str = "schedules/equipment_schedule.csv",
                              po_status_path: str = "schedules/po_status.csv",
                              evidence_path: str = "leadtime_sources/leadtime_evidence.csv",
-                             provider: str | None = None) -> dict[str, Any]:
+                             provider: str | None = None) -> ToolResult:
     kw = dict(bid_form=_path(bid_form_path), bids={k: _path(v) for k, v in bids.items()}, spec=_path(spec_path),
               tag=tag, tag_group=tag_group, schedule=_path(schedule_path), po_status=_path(po_status_path),
               evidence=_path(evidence_path), as_of=as_of,
               submittals={k: _path(v) for k, v in (submittals or {}).items()}, llm=LLM(provider=provider))
     res = await anyio.to_thread.run_sync(lambda: _package(**kw))
-    return res.model_dump(mode="json")
+    return res
 
 
 def main() -> None:

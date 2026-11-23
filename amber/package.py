@@ -70,9 +70,11 @@ def run_package_review(bid_form: str, bids: dict[str, str], spec: str, tag: str,
     decision = {"recommend": award.get("recommend"), "auto_award": bool(award.get("auto_award")) and not notes,
                 "options": award.get("options"), "notes": notes, "level_bids_reason": award.get("why")}
 
+    award_f = next((f for f in lb.findings if f.id == "F-award"), None)
     findings = [Finding(id="F-package", claim=f"package review: {len(bids)} bids, {len(submittals)} submittals checked",
                         status=Verdict.complies if decision["auto_award"] else Verdict.unclear,
                         confidence=0.9 if decision["auto_award"] else 0.6, needs_human=not decision["auto_award"],
+                        citations=list(award_f.citations) if award_f else [],
                         why=" | ".join(notes) or award.get("why", ""), data=decision)]
     for name, r in [("level_bids", lb), ("delivery", dr)] + [(f"submittal:{b}", s) for b, s in sub_res.items()]:
         for f in r.findings:

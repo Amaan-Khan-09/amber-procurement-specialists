@@ -34,3 +34,12 @@ def test_refuses_paths_outside_data_folder():
     res = anyio.run(_with_session, go)
     assert res.is_error
     assert "outside the data folder" in str(res.content)
+
+
+def test_tools_publish_a_typed_output_schema():
+    async def go(s):
+        return await s.list_tools()
+    for t in anyio.run(_with_session, go).tools:
+        schema = t.output_schema or {}
+        assert {"findings", "needs_human", "run"} <= set(schema.get("properties", {})), t.name
+        assert {"Citation", "Finding", "Verdict"} <= set(schema.get("$defs", {})), t.name

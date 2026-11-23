@@ -179,6 +179,19 @@ def _lead_max(b: dict) -> float | None:
     return _num((b.get("lead_time") or {}).get("max_weeks"))
 
 
+def _award_citations(decision: dict, bids: dict) -> list[Citation]:
+    """The award answer cites what it rests on: each option's base price, quoted lead time and risky terms."""
+    out = []
+    names = [decision.get("recommend")] + [o["bid"] for o in decision.get("options") or []]
+    for b in [n for n in names if n and n in bids]:
+        bid = bids[b]
+        for c in [bid.get("base_citation"), (bid.get("lead_time") or {}).get("citation")] + \
+                 [t.get("citation") for t in bid.get("terms") or [] if t.get("risk") not in (None, "none")]:
+            if c and Citation(**c) not in out:
+                out.append(Citation(**c))
+    return out
+
+
 def award(table: dict, bids: dict) -> dict:
     ranked = sorted(table, key=lambda k: table[k]["adjusted"])
     cheapest = ranked[0]
@@ -253,7 +266,8 @@ def level_bids(form_path: str, bid_paths: dict[str, str], llm: LLM | None = None
                                     why="base price quote not found in the bid", data={"bid": bid_id}))
     findings.append(Finding(id="F-award", claim="award recommendation", confidence=0.9 if decision["auto_award"] else 0.6,
                             status=Verdict.complies if decision["auto_award"] else Verdict.unclear,
-                            why=decision["why"], needs_human=not decision["auto_award"], data=decision))
+                            citations=_award_citations(decision, bids), why=decision["why"],
+                            needs_human=not decision["auto_award"], data=decision))
 
     result = {"package": form.get("package"), "quantity": form.get("quantity"),
               "scope": [{"id": s["id"], "item": s["item"]} for s in form.get("scope", [])],
