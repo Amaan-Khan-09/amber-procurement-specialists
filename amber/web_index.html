@@ -487,6 +487,9 @@ function renderResult() {
   $("#tosaved").onclick = () => { showTab("saved"); loadState(false); };
   if ($("#rerun")) $("#rerun").onclick = () => run(current.cachedFrom.tool, current.cachedFrom.args, true);
   wireFindings();
+  document.querySelectorAll("[data-findfor]").forEach(b => b.onclick = () => {
+    showTab("products"); if (b.dataset.findfor) { $("#d2-tag").value = b.dataset.findfor; const sp = specFor(b.dataset.findfor); if (sp) $("#d2-spec").value = sp; }
+    toast("Press Find products to screen every datasheet you hold"); });
   document.querySelectorAll("[data-fullcheck]").forEach(b => b.onclick = () => {
     showTab("submittal"); $("#s-tag").value = R.tag || $("#s-tag").value; const sp = specFor($("#s-tag").value); if (sp) $("#s-spec").value = sp;
     $("#s-sub").value = b.dataset.fullcheck; toast("Ready: press Check submittal for the full spec check"); });
@@ -532,7 +535,7 @@ function packageSummary(R, findings) {
     <ul>${(D.notes || []).map(n => `<li>${esc(n)}</li>`).join("")}</ul><div class="small">${esc(D.level_bids_reason || "")}</div></div>`;
   h += `<div class="card scroll"><table><tr><th>Bid</th><th>Product</th><th class="n">Leveled cost</th><th>Scope gaps</th><th>Product vs spec</th><th>Typical arrival</th><th class="n">Chance late</th></tr>` +
     (R.comparison || []).map(r => `<tr><td><b>${esc(r.bid)}</b></td><td>${esc(String(r.product))}</td><td class="n">${money(r.leveled_cost)}<div class="small">base ${money(r.base)}</div></td>
-      <td>${(r.scope_gaps || []).length} of ${(lb.scope || []).length}</td><td><span class="b ${OVERALL[r.submittal] || "mute"}">${esc(r.submittal)}</span></td>
+      <td>${(r.scope_gaps || []).length} of ${(lb.scope || []).length}</td><td><span class="b ${OVERALL[r.submittal] || "mute"}">${esc(r.submittal)}</span>${r.submittal === "reject" ? `<div><button class="linkbtn" data-findfor="${esc(R.tag || Object.values((R.parts || {}).submittals || {}).map(x => x && x.tag).find(Boolean) || "")}">Find products that fit</button></div>` : ""}</td>
       <td class="nw">${fmtDate(r.arrival_P50)}</td><td class="n">${r.p_late == null ? "-" : pct(r.p_late)}</td></tr>`).join("") + `</table></div>`;
   if (lb.scope && lb.matrix) h += `<h2>What each bid covers</h2>` + matrixTable(lb.scope, lb.matrix, findings, "level_bids/");
   const rows = findings.filter(f => f.id.startsWith("delivery/") && (f.data || {}).arrival && ((f.data.scenario || "").startsWith("award") || f.data.tag_group === (findings.find(x => (x.data || {}).scenario?.startsWith("award"))?.data.tag_group)))
@@ -585,7 +588,9 @@ function findingCard(f) {
       : `<div class="rev" data-fid="${esc(f.id)}"><button class="btn sm" data-agree>Agree</button><select aria-label="Change the verdict"><option value="">Change to…</option>${["complies", "deviates", "missing", "unclear"].map(s => `<option>${s}</option>`).join("")}</select>
         <input type="text" placeholder="Note (optional): why, or what you checked" maxlength="1000" aria-label="Review note"><button class="btn sm" data-save>Save</button></div>`;
   }
-  return `<div class="f ${f.needs_human ? "human" : ""} ${r ? "done" : ""}"><div class="fhead"><span class="b ${STATUS[f.status] || "mute"}">${esc(f.status)}</span><div class="claim">${esc(f.claim)}${(f.data || {}).locator ? ` <span class="small">${esc(f.data.locator)}</span>` : ""}</div>
+  const part = f.id.startsWith("submittal:") ? f.id.slice(10).split("/")[0] + " submittal" : f.id.startsWith("level_bids/") ? "bids"
+    : f.id.startsWith("delivery/") ? "delivery" : "";
+  return `<div class="f ${f.needs_human ? "human" : ""} ${r ? "done" : ""}"><div class="fhead">${part ? `<span class="b info">${esc(part)}</span>` : ""}<span class="b ${STATUS[f.status] || "mute"}">${esc(f.status)}</span><div class="claim">${esc(f.claim)}${(f.data || {}).locator ? ` <span class="small">${esc(f.data.locator)}</span>` : ""}</div>
     <span class="small nw" title="confidence">${f.confidence.toFixed(2)} <span class="conf"><i style="width:${Math.round(f.confidence * 100)}%"></i></span></span></div>
     <div class="small" style="margin-top:4px">${esc(f.why)}</div>${quick ? `<div class="small" style="margin-top:4px">Sources: ${quick}</div>` : ""}${f.citations.length ? `<details><summary>${f.citations.length} quoted source${f.citations.length > 1 ? "s" : ""}</summary>${cites}</details>` : ""}${rev}</div>`;
 }

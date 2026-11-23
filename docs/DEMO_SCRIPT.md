@@ -1,27 +1,39 @@
 # Demo video script (5 minutes maximum)
 
-Rules say: up to 5 minutes, showing the agent solving a realistic example from start to finish. Record the screen
-and talk over it. Practise once; keep to the times. Everything shown below is real output from this repo.
+The rules ask for up to 5 minutes showing the agent solving a realistic example from start to finish. Record the
+screen and talk over it in your own words. Practise once and keep to the times. Everything below is real output from
+this repo; nothing is staged.
 
-**Before you record**
-1. Open two things side by side: a terminal in the project folder, and `runs/package_GEN.html` in a browser.
-2. Run `python scripts/make_report.py runs/package_GEN.json` if the page is out of date.
-3. Have these PDFs open on the page named: the Kohler KD2000 datasheet (p.6) and the generator spec (p.8).
-4. Use dark or light mode, but keep the same one for the whole video. Zoom the browser to 110%.
+## Before you record
 
-| Time | On screen | Say (in your own words) |
+1. In the project folder: `.venv\Scripts\activate`, then `python -m amber.web`. The page opens at http://127.0.0.1:8000.
+2. Check that **Saved results** lists `package_GEN` (the full package review) and `discovery_GEN-A` (product
+   discovery). Both open instantly and spend no tokens, so the video never waits on a model.
+3. Browser zoom 110 %, one colour mode for the whole video, close other tabs and notifications.
+4. Have a terminal open in the project folder for the 3:55 step.
+
+## The script
+
+| Time | On screen (what to click) | Say |
 |---|---|---|
-| 0:00 | Title slide | "Buying a generator for a data center takes months and one missed line can cost weeks. We built three specialist agents a procurement team could use tomorrow." |
-| 0:20 | Terminal: `python scripts/demo_mcp_client.py` | "They run as MCP tools, so Amber can call them directly. The server lists its four tools, and here Amber asks one of them a question." Let the table print. |
-| 0:50 | Datasheet + spec side by side, then the report section "product submittal against the spec" | "Specialist one checks a supplier's datasheet against the spec, line by line. Every verdict quotes both documents, with the page." Point at one **deviates** finding: the fuel tank is UL 142 but the spec wants UL 2085. Point at the quote on each side. |
-| 1:30 | Report: a finding marked "for review" | "When it is not sure, it says so and hands it to a person instead of guessing. Anything read from a scanned page, or where the model and the maths disagree, goes to a person." |
-| 1:50 | Report: "What each bid covers" | "Specialist two levels four bids. They each cover something different. Green is included, red excluded, amber is a shortfall such as a 12-hour tank where 24 is required." Hover one cell to show the bid's own words. |
-| 2:30 | Report: "Bidders side by side" | "The cheapest headline bid is not the cheapest once you add what it leaves out. It will not auto-award: the cheapest has an open tariff clause and the longest lead time, and two products do not meet the spec." |
-| 3:00 | Report: "When will it arrive?" | "Specialist three forecasts delivery. Bars are the earliest-likely to latest-likely arrival, the dashed line is the date we need it. It is built in code from four published lead-time reports. One source disagreed wildly and it is shown as dissent, not averaged in." |
-| 3:40 | Terminal: `python -m pytest -q tests/test_verify.py` | "The rule that matters most: no source, no claim. Every quote must be found on the page it cites. An invented quote, or a wrong number, is thrown away. Tests prove it." |
-| 4:10 | README results table | "We measured ourselves against answer keys written from the source documents before we ran the agent. [Say the final held-out number here.] Zero fabricated citations. It names its models and reports cost per run: about a cent for a full submittal check." |
-| 4:40 | README "Known limits" | "And we list where it fails: for example it can miss a footnote that interacts with a second requirement." |
-| 4:55 | Title slide | "Agents a procurement manager can trust, because they show their sources and say when they are unsure." |
+| 0:00 | Title slide | "A data center cannot switch on until its generators, UPS and switchgear arrive and match the spec. Buying them is slow, manual and one missed line costs weeks. We built specialist agents for that job, which Amber can call." |
+| 0:15 | **Overview** tab | "This is the project at a glance. Two of five equipment groups will probably be late: the switchgear has a 96 % chance of missing its date." |
+| 0:30 | In the table, click **LT-002** next to Generators | "Every number has a source. This lead time comes from a contractor's published report: here is the publisher, the date, the exact words, and a link to the website." Close the panel. |
+| 0:45 | **Saved results** → `package_GEN` | "Now the real job: four bids for four 2000 kW generators. The agent levelled the bids, checked two suppliers' datasheets against our spec, and forecast delivery for each option. It took nine minutes and two cents." |
+| 1:05 | The yellow banner and the bidders table | "It does not auto-award, and it says why. B3 has the cheapest headline price, 3.98 million, but once you price what it leaves out it is 4.49 million, its product fails the spec, and it has the longest lead time." |
+| 1:35 | **What each bid covers**: click a red **excluded** cell (B3, S4 or S5) | "Green is included, red is excluded. Click any cell and you see the bid's own words on the page, highlighted. Nothing here is the model's opinion: it is the document." Close the panel. |
+| 2:00 | **Findings**: filter **All**, type `UL` in the search box, find the B3 fuel-tank finding, click **View on the page** | "This is why B3 fails: the spec asks for a UL 2085 tank, and the Kohler datasheet says UL 142. Both quotes, both pages, one click each." |
+| 2:30 | Clear the search. Filter **For you to review**. On one item press **Agree**; on another choose **Change to…**, add a short note, **Save** | "When the agent is not sure, it does not guess: it hands the item to a person. I agree with this one and correct that one. My decisions are saved with the result, and the counter at the top tracks the review." |
+| 3:00 | Scroll to **Vendor follow-ups**, open the B3 bid clarification, press **Copy** | "Then the next action: a clarification letter for each bidder and comments for each submittal, built only from verified quotes. Nothing is sent until a person sends it." |
+| 3:20 | Back to the bidders table: click **Find products that fit** next to B3; then open `discovery_GEN-A` from Saved results | "If a product fails, which one would fit? The agent screens every datasheet we hold on the key ratings. It only names products from documents we have, never from memory." |
+| 3:55 | Terminal: `python scripts/demo_mcp_client.py` | "All of this is six MCP tools, so Amber can call any of them directly. Same answers, same sources, as JSON." |
+| 4:15 | README → "Held-out set 2" table | "We tested on datasheets the agent had never seen, labelled before it ran, and run once. 67 % of requirements correct; every answer it gave on its own was right, 11 out of 11; zero invented citations. The rest it sent to a person, which is what you want." |
+| 4:40 | Overview tab again | "Agents a procurement manager can trust: they show their sources, and they say when they are unsure." |
 
-**Do not say** anything the repo does not do: no "AI approves the purchase", no claims about accuracy numbers that are
-not in the README, no real company names for the bidders (they are fictional and the pages say so).
+## Do not say
+
+* "The AI approves the purchase." It never awards on its own when there is an open risk, and a screen is never an
+  approval.
+* Any accuracy number that is not in the README.
+* Real company names for the bidders. B1 to B4 are fictional, and every page says so. The datasheets are real public
+  documents from the manufacturers.
