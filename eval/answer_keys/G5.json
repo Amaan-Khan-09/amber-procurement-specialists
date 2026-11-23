@@ -1,0 +1,161 @@
+{
+  "case_id": "G5",
+  "split": "heldout",
+  "heldout_set": 2,
+  "tool": "check_submittal",
+  "spec": "data/specs/project_alpha/26_32_13_engine_generators_ALPHA.pdf",
+  "tag": "GEN-A",
+  "submittal": "data/submittals/mtu_16V4000_DS2250_60Hz_50C.pdf",
+  "labeller": "Project author, with AI assistance, from the source PDF, per eval/answer_keys/README.md. Held-out set 2: labelled 23 Nov 2026, after the fixes that followed set 1, BEFORE any agent run on this document.",
+  "labelled_on": "2026-11-23",
+  "reviewed_by": "",
+  "labels": [
+    {
+      "req_id": "R01",
+      "expected": "complies",
+      "submittal_page": 1,
+      "submittal_quote": "2,250 kWe/60 Hz/Standby",
+      "notes": "2250 kW / 2812 kVA standby at 0.8 PF at every voltage: exceeds 2000/2500."
+    },
+    {
+      "req_id": "R02",
+      "expected": "unclear",
+      "submittal_page": 1,
+      "submittal_quote": "Voltage (L-L)  380V † ‡  416V † ‡  440V † ‡  480V",
+      "notes": "480 V offered among 380 V-13.8 kV options; none marked as supplied."
+    },
+    {
+      "req_id": "R03",
+      "expected": "complies",
+      "submittal_page": 1,
+      "submittal_quote": "skVA@30% voltage dip  4,855  4,665  4,895  5,760",
+      "notes": "Every option is at least 4,017 skVA at 30% dip (480 V: 5,760) >= 3000."
+    },
+    {
+      "req_id": "R04",
+      "expected": "complies",
+      "submittal_page": 2,
+      "submittal_quote": "Permanent Magnet Generator (PMG) supply to regulator",
+      "notes": ""
+    },
+    {
+      "req_id": "R05",
+      "expected": "complies",
+      "submittal_page": 3,
+      "submittal_quote": "Arrangement  16-V",
+      "notes": "16-V, 4-cycle (p2-3); after-cooled (after cooler pump)."
+    },
+    {
+      "req_id": "R06",
+      "expected": "complies",
+      "submittal_page": 3,
+      "submittal_quote": "electronic isochronous (ADEC)",
+      "notes": ""
+    },
+    {
+      "req_id": "R07",
+      "expected": "complies",
+      "submittal_page": 2,
+      "submittal_quote": "Electric starting motor - 24V",
+      "notes": ""
+    },
+    {
+      "req_id": "R08",
+      "expected": "deviates",
+      "submittal_page": 3,
+      "submittal_quote": "At 100% of power rating: L/hr (gal/hr)  614 (162)",
+      "notes": "162 gph at full standby > 145 gph."
+    },
+    {
+      "req_id": "R09",
+      "expected": "complies",
+      "submittal_page": 3,
+      "submittal_quote": "Ambient capacity of radiator: °C (°F)  50 (122)",
+      "notes": "Unit-mounted radiator rated 50 C (122 F); no enclosure footnote on this sheet."
+    },
+    {
+      "req_id": "R10",
+      "expected": "unclear",
+      "submittal_page": 4,
+      "submittal_quote": "Refer to Emission Data Sheet (EDS) for emissions data",
+      "notes": "EPA tier not stated; emissions deferred to a separate data sheet."
+    },
+    {
+      "req_id": "R11",
+      "expected": "unclear",
+      "submittal_page": 4,
+      "submittal_quote": "Consult your local mtu Distributor for altitude derations",
+      "notes": "Nominal at 25 C and 300 m; altitude and temperature derates deferred to the distributor."
+    },
+    {
+      "req_id": "R12",
+      "expected": "complies",
+      "submittal_page": 3,
+      "submittal_quote": "Rated rpm  1,800",
+      "notes": ""
+    },
+    {
+      "req_id": "R13",
+      "expected": "complies",
+      "submittal_page": 2,
+      "submittal_quote": "Brushless, rotating field generator",
+      "notes": "Also '2/3 pitch windings' and '4 pole, rotating field' on p2."
+    },
+    {
+      "req_id": "R14",
+      "expected": "missing",
+      "submittal_page": null,
+      "submittal_quote": "",
+      "notes": "Insulation class not stated (only 130 C temperature rise)."
+    },
+    {
+      "req_id": "R15",
+      "expected": "missing",
+      "submittal_page": null,
+      "submittal_quote": "",
+      "notes": "No space heater mentioned."
+    },
+    {
+      "req_id": "R16",
+      "expected": "missing",
+      "submittal_page": null,
+      "submittal_quote": "",
+      "notes": "No output circuit breaker mentioned."
+    },
+    {
+      "req_id": "R17",
+      "expected": "complies",
+      "submittal_page": 2,
+      "submittal_quote": "± 0.25% voltage regulation no load to full load",
+      "notes": ""
+    },
+    {
+      "req_id": "R18",
+      "expected": "complies",
+      "submittal_page": 2,
+      "submittal_quote": "5% maximum total harmonic distortion",
+      "notes": "5% maximum meets 'shall not exceed 5%'."
+    },
+    {
+      "req_id": "R19",
+      "expected": "missing",
+      "submittal_page": null,
+      "submittal_quote": "",
+      "notes": "No fuel tank mentioned."
+    },
+    {
+      "req_id": "R20",
+      "expected": "missing",
+      "submittal_page": null,
+      "submittal_quote": "",
+      "notes": "No jacket-water heater mentioned."
+    },
+    {
+      "req_id": "R21",
+      "expected": "missing",
+      "submittal_page": null,
+      "submittal_quote": "",
+      "notes": "Open power unit only (sound data Level 0 OPU); no enclosure mentioned."
+    }
+  ]
+}
