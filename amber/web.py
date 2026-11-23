@@ -44,6 +44,7 @@ ROOT = Path(__file__).resolve().parents[1]
 DATA = ROOT / "data"
 RUNS = ROOT / "runs"
 WEB = RUNS / "web"
+EXAMPLES = ROOT / "examples"  # committed results behind the README numbers
 UPLOADS = DATA / "uploads"
 KEYS = ROOT / "eval" / "answer_keys"
 PAGE = Path(__file__).with_name("web_index.html")
@@ -53,7 +54,7 @@ UPLOAD_EXT = {".pdf", ".txt"}
 UPLOAD_KINDS = {"submittals", "bids", "specs"}
 PROVIDERS = ("groq", "openrouter", "cerebras", "ollama")  # the paid provider is never offered on this page
 CHECKLISTS = {"26 32 13": "genset_requirements.json", "26 33 53": "ups_requirements.json"}
-RESULT_ID = re.compile(r"^(runs|web):[A-Za-z0-9_.\-]{1,80}$")
+RESULT_ID = re.compile(r"^(runs|web|example):[A-Za-z0-9_.\-]{1,80}$")
 REVIEW_STATUSES = {"agree", "complies", "deviates", "missing", "unclear"}
 
 PRESET = {
@@ -293,7 +294,7 @@ def _result_file(rid: str) -> Path:
     if not RESULT_ID.match(rid or ""):
         raise BadRequest("bad result id")
     src, name = rid.split(":", 1)
-    f = (RUNS if src == "runs" else WEB) / f"{name}.json"
+    f = {"runs": RUNS, "web": WEB, "example": EXAMPLES}[src] / f"{name}.json"
     if not f.is_file() or name == "index":
         raise BadRequest("result not found")
     return f
@@ -313,7 +314,10 @@ def _saved() -> list[dict]:
     for key, m in _index().items():
         if (WEB / f"{key}.json").exists():
             out.append(dict(m, id=f"web:{key}", reviewed=_reviewed(f"web:{key}")))
-    for f in sorted(RUNS.glob("*.json")):
+    mine = {f.stem for f in RUNS.glob("*.json")}
+    files = sorted(RUNS.glob("*.json")) + sorted(f for f in EXAMPLES.glob("*.json") if f.stem not in mine)
+    for f in files:
+        src = "runs" if f.parent == RUNS else "example"
         try:
             r = json.loads(f.read_text(encoding="utf-8"))
         except (json.JSONDecodeError, OSError):
@@ -322,11 +326,12 @@ def _saved() -> list[dict]:
             continue
         R = r.get("result") or {}
         what = R.get("package") or (f"{R.get('submittal', '')} vs {R.get('tag', '')}" if R.get("tag") else "")
-        out.append({"id": f"runs:{f.stem}", "tool": r["tool"], "label": f"{f.stem}: {what}".strip(": "),
+        out.append({"id": f"{src}:{f.stem}", "tool": r["tool"], "label": f"{f.stem}: {what}".strip(": "),
                     "finished": datetime.fromtimestamp(f.stat().st_mtime).isoformat(timespec="seconds"),
                     "findings": len(r["findings"]), "needs_human": len(r.get("needs_human") or []),
                     "cost_usd": round(sum(m.get("cost_usd") or 0 for m in (r.get("run") or {}).get("models") or []), 4),
-                    "source": "command line", "reviewed": _reviewed(f"runs:{f.stem}")})
+                    "source": "command line" if src == "runs" else "example in the repo",
+                    "reviewed": _reviewed(f"{src}:{f.stem}")})
     return sorted(out, key=lambda m: m.get("finished") or "", reverse=True)
 
 

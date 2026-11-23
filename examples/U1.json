@@ -1,0 +1,1130 @@
+{
+  "tool": "check_submittal",
+  "version": "1.0",
+  "result": {
+    "tag": "UPS-A",
+    "spec": "26-33-53-static-ups-alpha",
+    "submittal": "vertiv-exl-s1-package",
+    "summary": {
+      "complies": 8,
+      "deviates": 0,
+      "missing": 3,
+      "unclear": 5
+    },
+    "overall": "review",
+    "rows": [
+      {
+        "req_id": "U01",
+        "locator": "2.1.A (Rating)",
+        "requirement": "Continuous output rating shall be at least 1200 kVA and 1200 kW at unity power factor, 480 V.",
+        "verdict": "complies",
+        "confidence": 0.65
+      },
+      {
+        "req_id": "U02",
+        "locator": "2.1.B (Ambient Rating)",
+        "requirement": "Full rating shall be available at an ambient operating temperature of 40 °C.",
+        "verdict": "complies",
+        "confidence": 0.65
+      },
+      {
+        "req_id": "U03",
+        "locator": "2.1.C (System Voltage)",
+        "requirement": "Input, bypass, and output electrical configuration shall be 480 V, 3-phase, 3-wire plus ground at 60 Hz.",
+        "verdict": "complies",
+        "confidence": 0.65
+      },
+      {
+        "req_id": "U04",
+        "locator": "2.1.D (Topology)",
+        "requirement": "UPS shall feature a double-conversion online design classified as VFI per IEC 62040-3.",
+        "verdict": "complies",
+        "confidence": 0.65
+      },
+      {
+        "req_id": "U05",
+        "locator": "2.1.E (Efficiency)",
+        "requirement": "Double-conversion AC-to-AC efficiency shall be at least 96% at 100% load.",
+        "verdict": "unclear",
+        "confidence": 0.4
+      },
+      {
+        "req_id": "U06",
+        "locator": "2.1.F (Input Characteristics)",
+        "requirement": "Input power factor shall be at least 0.99 and full-load input current distortion (THDi) shall not exceed 5%. ",
+        "verdict": "complies",
+        "confidence": 0.95
+      },
+      {
+        "req_id": "U07",
+        "locator": "2.1.G (Output Voltage Regulation)",
+        "requirement": "Steady-state output voltage regulation shall be within +/-1% for balanced load changes from 0 to 100%.",
+        "verdict": "complies",
+        "confidence": 0.95
+      },
+      {
+        "req_id": "U08",
+        "locator": "2.1.H (Overload)",
+        "requirement": "Inverter must carry 125 percent of rated load for at least 10 minutes",
+        "verdict": "complies",
+        "confidence": 0.95
+      },
+      {
+        "req_id": "U09",
+        "locator": "2.1.I (Static Bypass)",
+        "requirement": "Provide an automatic static bypass switch within the UPS",
+        "verdict": "missing",
+        "confidence": 0.8
+      },
+      {
+        "req_id": "U10",
+        "locator": "2.1.J (Maintenance Bypass)",
+        "requirement": "Provide a manual maintenance bypass furnished with the UPS",
+        "verdict": "complies",
+        "confidence": 0.95
+      },
+      {
+        "req_id": "U11",
+        "locator": "2.1.K (Batteries)",
+        "requirement": "Provide VRLA or lithium-ion batteries sized for not less than 10 minutes runtime at full load",
+        "verdict": "unclear",
+        "confidence": 0.6
+      },
+      {
+        "req_id": "U12",
+        "locator": "2.1.L (Paralleling)",
+        "requirement": "UPS must be capable of parallel operation with at least 3 additional units of the same rating",
+        "verdict": "unclear",
+        "confidence": 0.74
+      },
+      {
+        "req_id": "U13",
+        "locator": "2.1.M (Listing)",
+        "requirement": "UPS must be listed to UL 1778",
+        "verdict": "missing",
+        "confidence": 0.8
+      },
+      {
+        "req_id": "U14",
+        "locator": "2.1.N (Seismic)",
+        "requirement": "UPS shall be certified for seismic installation per the International Building Code",
+        "verdict": "missing",
+        "confidence": 0.8
+      },
+      {
+        "req_id": "U15",
+        "locator": "2.2.A (Dimensions)",
+        "requirement": "Each UPS shall fit within a maximum width of 110 inches, depth of 40 inches, and height of 84 inches.",
+        "verdict": "unclear",
+        "confidence": 0.65
+      },
+      {
+        "req_id": "U16",
+        "locator": "2.2.B (Heat Dissipation)",
+        "requirement": "Heat dissipation at full load shall not exceed 150,000 BTU per hour.",
+        "verdict": "unclear",
+        "confidence": 0.4
+      }
+    ],
+    "unread_scanned_pages": [],
+    "provider_switches": []
+  },
+  "findings": [
+    {
+      "id": "F-U01",
+      "claim": "Continuous output rating shall be at least 1200 kVA and 1200 kW at unity power factor, 480 V.",
+      "status": "complies",
+      "confidence": 0.65,
+      "citations": [
+        {
+          "doc_id": "26-33-53-static-ups-alpha",
+          "page": 1,
+          "locator": "2.1.A (Rating)",
+          "quote": "continuous output rating of not less than 1200 kVA and 1200 kW at unity power factor, at 480 volts",
+          "match": "exact",
+          "ocr": false
+        },
+        {
+          "doc_id": "vertiv-exl-s1-package",
+          "page": 12,
+          "locator": "",
+          "quote": "UPS Rating (kVA) 300 400 500 600 800 1000 1200",
+          "match": "exact",
+          "ocr": false
+        },
+        {
+          "doc_id": "vertiv-exl-s1-package",
+          "page": 12,
+          "locator": "",
+          "quote": "Output active power at 35 °C*(kW) 300 400 500 600 800 1000 1200",
+          "match": "exact",
+          "ocr": false
+        },
+        {
+          "doc_id": "vertiv-exl-s1-package",
+          "page": 3,
+          "locator": "",
+          "quote": "Output Power Factor up to 1",
+          "match": "exact",
+          "ocr": false
+        },
+        {
+          "doc_id": "vertiv-exl-s1-package",
+          "page": 15,
+          "locator": "",
+          "quote": "480",
+          "match": "exact",
+          "ocr": false
+        }
+      ],
+      "needs_human": true,
+      "why": "offered 1200 kVA meets >= 1200 kVA; offered 1200 kW meets >= 1200 kW; offered 1 meets == 1.0; offered 480 V meets == 480 V; unit V is not shown in the quote, confirm",
+      "data": {
+        "req_id": "U01",
+        "locator": "2.1.A (Rating)",
+        "conditions": [
+          {
+            "cid": "U01a",
+            "attribute": "continuous_output_rating_kva",
+            "condition": ">= 1200 kVA",
+            "verdict": "complies",
+            "why": "offered 1200 kVA meets >= 1200 kVA",
+            "offered": {
+              "values": [
+                1200
+              ],
+              "unit": "kVA",
+              "selected": null,
+              "quote": "UPS Rating (kVA)  300  400  500  600  800  1000  1200",
+              "page": 12,
+              "meets": "yes"
+            }
+          },
+          {
+            "cid": "U01b",
+            "attribute": "continuous_output_rating_kw",
+            "condition": ">= 1200 kW",
+            "verdict": "complies",
+            "why": "offered 1200 kW meets >= 1200 kW",
+            "offered": {
+              "values": [
+                1200
+              ],
+              "unit": "kW",
+              "selected": null,
+              "quote": "Output active power at 35 °C*(kW)  300  400  500  600  800  1000  1200",
+              "page": 12,
+              "meets": "yes"
+            }
+          },
+          {
+            "cid": "U01c",
+            "attribute": "output_power_factor",
+            "condition": "== 1.0",
+            "verdict": "complies",
+            "why": "offered 1 meets == 1.0",
+            "offered": {
+              "values": [
+                1
+              ],
+              "unit": "",
+              "selected": null,
+              "quote": "Output Power Factor up to 1",
+              "page": 3,
+              "meets": "yes"
+            }
+          },
+          {
+            "cid": "U01d",
+            "attribute": "output_voltage",
+            "condition": "== 480 V",
+            "verdict": "complies",
+            "why": "offered 480 V meets == 480 V; unit V is not shown in the quote, confirm",
+            "offered": {
+              "values": [
+                480
+              ],
+              "unit": "V",
+              "selected": null,
+              "quote": "480",
+              "page": 15,
+              "meets": "yes"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "F-U02",
+      "claim": "Full rating shall be available at an ambient operating temperature of 40 °C.",
+      "status": "complies",
+      "confidence": 0.65,
+      "citations": [
+        {
+          "doc_id": "26-33-53-static-ups-alpha",
+          "page": 1,
+          "locator": "2.1.B (Ambient Rating)",
+          "quote": "full rating in paragraph A shall be available at an ambient temperature of 40 degrees C",
+          "match": "exact",
+          "ocr": false
+        },
+        {
+          "doc_id": "vertiv-exl-s1-package",
+          "page": 12,
+          "locator": "",
+          "quote": "Operating Temperature (°C) 0-40",
+          "match": "exact",
+          "ocr": false
+        }
+      ],
+      "needs_human": true,
+      "why": "model judgement on verified quote: 'Operating Temperature (°C) 0-40'",
+      "data": {
+        "req_id": "U02",
+        "locator": "2.1.B (Ambient Rating)",
+        "conditions": [
+          {
+            "cid": "U02a",
+            "attribute": "max_ambient_operating_temperature_at_full_rating",
+            "condition": ">= 40 °C",
+            "verdict": "complies",
+            "why": "model judgement on verified quote: 'Operating Temperature (°C) 0-40'",
+            "offered": {
+              "values": [],
+              "unit": "°C",
+              "selected": null,
+              "quote": "Operating Temperature (°C)  0-40",
+              "page": 12,
+              "meets": "yes"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "F-U03",
+      "claim": "Input, bypass, and output electrical configuration shall be 480 V, 3-phase, 3-wire plus ground at 60 Hz.",
+      "status": "complies",
+      "confidence": 0.65,
+      "citations": [
+        {
+          "doc_id": "26-33-53-static-ups-alpha",
+          "page": 1,
+          "locator": "2.1.C (System Voltage)",
+          "quote": "Input, bypass and output shall be 480 volts, 3-phase, 3-wire plus ground, 60 Hz",
+          "match": "exact",
+          "ocr": false
+        },
+        {
+          "doc_id": "vertiv-exl-s1-package",
+          "page": 15,
+          "locator": "",
+          "quote": "Rectifier AC Input: 3-phase, 3-wire, plus ground",
+          "match": "exact",
+          "ocr": false
+        },
+        {
+          "doc_id": "vertiv-exl-s1-package",
+          "page": 12,
+          "locator": "",
+          "quote": "50±10%(60 selectable)",
+          "match": "exact",
+          "ocr": false
+        }
+      ],
+      "needs_human": true,
+      "why": "model judgement on verified quote: 'Rectifier AC Input: 3-phase, 3-wire, plus ground'; offered 60 Hz meets == 60 Hz; unit Hz is not shown in the quote, confirm",
+      "data": {
+        "req_id": "U03",
+        "locator": "2.1.C (System Voltage)",
+        "conditions": [
+          {
+            "cid": "U03a",
+            "attribute": "electrical_configuration",
+            "condition": "all of: 480 volts, 3-phase, 3-wire",
+            "verdict": "complies",
+            "why": "model judgement on verified quote: 'Rectifier AC Input: 3-phase, 3-wire, plus ground'",
+            "offered": {
+              "values": [
+                "480 V, 3-phase, 3-wire plus ground"
+              ],
+              "unit": "",
+              "selected": null,
+              "quote": "Rectifier AC Input: 3-phase, 3-wire, plus ground",
+              "page": 15,
+              "meets": "yes"
+            }
+          },
+          {
+            "cid": "U03b",
+            "attribute": "frequency",
+            "condition": "== 60 Hz",
+            "verdict": "complies",
+            "why": "offered 60 Hz meets == 60 Hz; unit Hz is not shown in the quote, confirm",
+            "offered": {
+              "values": [
+                60
+              ],
+              "unit": "Hz",
+              "selected": null,
+              "quote": "50±10%(60 selectable)",
+              "page": 12,
+              "meets": "yes"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "F-U04",
+      "claim": "UPS shall feature a double-conversion online design classified as VFI per IEC 62040-3.",
+      "status": "complies",
+      "confidence": 0.65,
+      "citations": [
+        {
+          "doc_id": "26-33-53-static-ups-alpha",
+          "page": 1,
+          "locator": "2.1.D (Topology)",
+          "quote": "Topology: Double-conversion (online) design, classified VFI under IEC 62040-3",
+          "match": "exact",
+          "ocr": false
+        },
+        {
+          "doc_id": "vertiv-exl-s1-package",
+          "page": 12,
+          "locator": "",
+          "quote": "Classification according to IEC/EN 62040-3 VFI-SS-111",
+          "match": "exact",
+          "ocr": false
+        }
+      ],
+      "needs_human": true,
+      "why": "model judgement on verified quote: 'Classification according to IEC/EN 62040-3 VFI-SS-111'",
+      "data": {
+        "req_id": "U04",
+        "locator": "2.1.D (Topology)",
+        "conditions": [
+          {
+            "cid": "U04a",
+            "attribute": "ups_topology",
+            "condition": "all of: double-conversion, online, vfi",
+            "verdict": "complies",
+            "why": "model judgement on verified quote: 'Classification according to IEC/EN 62040-3 VFI-SS-111'",
+            "offered": {
+              "values": [
+                "VFI-SS-111"
+              ],
+              "unit": null,
+              "selected": true,
+              "quote": "Classification according to IEC/EN 62040-3  VFI-SS-111",
+              "page": 12,
+              "meets": "yes"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "F-U05",
+      "claim": "Double-conversion AC-to-AC efficiency shall be at least 96% at 100% load.",
+      "status": "unclear",
+      "confidence": 0.4,
+      "citations": [
+        {
+          "doc_id": "26-33-53-static-ups-alpha",
+          "page": 1,
+          "locator": "2.1.E (Efficiency)",
+          "quote": "Double-conversion AC-to-AC efficiency shall be not less than 96 percent at 100 percent load",
+          "match": "exact",
+          "ocr": false
+        },
+        {
+          "doc_id": "vertiv-exl-s1-package",
+          "page": 15,
+          "locator": "",
+          "quote": "≥96.8%",
+          "match": "exact",
+          "ocr": false
+        }
+      ],
+      "needs_human": true,
+      "why": "reported value(s) ['>=96.9', '>=96.5', '>=96.5'] do not appear in the quote '≥96.8%'; discarded",
+      "data": {
+        "req_id": "U05",
+        "locator": "2.1.E (Efficiency)",
+        "conditions": [
+          {
+            "cid": "U05a",
+            "attribute": "ac_to_ac_efficiency_at_100pct_load",
+            "condition": ">= 96 %",
+            "verdict": "unclear",
+            "why": "reported value(s) ['>=96.9', '>=96.5', '>=96.5'] do not appear in the quote '≥96.8%'; discarded",
+            "offered": {
+              "values": [
+                ">=96.9",
+                ">=96.8",
+                ">=96.5",
+                ">=96.5"
+              ],
+              "unit": "%",
+              "selected": null,
+              "quote": "≥96.8%",
+              "page": 15,
+              "meets": "yes"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "F-U06",
+      "claim": "Input power factor shall be at least 0.99 and full-load input current distortion (THDi) shall not exceed 5%. ",
+      "status": "complies",
+      "confidence": 0.95,
+      "citations": [
+        {
+          "doc_id": "26-33-53-static-ups-alpha",
+          "page": 1,
+          "locator": "2.1.F (Input Characteristics)",
+          "quote": "Input power factor shall be not less than 0.99 and input current distortion (THDi) shall not exceed 5 percent at full load",
+          "match": "exact",
+          "ocr": false
+        },
+        {
+          "doc_id": "vertiv-exl-s1-package",
+          "page": 12,
+          "locator": "",
+          "quote": "Input Power Factor ≥ 0.99",
+          "match": "exact",
+          "ocr": false
+        },
+        {
+          "doc_id": "vertiv-exl-s1-package",
+          "page": 12,
+          "locator": "",
+          "quote": "Input current distortion (THDi) (%) ≤3",
+          "match": "exact",
+          "ocr": false
+        }
+      ],
+      "needs_human": false,
+      "why": "offered >=0.99 meets >= 0.99; offered ≤3 % meets <= 5 %",
+      "data": {
+        "req_id": "U06",
+        "locator": "2.1.F (Input Characteristics)",
+        "conditions": [
+          {
+            "cid": "U06a",
+            "attribute": "input_power_factor",
+            "condition": ">= 0.99",
+            "verdict": "complies",
+            "why": "offered >=0.99 meets >= 0.99",
+            "offered": {
+              "values": [
+                ">=0.99"
+              ],
+              "unit": null,
+              "selected": null,
+              "quote": "Input Power Factor  ≥ 0.99",
+              "page": 12,
+              "meets": "yes"
+            }
+          },
+          {
+            "cid": "U06b",
+            "attribute": "input_current_distortion_thdi_at_full_load",
+            "condition": "<= 5 %",
+            "verdict": "complies",
+            "why": "offered ≤3 % meets <= 5 %",
+            "offered": {
+              "values": [
+                "≤3"
+              ],
+              "unit": "%",
+              "selected": null,
+              "quote": "Input current distortion (THDi) (%)  ≤3",
+              "page": 12,
+              "meets": "yes"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "F-U07",
+      "claim": "Steady-state output voltage regulation shall be within +/-1% for balanced load changes from 0 to 100%.",
+      "status": "complies",
+      "confidence": 0.95,
+      "citations": [
+        {
+          "doc_id": "26-33-53-static-ups-alpha",
+          "page": 1,
+          "locator": "2.1.G (Output Voltage Regulation)",
+          "quote": "Steady-state output voltage shall be held within plus or minus 1 percent for balanced load changes from 0 to 100 percent",
+          "match": "exact",
+          "ocr": false
+        },
+        {
+          "doc_id": "vertiv-exl-s1-package",
+          "page": 12,
+          "locator": "",
+          "quote": "Output voltage stability by load variation 0-100% (%) - \"±1",
+          "match": "exact",
+          "ocr": false
+        }
+      ],
+      "needs_human": false,
+      "why": "offered ±1 % meets <= 1 %",
+      "data": {
+        "req_id": "U07",
+        "locator": "2.1.G (Output Voltage Regulation)",
+        "conditions": [
+          {
+            "cid": "U07a",
+            "attribute": "steady_state_output_voltage_regulation_0_to_100pct_load",
+            "condition": "<= 1 %",
+            "verdict": "complies",
+            "why": "offered ±1 % meets <= 1 %",
+            "offered": {
+              "values": [
+                "±1"
+              ],
+              "unit": "%",
+              "selected": null,
+              "quote": "Output voltage stability by load variation 0-100% (%) - \"±1",
+              "page": 12,
+              "meets": "yes"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "F-U08",
+      "claim": "Inverter must carry 125 percent of rated load for at least 10 minutes",
+      "status": "complies",
+      "confidence": 0.95,
+      "citations": [
+        {
+          "doc_id": "26-33-53-static-ups-alpha",
+          "page": 1,
+          "locator": "2.1.H (Overload)",
+          "quote": "inverter shall carry 125 percent of rated load for not less than 10 minutes",
+          "match": "exact",
+          "ocr": false
+        },
+        {
+          "doc_id": "vertiv-exl-s1-package",
+          "page": 12,
+          "locator": "",
+          "quote": "125% for 10mins",
+          "match": "exact",
+          "ocr": false
+        }
+      ],
+      "needs_human": false,
+      "why": "offered 10 min meets >= 10 min",
+      "data": {
+        "req_id": "U08",
+        "locator": "2.1.H (Overload)",
+        "conditions": [
+          {
+            "cid": "U08a",
+            "attribute": "inverter_overload_duration_at_125pct",
+            "condition": ">= 10 min",
+            "verdict": "complies",
+            "why": "offered 10 min meets >= 10 min",
+            "offered": {
+              "values": [
+                "10"
+              ],
+              "unit": "min",
+              "selected": null,
+              "quote": "125% for 10mins",
+              "page": 12,
+              "meets": "yes"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "F-U09",
+      "claim": "Provide an automatic static bypass switch within the UPS",
+      "status": "missing",
+      "confidence": 0.8,
+      "citations": [
+        {
+          "doc_id": "26-33-53-static-ups-alpha",
+          "page": 1,
+          "locator": "2.1.I (Static Bypass)",
+          "quote": "Provide an automatic static bypass switch within the UPS",
+          "match": "exact",
+          "ocr": false
+        }
+      ],
+      "needs_human": false,
+      "why": "not stated in the submittal",
+      "data": {
+        "req_id": "U09",
+        "locator": "2.1.I (Static Bypass)",
+        "conditions": [
+          {
+            "cid": "U09a",
+            "attribute": "static_bypass_switch",
+            "condition": "all of: automatic static bypass, static bypass switch",
+            "verdict": "missing",
+            "why": "not stated in the submittal",
+            "offered": {
+              "values": [],
+              "unit": "",
+              "selected": null,
+              "quote": "",
+              "page": null,
+              "meets": "no"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "F-U10",
+      "claim": "Provide a manual maintenance bypass furnished with the UPS",
+      "status": "complies",
+      "confidence": 0.95,
+      "citations": [
+        {
+          "doc_id": "26-33-53-static-ups-alpha",
+          "page": 1,
+          "locator": "2.1.J (Maintenance Bypass)",
+          "quote": "Provide a manual maintenance bypass, furnished with the UPS",
+          "match": "exact",
+          "ocr": false
+        },
+        {
+          "doc_id": "vertiv-exl-s1-package",
+          "page": 12,
+          "locator": "",
+          "quote": "Manual Maintenance Bypass Included 300-500 kW",
+          "match": "exact",
+          "ocr": false
+        }
+      ],
+      "needs_human": false,
+      "why": "offered Included 300-500 kW Manual Maintenance Bypass Included 300-500 kW meets one of: manual maintenance bypass, maintenance bypass",
+      "data": {
+        "req_id": "U10",
+        "locator": "2.1.J (Maintenance Bypass)",
+        "conditions": [
+          {
+            "cid": "U10a",
+            "attribute": "maintenance_bypass",
+            "condition": "one of: manual maintenance bypass, maintenance bypass",
+            "verdict": "complies",
+            "why": "offered Included 300-500 kW Manual Maintenance Bypass Included 300-500 kW meets one of: manual maintenance bypass, maintenance bypass",
+            "offered": {
+              "values": [
+                "Included 300-500 kW",
+                "Not included 600-1200 kW"
+              ],
+              "unit": "kW",
+              "selected": true,
+              "quote": "Manual Maintenance Bypass Included 300-500 kW",
+              "page": 12,
+              "meets": "yes"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "F-U11",
+      "claim": "Provide VRLA or lithium-ion batteries sized for not less than 10 minutes runtime at full load",
+      "status": "unclear",
+      "confidence": 0.6,
+      "citations": [
+        {
+          "doc_id": "26-33-53-static-ups-alpha",
+          "page": 1,
+          "locator": "2.1.K (Batteries)",
+          "quote": "Valve-regulated lead-acid or lithium-ion, sized for not less than 10 minutes at full load",
+          "match": "exact",
+          "ocr": false
+        },
+        {
+          "doc_id": "vertiv-exl-s1-package",
+          "page": 2,
+          "locator": "",
+          "quote": "standard VRLA and new Li-ion batteries",
+          "match": "exact",
+          "ocr": false
+        }
+      ],
+      "needs_human": true,
+      "why": "only partly stated: all offered options (VRLA; Li-ion) meet one of: valve-regulated lead-acid, vrla, lithium-ion, li-ion; not stated in the submittal",
+      "data": {
+        "req_id": "U11",
+        "locator": "2.1.K (Batteries)",
+        "conditions": [
+          {
+            "cid": "U11a",
+            "attribute": "battery_type",
+            "condition": "one of: valve-regulated lead-acid, vrla, lithium-ion, li-ion",
+            "verdict": "complies",
+            "why": "all offered options (VRLA; Li-ion) meet one of: valve-regulated lead-acid, vrla, lithium-ion, li-ion",
+            "offered": {
+              "values": [
+                "VRLA",
+                "Li-ion"
+              ],
+              "unit": "",
+              "selected": null,
+              "quote": "standard VRLA and new Li-ion batteries",
+              "page": 2,
+              "meets": "yes"
+            }
+          },
+          {
+            "cid": "U11b",
+            "attribute": "battery_runtime_at_full_load",
+            "condition": ">= 10 min",
+            "verdict": "missing",
+            "why": "not stated in the submittal",
+            "offered": {
+              "values": [],
+              "unit": "min",
+              "selected": null,
+              "quote": "",
+              "page": null,
+              "meets": "no"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "F-U12",
+      "claim": "UPS must be capable of parallel operation with at least 3 additional units of the same rating",
+      "status": "unclear",
+      "confidence": 0.74,
+      "citations": [
+        {
+          "doc_id": "26-33-53-static-ups-alpha",
+          "page": 1,
+          "locator": "2.1.L (Paralleling)",
+          "quote": "capable of operating in parallel with at least 3 additional units of the same rating",
+          "match": "exact",
+          "ocr": false
+        },
+        {
+          "doc_id": "vertiv-exl-s1-package",
+          "page": 6,
+          "locator": "",
+          "quote": "up to 8 units in parallel",
+          "match": "exact",
+          "ocr": false
+        }
+      ],
+      "needs_human": true,
+      "why": "reported value 'up to 8 units' reads like a label, not a number; not guessing",
+      "data": {
+        "req_id": "U12",
+        "locator": "2.1.L (Paralleling)",
+        "conditions": [
+          {
+            "cid": "U12a",
+            "attribute": "parallel_additional_units_capacity",
+            "condition": ">= 3",
+            "verdict": "unclear",
+            "why": "reported value 'up to 8 units' reads like a label, not a number; not guessing",
+            "offered": {
+              "values": [
+                "up to 8 units"
+              ],
+              "unit": "",
+              "selected": null,
+              "quote": "up to 8 units in parallel",
+              "page": 6,
+              "meets": "yes"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "F-U13",
+      "claim": "UPS must be listed to UL 1778",
+      "status": "missing",
+      "confidence": 0.8,
+      "citations": [
+        {
+          "doc_id": "26-33-53-static-ups-alpha",
+          "page": 1,
+          "locator": "2.1.M (Listing)",
+          "quote": "The UPS shall be listed to UL 1778",
+          "match": "exact",
+          "ocr": false
+        }
+      ],
+      "needs_human": false,
+      "why": "not stated in the submittal",
+      "data": {
+        "req_id": "U13",
+        "locator": "2.1.M (Listing)",
+        "conditions": [
+          {
+            "cid": "U13a",
+            "attribute": "safety_listing",
+            "condition": "all of: UL 1778",
+            "verdict": "missing",
+            "why": "not stated in the submittal",
+            "offered": {
+              "values": [],
+              "unit": null,
+              "selected": null,
+              "quote": null,
+              "page": null,
+              "meets": "no"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "F-U14",
+      "claim": "UPS shall be certified for seismic installation per the International Building Code",
+      "status": "missing",
+      "confidence": 0.8,
+      "citations": [
+        {
+          "doc_id": "26-33-53-static-ups-alpha",
+          "page": 1,
+          "locator": "2.1.N (Seismic)",
+          "quote": "certified for seismic installation in accordance with the International Building Code",
+          "match": "exact",
+          "ocr": false
+        }
+      ],
+      "needs_human": false,
+      "why": "not stated in the submittal",
+      "data": {
+        "req_id": "U14",
+        "locator": "2.1.N (Seismic)",
+        "conditions": [
+          {
+            "cid": "U14a",
+            "attribute": "seismic_certification",
+            "condition": "one of: seismic, International Building Code, IBC",
+            "verdict": "missing",
+            "why": "not stated in the submittal",
+            "offered": {
+              "values": [],
+              "unit": null,
+              "selected": null,
+              "quote": null,
+              "page": null,
+              "meets": "no"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "F-U15",
+      "claim": "Each UPS shall fit within a maximum width of 110 inches, depth of 40 inches, and height of 84 inches.",
+      "status": "unclear",
+      "confidence": 0.65,
+      "citations": [
+        {
+          "doc_id": "26-33-53-static-ups-alpha",
+          "page": 1,
+          "locator": "2.2.A (Dimensions)",
+          "quote": "Dimensions: Each UPS shall fit within 110 inches wide, 40 inches deep and 84 inches high.",
+          "match": "exact",
+          "ocr": false
+        },
+        {
+          "doc_id": "vertiv-exl-s1-package",
+          "page": 12,
+          "locator": "",
+          "quote": "Width (mm) 1000 1250 2000 2650",
+          "match": "exact",
+          "ocr": false
+        },
+        {
+          "doc_id": "vertiv-exl-s1-package",
+          "page": 12,
+          "locator": "",
+          "quote": "Depth (mm) 900",
+          "match": "exact",
+          "ocr": false
+        },
+        {
+          "doc_id": "vertiv-exl-s1-package",
+          "page": 12,
+          "locator": "",
+          "quote": "Height (mm) 1950",
+          "match": "exact",
+          "ocr": false
+        }
+      ],
+      "needs_human": true,
+      "why": "model reading (deviates) and code check (complies) disagree: all offered options (1000 mm, 1250 mm, 2000 mm, 2650 mm) meet <= 110 in; model reading (deviates) and code check (complies) disagree: offered 900 mm meets <= 40 in; model reading (deviates) and code check (complies) disagree: offered 1950 mm meets <= 84 in",
+      "data": {
+        "req_id": "U15",
+        "locator": "2.2.A (Dimensions)",
+        "conditions": [
+          {
+            "cid": "U15a",
+            "attribute": "width",
+            "condition": "<= 110 in",
+            "verdict": "unclear",
+            "why": "model reading (deviates) and code check (complies) disagree: all offered options (1000 mm, 1250 mm, 2000 mm, 2650 mm) meet <= 110 in",
+            "offered": {
+              "values": [
+                "1000",
+                "1250",
+                "2000",
+                "2650"
+              ],
+              "unit": "mm",
+              "selected": null,
+              "quote": "Width (mm)  1000  1250  2000  2650",
+              "page": 12,
+              "meets": "no"
+            }
+          },
+          {
+            "cid": "U15b",
+            "attribute": "depth",
+            "condition": "<= 40 in",
+            "verdict": "unclear",
+            "why": "model reading (deviates) and code check (complies) disagree: offered 900 mm meets <= 40 in",
+            "offered": {
+              "values": [
+                "900"
+              ],
+              "unit": "mm",
+              "selected": null,
+              "quote": "Depth (mm)  900",
+              "page": 12,
+              "meets": "no"
+            }
+          },
+          {
+            "cid": "U15c",
+            "attribute": "height",
+            "condition": "<= 84 in",
+            "verdict": "unclear",
+            "why": "model reading (deviates) and code check (complies) disagree: offered 1950 mm meets <= 84 in",
+            "offered": {
+              "values": [
+                "1950"
+              ],
+              "unit": "mm",
+              "selected": null,
+              "quote": "Height (mm)  1950",
+              "page": 12,
+              "meets": "no"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "F-U16",
+      "claim": "Heat dissipation at full load shall not exceed 150,000 BTU per hour.",
+      "status": "unclear",
+      "confidence": 0.4,
+      "citations": [
+        {
+          "doc_id": "26-33-53-static-ups-alpha",
+          "page": 1,
+          "locator": "2.2.B (Heat Dissipation)",
+          "quote": "Heat Dissipation: Heat released at full load shall not exceed 150,000 BTU per hour.",
+          "match": "exact",
+          "ocr": false
+        }
+      ],
+      "needs_human": true,
+      "why": "reported quote not found in the submittal ('BTU/H  28198  2800 ... 61876  3920'); value discarded",
+      "data": {
+        "req_id": "U16",
+        "locator": "2.2.B (Heat Dissipation)",
+        "conditions": [
+          {
+            "cid": "U16a",
+            "attribute": "heat_dissipation_at_full_load",
+            "condition": "<= 150000 BTU/h",
+            "verdict": "unclear",
+            "why": "reported quote not found in the submittal ('BTU/H  28198  2800 ... 61876  3920'); value discarded",
+            "offered": {
+              "values": [
+                "28198",
+                "34932",
+                "48036",
+                "61876"
+              ],
+              "unit": "BTU/H",
+              "selected": null,
+              "quote": "BTU/H  28198  2800 ... 61876  3920",
+              "page": 15,
+              "meets": "no"
+            }
+          }
+        ]
+      }
+    }
+  ],
+  "needs_human": [
+    {
+      "finding_id": "F-U01",
+      "reason": "offered 1200 kVA meets >= 1200 kVA; offered 1200 kW meets >= 1200 kW; offered 1 meets == 1.0; offered 480 V meets == 480 V; unit V is not shown in the quote, confirm"
+    },
+    {
+      "finding_id": "F-U02",
+      "reason": "model judgement on verified quote: 'Operating Temperature (°C) 0-40'"
+    },
+    {
+      "finding_id": "F-U03",
+      "reason": "model judgement on verified quote: 'Rectifier AC Input: 3-phase, 3-wire, plus ground'; offered 60 Hz meets == 60 Hz; unit Hz is not shown in the quote, confirm"
+    },
+    {
+      "finding_id": "F-U04",
+      "reason": "model judgement on verified quote: 'Classification according to IEC/EN 62040-3 VFI-SS-111'"
+    },
+    {
+      "finding_id": "F-U05",
+      "reason": "reported value(s) ['>=96.9', '>=96.5', '>=96.5'] do not appear in the quote '≥96.8%'; discarded"
+    },
+    {
+      "finding_id": "F-U11",
+      "reason": "only partly stated: all offered options (VRLA; Li-ion) meet one of: valve-regulated lead-acid, vrla, lithium-ion, li-ion; not stated in the submittal"
+    },
+    {
+      "finding_id": "F-U12",
+      "reason": "reported value 'up to 8 units' reads like a label, not a number; not guessing"
+    },
+    {
+      "finding_id": "F-U15",
+      "reason": "model reading (deviates) and code check (complies) disagree: all offered options (1000 mm, 1250 mm, 2000 mm, 2650 mm) meet <= 110 in; model reading (deviates) and code check (complies) disagree: offered 900 mm meets <= 40 in; model reading (deviates) and code check (complies) disagree: offered 1950 mm meets <= 84 in"
+    },
+    {
+      "finding_id": "F-U16",
+      "reason": "reported quote not found in the submittal ('BTU/H  28198  2800 ... 61876  3920'); value discarded"
+    }
+  ],
+  "run": {
+    "models": [
+      {
+        "name": "openai/gpt-oss-120b",
+        "provider": "groq",
+        "tokens_in": 17414,
+        "tokens_out": 3403,
+        "cost_usd": 0.004654,
+        "calls": 5
+      }
+    ],
+    "latency_ms": 130714
+  }
+}

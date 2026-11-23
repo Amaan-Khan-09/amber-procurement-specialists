@@ -77,6 +77,14 @@ def test_review_decisions_are_saved_beside_the_result(client):
     assert client.post(f"/api/results/{rid}/review", json={"finding": fid, "decision": "clear"}).json()["reviews"] == {}
 
 
+def test_committed_examples_open_without_any_run(client):
+    saved = {m["id"]: m for m in client.get("/api/state").json()["saved"]}
+    assert "example:package_GEN" in saved and saved["example:package_GEN"]["source"] == "example in the repo"
+    res = client.get("/api/results/example:package_GEN").json()["result"]
+    assert res["tool"] == "run_package_review" and res["result"]["follow_ups"]
+    assert client.get("/api/results/example:package_GEN/report").status_code == 200
+
+
 def test_result_ids_cannot_escape_the_runs_folder(client):
     for rid in ("runs:../../.env", "web:..%2F..%2Fx", "other:G2", "web:index"):
         assert client.get(f"/api/results/{rid}").status_code == 404

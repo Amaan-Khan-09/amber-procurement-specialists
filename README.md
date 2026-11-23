@@ -55,6 +55,10 @@ python -m amber.server                                   # MCP server on stdio (
 
 Notes for a fresh clone:
 
+* **No API key needed to see the results.** `examples/` holds the saved results behind every number in this README
+  (the package review, product discovery, every scored case). `python -m amber.web` lists them under Saved results,
+  and the Overview, delivery forecast and source viewer work with no key at all.
+
 * One public file (the Kohler KD1000 submittal, case G3) is on a site that refuses automated downloads; the fetch
   script prints its link and the exact path to save it under after downloading it in a browser.
 * Scanned pages are read from a local cache that is not in the repository (it is derived from copyrighted documents).
