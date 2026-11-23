@@ -54,3 +54,23 @@ def test_groq_outage_does_not_silently_use_paid_gemini(monkeypatch):
     except LLMError:
         pass
     assert not called
+
+
+def test_every_model_call_is_logged_with_its_purpose(monkeypatch):
+    monkeypatch.setenv("GROQ_API_KEY", "x")
+    llm = LLM(provider="groq")
+
+    def fake(*a, **k):
+        llm.meter.add("groq", llm.model, 100, 20)
+        return '{"ok": true}'
+
+    monkeypatch.setattr(llm, "_groq", fake)
+    llm.json("s", "u", purpose="read bid B1")
+    monkeypatch.setattr(llm, "_groq", lambda *a, **k: (_ for _ in ()).throw(LLMError("down")))
+    try:
+        llm.json("s", "u", purpose="read bid B2")
+    except LLMError:
+        pass
+    s1, s2 = llm.meter.steps
+    assert s1["purpose"] == "read bid B1" and s1["ok"] and s1["tokens_in"] == 100 and s1["tokens_out"] == 20
+    assert s2["purpose"] == "read bid B2" and not s2["ok"] and "down" in s2["error"]

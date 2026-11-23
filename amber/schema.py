@@ -55,6 +55,8 @@ class ModelUsage(BaseModel):
 class RunInfo(BaseModel):
     models: list[ModelUsage] = []
     latency_ms: int = 0
+    steps: list[dict[str, Any]] = Field(default_factory=list,
+                                        description="every model call in order: purpose, model, tokens, ms, ok")
 
     @property
     def cost_usd(self) -> float:

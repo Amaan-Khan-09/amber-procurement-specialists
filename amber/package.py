@@ -84,5 +84,6 @@ def run_package_review(bid_form: str, bids: dict[str, str], spec: str, tag: str,
                      result={"package": lb.result.get("package"), "comparison": table, "decision": decision,
                              "parts": {"level_bids": lb.result, "delivery": dr.result,
                                        "submittals": {b: s.result for b, s in sub_res.items()}}},
-                     run=RunInfo(models=llm.meter.models(), latency_ms=int((time.time() - t0) * 1000)))
+                     run=RunInfo(models=llm.meter.models(), latency_ms=int((time.time() - t0) * 1000),
+                                 steps=list(llm.meter.steps)))
     return res.finalize()

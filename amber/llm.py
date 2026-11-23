@@ -41,8 +41,10 @@ class LLMError(RuntimeError):
 @dataclass
 class Meter:
     usage: dict[str, ModelUsage] = field(default_factory=dict)
+    steps: list[dict] = field(default_factory=list)  # one entry per model call: what for, which model, cost, outcome
 
     def add(self, provider: str, model: str, tin: int, tout: int) -> None:
+        self._last = (tin, tout)
         u = self.usage.setdefault(model, ModelUsage(name=model, provider=provider))
         u.tokens_in += tin
         u.tokens_out += tout
@@ -97,16 +99,31 @@ class LLM:
     def local(self) -> bool:
         return self.provider == "ollama"
 
-    def json(self, system: str, user: str, max_tokens: int = 4000, schema: dict | None = None) -> dict:
+    def json(self, system: str, user: str, max_tokens: int = 4000, schema: dict | None = None,
+             purpose: str = "") -> dict:
         """Ask for a JSON object. One repair retry if the reply is not valid JSON; provider fallback on outage.
         `schema` (JSON Schema) constrains decoding where the provider supports it (Ollama), which keeps
-        small local models on format."""
+        small local models on format. Every call is logged in meter.steps with its purpose."""
         self._schema = schema
+        t0, before = time.time(), (sum(u.tokens_in for u in self.meter.usage.values()),
+                                   sum(u.tokens_out for u in self.meter.usage.values()))
+        step = {"step": len(self.meter.steps) + 1, "purpose": purpose or "model call"}
+
+        def log(ok: bool, error: str = ""):
+            tin = sum(u.tokens_in for u in self.meter.usage.values()) - before[0]
+            tout = sum(u.tokens_out for u in self.meter.usage.values()) - before[1]
+            step.update(provider=self.provider, model=self.model, tokens_in=tin, tokens_out=tout,
+                        ms=int((time.time() - t0) * 1000), ok=ok, **({"error": error[:160]} if error else {}))
+            self.meter.steps.append(step)
+
         while True:
             try:
-                return self._json_once(system, user, max_tokens)
+                out = self._json_once(system, user, max_tokens)
+                log(True)
+                return out
             except LLMError as e:
                 if "invalid JSON" in str(e) or not self.fallbacks:
+                    log(False, str(e))
                     raise
                 nxt = self.fallbacks.pop(0)
                 self.switched.append(f"{self.provider}->{nxt}: {str(e)[:120]}")

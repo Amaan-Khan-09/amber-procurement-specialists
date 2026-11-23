@@ -78,7 +78,7 @@ def _keywords(item: str) -> list[str]:
 
 
 def read_form(llm: LLM, form: docs.Document) -> dict:
-    f = llm.json(FORM_SYSTEM, form.text()[:14000], max_tokens=2500)
+    f = llm.json(FORM_SYSTEM, form.text()[:14000], max_tokens=2500, purpose=f"read bid form {form.doc_id}")
     for s in f.get("scope", []):
         c = verify(form, s.get("quote", ""))
         s["citation"] = c.model_dump() if c else None
@@ -102,7 +102,8 @@ def _basis(basis, quote="") -> str:
 
 def read_bid(llm: LLM, bid: docs.Document, form: dict) -> dict:
     scope = [{"id": s["id"], "item": s["item"]} for s in form.get("scope", [])]
-    b = llm.json(BID_SYSTEM, "Scope items:\n" + json.dumps(scope) + "\n\nBid text:\n" + bid.text()[:12000], max_tokens=3000)
+    b = llm.json(BID_SYSTEM, "Scope items:\n" + json.dumps(scope) + "\n\nBid text:\n" + bid.text()[:12000], max_tokens=3000,
+                 purpose=f"read bid {bid.doc_id}")
     b["base_total"] = _num(b.get("base_total"))
     b["base_citation"] = _cite(bid, b.get("base_quote"))
     b["product_citation"] = _cite(bid, b.get("product_quote") or b.get("offered_product"))
@@ -137,7 +138,8 @@ def _second_check(llm: LLM, b: dict, form: dict) -> None:
              for sid, i in b["items"].items() if i["status"] == "included" and i.get("citation")]
     if not pairs:
         return
-    reply = llm.json(CHECK_SYSTEM, json.dumps(pairs, ensure_ascii=False), max_tokens=1500)
+    reply = llm.json(CHECK_SYSTEM, json.dumps(pairs, ensure_ascii=False), max_tokens=1500,
+                     purpose="second check of included cells")
     for c in reply.get("checks", []) if isinstance(reply.get("checks"), list) else []:
         i = b["items"].get(c.get("scope_id"))
         if i and str(c.get("answer", "")).lower() == "no":
@@ -280,5 +282,6 @@ def level_bids(form_path: str, bid_paths: dict[str, str], llm: LLM | None = None
         findings.append(Finding(id=f"F-{k}-unread", claim=f"{k} could not be read", status=Verdict.unclear,
                                 confidence=0.0, why=why, data={"bid": k}))
     res = ToolResult(tool="level_bids", findings=findings, result=result,
-                     run=RunInfo(models=llm.meter.models(), latency_ms=int((time.time() - t0) * 1000)))
+                     run=RunInfo(models=llm.meter.models(), latency_ms=int((time.time() - t0) * 1000),
+                                 steps=list(llm.meter.steps)))
     return res.finalize()

@@ -139,7 +139,8 @@ def _structure_requirements(llm: LLM, spec_doc: docs.Document, row: dict, schedu
                 json.dumps(part, ensure_ascii=False))
         src = {p["req_id"]: p for p in part}
         try:
-            reply = llm.json(REQ_SYSTEM, user, max_tokens=3500)
+            reply = llm.json(REQ_SYSTEM, user, max_tokens=3500,
+                             purpose="structure spec requirements " + ", ".join(p["req_id"] for p in part))
         except LLMError as e:  # keep going: these requirements are reported as not checked, never as missing
             for p in part:
                 out.append({"req_id": p["req_id"], "locator": p["locator"], "requirement": p.get("focus") or p["clause"][:120],
@@ -226,7 +227,7 @@ def extract_offers(llm: LLM, sub_doc: docs.Document, reqs: list[dict]) -> dict[s
         try:
             reply = llm.json(EXTRACT_SYSTEM, "Conditions:\n" + json.dumps(ask, ensure_ascii=False) +
                              "\n\nSubmittal excerpts:\n" + ctx, max_tokens=2000 if not llm.local else 700,
-                             schema=OFFER_SCHEMA)
+                             schema=OFFER_SCHEMA, purpose="read submittal: " + ", ".join(c["cid"] for c in batch))
         except LLMError as e:
             for c in batch:
                 offers[c["cid"]] = {"cid": c["cid"], "not_checked": f"model unavailable: {str(e)[:100]}"}
@@ -249,7 +250,8 @@ def extract_offers(llm: LLM, sub_doc: docs.Document, reqs: list[dict]) -> dict[s
             reply = llm.json(EXTRACT_SYSTEM, "A first read found nothing for these conditions. Read the excerpts again "
                              "carefully, including tables and lists, and report anything that addresses them.\n"
                              "Conditions:\n" + json.dumps(ask, ensure_ascii=False) + "\n\nSubmittal excerpts:\n" + ctx,
-                             max_tokens=2000 if not llm.local else 700, schema=OFFER_SCHEMA)
+                             max_tokens=2000 if not llm.local else 700, schema=OFFER_SCHEMA,
+                             purpose="second look for not stated: " + ", ".join(c["cid"] for c in batch))
         except LLMError:
             continue  # keep the first-pass answer
         for o in _items(reply.get("offers", reply), "cid"):
@@ -496,5 +498,6 @@ def check_submittal(spec_path: str, submittal_path: str, tag: str, schedule_path
                                         ("review" if counts["unclear"] or counts["missing"] else "approve"),
                              "rows": rows, "unread_scanned_pages": sub_doc.scanned_pages,
                              "provider_switches": list(llm.switched)},
-                     run=RunInfo(models=llm.meter.models(), latency_ms=int((time.time() - t0) * 1000)))
+                     run=RunInfo(models=llm.meter.models(), latency_ms=int((time.time() - t0) * 1000),
+                                 steps=list(llm.meter.steps)))
     return res.finalize()
