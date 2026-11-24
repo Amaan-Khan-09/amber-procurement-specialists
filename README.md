@@ -75,11 +75,17 @@ Notes for a fresh clone:
   (or a bid e-mail as .txt), choose the model, run. Progress shows the model calls as they happen.
 * **Overview:** the project at a glance: a 3D view of the site's power equipment (transformers, switchgear, UPS,
   generators) coloured by each group's chance of arriving late, with the dates and sources one hover or click away,
-  and the hand-off chain between the specialists. No model calls.
+  and the hand-off chain between the specialists. The 3D view turns a full 360° by itself (drag to turn it by hand,
+  hover a block to pause it). No model calls.
 * **Every answer shows its sources, one click away:** "View on the page" opens the original PDF page with the quoted
   words highlighted (all 376 citations in our saved runs are located on their page), a bid e-mail with the quote
   marked, or a lead-time record with its publisher, date and a link to the website. Any cited page has a shareable
   link.
+* **Review mode:** "Review N items one by one" walks through everything the agent handed to a person, one item at a
+  time, with the spec and datasheet quotes in front of you. Keys: `A` agrees, `1`-`4` set the verdict, arrows move
+  between items. This is what makes a cautious agent quick to work with.
+* **Proof tab:** the evaluation scored from the saved runs against the answer keys by the same scorer as the command
+  line (`scripts/build_proof.py` refreshes the stored score; the page recomputes it when a run or a key changes).
 * **Side by side:** any requirement can open the spec page and the supplier's page next to each other, both quotes
   highlighted.
 * **Checks learned from how procurement teams work:** scope that no bid includes is flagged (and every bidder is
@@ -175,7 +181,8 @@ against its page. They have not yet had an independent review. How to read them:
 
 Latest development results (small `gpt-oss-20b` model, free tier): G1 67–71 %, G2 57 % correct; **0 fabricated citations**
 in every run. Run-to-run variation on that model is several points. `level_bids` on BL1: 41 of 44 scope cells correct, all four base
-prices and all four products right, ranking correct, award correctly withheld.
+prices and all four products right, ranking correct, award correctly withheld. Two of the four leveled totals are exact;
+the other two are off by $30,000 and $122,000 because of three misread scope cells (B2 S2, B1 S8, B2 S8). The Proof tab shows this live.
 ### Held-out results (run once, 22 Nov 2026, `gpt-oss-120b`, no tuning)
 
 The held-out cases were labelled before any agent run and run exactly once (`--final`; the scorer refuses otherwise).

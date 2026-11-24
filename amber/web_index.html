@@ -112,8 +112,8 @@ h1,h2,h3{letter-spacing:-.015em}
 .scene-wrap{position:relative;height:400px;perspective:1700px;perspective-origin:50% 35%;cursor:grab;user-select:none;touch-action:none}
 .scene-wrap:active{cursor:grabbing}
 .scene-fit{position:absolute;left:50%;top:50%;width:860px;height:560px;margin:-280px 0 0 -430px;transform:scale(var(--fit,.62));transform-style:preserve-3d}
-.scene{position:absolute;inset:0;transform-style:preserve-3d;transform:rotateX(58deg) rotateZ(var(--rz,-34deg));transition:transform .08s linear}
-.sway{position:absolute;inset:0;transform-style:preserve-3d;animation:sway 14s ease-in-out infinite}
+.scene{position:absolute;inset:0;transform-style:preserve-3d;transform:rotateX(58deg) rotateZ(var(--rz,-34deg))}
+.sway{position:absolute;inset:0;transform-style:preserve-3d}
 @keyframes sway{0%,100%{transform:rotateZ(-2.5deg)}50%{transform:rotateZ(2.5deg)}}
 .slab{position:absolute;inset:0;transform-style:preserve-3d;border-radius:14px;
   background:linear-gradient(135deg,#1a2b44,#122036);box-shadow:0 0 0 1px rgba(125,178,255,.18) inset,0 40px 80px rgba(0,0,0,.45);
@@ -173,6 +173,19 @@ tr.nobid td:first-child{box-shadow:inset 3px 0 0 var(--bad)}
 .cmp .ph{padding:8px 10px;border-bottom:1px solid var(--line);font-size:13px}.cmp .ph b{display:block;word-break:break-all}
 .cmp .pb{overflow:auto;max-height:calc(100vh - 230px)}.cmp img{width:100%;display:block;background:#fff}
 @media (max-width:800px){.cmp{grid-template-columns:1fr}}
+
+/* round 3 */
+.scene-wrap{touch-action:pan-y}
+.spinbtn{position:absolute;right:6px;top:6px;z-index:3}
+kbd{font:600 11px ui-monospace,Consolas,monospace;border:1px solid var(--line);border-bottom-width:2px;border-radius:5px;padding:0 5px;background:var(--soft);color:var(--ink)}
+.rv{position:fixed;inset:0;z-index:15;background:rgba(8,12,18,.55);display:grid;place-items:start center;padding:3vh 16px;overflow:auto}
+.rv-card{background:var(--card);border:1px solid var(--line);border-radius:16px;width:min(900px,100%);padding:18px 20px;box-shadow:0 24px 60px rgba(0,0,0,.35);animation:rise .25s both}
+.rv-bar{height:6px;background:var(--soft);border-radius:4px;overflow:hidden}.rv-bar i{display:block;height:100%;background:var(--ok);transition:width .25s}
+.rv-q{background:var(--soft);border-radius:10px;padding:10px 12px;margin-top:8px;font-size:13.5px}.rv-q q{display:block;font-style:italic;margin-top:4px;quotes:none}
+.rv-q .role{font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--mute);margin-right:6px}
+.rv-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}
+.btn.v-ok{border-color:var(--ok);color:var(--ok)}.btn.v-bad{border-color:var(--bad);color:var(--bad)}.btn.v-warn{border-color:var(--warn);color:var(--warn)}
+.bar-s{display:inline-block;width:70px;height:6px;background:var(--soft);border-radius:4px;overflow:hidden;vertical-align:middle;margin-right:6px}.bar-s i{display:block;height:100%;background:var(--accent)}
 @media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}}
 </style>
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -195,6 +208,7 @@ tr.nobid td:first-child{box-shadow:inset 3px 0 0 var(--bad)}
     <button role="tab" data-tab="bids">Level bids</button>
     <button role="tab" data-tab="delivery">Delivery risk</button>
     <button role="tab" data-tab="saved">Saved results</button>
+    <button role="tab" data-tab="proof">Proof</button>
   </nav>
 </header>
 <main>
@@ -205,11 +219,12 @@ tr.nobid td:first-child{box-shadow:inset 3px 0 0 var(--bad)}
         <h1 id="ov-head">Will the power equipment arrive on time, and is it what we specified?</h1>
         <p id="ov-lead">Phase 1 of a 6 MW data hall. The critical power equipment decides whether the building energises on time.</p>
         <div class="hero-kpis" id="ov-kpis"></div>
-        <div class="row"><button class="btn primary" data-go="package">Review the generator package</button><button class="btn ghost" data-go="saved">Open saved results</button></div>
+        <div class="row"><button class="btn primary" data-go="package">Review a package</button><button class="btn ghost" data-go="proof">See the proof</button><button class="btn ghost" data-go="saved">Saved results</button></div>
       </div>
       <div class="scene-wrap" id="scene-wrap" role="img" aria-label="3D view of the site: transformers, switchgear, UPS and generators, each coloured by its chance of arriving late">
         <div class="scene-fit" id="scene-fit"><div class="scene" id="scene"><div class="sway" id="sway"></div></div></div>
-        <div class="hint3d">Drag to turn · hover a block · click for its sources</div>
+        <button class="btn ghost sm spinbtn" id="spin-btn" aria-pressed="true">Pause rotation</button>
+        <div class="hint3d">Drag to spin 360° · hover a block · click for its sources</div>
         <div class="legend3d"><span><i style="background:#e3655a"></i>likely late</span><span><i style="background:#efb44e"></i>at risk</span><span><i style="background:#4fc08a"></i>on time</span></div>
       </div>
     </div>
@@ -298,6 +313,12 @@ tr.nobid td:first-child{box-shadow:inset 3px 0 0 var(--bad)}
       <div class="row" style="margin-top:16px"><button class="btn primary" id="d-run">Forecast delivery</button><span class="small">Instant. No model calls.</span></div></div>
   </section>
 
+  <section id="tab-proof" class="tab hidden">
+    <h1>Proof: how well does it work?</h1>
+    <p class="lead">Scored from the saved runs against the answer keys in the repository, by the same scorer the command line uses. Each key was written from the source documents before the agent ran; held-out cases were run once, with no tuning afterwards. Nothing on this page is typed in by hand: the score is recomputed whenever a run or a key changes.</p>
+    <div id="proof-body"><span class="spin"></span> Scoring the saved runs against their answer keys…</div>
+  </section>
+
   <section id="tab-saved" class="tab hidden">
     <h1>Saved results</h1>
     <p class="lead">Every run from this page and from the command line. Opening one costs nothing. Your review decisions are saved with each result.</p>
@@ -308,6 +329,7 @@ tr.nobid td:first-child{box-shadow:inset 3px 0 0 var(--bad)}
   <div id="out"></div>
 </main>
 
+<div id="rv" class="rv hidden" role="dialog" aria-modal="true" aria-labelledby="rv-title"><div class="rv-card" id="rv-card"></div></div>
 <div id="scrim" class="scrim hidden"></div>
 <aside id="drawer" class="drawer" role="dialog" aria-modal="true" aria-labelledby="dr-title">
   <div class="dh">
@@ -434,23 +456,48 @@ function buildScene(rows) {
 }
 function fitScene() { const w = $("#scene-wrap"); if (w) $("#scene-fit").style.setProperty("--fit", Math.max(.34, Math.min(.78, w.clientWidth / 1080)).toFixed(3)); }
 window.addEventListener("resize", fitScene);
+const SCENE = {rz: -34, auto: !matchMedia("(prefers-reduced-motion: reduce)").matches, hold: false, idle: 0, visible: true};
+const applyRz = () => $("#scene").style.setProperty("--rz", SCENE.rz.toFixed(2) + "deg");
+function countUp(root) {
+  if (matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+  root.querySelectorAll("[data-count]").forEach(el => { const to = +el.dataset.count, suf = el.dataset.suf || "", t0 = performance.now();
+    const step = now => { const k = Math.min(1, (now - t0) / 900), e = 1 - Math.pow(1 - k, 3); el.textContent = Math.round(to * e) + suf; if (k < 1) requestAnimationFrame(step); };
+    requestAnimationFrame(step); });
+}
 (() => {
-  const wrap = $("#scene-wrap"), scene = $("#scene"); let down = null, rz = -34, moved = false;
+  const wrap = $("#scene-wrap"), btn = $("#spin-btn");
+  let down = null, moved = false, downGrp = null, last = performance.now();
   const tip = document.createElement("div"); tip.className = "tip3d hidden"; document.body.append(tip);
-  wrap.addEventListener("pointerdown", e => { down = {x: e.clientX, rz}; moved = false; wrap.setPointerCapture(e.pointerId); });
-  wrap.addEventListener("pointerup", e => { down = null; });
+  const sync = () => { btn.textContent = SCENE.auto ? "Pause rotation" : "Rotate 360°"; btn.setAttribute("aria-pressed", String(SCENE.auto)); };
+  btn.onclick = () => { SCENE.auto = !SCENE.auto; sync(); };
+  new IntersectionObserver(es => { SCENE.visible = es[0].isIntersecting; }).observe(wrap);
+  const loop = now => {
+    const dt = Math.min(64, now - last); last = now;  // 12 degrees a second: one full turn in 30 s
+    if (SCENE.auto && SCENE.visible && !document.hidden && !down && !SCENE.hold && now > SCENE.idle) { SCENE.rz = (SCENE.rz + dt * 0.012) % 360; applyRz(); }
+    requestAnimationFrame(loop);
+  };
+  requestAnimationFrame(loop);
+  wrap.addEventListener("pointerdown", e => { if (e.target.closest("button")) return; down = {x: e.clientX, rz: SCENE.rz}; moved = false; downGrp = e.target.closest(".grp"); });
+  wrap.addEventListener("pointerup", () => {
+    const click = down && !moved, g = downGrp; down = null; downGrp = null; SCENE.idle = performance.now() + 2500;
+    const r = g && SCENE_ROWS[g.dataset.g]; if (click && r && r.citations && r.citations.length) openSource(r.citations[0]);
+  });
   wrap.addEventListener("pointermove", e => {
-    if (down) { const dx = e.clientX - down.x; if (Math.abs(dx) > 4) moved = true;
-      rz = Math.max(-80, Math.min(12, down.rz + dx * .25)); scene.style.setProperty("--rz", rz + "deg"); tip.classList.add("hidden"); return; }
+    if (down) {
+      const dx = e.clientX - down.x;
+      if (!moved && Math.abs(dx) > 4) { moved = true; wrap.setPointerCapture(e.pointerId); }
+      if (moved) { SCENE.rz = down.rz + dx * 0.4; applyRz(); tip.classList.add("hidden"); }  // any angle: a full turn is about 900 px of drag
+      return;
+    }
     const g = e.target.closest(".grp"), r = g && SCENE_ROWS[g.dataset.g];
+    SCENE.hold = !!g;  // stop turning while a block is under the pointer, so its label can be read
     if (!g) { tip.classList.add("hidden"); return; }
     tip.innerHTML = r ? `<b>${esc(r.label)}</b><br>Typical arrival <b>${fmtDate(r.arrival.P50)}</b> (${fmtDate(r.arrival.P10)} to ${fmtDate(r.arrival.P90)})<br>Needed on site <b>${fmtDate(r.need_on_site)}</b> · <b>${pct(r.p_late)}</b> chance late<br><span style="color:#aebbd0">Click to see the lead-time sources</span>`
       : `<b>Data hall</b><br>6 MW of IT load: everything upstream must arrive and match the spec before it can switch on.`;
     tip.style.left = Math.min(innerWidth - 300, e.clientX + 16) + "px"; tip.style.top = (e.clientY + 14) + "px"; tip.classList.remove("hidden");
   });
-  wrap.addEventListener("pointerleave", () => tip.classList.add("hidden"));
-  wrap.addEventListener("click", e => { if (moved) return; const g = e.target.closest(".grp"), r = g && SCENE_ROWS[g.dataset.g];
-    if (r && r.citations && r.citations.length) openSource(r.citations[0]); });
+  wrap.addEventListener("pointerleave", () => { tip.classList.add("hidden"); SCENE.hold = false; });
+  sync();
 })();
 
 // ---------- the hand-off chain ----------
@@ -586,8 +633,8 @@ function showTab(t) {
   $("#out").innerHTML = ""; current = null;
   if (location.hash) history.replaceState(null, "", location.pathname);
 }
-document.querySelectorAll("#tabs button").forEach(b => b.onclick = () => { showTab(b.dataset.tab); if (b.dataset.tab === "saved") loadState(false); });
-document.querySelectorAll("[data-go]").forEach(b => b.onclick = () => showTab(b.dataset.go));
+document.querySelectorAll("#tabs button").forEach(b => b.onclick = () => { showTab(b.dataset.tab); if (b.dataset.tab === "saved") loadState(false); if (b.dataset.tab === "proof") loadProof(); });
+document.querySelectorAll("[data-go]").forEach(b => b.onclick = () => { showTab(b.dataset.go); if (b.dataset.go === "proof") loadProof(); });
 
 // ---------- overview ----------
 function deliveryChart(rows) {
@@ -616,10 +663,11 @@ async function loadOverview() {
   const need = rows.slice().sort((a, b) => a.need_on_site.localeCompare(b.need_on_site))[0];
   $("#ov-head").textContent = `${high.length} of ${rows.length} power equipment groups will probably arrive late.`;
   $("#ov-lead").textContent = `Phase 1 of a 6 MW data hall (fictional test project) · scenario date ${fmtDate(o.as_of)} · energisation target 6 Dec 2027. Every figure below comes from a cited source.`;
-  $("#ov-kpis").innerHTML = `<div class="kpi hot"><b>${pct(worst.p_late)}</b><span>${esc(worst.label.split(" ")[0] === "LV" ? "Switchgear" : worst.label)} chance late</span></div>
-    <div class="kpi ${high.length ? "hot" : ""}"><b>${high.length} of ${rows.length}</b><span>groups likely late</span></div>
-    <div class="kpi ${passed.length ? "warm" : ""}"><b>${passed.length}</b><span>order-by dates already passed</span></div>
+  $("#ov-kpis").innerHTML = `<div class="kpi hot"><b data-count="${Math.round(worst.p_late * 100)}" data-suf="%">${pct(worst.p_late)}</b><span>${esc(worst.label.split(" ")[0] === "LV" ? "Switchgear" : worst.label)} chance late</span></div>
+    <div class="kpi ${high.length ? "hot" : ""}"><b data-count="${high.length}" data-suf=" of ${rows.length}">${high.length} of ${rows.length}</b><span>groups likely late</span></div>
+    <div class="kpi ${passed.length ? "warm" : ""}"><b data-count="${passed.length}">${passed.length}</b><span>order-by dates already passed</span></div>
     <div class="kpi"><b>${fmtDate(need.need_on_site).replace(/ \d{4}$/, "")}</b><span>first need date (${esc(need.tag_group)})</span></div>`;
+  countUp($("#ov-kpis"));
   buildScene(rows);
   $("#pipe").innerHTML = pipelineHTML(null);
   $("#ov-tiles").innerHTML = `
@@ -799,7 +847,7 @@ function findingsBlock(fs) {
   const shown = fs.filter(f => (filter === "all" || (filter === "human" ? f.needs_human : f.status === filter))
     && (!s || (f.claim + " " + f.why + " " + f.citations.map(c => c.quote).join(" ")).toLowerCase().includes(s)));
   return `<h2>Findings</h2><div class="toolbar"><div class="chips" role="group" aria-label="Filter findings">${chips.map(([k, t]) => `<button class="chip" data-filter="${k}" aria-pressed="${filter === k}">${esc(t)}</button>`).join("")}</div>
-    <div class="grow"></div><input type="search" id="fsearch" placeholder="Search findings and quotes" aria-label="Search findings" value="${esc(search)}"><button class="btn sm" id="export">Export decisions (CSV)</button></div>
+    <div class="grow"></div><input type="search" id="fsearch" placeholder="Search findings and quotes" aria-label="Search findings" value="${esc(search)}">${fs.some(f => f.needs_human && !current.reviews[f.id]) ? `<button class="btn sm primary" id="startrev">Review ${fs.filter(f => f.needs_human && !current.reviews[f.id]).length} items one by one</button>` : ""}<button class="btn sm" id="export">Export decisions (CSV)</button></div>
     <div id="flist">${shown.length ? shown.map(findingCard).join("") : `<p class="muted">Nothing here.</p>`}</div>`;
 }
 function findingCard(f) {
@@ -826,6 +874,7 @@ function wireFindings() {
   const fs = $("#fsearch");
   fs.oninput = () => { search = fs.value; const pos = fs.selectionStart; renderResult(); const n = $("#fsearch"); n.focus(); n.setSelectionRange(pos, pos); };
   $("#export").onclick = exportCsv;
+  if ($("#startrev")) $("#startrev").onclick = startReview;
   const send = async (fid, decision, note) => { const r = await api(`/api/results/${encodeURIComponent(current.id)}/review`, {method: "POST", body: {finding: fid, decision, note}}); current.reviews = r.reviews; renderResult(); };
   document.querySelectorAll(".rev[data-fid]").forEach(el => {
     const fid = el.dataset.fid, note = () => $("input", el).value;
@@ -865,6 +914,99 @@ function renderSaved() {
       return `<tr class="click" data-rid="${esc(m.id)}" tabindex="0"><td><b>${esc(m.label)}</b></td><td>${esc(TOOL[m.tool] || m.tool)}</td><td class="small nw">${esc((m.finished || m.started || "").replace("T", " "))}</td>
       <td class="n">${m.findings ?? "-"}</td><td style="min-width:110px">${n ? `${r} of ${n}<div class="progress"><i style="width:${Math.round(r / n * 100)}%"></i></div>` : "-"}</td><td class="n">${m.cost_usd == null ? "-" : "$" + Number(m.cost_usd).toFixed(3)}</td><td class="small">${esc(m.source || "")}</td></tr>`; }).join("");
   wireRows(t);
+}
+
+
+// ---------- review mode: one item at a time, keyboard driven ----------
+let RV = null;
+const DECISIONS = [["complies", "Complies", "v-ok"], ["deviates", "Deviates", "v-bad"], ["missing", "Missing", "v-warn"], ["unclear", "Unclear", ""]];
+async function saveReview(fid, decision, note) {
+  const r = await api(`/api/results/${encodeURIComponent(current.id)}/review`, {method: "POST", body: {finding: fid, decision, note}});
+  current.reviews = r.reviews;
+}
+function startReview() {
+  const ids = current.result.findings.filter(f => f.needs_human).map(f => f.id);
+  RV = {ids, i: Math.max(0, ids.findIndex(id => !current.reviews[id])), busy: false};
+  $("#rv").classList.remove("hidden"); renderReview();
+}
+function closeReview() { $("#rv").classList.add("hidden"); RV = null; renderResult(); }
+function nextOpen(from) {
+  for (let k = 1; k <= RV.ids.length; k++) { const j = (from + k) % RV.ids.length; if (!current.reviews[RV.ids[j]]) return j; }
+  return -1;
+}
+function renderReview() {
+  const F = Object.fromEntries(current.result.findings.map(f => [f.id, f])), ids = RV.ids, total = ids.length;
+  const done = ids.filter(id => current.reviews[id]).length, el = $("#rv-card");
+  const head = `<div class="row"><b id="rv-title" class="grow">${RV.finished ? "All items decided" : `Item ${RV.i + 1} of ${total}`}</b><span class="small">${done} of ${total} decided</span><button class="btn sm" id="rv-close">Close <kbd>Esc</kbd></button></div>
+    <div class="rv-bar" style="margin-top:8px"><i style="width:${total ? Math.round(done / total * 100) : 100}%"></i></div>`;
+  if (RV.finished) {
+    const agreed = ids.filter(id => (current.reviews[id] || {}).decision === "agree").length;
+    el.innerHTML = head + `<div style="padding:22px 4px"><h2 style="margin:0 0 6px">Done: ${total} items decided</h2><p class="muted">${agreed} agreed with the agent, ${total - agreed} changed. Your decisions are saved with this result and included in the CSV export.</p>
+      <div class="row"><button class="btn primary" id="rv-export">Export decisions (CSV)</button><button class="btn" id="rv-again">Go through them again</button></div></div>`;
+    $("#rv-close").onclick = closeReview; $("#rv-export").onclick = exportCsv; $("#rv-again").onclick = () => { RV.finished = false; RV.i = 0; renderReview(); };
+    return;
+  }
+  const f = F[ids[RV.i]], r = current.reviews[f.id];
+  const specC = f.citations.find(c => /^26-/.test(c.doc_id)), subC = f.citations.find(c => !/^(26-|equipment-schedule|leadtime-evidence|po-status)/.test(c.doc_id));
+  const q = f.citations.slice(0, 5).map(c => `<div class="rv-q"><span class="role">${/^26-/.test(c.doc_id) ? "Spec" : /^(equipment-schedule|leadtime-evidence|po-status)/.test(c.doc_id) ? "Data" : "Document"}</span><b>${esc(c.doc_id)}</b> p.${c.page} ${esc(c.locator || "")} · ${citeBtn(c, "View on the page")}<q>“${esc(c.quote)}”</q></div>`).join("")
+    || `<div class="rv-q">No quote: the agent found nothing in the document to cite for this.</div>`;
+  el.innerHTML = head + `
+    <div class="row" style="margin-top:14px;align-items:flex-start"><span class="b ${STATUS[f.status] || "mute"}">${esc(f.status)}</span><b class="grow">${esc(f.claim)}${(f.data || {}).locator ? ` <span class="small">${esc(f.data.locator)}</span>` : ""}</b><span class="small nw">confidence ${f.confidence.toFixed(2)}</span></div>
+    <div class="small" style="margin-top:6px"><b>Why you were asked:</b> ${esc(f.why)}</div>
+    ${q}${specC && subC ? `<div style="margin-top:8px"><button class="linkbtn" data-cmp="${cite(specC)},${cite(subC)}">Compare the spec and the supplier's page side by side</button></div>` : ""}
+    ${r ? `<div class="rv-q" style="border-left:4px solid var(--ok)">You decided: <b>${r.decision === "agree" ? "agree with the agent" : esc(r.decision)}</b>${r.note ? " · " + esc(r.note) : ""}</div>` : ""}
+    <div class="rv-actions"><button class="btn primary" data-dec="agree">Agree with the agent <kbd>A</kbd></button>
+      ${DECISIONS.map(([k, t, c], n) => `<button class="btn ${c}" data-dec="${k}">${t} <kbd>${n + 1}</kbd></button>`).join("")}</div>
+    <div class="row" style="margin-top:10px"><input type="text" id="rv-note" placeholder="Note (optional): why, or what you checked" maxlength="1000" aria-label="Review note" value="${esc(r ? r.note : "")}"></div>
+    <div class="row small" style="margin-top:12px;justify-content:space-between"><span><button class="btn sm" id="rv-prev">‹ Back <kbd>←</kbd></button> <button class="btn sm" id="rv-skip">Skip <kbd>→</kbd></button></span>
+      <span>Click a source to read the page. Keys: <kbd>A</kbd> agree · <kbd>1</kbd>-<kbd>4</kbd> change verdict · <kbd>Esc</kbd> close</span></div>`;
+  $("#rv-close").onclick = closeReview;
+  $("#rv-prev").onclick = () => rvMove(-1); $("#rv-skip").onclick = () => rvMove(1);
+  el.querySelectorAll("[data-dec]").forEach(b => b.onclick = () => rvDecide(b.dataset.dec));
+}
+function rvMove(d) { if (!RV) return; RV.i = (RV.i + d + RV.ids.length) % RV.ids.length; renderReview(); }
+async function rvDecide(dec) {
+  if (!RV || RV.busy || RV.finished) return;
+  RV.busy = true;
+  try {
+    await saveReview(RV.ids[RV.i], dec, ($("#rv-note") || {}).value || "");
+    const n = nextOpen(RV.i);
+    if (n < 0) RV.finished = true; else RV.i = n;
+    renderReview();
+  } catch (e) { toast(e.message); } finally { RV.busy = false; }
+}
+document.addEventListener("keydown", e => {
+  if (!RV || DR) return;
+  if (e.key === "Escape") { closeReview(); return; }
+  if (/^(INPUT|TEXTAREA|SELECT)$/.test(e.target.tagName) || e.metaKey || e.ctrlKey || e.altKey) return;
+  const k = e.key.toLowerCase();
+  if (k === "a") rvDecide("agree");
+  else if (k >= "1" && k <= "4" && k.length === 1) rvDecide(DECISIONS[+k - 1][0]);
+  else if (e.key === "ArrowRight" || k === "s") rvMove(1);
+  else if (e.key === "ArrowLeft") rvMove(-1);
+});
+
+// ---------- proof tab ----------
+let PROOF = null;
+async function loadProof() {
+  const el = $("#proof-body");
+  if (PROOF) return;
+  try { PROOF = await api("/api/proof"); } catch (e) { el.innerHTML = `<p class="muted">${esc(e.message)}</p>`; return; }
+  const P = PROOF, fab = P.fabrications;
+  let tiles = Object.entries(P.sets).map(([k, v]) => `<div class="tile ${k === "2" ? "okt" : "infot"}"><div class="k">Held-out set ${k} · ${k === "2" ? "after the fixes" : "before the fixes"}</div>
+    <div class="v">${v.correct} / ${v.n}</div><div class="s">${pct(v.correct / v.n)} of requirements correct · automatic answers right: <b>${v.auto_correct} of ${v.auto_total}</b> · false approvals: ${v.false_approvals}</div></div>`).join("");
+  tiles += `<div class="tile ${fab === 0 ? "okt" : "warnt"}"><div class="k">Invented citations</div><div class="v">${fab == null ? "n/a" : fab}</div>
+    <div class="s">${fab == null ? "the datasheets are not downloaded here, so quotes were not re-checked" : "every quote re-checked on its cited page, independently of the agent"}</div></div>`;
+  if (P.bids) tiles += `<div class="tile okt"><div class="k">Bid leveling</div><div class="v">${P.bids.cells_ok} / ${P.bids.cells}</div><div class="s">scope cells right · ${P.bids.totals_ok} of ${P.bids.totals} leveled totals exact · ranking ${P.bids.rank_ok ? "right" : "wrong"} · award ${P.bids.award_withheld ? "correctly withheld" : "not withheld"}</div></div>`;
+  const rows = P.cases.map(c => `<tr class="click" data-rid="${esc(c.result_id)}" tabindex="0"><td><b>${esc(c.case_id)}</b></td><td>${esc(c.document)}<div class="small">${esc(c.label)}</div></td>
+    <td class="nw">${c.split === "dev" ? "development" : "held out · set " + c.heldout_set}</td><td class="n">${c.correct} / ${c.n}</td>
+    <td class="nw"><span class="bar-s"><i style="width:${Math.round(c.accuracy * 100)}%"></i></span>${pct(c.accuracy)}</td>
+    <td class="n">${c.false_approvals}</td><td class="n">${c.false_rejections}</td><td class="n">${c.fabrications == null ? "n/a" : c.fabrications}</td>
+    <td class="n">${pct(c.handoff_rate)}</td><td class="n">${c.auto_correct} / ${c.auto_total}</td><td class="n">$${c.cost_usd.toFixed(3)}</td></tr>`).join("");
+  el.innerHTML = `<div class="tiles fade-in">${tiles}</div>
+    <div class="card scroll"><table><tr><th>Case</th><th>Document</th><th>Split</th><th class="n">Correct</th><th>Accuracy</th><th class="n">False approvals</th><th class="n">False rejections</th><th class="n">Invented quotes</th><th class="n">Sent to a person</th><th class="n">Automatic answers right</th><th class="n">Cost</th></tr>${rows}</table>
+      <p class="small">Scored ${esc(P.built || "")}. Click a row to open that run with all its sources. Held-out cases were labelled before any run and run once. Set 1 was scored before our fixes and not re-run; set 2 was labelled after them and run once. About three answers in four go to a person: that is the price of never being confidently wrong, and the review queue is built to make it quick.</p></div>`;
+  el.querySelectorAll("tr[data-rid]").forEach(r => { r.onclick = () => openResult(r.dataset.rid).catch(e => toast(e.message)); r.onkeydown = e => { if (e.key === "Enter") r.click(); }; });
 }
 
 window.addEventListener("hashchange", () => {  // links and the Back button move between results without a reload

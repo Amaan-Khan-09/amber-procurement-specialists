@@ -33,7 +33,7 @@ this repository a judge can check. Status: **met**, **partly met** (with the gap
 
 | Criterion | Where we stand |
 |---|---|
-| Accuracy | Held-out set 1 (run once, before fixes): 34/58 (59 %). Held-out set 2 (run once, after fixes): 28/42 (67 %), every answer it gave on its own right (11/11), 0 automatic false approvals, 0 fabricated citations. Bid leveling 41/44 scope cells, prices and ranking right |
+| Accuracy | Held-out set 1 (run once, before fixes): 34/58 (59 %). Held-out set 2 (run once, after fixes): 28/42 (67 %), every answer it gave on its own right (11/11), 0 automatic false approvals, 0 fabricated citations. Bid leveling 41/44 scope cells, all four base prices exact, 2 of 4 leveled totals exact, ranking right, award withheld |
 | Customer value | Package review answers the real question (who to award, what is missing, what will be late) in one table; follow-up drafts for every gap; a web page for managers with a one-click source viewer (the cited page, quote highlighted) and a review queue |
 | Trustworthiness | Sources on every answer, verified quotes, 0 fabricated citations, cautious handoffs, failures never become claims |
 | Build quality | 95 tests, fresh-clone install verified, cost and time per run measured |

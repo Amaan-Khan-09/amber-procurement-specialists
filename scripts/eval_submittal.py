@@ -54,7 +54,9 @@ def recheck_citations(run: dict, paths: dict[str, str]) -> int:
         for c in f["citations"]:
             if c["doc_id"] not in paths:
                 continue  # schedule citations are checked against the CSV when produced
-            d = loaded.setdefault(c["doc_id"], docs.load(paths[c["doc_id"]]))
+            if c["doc_id"] not in loaded:  # load each document once (setdefault would re-read the PDF for every citation)
+                loaded[c["doc_id"]] = docs.load(paths[c["doc_id"]])
+            d = loaded[c["doc_id"]]
             pg = d.page(c["page"])
             if pg is None or match_level(c["quote"], pg.text) is None:
                 bad += 1

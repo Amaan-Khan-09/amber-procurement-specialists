@@ -481,6 +481,126 @@ async def original(req: Request) -> Response:
                         headers={"Content-Disposition": "inline", "X-Content-Type-Options": "nosniff"})
 
 
+# ---------- proof: the evaluation, scored live ----------
+
+_proof_cache: dict[str, Any] = {}
+
+
+def _scorer():
+    """The same scorer the command line uses (scripts/eval_submittal.py), so the page and the README cannot disagree."""
+    import importlib.util
+    spec = importlib.util.spec_from_file_location("amber_eval_submittal", ROOT / "scripts" / "eval_submittal.py")
+    mod = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(mod)
+    return mod
+
+
+def _saved_run(name: str) -> tuple[Path, str] | None:
+    for d, src in ((EXAMPLES, "example"), (RUNS, "runs")):
+        if (d / f"{name}.json").exists():
+            return d / f"{name}.json", f"{src}:{name}"
+    return None
+
+
+def _bid_proof() -> dict | None:
+    key_file, found = KEYS / "bids_genset.json", _saved_run("BL1")
+    if not key_file.exists() or not found:
+        return None
+    key = json.loads(key_file.read_text(encoding="utf-8"))
+    R = json.loads(found[0].read_text(encoding="utf-8"))["result"]
+    cells = ok = 0
+    for sid, row in key["matrix"].items():
+        for b, want in row.items():
+            cells += 1
+            ok += R["matrix"].get(b, {}).get(sid) == want
+    adj = key["adjusted_total"]
+    return {"cells": cells, "cells_ok": ok, "totals": len(adj),
+            "totals_ok": sum(abs(R["leveling"].get(b, {}).get("adjusted", -1) - v) < 1 for b, v in adj.items()),
+            "rank_ok": R["award"]["ranked"] == key["rank_by_adjusted"], "award_withheld": not R["award"]["auto_award"]}
+
+
+def _proof() -> dict:
+    mod = _scorer()
+    cases, sets, fab_total, fab_known = [], {}, 0, True
+    for c in mod.labelled_cases("all"):
+        found = _saved_run(c["case_id"])
+        if not found:
+            continue
+        run = json.loads(found[0].read_text(encoding="utf-8"))
+        have = all((ROOT / c[k]).exists() for k in ("spec", "submittal"))
+        orig = mod.recheck_citations
+        if not have:  # a fresh clone before fetch_data.py: accuracy is still scored, quotes are not re-checked
+            mod.recheck_citations = lambda run, paths: None
+        try:
+            sc = mod.score(c, run)
+        finally:
+            mod.recheck_citations = orig
+        labels = {l["req_id"]: l["expected"] for l in c["labels"]}
+        auto = [f for f in run["findings"] if not f["needs_human"] and f["data"].get("req_id") in labels]
+        auto_ok = sum(f["status"] == labels[f["data"]["req_id"]] for f in auto)
+        correct = round(sc["accuracy"] * sc["n"])
+        row = {"case_id": c["case_id"], "split": c["split"], "heldout_set": c.get("heldout_set", 1) if c["split"] == "heldout" else None,
+               "document": docs_id(c["submittal"]), "label": f"against {docs_id(c['spec'])}", "n": sc["n"], "correct": correct,
+               "accuracy": sc["accuracy"], "false_approvals": sc["false_approvals"], "false_rejections": sc["false_rejections"],
+               "fabrications": sc["fabrications"] if have else None, "handoff_rate": sc["handoff_rate"],
+               "auto_total": len(auto), "auto_correct": auto_ok, "cost_usd": sc["cost_usd"], "result_id": found[1]}
+        cases.append(row)
+        if not have:
+            fab_known = False
+        else:
+            fab_total += sc["fabrications"]
+        if c["split"] == "heldout":
+            t = sets.setdefault(str(row["heldout_set"]), {"n": 0, "correct": 0, "auto_total": 0, "auto_correct": 0, "false_approvals": 0})
+            for k in ("n", "correct", "auto_total", "auto_correct", "false_approvals"):
+                t[k] += row[k]
+    return {"cases": cases, "sets": dict(sorted(sets.items())), "fabrications": fab_total if fab_known and cases else None,
+            "bids": _bid_proof()}
+
+
+def docs_id(path: str) -> str:
+    from .docs import doc_id_for
+    return doc_id_for(path)
+
+
+def _proof_key() -> str:
+    """Changes whenever a saved run, an answer key or the scorer changes, so a cached score is never stale."""
+    h = hashlib.sha256()
+    for c in sorted(KEYS.glob("*.json")):
+        h.update(c.name.encode() + c.read_bytes())
+    for c in sorted(set(x.stem for x in KEYS.glob("[GU][0-9]*.json")) | {"BL1"}):
+        f = _saved_run(c)
+        if f:
+            h.update(f[1].encode() + f[0].read_bytes())
+    h.update((ROOT / "scripts" / "eval_submittal.py").read_bytes())
+    return h.hexdigest()[:20]
+
+
+def proof_payload(refresh: bool = False) -> dict:
+    """Re-checking every quote on its page takes minutes, so the score is kept in examples/proof.json (committed, so a
+    fresh download opens instantly) or runs/web/proof.json, and recomputed only when its key changes."""
+    key = _proof_key()
+    if not refresh:
+        for f in (EXAMPLES / "proof.json", WEB / "proof.json"):
+            if f.exists():
+                try:
+                    d = json.loads(f.read_text(encoding="utf-8"))
+                except (json.JSONDecodeError, OSError):
+                    continue
+                if d.get("key") == key:
+                    return d
+    out = {"key": key, "built": datetime.now().date().isoformat(), "proof": _proof()}
+    WEB.mkdir(parents=True, exist_ok=True)
+    (WEB / "proof.json").write_text(json.dumps(out), encoding="utf-8")
+    return out
+
+
+async def proof(_: Request) -> JSONResponse:
+    if "p" not in _proof_cache:
+        _proof_cache["p"] = await anyio.to_thread.run_sync(proof_payload)
+    d = _proof_cache["p"]
+    return JSONResponse(dict(d["proof"], built=d["built"]))
+
+
 async def overview(_: Request) -> JSONResponse:
     """The project at a glance: delivery risk for every long-lead group (code only, instant, no tokens)."""
     res = await anyio.to_thread.run_sync(lambda: assess_delivery_risk(
@@ -538,7 +658,7 @@ async def review(req: Request) -> JSONResponse:
 app = Starlette(routes=[
     Route("/", page), Route("/api/state", state), Route("/api/upload", upload, methods=["POST"]),
     Route("/api/run", run, methods=["POST"]), Route("/api/jobs/{jid}", job_status),
-    Route("/api/source", source), Route("/api/overview", overview), Route("/api/file/{doc}", original),
+    Route("/api/source", source), Route("/api/overview", overview), Route("/api/proof", proof), Route("/api/file/{doc}", original),
     Route("/api/results/{rid}", result), Route("/api/results/{rid}/report", report),
     Route("/api/results/{rid}/drafts", drafts, methods=["POST"]), Route("/api/results/{rid}/review", review, methods=["POST"]),
 ])

@@ -147,3 +147,14 @@ def test_overview_needs_no_model(client, monkeypatch):
 
 def test_a_held_out_document_opens_once_its_final_run_is_committed(client):
     assert web._sealed() == set()  # every held-out case has its final run in examples/
+
+
+def test_proof_tab_reproduces_the_readme_numbers_from_the_saved_runs(client):
+    web._proof_cache.clear()
+    P = client.get("/api/proof").json()
+    assert (P["sets"]["1"]["n"], P["sets"]["1"]["correct"]) == (58, 34)  # held-out set 1, before the fixes
+    assert (P["sets"]["2"]["n"], P["sets"]["2"]["correct"]) == (42, 28)  # held-out set 2, after the fixes
+    assert P["sets"]["2"]["auto_correct"] == P["sets"]["2"]["auto_total"] == 11
+    assert P["fabrications"] in (0, None)  # None only when the datasheets are not downloaded
+    assert P["bids"]["cells"] == 44 and P["bids"]["award_withheld"] and P["bids"]["rank_ok"]
+    assert all(c["result_id"].startswith(("runs:", "example:")) for c in P["cases"])
