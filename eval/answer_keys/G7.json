@@ -1,0 +1,161 @@
+{
+  "case_id": "G7",
+  "split": "heldout",
+  "heldout_set": 3,
+  "tool": "check_submittal",
+  "spec": "data/specs/project_alpha/26_32_13_engine_generators_ALPHA.pdf",
+  "tag": "GEN-A",
+  "submittal": "data/submittals/cat_3516C_2000ekW_LEHE1376.pdf",
+  "labeller": "Project author, with AI assistance, from the source PDF, per eval/answer_keys/README.md. Held-out set 3: labelled 24 Nov 2026, after the accuracy fixes made from the set 1 and set 2 errors, BEFORE any agent run on this document.",
+  "labelled_on": "2026-11-24",
+  "reviewed_by": "",
+  "labels": [
+    {
+      "req_id": "R01",
+      "expected": "complies",
+      "submittal_page": 1,
+      "submittal_quote": "2000 (2500) 2000 (2500) 1825 (2281) 1650 (2063)",
+      "notes": "Standby 2000 ekW / 2500 kVA at 0.8 PF (also p3, 'Genset power rating with fan')."
+    },
+    {
+      "req_id": "R02",
+      "expected": "unclear",
+      "submittal_page": 2,
+      "submittal_quote": "Output voltage",
+      "notes": "Voltage options 380 V to 13.8 kV are listed with check boxes, none marked as supplied; 60 Hz is stated (p3); phases and wires are not."
+    },
+    {
+      "req_id": "R03",
+      "expected": "unclear",
+      "submittal_page": 1,
+      "submittal_quote": "Superior motor starting capability minimizes",
+      "notes": "Motor starting is mentioned only as a claim ('superior'); no kVA figure or voltage dip is given."
+    },
+    {
+      "req_id": "R04",
+      "expected": "unclear",
+      "submittal_page": 2,
+      "submittal_quote": "Permanent magnet (PM)",
+      "notes": "Internal excitation and permanent magnet are both listed as options, neither marked as supplied."
+    },
+    {
+      "req_id": "R05",
+      "expected": "unclear",
+      "submittal_page": 1,
+      "submittal_quote": "Aspiration TA",
+      "notes": "Turbocharged-aftercooled (TA) is stated; the number of cylinders and the four-cycle design are not."
+    },
+    {
+      "req_id": "R06",
+      "expected": "unclear",
+      "submittal_page": 1,
+      "submittal_quote": "Governor Type A6E4",
+      "notes": "A governor type code is given; 'electronic' and 'isochronous' are not stated."
+    },
+    {
+      "req_id": "R07",
+      "expected": "unclear",
+      "submittal_page": 2,
+      "submittal_quote": "Standard electric starter(s)",
+      "notes": "Electric starters are listed with heavy duty, dual and air options; the starting voltage is not stated."
+    },
+    {
+      "req_id": "R08",
+      "expected": "complies",
+      "submittal_page": 3,
+      "submittal_quote": "100% load with fan",
+      "notes": "Standby column: 505.8 L/hr (133.6 gal/hr) at 100% load, below 145 gph."
+    },
+    {
+      "req_id": "R09",
+      "expected": "unclear",
+      "submittal_page": 1,
+      "submittal_quote": "Cooling systems available to operate in ambient temperatures up to 50",
+      "notes": "Cooling systems are 'available' for 50 C (122 F); which one is supplied is not stated."
+    },
+    {
+      "req_id": "R10",
+      "expected": "complies",
+      "submittal_page": 3,
+      "submittal_quote": "EPA ESE (TIER 2)",
+      "notes": "Also p1: meets U.S. EPA Stationary Emergency Use Only (Tier 2)."
+    },
+    {
+      "req_id": "R11",
+      "expected": "unclear",
+      "submittal_page": 1,
+      "submittal_quote": "Cooling systems available to operate in ambient temperatures up to 50",
+      "notes": "Ambient capability up to 50 C is mentioned as available; altitude and any derate are not stated."
+    },
+    {
+      "req_id": "R12",
+      "expected": "missing",
+      "submittal_page": null,
+      "submittal_quote": "",
+      "notes": "No engine speed or rpm figure anywhere (only 60 Hz)."
+    },
+    {
+      "req_id": "R13",
+      "expected": "missing",
+      "submittal_page": null,
+      "submittal_quote": "",
+      "notes": "No pole count, pitch or brushless statement for the alternator."
+    },
+    {
+      "req_id": "R14",
+      "expected": "missing",
+      "submittal_page": null,
+      "submittal_quote": "",
+      "notes": "Insulation class not stated (temperature-rise options only)."
+    },
+    {
+      "req_id": "R15",
+      "expected": "unclear",
+      "submittal_page": 2,
+      "submittal_quote": "Anti-condensation heater",
+      "notes": "Listed as an alternator attachment option; voltage and phase not stated; not marked as supplied."
+    },
+    {
+      "req_id": "R16",
+      "expected": "unclear",
+      "submittal_page": 2,
+      "submittal_quote": "Circuit breaker",
+      "notes": "Circuit breaker, 3-pole and 4-pole and LSI trip units are listed as options; none marked as supplied."
+    },
+    {
+      "req_id": "R17",
+      "expected": "missing",
+      "submittal_page": null,
+      "submittal_quote": "",
+      "notes": "No voltage regulation figure."
+    },
+    {
+      "req_id": "R18",
+      "expected": "missing",
+      "submittal_page": null,
+      "submittal_quote": "",
+      "notes": "No harmonic distortion figure."
+    },
+    {
+      "req_id": "R19",
+      "expected": "missing",
+      "submittal_page": null,
+      "submittal_quote": "",
+      "notes": "No fuel tank mentioned (fuel consumption only)."
+    },
+    {
+      "req_id": "R20",
+      "expected": "unclear",
+      "submittal_page": 2,
+      "submittal_quote": "Jacket water heater",
+      "notes": "Listed in the equipment table; quantity, wattage and voltage not stated; not marked as supplied."
+    },
+    {
+      "req_id": "R21",
+      "expected": "missing",
+      "submittal_page": null,
+      "submittal_quote": "",
+      "notes": "No enclosure mentioned; an industrial grade muffler is listed as an engine option."
+    }
+  ]
+}

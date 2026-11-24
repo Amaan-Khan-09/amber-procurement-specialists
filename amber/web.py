@@ -563,16 +563,17 @@ def docs_id(path: str) -> str:
 
 
 def _proof_key() -> str:
-    """Changes whenever a saved run, an answer key or the scorer changes, so a cached score is never stale.
-    Line endings are ignored: a Windows download converts them, and that must not look like a change."""
+    """Changes whenever a score input changes (a saved run, the answer key it is scored against, the bid key or the scorer),
+    so a stored score is never stale. A key for a case that has not been run yet is not an input. Line endings are
+    ignored: a Windows download converts them, and that must not look like a change."""
     h = hashlib.sha256()
     norm = lambda b: b.replace(bytes([13, 10]), bytes([10]))  # CR LF -> LF
-    for c in sorted(KEYS.glob("*.json")):
-        h.update(c.name.encode() + norm(c.read_bytes()))
-    for c in sorted(set(x.stem for x in KEYS.glob("[GU][0-9]*.json")) | {"BL1"}):
-        f = _saved_run(c)
-        if f:
-            h.update(f[1].encode() + norm(f[0].read_bytes()))
+    for name in sorted(x.stem for x in KEYS.glob("[GU][0-9]*.json")) + ["BL1"]:
+        run = _saved_run(name)
+        if run:
+            key_file = KEYS / ("bids_genset.json" if name == "BL1" else f"{name}.json")
+            h.update(name.encode() + (norm(key_file.read_bytes()) if key_file.exists() else b""))
+            h.update(run[1].encode() + norm(run[0].read_bytes()))
     h.update(norm((ROOT / "scripts" / "eval_submittal.py").read_bytes()))
     return h.hexdigest()[:20]
 

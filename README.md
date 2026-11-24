@@ -183,6 +183,10 @@ against its page. They have not yet had an independent review. How to read them:
 | G3 | Kohler KD1000 project submittal, 105 pages (46 scanned) | **held out** | 14 · 2 · 0 · 5 |
 | G4 | Cummins C1000 family spec sheet, 4 pages | **held out** | 8 · 1 · 5 · 7 |
 | U1 | Vertiv UPS package: India brochure + US site-planning sheet, 17 pages, against a UPS spec | **held out** (new equipment class) | 9 · 2 · 1 · 4 |
+| G5 | mtu 16V4000 DS2250 datasheet | **held out, set 2** (labelled after the set 1 fixes) | 11 · 1 · 6 · 3 |
+| G6 | Kohler 2000ROZD-4 spec sheet | **held out, set 2** | 11 · 2 · 2 · 6 |
+| G7 | Caterpillar 3516C 2000 ekW spec sheet (the product bidder B1 offered), 4 pages | **held out, set 3**: labelled 24 Nov 2026, after the accuracy fixes, **before any run**; run once | 3 · 0 · 7 · 11 |
+| G8 | Cummins C2000D6E specification sheet and data sheet (the family of bidder B4's product), 7 pages | **held out, set 3**: same | 12 · 1 · 2 · 6 |
 | BL1 | four generator bids (3 PDF + 1 email) | dev | 44 scope cells, leveled totals, award decision |
 
 Latest development results (small `gpt-oss-20b` model, free tier): G1 67–71 %, G2 57 % correct; **0 fabricated citations**

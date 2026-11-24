@@ -1,0 +1,161 @@
+{
+  "case_id": "G8",
+  "split": "heldout",
+  "heldout_set": 3,
+  "tool": "check_submittal",
+  "spec": "data/specs/project_alpha/26_32_13_engine_generators_ALPHA.pdf",
+  "tag": "GEN-A",
+  "submittal": "data/submittals/cummins_C2000D6E_spec_sheet.pdf",
+  "labeller": "Project author, with AI assistance, from the source PDF, per eval/answer_keys/README.md. Held-out set 3: labelled 24 Nov 2026, after the accuracy fixes made from the set 1 and set 2 errors, BEFORE any agent run on this document.",
+  "labelled_on": "2026-11-24",
+  "reviewed_by": "",
+  "labels": [
+    {
+      "req_id": "R01",
+      "expected": "complies",
+      "submittal_page": 5,
+      "submittal_quote": "2000 kWe (2500 kVA) EMERGENCY STANDBY POWER (ESP)",
+      "notes": "Standby rating 2000 kWe / 2500 kVA; power factor 0.8 on p7."
+    },
+    {
+      "req_id": "R02",
+      "expected": "unclear",
+      "submittal_page": 2,
+      "submittal_quote": "AVAILABLE VOLTAGES (60 Hz LINE-TO-NEUTRAL / LINE-TO-LINE)",
+      "notes": "277/480 V is one of many voltages offered, none marked as supplied; 60 Hz and 3-phase 4-wire sensing are stated."
+    },
+    {
+      "req_id": "R03",
+      "expected": "unclear",
+      "submittal_page": 1,
+      "submittal_quote": "Several alternator sizes offer selectable motor starting",
+      "notes": "Motor starting is described only as selectable by alternator size; no kVA or voltage dip is given."
+    },
+    {
+      "req_id": "R04",
+      "expected": "complies",
+      "submittal_page": 2,
+      "submittal_quote": "Exciter type  Permanent Magnet Generator (PMG)",
+      "notes": ""
+    },
+    {
+      "req_id": "R05",
+      "expected": "complies",
+      "submittal_page": 2,
+      "submittal_quote": "Four Cycle; Vee; 16 Cylinder",
+      "notes": "Aspiration 'Turbocharged and Charge Air Cooled' on p5."
+    },
+    {
+      "req_id": "R06",
+      "expected": "complies",
+      "submittal_page": 3,
+      "submittal_quote": "Integrated digital electronic isochronous governor",
+      "notes": ""
+    },
+    {
+      "req_id": "R07",
+      "expected": "complies",
+      "submittal_page": 2,
+      "submittal_quote": "Starting voltage  24 volts, negative ground",
+      "notes": ""
+    },
+    {
+      "req_id": "R08",
+      "expected": "complies",
+      "submittal_page": 5,
+      "submittal_quote": "Fuel Consumption  US gph  41.5  75  108  139.8",
+      "notes": "139.8 gph at 100% of 2000 kWe standby, below 145."
+    },
+    {
+      "req_id": "R09",
+      "expected": "unclear",
+      "submittal_page": 2,
+      "submittal_quote": "Standard cooling system  High ambient cooling system",
+      "notes": "Standard cooling is high ambient (40 C / 104 F); enhanced high ambient (50 C / 122 F) is an option; which is supplied is not stated."
+    },
+    {
+      "req_id": "R10",
+      "expected": "complies",
+      "submittal_page": 1,
+      "submittal_quote": "EPA TIER 2 NSPS CERTIFIED (STATIONARY EMERGENCY)",
+      "notes": ""
+    },
+    {
+      "req_id": "R11",
+      "expected": "deviates",
+      "submittal_page": 7,
+      "submittal_quote": "derates at 3.3% per 305 m",
+      "notes": "Even the enhanced 50 C cooling system derates 3.3% per 305 m from sea level, and the standard one derates 10% per 10 C above 40 C: full rating is not kept at 300 ft and 122 F."
+    },
+    {
+      "req_id": "R12",
+      "expected": "complies",
+      "submittal_page": 5,
+      "submittal_quote": "Rated speed  rpm  1800",
+      "notes": ""
+    },
+    {
+      "req_id": "R13",
+      "expected": "complies",
+      "submittal_page": 2,
+      "submittal_quote": "Brushless, 4-pole, drip proof, revolving field",
+      "notes": "Stator 2/3 pitch on the next line."
+    },
+    {
+      "req_id": "R14",
+      "expected": "complies",
+      "submittal_page": 2,
+      "submittal_quote": "Insulation system  Class H",
+      "notes": ""
+    },
+    {
+      "req_id": "R15",
+      "expected": "unclear",
+      "submittal_page": 2,
+      "submittal_quote": "120/240V 225W anti- condensation heater",
+      "notes": "Listed as an option; phase not stated; not marked as supplied."
+    },
+    {
+      "req_id": "R16",
+      "expected": "unclear",
+      "submittal_page": 2,
+      "submittal_quote": "Set mounted circuit breakers up to 3200 Amps",
+      "notes": "Listed as an option; poles and trip type not stated; not marked as supplied."
+    },
+    {
+      "req_id": "R17",
+      "expected": "complies",
+      "submittal_page": 2,
+      "submittal_quote": "Voltage regulation, no load to full load  ± 0.5%",
+      "notes": ""
+    },
+    {
+      "req_id": "R18",
+      "expected": "complies",
+      "submittal_page": 2,
+      "submittal_quote": "< 5% no load to full linear load",
+      "notes": "Stated as less than 5%, which meets 'shall not exceed 5%'."
+    },
+    {
+      "req_id": "R19",
+      "expected": "missing",
+      "submittal_page": null,
+      "submittal_quote": "",
+      "notes": "No fuel tank mentioned."
+    },
+    {
+      "req_id": "R20",
+      "expected": "unclear",
+      "submittal_page": 2,
+      "submittal_quote": "240V thermo-statically controlled coolant",
+      "notes": "A 240 V coolant heater is listed as an option; quantity, wattage and phase not stated; not marked as supplied."
+    },
+    {
+      "req_id": "R21",
+      "expected": "missing",
+      "submittal_page": null,
+      "submittal_quote": "",
+      "notes": "No enclosure offered on this sheet; silencers and louvres are listed as options."
+    }
+  ]
+}

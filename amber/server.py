@@ -143,8 +143,11 @@ async def run_package_review(bid_form_path: str, bids: dict[str, str], spec_path
 async def find_products(tag: str, spec_path: str, library: list[str] | None = None,
                         schedule_path: str = "schedules/equipment_schedule.csv",
                         checklist: list[dict[str, Any]] | None = None, provider: str | None = None) -> ToolResult:
+    from .web import _sealed  # held-out test documents stay unread until their one scored run
+    sealed = _sealed()
     files = [_path(p) for p in (library or [])] or sorted(
-        str(p) for p in (DATA_ROOT / "submittals").glob("*") if p.suffix.lower() in (".pdf", ".txt"))
+        str(p) for p in (DATA_ROOT / "submittals").glob("*")
+        if p.suffix.lower() in (".pdf", ".txt") and f"submittals/{p.name}" not in sealed)
     spec, sched = _path(spec_path), _path(schedule_path)
     if checklist is None:
         from .web import _checklist

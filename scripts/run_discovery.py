@@ -28,7 +28,10 @@ def main() -> None:
     schedule = D / "schedules/equipment_schedule.csv"
     spec, checklist = SPECS[load_schedule(schedule, a.tag)["spec_section"]]
     reqs = json.loads((ROOT / "eval/answer_keys" / checklist).read_text(encoding="utf-8"))["requirements"]
-    library = sorted(str(p) for p in (D / "submittals").glob("*") if p.suffix.lower() in (".pdf", ".txt"))
+    from amber import web  # noqa: E402
+    sealed = web._sealed()  # held-out documents stay unread until their one scored run
+    library = sorted(str(p) for p in (D / "submittals").glob("*")
+                     if p.suffix.lower() in (".pdf", ".txt") and f"submittals/{p.name}" not in sealed)
     res = find_products(str(D / spec), a.tag, str(schedule), library, reqs, llm=LLM(provider=a.provider))
     (ROOT / "runs").mkdir(exist_ok=True)
     (ROOT / f"runs/discovery_{a.tag}.json").write_text(res.model_dump_json(indent=2), encoding="utf-8")
