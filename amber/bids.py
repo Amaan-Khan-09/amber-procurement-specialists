@@ -12,9 +12,12 @@ Pipeline (model reads, code does every number):
 """
 from __future__ import annotations
 
+import hashlib
 import json
+import os
 import re
 import time
+from pathlib import Path
 
 from . import docs
 from .llm import LLM, LLMError
@@ -240,12 +243,39 @@ def uncovered_scope(form: dict, bids: dict[str, dict]) -> list[dict]:
     return out
 
 
+RESULT_CACHE = Path(__file__).resolve().parents[1] / ".cache" / "bid_results"
+_CODE_FILES = ("bids.py", "verify.py", "docs.py", "schema.py", "checks.py")
+
+
+def code_fingerprint() -> str:
+    """A hash of the code that decides a bid comparison, so a saved result is never reused after it has changed.
+    Line endings are ignored (a Windows download converts them)."""
+    h = hashlib.sha256()
+    for name in _CODE_FILES:
+        h.update(name.encode() + Path(__file__).with_name(name).read_bytes().replace(bytes([13, 10]), bytes([10])))
+    return h.hexdigest()[:16]
+
+
 def level_bids(form_path: str, bid_paths: dict[str, str], llm: LLM | None = None) -> ToolResult:
     t0 = time.time()
     llm = llm or LLM()
     form_doc = docs.load(form_path)
-    form = read_form(llm, form_doc)
     bid_docs = {k: docs.load(p) for k, p in bid_paths.items()}
+    cache_file = None
+    if os.getenv("AMBER_RESULT_CACHE", "on").lower() != "off":
+        key = json.dumps([form_doc.sha256, {k: d.sha256 for k, d in sorted(bid_docs.items())}, llm.provider, llm.model,
+                          code_fingerprint()], sort_keys=True)
+        cache_file = RESULT_CACHE / (hashlib.sha256(key.encode()).hexdigest()[:24] + ".json")
+        if cache_file.exists():
+            try:  # the same documents, model and code as an earlier clean comparison: reuse it, and say so
+                saved = json.loads(cache_file.read_text(encoding="utf-8"))
+                res = ToolResult.model_validate(saved["result"])
+                res.result["reused_saved_check"] = saved["saved"]
+                return res
+            except (ValueError, KeyError, OSError):
+                pass
+    steps_before = len(llm.meter.steps)
+    form = read_form(llm, form_doc)
     bids, unread = {}, {}
     for k, d in bid_docs.items():
         try:
@@ -312,4 +342,13 @@ def level_bids(form_path: str, bid_paths: dict[str, str], llm: LLM | None = None
     res = ToolResult(tool="level_bids", findings=findings, result=result,
                      run=RunInfo(models=llm.meter.models(), latency_ms=int((time.time() - t0) * 1000),
                                  steps=list(llm.meter.steps)))
-    return res.finalize()
+    res = res.finalize()
+    # keep a clean comparison (every bid read, no failed model call, no provider switch) so it is not paid for twice
+    if cache_file is not None and not unread and not llm.switched and all(st.get("ok", True) for st in llm.meter.steps[steps_before:]):
+        try:
+            RESULT_CACHE.mkdir(parents=True, exist_ok=True)
+            cache_file.write_text(json.dumps({"saved": time.strftime("%Y-%m-%d %H:%M"), "result": res.model_dump(mode="json")}),
+                                  encoding="utf-8")
+        except OSError:
+            pass
+    return res

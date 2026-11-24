@@ -173,3 +173,42 @@ def test_a_check_with_a_failed_model_call_is_not_kept(tmp_path, monkeypatch):
     submittal.check_submittal(spec, sub, "GEN-A", sched, llm=llm, ocr=False)
     submittal.check_submittal(spec, sub, "GEN-A", sched, llm=_Llm(), ocr=False)
     assert len(calls) == 2  # the failed one was never saved, so the second call had to do the work
+
+
+def test_a_clean_bid_comparison_is_reused_and_a_failed_one_is_not(tmp_path, monkeypatch):
+    from amber import bids
+    monkeypatch.setattr(bids, "RESULT_CACHE", tmp_path / "cache")
+    monkeypatch.delenv("AMBER_RESULT_CACHE", raising=False)
+    form, b1, b2 = tmp_path / "form.txt", tmp_path / "b1.txt", tmp_path / "b2.txt"
+    form.write_text("Bid form: S1 generators", encoding="utf-8")
+    b1.write_text("Bidder one offers generators. Base 100", encoding="utf-8")
+    b2.write_text("Bidder two offers generators. Base 120", encoding="utf-8")
+    calls = []
+    FORM = {"package": "P", "quantity": 1, "scope": [{"id": "S1", "item": "Generators"}], "allowances": []}
+
+    def fake_form(llm, doc):
+        calls.append("form")
+        if getattr(llm, "fail", False):
+            llm.meter.steps.append({"purpose": "read bid form", "ok": False, "error": "model down"})
+        return FORM
+
+    def fake_bid(llm, doc, form_):
+        calls.append(doc.doc_id)
+        return {"bidder": doc.doc_id, "offered_product": "G", "base_total": 100.0, "items": {"S1": {"status": "included"}},
+                "terms": [], "lead_time": None, "base_citation": None, "product_citation": None}
+
+    monkeypatch.setattr(bids, "read_form", fake_form)
+    monkeypatch.setattr(bids, "read_bid", fake_bid)
+    paths = {"B1": str(b1), "B2": str(b2)}
+    bids.level_bids(str(form), paths, llm=_Llm())
+    again = bids.level_bids(str(form), paths, llm=_Llm())
+    assert calls.count("form") == 1 and again.result["reused_saved_check"]  # the second comparison cost nothing
+    (tmp_path / "b2.txt").write_text("Bidder two offers generators. Base 999", encoding="utf-8")  # a changed bid is read again
+    bids.level_bids(str(form), paths, llm=_Llm())
+    assert calls.count("form") == 2
+    failing = _Llm()
+    failing.fail = True
+    (tmp_path / "b1.txt").write_text("changed once more", encoding="utf-8")
+    bids.level_bids(str(form), paths, llm=failing)
+    bids.level_bids(str(form), paths, llm=_Llm())
+    assert calls.count("form") == 4  # the comparison with a failed model call was never kept

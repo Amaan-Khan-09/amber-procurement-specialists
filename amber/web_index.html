@@ -1013,7 +1013,8 @@ async function loadProof() {
   if (PROOF) return;
   try { PROOF = await api("/api/proof"); } catch (e) { el.innerHTML = `<p class="muted">${esc(e.message)}</p>`; return; }
   const P = PROOF, fab = P.fabrications;
-  let tiles = Object.entries(P.sets).map(([k, v]) => `<div class="tile ${k === "2" ? "okt" : "infot"}"><div class="k">Held-out set ${k} · ${k === "2" ? "after the fixes" : "before the fixes"}</div>
+const SETNOTE = {1: "before our fixes", 2: "after the first fixes", 3: "fresh documents, after the accuracy fixes, run once"};
+  let tiles = Object.entries(P.sets).map(([k, v]) => `<div class="tile ${+k >= 2 ? "okt" : "infot"}"><div class="k">Held-out set ${k} · ${SETNOTE[k] || ""}</div>
     <div class="v">${v.correct} / ${v.n}</div><div class="s">${pct(v.correct / v.n)} of requirements correct · automatic answers right: <b>${v.auto_correct} of ${v.auto_total}</b> · false approvals: ${v.false_approvals}</div></div>`).join("");
   tiles += `<div class="tile ${fab === 0 ? "okt" : "warnt"}"><div class="k">Invented citations</div><div class="v">${fab == null ? "n/a" : fab}</div>
     <div class="s">${fab == null ? "the datasheets are not downloaded here, so quotes were not re-checked" : "every quote re-checked on its cited page, independently of the agent"}</div></div>`;

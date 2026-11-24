@@ -48,8 +48,9 @@ pages, behind a hard spending cap. The same checks also run fully offline on a l
 
 ## How we tested it
 Answer keys were written from the source documents **before** the agent ran. Held-out documents were run once, with no
-tuning afterwards. On datasheets the agent had never seen: 59 % of requirements correct before our fixes, **67 % after
-them** (28 of 42), and **every answer it gave on its own was right (11 of 11)**. **Zero invented citations** in every
+tuning afterwards. On datasheets the agent had never seen: 59 % of requirements correct before our fixes, 67 % on the next set, and
+**76 % (32 of 42) on the newest set**, labelled before the run and run once. **25 of the 26 answers it gave on its own
+matched our key**; the one that did not asked the vendor for information. **Zero invented citations** in every
 scored run. The rest it handed to a person, which is the point. A full purchase review takes about 9 minutes and costs
 about 2 cents.
 

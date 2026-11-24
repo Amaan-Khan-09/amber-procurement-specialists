@@ -27,7 +27,7 @@ this repo; nothing is staged.
 | 3:00 | Scroll to **Vendor follow-ups**, open the B3 bid clarification, press **Copy** | "Then the next action: a clarification letter for each bidder and comments for each submittal, built only from verified quotes. Nothing is sent until a person sends it." |
 | 3:20 | Back to the bidders table: click **Find products that fit** next to B3; then open `discovery_GEN-A` from Saved results | "If a product fails, which one would fit? The agent screens every datasheet we hold on the key ratings. It only names products from documents we have, never from memory." |
 | 3:55 | Terminal: `python scripts/demo_mcp_client.py` | "All of this is six MCP tools, so Amber can call any of them directly. Same answers, same sources, as JSON." |
-| 4:15 | README → "Held-out set 2" table | "We tested on datasheets the agent had never seen, labelled before it ran, and run once. 67 % of requirements correct; every answer it gave on its own was right, 11 out of 11; zero invented citations. The rest it sent to a person, which is what you want." |
+| 4:15 | **Proof** tab | "We tested on datasheets the agent had never seen, labelled before it ran, and run once. On the newest ones, 76 % of requirements correct, up from 59 % at the start. Of the answers it gave on its own, 25 of 26 matched our key, and the one that did not asked the vendor for information. Zero invented citations. The rest it sent to a person, which is what you want." |
 | 4:40 | Overview tab again | "Agents a procurement manager can trust: they show their sources, and they say when they are unsure." |
 
 ## Do not say

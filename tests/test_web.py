@@ -159,3 +159,16 @@ def test_a_held_out_document_is_sealed_exactly_until_its_final_run_is_committed(
         else:
             assert rel not in sealed
     assert seen_sealed == len(sealed)  # nothing else is hidden
+
+
+def test_proof_tab_reproduces_the_readme_numbers_from_the_saved_runs(client):
+    web._proof_cache.clear()
+    P = client.get("/api/proof").json()
+    assert (P["sets"]["1"]["n"], P["sets"]["1"]["correct"]) == (58, 34)  # held-out set 1, before the fixes
+    assert (P["sets"]["2"]["n"], P["sets"]["2"]["correct"]) == (42, 28)  # held-out set 2
+    assert P["sets"]["2"]["auto_correct"] == P["sets"]["2"]["auto_total"] == 11
+    assert (P["sets"]["3"]["n"], P["sets"]["3"]["correct"]) == (42, 32)  # held-out set 3: fresh documents, run once
+    assert (P["sets"]["3"]["auto_correct"], P["sets"]["3"]["auto_total"]) == (14, 15)
+    assert P["fabrications"] in (0, None)  # None only when the datasheets are not downloaded
+    assert P["bids"]["cells"] == 44 and P["bids"]["award_withheld"] and P["bids"]["rank_ok"]
+    assert all(c["result_id"].startswith(("runs:", "example:")) for c in P["cases"])

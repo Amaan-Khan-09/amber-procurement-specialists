@@ -19,8 +19,8 @@ Judging: accuracy, customer value, trustworthiness, build quality. One idea per 
    - failures never become claims.
 6. **Demo, three screenshots**: the source viewer (a cited datasheet page with the quote highlighted); the scope
    matrix; the review queue with a person's decision.
-7. **Results** (held-out documents, labelled before the run, run once): 67 % of requirements correct on the latest
-   set (59 % before our fixes); every answer it gave on its own right (11 of 11); zero fabricated citations in every
+7. **Results** (held-out documents, labelled before the run, run once): 76 % of requirements correct on the newest
+   set (67 % and 59 % on the two before); 25 of 26 automatic answers matched our key; zero fabricated citations in every
    run; bid leveling: 41 of 44 scope cells right, all four base prices exact, 2 of 4 leveled totals exact (the other two off by $30k and $122k because of three misread scope cells), ranking right, award correctly withheld. Say how the keys were made.
 8. **Cost and speed**: open-weight gpt-oss-120b on Groq's free tier (Gemini 3.8 Flash only to read new scanned pages,
    opt-in). About $0.007 and 3 minutes per submittal check; a full package review $0.02 in 9 minutes; delivery

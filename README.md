@@ -44,7 +44,7 @@ python -m venv .venv                                     # Python 3.11+
 source .venv/bin/activate                                # Windows: .venv\Scripts\activate
 pip install -e ".[dev]"
 python tools/data_prep/fetch_data.py                     # downloads the public test documents (not committed)
-python -m pytest -q                                      # 109 tests, no API key and no network needed
+python -m pytest -q                                      # 121 tests, no API key and no network needed
 python -m amber.web                                      # the web page: http://127.0.0.1:8000 (opens the browser)
 python scripts/demo_mcp_client.py                        # starts the MCP server and calls a tool (no key needed)
 cp .env.example .env                                     # add GROQ_API_KEY for the steps below
@@ -256,7 +256,30 @@ Be careful with these numbers: the same document re-run through the model varies
 and then 17 of 21 on identical code), so a one-point change in a single run is noise. Only the labels that moved in the
 replay, where the model's reading is held fixed, are attributable to a change. **Held-out set 3** (G7 Caterpillar 3516C,
 G8 Cummins C2000D6E) was labelled on 24 Nov 2026 before any run, specifically to test these changes on documents nobody had
-seen; it is run once, with no tuning afterwards.
+seen; it was then run once, with no tuning afterwards (below).
+
+### Held-out set 3: fresh documents, after the accuracy fixes (run once, 25 Nov 2026, `gpt-oss-120b`, no tuning)
+
+Two datasheets nobody had seen, labelled from their source text on 24 Nov before any run (the commit history shows the
+order), run once. No model call failed, no provider was switched, and the code was not touched between the labelling and
+the run.
+
+| Case | Correct | False approvals | False rejections | Fabricated citations | Sent to a person | Decided alone, and right | Cost | Time |
+|---|---|---|---|---|---|---|---|---|
+| G7 Caterpillar 3516C 2000 ekW spec sheet | 17 / 21 (81 %) | 0 | 0 | 0 | 62 % | 7 / 8 | $0.008 | 3.7 min |
+| G8 Cummins C2000D6E spec and data sheet | 15 / 21 (71 %) | 0 | 0 | 0 | 67 % | 7 / 7 | $0.006 | 2.6 min |
+| **Set 3** | **32 / 42 (76 %)** | **0** | **0** | **0** | | **14 / 15** | **$0.014** | |
+
+Accuracy on unseen documents has gone 59 % (set 1) to 67 % (set 2) to **76 % (set 3)**, with zero invented citations and no
+false approvals in the last two sets that were not handed to a person. Read it with the noise in mind (a document varies by
+about three requirements between identical runs): the direction is clear, a single point is not.
+
+The one automatic answer that disagrees with our key is G7 R11 (ambient and altitude): the agent said "not stated" (a
+request to the vendor), our key says "unclear" because the sheet says cooling systems are *available* for 50 C. It errs in
+the safe direction, and we did not change the code to fix it, because that would break the rule that makes the 76 % mean
+something. The other 9 wrong answers were all handed to a person: six were "unclear" where the key says "missing" or
+"complies" (the agent saw related words, or only some of the required words, and asked), and three were the model's own
+judgement or a partial reading, capped for review.
 
 Score any case with `python scripts/eval_submittal.py --run --case G3`.
 
@@ -292,8 +315,9 @@ Everything is public or made by us, and cited in `data/SOURCES.md`.
 * **Small models** miss facts that are stated; the 120b model is the supported default.
 * Bids and the project are fictional; lead-time sources are trade publications, some secondary.
 * **Cautious by design, so a person still has work to do.** On unseen documents about three answers in four go to a
-  person, mostly as `unclear` where a careful reader would say `missing`. Every answer the agent gave on its own was
-  right (11 of 11 on held-out set 2), but the time saved is in reading and quoting, not in removing the review.
+  person, mostly as `unclear` where a careful reader would say `missing`. On held-out sets 2 and 3 (after our fixes)
+  25 of the 26 answers the agent gave on its own matched our key, and the one that did not asked the vendor for information;
+  the time saved is in reading and quoting, not in removing the review.
 * Answer keys cover generators (six datasheets) and one UPS package. Switchgear and transformers have specs and
   delivery forecasts, but no submittal answer keys yet, and product discovery is set up for generators and UPS only.
 * Product discovery screens five key ratings; a product that passes still needs the full submittal check.
