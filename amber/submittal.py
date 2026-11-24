@@ -208,9 +208,9 @@ def _limits(llm: LLM) -> dict:
     """Cloud models read big batches; a small local model on a CPU gets small, focused questions instead
     (fewer conditions per call, fewer and shorter excerpts), which is both faster and easier for it."""
     if llm.local:
-        return {"batch": 3, "k": 2, "chars": 3500, "k2": 4, "chars2": 5000, "batch2": 3}
+        return {"batch": 3, "k": 2, "chars": 3500, "k2": 4, "chars2": 5000, "batch2": 3, "batch3": 2}
     return {"batch": BATCH, "k": PASSAGES_PER_COND, "chars": MAX_CONTEXT_CHARS, "k2": SECOND_PASS_PASSAGES,
-            "chars2": SECOND_PASS_CHARS, "batch2": 8}
+            "chars2": SECOND_PASS_CHARS, "batch2": 8, "batch3": 3}
 
 
 def extract_offers(llm: LLM, sub_doc: docs.Document, reqs: list[dict]) -> dict[str, dict]:
@@ -258,6 +258,8 @@ def extract_offers(llm: LLM, sub_doc: docs.Document, reqs: list[dict]) -> dict[s
             if o.get("stated"):
                 o["second_pass"] = True
                 offers[o.get("cid")] = o
+    if os.getenv("AMBER_TARGETED_READ", "on").lower() != "off":
+        offers = _targeted_reread(llm, sub_doc, conds, offers, lim)
     return offers
 
 
@@ -344,7 +346,92 @@ def _mentioned(doc: docs.Document, c: dict) -> dict | None:
     if not hits:
         return None
     pages = sorted({n for ns in hits.values() for n in ns})
-    return {"words": sorted(hits, key=lambda w: -len(hits[w])), "pages": pages}
+    per_page = {n: sum(1 for ns in hits.values() if n in ns) for n in pages}
+    return {"words": sorted(hits, key=lambda w: -len(hits[w])), "pages": pages,
+            "ranked": sorted(pages, key=lambda n: (-per_page[n], n))}
+
+
+def _partial_terms(c: dict, evidence: str) -> tuple[list[str], list[str]] | None:
+    """For a requirement that needs ALL of several terms: (terms found, terms not found) when some but not all are in the
+    evidence. None when there is nothing partial to say (all found, none found, or the terms are alternatives)."""
+    terms, how = checks.terms_of(c)
+    if how != "all" or len(terms) < 2:
+        return None
+    sq = checks._squash(evidence)
+    got = [t for t in terms if checks._squash(t) in sq]
+    return (got, [t for t in terms if t not in got]) if 0 < len(got) < len(terms) else None
+
+
+def _condition_words(c: dict) -> set[str]:
+    words = set(_attr_words(c))
+    for t in c.get("terms") or []:
+        words |= {w for w in re.findall(r"[a-z]{4,}", str(t).lower()) if w not in _GENERIC}
+    return {w for w in words if len(w) >= 4}
+
+
+def _mention_passages(doc: docs.Document, c: dict, pages: list[int], window: int = 350, limit: int = 2400) -> list[tuple[int, str]]:
+    """The stretches of text around the condition's words on the pages that mention it (at most two per page)."""
+    words, out, used = _condition_words(c), [], 0
+    for n in pages:
+        pg = doc.page(n)
+        if not pg:
+            continue
+        text, low = pg.text, pg.text.lower()
+        spans = sorted((max(0, m.start() - window), min(len(text), m.end() + window))
+                       for w in words for m in re.finditer(rf"\b{re.escape(w)}", low))
+        merged: list[list[int]] = []
+        for a, b in spans:
+            if merged and a <= merged[-1][1]:
+                merged[-1][1] = max(merged[-1][1], b)
+            else:
+                merged.append([a, b])
+        for a, b in merged[:2]:
+            seg = text[a:b].strip()
+            if used + len(seg) > limit:
+                return out
+            out.append((n, seg))
+            used += len(seg)
+    return out
+
+
+TARGETED_ASK = ("A first and a second read found no value for these conditions, but a scan shows the submittal mentions "
+                "them. For each condition, read ONLY the passages listed under it. Decide whether the submittal STATES the "
+                "required value or feature there. If it does, report it and quote the exact words (verbatim from the "
+                "passage). If a passage only mentions it as an option, an extra-cost accessory, a different feature or in "
+                "another context, report stated=false and say why in note. Do not guess.")
+
+
+def _targeted_reread(llm: LLM, doc: docs.Document, conds: list[dict], offers: dict[str, dict], lim: dict) -> dict[str, dict]:
+    """Conditions the model gave up on, although the document mentions them, get one more look: exactly the passages that
+    mention them. A statement found this way goes through the same quote verification and guards as any other, and is
+    never automatic (a person confirms it), so this can only turn a blind 'unclear' into an evidenced answer."""
+    todo = []
+    for c in conds:
+        o = offers.get(c["cid"]) or {}
+        if o.get("stated") or o.get("not_checked"):
+            continue
+        seen = _mentioned(doc, c)
+        passages = _mention_passages(doc, c, (seen or {}).get("ranked", [])[:5]) if seen else []
+        if passages:
+            todo.append((c, passages))
+    for i in range(0, len(todo), lim["batch3"]):
+        batch = todo[i:i + lim["batch3"]]
+        ask = [{k: c.get(k) for k in ("cid", "attribute", "requirement", "kind", "op", "value", "min", "max", "unit", "terms")
+                if c.get(k) not in (None, [], "")} for c, _ in batch]
+        text = "\n\n".join(f"Passages for condition {c['cid']}:\n" + "\n---\n".join(f"[page {n}]\n{t}" for n, t in ps)
+                            for c, ps in batch)
+        try:
+            reply = llm.json(EXTRACT_SYSTEM, TARGETED_ASK + "\nConditions:\n" + json.dumps(ask, ensure_ascii=False) + "\n\n" + text,
+                             max_tokens=1600 if not llm.local else 600, schema=OFFER_SCHEMA,
+                             purpose="targeted re-read: " + ", ".join(c["cid"] for c, _ in batch))
+        except LLMError:
+            continue  # keep the earlier answer
+        wanted = {c["cid"] for c, _ in batch}
+        for o in _items(reply.get("offers", reply), "cid"):
+            if o.get("cid") in wanted and o.get("stated"):
+                o["third_look"] = True
+                offers[o["cid"]] = o
+    return offers
 
 
 def _decide_condition(c: dict, o: dict | None, sub_doc: docs.Document):
@@ -395,11 +482,18 @@ def _decide_condition(c: dict, o: dict | None, sub_doc: docs.Document):
         # none of the reported values is in the quote, so the quote may be about something else: judge it,
         # but never confidently (it goes to a person)
         d = checks.Decision(d.verdict, d.why + "; the reported value is not in the quote, judged on the quote text only", False)
+    partial_hit = False
+    if c.get("kind") == "text" and d.verdict == Verdict.deviates and str(o.get("meets", "")).lower() != "yes":
+        part = _partial_terms(c, " | ".join(str(v) for v in (o.get("values") or [])) + " | " + cite.quote)
+        if part:  # some required words are there, others are not written: that is not the same as contradicting them
+            d = checks.Decision(Verdict.unclear, f"the evidence shows {', '.join(part[0])} but does not mention "
+                                                 f"{', '.join(part[1])}; nothing contradicts it, a person decides", False)
+            partial_hit = True
     exact = d.exact
     unit_shown = c.get("kind", "numeric") != "numeric" or checks.unit_in_text(o.get("unit") or c.get("unit"), cite.quote)
     meets = str(o.get("meets", "")).lower()
     values = [v for v in (o.get("values") or []) if v not in (None, "")]
-    judged = bool(o.get("quote_only"))  # judged on quote text alone: capped below the handoff line
+    judged = bool(o.get("quote_only")) or partial_hit or bool(o.get("third_look"))  # capped below the handoff line
     if not values and meets in ("yes", "no") and cite.match in ("exact", "normalized", "compact"):
         # Nothing to compare in code (e.g. a derate sentence), but the model read a quote that is really on the
         # page. Its verdict is used, flagged as judgement and capped so a person always confirms it.
@@ -421,6 +515,8 @@ def _decide_condition(c: dict, o: dict | None, sub_doc: docs.Document):
                                                      "contradicts the requirement", False)
         exact, judged = False, True
     conf = (0.95 if exact else 0.74) * MATCH_TRUST.get(cite.match, 0.8)
+    if o.get("third_look"):
+        d = checks.Decision(d.verdict, d.why + "; found on a targeted re-read of the pages that mention it, confirm", d.exact)
     if judged:
         conf = min(conf, JUDGEMENT_CAP)
     if not unit_shown and d.verdict in (Verdict.complies, Verdict.deviates):
@@ -451,26 +547,9 @@ def _combine(parts: list[tuple]) -> tuple[Verdict, str, float]:
     return Verdict.complies, why, conf
 
 
-def check_submittal(spec_path: str, submittal_path: str, tag: str, schedule_path: str,
-                    checklist: list[dict] | None = None, llm: LLM | None = None, ocr: bool = True,
-                    only: list[str] | None = None) -> ToolResult:
-    """only: check just these requirement ids (product discovery screens a few key ratings this way)."""
-    t0 = time.time()
-    llm = llm or LLM()
-    reader = None
-    if ocr:  # default: cached scan text only, no model calls; AMBER_OCR=gemini|groq|ollama to read new scans; off: none
-        from .ocr import reader_from_env
-        reader = reader_from_env(meter=llm.meter)
-    spec_doc, sub_doc = docs.load(spec_path, ocr=reader), docs.load(submittal_path, ocr=reader)
-    schedule_id = docs.doc_id_for(schedule_path)
-    row = load_schedule(schedule_path, tag)
-
-    reqs = structure_requirements(llm, spec_doc, row, schedule_id, checklist)
-    if only:
-        reqs = [r for r in reqs if r["req_id"] in set(only)]
-    offers = extract_offers(llm, sub_doc, reqs)
-    _flag_shared_evidence(reqs, offers)
-
+def decide_all(reqs: list[dict], offers: dict[str, dict], sub_doc: docs.Document) -> tuple[list[Finding], list[dict]]:
+    """Turn what the model read (offers) into one finding per requirement. All decisions are made here, in code, so
+    a saved run can be replayed through it without a model (scripts/replay_decisions.py)."""
     findings, rows = [], []
     for r in reqs:
         rid = r["req_id"]
@@ -494,6 +573,30 @@ def check_submittal(spec_path: str, submittal_path: str, tag: str, schedule_path
                                 citations=cites, why=why, data={"req_id": rid, "locator": r.get("locator"), "conditions": detail}))
         rows.append({"req_id": rid, "locator": r.get("locator"), "requirement": r.get("requirement"),
                      "verdict": verdict.value, "confidence": round(conf, 3)})
+    return findings, rows
+
+
+def check_submittal(spec_path: str, submittal_path: str, tag: str, schedule_path: str,
+                    checklist: list[dict] | None = None, llm: LLM | None = None, ocr: bool = True,
+                    only: list[str] | None = None) -> ToolResult:
+    """only: check just these requirement ids (product discovery screens a few key ratings this way)."""
+    t0 = time.time()
+    llm = llm or LLM()
+    reader = None
+    if ocr:  # default: cached scan text only, no model calls; AMBER_OCR=gemini|groq|ollama to read new scans; off: none
+        from .ocr import reader_from_env
+        reader = reader_from_env(meter=llm.meter)
+    spec_doc, sub_doc = docs.load(spec_path, ocr=reader), docs.load(submittal_path, ocr=reader)
+    schedule_id = docs.doc_id_for(schedule_path)
+    row = load_schedule(schedule_path, tag)
+
+    reqs = structure_requirements(llm, spec_doc, row, schedule_id, checklist)
+    if only:
+        reqs = [r for r in reqs if r["req_id"] in set(only)]
+    offers = extract_offers(llm, sub_doc, reqs)
+    _flag_shared_evidence(reqs, offers)
+
+    findings, rows = decide_all(reqs, offers, sub_doc)
 
     counts = {v.value: sum(1 for f in findings if f.status == v) for v in Verdict}
     res = ToolResult(tool="check_submittal", findings=findings,

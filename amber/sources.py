@@ -40,7 +40,7 @@ def _pieces(quote: str) -> list[str]:
         if v != q:
             out.append(v[:300])
     quote = plain
-    segs = [s.strip(" .,:;") for s in re.split(r"\s*[|\n•;]\s*|(?<=[.!?])\s+", quote)]
+    segs = [s.strip(" .,:;") for s in re.split(r"\s*(?:\.{3}|…|[|\n•;])\s*|(?<=[.!?])\s+", quote)]
     out += [s for s in segs if len(s) >= 6 and s != q]
     words = q.split()
     if len(words) > 4:

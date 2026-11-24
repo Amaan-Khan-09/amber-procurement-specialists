@@ -164,6 +164,9 @@ def decide(req: dict, offer: dict | None, evidence: str = "") -> Decision:
 
 
 _NUM = re.compile(r"-?\d[\d,]*\.?\d*")
+# words that qualify a number ("up to 8 units", "at least 10 min") without turning it into a label
+_QUALIFIERS = {"up", "to", "at", "least", "most", "over", "under", "than", "less", "more", "min", "max", "minimum", "maximum",
+               "approx", "approximately", "about", "around", "nominal", "units", "unit"}
 
 
 def _single_numbers(values: list, u: str | None) -> tuple[list, str | None]:
@@ -175,7 +178,7 @@ def _single_numbers(values: list, u: str | None) -> tuple[list, str | None]:
             continue
         # A table label returned as a value ('Peak motor starting kVA: (35% dip for voltages') is not a number:
         # its '35' would be read as 35 kVA. Allow a unit and at most two other words around the number.
-        words = [w for w in re.findall(r"[a-z]+", v.lower()) if w not in UNIT_ALIASES and w not in UNIT_WORDS]
+        words = [w for w in re.findall(r"[a-z]+", v.lower()) if w not in UNIT_ALIASES and w not in UNIT_WORDS and w not in _QUALIFIERS]
         if len(words) > 2:
             return [], f"reported value {v!r} reads like a label, not a number; not guessing"
         nums = _NUM.findall(v)
@@ -210,13 +213,27 @@ def unit_in_text(unit: str | None, text: str) -> bool:
     return any(w in t for w in words)
 
 
+def _token_values(tok: str) -> list[float]:
+    """A digit run with commas. '1,500' is a thousand-separated number; '0,50' and '2,1' are decimal commas
+    (European datasheets); anything else ('6,12,16') is a list."""
+    if re.fullmatch(r"\d{1,3}(?:,\d{3})+(?:\.\d+)?", tok):
+        return [float(tok.replace(",", ""))]
+    if re.fullmatch(r"\d+,\d{1,2}", tok):
+        return [float(tok.replace(",", "."))]
+    return [float(p) for p in tok.split(",") if re.fullmatch(r"\d+(?:\.\d+)?", p)]
+
+
 def numbers_in(text: str) -> list[float]:
+    """Every number in the text. A '-' is a minus sign only when it stands alone before the digits ('-40 C'); in a
+    range ('1590--2000', '10-40') or a tolerance ('+/-0.25') it is punctuation, so the number stays positive."""
     out = []
-    for m in re.finditer(r"-?\d[\d,]*\.?\d*", text):
-        try:
-            out.append(float(m.group(0).replace(",", "").rstrip(".")))
-        except ValueError:
-            pass
+    for m in re.finditer(r"\d[\d,]*\.?\d*", text):
+        tok = m.group(0).rstrip(".,")
+        prev = text[m.start() - 1] if m.start() >= 1 else ""
+        before = text[m.start() - 2] if m.start() >= 2 else ""
+        neg = prev in "-\u2212" and prev != "" and (before == "" or before.isspace() or before in "(=<>:,;[")
+        for v in _token_values(tok):
+            out.append(-v if neg else v)
     return out
 
 

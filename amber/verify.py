@@ -43,8 +43,27 @@ def _has_number(s: str) -> bool:
     return bool(re.search(r"\d", s))
 
 
+_ELLIPSIS = re.compile(r"\s*(?:\.{3,}|\u2026)\s*")
+
+
 def match_level(quote: str, page_text: str) -> str | None:
     if not quote.strip():
+        return None
+    if _ELLIPSIS.search(quote):
+        # A quote shortened with "..." is accepted only if every piece is really on the page, in the same order.
+        segs = [s.strip(" .,;:") for s in _ELLIPSIS.split(quote)]
+        segs = [s for s in segs if len(s) >= 3]
+        if len(segs) >= 2 or (len(segs) == 1 and len(segs[0]) >= 12):
+            norm_page, pos = normalize(page_text), 0
+            for sg in segs:
+                if not match_level(sg, page_text):
+                    return None
+                i = norm_page.find(normalize(sg), pos)
+                if i >= 0:
+                    pos = i + len(normalize(sg))
+                elif len(segs) > 1 and normalize(sg) in norm_page and normalize(sg) not in norm_page[pos:]:
+                    return None  # the pieces are on the page, but not in this order
+            return "segments"
         return None
     if collapse(quote) in collapse(page_text):
         return "exact"
@@ -130,4 +149,4 @@ def verify(doc: Document, quote: str, page: int | None = None, locator: str = ""
 
 
 # how much a citation's match level should be trusted (used in confidence scoring)
-MATCH_TRUST = {"exact": 1.0, "normalized": 0.97, "compact": 0.93, "table": 0.88, "fuzzy": 0.8, "clause": 0.9}
+MATCH_TRUST = {"exact": 1.0, "normalized": 0.97, "compact": 0.93, "table": 0.88, "fuzzy": 0.8, "clause": 0.9, "segments": 0.85}
