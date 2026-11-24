@@ -55,6 +55,12 @@ python -m amber.server                                   # MCP server on stdio (
 
 Notes for a fresh clone:
 
+* **Live demo, nothing to install (read-only):** https://amaan-khan-09.github.io/amber-procurement-specialists/demo/
+  It is a static copy of the web page (`docs/demo/`) that runs on the saved results: overview, the 3D view, every
+  source, the review queue (your decisions stay in your browser) and the Proof tab. Our own documents open as page
+  images with the quoted words highlighted. Manufacturers' datasheets are copyrighted, so the demo never republishes
+  them: it shows the short excerpt the agent cited and links to the manufacturer's page. Rebuild it with
+  `python scripts/build_static_demo.py` (publish: GitHub Pages, branch `main`, folder `/docs`).
 * **No API key needed to see the results.** `examples/` holds the saved results behind every number in this README
   (the package review, product discovery, every scored case). `python -m amber.web` lists them under Saved results,
   and the Overview, delivery forecast and source viewer work with no key at all.

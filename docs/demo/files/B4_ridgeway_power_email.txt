@@ -1,0 +1,22 @@
+From: Dana Ruiz <estimating@ridgeway-power.example>
+To: procurement@projectalpha-gc.example
+Date: Thu, 19 Nov 2026 16:42:10 -0500
+Subject: RE: BP-26-04 Standby Generators - budget number
+
+Hi team,
+
+As requested, our number for BP-26-04:
+
+4 x Cummins C2000D6 2000kW standby 480V gensets with sound attenuated enclosures and 24 hr subbase tanks,
+freight included, startup included.
+
+Total: $4,240,000
+
+Lead time approx 60 wks right now. Price firm 15 days.
+
+Let me know if you need anything else.
+
+Dana Ruiz
+Ridgeway Power (fictional company)
+
+-- FICTIONAL DOCUMENT for software testing (Project Alpha). Not a real offer.

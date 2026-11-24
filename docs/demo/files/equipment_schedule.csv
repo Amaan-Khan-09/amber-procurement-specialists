@@ -1,0 +1,18 @@
+tag,item,qty,spec_section,standby_kw,standby_kva,power_factor,voltage,phases,wires,frequency_hz,ups_kva,bus_amps,short_circuit_ka,transformer_kva,primary_kv,need_on_site,notes
+GEN-A,Diesel engine-generator set,1,26 32 13,2000,2500,0.8,480Y/277,3,4,60,,,,,,2027-10-04,Power block A; outdoor sound-attenuated enclosure
+GEN-B,Diesel engine-generator set,1,26 32 13,2000,2500,0.8,480Y/277,3,4,60,,,,,,2027-10-04,Power block B; outdoor sound-attenuated enclosure
+GEN-C,Diesel engine-generator set,1,26 32 13,2000,2500,0.8,480Y/277,3,4,60,,,,,,2027-10-04,Power block C; outdoor sound-attenuated enclosure
+GEN-D,Diesel engine-generator set,1,26 32 13,2000,2500,0.8,480Y/277,3,4,60,,,,,,2027-10-04,Power block D; outdoor sound-attenuated enclosure
+GEN-M,Diesel engine-generator set,1,26 32 13,1000,1250,0.8,480Y/277,3,4,60,,,,,,2027-11-01,Mechanical plant; outdoor enclosure
+UPS-A,Static double-conversion UPS,1,26 33 53,,,1.0,480,3,3,60,1200,,,,,2027-09-06,Single module
+UPS-B,Static double-conversion UPS,1,26 33 53,,,1.0,480,3,3,60,1200,,,,,2027-09-06,Single module
+UPS-C,Static double-conversion UPS,1,26 33 53,,,1.0,480,3,3,60,1200,,,,,2027-09-06,Single module
+UPS-D,Static double-conversion UPS,1,26 33 53,,,1.0,480,3,3,60,1200,,,,,2027-09-06,Single module
+SWGR-A,LV power circuit breaker switchgear (UL 1558),1,26 23 00,,,,480Y/277,3,4,60,,4000,65,,,2027-08-02,
+SWGR-B,LV power circuit breaker switchgear (UL 1558),1,26 23 00,,,,480Y/277,3,4,60,,4000,65,,,2027-08-02,
+SWGR-C,LV power circuit breaker switchgear (UL 1558),1,26 23 00,,,,480Y/277,3,4,60,,4000,65,,,2027-08-02,
+SWGR-D,LV power circuit breaker switchgear (UL 1558),1,26 23 00,,,,480Y/277,3,4,60,,4000,65,,,2027-08-02,
+TX-A,Pad-mount liquid-filled transformer,1,26 12 19,,,,480Y/277,3,4,60,,,,3000,13.2,2027-07-05,
+TX-B,Pad-mount liquid-filled transformer,1,26 12 19,,,,480Y/277,3,4,60,,,,3000,13.2,2027-07-05,
+TX-C,Pad-mount liquid-filled transformer,1,26 12 19,,,,480Y/277,3,4,60,,,,3000,13.2,2027-07-05,
+TX-D,Pad-mount liquid-filled transformer,1,26 12 19,,,,480Y/277,3,4,60,,,,3000,13.2,2027-07-05,

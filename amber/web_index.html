@@ -3,6 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%23c26a00'/%3E%3Cpath d='M18 5L9 18h6l-1 9 9-13h-6z' fill='white'/%3E%3C/svg%3E">
 <title>Amber procurement specialists</title>
 <style>
 :root{--bg:#f5f6f8;--card:#fff;--ink:#17202b;--mute:#5d6878;--line:#e1e5eb;--soft:#eef1f5;--accent:#1d4f91;--accentink:#fff;--brand:#c26a00;
@@ -186,6 +187,13 @@ kbd{font:600 11px ui-monospace,Consolas,monospace;border:1px solid var(--line);b
 .rv-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}
 .btn.v-ok{border-color:var(--ok);color:var(--ok)}.btn.v-bad{border-color:var(--bad);color:var(--bad)}.btn.v-warn{border-color:var(--warn);color:var(--warn)}
 .bar-s{display:inline-block;width:70px;height:6px;background:var(--soft);border-radius:4px;overflow:hidden;vertical-align:middle;margin-right:6px}.bar-s i{display:block;height:100%;background:var(--accent)}
+
+.demo-banner{background:var(--infobg);color:var(--ink);border-bottom:1px solid var(--line);font-size:13.5px}
+.demo-banner div{max-width:1200px;margin:0 auto;padding:7px 16px}
+.hlbox{position:absolute;background:rgba(255,214,0,.42);border-radius:2px;mix-blend-mode:multiply;pointer-events:none;outline:1px solid rgba(214,160,0,.8)}
+.pgwrap{position:relative}
+.excerpt{margin:16px;padding:16px;background:var(--card);border:1px solid var(--line);border-radius:12px}
+.excerpt blockquote{margin:8px 0 0;padding:10px 14px;border-left:4px solid #e6b800;background:var(--soft);font-size:15px;font-style:italic}
 @media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}}
 </style>
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -211,6 +219,7 @@ kbd{font:600 11px ui-monospace,Consolas,monospace;border:1px solid var(--line);b
     <button role="tab" data-tab="proof">Proof</button>
   </nav>
 </header>
+<div id="demo-banner" class="demo-banner hidden"><div><b>Read-only demo.</b> You are looking at saved results of the real agents on Project Alpha (fictional). Nothing is sent anywhere, and your review decisions stay in this browser. To run the agents on your own documents, <a href="https://github.com/Amaan-Khan-09/amber-procurement-specialists" target="_blank" rel="noopener">install the project</a>: no API key is needed to explore.</div></div>
 <main>
   <section id="tab-overview" class="tab">
     <div class="hero">
@@ -362,6 +371,9 @@ async function api(path, opts = {}) {
   return j;
 }
 const short = p => p.split("/").pop();
+const DEMO = window.AMBER_DEMO || null;  // set by demo-shim.js when the page is served as the static demo
+const reportUrl = rid => DEMO ? DEMO.reportUrl(rid) : `/api/results/${encodeURIComponent(rid)}/report`;
+const fileUrl = (doc, page) => DEMO ? DEMO.fileUrl(doc, page) : `/api/file/${encodeURIComponent(doc)}` + (page ? `#page=${page}` : "");
 const fmtDate = s => s ? new Date(s + "T00:00:00Z").toLocaleDateString("en-GB", {day: "numeric", month: "short", year: "numeric", timeZone: "UTC"}) : "-";
 
 // ---------- source viewer ----------
@@ -379,21 +391,27 @@ async function openSource(c, page) {
   catch (e) { $("#dr-body").innerHTML = `<div style="padding:24px" class="muted">${esc(e.message)}</div>`; return; }
   DR.pages = out.pages; DR.page = out.page;
   $("#dr-title").textContent = out.name;
-  $("#dr-page").textContent = out.kind === "pdf" ? `Page ${out.page} of ${out.pages}` : (out.kind === "table" ? "Table" : "Text");
+  $("#dr-page").textContent = out.kind === "pdf" ? `Page ${out.page} of ${out.pages}` : out.kind === "quote" ? `Page ${out.page}` : (out.kind === "table" ? "Table" : "Text");
   $("#dr-prev").classList.toggle("hidden", out.kind !== "pdf"); $("#dr-next").classList.toggle("hidden", out.kind !== "pdf");
   $("#dr-prev").disabled = out.page <= 1; $("#dr-next").disabled = out.page >= out.pages;
-  $("#dr-open").href = `/api/file/${encodeURIComponent(c.doc_id)}` + (out.kind === "pdf" ? `#page=${out.page}` : "");
+  const orig = fileUrl(c.doc_id, out.kind === "pdf" ? out.page : 0);
+  $("#dr-open").classList.toggle("hidden", !orig); if (orig) $("#dr-open").href = orig;
   const onCited = DR.page === c.page;
   const match = c.match && c.match !== "exact" ? ` (matched as ${c.match}: ${c.match === "table" ? "label and value in separate cells" : c.match === "fuzzy" ? "small wording or spacing differences" : "spacing or hyphenation differs"})` : "";
-  $("#dr-status").innerHTML = out.found ? `<span class="b ok">found</span> The quoted words are highlighted on this ${out.kind === "pdf" ? "page" : out.kind === "table" ? "table (row marked)" : "text"}${match}.`
+  $("#dr-status").innerHTML = out.kind === "quote" ? `<span class="b info">verified excerpt</span> This quote was found on page ${out.page} of the manufacturer's document when the answer was made.`
+    : out.found ? `<span class="b ok">found</span> The quoted words are highlighted on this ${out.kind === "pdf" ? "page" : out.kind === "table" ? "table (row marked)" : "text"}${match}.`
     : out.scanned ? `<span class="b warn">scanned page</span> This page is an image; the quote was read by OCR, so it cannot be highlighted. Compare by eye.`
     : onCited ? `<span class="b warn">not marked</span> The quote was verified when the answer was made but could not be marked on this view${match}. Compare by eye.`
     : `<span class="b mute">other page</span> The quote is on page ${c.page}.`;
   const body = $("#dr-body");
   if (out.kind === "pdf") {
-    body.innerHTML = `<img alt="Page ${out.page} of ${esc(out.name)}${out.found ? ", with the quoted words highlighted" : ""}" src="${out.image}">`;
+    body.innerHTML = `<div class="pgwrap"><img alt="Page ${out.page} of ${esc(out.name)}${out.found ? ", with the quoted words highlighted" : ""}" src="${out.image}">${(out.rects || []).map(r => `<i class="hlbox" style="left:${r[0] * 100}%;top:${r[1] * 100}%;width:${(r[2] - r[0]) * 100}%;height:${(r[3] - r[1]) * 100}%"></i>`).join("")}</div>`;
     const img = $("img", body);
     img.onload = () => { if (out.top != null) body.scrollTop = Math.max(0, out.top * img.clientHeight - 120); };
+  } else if (out.kind === "quote") {
+    body.innerHTML = `<div class="excerpt"><b>${esc(out.name)}</b> · page ${out.page}<blockquote>“${esc(c.quote)}”</blockquote>
+      <p class="small">This is a manufacturer's copyrighted document, so the demo shows only the short verified excerpt the agent cited. ${out.url ? "Open the original to read the page in context." : ""}</p>
+      ${out.url ? `<a class="btn sm" href="${esc(out.url)}" target="_blank" rel="noopener noreferrer">Open the manufacturer's document ↗</a>` : ""}</div>`;
   } else if (out.kind === "text") {
     body.innerHTML = `<pre>${out.segments.map(s => s.hl ? `<mark>${esc(s.t)}</mark>` : esc(s.t)).join("")}</pre>`;
     const m = $("mark", body); if (m) m.scrollIntoView({block: "center"});
@@ -409,7 +427,7 @@ async function openSource(c, page) {
 function closeSource() { $("#scrim").classList.add("hidden"); $("#drawer").classList.remove("open", "wide"); DR = null; }
 $("#dr-close").onclick = closeSource; $("#scrim").onclick = closeSource;
 $("#dr-link").onclick = async () => { if (!DR) return;
-  const url = `${location.origin}/#src=${DR.c.doc_id}:${DR.page}:${encodeURIComponent(DR.c.quote)}`;
+  const url = `${location.origin}${location.pathname}#src=${DR.c.doc_id}:${DR.page}:${encodeURIComponent(DR.c.quote)}`;
   try { await navigator.clipboard.writeText(url); toast("Link to this cited page copied"); } catch { toast(url); } };
 $("#dr-prev").onclick = () => DR && openSource(DR.c, DR.page - 1);
 $("#dr-next").onclick = () => DR && openSource(DR.c, DR.page + 1);
@@ -530,10 +548,12 @@ async function fillPane(el, c, role) {
   let out;
   try { out = await api(`/api/source?doc=${encodeURIComponent(c.doc_id)}&page=${c.page}&q=${encodeURIComponent(c.quote)}&loc=${encodeURIComponent(c.locator || "")}`); }
   catch (e) { pb.innerHTML = `<p class="muted" style="padding:12px">${esc(e.message)}</p>`; return; }
-  $(".ph", el).insertAdjacentHTML("beforeend", `<div style="margin-top:4px">${out.found ? '<span class="b ok">quote highlighted</span>' : out.scanned ? '<span class="b warn">scanned page: compare by eye</span>' : '<span class="b warn">compare by eye</span>'}</div>`);
+  $(".ph", el).insertAdjacentHTML("beforeend", `<div style="margin-top:4px">${out.kind === "quote" ? '<span class="b info">verified excerpt</span>' : out.found ? '<span class="b ok">quote highlighted</span>' : out.scanned ? '<span class="b warn">scanned page: compare by eye</span>' : '<span class="b warn">compare by eye</span>'}</div>`);
   if (out.kind === "pdf") {
-    pb.innerHTML = `<img alt="Page ${out.page} of ${esc(out.name)}" src="${out.image}">`;
+    pb.innerHTML = `<div class="pgwrap"><img alt="Page ${out.page} of ${esc(out.name)}" src="${out.image}">${(out.rects || []).map(r => `<i class="hlbox" style="left:${r[0] * 100}%;top:${r[1] * 100}%;width:${(r[2] - r[0]) * 100}%;height:${(r[3] - r[1]) * 100}%"></i>`).join("")}</div>`;
     const img = $("img", pb); img.onload = () => { if (out.top != null) pb.scrollTop = Math.max(0, out.top * img.clientHeight - 100); };
+  } else if (out.kind === "quote") {
+    pb.innerHTML = `<div class="excerpt" style="margin:10px"><b>${esc(out.name)}</b> · page ${out.page}<blockquote>“${esc(c.quote)}”</blockquote><p class="small">A manufacturer's copyrighted document: only the short verified excerpt is shown here.${out.url ? "" : ""}</p>${out.url ? `<a class="btn sm" href="${esc(out.url)}" target="_blank" rel="noopener noreferrer">Open the manufacturer's document ↗</a>` : ""}</div>`;
   } else if (out.kind === "text") {
     pb.innerHTML = `<pre style="white-space:pre-wrap;margin:0;padding:12px;font:12.5px/1.55 ui-monospace,Consolas,monospace">${out.segments.map(x => x.hl ? `<mark>${esc(x.t)}</mark>` : esc(x.t)).join("")}</pre>`;
   } else {
@@ -814,7 +834,7 @@ function packageSummary(R, findings) {
   const rows = findings.filter(f => f.id.startsWith("delivery/") && (f.data || {}).arrival && ((f.data.scenario || "").startsWith("award") || f.data.tag_group === (findings.find(x => (x.data || {}).scenario?.startsWith("award"))?.data.tag_group)))
     .map(f => ({...f.data, label: f.data.scenario.startsWith("award") ? f.data.scenario.replace("award to ", "Award to ") : "Market average (no bidder)"}));
   if (rows.length) h += `<h2>When will it arrive?</h2><div class="card">${deliveryChart(rows)}</div>`;
-  return h + `<div class="row" style="margin-bottom:6px"><a class="btn" href="/api/results/${encodeURIComponent(current.id)}/report" target="_blank" rel="noopener">Open the printable report</a></div>`;
+  return h + `<div class="row" style="margin-bottom:6px"><a class="btn" href="${reportUrl(current.id)}" target="_blank" rel="noopener">Open the printable report</a></div>`;
 }
 function productsSummary(R, findings) {
   const ids = R.screen || [], V = {"likely fits": "ok", "needs a closer look": "warn", "does not fit": "bad"};
@@ -1016,6 +1036,7 @@ window.addEventListener("hashchange", () => {  // links and the Back button move
 });
 (async () => {
   const m = location.hash.match(/^#result=(.+)$/), keep = location.hash;
+  if (DEMO) { $("#demo-banner").classList.remove("hidden"); $("#provider").closest(".pill").classList.add("hidden"); $("#paid").classList.add("hidden"); }
   showTab("overview");
   if (keep.startsWith("#src=")) history.replaceState(null, "", keep);
   try { await loadState(true); } catch (e) { showError("Could not reach the local server: " + e.message); return; }

@@ -153,3 +153,6 @@ The plan above held up; these are the differences and the reasons, each one driv
   page and the supplier's page side by side. Commercial tools publish no accuracy figures; we keep publishing ours.
 - **More free hosts of the same model** (NVIDIA build.nvidia.com, Hugging Face Inference Providers) join the fallback
   chain after OpenRouter and Cerebras; a host that rejects a setting is asked again with plain settings.
+- **A read-only live demo** (`docs/demo/`, built by `scripts/build_static_demo.py`): the same page, answered from
+  pre-computed files by the same server code, so it cannot show anything the app would not. A test fails if a
+  manufacturer's document ever ends up in it.

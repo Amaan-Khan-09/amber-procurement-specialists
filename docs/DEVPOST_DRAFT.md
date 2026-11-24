@@ -76,6 +76,8 @@ Python · MCP (Model Context Protocol) · Groq · gpt-oss-120b · Gemini · PyMu
 ## Try it
 Code and README: https://github.com/Amaan-Khan-09/amber-procurement-specialists
 
+Live demo, nothing to install (read-only): https://amaan-khan-09.github.io/amber-procurement-specialists/demo/
+
 No API key is needed to explore: `pip install -e .`, then `python -m amber.web` opens the page with the saved results.
 
 ## Data statement
