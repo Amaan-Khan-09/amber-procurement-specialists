@@ -76,7 +76,8 @@ REQS = [{"req_id": "R12", "requirement": "Speed at most 1800 rpm", "conditions":
 FOUND = [{"cid": "R12a", "stated": True, "values": ["1800"], "unit": "rpm", "quote": "Rated speed: 1800 rpm", "page": 1, "meets": "yes"}]
 
 
-def test_when_the_document_mentions_a_condition_the_pages_that_mention_it_are_read_again():
+def test_when_the_document_mentions_a_condition_the_pages_that_mention_it_are_read_again(monkeypatch):
+    monkeypatch.setenv("AMBER_TARGETED_READ", "on")
     doc = _doc("Rated speed: 1800 rpm at 60 Hz. ")
     llm = FakeLLM(FOUND)
     offers = extract_offers(llm, doc, REQS)
@@ -87,7 +88,8 @@ def test_when_the_document_mentions_a_condition_the_pages_that_mention_it_are_re
     assert conf <= 0.65 and "targeted re-read" in d.why  # evidenced, but a person confirms it
 
 
-def test_a_statement_that_is_not_on_the_page_is_never_a_claim():
+def test_a_statement_that_is_not_on_the_page_is_never_a_claim(monkeypatch):
+    monkeypatch.setenv("AMBER_TARGETED_READ", "on")
     doc = _doc("Rated speed: 1800 rpm at 60 Hz. ")
     bad = [dict(FOUND[0], quote="Rated speed: 1500 rpm", values=["1500"])]
     offers = extract_offers(FakeLLM(bad), doc, REQS)
@@ -96,11 +98,78 @@ def test_a_statement_that_is_not_on_the_page_is_never_a_claim():
 
 
 def test_nothing_is_re_read_when_the_document_never_mentions_the_condition(monkeypatch):
+    monkeypatch.setenv("AMBER_TARGETED_READ", "on")
     doc = _doc("Dimensions and weights are shown overleaf. ")
     llm = FakeLLM(FOUND)
     offers = extract_offers(llm, doc, REQS)
     assert not any(p.startswith("targeted re-read") for p in llm.purposes) and not offers.get("R12a", {}).get("stated")
-    monkeypatch.setenv("AMBER_TARGETED_READ", "off")  # and it can be switched off for a like-for-like comparison
+    monkeypatch.delenv("AMBER_TARGETED_READ")  # off unless asked for: it found nothing on the development documents
     llm = FakeLLM(FOUND)
     extract_offers(llm, _doc("Rated speed: 1800 rpm at 60 Hz. "), REQS)
     assert not any(p.startswith("targeted re-read") for p in llm.purposes)
+
+
+# ---- the saved-check cache
+def _cache_setup(tmp_path, monkeypatch):
+    from amber import submittal
+    monkeypatch.setattr(submittal, "RESULT_CACHE", tmp_path / "cache")
+    monkeypatch.delenv("AMBER_RESULT_CACHE", raising=False)
+    spec, sub = tmp_path / "spec.txt", tmp_path / "sub.txt"
+    spec.write_text("26 32 13 spec", encoding="utf-8")
+    sub.write_text("Rated speed: 1800 rpm", encoding="utf-8")
+    sched = tmp_path / "schedule.csv"
+    sched.write_text("tag,item,spec_section\nGEN-A,Generator,26 32 13\n", encoding="utf-8")
+    calls = []
+
+    def fake_reqs(llm, spec_doc, row, schedule_id, checklist=None):
+        return REQS
+
+    def fake_offers(llm, sub_doc, reqs):
+        calls.append(1)
+        if getattr(llm, "fail", False):
+            llm.meter.steps.append({"purpose": "read submittal", "ok": False, "error": "model down"})
+        return {"R12a": dict(FOUND[0], quote="Rated speed: 1800 rpm")}
+
+    monkeypatch.setattr(submittal, "structure_requirements", fake_reqs)
+    monkeypatch.setattr(submittal, "extract_offers", fake_offers)
+    return submittal, str(spec), str(sub), str(sched), calls
+
+
+class _Llm:
+    local, provider, model, switched = False, "groq", "m", []
+    fail = False
+
+    def __init__(self):
+        from amber.llm import Meter
+        self.meter = Meter()
+
+
+def test_an_identical_check_is_reused_instead_of_paid_for_again(tmp_path, monkeypatch):
+    submittal, spec, sub, sched, calls = _cache_setup(tmp_path, monkeypatch)
+    first = submittal.check_submittal(spec, sub, "GEN-A", sched, llm=_Llm(), ocr=False)
+    again = submittal.check_submittal(spec, sub, "GEN-A", sched, llm=_Llm(), ocr=False)
+    assert len(calls) == 1 and "reused_saved_check" not in first.result and again.result["reused_saved_check"]
+    assert [f.status for f in again.findings] == [f.status for f in first.findings]
+
+
+def test_a_changed_input_or_code_never_gets_a_saved_answer(tmp_path, monkeypatch):
+    submittal, spec, sub, sched, calls = _cache_setup(tmp_path, monkeypatch)
+    submittal.check_submittal(spec, sub, "GEN-A", sched, llm=_Llm(), ocr=False)
+    (tmp_path / "sub.txt").write_text("Rated speed: 1500 rpm", encoding="utf-8")  # a different datasheet
+    submittal.check_submittal(spec, sub, "GEN-A", sched, llm=_Llm(), ocr=False)
+    assert len(calls) == 2
+    monkeypatch.setattr(submittal, "code_fingerprint", lambda: "another-version-of-the-checking-code")
+    submittal.check_submittal(spec, sub, "GEN-A", sched, llm=_Llm(), ocr=False)
+    assert len(calls) == 3
+    monkeypatch.setenv("AMBER_RESULT_CACHE", "off")  # and it can be switched off
+    submittal.check_submittal(spec, sub, "GEN-A", sched, llm=_Llm(), ocr=False)
+    assert len(calls) == 4
+
+
+def test_a_check_with_a_failed_model_call_is_not_kept(tmp_path, monkeypatch):
+    submittal, spec, sub, sched, calls = _cache_setup(tmp_path, monkeypatch)
+    llm = _Llm()
+    llm.fail = True  # a model call fails during this check
+    submittal.check_submittal(spec, sub, "GEN-A", sched, llm=llm, ocr=False)
+    submittal.check_submittal(spec, sub, "GEN-A", sched, llm=_Llm(), ocr=False)
+    assert len(calls) == 2  # the failed one was never saved, so the second call had to do the work

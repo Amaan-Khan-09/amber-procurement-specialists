@@ -258,7 +258,9 @@ def extract_offers(llm: LLM, sub_doc: docs.Document, reqs: list[dict]) -> dict[s
             if o.get("stated"):
                 o["second_pass"] = True
                 offers[o.get("cid")] = o
-    if os.getenv("AMBER_TARGETED_READ", "on").lower() != "off":
+    # Experimental, off by default: on two development datasheets (G1, G2) it was shown the best passages for 3-4 conditions
+    # each and found nothing the earlier passes had missed, for about 12 % more tokens. AMBER_TARGETED_READ=on to try it.
+    if os.getenv("AMBER_TARGETED_READ", "off").lower() == "on":
         offers = _targeted_reread(llm, sub_doc, conds, offers, lim)
     return offers
 
@@ -369,29 +371,42 @@ def _condition_words(c: dict) -> set[str]:
     return {w for w in words if len(w) >= 4}
 
 
-def _mention_passages(doc: docs.Document, c: dict, pages: list[int], window: int = 350, limit: int = 2400) -> list[tuple[int, str]]:
-    """The stretches of text around the condition's words on the pages that mention it (at most two per page)."""
-    words, out, used = _condition_words(c), [], 0
+def _mention_passages(doc: docs.Document, c: dict, pages: list[int], window: int = 280, limit: int = 3200,
+                      top: int = 6) -> list[tuple[int, str]]:
+    """The passages most likely to state the condition. Every occurrence of one of its words gives a local window; a window
+    scores by how many DISTINCT words of the condition it holds (one with 'fuel', 'tank' and 'listing' beats one with only
+    'fuel') plus a bonus for each required number in it. The best few that do not overlap are returned in page order."""
+    words = _condition_words(c)
+    cues = {t for t in re.findall(r"\d[\d.,]*\d|\d", " ".join(map(str, c.get("terms") or [])) + " " + str(c.get("value") or ""))
+            if len(t) >= 2}
+    cands: list[tuple[float, int, int, int]] = []  # score, page, start, end
     for n in pages:
         pg = doc.page(n)
         if not pg:
             continue
         text, low = pg.text, pg.text.lower()
-        spans = sorted((max(0, m.start() - window), min(len(text), m.end() + window))
-                       for w in words for m in re.finditer(rf"\b{re.escape(w)}", low))
-        merged: list[list[int]] = []
-        for a, b in spans:
-            if merged and a <= merged[-1][1]:
-                merged[-1][1] = max(merged[-1][1], b)
-            else:
-                merged.append([a, b])
-        for a, b in merged[:2]:
-            seg = text[a:b].strip()
-            if used + len(seg) > limit:
-                return out
-            out.append((n, seg))
-            used += len(seg)
-    return out
+        seen_starts: set[int] = set()
+        for w in words:
+            for m in re.finditer(rf"\b{re.escape(w)}", low):
+                x, y = max(0, m.start() - window), min(len(text), m.end() + window)
+                if x // 120 in seen_starts:
+                    continue
+                seen_starts.add(x // 120)
+                seg, seg_low = text[x:y], low[x:y]
+                score = sum(1 for w2 in words if re.search(rf"\b{re.escape(w2)}", seg_low)) \
+                    + 2 * min(2, sum(1 for t in cues if t in seg))
+                cands.append((score, n, x, y))
+    cands.sort(key=lambda t: (-t[0], t[1], t[2]))
+    chosen: list[tuple[int, int, int]] = []
+    used = 0
+    for score, n, x, y in cands:
+        if len(chosen) >= top or used + (y - x) > limit:
+            break
+        if any(n == n2 and x < y2 and x2 < y for n2, x2, y2 in chosen):
+            continue  # overlaps one already chosen
+        chosen.append((n, x, y))
+        used += y - x
+    return [(n, doc.page(n).text[x:y].strip()) for n, x, y in sorted(chosen)]
 
 
 TARGETED_ASK = ("A first and a second read found no value for these conditions, but a scan shows the submittal mentions "
@@ -411,7 +426,7 @@ def _targeted_reread(llm: LLM, doc: docs.Document, conds: list[dict], offers: di
         if o.get("stated") or o.get("not_checked"):
             continue
         seen = _mentioned(doc, c)
-        passages = _mention_passages(doc, c, (seen or {}).get("ranked", [])[:5]) if seen else []
+        passages = _mention_passages(doc, c, (seen or {}).get("pages", [])) if seen else []
         if passages:
             todo.append((c, passages))
     for i in range(0, len(todo), lim["batch3"]):
@@ -547,6 +562,27 @@ def _combine(parts: list[tuple]) -> tuple[Verdict, str, float]:
     return Verdict.complies, why, conf
 
 
+
+RESULT_CACHE = Path(__file__).resolve().parents[1] / ".cache" / "check_results"
+_CODE_FILES = ("submittal.py", "checks.py", "verify.py", "retrieve.py", "spec.py", "docs.py", "ocr.py", "schema.py")
+
+
+def code_fingerprint() -> str:
+    """A hash of the code that decides a check, so a saved check is never reused after that code has changed.
+    Line endings are ignored (a Windows download converts them)."""
+    h = hashlib.sha256()
+    for name in _CODE_FILES:
+        h.update(name.encode() + (Path(__file__).with_name(name)).read_bytes().replace(bytes([13, 10]), bytes([10])))
+    return h.hexdigest()[:16]
+
+
+def _result_file(spec_doc: docs.Document, sub_doc: docs.Document, row: dict, checklist, only, llm: LLM) -> Path:
+    key = json.dumps([spec_doc.sha256, sub_doc.sha256, row, checklist, sorted(only or []), llm.provider, llm.model,
+                      os.getenv("AMBER_TARGETED_READ", "off"), os.getenv("AMBER_OCR", "cached"), code_fingerprint()],
+                     sort_keys=True, ensure_ascii=False, default=str)
+    return RESULT_CACHE / (hashlib.sha256(key.encode()).hexdigest()[:24] + ".json")
+
+
 def decide_all(reqs: list[dict], offers: dict[str, dict], sub_doc: docs.Document) -> tuple[list[Finding], list[dict]]:
     """Turn what the model read (offers) into one finding per requirement. All decisions are made here, in code, so
     a saved run can be replayed through it without a model (scripts/replay_decisions.py)."""
@@ -590,6 +626,18 @@ def check_submittal(spec_path: str, submittal_path: str, tag: str, schedule_path
     schedule_id = docs.doc_id_for(schedule_path)
     row = load_schedule(schedule_path, tag)
 
+    use_cache = os.getenv("AMBER_RESULT_CACHE", "on").lower() != "off"
+    cache_file = _result_file(spec_doc, sub_doc, row, checklist, only, llm) if use_cache else None
+    if cache_file is not None and cache_file.exists():
+        try:  # nothing this check depends on has changed since it was made: reuse it, and say so
+            saved = json.loads(cache_file.read_text(encoding="utf-8"))
+            res = ToolResult.model_validate(saved["result"])
+            res.result["reused_saved_check"] = saved["saved"]
+            return res
+        except (ValueError, KeyError, OSError):
+            pass  # an unreadable cache file is simply ignored
+    steps_before = len(llm.meter.steps)
+
     reqs = structure_requirements(llm, spec_doc, row, schedule_id, checklist)
     if only:
         reqs = [r for r in reqs if r["req_id"] in set(only)]
@@ -607,4 +655,13 @@ def check_submittal(spec_path: str, submittal_path: str, tag: str, schedule_path
                              "provider_switches": list(llm.switched)},
                      run=RunInfo(models=llm.meter.models(), latency_ms=int((time.time() - t0) * 1000),
                                  steps=list(llm.meter.steps)))
-    return res.finalize()
+    res = res.finalize()
+    # keep a clean check (no failed model call, no switch of provider) so the same check is not paid for twice
+    if cache_file is not None and not llm.switched and all(st.get("ok", True) for st in llm.meter.steps[steps_before:]):
+        try:
+            RESULT_CACHE.mkdir(parents=True, exist_ok=True)
+            cache_file.write_text(json.dumps({"saved": time.strftime("%Y-%m-%d %H:%M"), "result": res.model_dump(mode="json")}),
+                                  encoding="utf-8")
+        except OSError:
+            pass
+    return res
