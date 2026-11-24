@@ -1,7 +1,8 @@
 # Amber Procurement Specialists — Design
 
 Kaya AI Grand Challenge (Edition 2), **Track 03: Vertical Agents**, Students division.
-Round 1 (build) runs 9 Nov – **6 Dec 2026**. Top 10 announced 12 Dec; live finale in Mumbai 17 Dec. Working name; rename before submitting.
+Round 1 (build) runs 9 Nov – **6 Dec 2026**. Top 10 announced 12 Dec; live finale in Mumbai 17 Dec.
+Sections 1-9 are the plan as written on 21 Nov; section 10 records what was built and why it changed.
 Rules that shape the design: original work made during the hackathon; any model allowed but **name it and report cost per run**; public data must be cited; fabricated sources, vendors, products or model numbers are heavily penalised; **no working repo + demo video = ineligible**.
 
 ## 1. The problem we pick
@@ -134,3 +135,15 @@ The plan above held up; these are the differences and the reasons, each one driv
 - **Paid-API spending is capped** by a persistent ledger, and a failed model call degrades to "not checked", never to a claim.
 - **Held-out discipline**: G3, G4 and U1 are labelled but the scorer refuses to run them without `--final`.
 - **Offline mode is real but slow on a laptop CPU** (minutes per call). The README reports the measured time and accuracy.
+
+### Added after 22 Nov
+
+- **Three more specialists**, each built on the same verified findings: `run_package_review` (bids, then each
+  bidder's product against the spec, then delivery per award option, in one comparison), `draft_follow_ups` (vendor
+  letters built only from verified quotes, never sent automatically) and `find_products` (product discovery from the
+  datasheets we hold, screened on key ratings with the same check; never a product from model memory, never an approval).
+- **A web page for project managers** (`python -m amber.web`): overview, run any specialist, a review queue for the
+  items handed to a person, and a source viewer that opens the cited page with the quoted words highlighted.
+- **A negation guard and a re-check of "not stated"** after held-out set 1 showed an approval resting on "Not included".
+  Held-out set 2, labelled after these fixes and before any run, then run once: 28 of 42 correct, and every answer the
+  agent gave on its own was right (11 of 11).

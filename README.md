@@ -245,4 +245,10 @@ Everything is public or made by us, and cited in `data/SOURCES.md`.
   always sent to a person with the page to confirm.
 * **Small models** miss facts that are stated; the 120b model is the supported default.
 * Bids and the project are fictional; lead-time sources are trade publications, some secondary.
-* Only generator submittals have answer keys so far; UPS and switchgear specs are in progress.
+* **Cautious by design, so a person still has work to do.** On unseen documents about three answers in four go to a
+  person, mostly as `unclear` where a careful reader would say `missing`. Every answer the agent gave on its own was
+  right (11 of 11 on held-out set 2), but the time saved is in reading and quoting, not in removing the review.
+* Answer keys cover generators (six datasheets) and one UPS package. Switchgear and transformers have specs and
+  delivery forecasts, but no submittal answer keys yet, and product discovery is set up for generators and UPS only.
+* Product discovery screens five key ratings; a product that passes still needs the full submittal check.
+* The web page is a local, single-user tool (it binds to 127.0.0.1); it is not a hosted multi-user service.
