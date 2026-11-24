@@ -235,6 +235,29 @@ Plainly: accuracy on unseen documents went from 59 % to 67 %, and **every answer
 `missing` (the agent found related words but no value, and asks rather than guesses). The one false approval (G6 R09,
 radiator rated for 122 °F) was a capped model judgement and was **sent to a person**, not auto-approved.
 
+### Accuracy work after set 2 (24 Nov 2026): what we tried, what helped, what did not
+
+`python scripts/replay_decisions.py` re-runs the code's decision stage (quote check, comparison, guards, hand-off) over every
+saved run **without a model**, so a change can be measured on all 142 labelled requirements in 8 seconds and every verdict
+it changes is listed with whether the change is right. The model only reads; everything after is code, so this is faithful
+(it reproduces the saved verdicts exactly on G1, G2, G5 and G6).
+
+| Change | Effect on the replay | Kept? |
+|---|---|---|
+| Numbers: `1590--2000` was read as 1590 and -2000; the decimal comma `0,50` as 50; qualifiers such as "up to 8 units" were treated as a label | +2 correct | yes |
+| A quote the model shortened with "..." is accepted only if every piece is on the page, in order | no change on saved runs | yes (tests) |
+| A text requirement with only some of its words in the evidence is "unclear", never an automatic "deviates" | removes the only wrong automatic verdict | yes |
+| Require related words to occur together before a document counts as "mentioning" a requirement | +6 true "missing", but 6 new wrong automatic "missing" (datasheets that list the feature only as an option) | **no, reverted** |
+| Re-read, with the model, the best passages for conditions the document mentions but the model gave up on | found nothing on two development datasheets, +12 % tokens | **off by default** (`AMBER_TARGETED_READ=on`) |
+| Treat `anti-condensation` and `anti- condensation` as the same word | no verdict moved | **no, reverted** |
+
+Net on the replay: **99 / 142 correct (70 %), 0 false rejections (was 1), and all 42 automatic answers right (was 40 of 41)**.
+Be careful with these numbers: the same document re-run through the model varies by about three requirements (G1 scored 14
+and then 17 of 21 on identical code), so a one-point change in a single run is noise. Only the labels that moved in the
+replay, where the model's reading is held fixed, are attributable to a change. **Held-out set 3** (G7 Caterpillar 3516C,
+G8 Cummins C2000D6E) was labelled on 24 Nov 2026 before any run, specifically to test these changes on documents nobody had
+seen; it is run once, with no tuning afterwards.
+
 Score any case with `python scripts/eval_submittal.py --run --case G3`.
 
 ### Product discovery (24 Nov 2026, `gpt-oss-120b`)

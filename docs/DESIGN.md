@@ -156,3 +156,9 @@ The plan above held up; these are the differences and the reasons, each one driv
 - **A read-only live demo** (`docs/demo/`, built by `scripts/build_static_demo.py`): the same page, answered from
   pre-computed files by the same server code, so it cannot show anything the app would not. A test fails if a
   manufacturer's document ever ends up in it.
+- **Accuracy work from replaying saved runs (24 Nov).** Because the model only reads and code decides, a saved run can be
+  re-decided without a model (`scripts/replay_decisions.py`). It showed that most errors are over-cautious "unclear" answers
+  with fixable causes (number parsing, quotes shortened with dots), and it caught two plausible rules that made things worse
+  (a stricter "mentioned anywhere" guard created automatic wrong answers; a targeted re-read added cost and found nothing).
+  Both are documented in the README as negative results. Identical checks are also reused from a saved-check cache keyed to
+  a fingerprint of the checking code, so a repeated review is not paid for twice and a stale answer cannot be served.
