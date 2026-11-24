@@ -80,6 +80,8 @@ def test_free_hosts_of_the_same_model_take_over_in_order(monkeypatch):
     monkeypatch.delenv("AMBER_FALLBACK", raising=False)
     for k in ("GROQ_API_KEY", "OPENROUTER_API_KEY", "CEREBRAS_API_KEY"):
         monkeypatch.setenv(k, "x")
+    for k in ("NVIDIA_API_KEY", "HF_TOKEN"):
+        monkeypatch.delenv(k, raising=False)
     monkeypatch.setenv("GEMINI_API_KEY", "y")
     llm = LLM(provider="groq")
     assert llm.fallbacks == ["openrouter", "cerebras"]  # free hosts only; paid Gemini is never automatic
@@ -103,4 +105,33 @@ def test_a_host_without_a_key_is_skipped(monkeypatch):
     monkeypatch.setenv("GROQ_API_KEY", "x")
     monkeypatch.delenv("OPENROUTER_API_KEY", raising=False)
     monkeypatch.setenv("CEREBRAS_API_KEY", "x")
+    for k in ("NVIDIA_API_KEY", "HF_TOKEN"):
+        monkeypatch.delenv(k, raising=False)
     assert LLM(provider="groq").fallbacks == ["cerebras"]
+
+
+def test_nvidia_and_hugging_face_host_the_same_model_and_join_the_chain(monkeypatch):
+    monkeypatch.delenv("AMBER_FALLBACK", raising=False)
+    for k in ("OPENROUTER_API_KEY", "CEREBRAS_API_KEY"):
+        monkeypatch.delenv(k, raising=False)
+    for k in ("GROQ_API_KEY", "NVIDIA_API_KEY", "HF_TOKEN"):
+        monkeypatch.setenv(k, "x")
+    llm = LLM(provider="groq")
+    assert llm.fallbacks == ["nvidia", "huggingface"]
+    assert LLM(provider="nvidia").model == LLM(provider="huggingface").model == "openai/gpt-oss-120b"
+
+
+def test_a_host_that_rejects_a_setting_is_asked_again_with_plain_settings(monkeypatch):
+    monkeypatch.setenv("NVIDIA_API_KEY", "x")
+    llm = LLM(provider="nvidia")
+    sent = []
+
+    def fake_post(url, headers, body):
+        sent.append(dict(body))
+        if "reasoning_effort" in body or "response_format" in body:
+            raise LLMError("nvidia HTTP 400: unsupported parameter")
+        return {"choices": [{"message": {"content": '{"ok": true}'}}], "usage": {}}
+
+    monkeypatch.setattr(llm, "_post", fake_post)
+    assert llm.json("s", "u") == {"ok": True}
+    assert "reasoning_effort" not in sent[-1] and "response_format" not in sent[-1]

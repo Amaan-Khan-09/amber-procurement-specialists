@@ -84,7 +84,99 @@ svg text{fill:var(--mute);font-size:11px}
 mark{background:var(--mark);color:inherit;border-radius:2px;padding:0 1px}tr.hlrow td{background:var(--mark)}
 .quote{font-size:13px;background:var(--soft);border-radius:8px;padding:8px 10px;margin-top:8px;font-style:italic}
 .status{font-size:13px;margin-top:6px}
+
+/* ---------- premium layer ---------- */
+body{font-family:"Inter",system-ui,"Segoe UI",Roboto,sans-serif;font-feature-settings:"cv11","ss01";-webkit-font-smoothing:antialiased}
+h1,h2,h3{letter-spacing:-.015em}
+.btn{transition:background .15s,border-color .15s,transform .1s,box-shadow .15s}.btn:hover{border-color:var(--accent)}.btn:active{transform:translateY(1px)}
+.btn.primary:hover{box-shadow:0 4px 14px rgba(29,79,145,.28)}
+.btn.ghost{background:rgba(255,255,255,.08);color:#fff;border-color:rgba(255,255,255,.22)}.btn.ghost:hover{background:rgba(255,255,255,.16);border-color:#fff}
+.card,.tile{transition:box-shadow .2s,border-color .2s}
+.fade-in>*{animation:rise .45s cubic-bezier(.2,.7,.2,1) both}
+.fade-in>*:nth-child(2){animation-delay:.05s}.fade-in>*:nth-child(3){animation-delay:.1s}.fade-in>*:nth-child(4){animation-delay:.15s}.fade-in>*:nth-child(n+5){animation-delay:.2s}
+@keyframes rise{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+/* hero */
+.hero{position:relative;display:grid;grid-template-columns:minmax(300px,.85fr) 1.15fr;gap:8px;align-items:center;border-radius:18px;overflow:hidden;
+  color:#e8eef7;padding:28px 28px 22px;margin-bottom:16px;
+  background:radial-gradient(900px 420px at 85% 30%,rgba(240,166,64,.16),transparent 60%),radial-gradient(700px 500px at 10% 110%,rgba(77,140,255,.18),transparent 60%),linear-gradient(160deg,#0c1a2e,#0a1322 60%,#08101c)}
+.hero::after{content:"";position:absolute;inset:0;pointer-events:none;background-image:linear-gradient(rgba(255,255,255,.035) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.035) 1px,transparent 1px);background-size:32px 32px;mask-image:linear-gradient(90deg,transparent,#000 30%,#000 70%,transparent)}
+.hero>*{position:relative;z-index:1}
+.eyebrow{font-size:12px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#f0a640}
+.hero h1{font-size:30px;line-height:1.15;margin:8px 0 10px;color:#fff}.hero p{color:#aebbd0;margin:0 0 16px;max-width:520px}
+.hero-kpis{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:18px}
+.kpi{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);border-radius:12px;padding:9px 13px;min-width:120px;backdrop-filter:blur(4px)}
+.kpi b{display:block;font-size:22px;color:#fff;font-variant-numeric:tabular-nums}.kpi span{font-size:12px;color:#aebbd0}
+.kpi.hot b{color:#ff8a7a}.kpi.warm b{color:#f5c060}
+@media (max-width:900px){.hero{grid-template-columns:1fr}.hero h1{font-size:24px}}
+/* 3D site scene (pure CSS) */
+.scene-wrap{position:relative;height:400px;perspective:1700px;perspective-origin:50% 35%;cursor:grab;user-select:none;touch-action:none}
+.scene-wrap:active{cursor:grabbing}
+.scene-fit{position:absolute;left:50%;top:50%;width:860px;height:560px;margin:-280px 0 0 -430px;transform:scale(var(--fit,.62));transform-style:preserve-3d}
+.scene{position:absolute;inset:0;transform-style:preserve-3d;transform:rotateX(58deg) rotateZ(var(--rz,-34deg));transition:transform .08s linear}
+.sway{position:absolute;inset:0;transform-style:preserve-3d;animation:sway 14s ease-in-out infinite}
+@keyframes sway{0%,100%{transform:rotateZ(-2.5deg)}50%{transform:rotateZ(2.5deg)}}
+.slab{position:absolute;inset:0;transform-style:preserve-3d;border-radius:14px;
+  background:linear-gradient(135deg,#1a2b44,#122036);box-shadow:0 0 0 1px rgba(125,178,255,.18) inset,0 40px 80px rgba(0,0,0,.45);
+  background-image:linear-gradient(rgba(125,178,255,.07) 1px,transparent 1px),linear-gradient(90deg,rgba(125,178,255,.07) 1px,transparent 1px),linear-gradient(135deg,#1a2b44,#122036);
+  background-size:40px 40px,40px 40px,100% 100%}
+.box{position:absolute;transform-style:preserve-3d;animation:lift .9s cubic-bezier(.2,.8,.2,1) both;animation-delay:var(--d,0s)}
+@keyframes lift{from{transform:translateZ(-70px) scaleZ(.01)}to{transform:none}}
+.box>i{position:absolute;display:block;backface-visibility:visible}
+.box .t{inset:0;transform:translateZ(var(--h));background:var(--ct);box-shadow:inset 0 0 0 1px rgba(255,255,255,.18)}
+.box .f{left:0;top:100%;width:100%;height:var(--h);transform-origin:top;transform:rotateX(90deg);background:var(--cf)}
+.box .k{left:0;top:0;width:100%;height:var(--h);transform-origin:top;transform:rotateX(90deg);background:var(--cs)}
+.box .r{left:100%;top:0;width:var(--h);height:100%;transform-origin:left;transform:rotateY(-90deg);background:var(--cs)}
+.box .l{left:0;top:0;width:var(--h);height:100%;transform-origin:left;transform:rotateY(-90deg);background:var(--cf)}
+.box .t::after{content:"";position:absolute;inset:18% 12%;border-radius:3px;background:repeating-linear-gradient(90deg,rgba(0,0,0,.18) 0 3px,transparent 3px 9px)}
+.r-high{--ct:#e3655a;--cf:#b8443b;--cs:#8f3029}.r-medium{--ct:#efb44e;--cf:#c48a2a;--cs:#9a6a1d}
+.r-low{--ct:#4fc08a;--cf:#2f9566;--cs:#22704c}.r-none{--ct:#5b6f8c;--cf:#41536d;--cs:#33425a}
+.r-hall{--ct:rgba(125,178,255,.22);--cf:rgba(125,178,255,.16);--cs:rgba(125,178,255,.10)}
+.r-hall .t::after{inset:10% 8%;background:repeating-linear-gradient(0deg,rgba(125,178,255,.5) 0 6px,transparent 6px 22px)}
+.grp{position:absolute;transform-style:preserve-3d;cursor:pointer}
+.grp:hover .box{--ct:#fff3}.grp:hover .box .t{box-shadow:inset 0 0 0 2px #fff}
+.halo{position:absolute;border-radius:50%;transform:translateZ(1px);background:radial-gradient(closest-side,rgba(227,101,90,.55),rgba(227,101,90,0));animation:halo 2.4s ease-in-out infinite}
+@keyframes halo{0%,100%{opacity:.45;transform:translateZ(1px) scale(.92)}50%{opacity:1;transform:translateZ(1px) scale(1.06)}}
+.wire{position:absolute;transform:translateZ(1px);border-radius:3px;background:repeating-linear-gradient(90deg,rgba(240,166,64,.95) 0 10px,rgba(240,166,64,.15) 10px 22px);background-size:44px 100%;animation:flow 1.4s linear infinite;box-shadow:0 0 10px rgba(240,166,64,.35)}
+.wire.v{background:repeating-linear-gradient(0deg,rgba(240,166,64,.95) 0 10px,rgba(240,166,64,.15) 10px 22px);background-size:100% 44px;animation-name:flowv}
+@keyframes flow{to{background-position:44px 0}}@keyframes flowv{to{background-position:0 -44px}}
+.tag3d{position:absolute;white-space:nowrap;transform-style:preserve-3d;pointer-events:none}
+.tag3d span{display:inline-block;transform:translate(-50%,-100%) rotateZ(calc(var(--rz,-34deg) * -1)) rotateX(-58deg);transform-origin:50% 100%;
+  font:600 15px/1.2 Inter,system-ui,sans-serif;color:#fff;background:rgba(8,16,28,.78);border:1px solid rgba(255,255,255,.18);border-radius:8px;padding:4px 9px}
+.tag3d em{font-style:normal;font-weight:700;margin-left:6px}.tag3d .h{color:#ff8a7a}.tag3d .m{color:#f5c060}.tag3d .lo{color:#6fe0a6}
+.legend3d{position:absolute;right:6px;bottom:2px;display:flex;gap:12px;font-size:12px;color:#aebbd0}
+.legend3d i{display:inline-block;width:10px;height:10px;border-radius:3px;margin-right:5px;vertical-align:-1px}
+.hint3d{position:absolute;left:6px;bottom:2px;font-size:12px;color:#7f8ea6}
+.tip3d{position:fixed;z-index:40;pointer-events:none;background:#0b1626;color:#e8eef7;border:1px solid rgba(255,255,255,.16);border-radius:10px;padding:9px 12px;font-size:13px;box-shadow:0 12px 30px rgba(0,0,0,.35);max-width:280px}
+.tip3d b{color:#fff}
+/* hand-off chain */
+.pipe{display:flex;align-items:stretch;gap:0;overflow-x:auto;padding:4px 2px 8px}
+.node{flex:1 1 0;min-width:150px;border:1px solid var(--line);border-radius:12px;padding:12px;background:var(--card);position:relative;transition:border-color .3s,box-shadow .3s}
+.node .ic{width:30px;height:30px;border-radius:9px;display:grid;place-items:center;background:var(--infobg);color:var(--info);margin-bottom:8px}
+.node b{display:block;font-size:14px}.node small{display:block;color:var(--mute);font-size:12px;margin-top:2px}
+.node .cost{display:inline-block;margin-top:8px;font-size:11px;font-weight:700;border-radius:99px;padding:1px 8px}
+.node.active{border-color:var(--accent);box-shadow:0 0 0 3px color-mix(in srgb,var(--accent) 25%,transparent)}
+.node.active .ic{animation:pulse 1.2s ease-in-out infinite}
+.node.done .ic{background:var(--okbg);color:var(--ok)}
+@keyframes pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.12)}}
+.link{flex:0 0 34px;position:relative;align-self:center;height:2px;background:var(--line);overflow:hidden}
+.link::after{content:"";position:absolute;top:-2px;left:-30%;width:30%;height:6px;border-radius:3px;background:linear-gradient(90deg,transparent,var(--brand),transparent);animation:travel 1.8s ease-in-out infinite}
+@keyframes travel{to{left:100%}}
+.branch{margin-top:10px;display:flex;align-items:center;gap:10px;font-size:13px;color:var(--mute)}
+/* scope no bidder covers */
+tr.nobid td:first-child{box-shadow:inset 3px 0 0 var(--bad)}
+/* drawer motion and compare */
+.drawer{transform:translateX(104%);visibility:hidden;transition:transform .28s cubic-bezier(.2,.8,.2,1),visibility .28s,width .28s}
+.drawer.open{transform:none;visibility:visible}
+.scrim{transition:opacity .25s}.drawer.wide{width:min(1280px,100vw)}
+.cmp{display:grid;grid-template-columns:1fr 1fr;gap:10px;padding:10px;min-height:100%}
+.cmp .pane{background:var(--card);border:1px solid var(--line);border-radius:10px;display:flex;flex-direction:column;min-height:0}
+.cmp .ph{padding:8px 10px;border-bottom:1px solid var(--line);font-size:13px}.cmp .ph b{display:block;word-break:break-all}
+.cmp .pb{overflow:auto;max-height:calc(100vh - 230px)}.cmp img{width:100%;display:block;background:#fff}
+@media (max-width:800px){.cmp{grid-template-columns:1fr}}
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}}
 </style>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 </head>
 <body>
 <header>
@@ -107,12 +199,27 @@ mark{background:var(--mark);color:inherit;border-radius:2px;padding:0 1px}tr.hlr
 </header>
 <main>
   <section id="tab-overview" class="tab">
-    <h1>Project Alpha at a glance</h1>
-    <p class="lead" id="ov-lead">Phase 1 of a 6 MW data hall. The critical power equipment decides whether the building energises on time.</p>
-    <div class="tiles" id="ov-tiles"></div>
+    <div class="hero">
+      <div>
+        <div class="eyebrow">Project Alpha · critical power package</div>
+        <h1 id="ov-head">Will the power equipment arrive on time, and is it what we specified?</h1>
+        <p id="ov-lead">Phase 1 of a 6 MW data hall. The critical power equipment decides whether the building energises on time.</p>
+        <div class="hero-kpis" id="ov-kpis"></div>
+        <div class="row"><button class="btn primary" data-go="package">Review the generator package</button><button class="btn ghost" data-go="saved">Open saved results</button></div>
+      </div>
+      <div class="scene-wrap" id="scene-wrap" role="img" aria-label="3D view of the site: transformers, switchgear, UPS and generators, each coloured by its chance of arriving late">
+        <div class="scene-fit" id="scene-fit"><div class="scene" id="scene"><div class="sway" id="sway"></div></div></div>
+        <div class="hint3d">Drag to turn · hover a block · click for its sources</div>
+        <div class="legend3d"><span><i style="background:#e3655a"></i>likely late</span><span><i style="background:#efb44e"></i>at risk</span><span><i style="background:#4fc08a"></i>on time</span></div>
+      </div>
+    </div>
+    <div class="tiles fade-in" id="ov-tiles"></div>
     <div class="card" id="ov-chart"><span class="spin"></span> Forecasting delivery…</div>
+    <h2>Six specialists, one hand-off chain</h2>
+    <div class="card"><div class="pipe" id="pipe"></div>
+      <div class="branch"><span class="b info">side branch</span> A product fails the spec? <b>Find products</b> screens every datasheet you hold for one that fits, then hands it back to the submittal check.</div></div>
     <h2>What do you need to do?</h2>
-    <div class="actions">
+    <div class="actions fade-in">
       <button class="card action" data-go="package"><h3>Review a whole package</h3><p>Level the bids, check each bidder's product against the spec, forecast delivery for each award option, draft the follow-ups.</p><span class="b info">uses the model · a few minutes</span></button>
       <button class="card action" data-go="submittal"><h3>Check a supplier's submittal</h3><p>Requirement by requirement against the spec, with both documents quoted and the page shown.</p><span class="b info">uses the model · 2-4 minutes</span></button>
       <button class="card action" data-go="products"><h3>Find a product that fits</h3><p>Screen every datasheet you hold against the key ratings, and see which could replace one that fails the spec.</p><span class="b info">uses the model once per datasheet · then free</span></button>
@@ -202,10 +309,10 @@ mark{background:var(--mark);color:inherit;border-radius:2px;padding:0 1px}tr.hlr
 </main>
 
 <div id="scrim" class="scrim hidden"></div>
-<aside id="drawer" class="drawer hidden" role="dialog" aria-modal="true" aria-labelledby="dr-title">
+<aside id="drawer" class="drawer" role="dialog" aria-modal="true" aria-labelledby="dr-title">
   <div class="dh">
     <div class="row"><h3 id="dr-title" class="grow"></h3><button class="btn sm" id="dr-close" aria-label="Close the source viewer">Close</button></div>
-    <div class="row small" style="margin-top:6px"><span id="dr-page"></span><button class="btn sm" id="dr-prev">‹ Prev</button><button class="btn sm" id="dr-next">Next ›</button><a class="btn sm" id="dr-open" target="_blank" rel="noopener">Open the original</a><button class="btn sm" id="dr-link">Copy link</button></div>
+    <div class="row small" id="dr-nav" style="margin-top:6px"><span id="dr-page"></span><button class="btn sm" id="dr-prev">‹ Prev</button><button class="btn sm" id="dr-next">Next ›</button><a class="btn sm" id="dr-open" target="_blank" rel="noopener">Open the original</a><button class="btn sm" id="dr-link">Copy link</button></div>
     <div class="quote" id="dr-quote"></div>
     <div class="status" id="dr-status"></div>
   </div>
@@ -241,7 +348,7 @@ function cite(c) { CITES.push(c); return CITES.length - 1; }
 function citeBtn(c, label) { return `<button class="linkbtn" data-ci="${cite(c)}">${esc(label || ("View p." + c.page))}</button>`; }
 async function openSource(c, page) {
   DR = {c, page: page || c.page || 1};
-  $("#scrim").classList.remove("hidden"); $("#drawer").classList.remove("hidden");
+  $("#scrim").classList.remove("hidden"); $("#drawer").classList.add("open"); $("#drawer").classList.remove("wide"); $("#dr-nav").classList.remove("hidden");
   $("#dr-title").textContent = c.doc_id; $("#dr-quote").textContent = "“" + c.quote + "”";
   $("#dr-status").textContent = ""; $("#dr-body").innerHTML = `<div style="padding:24px"><span class="spin"></span> Opening the page…</div>`;
   $("#dr-close").focus();
@@ -277,7 +384,7 @@ async function openSource(c, page) {
       out.rows.map((r, i) => `<tr class="${out.hl.includes(i) ? "hlrow" : ""}">${r.map(v => `<td>${esc(v.length > 80 ? v.slice(0, 78) + "…" : v)}</td>`).join("")}</tr>`).join("") + `</table></div></details>`;
   }
 }
-function closeSource() { $("#scrim").classList.add("hidden"); $("#drawer").classList.add("hidden"); DR = null; }
+function closeSource() { $("#scrim").classList.add("hidden"); $("#drawer").classList.remove("open", "wide"); DR = null; }
 $("#dr-close").onclick = closeSource; $("#scrim").onclick = closeSource;
 $("#dr-link").onclick = async () => { if (!DR) return;
   const url = `${location.origin}/#src=${DR.c.doc_id}:${DR.page}:${encodeURIComponent(DR.c.quote)}`;
@@ -285,7 +392,118 @@ $("#dr-link").onclick = async () => { if (!DR) return;
 $("#dr-prev").onclick = () => DR && openSource(DR.c, DR.page - 1);
 $("#dr-next").onclick = () => DR && openSource(DR.c, DR.page + 1);
 document.addEventListener("keydown", e => { if (e.key === "Escape" && DR) closeSource(); });
-document.addEventListener("click", e => { const b = e.target.closest("[data-ci]"); if (b) { e.preventDefault(); openSource(CITES[+b.dataset.ci]); } });
+document.addEventListener("click", e => { const b = e.target.closest("[data-ci]"); if (b) { e.preventDefault(); openSource(CITES[+b.dataset.ci]); return; }
+  const m = e.target.closest("[data-cmp]"); if (m) { e.preventDefault(); const [i, j] = m.dataset.cmp.split(",").map(Number); openCompare(CITES[i], CITES[j]); } });
+
+// ---------- 3D site scene (pure CSS 3D: no library, works offline) ----------
+const RCLS = {high: "r-high", medium: "r-medium", low: "r-low"};
+const RTXT = {high: "h", medium: "m", low: "lo"};
+function box(x, y, w, d, h, cls, delay) {
+  return `<div class="box ${cls}" style="left:${x}px;top:${y}px;width:${w}px;height:${d}px;--h:${h}px;--d:${delay}s"><i class="t"></i><i class="f"></i><i class="k"></i><i class="r"></i><i class="l"></i></div>`;
+}
+const wire = (x, y, w, h, v) => `<div class="wire${v ? " v" : ""}" style="left:${x}px;top:${y}px;width:${w}px;height:${h}px"></div>`;
+function label3d(x, y, z, text, row) {
+  const r = row ? `<em class="${RTXT[row.risk] || ""}">${pct(row.p_late)} late</em>` : "";
+  return `<div class="tag3d" style="left:${x}px;top:${y}px;transform:translateZ(${z}px)"><span>${esc(text)}${r}</span></div>`;
+}
+let SCENE_ROWS = {};
+function buildScene(rows) {
+  const by = {}; rows.forEach(r => by[r.tag_group] = r); SCENE_ROWS = by;
+  const cls = g => by[g] ? RCLS[by[g].risk] || "r-none" : "r-none";
+  const halo = (g, x, y, w, h) => by[g] && by[g].risk === "high" ? `<div class="halo" style="left:${x - w * .15}px;top:${y - h * .15}px;width:${w * 1.3}px;height:${h * 1.3}px"></div>` : "";
+  let h = `<div class="slab"></div>`;
+  // power path: utility -> transformers -> switchgear -> UPS -> data hall; generators back up the switchgear
+  h += wire(24, 70, 4, 316, true);
+  for (let i = 0; i < 4; i++) { const y = 60 + i * 100;
+    h += wire(28, y + 21, 42, 4) + wire(116, y + 21, 54, 4) + wire(290, y + 19, 55, 4) + wire(421, y + 19, 59, 4); }
+  h += wire(186, 446, 446, 4) + wire(228, 402, 4, 46, true);
+  for (let i = 0; i < 4; i++) h += wire(184 + i * 130, 446, 4, 26, true);
+  h += wire(748, 420, 4, 52, true);
+  h += halo("TX", 70, 60, 46, 346) + halo("SWGR", 170, 56, 120, 346) + halo("UPS", 345, 58, 76, 342) + halo("GEN", 130, 470, 502, 48) + halo("GEN-M", 700, 470, 100, 44);
+  h += `<div class="grp" data-g="HALL">${box(480, 40, 330, 380, 22, "r-hall", .1)}</div>`;
+  h += `<div class="grp" data-g="TX">${[0, 1, 2, 3].map(i => box(70, 60 + i * 100, 46, 46, 44, cls("TX"), .15 + i * .05)).join("")}</div>`;
+  h += `<div class="grp" data-g="SWGR">${[0, 1, 2, 3].map(i => box(170, 56 + i * 100, 120, 40, 46, cls("SWGR"), .3 + i * .05)).join("")}</div>`;
+  h += `<div class="grp" data-g="UPS">${[0, 1, 2, 3].map(i => box(345, 58 + i * 100, 76, 36, 62, cls("UPS"), .45 + i * .05)).join("")}</div>`;
+  h += `<div class="grp" data-g="GEN">${[0, 1, 2, 3].map(i => box(130 + i * 130, 470, 112, 48, 50, cls("GEN"), .6 + i * .05)).join("")}</div>`;
+  h += `<div class="grp" data-g="GEN-M">${box(700, 470, 100, 44, 42, cls("GEN-M"), .8)}</div>`;
+  h += label3d(26, 40, 20, "13.2 kV utility") + label3d(93, 52, 70, "Transformers", by.TX) + label3d(230, 48, 76, "Switchgear", by.SWGR)
+     + label3d(383, 50, 92, "UPS", by.UPS) + label3d(645, 220, 50, "Data hall · 6 MW") + label3d(380, 540, 56, "Generators A-D", by.GEN)
+     + label3d(750, 462, 72, "Mech. plant gen", by["GEN-M"]);
+  $("#sway").innerHTML = h;
+  fitScene();
+}
+function fitScene() { const w = $("#scene-wrap"); if (w) $("#scene-fit").style.setProperty("--fit", Math.max(.34, Math.min(.78, w.clientWidth / 1080)).toFixed(3)); }
+window.addEventListener("resize", fitScene);
+(() => {
+  const wrap = $("#scene-wrap"), scene = $("#scene"); let down = null, rz = -34, moved = false;
+  const tip = document.createElement("div"); tip.className = "tip3d hidden"; document.body.append(tip);
+  wrap.addEventListener("pointerdown", e => { down = {x: e.clientX, rz}; moved = false; wrap.setPointerCapture(e.pointerId); });
+  wrap.addEventListener("pointerup", e => { down = null; });
+  wrap.addEventListener("pointermove", e => {
+    if (down) { const dx = e.clientX - down.x; if (Math.abs(dx) > 4) moved = true;
+      rz = Math.max(-80, Math.min(12, down.rz + dx * .25)); scene.style.setProperty("--rz", rz + "deg"); tip.classList.add("hidden"); return; }
+    const g = e.target.closest(".grp"), r = g && SCENE_ROWS[g.dataset.g];
+    if (!g) { tip.classList.add("hidden"); return; }
+    tip.innerHTML = r ? `<b>${esc(r.label)}</b><br>Typical arrival <b>${fmtDate(r.arrival.P50)}</b> (${fmtDate(r.arrival.P10)} to ${fmtDate(r.arrival.P90)})<br>Needed on site <b>${fmtDate(r.need_on_site)}</b> · <b>${pct(r.p_late)}</b> chance late<br><span style="color:#aebbd0">Click to see the lead-time sources</span>`
+      : `<b>Data hall</b><br>6 MW of IT load: everything upstream must arrive and match the spec before it can switch on.`;
+    tip.style.left = Math.min(innerWidth - 300, e.clientX + 16) + "px"; tip.style.top = (e.clientY + 14) + "px"; tip.classList.remove("hidden");
+  });
+  wrap.addEventListener("pointerleave", () => tip.classList.add("hidden"));
+  wrap.addEventListener("click", e => { if (moved) return; const g = e.target.closest(".grp"), r = g && SCENE_ROWS[g.dataset.g];
+    if (r && r.citations && r.citations.length) openSource(r.citations[0]); });
+})();
+
+// ---------- the hand-off chain ----------
+const ICON = {
+  bids: '<path d="M4 5h12M4 10h12M4 15h7" />',
+  submittal: '<path d="M5 3h7l3 3v11H5z" /><path d="M8 11l2 2 3-4" />',
+  delivery: '<circle cx="10" cy="10" r="7" /><path d="M10 6v4l3 2" />',
+  decide: '<path d="M10 3v14M4 7h12M6 7l-2 5h4zM14 7l-2 5h4z" />',
+  follow: '<path d="M3 5h14v10H3z" /><path d="M3 5l7 6 7-6" />',
+};
+const STAGES = [
+  {k: "bids", t: "Level the bids", s: "What each bid covers, priced like for like", m: true},
+  {k: "submittal", t: "Check each product", s: "Every requirement against the spec, both quoted", m: true},
+  {k: "delivery", t: "Forecast delivery", s: "Arrival per award option; a failed check adds a resubmittal", m: false},
+  {k: "decide", t: "Compare and decide", s: "One table; an award only when it is safe", m: false},
+  {k: "follow", t: "Draft follow-ups", s: "Letters built only from verified quotes", m: false},
+];
+function pipelineHTML(active) {
+  const ai = STAGES.findIndex(x => x.k === active);
+  return STAGES.map((x, i) => `${i ? '<div class="link" aria-hidden="true"></div>' : ""}<div class="node ${x.k === active ? "active" : ai > i ? "done" : ""}">
+    <div class="ic"><svg width="18" height="18" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">${ICON[x.k]}</svg></div>
+    <b>${esc(x.t)}</b><small>${esc(x.s)}</small><span class="cost ${x.m ? "info" : "ok"}">${x.m ? "reads with the model" : "code only · free"}</span></div>`).join("");
+}
+const stageOf = purpose => !purpose ? "bids" : /bid/.test(purpose) ? "bids" : "submittal";
+
+// ---------- side-by-side: the spec and the supplier's document ----------
+async function fillPane(el, c, role) {
+  el.innerHTML = `<div class="ph"><span class="small">${esc(role)}</span><b>${esc(c.doc_id)} · p.${c.page} ${esc(c.locator || "")}</b><div class="small">“${esc(c.quote)}”</div></div><div class="pb"><div style="padding:16px"><span class="spin"></span></div></div>`;
+  const pb = $(".pb", el);
+  let out;
+  try { out = await api(`/api/source?doc=${encodeURIComponent(c.doc_id)}&page=${c.page}&q=${encodeURIComponent(c.quote)}&loc=${encodeURIComponent(c.locator || "")}`); }
+  catch (e) { pb.innerHTML = `<p class="muted" style="padding:12px">${esc(e.message)}</p>`; return; }
+  $(".ph", el).insertAdjacentHTML("beforeend", `<div style="margin-top:4px">${out.found ? '<span class="b ok">quote highlighted</span>' : out.scanned ? '<span class="b warn">scanned page: compare by eye</span>' : '<span class="b warn">compare by eye</span>'}</div>`);
+  if (out.kind === "pdf") {
+    pb.innerHTML = `<img alt="Page ${out.page} of ${esc(out.name)}" src="${out.image}">`;
+    const img = $("img", pb); img.onload = () => { if (out.top != null) pb.scrollTop = Math.max(0, out.top * img.clientHeight - 100); };
+  } else if (out.kind === "text") {
+    pb.innerHTML = `<pre style="white-space:pre-wrap;margin:0;padding:12px;font:12.5px/1.55 ui-monospace,Consolas,monospace">${out.segments.map(x => x.hl ? `<mark>${esc(x.t)}</mark>` : esc(x.t)).join("")}</pre>`;
+  } else {
+    pb.innerHTML = `<table style="font-size:12.5px">${out.hl.map(i => out.header.map((hh, k) => `<tr><th>${esc(hh)}</th><td>${esc(out.rows[i][k] || "")}</td></tr>`).join("")).join("")}</table>`;
+  }
+}
+async function openCompare(a, b) {
+  DR = {c: a, page: a.page, cmp: true};
+  $("#scrim").classList.remove("hidden"); $("#drawer").classList.add("open", "wide"); $("#dr-nav").classList.add("hidden");
+  $("#dr-title").textContent = "The spec and the supplier's document, side by side";
+  $("#dr-quote").textContent = "Left: what the specification requires. Right: what the supplier's document says. Both quotes are highlighted on their own pages.";
+  $("#dr-status").innerHTML = "";
+  $("#dr-body").innerHTML = `<div class="cmp"><div class="pane" id="pane-a"></div><div class="pane" id="pane-b"></div></div>`;
+  $("#dr-close").focus();
+  await Promise.all([fillPane($("#pane-a"), a, "Specification"), fillPane($("#pane-b"), b, "Supplier's document")]);
+}
+
 
 // ---------- state, forms ----------
 function fill(sel, items, value) {
@@ -396,9 +614,15 @@ async function loadOverview() {
   const high = rows.filter(r => r.risk === "high"), passed = rows.filter(r => r.latest_order_date_80pct && r.latest_order_date_80pct < o.as_of);
   const worst = rows.slice().sort((a, b) => b.p_late - a.p_late)[0];
   const need = rows.slice().sort((a, b) => a.need_on_site.localeCompare(b.need_on_site))[0];
-  $("#ov-lead").textContent = `Phase 1 of a 6 MW data hall (fictional test project). Scenario date ${fmtDate(o.as_of)}. Energisation target 6 Dec 2027.`;
+  $("#ov-head").textContent = `${high.length} of ${rows.length} power equipment groups will probably arrive late.`;
+  $("#ov-lead").textContent = `Phase 1 of a 6 MW data hall (fictional test project) · scenario date ${fmtDate(o.as_of)} · energisation target 6 Dec 2027. Every figure below comes from a cited source.`;
+  $("#ov-kpis").innerHTML = `<div class="kpi hot"><b>${pct(worst.p_late)}</b><span>${esc(worst.label.split(" ")[0] === "LV" ? "Switchgear" : worst.label)} chance late</span></div>
+    <div class="kpi ${high.length ? "hot" : ""}"><b>${high.length} of ${rows.length}</b><span>groups likely late</span></div>
+    <div class="kpi ${passed.length ? "warm" : ""}"><b>${passed.length}</b><span>order-by dates already passed</span></div>
+    <div class="kpi"><b>${fmtDate(need.need_on_site).replace(/ \d{4}$/, "")}</b><span>first need date (${esc(need.tag_group)})</span></div>`;
+  buildScene(rows);
+  $("#pipe").innerHTML = pipelineHTML(null);
   $("#ov-tiles").innerHTML = `
-    <div class="tile ${high.length ? "badt" : "okt"}"><div class="k">Likely late</div><div class="v">${high.length} of ${rows.length}</div><div class="s">item groups at high risk of missing their need date</div></div>
     <div class="tile badt"><div class="k">Worst</div><div class="v">${pct(worst.p_late)}</div><div class="s">${esc(worst.label)}: typical arrival ${fmtDate(worst.arrival.P50)}, needed ${fmtDate(worst.need_on_site)}</div></div>
     <div class="tile ${passed.length ? "warnt" : "okt"}"><div class="k">Order-by date passed</div><div class="v">${passed.length}</div><div class="s">groups that can no longer reach an 80% on-time chance by ordering alone</div></div>
     <div class="tile infot"><div class="k">First need date</div><div class="v" style="font-size:20px">${fmtDate(need.need_on_site)}</div><div class="s">${esc(need.label)}</div></div>`;
@@ -435,7 +659,8 @@ async function poll(jid, tool) {
     const m = Math.floor(j.seconds / 60), s = String(j.seconds % 60).padStart(2, "0");
     p.innerHTML = `<div class="row"><span class="spin"></span><b>${esc(TOOL[tool])} running</b><span class="muted">${m}:${s} · ${j.calls} model calls on ${esc(j.provider)}${j.failed_calls ? ` · ${j.failed_calls} retried` : ""}</span></div>
       <div class="small" style="margin-top:6px">${j.last ? "Now: " + esc(j.last) : "Reading the documents"}</div>
-      <div class="small">You can keep this page open; the result is saved even if you close it.</div>`;
+      <div class="small">You can keep this page open; the result is saved even if you close it.</div>
+      ${tool === "run_package_review" ? `<div class="pipe" style="margin-top:12px">${pipelineHTML(stageOf(j.last))}</div>` : ""}`;
     if (j.state === "done") { p.classList.add("hidden"); await openResult(j.result_id); loadState(false); return; }
     if (j.state === "error") { showError(j.error); return; }
     await new Promise(r => setTimeout(r, 1500));
@@ -515,9 +740,9 @@ function matrixTable(scope, M, findings, prefix) {
   const bids = Object.keys(M), q = {};
   findings.forEach(f => { const d = f.data || {}; if (d.bid && d.scope_id && f.citations.length && (!prefix || f.id.startsWith(prefix))) q[d.bid + "|" + d.scope_id] = f.citations[0]; });
   return `<div class="card scroll"><table><tr><th>Scope item</th>${bids.map(b => `<th>${esc(b)}</th>`).join("")}</tr>` +
-    scope.map(s => `<tr><td><b>${esc(s.id)}</b> ${esc(s.item)}</td>${bids.map(b => { const st = M[b][s.id] || "?", c = q[b + "|" + s.id];
-      return `<td>${c ? `<button class="cell ${CELL[st] || "mute"}" data-ci="${cite(c)}" title="${esc(c.quote)}">${esc(st)}</button>` : `<span class="cell ${CELL[st] || "mute"}" title="no quote: the bid does not mention it">${esc(st)}</span>`}</td>`; }).join("")}</tr>`).join("") +
-    `</table><p class="small">Click a cell to see the bid's own words on the page.</p></div>`;
+    scope.map(s => { const none = !bids.some(b => M[b][s.id] === "included"); return `<tr class="${none ? "nobid" : ""}"><td><b>${esc(s.id)}</b> ${esc(s.item)}${none ? ' <span class="b bad">no bid includes this</span>' : ""}</td>${bids.map(b => { const st = M[b][s.id] || "?", c = q[b + "|" + s.id];
+      return `<td>${c ? `<button class="cell ${CELL[st] || "mute"}" data-ci="${cite(c)}" title="${esc(c.quote)}">${esc(st)}</button>` : `<span class="cell ${CELL[st] || "mute"}" title="no quote: the bid does not mention it">${esc(st)}</span>`}</td>`; }).join("")}</tr>`; }).join("") +
+    `</table><p class="small">Click a cell to see the bid's own words on the page. A red edge marks scope that no bid includes: it must be priced by every bidder or bought separately.</p></div>`;
 }
 function bidsSummary(R, findings) {
   const A = R.award || {};
@@ -535,7 +760,7 @@ function packageSummary(R, findings) {
     <ul>${(D.notes || []).map(n => `<li>${esc(n)}</li>`).join("")}</ul><div class="small">${esc(D.level_bids_reason || "")}</div></div>`;
   h += `<div class="card scroll"><table><tr><th>Bid</th><th>Product</th><th class="n">Leveled cost</th><th>Scope gaps</th><th>Product vs spec</th><th>Typical arrival</th><th class="n">Chance late</th></tr>` +
     (R.comparison || []).map(r => `<tr><td><b>${esc(r.bid)}</b></td><td>${esc(String(r.product))}</td><td class="n">${money(r.leveled_cost)}<div class="small">base ${money(r.base)}</div></td>
-      <td>${(r.scope_gaps || []).length} of ${(lb.scope || []).length}</td><td><span class="b ${OVERALL[r.submittal] || "mute"}">${esc(r.submittal)}</span>${r.submittal === "reject" ? `<div><button class="linkbtn" data-findfor="${esc(R.tag || Object.values((R.parts || {}).submittals || {}).map(x => x && x.tag).find(Boolean) || "")}">Find products that fit</button></div>` : ""}</td>
+      <td>${(r.scope_gaps || []).length} of ${(lb.scope || []).length}</td><td><span class="b ${OVERALL[r.submittal] || "mute"}">${esc(r.submittal)}</span>${r.same_product === "match" ? '<div class="small" style="color:var(--ok)">✓ same product as bid</div>' : r.same_product === "absent" ? '<div class="small" style="color:var(--bad);font-weight:600">possible substitution</div>' : ""}${r.submittal === "reject" ? `<div><button class="linkbtn" data-findfor="${esc(R.tag || Object.values((R.parts || {}).submittals || {}).map(x => x && x.tag).find(Boolean) || "")}">Find products that fit</button></div>` : ""}</td>
       <td class="nw">${fmtDate(r.arrival_P50)}</td><td class="n">${r.p_late == null ? "-" : pct(r.p_late)}</td></tr>`).join("") + `</table></div>`;
   if (lb.scope && lb.matrix) h += `<h2>What each bid covers</h2>` + matrixTable(lb.scope, lb.matrix, findings, "level_bids/");
   const rows = findings.filter(f => f.id.startsWith("delivery/") && (f.data || {}).arrival && ((f.data.scenario || "").startsWith("award") || f.data.tag_group === (findings.find(x => (x.data || {}).scenario?.startsWith("award"))?.data.tag_group)))
@@ -582,6 +807,8 @@ function findingCard(f) {
   const cites = f.citations.map(c => `<div class="cite"><b>${esc(c.doc_id)}</b> p.${c.page} ${esc(c.locator || "")}${c.ocr ? " (scanned page, read by OCR)" : ""}${c.match && c.match !== "exact" ? ` <span class="b mute">${esc(c.match)} match</span>` : ""}
     · ${citeBtn(c, "View on the page")}<q>${esc(c.quote)}</q></div>`).join("");
   const quick = f.citations.slice(0, 2).map(c => citeBtn(c, `${c.doc_id.length > 28 ? c.doc_id.slice(0, 26) + "…" : c.doc_id} p.${c.page}`)).join(" · ");
+  const specC = f.citations.find(c => /^26-/.test(c.doc_id)), subC = f.citations.find(c => !/^(26-|equipment-schedule|leadtime-evidence|po-status)/.test(c.doc_id));
+  const cmpBtn = specC && subC ? ` · <button class="linkbtn" data-cmp="${cite(specC)},${cite(subC)}">Compare side by side</button>` : "";
   let rev = "";
   if (f.needs_human) {
     rev = r ? `<div class="rev"><span class="b ok">${r.decision === "agree" ? "You agreed" : "You changed it to " + esc(r.decision)}</span><span class="small">${esc(r.note)} · ${esc(r.at)}</span><button class="btn sm" data-clear="${esc(f.id)}">Undo</button></div>`
@@ -592,7 +819,7 @@ function findingCard(f) {
     : f.id.startsWith("delivery/") ? "delivery" : "";
   return `<div class="f ${f.needs_human ? "human" : ""} ${r ? "done" : ""}"><div class="fhead">${part ? `<span class="b info">${esc(part)}</span>` : ""}<span class="b ${STATUS[f.status] || "mute"}">${esc(f.status)}</span><div class="claim">${esc(f.claim)}${(f.data || {}).locator ? ` <span class="small">${esc(f.data.locator)}</span>` : ""}</div>
     <span class="small nw" title="confidence">${f.confidence.toFixed(2)} <span class="conf"><i style="width:${Math.round(f.confidence * 100)}%"></i></span></span></div>
-    <div class="small" style="margin-top:4px">${esc(f.why)}</div>${quick ? `<div class="small" style="margin-top:4px">Sources: ${quick}</div>` : ""}${f.citations.length ? `<details><summary>${f.citations.length} quoted source${f.citations.length > 1 ? "s" : ""}</summary>${cites}</details>` : ""}${rev}</div>`;
+    <div class="small" style="margin-top:4px">${esc(f.why)}</div>${quick ? `<div class="small" style="margin-top:4px">Sources: ${quick}${cmpBtn}</div>` : ""}${f.citations.length ? `<details><summary>${f.citations.length} quoted source${f.citations.length > 1 ? "s" : ""}</summary>${cites}</details>` : ""}${rev}</div>`;
 }
 function wireFindings() {
   document.querySelectorAll("[data-filter]").forEach(b => b.onclick = () => { filter = b.dataset.filter; renderResult(); });
@@ -640,6 +867,11 @@ function renderSaved() {
   wireRows(t);
 }
 
+window.addEventListener("hashchange", () => {  // links and the Back button move between results without a reload
+  const r = location.hash.match(/^#result=(.+)$/), c = location.hash.match(/^#src=([a-z0-9-]+):(\d+):(.*)$/);
+  if (r && (!current || current.id !== decodeURIComponent(r[1]))) openResult(decodeURIComponent(r[1])).catch(e => toast(e.message));
+  else if (c) openSource({doc_id: c[1], page: +c[2], quote: decodeURIComponent(c[3]), locator: ""});
+});
 (async () => {
   const m = location.hash.match(/^#result=(.+)$/), keep = location.hash;
   showTab("overview");

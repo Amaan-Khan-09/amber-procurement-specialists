@@ -42,6 +42,14 @@ COMPAT = {
     "cerebras": {"base": "https://api.cerebras.ai/v1", "key": "CEREBRAS_API_KEY",
                  "model": os.getenv("AMBER_CEREBRAS_MODEL", "gpt-oss-120b"),
                  "extra": {"reasoning_effort": "low"}},
+    # NVIDIA hosted API (build.nvidia.com, free trial key)
+    "nvidia": {"base": "https://integrate.api.nvidia.com/v1", "key": "NVIDIA_API_KEY",
+               "model": os.getenv("AMBER_NVIDIA_MODEL", "openai/gpt-oss-120b"),
+               "extra": {"reasoning_effort": "low"}},
+    # Hugging Face Inference Providers router (free monthly credits; token needs "Make calls to Inference Providers")
+    "huggingface": {"base": "https://router.huggingface.co/v1", "key": "HF_TOKEN",
+                    "model": os.getenv("AMBER_HF_MODEL", "openai/gpt-oss-120b"),
+                    "extra": {"reasoning_effort": "low"}},
 }
 for _name, _cfg in COMPAT.items():
     DEFAULTS[_name] = _cfg["model"]
@@ -49,7 +57,7 @@ PRICES.setdefault("openai/gpt-oss-120b:free", (0.0, 0.0))  # OpenRouter free var
 # Cerebras free-trial credit: reported at the same list price as gpt-oss-120b elsewhere, so cost per run stays honest
 PRICES.setdefault("gpt-oss-120b", PRICES["openai/gpt-oss-120b"])
 
-FREE_FALLBACKS = "openrouter,cerebras"  # tried in this order after the primary, only if their keys are set
+FREE_FALLBACKS = "openrouter,cerebras,nvidia,huggingface"  # tried in this order after the primary, only if their keys are set
 
 
 class LLMError(RuntimeError):
@@ -210,7 +218,7 @@ class LLM:
         return j["choices"][0]["message"]["content"] or ""
 
     def _compat(self, system: str, user: str, max_tokens: int) -> str:
-        """Any OpenAI-compatible host of the same model (OpenRouter, Cerebras)."""
+        """Any OpenAI-compatible host of the same model (OpenRouter, Cerebras, NVIDIA, Hugging Face)."""
         cfg = COMPAT[self.provider]
         key = os.getenv(cfg["key"]) or ""
         if not key:
@@ -222,17 +230,26 @@ class LLM:
         hdr = {"Authorization": f"Bearer {key}", "X-Title": "amber-procurement-specialists"}
         try:
             j = self._post(url, hdr, body)
-        except LLMError as e:  # some hosts reject strict JSON mode for some models: ask again without it
+        except LLMError as e:  # some hosts reject strict JSON mode or a reasoning setting: ask again with plain settings
             if "HTTP 400" not in str(e):
                 raise
             body.pop("response_format", None)
-            j = self._post(url, hdr, body)
+            try:
+                j = self._post(url, hdr, body)
+            except LLMError as e2:
+                if "HTTP 400" not in str(e2) or not cfg["extra"]:
+                    raise
+                for k in cfg["extra"]:
+                    body.pop(k, None)
+                j = self._post(url, hdr, body)
         u = j.get("usage") or {}
         self.meter.add(self.provider, self.model, u.get("prompt_tokens", 0), u.get("completion_tokens", 0))
         return (j.get("choices") or [{}])[0].get("message", {}).get("content") or ""
 
     _openrouter = _compat
     _cerebras = _compat
+    _nvidia = _compat
+    _huggingface = _compat
 
     def _gemini(self, system: str, user: str, max_tokens: int) -> str:
         key = (os.getenv("GEMINI_API_KEY") or os.getenv("GOOGLE_API_KEY") or "").strip()

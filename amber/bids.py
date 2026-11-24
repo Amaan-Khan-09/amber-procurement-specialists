@@ -225,6 +225,21 @@ def award(table: dict, bids: dict) -> dict:
             "why": "A person should decide: " + " | ".join(blockers)}
 
 
+def uncovered_scope(form: dict, bids: dict[str, dict]) -> list[dict]:
+    """Scope that no bid includes in its base price, found in code from the matrix. Someone still has to do it, so
+    every bidder is asked to price it, or the owner buys it separately."""
+    qty = _num(form.get("quantity")) or 1
+    allow = {a["scope_id"]: a for a in form.get("allowances", []) if a.get("amount") is not None}
+    out = []
+    for s in form.get("scope", []):
+        sts = {k: (b["items"].get(s["id"]) or {}).get("status", "silent") for k, b in bids.items()}
+        if sts and not any(v == "included" for v in sts.values()):
+            a = allow.get(s["id"])
+            out.append({"id": s["id"], "item": s["item"], "statuses": sts,
+                        "allowance": a["amount"] * (qty if a.get("basis") == "per_unit" else 1) if a else None})
+    return out
+
+
 def level_bids(form_path: str, bid_paths: dict[str, str], llm: LLM | None = None) -> ToolResult:
     t0 = time.time()
     llm = llm or LLM()
@@ -266,6 +281,17 @@ def level_bids(form_path: str, bid_paths: dict[str, str], llm: LLM | None = None
             findings.append(Finding(id=f"F-{bid_id}-base", claim=f"{bid_id} base price {b.get('base_total')}",
                                     status=Verdict.unclear, confidence=0.3,
                                     why="base price quote not found in the bid", data={"bid": bid_id}))
+    uncovered = uncovered_scope(form, bids)
+    for u in uncovered:
+        cites = [Citation(**b["items"][u["id"]]["citation"]) for b in bids.values()
+                 if (b["items"].get(u["id"]) or {}).get("citation")]
+        who = ", ".join(f"{k} {st}" for k, st in u["statuses"].items())
+        findings.append(Finding(
+            id=f"F-uncovered-{u['id']}", claim=f"No bid includes {u['id']} {u['item']} in its base price",
+            status=Verdict.missing, confidence=0.85, needs_human=True, citations=cites[:4],
+            why=f"{who}: ask every bidder to price it, or plan to buy it separately"
+                + (f" (owner's allowance {u['allowance']:,.0f})" if u["allowance"] else ""),
+            data={"scope_id": u["id"], "uncovered": True, "statuses": u["statuses"]}))
     findings.append(Finding(id="F-award", claim="award recommendation", confidence=0.9 if decision["auto_award"] else 0.6,
                             status=Verdict.complies if decision["auto_award"] else Verdict.unclear,
                             citations=_award_citations(decision, bids), why=decision["why"],
@@ -275,6 +301,8 @@ def level_bids(form_path: str, bid_paths: dict[str, str], llm: LLM | None = None
               "scope": [{"id": s["id"], "item": s["item"]} for s in form.get("scope", [])],
               "matrix": {k: {sid: i["status"] for sid, i in b["items"].items()} for k, b in bids.items()},
               "products": {k: b.get("offered_product") for k, b in bids.items()},
+              "product_citations": {k: b.get("product_citation") for k, b in bids.items()},
+              "uncovered_scope": uncovered,
               "leveling": table, "lead_time": {k: b.get("lead_time") for k, b in bids.items()},
               "terms": {k: b.get("terms") for k, b in bids.items()}, "award": decision,
               "unread_bids": unread, "provider_switches": list(llm.switched)}

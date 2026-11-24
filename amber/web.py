@@ -52,7 +52,7 @@ PAGE = Path(__file__).with_name("web_index.html")
 MAX_UPLOAD = 40 * 1024 * 1024
 UPLOAD_EXT = {".pdf", ".txt"}
 UPLOAD_KINDS = {"submittals", "bids", "specs"}
-PROVIDERS = ("groq", "openrouter", "cerebras", "ollama")  # the paid provider is never offered on this page
+PROVIDERS = ("groq", "openrouter", "cerebras", "nvidia", "huggingface", "ollama")  # the paid provider is never offered on this page
 CHECKLISTS = {"26 32 13": "genset_requirements.json", "26 33 53": "ups_requirements.json"}
 RESULT_ID = re.compile(r"^(runs|web|example):[A-Za-z0-9_.\-]{1,80}$")
 REVIEW_STATUSES = {"agree", "complies", "deviates", "missing", "unclear"}
@@ -107,7 +107,7 @@ def _sealed() -> set[str]:
     out = set()
     for k in KEYS.glob("[GU][0-9]*.json"):
         case = json.loads(k.read_text(encoding="utf-8"))
-        if case.get("split") == "heldout" and not (RUNS / k.name).exists():
+        if case.get("split") == "heldout" and not ((RUNS / k.name).exists() or (EXAMPLES / k.name).exists()):
             out.add(Path(case["submittal"]).relative_to("data").as_posix())
     return out
 
@@ -146,6 +146,7 @@ def _ollama_up() -> bool:
 
 def _providers() -> list[dict]:
     names = {"groq": "Groq (free tier)", "openrouter": "OpenRouter (free)", "cerebras": "Cerebras (free)",
+             "nvidia": "NVIDIA (free trial)", "huggingface": "Hugging Face (free credits)",
              "ollama": "This laptop (Ollama, offline)"}
     out = []
     for p in PROVIDERS:

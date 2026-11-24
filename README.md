@@ -73,12 +73,18 @@ Notes for a fresh clone:
 
 * **Package review, Check a submittal, Find products, Level bids, Delivery risk:** choose documents from `data/` or upload a PDF
   (or a bid e-mail as .txt), choose the model, run. Progress shows the model calls as they happen.
-* **Overview:** the project at a glance (which equipment will be late, by how much, from which sources), with no
-  model calls.
+* **Overview:** the project at a glance: a 3D view of the site's power equipment (transformers, switchgear, UPS,
+  generators) coloured by each group's chance of arriving late, with the dates and sources one hover or click away,
+  and the hand-off chain between the specialists. No model calls.
 * **Every answer shows its sources, one click away:** "View on the page" opens the original PDF page with the quoted
   words highlighted (all 376 citations in our saved runs are located on their page), a bid e-mail with the quote
   marked, or a lead-time record with its publisher, date and a link to the website. Any cited page has a shareable
   link.
+* **Side by side:** any requirement can open the spec page and the supplier's page next to each other, both quotes
+  highlighted.
+* **Checks learned from how procurement teams work:** scope that no bid includes is flagged (and every bidder is
+  asked to price it), and the package review checks in code that each submittal is for the product that was bid,
+  so a substitution cannot slip through.
 * **"For you to review"** lists only what the agent handed to a person. For each item you can agree, or change the
   verdict, and add a note. Decisions are saved beside the result (`runs/web/reviews/`).
 * **Vendor follow-ups** are drafted from the gaps: copy or download them, then send them yourself.
@@ -103,7 +109,7 @@ File arguments are paths under `data/`; paths outside it are refused.
 |---|---|---|
 | Reading specs, submittals and bids (default) | `openai/gpt-oss-120b` (reasoning effort low) | Groq |
 | Lighter runs and development | `openai/gpt-oss-20b` | Groq |
-| Same model when Groq is out of capacity (optional, free tiers, only if a key is set) | `openai/gpt-oss-120b:free`, then `gpt-oss-120b` | OpenRouter, then Cerebras |
+| Same model when Groq is out of capacity (optional, free tiers, only if a key is set) | `gpt-oss-120b` on each host | OpenRouter, then Cerebras, then NVIDIA (build.nvidia.com), then Hugging Face Inference Providers |
 | Reading **scanned** pages (OCR): only when `AMBER_OCR=gemini`; cached per page and reused by default | `gemini-3.8-flash` | Google |
 | Structuring a spec into requirements (once per spec, cached) | `gemini-3.8-flash` | Google |
 | Private / offline mode | `qwen3:8b` served by Ollama on a laptop's integrated GPU (measured below) | local |

@@ -147,3 +147,9 @@ The plan above held up; these are the differences and the reasons, each one driv
 - **A negation guard and a re-check of "not stated"** after held-out set 1 showed an approval resting on "Not included".
   Held-out set 2, labelled after these fixes and before any run, then run once: 28 of 42 correct, and every answer the
   agent gave on its own was right (11 of 11).
+- **Learned from the field (24 Nov research of Procore/Datagrid, BuildSync and bid-leveling guides).** Scope that no bid
+  includes is found in code and handed to a person (every bidder is asked to price it); the package review checks in
+  code that each submittal names the model that was bid (a substitution check, cited); the web page can show the spec
+  page and the supplier's page side by side. Commercial tools publish no accuracy figures; we keep publishing ours.
+- **More free hosts of the same model** (NVIDIA build.nvidia.com, Hugging Face Inference Providers) join the fallback
+  chain after OpenRouter and Cerebras; a host that rejects a setting is asked again with plain settings.

@@ -72,6 +72,7 @@ def _submittal_draft(doc: str, items: list[dict], project: str, tag: str | None)
 
 def _bid_drafts(lb: dict, findings: list[dict], project: str) -> list[dict]:
     scope = {s["id"]: s["item"] for s in lb.get("scope", [])}
+    uncovered = {u["id"] for u in lb.get("uncovered_scope") or []}
     by_bid: dict[str, list[dict]] = defaultdict(list)
     for f in findings:
         d = f.get("data") or {}
@@ -90,7 +91,8 @@ def _bid_drafts(lb: dict, findings: list[dict], project: str) -> list[dict]:
             lines.append(f"{n}. {sid} {scope.get(sid, '')}")
             for c in f.get("citations", [])[:1]:
                 lines.append(f"   Your proposal: {_cite_line(c)}")
-            lines.append(f"   Request: {ASK_BID[st]}")
+            lines.append(f"   Request: {ASK_BID[st]}" + (" No bid we received includes this item, so we are asking every "
+                                                         "bidder to price it." if sid in uncovered else ""))
             lines.append("")
             cites += f.get("citations", [])[:1]
         for t in ((lb.get("terms") or {}).get(bid) or []):

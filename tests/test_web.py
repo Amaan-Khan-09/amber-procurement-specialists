@@ -45,7 +45,8 @@ def test_refuses_the_paid_provider(client):
     assert r.status_code == 400 and "provider" in r.json()["error"]
 
 
-def test_held_out_documents_stay_sealed_until_their_final_run(client):
+def test_held_out_documents_stay_sealed_until_their_final_run(client, tmp_path, monkeypatch):
+    monkeypatch.setattr(web, "EXAMPLES", tmp_path / "no-examples")  # as before any final run existed
     sealed = web._sealed()
     assert sealed, "held-out set 2 has no run yet, so it must be sealed"
     doc = sorted(sealed)[0]
@@ -142,3 +143,7 @@ def test_overview_needs_no_model(client, monkeypatch):
     monkeypatch.delenv("GROQ_API_KEY", raising=False)
     o = client.get("/api/overview").json()
     assert o["rows"] and all(r["arrival"]["P50"] and r["citations"] for r in o["rows"])
+
+
+def test_a_held_out_document_opens_once_its_final_run_is_committed(client):
+    assert web._sealed() == set()  # every held-out case has its final run in examples/
