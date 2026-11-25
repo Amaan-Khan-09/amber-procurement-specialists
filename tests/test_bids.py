@@ -71,3 +71,15 @@ def test_award_answer_cites_its_evidence():
     d = award(level(FORM, bids), bids)
     quotes = [c.quote for c in _award_citations(d, bids)]
     assert "Prices are subject to adjustment for tariffs" in quotes and "Total 3,980,000" in quotes
+
+
+def test_a_qualified_call_that_decides_the_price_order_is_named_for_a_person():
+    bids = bids_from_key()
+    bids["B3"]["items"]["S9"] = {"status": "qualified"}  # the reading doubts the load bank test the key accepts
+    bids["B3"]["items"]["S8"] = {"status": "qualified"}
+    table = level(FORM, bids)
+    assert table["B4"]["adjusted"] < table["B3"]["adjusted"]  # on this reading B4 looks cheapest
+    assert table["B3"]["adjusted_if_confirmed"] < table["B4"]["adjusted"]
+    d = award(table, bids)
+    assert d["auto_award"] is False
+    assert any("price order is not settled" in b and "B3" in b and "S9" in b for b in d["blockers"])

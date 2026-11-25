@@ -47,9 +47,9 @@ Models: `gpt-oss-120b` on Groq's free tier for everything (open weights), plus G
 pages, behind a hard spending cap. The same checks also run fully offline on a laptop with a local model.
 
 ## How we tested it
-Answer keys were written from the source documents **before** the agent ran. Held-out documents were run once, with no
+Answer keys were written from the source documents, with AI assistance, **before** the agent ran; an independent human review of them is still pending. Held-out documents were run once, with no
 tuning afterwards. On datasheets the agent had never seen: 59 % of requirements correct before our fixes, 67 % on the next set, and
-**76 % (32 of 42) on the newest set**, labelled before the run and run once. **25 of the 26 answers it gave on its own
+**76 % (32 of 42) on the newest set**, labelled before the run and run once. On the two newest sets, **25 of the 26 answers it gave on its own
 matched our key**; the one that did not asked the vendor for information. **Zero invented citations** in every
 scored run. The rest it handed to a person, which is the point. A full purchase review takes about 10 minutes and costs
 about 2 cents.
@@ -66,9 +66,13 @@ Datasheets are messy: two-column pages, units in a header row, a "Not included" 
 looking for. Each real mistake in our first held-out run became a rule in code and a test (for example a check can no
 longer pass on a quote that says "not included"). Then we labelled fresh documents to measure the fix honestly.
 
+Auditing our own saved results, we found it had rejected a product that complies: on a two-column page the model had
+joined the motor-starting label to the battery's cranking amps in the next column. Now it may not reject on words that
+only meet because two columns ran together; it shows the page and asks.
+
 ## What we are proud of
 Trust. You can click any answer and see the exact words highlighted on the real page. We publish our held-out results,
-including the weak points: about three answers in four go to a person, and we say so.
+including the weak points: about two answers in three go to a person, and we say so.
 
 ## What we learned
 In procurement, being confidently wrong costs more than asking. Designing for "I am not sure, here are the sources"

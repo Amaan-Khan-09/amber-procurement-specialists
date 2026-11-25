@@ -44,16 +44,16 @@
           "S10",
           "S11"
         ],
-        "submittal": "reject",
+        "submittal": "review",
         "submittal_summary": {
           "complies": 10,
-          "deviates": 1,
+          "deviates": 0,
           "missing": 1,
-          "unclear": 9
+          "unclear": 10
         },
         "same_product": "match",
-        "arrival_P50": "2028-05-09",
-        "arrival_P90": "2028-06-09",
+        "arrival_P50": "2028-04-11",
+        "arrival_P90": "2028-05-12",
         "p_late": 0.97
       },
       {
@@ -124,12 +124,11 @@
         }
       ],
       "notes": [
-        "B3: product submittal deviates from the spec - not like-for-like; resolve deviations before award or price them",
         "no bid includes S7 (Offloading and rigging onto pads): ask every bidder to price it, or buy it separately",
         "no bid includes S9 (Field load bank test (25/50/75/100 % steps)): ask every bidder to price it, or buy it separately",
         "every option is likely to miss the need date: escalate schedule mitigation now (production slot reservation, phased energisation, temporary power)"
       ],
-      "level_bids_reason": "A person should decide: B4 has open commercial risk: Price firm 15 days | B4 needs clarification on S10, S11, S4, S5, S7, S9"
+      "level_bids_reason": "A person should decide: B4 has open commercial risk: Price firm 15 days | B4 needs clarification on S10, S11, S4, S5, S7, S9 | the price order is not settled: B3 is 18,000 above B4, and 185,000 of its total rests on 'qualified' readings (S8, S9, S10, S11) that a person has to confirm"
     },
     "parts": {
       "level_bids": {
@@ -314,7 +313,11 @@
               "S7: excluded, owner's allowance 38,000",
               "S9: excluded, owner's allowance 56,000",
               "S11: bidder's alternate price 96,000"
-            ]
+            ],
+            "to_confirm": {
+              "S2": 152000.0
+            },
+            "adjusted_if_confirmed": 4506000.0
           },
           "B2": {
             "base": 4415000.0,
@@ -334,7 +337,14 @@
               "S7: excluded, owner's allowance 38,000",
               "S8: qualified, owner's allowance 30,000",
               "S9: qualified, owner's allowance 56,000"
-            ]
+            ],
+            "to_confirm": {
+              "S2": 152000.0,
+              "S3": 220000.0,
+              "S8": 30000.0,
+              "S9": 56000.0
+            },
+            "adjusted_if_confirmed": 4527000.0
           },
           "B3": {
             "base": 3980000.0,
@@ -358,7 +368,14 @@
               "S9: qualified, owner's allowance 56,000",
               "S10: qualified, owner's allowance 3,000",
               "S11: qualified, owner's allowance 96,000"
-            ]
+            ],
+            "to_confirm": {
+              "S8": 30000.0,
+              "S9": 56000.0,
+              "S10": 3000.0,
+              "S11": 96000.0
+            },
+            "adjusted_if_confirmed": 4302800.0
           },
           "B4": {
             "base": 4240000.0,
@@ -378,7 +395,9 @@
               "S9: silent, owner's allowance 56,000",
               "S10: silent, owner's allowance 3,000",
               "S11: silent, owner's allowance 96,000"
-            ]
+            ],
+            "to_confirm": {},
+            "adjusted_if_confirmed": 4469800.0
           }
         },
         "lead_time": {
@@ -595,9 +614,10 @@
           ],
           "blockers": [
             "B4 has open commercial risk: Price firm 15 days",
-            "B4 needs clarification on S10, S11, S4, S5, S7, S9"
+            "B4 needs clarification on S10, S11, S4, S5, S7, S9",
+            "the price order is not settled: B3 is 18,000 above B4, and 185,000 of its total rests on 'qualified' readings (S8, S9, S10, S11) that a person has to confirm"
           ],
-          "why": "A person should decide: B4 has open commercial risk: Price firm 15 days | B4 needs clarification on S10, S11, S4, S5, S7, S9"
+          "why": "A person should decide: B4 has open commercial risk: Price firm 15 days | B4 needs clarification on S10, S11, S4, S5, S7, S9 | the price order is not settled: B3 is 18,000 above B4, and 185,000 of its total rests on 'qualified' readings (S8, S9, S10, S11) that a person has to confirm"
         },
         "unread_bids": {},
         "provider_switches": []
@@ -639,9 +659,9 @@
             "tag_group": "GEN",
             "scenario": "award to B3",
             "need": "2027-10-04",
-            "P10": "2028-01-18",
-            "P50": "2028-05-09",
-            "P90": "2028-06-09",
+            "P10": "2027-12-21",
+            "P50": "2028-04-11",
+            "P90": "2028-05-12",
             "p_late": 0.97,
             "risk": "high"
           },
@@ -908,7 +928,7 @@
               "locator": "2.1.D (Diesel Engine)",
               "requirement": "Engine shall be an 8, 12, or 16 cylinder, 4-cycle diesel engine, either turbocharged/aftercooled or normally aspirated.",
               "verdict": "complies",
-              "confidence": 0.807
+              "confidence": 0.65
             },
             {
               "req_id": "R06",
@@ -1032,11 +1052,11 @@
           "submittal": "kohler-kd2000-g5-626",
           "summary": {
             "complies": 10,
-            "deviates": 1,
+            "deviates": 0,
             "missing": 1,
-            "unclear": 9
+            "unclear": 10
           },
-          "overall": "reject",
+          "overall": "review",
           "rows": [
             {
               "req_id": "R01",
@@ -1056,8 +1076,8 @@
               "req_id": "R03",
               "locator": "2.1.C.1",
               "requirement": "Motor starting capability shall be not less than 3000 kVA with a maximum voltage dip of 30% for 2000 kW sets.",
-              "verdict": "deviates",
-              "confidence": 0.807
+              "verdict": "unclear",
+              "confidence": 0.5
             },
             {
               "req_id": "R04",
@@ -1402,7 +1422,7 @@
         "to": "Supplier of kohler-kd2000-g5-626",
         "kind": "submittal_review",
         "subject": "Project Alpha GEN-A - submittal review comments (11 items)",
-        "body": "Hello,\n\nWe have reviewed your submittal (kohler-kd2000-g5-626) against the project specification. Please respond to each item below.\n\n1. Motor starting capability shall be not less than 3000 kVA with a maximum voltage dip of 30% for 2000 kW sets. (spec 2.1.C.1)\n   Specification: 26-32-13-engine-generators-alpha p.3, 2.1.C.1: \"shall be capable of developing not less than 3000 kVA (2000 kW sets) and 1500 kVA (1000 kW sets) for motor starting with a maximum voltage dip of 30%\"\n   Your submittal: kohler-kd2000-g5-626 p.3: \"Peak motor starting kVA: (35% dip for voltages ... 4, 1110, AGM below)\"\n   Request: The submittal does not meet this requirement. Please confirm a compliant alternative, or submit a formal deviation request with the reason and any cost or schedule impact.\n\n2. Engine shall be an 8, 12, or 16 cylinder, 4-cycle diesel engine, either turbocharged/aftercooled or normally aspirated. (spec 2.1.D (Diesel Engine))\n   Specification: 26-32-13-engine-generators-alpha p.4, 2.1.D (Diesel Engine): \"Engine shall be an 8, 12, or 16 cylinder, 4 cycle, turbocharged/aftercooled or normally aspirated fuel injected full diesel engine\"\n   Your submittal: kohler-kd2000-g5-626 p.2: \"Cylinder arrangement 12-V\"\n   Request: The submittal is not clear on this point. Please confirm exactly what will be supplied for this project.\n\n3. Unit-mounted radiator cooling system sized to maintain safe operation at 122°F maximum ambient temperature. (spec 2.1.D.2 (Cooling System))\n   Specification: 26-32-13-engine-generators-alpha p.4, 2.1.D.2 (Cooling System): \"cooling system shall be unit mounted radiator cooled\"\n   Your submittal: kohler-kd2000-g5-626 p.2: \"Ambient temperature, °C (°F) 50 (122)\"\n   Request: The submittal is not clear on this point. Please confirm exactly what will be supplied for this project.\n\n4. Operate at ambient conditions of 300 ft altitude and 10 to 122°F ambient temperature. (spec 2.1.E.1)\n   Specification: 26-32-13-engine-generators-alpha p.4, 2.1.E.1: \"Ambient conditions of 300' altitude and an ambient temperature of 10 to 122°F.\"\n   Request: The submittal is not clear on this point. Please confirm exactly what will be supplied for this project.\n\n5. Generator shall be 4-pole, brushless, and two-thirds pitch wound. (spec 2.1.G (Generator))\n   Specification: 26-32-13-engine-generators-alpha p.5, 2.1.G (Generator): \"Generator shall be 4-pole, revolving field type, brushless, dynamically balanced, skewed laminated, two thirds pitch wound\"\n   Request: The submittal is not clear on this point. Please confirm exactly what will be supplied for this project.\n\n6. Provide a 120 V, single-phase space heater to prevent condensation in the generator. (spec 2.1.G.5)\n   Specification: 26-32-13-engine-generators-alpha p.5, 2.1.G.5: \"A 120 volt, single phase space heater shall be provided to prevent condensation in the generator.\"\n   Request: The submittal is not clear on this point. Please confirm exactly what will be supplied for this project.\n\n7. Provide 3-pole generator output circuit breaker(s) with solid-state trip units. (spec 2.1.H (Generator Output Circuit Breaker(s)))\n   Specification: 26-32-13-engine-generators-alpha p.5, 2.1.H (Generator Output Circuit Breaker(s)): \"Generator set shall have 3 pole output circuit breaker(s) with solid state trip units as shown on the drawings.\"\n   Request: The submittal is not clear on this point. Please confirm exactly what will be supplied for this project.\n\n8. Total harmonic distortion of ac voltage waveform from no load to full linear load shall not exceed 5% of rated voltage. (spec 2.1.I.4 (Total Harmonic Distortion (THD)))\n   Specification: 26-32-13-engine-generators-alpha p.6, 2.1.I.4 (Total Harmonic Distortion (THD)): \"The sum of ac voltage waveform harmonies, from no load to full linear load shall not exceed 5% of the rated voltage\"\n   Request: We could not find this in the submittal. Please provide the data sheet section or a written confirmation.\n\n9. Provide a UL 2085 listed in-skid fuel tank with usable capacity for at least 24 hours of operation at full standby load. (spec 2.1.K.1 (In Skid Diesel Fuel Tank))\n   Specification: 26-32-13-engine-generators-alpha p.9, 2.1.K.1 (In Skid Diesel Fuel Tank): \"provided with a UL 2085 listed manufacturer's standard in skid fuel transfer day tank. The tank shall have usable capacity for not less than 24 hours of operati\"\n   Your submittal: kohler-kd2000-g5-626 p.6: \"UL-listed emergency relief vents\"\n   Request: The submittal is not clear on this point. Please confirm exactly what will be supplied for this project.\n\n10. Provide two 5000 W, 480 V, 1-phase jacket-water heaters. (spec 2.1.K.2 (Jacket-Water Heater))\n   Specification: 26-32-13-engine-generators-alpha p.8, 2.1.K.2 (Jacket-Water Heater): \"engine shall have two KIM #Hotstart (480 volt, 1-phase) or approved equal, 5000W jacket-water heaters supplied from a \"normal\" branch circuit.\"\n   Request: The submittal is not clear on this point. Please confirm exactly what will be supplied for this project.\n\n11. Provide a weatherproof and rodent-proof outdoor enclosure entirely enclosing the generator set, with silencers installed inside. (spec 2.1.K.9 (Generator Outdoor Housing))\n   Specification: 26-32-13-engine-generators-alpha p.10, 2.1.K.9 (Generator Outdoor Housing): \"Provide a weatherproof and rodent-proof outdoor shelter to entirely enclose each generator set, including batteries. Silencers shall be installed inside enclosu\"\n   Your submittal: kohler-kd2000-g5-626 p.6: \"internal-mounted, exhaust silencers\"\n   Request: The submittal is not clear on this point. Please confirm exactly what will be supplied for this project.\n\nThank you.\nProcurement, Project Alpha",
+        "body": "Hello,\n\nWe have reviewed your submittal (kohler-kd2000-g5-626) against the project specification. Please respond to each item below.\n\n1. Motor starting capability shall be not less than 3000 kVA with a maximum voltage dip of 30% for 2000 kW sets. (spec 2.1.C.1)\n   Specification: 26-32-13-engine-generators-alpha p.3, 2.1.C.1: \"shall be capable of developing not less than 3000 kVA (2000 kW sets) and 1500 kVA (1000 kW sets) for motor starting with a maximum voltage dip of 30%\"\n   Your submittal: kohler-kd2000-g5-626 p.3: \"Peak motor starting kVA: (35% dip for voltages ... 4, 1110, AGM below)\"\n   Request: The submittal is not clear on this point. Please confirm exactly what will be supplied for this project.\n\n2. Engine shall be an 8, 12, or 16 cylinder, 4-cycle diesel engine, either turbocharged/aftercooled or normally aspirated. (spec 2.1.D (Diesel Engine))\n   Specification: 26-32-13-engine-generators-alpha p.4, 2.1.D (Diesel Engine): \"Engine shall be an 8, 12, or 16 cylinder, 4 cycle, turbocharged/aftercooled or normally aspirated fuel injected full diesel engine\"\n   Your submittal: kohler-kd2000-g5-626 p.2: \"Cylinder arrangement 12-V\"\n   Request: The submittal is not clear on this point. Please confirm exactly what will be supplied for this project.\n\n3. Unit-mounted radiator cooling system sized to maintain safe operation at 122°F maximum ambient temperature. (spec 2.1.D.2 (Cooling System))\n   Specification: 26-32-13-engine-generators-alpha p.4, 2.1.D.2 (Cooling System): \"cooling system shall be unit mounted radiator cooled\"\n   Your submittal: kohler-kd2000-g5-626 p.2: \"Ambient temperature, °C (°F) 50 (122)\"\n   Request: The submittal is not clear on this point. Please confirm exactly what will be supplied for this project.\n\n4. Operate at ambient conditions of 300 ft altitude and 10 to 122°F ambient temperature. (spec 2.1.E.1)\n   Specification: 26-32-13-engine-generators-alpha p.4, 2.1.E.1: \"Ambient conditions of 300' altitude and an ambient temperature of 10 to 122°F.\"\n   Request: The submittal is not clear on this point. Please confirm exactly what will be supplied for this project.\n\n5. Generator shall be 4-pole, brushless, and two-thirds pitch wound. (spec 2.1.G (Generator))\n   Specification: 26-32-13-engine-generators-alpha p.5, 2.1.G (Generator): \"Generator shall be 4-pole, revolving field type, brushless, dynamically balanced, skewed laminated, two thirds pitch wound\"\n   Request: The submittal is not clear on this point. Please confirm exactly what will be supplied for this project.\n\n6. Provide a 120 V, single-phase space heater to prevent condensation in the generator. (spec 2.1.G.5)\n   Specification: 26-32-13-engine-generators-alpha p.5, 2.1.G.5: \"A 120 volt, single phase space heater shall be provided to prevent condensation in the generator.\"\n   Request: The submittal is not clear on this point. Please confirm exactly what will be supplied for this project.\n\n7. Provide 3-pole generator output circuit breaker(s) with solid-state trip units. (spec 2.1.H (Generator Output Circuit Breaker(s)))\n   Specification: 26-32-13-engine-generators-alpha p.5, 2.1.H (Generator Output Circuit Breaker(s)): \"Generator set shall have 3 pole output circuit breaker(s) with solid state trip units as shown on the drawings.\"\n   Request: The submittal is not clear on this point. Please confirm exactly what will be supplied for this project.\n\n8. Total harmonic distortion of ac voltage waveform from no load to full linear load shall not exceed 5% of rated voltage. (spec 2.1.I.4 (Total Harmonic Distortion (THD)))\n   Specification: 26-32-13-engine-generators-alpha p.6, 2.1.I.4 (Total Harmonic Distortion (THD)): \"The sum of ac voltage waveform harmonies, from no load to full linear load shall not exceed 5% of the rated voltage\"\n   Request: We could not find this in the submittal. Please provide the data sheet section or a written confirmation.\n\n9. Provide a UL 2085 listed in-skid fuel tank with usable capacity for at least 24 hours of operation at full standby load. (spec 2.1.K.1 (In Skid Diesel Fuel Tank))\n   Specification: 26-32-13-engine-generators-alpha p.9, 2.1.K.1 (In Skid Diesel Fuel Tank): \"provided with a UL 2085 listed manufacturer's standard in skid fuel transfer day tank. The tank shall have usable capacity for not less than 24 hours of operati\"\n   Your submittal: kohler-kd2000-g5-626 p.6: \"UL-listed emergency relief vents\"\n   Request: The submittal is not clear on this point. Please confirm exactly what will be supplied for this project.\n\n10. Provide two 5000 W, 480 V, 1-phase jacket-water heaters. (spec 2.1.K.2 (Jacket-Water Heater))\n   Specification: 26-32-13-engine-generators-alpha p.8, 2.1.K.2 (Jacket-Water Heater): \"engine shall have two KIM #Hotstart (480 volt, 1-phase) or approved equal, 5000W jacket-water heaters supplied from a \"normal\" branch circuit.\"\n   Request: The submittal is not clear on this point. Please confirm exactly what will be supplied for this project.\n\n11. Provide a weatherproof and rodent-proof outdoor enclosure entirely enclosing the generator set, with silencers installed inside. (spec 2.1.K.9 (Generator Outdoor Housing))\n   Specification: 26-32-13-engine-generators-alpha p.10, 2.1.K.9 (Generator Outdoor Housing): \"Provide a weatherproof and rodent-proof outdoor shelter to entirely enclose each generator set, including batteries. Silencers shall be installed inside enclosu\"\n   Your submittal: kohler-kd2000-g5-626 p.6: \"internal-mounted, exhaust silencers\"\n   Request: The submittal is not clear on this point. Please confirm exactly what will be supplied for this project.\n\nThank you.\nProcurement, Project Alpha",
         "items": 11
       },
       {
@@ -1419,7 +1439,8 @@
         "body": "Hello,\n\nFor SWGR (SWGR-A, SWGR-B, SWGR-C, SWGR-D) on Project Alpha, we need the equipment on site by 2027-08-02. Published lead times for this class and your quoted lead time put the likely arrival around 2027-09-12 (range 2027-08-08 to 2028-07-11).\n\nPlease confirm in writing: your reserved production slot, the committed ship date, and any option to expedite.\n\nThank you.\nProcurement, Project Alpha",
         "items": 1
       }
-    ]
+    ],
+    "decided_again": "The model readings are those of the 25 Nov 2026 run. The decision code was applied to them again on 26 Nov 2026 after a fix (a rejection may not rest on two columns run together); no model was called."
   },
   "findings": [
     {
@@ -1478,7 +1499,7 @@
         }
       ],
       "needs_human": true,
-      "why": "B3: product submittal deviates from the spec - not like-for-like; resolve deviations before award or price them | no bid includes S7 (Offloading and rigging onto pads): ask every bidder to price it, or buy it separately | no bid includes S9 (Field load bank test (25/50/75/100 % steps)): ask every bidder to price it, or buy it separately | every option is likely to miss the need date: escalate schedule mitigation now (production slot reservation, phased energisation, temporary power)",
+      "why": "no bid includes S7 (Offloading and rigging onto pads): ask every bidder to price it, or buy it separately | no bid includes S9 (Field load bank test (25/50/75/100 % steps)): ask every bidder to price it, or buy it separately | every option is likely to miss the need date: escalate schedule mitigation now (production slot reservation, phased energisation, temporary power)",
       "data": {
         "recommend": null,
         "auto_award": false,
@@ -1498,12 +1519,11 @@
           }
         ],
         "notes": [
-          "B3: product submittal deviates from the spec - not like-for-like; resolve deviations before award or price them",
           "no bid includes S7 (Offloading and rigging onto pads): ask every bidder to price it, or buy it separately",
           "no bid includes S9 (Field load bank test (25/50/75/100 % steps)): ask every bidder to price it, or buy it separately",
           "every option is likely to miss the need date: escalate schedule mitigation now (production slot reservation, phased energisation, temporary power)"
         ],
-        "level_bids_reason": "A person should decide: B4 has open commercial risk: Price firm 15 days | B4 needs clarification on S10, S11, S4, S5, S7, S9"
+        "level_bids_reason": "A person should decide: B4 has open commercial risk: Price firm 15 days | B4 needs clarification on S10, S11, S4, S5, S7, S9 | the price order is not settled: B3 is 18,000 above B4, and 185,000 of its total rests on 'qualified' readings (S8, S9, S10, S11) that a person has to confirm"
       }
     },
     {
@@ -1690,7 +1710,7 @@
       "id": "level_bids/F-B1-S2",
       "claim": "B1 S2: qualified",
       "status": "deviates",
-      "confidence": 0.92,
+      "confidence": 0.65,
       "citations": [
         {
           "doc_id": "b1-northline-power",
@@ -1701,8 +1721,8 @@
           "ocr": false
         }
       ],
-      "needs_human": false,
-      "why": "second check: walk‑in vs outdoor weatherproof",
+      "needs_human": true,
+      "why": "second check: walk‑in vs outdoor weatherproof; whether this falls short of the scope is a judgement, confirm",
       "data": {
         "bid": "B1",
         "scope_id": "S2",
@@ -1954,7 +1974,7 @@
       "id": "level_bids/F-B2-S2",
       "claim": "B2 S2: qualified",
       "status": "deviates",
-      "confidence": 0.92,
+      "confidence": 0.65,
       "citations": [
         {
           "doc_id": "b2-tidewater-generator",
@@ -1965,8 +1985,8 @@
           "ocr": false
         }
       ],
-      "needs_human": false,
-      "why": "Enclosure type differs from required outdoor sound‑attenuated weatherproof",
+      "needs_human": true,
+      "why": "Enclosure type differs from required outdoor sound‑attenuated weatherproof; whether this falls short of the scope is a judgement, confirm",
       "data": {
         "bid": "B2",
         "scope_id": "S2",
@@ -1978,7 +1998,7 @@
       "id": "level_bids/F-B2-S3",
       "claim": "B2 S3: qualified",
       "status": "deviates",
-      "confidence": 0.92,
+      "confidence": 0.65,
       "citations": [
         {
           "doc_id": "b2-tidewater-generator",
@@ -1989,8 +2009,8 @@
           "ocr": false
         }
       ],
-      "needs_human": false,
-      "why": "Fuel tank capacity less than required 24‑hour duration",
+      "needs_human": true,
+      "why": "Fuel tank capacity less than required 24‑hour duration; whether this falls short of the scope is a judgement, confirm",
       "data": {
         "bid": "B2",
         "scope_id": "S3",
@@ -2098,7 +2118,7 @@
       "id": "level_bids/F-B2-S8",
       "claim": "B2 S8: qualified",
       "status": "deviates",
-      "confidence": 0.736,
+      "confidence": 0.65,
       "citations": [
         {
           "doc_id": "b2-tidewater-generator",
@@ -2109,8 +2129,8 @@
           "ocr": false
         }
       ],
-      "needs_human": false,
-      "why": "Start‑up not performed by manufacturer's representative",
+      "needs_human": true,
+      "why": "Start‑up not performed by manufacturer's representative; whether this falls short of the scope is a judgement, confirm",
       "data": {
         "bid": "B2",
         "scope_id": "S8",
@@ -2122,7 +2142,7 @@
       "id": "level_bids/F-B2-S9",
       "claim": "B2 S9: qualified",
       "status": "deviates",
-      "confidence": 0.892,
+      "confidence": 0.65,
       "citations": [
         {
           "doc_id": "b2-tidewater-generator",
@@ -2133,8 +2153,8 @@
           "ocr": false
         }
       ],
-      "needs_human": false,
-      "why": "Test steps not specified as 25/50/75/100 %",
+      "needs_human": true,
+      "why": "Test steps not specified as 25/50/75/100 %; whether this falls short of the scope is a judgement, confirm",
       "data": {
         "bid": "B2",
         "scope_id": "S9",
@@ -2362,7 +2382,7 @@
       "id": "level_bids/F-B3-S8",
       "claim": "B3 S8: qualified",
       "status": "deviates",
-      "confidence": 0.92,
+      "confidence": 0.65,
       "citations": [
         {
           "doc_id": "b3-keystone-energy",
@@ -2373,8 +2393,8 @@
           "ocr": false
         }
       ],
-      "needs_human": false,
-      "why": "second check: manufacturer's representative",
+      "needs_human": true,
+      "why": "second check: manufacturer's representative; whether this falls short of the scope is a judgement, confirm",
       "data": {
         "bid": "B3",
         "scope_id": "S8",
@@ -2386,7 +2406,7 @@
       "id": "level_bids/F-B3-S9",
       "claim": "B3 S9: qualified",
       "status": "deviates",
-      "confidence": 0.92,
+      "confidence": 0.65,
       "citations": [
         {
           "doc_id": "b3-keystone-energy",
@@ -2397,8 +2417,8 @@
           "ocr": false
         }
       ],
-      "needs_human": false,
-      "why": "does not specify 25/50/75/100% steps",
+      "needs_human": true,
+      "why": "does not specify 25/50/75/100% steps; whether this falls short of the scope is a judgement, confirm",
       "data": {
         "bid": "B3",
         "scope_id": "S9",
@@ -2410,7 +2430,7 @@
       "id": "level_bids/F-B3-S10",
       "claim": "B3 S10: qualified",
       "status": "deviates",
-      "confidence": 0.92,
+      "confidence": 0.65,
       "citations": [
         {
           "doc_id": "b3-keystone-energy",
@@ -2421,8 +2441,8 @@
           "ocr": false
         }
       ],
-      "needs_human": false,
-      "why": "training less than required 4 hours",
+      "needs_human": true,
+      "why": "training less than required 4 hours; whether this falls short of the scope is a judgement, confirm",
       "data": {
         "bid": "B3",
         "scope_id": "S10",
@@ -2434,7 +2454,7 @@
       "id": "level_bids/F-B3-S11",
       "claim": "B3 S11: qualified",
       "status": "deviates",
-      "confidence": 0.92,
+      "confidence": 0.65,
       "citations": [
         {
           "doc_id": "b3-keystone-energy",
@@ -2445,8 +2465,8 @@
           "ocr": false
         }
       ],
-      "needs_human": false,
-      "why": "warranty period shorter than required 5 years",
+      "needs_human": true,
+      "why": "warranty period shorter than required 5 years; whether this falls short of the scope is a judgement, confirm",
       "data": {
         "bid": "B3",
         "scope_id": "S11",
@@ -2808,7 +2828,7 @@
         }
       ],
       "needs_human": true,
-      "why": "A person should decide: B4 has open commercial risk: Price firm 15 days | B4 needs clarification on S10, S11, S4, S5, S7, S9",
+      "why": "A person should decide: B4 has open commercial risk: Price firm 15 days | B4 needs clarification on S10, S11, S4, S5, S7, S9 | the price order is not settled: B3 is 18,000 above B4, and 185,000 of its total rests on 'qualified' readings (S8, S9, S10, S11) that a person has to confirm",
       "data": {
         "recommend": null,
         "auto_award": false,
@@ -2838,9 +2858,10 @@
         ],
         "blockers": [
           "B4 has open commercial risk: Price firm 15 days",
-          "B4 needs clarification on S10, S11, S4, S5, S7, S9"
+          "B4 needs clarification on S10, S11, S4, S5, S7, S9",
+          "the price order is not settled: B3 is 18,000 above B4, and 185,000 of its total rests on 'qualified' readings (S8, S9, S10, S11) that a person has to confirm"
         ],
-        "why": "A person should decide: B4 has open commercial risk: Price firm 15 days | B4 needs clarification on S10, S11, S4, S5, S7, S9"
+        "why": "A person should decide: B4 has open commercial risk: Price firm 15 days | B4 needs clarification on S10, S11, S4, S5, S7, S9 | the price order is not settled: B3 is 18,000 above B4, and 185,000 of its total rests on 'qualified' readings (S8, S9, S10, S11) that a person has to confirm"
       }
     },
     {
@@ -3195,7 +3216,7 @@
     },
     {
       "id": "delivery/F-GEN-award_to_B3",
-      "claim": "GEN (4 x Diesel engine-generator set), award to B3: P50 arrival 2028-05-09, need 2027-10-04, P(late) 97%",
+      "claim": "GEN (4 x Diesel engine-generator set), award to B3: P50 arrival 2028-04-11, need 2027-10-04, P(late) 97%",
       "status": "deviates",
       "confidence": 0.85,
       "citations": [
@@ -3233,7 +3254,7 @@
         }
       ],
       "needs_human": false,
-      "why": "if awarded to B3 and ordered by 2026-12-15; submittal check found deviations: one resubmittal cycle added; 4 evidence sources",
+      "why": "if awarded to B3 and ordered by 2026-12-15; 4 evidence sources",
       "data": {
         "tag_group": "GEN",
         "tags": [
@@ -3245,24 +3266,24 @@
         "scenario": "award to B3",
         "need_on_site": "2027-10-04",
         "arrival": {
-          "P10": "2028-01-18",
-          "P50": "2028-05-09",
-          "P90": "2028-06-09"
+          "P10": "2027-12-21",
+          "P50": "2028-04-11",
+          "P90": "2028-05-12"
         },
         "lead_weeks": {
           "P10": 53.0,
           "P50": 69.0,
           "P90": 73.5
         },
-        "submittal_weeks": 4.0,
+        "submittal_weeks": 0.0,
         "p_late": 0.97,
         "risk": "high",
-        "float_weeks_at_P50": -32,
-        "latest_order_date_80pct": "2026-04-19",
+        "float_weeks_at_P50": -28,
+        "latest_order_date_80pct": "2026-05-17",
         "actions": [
-          "place the order by 2026-04-19 for an 80% chance of arriving by 2027-10-04 - that date has already passed",
+          "place the order by 2026-05-17 for an 80% chance of arriving by 2027-10-04 - that date has already passed",
           "ask the vendor for a confirmed production slot and a dated shipping commitment",
-          "plan for arrival around 2028-05-09 (P50) and protect the install sequence; consider temporary/rental equipment for commissioning if P90 is past energisation",
+          "plan for arrival around 2028-04-11 (P50) and protect the install sequence; consider temporary/rental equipment for commissioning if P90 is past energisation",
           "sources disagree: see dissenting evidence before relying on the low end"
         ],
         "evidence": [
@@ -4231,7 +4252,7 @@
         }
       ],
       "needs_human": true,
-      "why": "no value found, but the submittal mentions electric, starting, starter on page(s) [1, 2, 3, 4]",
+      "why": "no value found, but the submittal mentions electric, starting, volt on page(s) [1, 2, 3, 4]",
       "data": {
         "req_id": "R07",
         "locator": "2.1.D.5 (Starting System)",
@@ -4241,7 +4262,7 @@
             "attribute": "starting_system_voltage_and_type",
             "condition": "all of: 24 volt, electric starter",
             "verdict": "unclear",
-            "why": "no value found, but the submittal mentions electric, starting, starter on page(s) [1, 2, 3, 4]",
+            "why": "no value found, but the submittal mentions electric, starting, volt on page(s) [1, 2, 3, 4]",
             "offered": {
               "values": [],
               "unit": null,
@@ -4601,7 +4622,7 @@
         }
       ],
       "needs_human": true,
-      "why": "no value found, but the submittal mentions heater, electrical, single on page(s) [2]",
+      "why": "no value found, but the submittal mentions single, heater, electrical on page(s) [2]",
       "data": {
         "req_id": "R15",
         "locator": "2.1.G.5",
@@ -4611,7 +4632,7 @@
             "attribute": "space_heater_electrical",
             "condition": "all of: 120 v, single phase",
             "verdict": "unclear",
-            "why": "no value found, but the submittal mentions heater, electrical, single on page(s) [2]",
+            "why": "no value found, but the submittal mentions single, heater, electrical on page(s) [2]",
             "offered": {
               "values": [],
               "unit": null,
@@ -4640,7 +4661,7 @@
         }
       ],
       "needs_human": true,
-      "why": "no value found, but the submittal mentions output, breaker, circuit on page(s) [1, 2, 4]",
+      "why": "no value found, but the submittal mentions output, circuit, pole on page(s) [1, 2, 4]",
       "data": {
         "req_id": "R16",
         "locator": "2.1.H (Generator Output Circuit Breaker(s))",
@@ -4650,7 +4671,7 @@
             "attribute": "output_circuit_breaker",
             "condition": "all of: 3 pole, solid state",
             "verdict": "unclear",
-            "why": "no value found, but the submittal mentions output, breaker, circuit on page(s) [1, 2, 4]",
+            "why": "no value found, but the submittal mentions output, circuit, pole on page(s) [1, 2, 4]",
             "offered": {
               "values": [],
               "unit": null,
@@ -4811,7 +4832,7 @@
         }
       ],
       "needs_human": true,
-      "why": "no value found, but the submittal mentions water, jacket, count on page(s) [1, 2, 3]; no value found, but the submittal mentions water, jacket, heater on page(s) [2, 3]; no value found, but the submittal mentions jacket, water, heater on page(s) [2, 3]",
+      "why": "no value found, but the submittal mentions jacket, water, count on page(s) [1, 2, 3]; no value found, but the submittal mentions jacket, water, heater on page(s) [2, 3]; no value found, but the submittal mentions jacket, water, heater on page(s) [2, 3]",
       "data": {
         "req_id": "R20",
         "locator": "2.1.K.2 (Jacket-Water Heater)",
@@ -4821,7 +4842,7 @@
             "attribute": "jacket_water_heater_count",
             "condition": "== 2",
             "verdict": "unclear",
-            "why": "no value found, but the submittal mentions water, jacket, count on page(s) [1, 2, 3]",
+            "why": "no value found, but the submittal mentions jacket, water, count on page(s) [1, 2, 3]",
             "offered": {
               "values": [],
               "unit": null,
@@ -4836,7 +4857,7 @@
             "attribute": "jacket_water_heater_rating",
             "condition": "== 5000 W",
             "verdict": "unclear",
-            "why": "no value found, but the submittal mentions water, jacket, heater on page(s) [2, 3]",
+            "why": "no value found, but the submittal mentions jacket, water, heater on page(s) [2, 3]",
             "offered": {
               "values": [],
               "unit": "W",
@@ -5184,7 +5205,7 @@
       "id": "submittal:B2/F-R05",
       "claim": "Engine shall be an 8, 12, or 16 cylinder, 4-cycle diesel engine, either turbocharged/aftercooled or normally aspirated.",
       "status": "complies",
-      "confidence": 0.807,
+      "confidence": 0.65,
       "citations": [
         {
           "doc_id": "26-32-13-engine-generators-alpha",
@@ -5219,8 +5240,8 @@
           "ocr": false
         }
       ],
-      "needs_human": false,
-      "why": "offered 16 cylinder 16 Cylinder Diesel meets one of: 8 cylinder, 12 cylinder, 16 cylinder; offered 4 cycle Type: 4 Cycle, 60°V, 16 Cylinder Diesel meets all of: 4 cycle; all offered options (Turbocharged; Aftercooled) meet one of: turbocharged, aftercooled, normally aspirated",
+      "needs_human": true,
+      "why": "offered 16 cylinder 16 Cylinder Diesel meets one of: 8 cylinder, 12 cylinder, 16 cylinder; offered 4 cycle Type: 4 Cycle, 60°V, 16 Cylinder Diesel meets all of: 4 cycle; all offered options (Turbocharged; Aftercooled) meet one of: turbocharged, aftercooled, normally aspirated; the quote was shortened, confirm on the page",
       "data": {
         "req_id": "R05",
         "locator": "2.1.D (Diesel Engine)",
@@ -5264,7 +5285,7 @@
             "attribute": "aspiration",
             "condition": "one of: turbocharged, aftercooled, normally aspirated",
             "verdict": "complies",
-            "why": "all offered options (Turbocharged; Aftercooled) meet one of: turbocharged, aftercooled, normally aspirated",
+            "why": "all offered options (Turbocharged; Aftercooled) meet one of: turbocharged, aftercooled, normally aspirated; the quote was shortened, confirm on the page",
             "offered": {
               "values": [
                 "Turbocharged",
@@ -6289,8 +6310,8 @@
     {
       "id": "submittal:B3/F-R03",
       "claim": "Motor starting capability shall be not less than 3000 kVA with a maximum voltage dip of 30% for 2000 kW sets.",
-      "status": "deviates",
-      "confidence": 0.807,
+      "status": "unclear",
+      "confidence": 0.5,
       "citations": [
         {
           "doc_id": "26-32-13-engine-generators-alpha",
@@ -6309,8 +6330,8 @@
           "ocr": false
         }
       ],
-      "needs_human": false,
-      "why": "offered 1110 kVA does not meet >= 3000 kVA",
+      "needs_human": true,
+      "why": "offered 1110 kVA does not meet >= 3000 kVA; but the quoted words and numbers may come from different columns of page 3, so this is not enough to reject",
       "data": {
         "req_id": "R03",
         "locator": "2.1.C.1",
@@ -6319,8 +6340,8 @@
             "cid": "R03a",
             "attribute": "motor_starting_capacity_at_30pct_max_voltage_dip",
             "condition": ">= 3000 kVA",
-            "verdict": "deviates",
-            "why": "offered 1110 kVA does not meet >= 3000 kVA",
+            "verdict": "unclear",
+            "why": "offered 1110 kVA does not meet >= 3000 kVA; but the quoted words and numbers may come from different columns of page 3, so this is not enough to reject",
             "offered": {
               "values": [
                 "1110"
@@ -6760,7 +6781,7 @@
         }
       ],
       "needs_human": true,
-      "why": "not stated in the submittal; no value found, but the submittal mentions temperature, ambient, range on page(s) [1, 2, 3, 5]",
+      "why": "not stated in the submittal; no value found, but the submittal mentions ambient, temperature, range on page(s) [1, 2, 3, 5]",
       "data": {
         "req_id": "R11",
         "locator": "2.1.E.1",
@@ -6785,7 +6806,7 @@
             "attribute": "ambient_temperature_range",
             "condition": "10–122 °F",
             "verdict": "unclear",
-            "why": "no value found, but the submittal mentions temperature, ambient, range on page(s) [1, 2, 3, 5]",
+            "why": "no value found, but the submittal mentions ambient, temperature, range on page(s) [1, 2, 3, 5]",
             "offered": {
               "values": [],
               "unit": "°F",
@@ -8385,7 +8406,7 @@
         }
       ],
       "needs_human": true,
-      "why": "no value found, but the submittal mentions water, heater on page(s) [2]; no value found, but the submittal mentions water, heater on page(s) [2]; no value found, but the submittal mentions electrical, phase, water on page(s) [1, 2, 3, 4, 7]",
+      "why": "no value found, but the submittal mentions water, heater on page(s) [2]; no value found, but the submittal mentions water, heater on page(s) [2]; no value found, but the submittal mentions electrical, phase, heater on page(s) [1, 2, 3, 4, 7]",
       "data": {
         "req_id": "R20",
         "locator": "2.1.K.2 (Jacket-Water Heater)",
@@ -8425,7 +8446,7 @@
             "attribute": "jacket_water_heater_electrical",
             "condition": "all of: 480 v, 1 phase",
             "verdict": "unclear",
-            "why": "no value found, but the submittal mentions electrical, phase, water on page(s) [1, 2, 3, 4, 7]",
+            "why": "no value found, but the submittal mentions electrical, phase, heater on page(s) [1, 2, 3, 4, 7]",
             "offered": {
               "values": [],
               "unit": null,
@@ -8496,7 +8517,43 @@
   "needs_human": [
     {
       "finding_id": "F-package",
-      "reason": "B3: product submittal deviates from the spec - not like-for-like; resolve deviations before award or price them | no bid includes S7 (Offloading and rigging onto pads): ask every bidder to price it, or buy it separately | no bid includes S9 (Field load bank test (25/50/75/100 % steps)): ask every bidder to price it, or buy it separately | every option is likely to miss the need date: escalate schedule mitigation now (production slot reservation, phased energisation, temporary power)"
+      "reason": "no bid includes S7 (Offloading and rigging onto pads): ask every bidder to price it, or buy it separately | no bid includes S9 (Field load bank test (25/50/75/100 % steps)): ask every bidder to price it, or buy it separately | every option is likely to miss the need date: escalate schedule mitigation now (production slot reservation, phased energisation, temporary power)"
+    },
+    {
+      "finding_id": "level_bids/F-B1-S2",
+      "reason": "second check: walk‑in vs outdoor weatherproof; whether this falls short of the scope is a judgement, confirm"
+    },
+    {
+      "finding_id": "level_bids/F-B2-S2",
+      "reason": "Enclosure type differs from required outdoor sound‑attenuated weatherproof; whether this falls short of the scope is a judgement, confirm"
+    },
+    {
+      "finding_id": "level_bids/F-B2-S3",
+      "reason": "Fuel tank capacity less than required 24‑hour duration; whether this falls short of the scope is a judgement, confirm"
+    },
+    {
+      "finding_id": "level_bids/F-B2-S8",
+      "reason": "Start‑up not performed by manufacturer's representative; whether this falls short of the scope is a judgement, confirm"
+    },
+    {
+      "finding_id": "level_bids/F-B2-S9",
+      "reason": "Test steps not specified as 25/50/75/100 %; whether this falls short of the scope is a judgement, confirm"
+    },
+    {
+      "finding_id": "level_bids/F-B3-S8",
+      "reason": "second check: manufacturer's representative; whether this falls short of the scope is a judgement, confirm"
+    },
+    {
+      "finding_id": "level_bids/F-B3-S9",
+      "reason": "does not specify 25/50/75/100% steps; whether this falls short of the scope is a judgement, confirm"
+    },
+    {
+      "finding_id": "level_bids/F-B3-S10",
+      "reason": "training less than required 4 hours; whether this falls short of the scope is a judgement, confirm"
+    },
+    {
+      "finding_id": "level_bids/F-B3-S11",
+      "reason": "warranty period shorter than required 5 years; whether this falls short of the scope is a judgement, confirm"
     },
     {
       "finding_id": "level_bids/F-uncovered-S7",
@@ -8508,7 +8565,7 @@
     },
     {
       "finding_id": "level_bids/F-award",
-      "reason": "A person should decide: B4 has open commercial risk: Price firm 15 days | B4 needs clarification on S10, S11, S4, S5, S7, S9"
+      "reason": "A person should decide: B4 has open commercial risk: Price firm 15 days | B4 needs clarification on S10, S11, S4, S5, S7, S9 | the price order is not settled: B3 is 18,000 above B4, and 185,000 of its total rests on 'qualified' readings (S8, S9, S10, S11) that a person has to confirm"
     },
     {
       "finding_id": "delivery/F-TX-as_ordered",
@@ -8536,7 +8593,7 @@
     },
     {
       "finding_id": "submittal:B1/F-R07",
-      "reason": "no value found, but the submittal mentions electric, starting, starter on page(s) [1, 2, 3, 4]"
+      "reason": "no value found, but the submittal mentions electric, starting, volt on page(s) [1, 2, 3, 4]"
     },
     {
       "finding_id": "submittal:B1/F-R08",
@@ -8552,11 +8609,11 @@
     },
     {
       "finding_id": "submittal:B1/F-R15",
-      "reason": "no value found, but the submittal mentions heater, electrical, single on page(s) [2]"
+      "reason": "no value found, but the submittal mentions single, heater, electrical on page(s) [2]"
     },
     {
       "finding_id": "submittal:B1/F-R16",
-      "reason": "no value found, but the submittal mentions output, breaker, circuit on page(s) [1, 2, 4]"
+      "reason": "no value found, but the submittal mentions output, circuit, pole on page(s) [1, 2, 4]"
     },
     {
       "finding_id": "submittal:B1/F-R19",
@@ -8564,7 +8621,7 @@
     },
     {
       "finding_id": "submittal:B1/F-R20",
-      "reason": "no value found, but the submittal mentions water, jacket, count on page(s) [1, 2, 3]; no value found, but the submittal mentions water, jacket, heater on page(s) [2, 3]; no value found, but the submittal mentions jacket, water, heater on page(s) [2, 3]"
+      "reason": "no value found, but the submittal mentions jacket, water, count on page(s) [1, 2, 3]; no value found, but the submittal mentions jacket, water, heater on page(s) [2, 3]; no value found, but the submittal mentions jacket, water, heater on page(s) [2, 3]"
     },
     {
       "finding_id": "submittal:B2/F-R01",
@@ -8573,6 +8630,10 @@
     {
       "finding_id": "submittal:B2/F-R02",
       "reason": "offered 277/480, 3 Phase, Wye, 4 Wire R002-2 Voltage - 277/480, 3 Phase, Wye, 4 Wire meets all of: 480Y/277, 3 phase, 4 wire; offered 60 Hz meets == 60 Hz; unit Hz is not shown in the quote, confirm"
+    },
+    {
+      "finding_id": "submittal:B2/F-R05",
+      "reason": "offered 16 cylinder 16 Cylinder Diesel meets one of: 8 cylinder, 12 cylinder, 16 cylinder; offered 4 cycle Type: 4 Cycle, 60°V, 16 Cylinder Diesel meets all of: 4 cycle; all offered options (Turbocharged; Aftercooled) meet one of: turbocharged, aftercooled, normally aspirated; the quote was shortened, confirm on the page"
     },
     {
       "finding_id": "submittal:B2/F-R07",
@@ -8615,6 +8676,10 @@
       "reason": "model judgement on verified quote: '277/480 3'; offered 60 Hz meets == 60 Hz; unit Hz is not shown in the quote, confirm"
     },
     {
+      "finding_id": "submittal:B3/F-R03",
+      "reason": "offered 1110 kVA does not meet >= 3000 kVA; but the quoted words and numbers may come from different columns of page 3, so this is not enough to reject"
+    },
+    {
       "finding_id": "submittal:B3/F-R04",
       "reason": "model judgement on verified quote: 'Permanent- Magnet Pilot Exciter'"
     },
@@ -8640,7 +8705,7 @@
     },
     {
       "finding_id": "submittal:B3/F-R11",
-      "reason": "not stated in the submittal; no value found, but the submittal mentions temperature, ambient, range on page(s) [1, 2, 3, 5]"
+      "reason": "not stated in the submittal; no value found, but the submittal mentions ambient, temperature, range on page(s) [1, 2, 3, 5]"
     },
     {
       "finding_id": "submittal:B3/F-R13",
@@ -8720,7 +8785,7 @@
     },
     {
       "finding_id": "submittal:B4/F-R20",
-      "reason": "no value found, but the submittal mentions water, heater on page(s) [2]; no value found, but the submittal mentions water, heater on page(s) [2]; no value found, but the submittal mentions electrical, phase, water on page(s) [1, 2, 3, 4, 7]"
+      "reason": "no value found, but the submittal mentions water, heater on page(s) [2]; no value found, but the submittal mentions water, heater on page(s) [2]; no value found, but the submittal mentions electrical, phase, heater on page(s) [1, 2, 3, 4, 7]"
     },
     {
       "finding_id": "submittal:B4/F-R21",

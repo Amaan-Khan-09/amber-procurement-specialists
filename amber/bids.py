@@ -154,6 +154,10 @@ def _cite(doc: docs.Document, quote) -> dict | None:
     return c.model_dump() if c else None
 
 
+QUALIFIED_CAP = 0.65  # always below the hand-off line
+QUALIFIED_NOTE = "; whether this falls short of the scope is a judgement, confirm"
+
+
 def level(form: dict, bids: dict[str, dict]) -> dict:
     qty = _num(form.get("quantity")) or 1
     allow = {a["scope_id"]: a for a in form.get("allowances", []) if a.get("amount") is not None}
@@ -177,7 +181,15 @@ def level(form: dict, bids: dict[str, dict]) -> dict:
                     notes.append(f"{sid}: {st}, no allowance in the bid form - not priced")
         base = b.get("base_total") or 0
         table[bid_id] = {"base": base, "adjustments": adds, "adjusted": base + sum(adds.values()), "notes": notes}
+        table[bid_id].update(to_confirm(table[bid_id], {sid: i["status"] for sid, i in b["items"].items()}))
     return table
+
+
+def to_confirm(row: dict, statuses: dict[str, str]) -> dict:
+    """The part of a leveled total that rests on 'qualified' calls: whether an offer falls short of the scope is a
+    reading of the bidder's wording, so the total is also shown as it would be if a person finds the item included."""
+    open_items = {s: a for s, a in row["adjustments"].items() if statuses.get(s) == "qualified"}
+    return {"to_confirm": open_items, "adjusted_if_confirmed": row["adjusted"] - sum(open_items.values())}
 
 
 def _lead_max(b: dict) -> float | None:
@@ -212,6 +224,13 @@ def award(table: dict, bids: dict) -> dict:
         blockers.append(f"{cheapest} needs clarification on {', '.join(sorted(unclear))}")
     if fastest and fastest != cheapest and known.get(cheapest, 0) - known[fastest] >= 8:
         blockers.append(f"{cheapest} lead time is {known[cheapest]:.0f} weeks vs {known[fastest]:.0f} for {fastest}")
+    for k in ranked[1:]:
+        low = table[k].get("adjusted_if_confirmed", table[k]["adjusted"])
+        if low < table[cheapest]["adjusted"]:
+            gap, doubt = table[k]["adjusted"] - table[cheapest]["adjusted"], table[k]["adjusted"] - low
+            items = ", ".join(sorted(table[k]["to_confirm"], key=lambda s: (len(s), s)))
+            blockers.append(f"the price order is not settled: {k} is {gap:,.0f} above {cheapest}, and {doubt:,.0f} of "
+                            f"its total rests on 'qualified' readings ({items}) that a person has to confirm")
     if not blockers:
         return {"recommend": cheapest, "auto_award": True, "ranked": ranked,
                 "why": f"{cheapest} has the lowest leveled cost with no open risks"}
@@ -302,9 +321,12 @@ def level_bids(form_path: str, bid_paths: dict[str, str], llm: LLM | None = None
             else:
                 conf = 0.92 * (MATCH_TRUST.get(cite.match, 0.8) if cite else 0.5)
                 verdict = Verdict.complies if st == "included" else Verdict.deviates
+            why = i.get("why") or i.get("note") or st
+            if st == "qualified":
+                conf, why = min(conf, QUALIFIED_CAP), why + QUALIFIED_NOTE
             findings.append(Finding(id=f"F-{bid_id}-{sid}", claim=f"{bid_id} {sid}: {st}", status=verdict,
                                     confidence=round(conf, 3), citations=[cite] if cite else [],
-                                    why=i.get("why") or i.get("note") or st,
+                                    why=why,
                                     data={"bid": bid_id, "scope_id": sid, "scope_status": st,
                                           "adjustment": table[bid_id]["adjustments"].get(sid)}))
         if not b.get("base_citation"):

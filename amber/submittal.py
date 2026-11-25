@@ -22,7 +22,7 @@ from pathlib import Path
 from . import checks, docs, retrieve, spec
 from .llm import LLM, LLMError
 from .schema import Citation, Finding, RunInfo, ToolResult, Verdict
-from .verify import MATCH_TRUST, verify
+from .verify import MATCH_TRUST, reads_as_one, verify
 
 BATCH = 6  # conditions per extraction call
 PASSAGES_PER_COND = 3
@@ -538,6 +538,16 @@ def _decide_condition(c: dict, o: dict | None, sub_doc: docs.Document):
         # a number whose unit is not written in its own quote may belong to a different row or column
         conf = min(conf, JUDGEMENT_CAP)
         d = checks.Decision(d.verdict, d.why + f"; unit {o.get('unit') or c.get('unit')} is not shown in the quote, confirm", d.exact)
+    if d.verdict in (Verdict.complies, Verdict.deviates) and not reads_as_one(sub_doc, cite):
+        if d.verdict == Verdict.deviates:
+            # seen: a motor-starting label picked up the battery's cranking amps from the next column, and a product
+            # that complies was rejected. Evidence like that is not strong enough to reject on.
+            d = checks.Decision(Verdict.unclear, f"{d.why}; but the quoted words and numbers may come from different "
+                                                 f"columns of page {cite.page}, so this is not enough to reject", False)
+            conf = min(conf, 0.5)
+        elif "..." in cite.quote or chr(0x2026) in cite.quote:  # a stitched quote never passes on its own
+            conf = min(conf, JUDGEMENT_CAP)
+            d = checks.Decision(d.verdict, d.why + "; the quote was shortened, confirm on the page", d.exact)
     if cite.ocr:
         # vision OCR can misread digits and model numbers (seen: KD1000 read as KD2000), so evidence from
         # a scanned page is a candidate for a person to confirm, never an automatic pass or fail

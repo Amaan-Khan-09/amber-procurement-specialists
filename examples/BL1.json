@@ -125,7 +125,11 @@
           "S8: qualified, owner's allowance 30,000",
           "S9: excluded, owner's allowance 56,000",
           "S11: bidder's alternate price 96,000"
-        ]
+        ],
+        "to_confirm": {
+          "S8": 30000.0
+        },
+        "adjusted_if_confirmed": 4506000.0
       },
       "B2": {
         "base": 4415000.0,
@@ -141,7 +145,12 @@
           "S6: excluded, owner's allowance 74,000",
           "S7: excluded, owner's allowance 38,000",
           "S8: qualified, owner's allowance 30,000"
-        ]
+        ],
+        "to_confirm": {
+          "S3": 220000.0,
+          "S8": 30000.0
+        },
+        "adjusted_if_confirmed": 4527000.0
       },
       "B3": {
         "base": 3980000.0,
@@ -161,7 +170,12 @@
           "S7: excluded, owner's allowance 38,000",
           "S10: qualified, owner's allowance 3,000",
           "S11: qualified, owner's allowance 96,000"
-        ]
+        ],
+        "to_confirm": {
+          "S10": 3000.0,
+          "S11": 96000.0
+        },
+        "adjusted_if_confirmed": 4302800.0
       },
       "B4": {
         "base": 4240000.0,
@@ -181,7 +195,9 @@
           "S9: silent, owner's allowance 56,000",
           "S10: silent, owner's allowance 3,000",
           "S11: silent, owner's allowance 96,000"
-        ]
+        ],
+        "to_confirm": {},
+        "adjusted_if_confirmed": 4469800.0
       }
     },
     "lead_time": {
@@ -401,7 +417,8 @@
         "B3 lead time is 74 weeks vs 54 for B2"
       ],
       "why": "A person should decide: B3 has open commercial risk: Manufacturer's standard 2-year limited warranty; Prices are subject to adjustment for tariffs, duties or trade measures enacted after the proposal date | B3 lead time is 74 weeks vs 54 for B2"
-    }
+    },
+    "decided_again": "The model reading is that of the original run. The decision code was applied to it again on 26 Nov 2026 ('qualified' calls now go to a person); no model was called."
   },
   "findings": [
     {
@@ -576,7 +593,7 @@
       "id": "F-B1-S8",
       "claim": "B1 S8: qualified",
       "status": "deviates",
-      "confidence": 0.92,
+      "confidence": 0.65,
       "citations": [
         {
           "doc_id": "b1-northline-power",
@@ -587,8 +604,8 @@
           "ocr": false
         }
       ],
-      "needs_human": false,
-      "why": "Does not specify checkout by manufacturer's representative",
+      "needs_human": true,
+      "why": "Does not specify checkout by manufacturer's representative; whether this falls short of the scope is a judgement, confirm",
       "data": {
         "bid": "B1",
         "scope_id": "S8",
@@ -720,7 +737,7 @@
       "id": "F-B2-S3",
       "claim": "B2 S3: qualified",
       "status": "deviates",
-      "confidence": 0.92,
+      "confidence": 0.65,
       "citations": [
         {
           "doc_id": "b2-tidewater-generator",
@@ -731,8 +748,8 @@
           "ocr": false
         }
       ],
-      "needs_human": false,
-      "why": "required 24‑hour capacity, bid provides only 12‑hour",
+      "needs_human": true,
+      "why": "required 24‑hour capacity, bid provides only 12‑hour; whether this falls short of the scope is a judgement, confirm",
       "data": {
         "bid": "B2",
         "scope_id": "S3",
@@ -840,7 +857,7 @@
       "id": "F-B2-S8",
       "claim": "B2 S8: qualified",
       "status": "deviates",
-      "confidence": 0.736,
+      "confidence": 0.65,
       "citations": [
         {
           "doc_id": "b2-tidewater-generator",
@@ -851,8 +868,8 @@
           "ocr": false
         }
       ],
-      "needs_human": false,
-      "why": "requirement calls for manufacturer’s representative",
+      "needs_human": true,
+      "why": "requirement calls for manufacturer’s representative; whether this falls short of the scope is a judgement, confirm",
       "data": {
         "bid": "B2",
         "scope_id": "S8",
@@ -1152,7 +1169,7 @@
       "id": "F-B3-S10",
       "claim": "B3 S10: qualified",
       "status": "deviates",
-      "confidence": 0.92,
+      "confidence": 0.65,
       "citations": [
         {
           "doc_id": "b3-keystone-energy",
@@ -1163,8 +1180,8 @@
           "ocr": false
         }
       ],
-      "needs_human": false,
-      "why": "Required minimum 4 hours, bid offers 2 hours",
+      "needs_human": true,
+      "why": "Required minimum 4 hours, bid offers 2 hours; whether this falls short of the scope is a judgement, confirm",
       "data": {
         "bid": "B3",
         "scope_id": "S10",
@@ -1176,7 +1193,7 @@
       "id": "F-B3-S11",
       "claim": "B3 S11: qualified",
       "status": "deviates",
-      "confidence": 0.92,
+      "confidence": 0.65,
       "citations": [
         {
           "doc_id": "b3-keystone-energy",
@@ -1187,8 +1204,8 @@
           "ocr": false
         }
       ],
-      "needs_human": false,
-      "why": "Required 5 years parts, travel and labor; bid offers 2-year limited",
+      "needs_human": true,
+      "why": "Required 5 years parts, travel and labor; bid offers 2-year limited; whether this falls short of the scope is a judgement, confirm",
       "data": {
         "bid": "B3",
         "scope_id": "S11",
@@ -1451,6 +1468,26 @@
   ],
   "needs_human": [
     {
+      "finding_id": "F-B1-S8",
+      "reason": "Does not specify checkout by manufacturer's representative; whether this falls short of the scope is a judgement, confirm"
+    },
+    {
+      "finding_id": "F-B2-S3",
+      "reason": "required 24‑hour capacity, bid provides only 12‑hour; whether this falls short of the scope is a judgement, confirm"
+    },
+    {
+      "finding_id": "F-B2-S8",
+      "reason": "requirement calls for manufacturer’s representative; whether this falls short of the scope is a judgement, confirm"
+    },
+    {
+      "finding_id": "F-B3-S10",
+      "reason": "Required minimum 4 hours, bid offers 2 hours; whether this falls short of the scope is a judgement, confirm"
+    },
+    {
+      "finding_id": "F-B3-S11",
+      "reason": "Required 5 years parts, travel and labor; bid offers 2-year limited; whether this falls short of the scope is a judgement, confirm"
+    },
+    {
       "finding_id": "F-award",
       "reason": "A person should decide: B3 has open commercial risk: Manufacturer's standard 2-year limited warranty; Prices are subject to adjustment for tariffs, duties or trade measures enacted after the proposal date | B3 lead time is 74 weeks vs 54 for B2 | no verified source"
     }
@@ -1466,6 +1503,7 @@
         "calls": 9
       }
     ],
-    "latency_ms": 69288
+    "latency_ms": 69288,
+    "steps": []
   }
 }

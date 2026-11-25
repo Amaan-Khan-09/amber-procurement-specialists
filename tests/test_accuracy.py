@@ -38,6 +38,32 @@ def test_a_quote_shortened_with_dots_needs_every_piece_on_the_page_in_order():
     assert match_level("Peak motor starting kVA: ... 9999 (60 Hz)", PAGE) is None  # an invented number
 
 
+# ---- a rejection may not rest on two columns run together
+def _two_columns(sorted_text, own_order):
+    return Document("d", "d.pdf", pages=[Page(1, sorted_text, raw=own_order)])
+
+
+def test_a_number_borrowed_from_the_next_column_cannot_reject_a_product():
+    sorted_text = "Peak motor starting kVA: (35% dip for voltages\n (with standard starters) 4, 1110, AGM below)\n480 V 9957"
+    own_order = "(with standard starters)\n4, 1110, AGM\nPeak motor starting kVA:\n(35% dip for voltages\nbelow)\n480 V\n9957"
+    doc = _two_columns(sorted_text, own_order)
+    cond = {"cid": "R03a", "kind": "numeric", "operator": ">=", "value": 3000, "unit": "kVA"}
+    for quote in ("Peak motor starting kVA: (35% dip for voltages ... 4, 1110, AGM below)",  # stitched
+                  "(35% dip for voltages (with standard starters) 4, 1110, AGM"):  # only exists in the sorted text
+        offer = {"cid": "R03a", "stated": True, "values": [1110], "unit": "kVA", "quote": quote, "page": 1}
+        d, cite, conf = _decide_condition(cond, offer, doc)
+        assert cite is not None and d.verdict == Verdict.unclear and conf < 0.70, quote
+
+
+def test_a_rejection_that_reads_as_one_run_of_text_still_stands():
+    doc = _two_columns("Peak motor starting kVA 1110 kVA", "Peak motor starting kVA\n1110 kVA")
+    cond = {"cid": "R03a", "kind": "numeric", "operator": ">=", "value": 3000, "unit": "kVA"}
+    offer = {"cid": "R03a", "stated": True, "values": [1110], "unit": "kVA",
+             "quote": "Peak motor starting kVA 1110 kVA", "page": 1}
+    d, _, conf = _decide_condition(cond, offer, doc)
+    assert d.verdict == Verdict.deviates and conf >= 0.70
+
+
 # ---- text conditions
 def _doc(text):
     return Document("d", "d.pdf", pages=[Page(1, text * 3)])

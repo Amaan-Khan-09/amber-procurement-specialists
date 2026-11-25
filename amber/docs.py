@@ -18,6 +18,7 @@ class Page:
     number: int  # 1-based
     text: str
     ocr: bool = False
+    raw: str = ""  # the same text in the PDF's own order, which keeps columns apart (empty for scans and text files)
 
 
 @dataclass
@@ -65,7 +66,7 @@ def load(path: str | Path, doc_id: str | None = None, ocr=None) -> Document:
     pdf = pymupdf.open(path)
     for i, pg in enumerate(pdf, 1):
         text = pg.get_text("text", sort=True)
-        page = Page(i, text)
+        page = Page(i, text, raw=pg.get_text("text"))
         if len(text.strip()) < MIN_TEXT_CHARS and ocr is not None:
             try:
                 page.text, page.ocr = _ocr_cached(doc.sha256, i, pg, ocr), True

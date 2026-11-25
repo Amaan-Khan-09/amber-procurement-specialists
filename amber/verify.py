@@ -119,6 +119,21 @@ def _in_window(q: str, page: str, window: int = 260) -> bool:
     return False
 
 
+def reads_as_one(doc: Document, cite: Citation) -> bool:
+    """Is the quote one continuous run of text in the PDF's own order?
+
+    The page text used for reading is sorted by position, so on a two-column datasheet a label can end up next to the
+    neighbouring column's number. Such a quote is "on the page", and so is a quote stitched together with "...", but
+    neither shows that its words and numbers belong to each other.
+    """
+    if _ELLIPSIS.search(cite.quote):
+        return False
+    pg = doc.page(cite.page)
+    if pg is None or not pg.raw or pg.ocr:  # nothing to compare with (a text file, or a scan, capped elsewhere)
+        return True
+    return compact(cite.quote) in compact(pg.raw)
+
+
 def verify(doc: Document, quote: str, page: int | None = None, locator: str = "") -> Citation | None:
     """Return a Citation if `quote` is found in `doc`.
 

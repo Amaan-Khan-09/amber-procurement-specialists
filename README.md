@@ -44,7 +44,7 @@ python -m venv .venv                                     # Python 3.11+
 source .venv/bin/activate                                # Windows: .venv\Scripts\activate
 pip install -e ".[dev]"
 python tools/data_prep/fetch_data.py                     # downloads the public test documents (not committed)
-python -m pytest -q                                      # 123 tests, no API key and no network needed
+python -m pytest -q                                      # 126 tests, no API key and no network needed
 python -m amber.web                                      # the web page: http://127.0.0.1:8000 (opens the browser)
 python scripts/demo_mcp_client.py                        # starts the MCP server and calls a tool (no key needed)
 cp .env.example .env                                     # add GROQ_API_KEY for the steps below
@@ -197,6 +197,9 @@ the same bids, inside the full package review, scored **39 of 44** cells with th
 and B3 and B4 swapped in the ranking because their leveled totals are within 0.4 % of each other. Three of the five cells
 that differ from our key are in the S8 row, which the key itself marks as ambiguous; the other two are the model reading
 "4 steps per 3.6" and "walk-in enclosure" strictly. The award was withheld both times. The Proof tab shows both readings.
+All five differing cells are "qualified" readings. Since 26 Nov every "qualified" reading goes to a person, and the award
+says when the price order depends on them (in the saved package review: B3 is $18,000 above B4, with $185,000 of B3's
+total resting on such readings).
 ### Held-out results (run once, 22 Nov 2026, `gpt-oss-120b`, no tuning)
 
 The held-out cases were labelled before any agent run and run exactly once (`--final`; the scorer refuses otherwise).
@@ -296,6 +299,23 @@ full check with no deviation), two **do not fit** (a 1000 kW unit and a shop dra
 voltage, both shown failing the rating with quotes), and four **need a closer look**, each naming the rating the
 datasheet does not show clearly. No product outside the library was named.
 
+### Faults found by auditing the saved package review (26 Nov 2026)
+
+We read every answer the saved package review gave on its own against the answer keys. Two things were wrong.
+
+* **A false rejection.** B3 was rejected for motor starting "1110 kVA". The 1110 is the battery's cold-cranking amps: the
+  datasheet has two columns, the page text is read line by line across both, and the model joined the motor-starting label
+  to the number beside it with "...". The real figure is 9,957 kVA. Now a rejection may not rest on words that are not one
+  run of text in the PDF's own order, and a quote shortened with "..." never passes on its own
+  (`tests/test_accuracy.py::test_a_number_borrowed_from_the_next_column_cannot_reject_a_product`). On the replay of all 184
+  labelled requirements this changes no verdict.
+* **Over-confident bid readings**: the five "qualified" cells above, now handed to a person.
+
+The saved package review and bid comparison were decided again from **the same model readings**, with no new model call
+(each says so inside the file), so nothing was re-rolled. The result is less dramatic and more honest: B3 is now "review",
+not "reject". Our key says its fuel tank deviates (UL 142 where UL 2085 is required); the agent did not catch that on this
+reading and neither did the independent reader. It is in the person's queue, as `unclear`, with the datasheet page.
+
 ## What goes to a person, and the independent reader
 
 About two answers in three go to a person (64 % on the newest set, 69 % over all 184 labelled requirements). Two facts put
@@ -354,6 +374,10 @@ Everything is public or made by us, and cited in `data/SOURCES.md`.
 
 * **Cross-requirement reasoning.** If a footnote on a radiator rating says an enclosed silencer cuts it by 5 °C and the
   spec separately requires an enclosure, a single requirement check can miss it (seen in G2 R09).
+* **A real quote can be the wrong row.** On held-out G5 the fuel-consumption verdict matches our key (deviates), but the
+  quote is the *total fuel flow* row (317 gal/hr) instead of consumption (162 gal/hr). "Zero invented citations" means every
+  quote is on its page; it does not mean every quote is the best evidence. Two-column pages are the usual cause, and the new
+  guard only covers rejections and shortened quotes.
 * **Scanned pages** are read by a vision model. It once misread a model number, so anything resting on a scan is
   always sent to a person with the page to confirm.
 * **Small models** miss facts that are stated; the 120b model is the supported default.
