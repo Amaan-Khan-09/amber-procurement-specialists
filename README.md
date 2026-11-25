@@ -44,7 +44,7 @@ python -m venv .venv                                     # Python 3.11+
 source .venv/bin/activate                                # Windows: .venv\Scripts\activate
 pip install -e ".[dev]"
 python tools/data_prep/fetch_data.py                     # downloads the public test documents (not committed)
-python -m pytest -q                                      # 121 tests, no API key and no network needed
+python -m pytest -q                                      # 123 tests, no API key and no network needed
 python -m amber.web                                      # the web page: http://127.0.0.1:8000 (opens the browser)
 python scripts/demo_mcp_client.py                        # starts the MCP server and calls a tool (no key needed)
 cp .env.example .env                                     # add GROQ_API_KEY for the steps below

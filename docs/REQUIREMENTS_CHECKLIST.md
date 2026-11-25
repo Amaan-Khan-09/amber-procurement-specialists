@@ -37,7 +37,7 @@ this repository a judge can check. Status: **met**, **partly met** (with the gap
 | Accuracy | Held-out set 1 (run once, before fixes): 34/58 (59 %). Held-out set 2 (run once, after fixes): 28/42 (67 %). Held-out set 3 (fresh documents, labelled before the run, run once, after the accuracy fixes): 32/42 (76 %), 0 false approvals, 0 false rejections. On sets 2 and 3, 25 of 26 automatic answers matched the key; 0 fabricated citations in every run. Bid leveling 41/44 scope cells on one reading and 39/44 on a second (same documents, same model), all four base prices exact both times, award withheld both times |
 | Customer value | Package review answers the real question (who to award, what is missing, what will be late) in one table; follow-up drafts for every gap; a web page for managers with a one-click source viewer (the cited page, quote highlighted) and a review queue |
 | Trustworthiness | Sources on every answer, verified quotes, 0 fabricated citations, cautious handoffs, failures never become claims |
-| Build quality | 121 tests, fresh-clone install verified, cost and time per run measured |
+| Build quality | 123 tests, fresh-clone install verified, cost and time per run measured |
 
 ## What to submit (Round 1, by Sunday 6 December 2026)
 
