@@ -1,5 +1,5 @@
 {
- "key": "4a0305746ec5ea427656",
+ "key": "630a58a44cb3b6ce1754",
  "built": "2026-11-25",
  "proof": {
   "cases": [
@@ -196,7 +196,15 @@
    "totals": 4,
    "totals_ok": 2,
    "rank_ok": true,
-   "award_withheld": true
+   "award_withheld": true,
+   "second_run": {
+    "cells": 44,
+    "cells_ok": 39,
+    "totals": 4,
+    "totals_ok": 1,
+    "rank_ok": false,
+    "award_withheld": true
+   }
   }
  }
 }

@@ -192,7 +192,11 @@ against its page. They have not yet had an independent review. How to read them:
 Latest development results (small `gpt-oss-20b` model, free tier): G1 67–71 %, G2 57 % correct; **0 fabricated citations**
 in every run. Run-to-run variation on that model is several points. `level_bids` on BL1: 41 of 44 scope cells correct, all four base
 prices and all four products right, ranking correct, award correctly withheld. Two of the four leveled totals are exact;
-the other two are off by $30,000 and $122,000 because of three misread scope cells (B2 S2, B1 S8, B2 S8). The Proof tab shows this live.
+the other two are off by $30,000 and $122,000 because of three misread scope cells (B2 S2, B1 S8, B2 S8). A second reading of
+the same bids, inside the full package review, scored **39 of 44** cells with the same base prices, 1 of 4 leveled totals exact,
+and B3 and B4 swapped in the ranking because their leveled totals are within 0.4 % of each other. Three of the five cells
+that differ from our key are in the S8 row, which the key itself marks as ambiguous; the other two are the model reading
+"4 steps per 3.6" and "walk-in enclosure" strictly. The award was withheld both times. The Proof tab shows both readings.
 ### Held-out results (run once, 22 Nov 2026, `gpt-oss-120b`, no tuning)
 
 The held-out cases were labelled before any agent run and run exactly once (`--final`; the scorer refuses otherwise).

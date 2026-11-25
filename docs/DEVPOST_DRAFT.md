@@ -51,7 +51,7 @@ Answer keys were written from the source documents **before** the agent ran. Hel
 tuning afterwards. On datasheets the agent had never seen: 59 % of requirements correct before our fixes, 67 % on the next set, and
 **76 % (32 of 42) on the newest set**, labelled before the run and run once. **25 of the 26 answers it gave on its own
 matched our key**; the one that did not asked the vendor for information. **Zero invented citations** in every
-scored run. The rest it handed to a person, which is the point. A full purchase review takes about 9 minutes and costs
+scored run. The rest it handed to a person, which is the point. A full purchase review takes about 10 minutes and costs
 about 2 cents.
 
 ## Challenges

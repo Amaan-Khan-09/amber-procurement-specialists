@@ -171,4 +171,5 @@ def test_proof_tab_reproduces_the_readme_numbers_from_the_saved_runs(client):
     assert (P["sets"]["3"]["auto_correct"], P["sets"]["3"]["auto_total"]) == (14, 15)
     assert P["fabrications"] in (0, None)  # None only when the datasheets are not downloaded
     assert P["bids"]["cells"] == 44 and P["bids"]["award_withheld"] and P["bids"]["rank_ok"]
+    assert P["bids"]["second_run"]["cells"] == 44 and P["bids"]["second_run"]["award_withheld"]  # a second reading of the same bids
     assert all(c["result_id"].startswith(("runs:", "example:")) for c in P["cases"])

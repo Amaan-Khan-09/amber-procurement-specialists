@@ -502,12 +502,7 @@ def _saved_run(name: str) -> tuple[Path, str] | None:
     return None
 
 
-def _bid_proof() -> dict | None:
-    key_file, found = KEYS / "bids_genset.json", _saved_run("BL1")
-    if not key_file.exists() or not found:
-        return None
-    key = json.loads(key_file.read_text(encoding="utf-8"))
-    R = json.loads(found[0].read_text(encoding="utf-8"))["result"]
+def _score_bids(key: dict, R: dict) -> dict:
     cells = ok = 0
     for sid, row in key["matrix"].items():
         for b, want in row.items():
@@ -517,6 +512,24 @@ def _bid_proof() -> dict | None:
     return {"cells": cells, "cells_ok": ok, "totals": len(adj),
             "totals_ok": sum(abs(R["leveling"].get(b, {}).get("adjusted", -1) - v) < 1 for b, v in adj.items()),
             "rank_ok": R["award"]["ranked"] == key["rank_by_adjusted"], "award_withheld": not R["award"]["auto_award"]}
+
+
+def _bid_proof() -> dict | None:
+    """The bid comparison scored against its key: the dedicated run (BL1) and, as a second reading of the same documents,
+    the bid comparison inside the package review. Two runs of the same model differ by a few cells, so both are shown."""
+    key_file, found = KEYS / "bids_genset.json", _saved_run("BL1")
+    if not key_file.exists() or not found:
+        return None
+    key = json.loads(key_file.read_text(encoding="utf-8"))
+    out = _score_bids(key, json.loads(found[0].read_text(encoding="utf-8"))["result"])
+    pkg = _saved_run("package_GEN")
+    if pkg:
+        try:
+            second = json.loads(pkg[0].read_text(encoding="utf-8"))["result"]["parts"]["level_bids"]
+            out["second_run"] = _score_bids(key, second)
+        except (KeyError, ValueError):
+            pass
+    return out
 
 
 def _proof() -> dict:
@@ -568,10 +581,10 @@ def _proof_key() -> str:
     ignored: a Windows download converts them, and that must not look like a change."""
     h = hashlib.sha256()
     norm = lambda b: b.replace(bytes([13, 10]), bytes([10]))  # CR LF -> LF
-    for name in sorted(x.stem for x in KEYS.glob("[GU][0-9]*.json")) + ["BL1"]:
+    for name in sorted(x.stem for x in KEYS.glob("[GU][0-9]*.json")) + ["BL1", "package_GEN"]:
         run = _saved_run(name)
         if run:
-            key_file = KEYS / ("bids_genset.json" if name == "BL1" else f"{name}.json")
+            key_file = KEYS / ("bids_genset.json" if name in ("BL1", "package_GEN") else f"{name}.json")
             h.update(name.encode() + (norm(key_file.read_bytes()) if key_file.exists() else b""))
             h.update(run[1].encode() + norm(run[0].read_bytes()))
     h.update(norm((ROOT / "scripts" / "eval_submittal.py").read_bytes()))

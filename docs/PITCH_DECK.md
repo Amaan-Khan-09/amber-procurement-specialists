@@ -21,9 +21,9 @@ Judging: accuracy, customer value, trustworthiness, build quality. One idea per 
    matrix; the review queue with a person's decision.
 7. **Results** (held-out documents, labelled before the run, run once): 76 % of requirements correct on the newest
    set (67 % and 59 % on the two before); 25 of 26 automatic answers matched our key; zero fabricated citations in every
-   run; bid leveling: 41 of 44 scope cells right, all four base prices exact, 2 of 4 leveled totals exact (the other two off by $30k and $122k because of three misread scope cells), ranking right, award correctly withheld. Say how the keys were made.
+   run; bid leveling: 41 and 39 of 44 scope cells right on two readings of the same bids, all four base prices exact both times, award correctly withheld both times (the ranking of the two closest bids swapped on one reading). Say how the keys were made.
 8. **Cost and speed**: open-weight gpt-oss-120b on Groq's free tier (Gemini 3.8 Flash only to read new scanned pages,
-   opt-in). About $0.007 and 3 minutes per submittal check; a full package review $0.02 in 9 minutes; delivery
+   opt-in). About $0.007 and 3 minutes per submittal check; a full package review $0.02 in about 10 minutes; delivery
    forecast and follow-up drafts free (no model). Private mode runs on a laptop.
 9. **Honest limits and what is next**: cross-requirement footnotes, scanned pages need a person, UPS and switchgear next,
    more equipment, more lead-time sources.
