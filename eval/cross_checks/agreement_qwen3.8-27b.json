@@ -1,0 +1,1422 @@
+[
+ {
+  "case": "G7",
+  "req": "R01",
+  "key": "complies",
+  "pipeline": "complies",
+  "human": false,
+  "conf": 0.95,
+  "reviewer": "complies",
+  "why": "offered 2000 kW meets >= 2000 kW; offered 2500 kVA meets >= 2500 kVA"
+ },
+ {
+  "case": "G7",
+  "req": "R02",
+  "key": "unclear",
+  "pipeline": "unclear",
+  "human": true,
+  "conf": 0.5,
+  "reviewer": "unclear",
+  "why": "no value found, but the submittal mentions configuration, electrical on page(s) [1, 2, 4]; offered 60 Hz meets == 60 Hz"
+ },
+ {
+  "case": "G7",
+  "req": "R03",
+  "key": "unclear",
+  "pipeline": "unclear",
+  "human": true,
+  "conf": 0.5,
+  "reviewer": "unclear",
+  "why": "no value found, but the submittal mentions starting, motor, capacity on page(s) [1, 3]"
+ },
+ {
+  "case": "G7",
+  "req": "R04",
+  "key": "unclear",
+  "pipeline": "unclear",
+  "human": true,
+  "conf": 0.65,
+  "reviewer": "unclear",
+  "why": "offered Permanent magnet (PM) Permanent magnet (PM) does not meet one of: permanent magnet generator, PMG; the expected words are missing from the quote but nothing contradicts the requirement"
+ },
+ {
+  "case": "G7",
+  "req": "R05",
+  "key": "unclear",
+  "pipeline": "unclear",
+  "human": true,
+  "conf": 0.5,
+  "reviewer": "complies",
+  "why": "no value found, but the submittal mentions count on page(s) [1]; no value found, but the submittal mentions operating on page(s) [1, 4]; model judgement on verified quote: 'Aspiration TA'"
+ },
+ {
+  "case": "G7",
+  "req": "R06",
+  "key": "unclear",
+  "pipeline": "unclear",
+  "human": true,
+  "conf": 0.65,
+  "reviewer": "unclear",
+  "why": "offered A6E4 Governor Type A6E4 does not meet all of: electronic, isochronous; the expected words are missing from the quote but nothing contradicts the requirement"
+ },
+ {
+  "case": "G7",
+  "req": "R07",
+  "key": "unclear",
+  "pipeline": "unclear",
+  "human": true,
+  "conf": 0.5,
+  "reviewer": "unclear",
+  "why": "no value found, but the submittal mentions electric, starting, starter on page(s) [1, 2, 3, 4]"
+ },
+ {
+  "case": "G7",
+  "req": "R08",
+  "key": "complies",
+  "pipeline": "unclear",
+  "human": true,
+  "conf": 0.5,
+  "reviewer": "complies",
+  "why": "no value found, but the submittal mentions fuel, consumption, average on page(s) [1, 3, 4]"
+ },
+ {
+  "case": "G7",
+  "req": "R09",
+  "key": "unclear",
+  "pipeline": "unclear",
+  "human": true,
+  "conf": 0.5,
+  "reviewer": "complies",
+  "why": "no value found, but the submittal mentions cooling, unit, radiator on page(s) [1, 2, 3, 4]; offered 122 \u00b0F meets >= 122 \u00b0F"
+ },
+ {
+  "case": "G7",
+  "req": "R10",
+  "key": "complies",
+  "pipeline": "complies",
+  "human": false,
+  "conf": 0.95,
+  "reviewer": "complies",
+  "why": "offered Tier 2 EPA ESE (TIER 2) meets one of: tier 2, tier 4, epa"
+ },
+ {
+  "case": "G7",
+  "req": "R11",
+  "key": "unclear",
+  "pipeline": "missing",
+  "human": false,
+  "conf": 0.8,
+  "reviewer": "deviates",
+  "why": "not stated in the submittal; not stated in the submittal"
+ },
+ {
+  "case": "G7",
+  "req": "R12",
+  "key": "missing",
+  "pipeline": "missing",
+  "human": false,
+  "conf": 0.8,
+  "reviewer": "missing",
+  "why": "not stated in the submittal"
+ },
+ {
+  "case": "G7",
+  "req": "R13",
+  "key": "missing",
+  "pipeline": "unclear",
+  "human": true,
+  "conf": 0.5,
+  "reviewer": "unclear",
+  "why": "no value found, but the submittal mentions alternator, pole on page(s) [1, 2, 3]"
+ },
+ {
+  "case": "G7",
+  "req": "R14",
+  "key": "missing",
+  "pipeline": "missing",
+  "human": false,
+  "conf": 0.8,
+  "reviewer": "unclear",
+  "why": "not stated in the submittal"
+ },
+ {
+  "case": "G7",
+  "req": "R15",
+  "key": "unclear",
+  "pipeline": "unclear",
+  "human": true,
+  "conf": 0.5,
+  "reviewer": "unclear",
+  "why": "no value found, but the submittal mentions electrical, single, heater on page(s) [2]"
+ },
+ {
+  "case": "G7",
+  "req": "R16",
+  "key": "unclear",
+  "pipeline": "unclear",
+  "human": true,
+  "conf": 0.5,
+  "reviewer": "unclear",
+  "why": "no value found, but the submittal mentions output, circuit, breaker on page(s) [1, 2, 4]"
+ },
+ {
+  "case": "G7",
+  "req": "R17",
+  "key": "missing",
+  "pipeline": "missing",
+  "human": false,
+  "conf": 0.8,
+  "reviewer": "missing",
+  "why": "not stated in the submittal"
+ },
+ {
+  "case": "G7",
+  "req": "R18",
+  "key": "missing",
+  "pipeline": "missing",
+  "human": false,
+  "conf": 0.8,
+  "reviewer": "missing",
+  "why": "not stated in the submittal"
+ },
+ {
+  "case": "G7",
+  "req": "R19",
+  "key": "missing",
+  "pipeline": "unclear",
+  "human": true,
+  "conf": 0.5,
+  "reviewer": "missing",
+  "why": "no value found, but the submittal mentions fuel on page(s) [1, 3, 4]; no value found, but the submittal mentions fuel, capacity on page(s) [1, 3, 4]"
+ },
+ {
+  "case": "G7",
+  "req": "R20",
+  "key": "unclear",
+  "pipeline": "unclear",
+  "human": true,
+  "conf": 0.5,
+  "reviewer": "unclear",
+  "why": "no value found, but the submittal mentions jacket, water, count on page(s) [1, 2, 3]; no value found, but the submittal mentions jacket, water, heater on page(s) [2, 3]; no value found, but the submittal mentions jacket, water, electrical on page(s) [2, 3]"
+ },
+ {
+  "case": "G7",
+  "req": "R21",
+  "key": "missing",
+  "pipeline": "missing",
+  "human": false,
+  "conf": 0.8,
+  "reviewer": "missing",
+  "why": "not stated in the submittal; not stated in the submittal"
+ },
+ {
+  "case": "G2",
+  "req": "R01",
+  "key": "complies",
+  "pipeline": "complies",
+  "human": false,
+  "conf": 0.95,
+  "reviewer": "complies",
+  "why": "offered 2000 kW meets >= 2000 kW; offered 2500 kVA meets >= 2500 kVA"
+ },
+ {
+  "case": "G2",
+  "req": "R02",
+  "key": "unclear",
+  "pipeline": "unclear",
+  "human": true,
+  "conf": 0.5,
+  "reviewer": "unclear",
+  "why": "no value found, but the submittal mentions electrical, phase, wire on page(s) [1, 3, 4, 5, 6]; offered 60 Hz meets == 60 Hz"
+ },
+ {
+  "case": "G2",
+  "req": "R03",
+  "key": "complies",
+  "pipeline": "unclear",
+  "human": true,
+  "conf": 0.5,
+  "reviewer": "deviates",
+  "why": "no value found, but the submittal mentions capacity, starting, motor on page(s) [1, 2, 3]"
+ },
+ {
+  "case": "G2",
+  "req": "R04",
+  "key": "complies",
+  "pipeline": "complies",
+  "human": true,
+  "conf": 0.65,
+  "reviewer": "complies",
+  "why": "model judgement on verified quote: 'Exciter type Brushless, Permanent- Magnet Pilot Exciter'"
+ },
+ {
+  "case": "G2",
+  "req": "R05",
+  "key": "complies",
+  "pipeline": "complies",
+  "human": false,
+  "conf": 0.95,
+  "reviewer": "complies",
+  "why": "offered 12 cylinder Cylinder arrangement 12-V meets one of: 8 cylinder, 12 cylinder, 16 cylinder; offered 4 cycle Engine type 4-Cycle meets all of: 4 cycle; offered Turbocharged Engine type 4-Cycle, Turbocharged, meets one of: turbocharged, aftercooled, normally aspirated"
+ },
+ {
+  "case": "G2",
+  "req": "R06",
+  "key": "complies",
+  "pipeline": "complies",
+  "human": true,
+  "conf": 0.65,
+  "reviewer": "unclear",
+  "why": "model judgement on verified quote: 'Governor: type, make/model KODEC Electronic'"
+ },
+ {
+  "case": "G2",
+  "req": "R07",
+  "key": "complies",
+  "pipeline": "complies",
+  "human": true,
+  "conf": 0.65,
+  "reviewer": "deviates",
+  "why": "model judgement on verified quote: 'Volts (DC) 24'"
+ },
+ {
+  "case": "G2",
+  "req": "R08",
+  "key": "complies",
+  "pipeline": "complies",
+  "human": true,
+  "conf": 0.65,
+  "reviewer": "complies",
+  "why": "offered 139.6 gph meets <= 145 gph; unit gph is not shown in the quote, confirm"
+ },
+ {
+  "case": "G2",
+  "req": "R09",
+  "key": "deviates",
+  "pipeline": "unclear",
+  "human": true,
+  "conf": 0.5,
+  "reviewer": "complies",
+  "why": "no value found, but the submittal mentions radiator, unit, cooling on page(s) [1, 2, 3, 4, 5, 6]; offered 122 \u00b0F meets >= 122 \u00b0F"
+ },
+ {
+  "case": "G2",
+  "req": "R10",
+  "key": "complies",
+  "pipeline": "complies",
+  "human": false,
+  "conf": 0.95,
+  "reviewer": "complies",
+  "why": "offered Tier 2 Tier 2 EPA-Certified meets one of: tier 2, tier 4, epa"
+ },
+ {
+  "case": "G2",
+  "req": "R11",
+  "key": "unclear",
+  "pipeline": "unclear",
+  "human": true,
+  "conf": 0.6,
+  "reviewer": "deviates",
+  "why": "only partly stated: not stated in the submittal; all offered options (104 \u00b0F, 122 \u00b0F) meet 10\u2013122 \u00b0F"
+ },
+ {
+  "case": "G2",
+  "req": "R12",
+  "key": "complies",
+  "pipeline": "complies",
+  "human": false,
+  "conf": 0.95,
+  "reviewer": "complies",
+  "why": "offered 1800 rpm meets <= 1800 rpm"
+ },
+ {
+  "case": "G2",
+  "req": "R13",
+  "key": "complies",
+  "pipeline": "complies",
+  "human": true,
+  "conf": 0.65,
+  "reviewer": "complies",
+  "why": "model judgement on verified quote: 'Brushless alternator with brushless pilot exciter for excellent load response'"
+ },
+ {
+  "case": "G2",
+  "req": "R14",
+  "key": "complies",
+  "pipeline": "complies",
+  "human": true,
+  "conf": 0.65,
+  "reviewer": "complies",
+  "why": "model judgement on verified quote: 'Insulation: NEMA MG1, UL 1446,'"
+ },
+ {
+  "case": "G2",
+  "req": "R15",
+  "key": "unclear",
+  "pipeline": "unclear",
+  "human": true,
+  "conf": 0.5,
+  "reviewer": "complies",
+  "why": "no value found, but the submittal mentions electrical, heater, phase on page(s) [1, 3, 4, 5, 6]"
+ },
+ {
+  "case": "G2",
+  "req": "R16",
+  "key": "unclear",
+  "pipeline": "unclear",
+  "human": true,
+  "conf": 0.5,
+  "reviewer": "unclear",
+  "why": "no value found, but the submittal mentions circuit, state, breaker on page(s) [2, 3, 5]"
+ },
+ {
+  "case": "G2",
+  "req": "R17",
+  "key": "complies",
+  "pipeline": "complies",
+  "human": false,
+  "conf": 0.95,
+  "reviewer": "complies",
+  "why": "offered \u00b10.25% % meets <= 2 %"
+ },
+ {
+  "case": "G2",
+  "req": "R18",
+  "key": "missing",
+  "pipeline": "missing",
+  "human": false,
+  "conf": 0.8,
+  "reviewer": "missing",
+  "why": "not stated in the submittal"
+ },
+ {
+  "case": "G2",
+  "req": "R19",
+  "key": "deviates",
+  "pipeline": "unclear",
+  "human": true,
+  "conf": 0.5,
+  "reviewer": "complies",
+  "why": "no value found, but the submittal mentions fuel, tank, listing on page(s) [1, 2, 4, 5, 6]; no value found, but the submittal mentions fuel, tank, capacity on page(s) [1, 2, 4, 5, 6]"
+ },
+ {
+  "case": "G2",
+  "req": "R20",
+  "key": "unclear",
+  "pipeline": "unclear",
+  "human": true,
+  "conf": 0.5,
+  "reviewer": "deviates",
+  "why": "no value found, but the submittal mentions water, heater, jacket on page(s) [2, 3, 4, 5]; no value found, but the submittal mentions water, heater, jacket on page(s) [2, 3, 4, 5]; no value found, but the submittal mentions water, electrical, heater on page(s) [1, 2, 3, 4, 5, 6]"
+ },
+ {
+  "case": "G2",
+  "req": "R21",
+  "key": "unclear",
+  "pipeline": "deviates",
+  "human": true,
+  "conf": 0.5,
+  "reviewer": "complies",
+  "why": "no value found, but the submittal mentions enclosure on page(s) [2, 5, 6]; offered internal-mounted, exhaust silencers internal-mounted, exhaust silencers does not meet all of: inside"
+ },
+ {
+  "case": "G4",
+  "req": "R01",
+  "key": "complies",
+  "pipeline": "complies",
+  "human": true,
+  "conf": 0.65,
+  "reviewer": "complies",
+  "why": "offered 1000 kW meets >= 1000 kW; unit kW is not shown in the quote, confirm; offered 1250 kVA meets >= 1250 kVA; unit kVA is not shown in the quote, confirm"
+ },
+ {
+  "case": "G4",
+  "req": "R02",
+  "key": "unclear",
+  "pipeline": "complies",
+  "human": true,
+  "conf": 0.65,
+  "reviewer": "complies",
+  "why": "model judgement on verified quote: '\u2022 277/480'; offered 60 Hz meets == 60 Hz"
+ },
+ {
+  "case": "G4",
+  "req": "R03",
+  "key": "missing",
+  "pipeline": "unclear",
+  "human": true,
+  "conf": 0.5,
+  "reviewer": "missing",
+  "why": "no value found, but the submittal mentions starting, motor on page(s) [1, 2, 3]"
+ },
+ {
+  "case": "G4",
+  "req": "R04",
+  "key": "complies",
+  "pipeline": "complies",
+  "human": false,
+  "conf": 0.95,
+  "reviewer": "complies",
+  "why": "offered Permanent Magnet Generator (PMG) Exciter type Permanent Magnet Generator (PMG) meets one of: PMG, permanent magnet"
+ },
+ {
+  "case": "G4",
+  "req": "R05",
+  "key": "deviates",
+  "pipeline": "deviates",
+  "human": true,
+  "conf": 0.65,
+  "reviewer": "deviates",
+  "why": "offered 6-cylinder Con\ufb01guration Four-cycle; in-line; 6-cylinder does not meet one of: 8 cylinder, 12 cylinder, 16 cylinder; model judgement on verified quote: 'Con\ufb01guration Four-cycle; in-line; 6-cylinder'; not stated in the submittal"
+ },
+ {
+  "case": "G4",
+  "req": "R06",
+  "key": "complies",
+  "pipeline": "complies",
+  "human": false,
+  "conf": 0.95,
+  "reviewer": "complies",
+  "why": "offered integrated digital electronic isochronous governor Integrated digital electronic isochronous governor meets all of: electronic, isochronous"
+ },
+ {
+  "case": "G4",
+  "req": "R07",
+  "key": "complies",
+  "pipeline": "unclear",
+  "human": true,
+  "conf": 0.65,
+  "reviewer": "complies",
+  "why": "the evidence shows 24 volt but does not mention electric starter; nothing contradicts it, a person decides"
+ },
+ {
+  "case": "G4",
+  "req": "R08",
+  "key": "missing",
+  "pipeline": "unclear",
+  "human": true,
+  "conf": 0.5,
+  "reviewer": "missing",
+  "why": "no value found, but the submittal mentions fuel on page(s) [1, 2]"
+ },
+ {
+  "case": "G4",
+  "req": "R09",
+  "key": "unclear",
+  "pipeline": "unclear",
+  "human": true,
+  "conf": 0.592,
+  "reviewer": "deviates",
+  "why": "model judgement on verified quote: 'integral set\u2011mounted radiator systems'; model reading (complies) and code check (deviates) disagree: offered 50 \u00b0C \u00b0F does not meet >= 122 \u00b0F"
+ },
+ {
+  "case": "G4",
+  "req": "R10",
+  "key": "complies",
+  "pipeline": "complies",
+  "human": false,
+  "conf": 0.836,
+  "reviewer": "complies",
+  "why": "offered TIER 2 EPA TIER 2 meets one of: EPA Tier, Tier"
+ },
+ {
+  "case": "G4",
+  "req": "R11",
+  "key": "unclear",
+  "pipeline": "unclear",
+  "human": true,
+  "conf": 0.5,
+  "reviewer": "deviates",
+  "why": "no value found, but the submittal mentions capability on page(s) [1]; no value found, but the submittal mentions temperature, ambient, range on page(s) [1, 2, 3]"
+ },
+ {
+  "case": "G4",
+  "req": "R12",
+  "key": "missing",
+  "pipeline": "missing",
+  "human": false,
+  "conf": 0.8,
+  "reviewer": "complies",
+  "why": "not stated in the submittal"
+ },
+ {
+  "case": "G4",
+  "req": "R13",
+  "key": "complies",
+  "pipeline": "complies",
+  "human": true,
+  "conf": 0.65,
+  "reviewer": "complies",
+  "why": "offered 4 meets == 4; model judgement on verified quote: 'Design Brushless, 4-pole, drip proof, revolving \ufb01eld; Stator 2/3 pitch'"
+ },
+ {
+  "case": "G4",
+  "req": "R14",
+  "key": "complies",
+  "pipeline": "complies",
+  "human": false,
+  "conf": 0.95,
+  "reviewer": "complies",
+  "why": "offered Class H Insulation system Class H meets one of: Class F, Class H"
+ },
+ {
+  "case": "G4",
+  "req": "R15",
+  "key": "unclear",
+  "pipeline": "unclear",
+  "human": true,
+  "conf": 0.4,
+  "reviewer": "unclear",
+  "why": "reported quote not found in the submittal ('120 or 240 V, 285/255 W anti\u2011condensation heater'); value discarded"
+ },
+ {
+  "case": "G4",
+  "req": "R16",
+  "key": "missing",
+  "pipeline": "unclear",
+  "human": true,
+  "conf": 0.5,
+  "reviewer": "missing",
+  "why": "no value found, but the submittal mentions circuit, breaker on page(s) [1, 3]; not stated in the submittal"
+ },
+ {
+  "case": "G4",
+  "req": "R17",
+  "key": "complies",
+  "pipeline": "complies",
+  "human": false,
+  "conf": 0.95,
+  "reviewer": "complies",
+  "why": "offered 1.0 % meets <= 2 %"
+ },
+ {
+  "case": "G4",
+  "req": "R18",
+  "key": "missing",
+  "pipeline": "unclear",
+  "human": true,
+  "conf": 0.5,
+  "reviewer": "missing",
+  "why": "no value found, but the submittal mentions linear on page(s) [1]"
+ },
+ {
+  "case": "G4",
+  "req": "R19",
+  "key": "unclear",
+  "pipeline": "unclear",
+  "human": true,
+  "conf": 0.5,
+  "reviewer": "missing",
+  "why": "no value found, but the submittal mentions tank, listing on page(s) [1, 4]; no value found, but the submittal mentions fuel on page(s) [1, 2]"
+ },
+ {
+  "case": "G4",
+  "req": "R20",
+  "key": "unclear",
+  "pipeline": "unclear",
+  "human": true,
+  "conf": 0.5,
+  "reviewer": "deviates",
+  "why": "no value found, but the submittal mentions heater, water on page(s) [2]; no value found, but the submittal mentions power, heater, water on page(s) [1, 2, 3, 4]; no value found, but the submittal mentions volt, phase, water on page(s) [1, 2, 3, 4]"
+ },
+ {
+  "case": "G4",
+  "req": "R21",
+  "key": "unclear",
+  "pipeline": "unclear",
+  "human": true,
+  "conf": 0.5,
+  "reviewer": "unclear",
+  "why": "no value found, but the submittal mentions enclosure, proof on page(s) [1, 2]; no value found, but the submittal mentions enclosure, silencer on page(s) [1, 2]"
+ },
+ {
+  "case": "G5",
+  "req": "R01",
+  "key": "complies",
+  "pipeline": "complies",
+  "human": false,
+  "conf": 0.836,
+  "reviewer": "deviates",
+  "why": "offered 2250 kW meets >= 2000 kW; offered 2812 kVA meets >= 2500 kVA"
+ },
+ {
+  "case": "G5",
+  "req": "R02",
+  "key": "unclear",
+  "pipeline": "complies",
+  "human": true,
+  "conf": 0.65,
+  "reviewer": "unclear",
+  "why": "model judgement on verified quote: 'Voltage (L-L) 480V \u2020 \u2021'; offered 60 Hz meets == 60 Hz; unit Hz is not shown in the quote, confirm"
+ },
+ {
+  "case": "G5",
+  "req": "R03",
+  "key": "complies",
+  "pipeline": "complies",
+  "human": true,
+  "conf": 0.65,
+  "reviewer": "complies",
+  "why": "offered 5760 kVA meets >= 3000 kVA; unit kVA is not shown in the quote, confirm"
+ },
+ {
+  "case": "G5",
+  "req": "R04",
+  "key": "complies",
+  "pipeline": "complies",
+  "human": false,
+  "conf": 0.95,
+  "reviewer": "complies",
+  "why": "offered Permanent Magnet Generator (PMG) Permanent Magnet Generator (PMG) supply to regulator meets one of: permanent magnet generator, PMG"
+ },
+ {
+  "case": "G5",
+  "req": "R05",
+  "key": "complies",
+  "pipeline": "unclear",
+  "human": true,
+  "conf": 0.6,
+  "reviewer": "complies",
+  "why": "only partly stated: model judgement on verified quote: '16V4000'; offered 4 cycle 4-cycle meets all of: 4 cycle; not stated in the submittal"
+ },
+ {
+  "case": "G5",
+  "req": "R06",
+  "key": "complies",
+  "pipeline": "complies",
+  "human": false,
+  "conf": 0.95,
+  "reviewer": "complies",
+  "why": "offered electronic isochronous Governor - electronic isochronous meets all of: electronic, isochronous"
+ },
+ {
+  "case": "G5",
+  "req": "R07",
+  "key": "complies",
+  "pipeline": "complies",
+  "human": true,
+  "conf": 0.65,
+  "reviewer": "unclear",
+  "why": "model judgement on verified quote: 'Electric volts DC 24'"
+ },
+ {
+  "case": "G5",
+  "req": "R08",
+  "key": "deviates",
+  "pipeline": "deviates",
+  "human": false,
+  "conf": 0.95,
+  "reviewer": "deviates",
+  "why": "offered 317 gal/hr does not meet <= 145 gph"
+ },
+ {
+  "case": "G5",
+  "req": "R09",
+  "key": "complies",
+  "pipeline": "unclear",
+  "human": true,
+  "conf": 0.4,
+  "reviewer": "unclear",
+  "why": "offered unit mounted Radiator - unit mounted meets all of: unit mounted radiator; the same quote and value ('Ambient capacity of radiator: \u00b0C (\u00b0F)  50 (122)') are also the evidence for R11: probably a different attribute"
+ },
+ {
+  "case": "G5",
+  "req": "R10",
+  "key": "unclear",
+  "pipeline": "unclear",
+  "human": true,
+  "conf": 0.5,
+  "reviewer": "unclear",
+  "why": "no value found, but the submittal mentions emissions, compliance on page(s) [2, 4]"
+ },
+ {
+  "case": "G5",
+  "req": "R11",
+  "key": "unclear",
+  "pipeline": "unclear",
+  "human": true,
+  "conf": 0.4,
+  "reviewer": "deviates",
+  "why": "no value found, but the submittal mentions altitude on page(s) [4]; the same quote and value ('Ambient capacity of radiator: \u00b0C (\u00b0F)  50 (122)') are also the evidence for R09: probably a different attribute"
+ },
+ {
+  "case": "G5",
+  "req": "R12",
+  "key": "complies",
+  "pipeline": "complies",
+  "human": false,
+  "conf": 0.95,
+  "reviewer": "complies",
+  "why": "offered 1800 rpm meets <= 1800 rpm"
+ },
+ {
+  "case": "G5",
+  "req": "R13",
+  "key": "complies",
+  "pipeline": "complies",
+  "human": true,
+  "conf": 0.65,
+  "reviewer": "complies",
+  "why": "model judgement on verified quote: 'Brushless, rotating field generator'"
+ },
+ {
+  "case": "G5",
+  "req": "R14",
+  "key": "missing",
+  "pipeline": "missing",
+  "human": false,
+  "conf": 0.8,
+  "reviewer": "deviates",
+  "why": "not stated in the submittal"
+ },
+ {
+  "case": "G5",
+  "req": "R15",
+  "key": "missing",
+  "pipeline": "unclear",
+  "human": true,
+  "conf": 0.5,
+  "reviewer": "missing",
+  "why": "no value found, but the submittal mentions phase, single, electrical on page(s) [1, 2, 3]"
+ },
+ {
+  "case": "G5",
+  "req": "R16",
+  "key": "missing",
+  "pipeline": "unclear",
+  "human": true,
+  "conf": 0.5,
+  "reviewer": "missing",
+  "why": "no value found, but the submittal mentions state, solid, output on page(s) [2, 3]"
+ },
+ {
+  "case": "G5",
+  "req": "R17",
+  "key": "complies",
+  "pipeline": "complies",
+  "human": true,
+  "conf": 0.65,
+  "reviewer": "complies",
+  "why": "model judgement on verified quote: '\u00b1 0.25% voltage regulation no load to full load'"
+ },
+ {
+  "case": "G5",
+  "req": "R18",
+  "key": "complies",
+  "pipeline": "complies",
+  "human": true,
+  "conf": 0.65,
+  "reviewer": "complies",
+  "why": "model judgement on verified quote: '5% maximum total harmonic distortion'"
+ },
+ {
+  "case": "G5",
+  "req": "R19",
+  "key": "missing",
+  "pipeline": "unclear",
+  "human": true,
+  "conf": 0.5,
+  "reviewer": "missing",
+  "why": "no value found, but the submittal mentions fuel on page(s) [1, 2, 3]; no value found, but the submittal mentions fuel, capacity on page(s) [1, 2, 3]"
+ },
+ {
+  "case": "G5",
+  "req": "R20",
+  "key": "missing",
+  "pipeline": "unclear",
+  "human": true,
+  "conf": 0.5,
+  "reviewer": "missing",
+  "why": "no value found, but the submittal mentions jacket, water on page(s) [2, 3]; no value found, but the submittal mentions jacket, water on page(s) [2, 3]; no value found, but the submittal mentions phase, jacket, water on page(s) [1, 2, 3]"
+ },
+ {
+  "case": "G5",
+  "req": "R21",
+  "key": "missing",
+  "pipeline": "unclear",
+  "human": true,
+  "conf": 0.5,
+  "reviewer": "missing",
+  "why": "no value found, but the submittal mentions proof on page(s) [2]; not stated in the submittal"
+ },
+ {
+  "case": "G6",
+  "req": "R01",
+  "key": "complies",
+  "pipeline": "unclear",
+  "human": true,
+  "conf": 0.836,
+  "reviewer": "complies",
+  "why": "options 1590 kW, 2000 kW offered, only some meet >= 2000 kW; the selected option is not marked; options 1988 kVA, 2500 kVA offered, only some meet >= 2500 kVA; the selected option is not marked"
+ },
+ {
+  "case": "G6",
+  "req": "R02",
+  "key": "unclear",
+  "pipeline": "complies",
+  "human": true,
+  "conf": 0.65,
+  "reviewer": "unclear",
+  "why": "model judgement on verified quote: '277/480 3 60'; offered 60 Hz meets == 60 Hz"
+ },
+ {
+  "case": "G6",
+  "req": "R03",
+  "key": "complies",
+  "pipeline": "unclear",
+  "human": true,
+  "conf": 0.4,
+  "reviewer": "unclear",
+  "why": "reported value(s) ['6600', '12500', '8200', '5400', '4200', '6200', '3750'] do not appear in the quote 'Peak motor starting kVA: ... 7000 (60 Hz)'; discarded"
+ },
+ {
+  "case": "G6",
+  "req": "R04",
+  "key": "complies",
+  "pipeline": "complies",
+  "human": false,
+  "conf": 0.95,
+  "reviewer": "complies",
+  "why": "offered permanent-magnet generator (PMG) The pilot-excited, permanent-magnet generator (PMG) provides meets one of: permanent magnet generator, PMG"
+ },
+ {
+  "case": "G6",
+  "req": "R05",
+  "key": "complies",
+  "pipeline": "complies",
+  "human": true,
+  "conf": 0.65,
+  "reviewer": "complies",
+  "why": "model judgement on verified quote: 'Cylinder arrangement 16V'; offered 4-Cycle Engine: type 4-Cycle meets all of: 4 cycle; offered Turbocharged, Intercooled Turbocharged, Intercooled meets one of: turbocharged, aftercooled, normally aspirated"
+ },
+ {
+  "case": "G6",
+  "req": "R06",
+  "key": "complies",
+  "pipeline": "complies",
+  "human": true,
+  "conf": 0.65,
+  "reviewer": "complies",
+  "why": "model judgement on verified quote: 'Governor: type, make/model DDEC Electronic Control'"
+ },
+ {
+  "case": "G6",
+  "req": "R07",
+  "key": "complies",
+  "pipeline": "complies",
+  "human": true,
+  "conf": 0.65,
+  "reviewer": "unclear",
+  "why": "model judgement on verified quote: 'Starter motor rated voltage (DC) Dual, 24'"
+ },
+ {
+  "case": "G6",
+  "req": "R08",
+  "key": "complies",
+  "pipeline": "complies",
+  "human": true,
+  "conf": 0.65,
+  "reviewer": "unclear",
+  "why": "offered 134.5 gph meets <= 145 gph; unit gph is not shown in the quote, confirm"
+ },
+ {
+  "case": "G6",
+  "req": "R09",
+  "key": "deviates",
+  "pipeline": "complies",
+  "human": true,
+  "conf": 0.65,
+  "reviewer": "complies",
+  "why": "model judgement on verified quote: 'Cooling (Standard Radiator)'; offered 122 \u00b0F meets >= 122 \u00b0F"
+ },
+ {
+  "case": "G6",
+  "req": "R10",
+  "key": "unclear",
+  "pipeline": "unclear",
+  "human": true,
+  "conf": 0.5,
+  "reviewer": "complies",
+  "why": "no value found, but the submittal mentions compliance on page(s) [2]"
+ },
+ {
+  "case": "G6",
+  "req": "R11",
+  "key": "deviates",
+  "pipeline": "unclear",
+  "human": true,
+  "conf": 0.65,
+  "reviewer": "deviates",
+  "why": "model judgement on verified quote: 'Derate 1.5% per 305 m (1000 ft.) elevation above 1006 m (3300 ft.). Maximum altitude capability is 3048 m (10000 ft.) on 60 Hz'; model reading (deviates) and code check (complies) disagree: all offered options (105 \u00b0F, 122 \u00b0F) meet 10\u2013122 \u00b0F"
+ },
+ {
+  "case": "G6",
+  "req": "R12",
+  "key": "complies",
+  "pipeline": "complies",
+  "human": false,
+  "conf": 0.95,
+  "reviewer": "complies",
+  "why": "offered 1800 rpm meets <= 1800 rpm"
+ },
+ {
+  "case": "G6",
+  "req": "R13",
+  "key": "complies",
+  "pipeline": "complies",
+  "human": true,
+  "conf": 0.65,
+  "reviewer": "complies",
+  "why": "model judgement on verified quote: 'Type 4-Pole, Rotating Field'"
+ },
+ {
+  "case": "G6",
+  "req": "R14",
+  "key": "complies",
+  "pipeline": "complies",
+  "human": false,
+  "conf": 0.95,
+  "reviewer": "unclear",
+  "why": "offered Class H Class H, Synthetic meets one of: class f, class h"
+ },
+ {
+  "case": "G6",
+  "req": "R15",
+  "key": "unclear",
+  "pipeline": "unclear",
+  "human": true,
+  "conf": 0.5,
+  "reviewer": "unclear",
+  "why": "no value found, but the submittal mentions electrical, phase, heater on page(s) [1, 2, 3, 4]"
+ },
+ {
+  "case": "G6",
+  "req": "R16",
+  "key": "unclear",
+  "pipeline": "unclear",
+  "human": true,
+  "conf": 0.5,
+  "reviewer": "unclear",
+  "why": "no value found, but the submittal mentions circuit, breaker, solid on page(s) [1, 2, 3, 4]"
+ },
+ {
+  "case": "G6",
+  "req": "R17",
+  "key": "complies",
+  "pipeline": "complies",
+  "human": false,
+  "conf": 0.95,
+  "reviewer": "unclear",
+  "why": "offered 0.25% % meets <= 2 %"
+ },
+ {
+  "case": "G6",
+  "req": "R18",
+  "key": "missing",
+  "pipeline": "missing",
+  "human": false,
+  "conf": 0.8,
+  "reviewer": "missing",
+  "why": "not stated in the submittal"
+ },
+ {
+  "case": "G6",
+  "req": "R19",
+  "key": "unclear",
+  "pipeline": "unclear",
+  "human": true,
+  "conf": 0.5,
+  "reviewer": "missing",
+  "why": "no value found, but the submittal mentions fuel, listing, tank on page(s) [1, 2, 3, 4]; no value found, but the submittal mentions capacity, fuel, tank on page(s) [1, 2, 3, 4]"
+ },
+ {
+  "case": "G6",
+  "req": "R20",
+  "key": "unclear",
+  "pipeline": "unclear",
+  "human": true,
+  "conf": 0.5,
+  "reviewer": "unclear",
+  "why": "no value found, but the submittal mentions water, jacket, heater on page(s) [2, 3, 4]; no value found, but the submittal mentions water, jacket, heater on page(s) [2, 3, 4]; no value found, but the submittal mentions electrical, water, phase on page(s) [1, 2, 3, 4]"
+ },
+ {
+  "case": "G6",
+  "req": "R21",
+  "key": "missing",
+  "pipeline": "unclear",
+  "human": true,
+  "conf": 0.5,
+  "reviewer": "missing",
+  "why": "no value found, but the submittal mentions enclosure on page(s) [4]; no value found, but the submittal mentions inside, silencer on page(s) [1, 4]"
+ },
+ {
+  "case": "G8",
+  "req": "R01",
+  "key": "complies",
+  "pipeline": "complies",
+  "human": false,
+  "conf": 0.95,
+  "reviewer": "unclear",
+  "why": "offered 2000 kW meets >= 2000 kW; offered 2500 kVA meets >= 2500 kVA"
+ },
+ {
+  "case": "G8",
+  "req": "R02",
+  "key": "unclear",
+  "pipeline": "complies",
+  "human": true,
+  "conf": 0.65,
+  "reviewer": "unclear",
+  "why": "model judgement on verified quote: 'AVAILABLE VOLTAGES (60 Hz LINE-TO-NEUTRAL / LINE-TO-LINE) 277/480'; offered 60 Hz meets == 60 Hz"
+ },
+ {
+  "case": "G8",
+  "req": "R03",
+  "key": "unclear",
+  "pipeline": "unclear",
+  "human": true,
+  "conf": 0.5,
+  "reviewer": "unclear",
+  "why": "no value found, but the submittal mentions starting, capacity, motor on page(s) [1, 2, 3, 5, 6]"
+ },
+ {
+  "case": "G8",
+  "req": "R04",
+  "key": "complies",
+  "pipeline": "complies",
+  "human": false,
+  "conf": 0.95,
+  "reviewer": "complies",
+  "why": "offered Permanent Magnet Generator (PMG) Exciter type Permanent Magnet Generator (PMG) meets one of: permanent magnet generator, PMG"
+ },
+ {
+  "case": "G8",
+  "req": "R05",
+  "key": "complies",
+  "pipeline": "complies",
+  "human": true,
+  "conf": 0.65,
+  "reviewer": "complies",
+  "why": "offered 16 cylinder Configuration Four Cycle; Vee; 16 Cylinder meets one of: 8 cylinder, 12 cylinder, 16 cylinder; model judgement on verified quote: 'Configuration Four Cycle; Vee; 16 Cylinder'; offered Turbocharged and Charge Air Cooled Aspiration Turbocharged and Charge Air Cooled meets one of: turbocharged, aftercooled, normally aspirated"
+ },
+ {
+  "case": "G8",
+  "req": "R06",
+  "key": "complies",
+  "pipeline": "complies",
+  "human": false,
+  "conf": 0.95,
+  "reviewer": "complies",
+  "why": "offered electronic; isochronous Integrated digital electronic isochronous governor meets all of: electronic, isochronous"
+ },
+ {
+  "case": "G8",
+  "req": "R07",
+  "key": "complies",
+  "pipeline": "unclear",
+  "human": true,
+  "conf": 0.65,
+  "reviewer": "unclear",
+  "why": "the evidence shows 24 volt but does not mention electric starter; nothing contradicts it, a person decides"
+ },
+ {
+  "case": "G8",
+  "req": "R08",
+  "key": "complies",
+  "pipeline": "complies",
+  "human": false,
+  "conf": 0.95,
+  "reviewer": "unclear",
+  "why": "offered 139.8 gph meets <= 145 gph"
+ },
+ {
+  "case": "G8",
+  "req": "R09",
+  "key": "unclear",
+  "pipeline": "complies",
+  "human": true,
+  "conf": 0.65,
+  "reviewer": "unclear",
+  "why": "model judgement on verified quote: 'COOLING SYSTEM (SET MOUNTED) \u2013 HIGH AMBIENT'; offered 122 \u00b0F meets >= 122 \u00b0F"
+ },
+ {
+  "case": "G8",
+  "req": "R10",
+  "key": "complies",
+  "pipeline": "complies",
+  "human": false,
+  "conf": 0.95,
+  "reviewer": "complies",
+  "why": "offered TIER 2 EMISSIONS CERTIFICATION: EPA NSPS STATIONARY EMERGENCY TIER 2 meets one of: tier 2, tier 4, epa"
+ },
+ {
+  "case": "G8",
+  "req": "R11",
+  "key": "deviates",
+  "pipeline": "unclear",
+  "human": true,
+  "conf": 0.6,
+  "reviewer": "deviates",
+  "why": "only partly stated: model judgement on verified quote: 'Full engine power available up to 400 m (1312 ft)'; not stated in the submittal"
+ },
+ {
+  "case": "G8",
+  "req": "R12",
+  "key": "complies",
+  "pipeline": "complies",
+  "human": false,
+  "conf": 0.95,
+  "reviewer": "complies",
+  "why": "offered 1800 rpm meets <= 1800 rpm"
+ },
+ {
+  "case": "G8",
+  "req": "R13",
+  "key": "complies",
+  "pipeline": "complies",
+  "human": true,
+  "conf": 0.65,
+  "reviewer": "complies",
+  "why": "model judgement on verified quote: 'Design Brushless, 4-pole, drip proof, revolving field'"
+ },
+ {
+  "case": "G8",
+  "req": "R14",
+  "key": "complies",
+  "pipeline": "complies",
+  "human": false,
+  "conf": 0.95,
+  "reviewer": "complies",
+  "why": "offered Insulation system Class H Insulation system Class H meets one of: class f, class h"
+ },
+ {
+  "case": "G8",
+  "req": "R15",
+  "key": "unclear",
+  "pipeline": "unclear",
+  "human": true,
+  "conf": 0.65,
+  "reviewer": "unclear",
+  "why": "offered 120/240V 100W control anti- condensation heater 120/240V 100W control anti- condensation heater does not meet all of: 120 v, single phase; the expected words are missing from the quote but nothing contradicts the requirement"
+ },
+ {
+  "case": "G8",
+  "req": "R16",
+  "key": "unclear",
+  "pipeline": "unclear",
+  "human": true,
+  "conf": 0.5,
+  "reviewer": "unclear",
+  "why": "no value found, but the submittal mentions output, circuit, breaker on page(s) [1, 2, 3, 5, 7]"
+ },
+ {
+  "case": "G8",
+  "req": "R17",
+  "key": "complies",
+  "pipeline": "complies",
+  "human": true,
+  "conf": 0.65,
+  "reviewer": "complies",
+  "why": "model judgement on verified quote: 'Voltage regulation, no load to full load \u00b1 0.5%'"
+ },
+ {
+  "case": "G8",
+  "req": "R18",
+  "key": "complies",
+  "pipeline": "complies",
+  "human": true,
+  "conf": 0.65,
+  "reviewer": "complies",
+  "why": "model judgement on verified quote: 'AC waveform total harmonic distortion (THDV) < 5% no load to full linear load'"
+ },
+ {
+  "case": "G8",
+  "req": "R19",
+  "key": "missing",
+  "pipeline": "unclear",
+  "human": true,
+  "conf": 0.5,
+  "reviewer": "missing",
+  "why": "no value found, but the submittal mentions fuel, listing on page(s) [1, 2, 4, 5, 6]; no value found, but the submittal mentions fuel, capacity on page(s) [1, 2, 5, 6]"
+ },
+ {
+  "case": "G8",
+  "req": "R20",
+  "key": "unclear",
+  "pipeline": "unclear",
+  "human": true,
+  "conf": 0.5,
+  "reviewer": "deviates",
+  "why": "no value found, but the submittal mentions water, heater on page(s) [2]; no value found, but the submittal mentions heater, water on page(s) [2]; no value found, but the submittal mentions electrical, phase, heater on page(s) [1, 2, 3, 4, 7]"
+ },
+ {
+  "case": "G8",
+  "req": "R21",
+  "key": "missing",
+  "pipeline": "unclear",
+  "human": true,
+  "conf": 0.5,
+  "reviewer": "missing",
+  "why": "no value found, but the submittal mentions proof, enclosure on page(s) [2, 7]; no value found, but the submittal mentions silencer on page(s) [2]"
+ },
+ {
+  "case": "U1",
+  "req": "U01",
+  "key": "complies",
+  "pipeline": "complies",
+  "human": true,
+  "conf": 0.65,
+  "reviewer": "unclear",
+  "why": "offered 1200 kVA meets >= 1200 kVA; offered 1200 kW meets >= 1200 kW; offered 1 meets == 1.0; offered 480 V meets == 480 V; unit V is not shown in the quote, confirm"
+ },
+ {
+  "case": "U1",
+  "req": "U02",
+  "key": "deviates",
+  "pipeline": "complies",
+  "human": true,
+  "conf": 0.65,
+  "reviewer": "deviates",
+  "why": "model judgement on verified quote: 'Operating Temperature (\u00b0C) 0-40'"
+ },
+ {
+  "case": "U1",
+  "req": "U03",
+  "key": "unclear",
+  "pipeline": "complies",
+  "human": true,
+  "conf": 0.65,
+  "reviewer": "deviates",
+  "why": "model judgement on verified quote: 'Rectifier AC Input: 3-phase, 3-wire, plus ground'; offered 60 Hz meets == 60 Hz; unit Hz is not shown in the quote, confirm"
+ },
+ {
+  "case": "U1",
+  "req": "U04",
+  "key": "complies",
+  "pipeline": "complies",
+  "human": true,
+  "conf": 0.65,
+  "reviewer": "complies",
+  "why": "model judgement on verified quote: 'Classification according to IEC/EN 62040-3 VFI-SS-111'"
+ },
+ {
+  "case": "U1",
+  "req": "U05",
+  "key": "complies",
+  "pipeline": "unclear",
+  "human": true,
+  "conf": 0.4,
+  "reviewer": "unclear",
+  "why": "reported value(s) ['>=96.9', '>=96.5', '>=96.5'] do not appear in the quote '\u226596.8%'; discarded"
+ },
+ {
+  "case": "U1",
+  "req": "U06",
+  "key": "complies",
+  "pipeline": "complies",
+  "human": false,
+  "conf": 0.95,
+  "reviewer": "complies",
+  "why": "offered >=0.99 meets >= 0.99; offered \u22643 % meets <= 5 %"
+ },
+ {
+  "case": "U1",
+  "req": "U07",
+  "key": "complies",
+  "pipeline": "complies",
+  "human": false,
+  "conf": 0.95,
+  "reviewer": "complies",
+  "why": "offered \u00b11 % meets <= 1 %"
+ },
+ {
+  "case": "U1",
+  "req": "U08",
+  "key": "complies",
+  "pipeline": "complies",
+  "human": false,
+  "conf": 0.95,
+  "reviewer": "complies",
+  "why": "offered 10 min meets >= 10 min"
+ },
+ {
+  "case": "U1",
+  "req": "U09",
+  "key": "complies",
+  "pipeline": "unclear",
+  "human": true,
+  "conf": 0.5,
+  "reviewer": "complies",
+  "why": "no value found, but the submittal mentions bypass, switch, static on page(s) [3, 4, 5, 6, 7, 11]"
+ },
+ {
+  "case": "U1",
+  "req": "U10",
+  "key": "deviates",
+  "pipeline": "unclear",
+  "human": true,
+  "conf": 0.5,
+  "reviewer": "unclear",
+  "why": "the evidence also says something is not included, optional or by others ('Included 300-500 kW | Not included 600-1200 kW'); a person must read it"
+ },
+ {
+  "case": "U1",
+  "req": "U11",
+  "key": "unclear",
+  "pipeline": "unclear",
+  "human": true,
+  "conf": 0.5,
+  "reviewer": "unclear",
+  "why": "all offered options (VRLA; Li-ion) meet one of: valve-regulated lead-acid, vrla, lithium-ion, li-ion; no value found, but the submittal mentions battery, runtime on page(s) [2, 7, 12, 15]"
+ },
+ {
+  "case": "U1",
+  "req": "U12",
+  "key": "complies",
+  "pipeline": "complies",
+  "human": false,
+  "conf": 0.95,
+  "reviewer": "complies",
+  "why": "offered up to 8 units meets >= 3"
+ },
+ {
+  "case": "U1",
+  "req": "U13",
+  "key": "missing",
+  "pipeline": "missing",
+  "human": false,
+  "conf": 0.8,
+  "reviewer": "missing",
+  "why": "not stated in the submittal"
+ },
+ {
+  "case": "U1",
+  "req": "U14",
+  "key": "unclear",
+  "pipeline": "unclear",
+  "human": true,
+  "conf": 0.5,
+  "reviewer": "unclear",
+  "why": "no value found, but the submittal mentions seismic, building, code on page(s) [3, 10, 15]"
+ },
+ {
+  "case": "U1",
+  "req": "U15",
+  "key": "unclear",
+  "pipeline": "unclear",
+  "human": true,
+  "conf": 0.65,
+  "reviewer": "unclear",
+  "why": "model reading (deviates) and code check (complies) disagree: all offered options (1000 mm, 1250 mm, 2000 mm, 2650 mm) meet <= 110 in; model reading (deviates) and code check (complies) disagree: offered 900 mm meets <= 40 in; model reading (deviates) and code check (complies) disagree: offered 1950 mm meets <= 84 in"
+ },
+ {
+  "case": "U1",
+  "req": "U16",
+  "key": "complies",
+  "pipeline": "unclear",
+  "human": true,
+  "conf": 0.4,
+  "reviewer": "deviates",
+  "why": "reported value(s) ['34932', '48036'] do not appear in the quote 'BTU/H 28198 2800 ... 61876 3920'; discarded"
+ }
+]

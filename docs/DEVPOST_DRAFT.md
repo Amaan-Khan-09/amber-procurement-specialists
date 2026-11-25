@@ -54,6 +54,13 @@ matched our key**; the one that did not asked the vendor for information. **Zero
 scored run. The rest it handed to a person, which is the point. A full purchase review takes about 10 minutes and costs
 about 2 cents.
 
+## Handing off to a person, honestly
+About two answers in three go to a person, and we say so. 27 % of the requirements are genuinely unclear in the datasheet, so no
+honest system can settle them. To help the person, a model of another family reads each datasheet blind and its verdict sits beside
+ours: when it contradicts an answer, that answer is right only 38 % of the time (84 % when it agrees), so the queue shows the
+contested ones first. We also tried a cheaper version that only shows the second model our quoted evidence; it did not work, and we
+say so in the README.
+
 ## Challenges
 Datasheets are messy: two-column pages, units in a header row, a "Not included" in the same line as the word we were
 looking for. Each real mistake in our first held-out run became a rule in code and a test (for example a check can no

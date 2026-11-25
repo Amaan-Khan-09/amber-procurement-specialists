@@ -173,3 +173,24 @@ def test_proof_tab_reproduces_the_readme_numbers_from_the_saved_runs(client):
     assert P["bids"]["cells"] == 44 and P["bids"]["award_withheld"] and P["bids"]["rank_ok"]
     assert P["bids"]["second_run"]["cells"] == 44 and P["bids"]["second_run"]["award_withheld"]  # a second reading of the same bids
     assert all(c["result_id"].startswith(("runs:", "example:")) for c in P["cases"])
+
+
+def test_results_carry_the_independent_readers_verdicts_without_changing_any_verdict(client):
+    r = client.get("/api/results/example:G7").json()
+    cr = r["cross_read"]
+    assert len(cr) == 21 and all(set(x) >= {"verdict", "agrees", "model"} for x in cr.values())
+    by_id = {f["id"]: f for f in r["result"]["findings"]}
+    assert all(x["agrees"] == (x["verdict"] == by_id[i]["status"]) for i, x in cr.items())
+    pkg = client.get("/api/results/example:package_GEN").json()["cross_read"]
+    assert {i.split("/")[0] for i in pkg} == {"submittal:B1", "submittal:B3", "submittal:B4"}  # B2's 66-page sheet is not cross-read
+
+
+def test_the_proof_tab_reports_what_the_independent_reader_tells_us(client):
+    web._proof_cache.clear()
+    C = client.get("/api/proof").json()["cross"]
+    assert C["n"] == 142 and len(C["documents"]) == 7
+    assert (C["handed_agrees"]["n"], C["handed_agrees"]["right"]) == (49, 41)  # agreement sorts what a person must look at
+    assert (C["handed_disagrees"]["n"], C["handed_disagrees"]["right"]) == (50, 19)
+    assert C["auto_agrees"]["right"] == C["auto_agrees"]["n"]
+    assert (C["unclear_with_concrete_reader"]["n"], C["unclear_with_concrete_reader"]["right"]) == (22, 7)  # it never overrules
+    assert (C["unclear_with_reader_missing"]["n"], C["unclear_with_reader_missing"]["right"]) == (15, 13)

@@ -30,6 +30,7 @@ from starlette.responses import FileResponse, HTMLResponse, JSONResponse, Respon
 from starlette.routing import Route
 
 from . import __version__, budget
+from . import crossread
 from . import sources as _sources
 from .bids import level_bids
 from .delivery import assess_delivery_risk
@@ -446,7 +447,8 @@ async def result(req: Request) -> JSONResponse:
         rf = _reviews_file(rid)
         reviews = json.loads(rf.read_text(encoding="utf-8")) if rf.exists() else {}
         meta = _index().get(rid.split(":", 1)[1], {}) if rid.startswith("web:") else {}
-        return JSONResponse({"id": rid, "result": res, "reviews": reviews, "meta": meta})
+        return JSONResponse({"id": rid, "result": res, "reviews": reviews, "meta": meta,
+                             "cross_read": crossread.annotations(res)})
     except BadRequest as e:
         return _err(e, 404)
 
@@ -532,6 +534,32 @@ def _bid_proof() -> dict | None:
     return out
 
 
+def _cross_proof() -> dict | None:
+    """What the independent reader (a different model family that reads the whole datasheet blind) tells us: how often it
+    agrees with the answer key, and whether its agreement with the pipeline predicts a right answer."""
+    f = ROOT / "eval" / "cross_checks" / "agreement_qwen3.8-27b.json"
+    if not f.exists():
+        return None
+    rows = json.loads(f.read_text(encoding="utf-8"))
+    if not rows:
+        return None
+
+    def grp(handed: bool, agrees: bool) -> dict:
+        sub = [r for r in rows if r["human"] == handed and (r["pipeline"] == r["reviewer"]) == agrees]
+        return {"n": len(sub), "right": sum(r["pipeline"] == r["key"] for r in sub)}
+
+    pairs = [(r["key"], r["reviewer"]) for r in rows]
+    pu = [r for r in rows if r["pipeline"] == "unclear"]
+    conc = [r for r in pu if r["reviewer"] in ("complies", "deviates")]
+    miss = [r for r in pu if r["reviewer"] == "missing"]
+    return {"unclear_with_concrete_reader": {"n": len(conc), "right": sum(r["key"] == r["reviewer"] for r in conc)},
+            "unclear_with_reader_missing": {"n": len(miss), "right": sum(r["key"] == "missing" for r in miss)},
+            "model": "Qwen 3.8 27B", "documents": sorted({r["case"] for r in rows}), "n": len(rows),
+            "reviewer_agrees_with_key": sum(a == b for a, b in pairs), "kappa": round(crossread.kappa(pairs), 2),
+            "handed_agrees": grp(True, True), "handed_disagrees": grp(True, False),
+            "auto_agrees": grp(False, True), "auto_disagrees": grp(False, False)}
+
+
 def _proof() -> dict:
     mod = _scorer()
     cases, sets, fab_total, fab_known = [], {}, 0, True
@@ -567,7 +595,7 @@ def _proof() -> dict:
             for k in ("n", "correct", "auto_total", "auto_correct", "false_approvals"):
                 t[k] += row[k]
     return {"cases": cases, "sets": dict(sorted(sets.items())), "fabrications": fab_total if fab_known and cases else None,
-            "bids": _bid_proof()}
+            "bids": _bid_proof(), "cross": _cross_proof()}
 
 
 def docs_id(path: str) -> str:
@@ -588,6 +616,9 @@ def _proof_key() -> str:
             h.update(name.encode() + (norm(key_file.read_bytes()) if key_file.exists() else b""))
             h.update(run[1].encode() + norm(run[0].read_bytes()))
     h.update(norm((ROOT / "scripts" / "eval_submittal.py").read_bytes()))
+    agr = ROOT / "eval" / "cross_checks" / "agreement_qwen3.8-27b.json"
+    if agr.exists():
+        h.update(norm(agr.read_bytes()))
     return h.hexdigest()[:20]
 
 

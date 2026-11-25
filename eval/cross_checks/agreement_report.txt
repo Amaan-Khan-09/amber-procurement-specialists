@@ -1,0 +1,20 @@
+requirements answered by all three: 142 (G2, G4, G5, G6, G7, G8, U1)
+pipeline vs key  : 102/142 (72%)
+reviewer vs key  : 100/142 (70%)
+pipeline vs reviewer: 83/142 (58%)
+
+group                                                   n  pipeline right
+automatic | reviewer agrees                            34  34/34 (100%)
+automatic | reviewer disagrees                          9  8/9 (89%)
+handed to a person | reviewer agrees                   49  41/49 (84%)
+handed to a person | reviewer disagrees                50  19/50 (38%)
+
+handed to a person, by the pipeline's verdict, when the reviewer agrees:
+  complies  n= 20  right 18/20 (90%)
+  deviates  n=  1  right 1/1 (100%)
+  missing   n=  0  right -
+  unclear   n= 28  right 22/28 (79%)
+
+concrete answers (not 'unclear') handed to a person that the reviewer independently confirms: 21  -> right 19/21 (90%)
+    both models say complies, key says unclear: G4 R02 | model judgement on verified quote: '• 277/480'; offered 60 Hz meets == 60 Hz
+    both models say complies, key says deviates: G6 R09 | model judgement on verified quote: 'Cooling (Standard Radiator)'; offered 122 °F meets >= 

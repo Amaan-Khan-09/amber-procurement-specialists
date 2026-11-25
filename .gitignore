@@ -16,3 +16,6 @@ runs/
 
 # files uploaded through the web page
 data/uploads/
+
+# raw run logs (they can contain account identifiers from rate-limit messages)
+eval/cross_checks/*.log

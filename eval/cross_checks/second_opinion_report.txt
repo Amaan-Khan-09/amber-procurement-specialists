@@ -1,0 +1,27 @@
+  8/90 asked
+  16/90 asked
+  24/90 asked
+  32/90 asked
+  40/90 asked
+  48/90 asked
+  56/90 asked
+  64/90 asked
+  72/90 asked
+  80/90 asked
+  88/90 asked
+  90/90 asked
+
+90 concrete answers with a verified submittal quote
+group                                                 n  pipeline right
+automatic | does not agree                            5  5/5 (100%)
+automatic | second model agrees                      41  41/41 (100%)
+handed to a person | does not agree                  24  20/24 (83%)
+handed to a person | second model agrees             20  14/20 (70%)
+   both say complies, key says unclear: G1:R09 (handed to a person)
+   both say complies, key says unclear: G6:R02 (handed to a person)
+   both say complies, key says deviates: G6:R09 (handed to a person)
+   both say complies, key says unclear: G8:R02 (handed to a person)
+   both say complies, key says unclear: G8:R09 (handed to a person)
+   both say complies, key says deviates: U1:U02 (handed to a person)
+tokens: [('qwen/qwen3.8-27b', 7919, 1807)]
+second-opinion exit 0

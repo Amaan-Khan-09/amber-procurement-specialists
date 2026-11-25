@@ -768,6 +768,8 @@ function renderResult() {
   h += `<div class="tiles" style="margin-top:12px">${headlineTile(res)}
     <div class="tile infot"><div class="k">For you to review</div><div class="v">${done} of ${human}</div><div class="progress"><i style="width:${human ? Math.round(done / human * 100) : 100}%"></i></div><div class="s">items the agent was not sure about</div></div>
     <div class="tile"><div class="k">Findings</div><div class="v">${res.findings.length}</div><div class="s">every one with its sources</div></div>
+    ${(() => { const xs = Object.values(current.cross_read || {}); const ag = xs.filter(x => x.agrees).length;
+      return xs.length ? `<div class="tile ${ag / xs.length > .6 ? "okt" : "warnt"}"><div class="k">Independent reader</div><div class="v">${ag} of ${xs.length}</div><div class="s">same verdict as a second model that read the whole datasheet blind; the other ${xs.length - ag} are contested</div></div>` : ""; })()}
     <div class="tile"><div class="k">Run</div><div class="v" style="font-size:20px">${Math.round((run.latency_ms || 0) / 1000)} s · $${cost.toFixed(3)}</div><div class="s">${esc(models)}</div></div></div>`;
   if (res.tool === "check_submittal") h += submittalSummary(R);
   if (res.tool === "level_bids") h += bidsSummary(R, res.findings);
@@ -863,13 +865,36 @@ function deliverySummary(findings) {
 function findingsBlock(fs) {
   const human = fs.filter(f => f.needs_human), counts = {};
   fs.forEach(f => counts[f.status] = (counts[f.status] || 0) + 1);
-  const chips = [["human", `For you to review (${human.length})`], ["all", `All (${fs.length})`], ...Object.entries(counts).map(([k, v]) => [k, `${k} (${v})`])];
+  const contested = fs.filter(isContested);
+  const chips = [["human", `For you to review (${human.length})`], ...(contested.length ? [["contested", `Contested by the independent reader (${contested.length})`]] : []), ["all", `All (${fs.length})`], ...Object.entries(counts).map(([k, v]) => [k, `${k} (${v})`])];
   const s = search.toLowerCase();
-  const shown = fs.filter(f => (filter === "all" || (filter === "human" ? f.needs_human : f.status === filter))
+  const shown = fs.filter(f => (filter === "all" || (filter === "human" ? f.needs_human : filter === "contested" ? isContested(f) : f.status === filter))
     && (!s || (f.claim + " " + f.why + " " + f.citations.map(c => c.quote).join(" ")).toLowerCase().includes(s)));
   return `<h2>Findings</h2><div class="toolbar"><div class="chips" role="group" aria-label="Filter findings">${chips.map(([k, t]) => `<button class="chip" data-filter="${k}" aria-pressed="${filter === k}">${esc(t)}</button>`).join("")}</div>
     <div class="grow"></div><input type="search" id="fsearch" placeholder="Search findings and quotes" aria-label="Search findings" value="${esc(search)}">${fs.some(f => f.needs_human && !current.reviews[f.id]) ? `<button class="btn sm primary" id="startrev">Review ${fs.filter(f => f.needs_human && !current.reviews[f.id]).length} items one by one</button>` : ""}<button class="btn sm" id="export">Export decisions (CSV)</button></div>
     <div id="flist">${shown.length ? shown.map(findingCard).join("") : `<p class="muted">Nothing here.</p>`}</div>`;
+}
+const isContested = f => ((current.cross_read || {})[f.id] || {}).agrees === false;
+function xBadge(f) {
+  const x = (current.cross_read || {})[f.id];
+  if (!x) return "";
+  const tip = esc(`${x.model} read the whole datasheet blind and said ${x.verdict}` + (x.quote ? `: "${x.quote}"` : ""));
+  return x.agrees ? `<span class="b ok" title="${tip}">reader agrees</span>` : `<span class="b warn" title="${tip}">reader says ${esc(x.verdict)}</span>`;
+}
+function crossCardHtml(C) {
+  if (!C) return "";
+  const p = g => g.n ? `${g.right} of ${g.n} (${pct(g.right / g.n)})` : "-";
+  return `<div class="card"><h3>The independent reader: a second opinion that sorts the queue</h3>
+    <p class="small" style="margin:0 0 8px">A model of another family (${esc(C.model)}) reads each whole datasheet <b>blind</b>: it never sees our answers or our answer key. Tested on ${C.n} labelled requirements from ${C.documents.length} datasheets.
+    It agrees with our answer key on ${C.reviewer_agrees_with_key} of ${C.n} (kappa ${C.kappa}); the differences are in the human review packet.</p>
+    <div class="scroll"><table><tr><th>Our pipeline's answer</th><th>Independent reader</th><th class="n">Answers</th><th class="n">Pipeline right</th></tr>
+    <tr><td>decided by the agent alone</td><td>agrees</td><td class="n">${C.auto_agrees.n}</td><td class="n">${p(C.auto_agrees)}</td></tr>
+    <tr><td>handed to a person</td><td><b>agrees</b></td><td class="n">${C.handed_agrees.n}</td><td class="n"><b>${p(C.handed_agrees)}</b></td></tr>
+    <tr><td>handed to a person</td><td><b>disagrees</b></td><td class="n">${C.handed_disagrees.n}</td><td class="n"><b>${p(C.handed_disagrees)}</b></td></tr></table></div>
+    <p class="small" style="margin:8px 0 0">So a contested answer is far more likely to be wrong, and the review queue shows those first. Agreement is not strong enough to
+    approve anything on its own (84 % is not the 98 % that "decided alone" achieved), so every answer it does not settle still goes to a person.
+    It also never overrules us: where the pipeline said "unclear" and the reader gave a concrete verdict (complies or deviates), the reader was right only ${p(C.unclear_with_concrete_reader)}; where it said "missing" it was right ${p(C.unclear_with_reader_missing)}.
+    A cheaper version that only showed the second model the quoted evidence did <b>not</b> work (its agreement did not predict a right answer, 70 % versus 83 %), so it is not used.</p></div>`;
 }
 function findingCard(f) {
   const r = current.reviews[f.id];
@@ -886,7 +911,7 @@ function findingCard(f) {
   }
   const part = f.id.startsWith("submittal:") ? f.id.slice(10).split("/")[0] + " submittal" : f.id.startsWith("level_bids/") ? "bids"
     : f.id.startsWith("delivery/") ? "delivery" : "";
-  return `<div class="f ${f.needs_human ? "human" : ""} ${r ? "done" : ""}"><div class="fhead">${part ? `<span class="b info">${esc(part)}</span>` : ""}<span class="b ${STATUS[f.status] || "mute"}">${esc(f.status)}</span><div class="claim">${esc(f.claim)}${(f.data || {}).locator ? ` <span class="small">${esc(f.data.locator)}</span>` : ""}</div>
+  return `<div class="f ${f.needs_human ? "human" : ""} ${r ? "done" : ""}"><div class="fhead">${part ? `<span class="b info">${esc(part)}</span>` : ""}<span class="b ${STATUS[f.status] || "mute"}">${esc(f.status)}</span>${xBadge(f)}<div class="claim">${esc(f.claim)}${(f.data || {}).locator ? ` <span class="small">${esc(f.data.locator)}</span>` : ""}</div>
     <span class="small nw" title="confidence">${f.confidence.toFixed(2)} <span class="conf"><i style="width:${Math.round(f.confidence * 100)}%"></i></span></span></div>
     <div class="small" style="margin-top:4px">${esc(f.why)}</div>${quick ? `<div class="small" style="margin-top:4px">Sources: ${quick}${cmpBtn}</div>` : ""}${f.citations.length ? `<details><summary>${f.citations.length} quoted source${f.citations.length > 1 ? "s" : ""}</summary>${cites}</details>` : ""}${rev}</div>`;
 }
@@ -946,7 +971,7 @@ async function saveReview(fid, decision, note) {
   current.reviews = r.reviews;
 }
 function startReview() {
-  const ids = current.result.findings.filter(f => f.needs_human).map(f => f.id);
+  const ids = current.result.findings.filter(f => f.needs_human).sort((a, b) => isContested(b) - isContested(a)).map(f => f.id);  // contested first
   RV = {ids, i: Math.max(0, ids.findIndex(id => !current.reviews[id])), busy: false};
   $("#rv").classList.remove("hidden"); renderReview();
 }
@@ -974,6 +999,7 @@ function renderReview() {
   el.innerHTML = head + `
     <div class="row" style="margin-top:14px;align-items:flex-start"><span class="b ${STATUS[f.status] || "mute"}">${esc(f.status)}</span><b class="grow">${esc(f.claim)}${(f.data || {}).locator ? ` <span class="small">${esc(f.data.locator)}</span>` : ""}</b><span class="small nw">confidence ${f.confidence.toFixed(2)}</span></div>
     <div class="small" style="margin-top:6px"><b>Why you were asked:</b> ${esc(f.why)}</div>
+    ${(() => { const x = (current.cross_read || {})[f.id]; return x ? `<div class="small" style="margin-top:4px"><b>Independent reader</b> (${esc(x.model)}, read the whole datasheet blind): <b>${esc(x.verdict)}</b> ${x.agrees ? "(agrees)" : "(differs: look at this one first)"}${x.quote && x.page ? ` · p.${x.page}: “${esc(x.quote)}”` : ""}</div>` : ""; })()}
     ${q}${specC && subC ? `<div style="margin-top:8px"><button class="linkbtn" data-cmp="${cite(specC)},${cite(subC)}">Compare the spec and the supplier's page side by side</button></div>` : ""}
     ${r ? `<div class="rv-q" style="border-left:4px solid var(--ok)">You decided: <b>${r.decision === "agree" ? "agree with the agent" : esc(r.decision)}</b>${r.note ? " · " + esc(r.note) : ""}</div>` : ""}
     <div class="rv-actions"><button class="btn primary" data-dec="agree">Agree with the agent <kbd>A</kbd></button>
@@ -1025,7 +1051,7 @@ const SETNOTE = {1: "before our fixes", 2: "after the first fixes", 3: "fresh do
     <td class="nw"><span class="bar-s"><i style="width:${Math.round(c.accuracy * 100)}%"></i></span>${pct(c.accuracy)}</td>
     <td class="n">${c.false_approvals}</td><td class="n">${c.false_rejections}</td><td class="n">${c.fabrications == null ? "n/a" : c.fabrications}</td>
     <td class="n">${pct(c.handoff_rate)}</td><td class="n">${c.auto_correct} / ${c.auto_total}</td><td class="n">$${c.cost_usd.toFixed(3)}</td></tr>`).join("");
-  el.innerHTML = `<div class="tiles fade-in">${tiles}</div>
+  el.innerHTML = `<div class="tiles fade-in">${tiles}</div>${crossCardHtml(P.cross)}
     <div class="card scroll"><table><tr><th>Case</th><th>Document</th><th>Split</th><th class="n">Correct</th><th>Accuracy</th><th class="n">False approvals</th><th class="n">False rejections</th><th class="n">Invented quotes</th><th class="n">Sent to a person</th><th class="n">Automatic answers right</th><th class="n">Cost</th></tr>${rows}</table>
       <p class="small">Scored ${esc(P.built || "")}. Click a row to open that run with all its sources. Held-out cases were labelled before any run and run once. Set 1 was scored before our fixes and not re-run; set 2 was labelled after them and run once. About three answers in four go to a person: that is the price of never being confidently wrong, and the review queue is built to make it quick.</p></div>`;
   el.querySelectorAll("tr[data-rid]").forEach(r => { r.onclick = () => openResult(r.dataset.rid).catch(e => toast(e.message)); r.onkeydown = e => { if (e.key === "Enter") r.click(); }; });

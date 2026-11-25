@@ -1,0 +1,768 @@
+{
+ "G7": {
+  "case": "G7",
+  "pages": 4,
+  "answers": {
+   "R01": {
+    "verdict": "complies",
+    "page": 1,
+    "quote": "Standby ... 2000 (2500)"
+   },
+   "R02": {
+    "verdict": "unclear",
+    "page": null,
+    "quote": "mentioned or stated without a verifiable quote"
+   },
+   "R03": {
+    "verdict": "unclear",
+    "page": null,
+    "quote": "mentioned or stated without a verifiable quote"
+   },
+   "R04": {
+    "verdict": "unclear",
+    "page": null,
+    "quote": "mentioned or stated without a verifiable quote"
+   },
+   "R05": {
+    "verdict": "complies",
+    "page": 1,
+    "quote": "Cat® 3516C ... Aspiration TA"
+   },
+   "R06": {
+    "verdict": "unclear",
+    "page": null,
+    "quote": "mentioned or stated without a verifiable quote"
+   },
+   "R07": {
+    "verdict": "unclear",
+    "page": null,
+    "quote": "mentioned or stated without a verifiable quote"
+   },
+   "R08": {
+    "verdict": "complies",
+    "page": 3,
+    "quote": "100% load with fan – L/hr (gal/hr) 505.8 (133.6)"
+   },
+   "R09": {
+    "verdict": "complies",
+    "page": 1,
+    "quote": "Cooling systems available to operate in ambient temperatures up to 50°C (122°F)"
+   },
+   "R10": {
+    "verdict": "complies",
+    "page": 1,
+    "quote": "Meets U.S. EPA Stationary Emergency Use Only (Tier 2) emission standards"
+   },
+   "R11": {
+    "verdict": "deviates",
+    "page": 1,
+    "quote": "Cooling systems available to operate in ambient temperatures up to 50°C (122°F)"
+   },
+   "R12": {
+    "verdict": "missing",
+    "page": null,
+    "quote": ""
+   },
+   "R13": {
+    "verdict": "unclear",
+    "page": null,
+    "quote": "mentioned or stated without a verifiable quote"
+   },
+   "R14": {
+    "verdict": "unclear",
+    "page": null,
+    "quote": "mentioned or stated without a verifiable quote"
+   },
+   "R15": {
+    "verdict": "unclear",
+    "page": null,
+    "quote": "mentioned or stated without a verifiable quote"
+   },
+   "R16": {
+    "verdict": "unclear",
+    "page": null,
+    "quote": "mentioned or stated without a verifiable quote"
+   },
+   "R17": {
+    "verdict": "missing",
+    "page": null,
+    "quote": ""
+   },
+   "R18": {
+    "verdict": "missing",
+    "page": null,
+    "quote": ""
+   },
+   "R19": {
+    "verdict": "missing",
+    "page": null,
+    "quote": ""
+   },
+   "R20": {
+    "verdict": "unclear",
+    "page": null,
+    "quote": "mentioned or stated without a verifiable quote"
+   },
+   "R21": {
+    "verdict": "missing",
+    "page": null,
+    "quote": ""
+   }
+  },
+  "doc_id": "cat-3516c-2000ekw-lehe1376",
+  "model": "qwen/qwen3.8-27b"
+ },
+ "G2": {
+  "case": "G2",
+  "pages": 6,
+  "answers": {
+   "R01": {
+    "verdict": "complies",
+    "page": 1,
+    "quote": "Standby: kW 2000 kVA 2500"
+   },
+   "R02": {
+    "verdict": "unclear",
+    "page": null,
+    "quote": "mentioned or stated without a verifiable quote"
+   },
+   "R03": {
+    "verdict": "deviates",
+    "page": 3,
+    "quote": "480 V ... 9957"
+   },
+   "R04": {
+    "verdict": "complies",
+    "page": 3,
+    "quote": "Brushless, Permanent-Magnet Pilot Exciter"
+   },
+   "R05": {
+    "verdict": "complies",
+    "page": 2,
+    "quote": "4-Cycle, Turbocharged, Intercooled ... 12-V"
+   },
+   "R06": {
+    "verdict": "unclear",
+    "page": null,
+    "quote": "mentioned or stated without a verifiable quote"
+   },
+   "R07": {
+    "verdict": "deviates",
+    "page": 3,
+    "quote": "Battery voltage (DC) 12"
+   },
+   "R08": {
+    "verdict": "complies",
+    "page": 1,
+    "quote": "100% at Standby 528.3 (139.6)"
+   },
+   "R09": {
+    "verdict": "complies",
+    "page": 2,
+    "quote": "Ambient temperature, °C (°F) ... 50 (122)"
+   },
+   "R10": {
+    "verdict": "complies",
+    "page": 1,
+    "quote": "Tier 2 EPA-Certified for Stationary Emergency Applications"
+   },
+   "R11": {
+    "verdict": "deviates",
+    "page": 2,
+    "quote": "Ambient temperature, °C (°F) ... 50 (122)"
+   },
+   "R12": {
+    "verdict": "complies",
+    "page": 2,
+    "quote": "Rated rpm ... 1800"
+   },
+   "R13": {
+    "verdict": "complies",
+    "page": 3,
+    "quote": "4-Pole... Brushless... two-thirds pitch windings"
+   },
+   "R14": {
+    "verdict": "complies",
+    "page": 3,
+    "quote": "Class H, Synthetic"
+   },
+   "R15": {
+    "verdict": "complies",
+    "page": 4,
+    "quote": "Generator Heater"
+   },
+   "R16": {
+    "verdict": "unclear",
+    "page": null,
+    "quote": "mentioned or stated without a verifiable quote"
+   },
+   "R17": {
+    "verdict": "complies",
+    "page": 3,
+    "quote": "Voltage regulation, no-load to full-load ±0.25%"
+   },
+   "R18": {
+    "verdict": "missing",
+    "page": null,
+    "quote": ""
+   },
+   "R19": {
+    "verdict": "complies",
+    "page": 1,
+    "quote": "Fuel Tank Capacity, L (gal.) 8577-16383 (2266-4328)"
+   },
+   "R20": {
+    "verdict": "deviates",
+    "page": 5,
+    "quote": "Block Heater, 9000 W, 208 V, (Select 1 Ph or 3 Ph)"
+   },
+   "R21": {
+    "verdict": "complies",
+    "page": 6,
+    "quote": "aluminum construction enclosure with internal-mounted, exhaust silencers."
+   }
+  },
+  "doc_id": "kohler-kd2000-g5-626",
+  "model": "qwen/qwen3.8-27b"
+ },
+ "G4": {
+  "case": "G4",
+  "pages": 4,
+  "answers": {
+   "R01": {
+    "verdict": "complies",
+    "page": 1,
+    "quote": "C1000D6ED 1000 (1250)"
+   },
+   "R02": {
+    "verdict": "complies",
+    "page": 2,
+    "quote": "277/480"
+   },
+   "R03": {
+    "verdict": "missing",
+    "page": null,
+    "quote": ""
+   },
+   "R04": {
+    "verdict": "complies",
+    "page": 2,
+    "quote": "Exciter type Permanent Magnet Generator (PMG)"
+   },
+   "R05": {
+    "verdict": "deviates",
+    "page": 2,
+    "quote": "Configuration Four-cycle; in-line; 6-cylinder"
+   },
+   "R06": {
+    "verdict": "complies",
+    "page": 2,
+    "quote": "Frequency regulation Isochronous"
+   },
+   "R07": {
+    "verdict": "complies",
+    "page": 2,
+    "quote": "Starting voltage 24 V, negative ground"
+   },
+   "R08": {
+    "verdict": "missing",
+    "page": null,
+    "quote": ""
+   },
+   "R09": {
+    "verdict": "deviates",
+    "page": 2,
+    "quote": "Standard cooling system High ambient (40 °C) cooling system"
+   },
+   "R10": {
+    "verdict": "complies",
+    "page": 1,
+    "quote": "EPA TIER 2 NSPS CERTIFIED"
+   },
+   "R11": {
+    "verdict": "deviates",
+    "page": 2,
+    "quote": "Standard cooling system High ambient (40 °C) cooling system"
+   },
+   "R12": {
+    "verdict": "complies",
+    "page": 1,
+    "quote": "60 Hz"
+   },
+   "R13": {
+    "verdict": "complies",
+    "page": 2,
+    "quote": "Design Brushless, 4-pole... Stator 2/3 pitch"
+   },
+   "R14": {
+    "verdict": "complies",
+    "page": 2,
+    "quote": "Insulation system Class H"
+   },
+   "R15": {
+    "verdict": "unclear",
+    "page": null,
+    "quote": "mentioned or stated without a verifiable quote"
+   },
+   "R16": {
+    "verdict": "missing",
+    "page": null,
+    "quote": ""
+   },
+   "R17": {
+    "verdict": "complies",
+    "page": 2,
+    "quote": "Voltage regulation, no load to full load ± 1.0%"
+   },
+   "R18": {
+    "verdict": "missing",
+    "page": null,
+    "quote": ""
+   },
+   "R19": {
+    "verdict": "missing",
+    "page": null,
+    "quote": ""
+   },
+   "R20": {
+    "verdict": "deviates",
+    "page": 2,
+    "quote": "208 V and 240V, 1 Phase, 5 kW thermosiphon coolant heater"
+   },
+   "R21": {
+    "verdict": "unclear",
+    "page": null,
+    "quote": "mentioned or stated without a verifiable quote"
+   }
+  },
+  "doc_id": "cummins-s-6786",
+  "model": "qwen/qwen3.8-27b"
+ },
+ "G5": {
+  "case": "G5",
+  "pages": 4,
+  "answers": {
+   "R01": {
+    "verdict": "deviates",
+    "page": 1,
+    "quote": "2,250 kWe/60 Hz/Standby"
+   },
+   "R02": {
+    "verdict": "unclear",
+    "page": null,
+    "quote": "mentioned or stated without a verifiable quote"
+   },
+   "R03": {
+    "verdict": "complies",
+    "page": 1,
+    "quote": "skVA@30% voltage dip 5,760"
+   },
+   "R04": {
+    "verdict": "complies",
+    "page": 2,
+    "quote": "Permanent Magnet Generator (PMG) supply to regulator"
+   },
+   "R05": {
+    "verdict": "complies",
+    "page": 2,
+    "quote": "16V4000 diesel engine ... 4-cycle"
+   },
+   "R06": {
+    "verdict": "complies",
+    "page": 2,
+    "quote": "Governor - electronic isochronous"
+   },
+   "R07": {
+    "verdict": "unclear",
+    "page": null,
+    "quote": "mentioned or stated without a verifiable quote"
+   },
+   "R08": {
+    "verdict": "deviates",
+    "page": 3,
+    "quote": "At 100% of power rating: L/hr (gal/hr) 614 (162)"
+   },
+   "R09": {
+    "verdict": "unclear",
+    "page": null,
+    "quote": "chunks disagree: deviates p1; complies p3"
+   },
+   "R10": {
+    "verdict": "unclear",
+    "page": null,
+    "quote": "mentioned or stated without a verifiable quote"
+   },
+   "R11": {
+    "verdict": "deviates",
+    "page": 1,
+    "quote": "50 °C"
+   },
+   "R12": {
+    "verdict": "complies",
+    "page": 3,
+    "quote": "Rated rpm 1,800"
+   },
+   "R13": {
+    "verdict": "complies",
+    "page": 2,
+    "quote": "Brushless, rotating field generator ... 2/3 pitch windings ... 4 pole"
+   },
+   "R14": {
+    "verdict": "deviates",
+    "page": 2,
+    "quote": "130 °C standby temperature rise"
+   },
+   "R15": {
+    "verdict": "missing",
+    "page": null,
+    "quote": ""
+   },
+   "R16": {
+    "verdict": "missing",
+    "page": null,
+    "quote": ""
+   },
+   "R17": {
+    "verdict": "complies",
+    "page": 2,
+    "quote": "± 0.25% voltage regulation no load to full load"
+   },
+   "R18": {
+    "verdict": "complies",
+    "page": 2,
+    "quote": "5% maximum total harmonic distortion"
+   },
+   "R19": {
+    "verdict": "missing",
+    "page": null,
+    "quote": ""
+   },
+   "R20": {
+    "verdict": "missing",
+    "page": null,
+    "quote": ""
+   },
+   "R21": {
+    "verdict": "missing",
+    "page": null,
+    "quote": ""
+   }
+  },
+  "doc_id": "mtu-16v4000-ds2250-60hz-50c",
+  "model": "qwen/qwen3.8-27b"
+ },
+ "G6": {
+  "case": "G6",
+  "pages": 4,
+  "answers": {
+   "R01": {
+    "verdict": "complies",
+    "page": 1,
+    "quote": "277/480 3 60 2000/2500 3007"
+   },
+   "R02": {
+    "verdict": "unclear",
+    "page": null,
+    "quote": "mentioned or stated without a verifiable quote"
+   },
+   "R03": {
+    "verdict": "unclear",
+    "page": null,
+    "quote": "mentioned or stated without a verifiable quote"
+   },
+   "R04": {
+    "verdict": "complies",
+    "page": 1,
+    "quote": "The pilot-excited, permanent-magnet generator (PMG) provides superior short-circuit capability."
+   },
+   "R05": {
+    "verdict": "complies",
+    "page": 2,
+    "quote": "Engine: type 4-Cycle, Turbocharged, Intercooled ... Cylinder arrangement 16V"
+   },
+   "R06": {
+    "verdict": "complies",
+    "page": 1,
+    "quote": "An electronic, isochronous governor delivers precise frequency regulation."
+   },
+   "R07": {
+    "verdict": "unclear",
+    "page": null,
+    "quote": "mentioned or stated without a verifiable quote"
+   },
+   "R08": {
+    "verdict": "unclear",
+    "page": null,
+    "quote": "chunks disagree: deviates p2; complies p3"
+   },
+   "R09": {
+    "verdict": "complies",
+    "page": 3,
+    "quote": "Ambient temperature, C ( F) 40 (105) 50 (122)"
+   },
+   "R10": {
+    "verdict": "complies",
+    "page": 1,
+    "quote": "The 60 Hz generator set engine is certified by the Environmental Protection Agency (EPA)."
+   },
+   "R11": {
+    "verdict": "deviates",
+    "page": 1,
+    "quote": "Derate 0.4% per 5.5 C (10 F) temperature above 25 C (77 F)."
+   },
+   "R12": {
+    "verdict": "complies",
+    "page": 2,
+    "quote": "Fuel Rated rpm 1800"
+   },
+   "R13": {
+    "verdict": "complies",
+    "page": 2,
+    "quote": "Type 4-Pole, Rotating Field ... two-thirds pitch windings"
+   },
+   "R14": {
+    "verdict": "unclear",
+    "page": null,
+    "quote": "mentioned or stated without a verifiable quote"
+   },
+   "R15": {
+    "verdict": "unclear",
+    "page": null,
+    "quote": "mentioned or stated without a verifiable quote"
+   },
+   "R16": {
+    "verdict": "unclear",
+    "page": null,
+    "quote": "mentioned or stated without a verifiable quote"
+   },
+   "R17": {
+    "verdict": "unclear",
+    "page": null,
+    "quote": "mentioned or stated without a verifiable quote"
+   },
+   "R18": {
+    "verdict": "missing",
+    "page": null,
+    "quote": ""
+   },
+   "R19": {
+    "verdict": "missing",
+    "page": null,
+    "quote": ""
+   },
+   "R20": {
+    "verdict": "unclear",
+    "page": null,
+    "quote": "mentioned or stated without a verifiable quote"
+   },
+   "R21": {
+    "verdict": "missing",
+    "page": null,
+    "quote": ""
+   }
+  },
+  "doc_id": "kohler-2000rozd4-spec-sheet",
+  "model": "qwen/qwen3.8-27b"
+ },
+ "G8": {
+  "case": "G8",
+  "pages": 7,
+  "answers": {
+   "R01": {
+    "verdict": "unclear",
+    "page": null,
+    "quote": "chunks disagree: complies p1; deviates p5"
+   },
+   "R02": {
+    "verdict": "unclear",
+    "page": null,
+    "quote": "mentioned or stated without a verifiable quote"
+   },
+   "R03": {
+    "verdict": "unclear",
+    "page": null,
+    "quote": "mentioned or stated without a verifiable quote"
+   },
+   "R04": {
+    "verdict": "complies",
+    "page": 1,
+    "quote": "Permanent Magnet Generator (PMG)"
+   },
+   "R05": {
+    "verdict": "complies",
+    "page": 2,
+    "quote": "Configuration Four Cycle; Vee; 16 Cylinder"
+   },
+   "R06": {
+    "verdict": "complies",
+    "page": 2,
+    "quote": "Frequency regulation Isochronous"
+   },
+   "R07": {
+    "verdict": "unclear",
+    "page": null,
+    "quote": "mentioned or stated without a verifiable quote"
+   },
+   "R08": {
+    "verdict": "unclear",
+    "page": null,
+    "quote": "chunks disagree: complies p5; deviates p6"
+   },
+   "R09": {
+    "verdict": "unclear",
+    "page": null,
+    "quote": "chunks disagree: deviates p1; complies p6"
+   },
+   "R10": {
+    "verdict": "complies",
+    "page": 1,
+    "quote": "EPA TIER 2 NSPS CERTIFIED"
+   },
+   "R11": {
+    "verdict": "deviates",
+    "page": 1,
+    "quote": "High ambient (40 °C) and enhanced high ambient (50 °C)"
+   },
+   "R12": {
+    "verdict": "complies",
+    "page": 5,
+    "quote": "Rated speed rpm 1800"
+   },
+   "R13": {
+    "verdict": "complies",
+    "page": 2,
+    "quote": "Design Brushless, 4-pole... Stator 2/3 pitch"
+   },
+   "R14": {
+    "verdict": "complies",
+    "page": 1,
+    "quote": "class H insulation"
+   },
+   "R15": {
+    "verdict": "unclear",
+    "page": null,
+    "quote": "mentioned or stated without a verifiable quote"
+   },
+   "R16": {
+    "verdict": "unclear",
+    "page": null,
+    "quote": "mentioned or stated without a verifiable quote"
+   },
+   "R17": {
+    "verdict": "complies",
+    "page": 2,
+    "quote": "Voltage regulation, no load to full load ± 0.5%"
+   },
+   "R18": {
+    "verdict": "complies",
+    "page": 2,
+    "quote": "AC waveform total harmonic distortion (THDV) < 5% no load to full linear load"
+   },
+   "R19": {
+    "verdict": "missing",
+    "page": null,
+    "quote": ""
+   },
+   "R20": {
+    "verdict": "deviates",
+    "page": 2,
+    "quote": "240V thermo-statically controlled coolant heater"
+   },
+   "R21": {
+    "verdict": "missing",
+    "page": null,
+    "quote": ""
+   }
+  },
+  "doc_id": "cummins-c2000d6e-spec-sheet",
+  "model": "qwen/qwen3.8-27b"
+ },
+ "U1": {
+  "case": "U1",
+  "pages": 17,
+  "answers": {
+   "U01": {
+    "verdict": "unclear",
+    "page": null,
+    "quote": "chunks disagree: complies p2; deviates p3; deviates p12; complies p15"
+   },
+   "U02": {
+    "verdict": "deviates",
+    "page": 12,
+    "quote": "Output active power at 40 °C (kW) ... 1080"
+   },
+   "U03": {
+    "verdict": "deviates",
+    "page": 12,
+    "quote": "Nominal output voltage (V) 400 (380/415 selectable). 3Ph or 3Ph + N"
+   },
+   "U04": {
+    "verdict": "complies",
+    "page": 4,
+    "quote": "Double Conversion Mode (VFI)"
+   },
+   "U05": {
+    "verdict": "unclear",
+    "page": null,
+    "quote": "chunks disagree: complies p2; complies p4; deviates p6; complies p12; complies p13; complies p15"
+   },
+   "U06": {
+    "verdict": "complies",
+    "page": 3,
+    "quote": "PF > 0.99 - THDi < 3%"
+   },
+   "U07": {
+    "verdict": "complies",
+    "page": 12,
+    "quote": "Output voltage stability by load variation 0-100% (%) - static ±1"
+   },
+   "U08": {
+    "verdict": "complies",
+    "page": 12,
+    "quote": "Inverter Overload Capacity* 110% continuous, 125% for 10mins, 150% for 1min"
+   },
+   "U09": {
+    "verdict": "complies",
+    "page": 4,
+    "quote": "Static Bypass"
+   },
+   "U10": {
+    "verdict": "unclear",
+    "page": null,
+    "quote": "chunks disagree: complies p4; deviates p12"
+   },
+   "U11": {
+    "verdict": "unclear",
+    "page": null,
+    "quote": "mentioned or stated without a verifiable quote"
+   },
+   "U12": {
+    "verdict": "complies",
+    "page": 5,
+    "quote": "Four units at 33% load each"
+   },
+   "U13": {
+    "verdict": "missing",
+    "page": null,
+    "quote": ""
+   },
+   "U14": {
+    "verdict": "unclear",
+    "page": null,
+    "quote": "mentioned or stated without a verifiable quote"
+   },
+   "U15": {
+    "verdict": "unclear",
+    "page": null,
+    "quote": "chunks disagree: deviates p12; complies p16"
+   },
+   "U16": {
+    "verdict": "deviates",
+    "page": 15,
+    "quote": "1200 1200 480 1499 1574 1600 1443 1600 480 3110 4000 ≥96.3% ≥96.3% 148502"
+   }
+  },
+  "doc_id": "vertiv-exl-s1-package",
+  "model": "qwen/qwen3.8-27b"
+ }
+}

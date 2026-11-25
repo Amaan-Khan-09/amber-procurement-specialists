@@ -1,0 +1,45 @@
+{
+ "total": 184,
+ "groups": {
+  "complies: number found, its unit not printed beside it": {
+   "n": 8,
+   "right": 8
+  },
+  "decided by the agent alone": {
+   "n": 57,
+   "right": 56
+  },
+  "complies: the model's judgement of a verified quote": {
+   "n": 34,
+   "right": 25
+  },
+  "unclear: related words found, but no value": {
+   "n": 63,
+   "right": 34
+  },
+  "unclear: a reported value was not in its own quote": {
+   "n": 6,
+   "right": 1
+  },
+  "unclear: other": {
+   "n": 9,
+   "right": 4
+  },
+  "deviates: other": {
+   "n": 1,
+   "right": 0
+  },
+  "deviates: the model's judgement of a verified quote": {
+   "n": 1,
+   "right": 1
+  },
+  "unclear: only some of the required words found": {
+   "n": 2,
+   "right": 0
+  },
+  "unclear: the model and the code disagree": {
+   "n": 3,
+   "right": 2
+  }
+ }
+}

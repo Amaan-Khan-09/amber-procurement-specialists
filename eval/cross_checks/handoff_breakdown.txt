@@ -1,0 +1,16 @@
+184 labelled answers, current decision code
+
+what the answer is                                            n  right  % right
+unclear: related words found, but no value                   63     34      54%
+decided by the agent alone                                   57     56      98%
+complies: the model's judgement of a verified quote          34     25      74%
+unclear: other                                                9      4      44%
+complies: number found, its unit not printed beside it        8      8     100%
+unclear: a reported value was not in its own quote            6      1      17%
+unclear: the model and the code disagree                      3      2      67%
+unclear: only some of the required words found                2      0       0%
+deviates: other                                               1      0       0%
+deviates: the model's judgement of a verified quote           1      1     100%
+
+needs a person: 127/184 = 69%
+breakdown exit 0

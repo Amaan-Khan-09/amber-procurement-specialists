@@ -174,7 +174,7 @@ two drawings we checked by eye exactly (`python scripts/bench_ocr.py --provider 
 
 Answer keys (`eval/answer_keys/`) were written from the source PDFs by the project author with AI assistance,
 **before** the agent was run on that case. Each label has the page and the exact quote; every quote was re-checked
-against its page. They have not yet had an independent review. How to read them: `eval/answer_keys/README.md`.
+against its page. They have had a blind cross-check by a model of another family (it agrees with them on 100 of 142 cells, 70 %, kappa 0.57, see below) and are waiting for a human reviewer. How to read them: `eval/answer_keys/README.md`.
 
 | Case | Document | Split | Labels |
 |---|---|---|---|
@@ -296,6 +296,46 @@ full check with no deviation), two **do not fit** (a 1000 kW unit and a shop dra
 voltage, both shown failing the rating with quotes), and four **need a closer look**, each naming the rating the
 datasheet does not show clearly. No product outside the library was named.
 
+## What goes to a person, and the independent reader
+
+About two answers in three go to a person (64 % on the newest set, 69 % over all 184 labelled requirements). Two facts put
+that in proportion. First, **27 % of the requirements are genuinely unclear in the datasheet** (our keys mark 50 of 184 as
+`unclear`: an option listed but not marked as supplied, a claim without numbers), so only the supplier can answer them: any
+honest system hands those over. Second, what is inside the rest (`python scripts/handoff_breakdown.py`, current code, all labelled
+answers):
+
+| What the answer is | Answers | Right |
+|---|---|---|
+| decided by the agent alone | 57 | 56 (98 %) |
+| unclear: related words found, but no value | 63 | 34 (54 %) |
+| complies: the model's judgement of a verified quote | 34 | 25 (74 %) |
+| number found, its unit not printed beside it | 8 | 8 (100 %) |
+| unclear: other kinds (a reported value not in its own quote, only some required words found, model and code disagree) | 20 | 7 (35 %) |
+
+The "judgement" answers are right three times in four, so they are not "just glance": one in four is a derating footnote or an
+unmarked option that needs a person.
+
+**The independent reader.** A model of another family (Qwen 3.8 27B) reads each whole datasheet **blind** (it never sees our answers
+or our keys) and answers every requirement; the result is shown next to each answer on the page, and answers it contradicts are
+filtered as "contested" and put first in the review queue. It never changes a verdict. On 142 labelled requirements from 7
+datasheets (`python scripts/analyze_agreement.py`):
+
+| Our pipeline's answer | Independent reader | Answers | Pipeline right |
+|---|---|---|---|
+| decided by the agent alone | agrees | 34 | 34 (100 %) |
+| handed to a person | **agrees** | 49 | **41 (84 %)** |
+| handed to a person | **disagrees** | 50 | **19 (38 %)** |
+
+So a contested answer is far more likely to be wrong, and that is what the queue order uses. Agreement is not strong enough to approve
+anything on its own (84 % against the 98 % of the answers the agent decides alone), so everything it does not settle still goes to a
+person. Two negative results, kept because they shape the design: (1) a cheaper second opinion that only sees the *quoted evidence*
+did **not** work (agreement 14 right of 20, disagreement 20 of 24: the second model shares the first one's blind spots, such as a
+derating footnote or an unmarked option elsewhere in the sheet), so it is not used; (2) where the pipeline says "unclear" and the reader
+gives a concrete verdict (complies or deviates) the reader is right only 7 of 22 times, so it never overrules (when it says "missing" it
+is right 13 of 15). The reader costs about 8,000 to 18,000 tokens a datasheet on its own free allowance and reads one page-chunk a
+minute on a free tier, so it is run for datasheets of up to 20 pages (`scripts/cross_check_keys.py`); the 66- and 105-page packages are
+not cross-read.
+
 ## Data
 
 Everything is public or made by us, and cited in `data/SOURCES.md`.
@@ -322,6 +362,10 @@ Everything is public or made by us, and cited in `data/SOURCES.md`.
   person, mostly as `unclear` where a careful reader would say `missing`. On held-out sets 2 and 3 (after our fixes)
   25 of the 26 answers the agent gave on its own matched our key, and the one that did not asked the vendor for information;
   the time saved is in reading and quoting, not in removing the review.
+* **The answer keys are not yet reviewed by an independent human.** A blind model labelled 142 of the 184 requirements and disagrees with
+  the keys on 42; those 42 cells plus 12 random agreed ones are a checklist for a person (`eval/cross_checks/REVIEW.md`,
+  `human_review.csv`), and `scripts/apply_human_review.py` reports the result without changing any label, showing the accuracy under
+  both the keys as written and the person's labels. That review is pending.
 * Answer keys cover generators (six datasheets) and one UPS package. Switchgear and transformers have specs and
   delivery forecasts, but no submittal answer keys yet, and product discovery is set up for generators and UPS only.
 * Product discovery screens five key ratings; a product that passes still needs the full submittal check.
