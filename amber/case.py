@@ -38,7 +38,7 @@ import time
 from datetime import date, datetime
 from pathlib import Path
 
-from . import __version__, checks, docs, linking, submittal, triage, vendors
+from . import __version__, checks, docs, evidence, linking, registries, submittal, triage, vendors
 from .schema import Verdict
 from .verify import verify
 
@@ -85,7 +85,7 @@ def _file_sha(path: str | Path) -> str:
 
 def _code_sha() -> str:
     h = hashlib.sha256()
-    for f in ("case.py", "triage.py", "linking.py", "vendors.py", "submittal.py", "checks.py", "verify.py", "bids.py"):
+    for f in ("case.py", "triage.py", "linking.py", "vendors.py", "evidence.py", "inspect_evidence.py", "registries.py", "submittal.py", "checks.py", "verify.py", "bids.py"):
         h.update(Path(__file__).with_name(f).read_bytes().replace(b"\r\n", b"\n"))
     return h.hexdigest()[:12]
 
@@ -301,7 +301,7 @@ def needs_person(verdict: str, conf: float, cites: list) -> bool:
 
 def reconcile_supplier(reqs: list[dict], d_doc: docs.Document, d_offers: dict, c_docs: list[docs.Document],
                        c_offers: list[dict], second: dict | None = None, reader: dict | None = None,
-                       inspect: bool = True) -> dict:
+                       inspect: bool = True, context: dict | None = None) -> dict:
     """Datasheet + the supplier's own documents (bid, replies) -> one finding per requirement, routed.
     reader: the independent reader's answers with quotes; inspect=False gives the version before the second look
     (amber/inspect_evidence.py), so both can be compared on the same readings."""
@@ -310,20 +310,50 @@ def reconcile_supplier(reqs: list[dict], d_doc: docs.Document, d_offers: dict, c
     c_offers = [copy.deepcopy(o) for o in c_offers]
     for o in c_offers:
         submittal._flag_shared_evidence(reqs, o)
-    parts_by_req, base_by_req = {}, {}
+    ds_meta = evidence.doc_meta(d_doc, "datasheet")
+    metas = [evidence.doc_meta(cd, "reply" if "reply" in cd.doc_id else "bid") for cd in c_docs]
+    parts_by_req, base_by_req, commit_by_req = {}, {}, {}
     for r in reqs:
         dparts = [_part(c, d_offers.get(c["cid"]), d_doc) for c in r["conditions"]]
         base_by_req[r["req_id"]] = dparts
-        merged = []
+        if inspect:
+            from .inspect_evidence import compute_text, soften_absence
+            for i, c in enumerate(r["conditions"]):
+                d = dparts[i]
+                got = compute_text(c, str((d.get("cite") or {}).get("quote", ""))) if d["verdict"] == "deviates" else None
+                if got and got["verdict"] == "complies":  # the same words in another notation
+                    dparts = dparts[:i] + [dict(d, verdict="complies", conf=0.8, why=got["why"])] + dparts[i + 1:]
+                else:
+                    dparts = dparts[:i] + [soften_absence(c, d)] + dparts[i + 1:]
+        merged, kept = [], []
         for i, c in enumerate(r["conditions"]):
             commits = [_part(c, o.get(c["cid"]), cd) for cd, o in zip(c_docs, c_offers)]
-            merged.append(merge_condition(dparts[i], commits))
+            if inspect:  # a document that merely omits words does not contradict another that states them
+                from .inspect_evidence import soften_absence
+                commits = [soften_absence(c, p) for p in commits]
+            res = evidence.resolve_commitments(commits, c_docs, metas) if inspect else \
+                {"effective": list(range(len(commits))), "superseded": [], "conflict": None}
+            m = merge_condition(dparts[i], [commits[j] for j in res["effective"]])
+            if res["conflict"]:
+                a, b = (commits[j] for j in res["conflict"])
+                m = dict(a, verdict="unclear", conf=0.5, kind="conflicting records", source=f"{a['doc']} vs {b['doc']}",
+                         other_cite=b["cite"], why=f"conflicting records from the supplier: {a['doc']} says {a['why'][:110]!r}; "
+                                                   f"{b['doc']} says {b['why'][:110]!r}; neither says it replaces the other")
+            merged.append(m)
+            kept.append((commits, res))
         parts_by_req[r["req_id"]] = merged
+        commit_by_req[r["req_id"]] = kept
     conditional = apply_conditional(reqs, parts_by_req, d_doc, c_docs)
     inspected = []
     if inspect:
         from .inspect_evidence import inspect_parts
         inspected = inspect_parts(reqs, parts_by_req, d_doc, reader)
+    record = []
+    for r in reqs:
+        for i, c in enumerate(r["conditions"]):
+            commits, res = commit_by_req[r["req_id"]][i]
+            record += evidence.record_for(r, c, base_by_req[r["req_id"]][i], commits, res, parts_by_req[r["req_id"]][i],
+                                          metas, ds_meta, context or {})
     findings = []
     for r in reqs:
         parts = parts_by_req[r["req_id"]]
@@ -358,7 +388,7 @@ def reconcile_supplier(reqs: list[dict], d_doc: docs.Document, d_offers: dict, c
                           ((second or {}).get(r["req_id"]) if f["status"] in triage.OPEN else None))
         f["route"] = rt
         findings.append(f)
-    return {"findings": findings, "conditional": conditional, "inspected": inspected,
+    return {"findings": findings, "conditional": conditional, "inspected": inspected, "evidence": record,
             "baseline": [{"req_id": r["req_id"], "parts": base_by_req[r["req_id"]]} for r in reqs]}
 
 
@@ -402,7 +432,7 @@ class CaseFile:
     def _inputs(self, step: str) -> str:
         c = self.cfg
         files = {"requirements": [c["spec"], c["schedule"], c["checklist"]],
-                 "discover": [str(vendors.DIRECTORY)], "link": [c["bid_form"], *c["bids"].values()],
+                 "discover": [str(vendors.DIRECTORY), str(registries.SNAPSHOT)], "link": [c["bid_form"], *c["bids"].values()],
                  "bids": [c["saved_package"]], "commitments": [*c["bids"].values()],
                  "prequalify": sorted(glob.glob(str(vendors.PACKETS / "*.pdf"))),
                  "replies": sorted(glob.glob(str(ROOT / c["inbox"] / "*"))) if self.memory.get("replies_allowed") else []}.get(step, [])
@@ -533,9 +563,22 @@ class CaseFile:
         row = submittal.load_schedule(str(ROOT / c["schedule"]), c["tag"])
         res = vendors.discover_vendors({"tag": c["tag"], "item": row["item"], "kw": float(row["standby_kw"]), "class": c["class"]},
                                        fit, bids, dirs)
-        res["_summary"] = (f"{len(res['ranked'])} vendors could supply it, {len(res['excluded'])} set aside; first: "
+        res["public_record"] = self._registry(bids_names=[r["name"] for r in dirs if r["bid_file"]])
+        res["_summary"] = (f"{len((res['public_record'].get('discovery') or {}).get('candidates', []))} legal entities in federal "
+                           f"award records for this size (looked up {res['public_record'].get('taken', '-')}); in the project's "
+                           f"vendor master (mock) {len(res['ranked'])} vendors could supply it, {len(res['excluded'])} set aside; first: "
                            f"{res['ranked'][0]['name']} ({res['ranked'][0]['points']} points)")
         return res
+
+    def _registry(self, bids_names: list[str] | None = None) -> dict:
+        """Public registry lookups (amber/registries.py): live with --live, otherwise the saved, timestamped snapshot."""
+        if self.live:
+            try:
+                return registries.refresh_snapshot(bids_names or [])
+            except Exception as e:  # a lookup that fails is reported, never silently treated as clean
+                self.log("registry refresh failed", why=str(e)[:200])
+        return registries.snapshot() or {"taken": None, "discovery": {"status": "unavailable", "candidates": [],
+                                         "why": "no saved lookup: run with --live"}, "screens": {}}
 
     def step_link(self, crash=False) -> dict:
         c = self.cfg
@@ -629,7 +672,13 @@ class CaseFile:
             d_doc = docs.load(ROOT / "data" / "submittals" / name)
             d_offers = offers_from_run(json.loads(saved["run"].read_text(encoding="utf-8")))
             c_docs, c_offers = self._commitment_offers(b)
-            res = reconcile_supplier(reqs, d_doc, d_offers, c_docs, c_offers, seconds.get(saved["case"]), readers.get(saved["case"]))
+            link = self.output("link")["products"][b]
+            names = {r["vendor_id"]: r["name"] for r in vendors.load_directory()}
+            context = {"supplier": names.get(self.memory["bidder_vendor"].get(b), b), "bid": b,
+                       "tags": f"{self.cfg['tag_group']}-A..D", "model": link["product"],
+                       "model_link": link["status"]}
+            res = reconcile_supplier(reqs, d_doc, d_offers, c_docs, c_offers, seconds.get(saved["case"]), readers.get(saved["case"]),
+                                     context=context)
             base = reconcile_supplier(reqs, d_doc, d_offers, [], [], seconds.get(saved["case"]), readers.get(saved["case"]))
             res["before_inspection"] = reconcile_supplier(reqs, d_doc, d_offers, c_docs, c_offers, seconds.get(saved["case"]),
                                                           inspect=False)["findings"]
@@ -657,6 +706,8 @@ class CaseFile:
             hint = {"name": link[b]["product"], "citation": link[b].get("bid_citation")}
             out[b] = vendors.prequalify({"vendor_id": vid, "name": dirs[vid]["name"]}, documents, need, as_of, llm=llm,
                                         live=self.live, manufacturer_hint=hint, dir_row=dirs[vid])
+            screen = (self.output("discover").get("public_record") or {}).get("screens", {}).get(dirs[vid]["name"])
+            vendors.apply_registry(out[b], screen)
         return {"_summary": "; ".join(f"{b} {v['overall']}" for b, v in out.items()), **out}
 
     def step_ranges(self, crash=False) -> dict:

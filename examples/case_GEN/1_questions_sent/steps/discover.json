@@ -390,5 +390,659 @@
   "ocr": false
  },
  "note": "Vendors come only from the vendor master; products only from datasheets we hold. Points are listed so a buyer can disagree with any of them.",
- "_summary": "5 vendors could supply it, 3 set aside; first: Tidewater Generator Co. (9.84 points)"
+ "public_record": {
+  "taken": "2026-11-26T16:40:08+00:00",
+  "discovery": {
+   "source": "USAspending.gov award search, product code 6115 with size keywords (U.S. Treasury)",
+   "endpoint": "https://api.usaspending.gov/api/v2/search/spending_by_award/",
+   "query": "PSC 6115 awards since 2019-01-01 mentioning 2000 KW, 2000KW, 2 MW, 2MW, 1500 KW, 2500 KW",
+   "looked_up": "2026-11-26T16:38:29+00:00",
+   "status": "confirmed",
+   "candidates": [
+    {
+     "legal_entity": "SOUTHERN POWER SYSTEMS SERVICES INC",
+     "uei": "TFJ4ZCQSNP69",
+     "evidence": [
+      {
+       "award_id": "GSQ0417DB0113",
+       "date": "2017-09-18",
+       "agency": "General Services Administration",
+       "state": "MD",
+       "amount": 828932.0,
+       "description": "2000KW GENERATOR FOR ARL",
+       "work": "supply",
+       "kw": 2000.0,
+       "url": "https://www.usaspending.gov/award/CONT_AWD_GSQ0417DB0113_4732_GS07F9266S_4730"
+      }
+     ],
+     "establishes": "supply",
+     "largest_kw": 2000.0,
+     "points": 5.2,
+     "why": "1 award record(s); best one is supply mentioning 2000 kW (General Services Administration, 2017-09-18, MD): '2000KW GENERATOR FOR ARL'",
+     "not_established": "willingness to bid, manufacturer authorization, service coverage near the site, insurance, safety record: all need pre-qualification"
+    },
+    {
+     "legal_entity": "CUMMINS INC",
+     "uei": "KQ2SB6N1APB7",
+     "evidence": [
+      {
+       "award_id": "75F40124P00081",
+       "date": "2024-02-29",
+       "agency": "Department of Health and Human Services",
+       "state": "TN",
+       "amount": 777817.0,
+       "description": "2000KW-STANDBY GENERATOR",
+       "work": "supply",
+       "kw": 2000.0,
+       "url": "https://www.usaspending.gov/award/CONT_AWD_75F40124P00081_7524_-NONE-_-NONE-"
+      }
+     ],
+     "establishes": "supply",
+     "largest_kw": 2000.0,
+     "points": 5.2,
+     "why": "1 award record(s); best one is supply mentioning 2000 kW (Department of Health and Human Services, 2024-02-29, TN): '2000KW-STANDBY GENERATOR'",
+     "not_established": "willingness to bid, manufacturer authorization, service coverage near the site, insurance, safety record: all need pre-qualification"
+    },
+    {
+     "legal_entity": "CUMMINS INC.",
+     "uei": "JEUPMER5ARS8",
+     "evidence": [
+      {
+       "award_id": "FA251720P0085",
+       "date": "2020-09-28",
+       "agency": "Department of Defense",
+       "state": "CO",
+       "amount": 125512.14,
+       "description": "BLDG. 1844 GENERATOR RADIATOR REPLACEMENT TO REPLACE THE RADIATOR SYSTEM ON THE 2000KW GENERATOR AT BLDG. 1844, BY REMOVING THE OLD RADIATOR AND REPLACING IT WITH A NEW RADIATOR.",
+       "work": "supply",
+       "kw": 2000.0,
+       "url": "https://www.usaspending.gov/award/CONT_AWD_FA251720P0085_9700_-NONE-_-NONE-"
+      }
+     ],
+     "establishes": "supply",
+     "largest_kw": 2000.0,
+     "points": 5.2,
+     "why": "1 award record(s); best one is supply mentioning 2000 kW (Department of Defense, 2020-09-28, CO): 'BLDG. 1844 GENERATOR RADIATOR REPLACEMENT TO REPLACE THE RADIATOR SYSTEM ON THE 2000KW GEN'",
+     "not_established": "willingness to bid, manufacturer authorization, service coverage near the site, insurance, safety record: all need pre-qualification"
+    },
+    {
+     "legal_entity": "FEDERAL CONTRACTS LLC",
+     "uei": "TK67EL9NPMD9",
+     "evidence": [
+      {
+       "award_id": "70FB7019F00000177",
+       "date": "2019-09-19",
+       "agency": "Department of Homeland Security",
+       "state": "MD",
+       "amount": 964079.72,
+       "description": "THE PURPOSE OF THIS DELIVERY ORDER IS TO LEASE A 2000KW GENERATOR FOR THE HYATTVILLE OFFICE BUILDING. THE GENERATOR WILL BE LOCATED AT THE VENDOR LOCATION UNTIL THE HYATTSVILLE WILL NEED TO UTILIZE IT",
+       "work": "rental",
+       "kw": 2000.0,
+       "url": "https://www.usaspending.gov/award/CONT_AWD_70FB7019F00000177_7022_GS07F202CA_4732"
+      }
+     ],
+     "establishes": "rental",
+     "largest_kw": 2000.0,
+     "points": 3.2,
+     "why": "1 award record(s); best one is rental mentioning 2000 kW (Department of Homeland Security, 2019-09-19, MD): 'THE PURPOSE OF THIS DELIVERY ORDER IS TO LEASE A 2000KW GENERATOR FOR THE HYATTVILLE OFFIC'",
+     "not_established": "willingness to bid, manufacturer authorization, service coverage near the site, insurance, safety record: all need pre-qualification"
+    },
+    {
+     "legal_entity": "UNITED RENTALS, INC.",
+     "uei": "DZ4JXAPAU222",
+     "evidence": [
+      {
+       "award_id": "N3904018P0225",
+       "date": "2018-05-11",
+       "agency": "Department of Defense",
+       "state": "ME",
+       "amount": 157500.0,
+       "description": "1500 KW GENERATOR RENTAL",
+       "work": "rental",
+       "kw": 1500.0,
+       "url": "https://www.usaspending.gov/award/CONT_AWD_N3904018P0225_9700_-NONE-_-NONE-"
+      }
+     ],
+     "establishes": "rental",
+     "largest_kw": 1500.0,
+     "points": 3.2,
+     "why": "1 award record(s); best one is rental mentioning 1500 kW (Department of Defense, 2018-05-11, ME): '1500 KW GENERATOR RENTAL'",
+     "not_established": "willingness to bid, manufacturer authorization, service coverage near the site, insurance, safety record: all need pre-qualification"
+    },
+    {
+     "legal_entity": "NIXON POWER SERVICES, LLC",
+     "uei": "V1U1NH2NYS93",
+     "evidence": [
+      {
+       "award_id": "15B50023P00000020",
+       "date": "2023-09-26",
+       "agency": "Department of Justice",
+       "state": "TN",
+       "amount": 73850.0,
+       "description": "INSPECTION OF CATERPILLAR 2MW UNIT UPGRADE OF CATERPILLAR 2MW UNIT SWITCHGEAR CONTROLS",
+       "work": "service",
+       "kw": 2000.0,
+       "url": "https://www.usaspending.gov/award/CONT_AWD_15B50023P00000020_1540_-NONE-_-NONE-"
+      }
+     ],
+     "establishes": "service",
+     "largest_kw": 2000.0,
+     "points": 2.7,
+     "why": "1 award record(s); best one is service mentioning 2000 kW (Department of Justice, 2023-09-26, TN): 'INSPECTION OF CATERPILLAR 2MW UNIT UPGRADE OF CATERPILLAR 2MW UNIT SWITCHGEAR CONTROLS'",
+     "not_established": "willingness to bid, manufacturer authorization, service coverage near the site, insurance, safety record: all need pre-qualification"
+    }
+   ],
+   "why": "6 award records, 6 legal entities"
+  },
+  "screens": {
+   "SOUTHERN POWER SYSTEMS SERVICES INC": {
+    "name": "SOUTHERN POWER SYSTEMS SERVICES INC",
+    "entity": {
+     "source": "USAspending.gov recipient search (U.S. Treasury)",
+     "endpoint": "https://api.usaspending.gov/api/v2/recipient/",
+     "query": "SOUTHERN POWER SYSTEMS SERVICES INC",
+     "looked_up": "2026-11-26T16:38:31+00:00",
+     "status": "confirmed",
+     "candidates": [
+      {
+       "legal_entity": "SOUTHERN POWER SYSTEMS SERVICES INC",
+       "uei": "TFJ4ZCQSNP69",
+       "match": 100.0,
+       "federal_award_total": 411554.68,
+       "level": "P"
+      },
+      {
+       "legal_entity": "SOUTHERN POWER SYSTEMS SERVICES, INC",
+       "uei": null,
+       "match": 100.0,
+       "federal_award_total": 0.0,
+       "level": "R"
+      },
+      {
+       "legal_entity": "SOUTHERN POWER SYSTEMS SERVICES  INC.",
+       "uei": null,
+       "match": 100.0,
+       "federal_award_total": 0.0,
+       "level": "R"
+      },
+      {
+       "legal_entity": "SOUTHERN POWER SYSTEMS SERVICES INC",
+       "uei": null,
+       "match": 100.0,
+       "federal_award_total": 0.0,
+       "level": "R"
+      }
+     ],
+     "why": "identified by UEI TFJ4ZCQSNP69 taken from its federal award record",
+     "uei": "TFJ4ZCQSNP69",
+     "legal_entity": "SOUTHERN POWER SYSTEMS SERVICES INC",
+     "match": 100.0
+    },
+    "sam_exclusions": {
+     "source": "SAM.gov Exclusions API v4 (GSA)",
+     "endpoint": "https://api.sam.gov/entity-information/v4/exclusions",
+     "query": "TFJ4ZCQSNP69",
+     "looked_up": "2026-11-26T16:38:31+00:00",
+     "status": "unavailable",
+     "why": "SAM.gov requires a personal API key (free, from a SAM.gov account); set SAM_API_KEY. Until then the federal exclusion check is NOT done, and the owner checks sam.gov by hand."
+    },
+    "screening_list": {
+     "source": "Consolidated Screening List (trade.gov: Commerce, State, Treasury export and sanctions lists)",
+     "endpoint": "https://data.trade.gov/downloadable_consolidated_screening_list/v1/consolidated.csv",
+     "query": "SOUTHERN POWER SYSTEMS SERVICES INC",
+     "looked_up": "2026-11-26T16:38:34+00:00",
+     "status": "no match",
+     "list_downloaded": "2026-11-26T13:58:47+00:00",
+     "records_searched": 26339,
+     "why": "26339 listed parties searched; none matches"
+    }
+   },
+   "CUMMINS INC": {
+    "name": "CUMMINS INC",
+    "entity": {
+     "source": "USAspending.gov recipient search (U.S. Treasury)",
+     "endpoint": "https://api.usaspending.gov/api/v2/recipient/",
+     "query": "CUMMINS INC",
+     "looked_up": "2026-11-26T16:38:35+00:00",
+     "status": "confirmed",
+     "candidates": [
+      {
+       "legal_entity": "CUMMINS INC",
+       "uei": "VFJPN7HZN331",
+       "match": 100.0,
+       "federal_award_total": 85474394.13,
+       "level": "P"
+      },
+      {
+       "legal_entity": "CUMMINS INC.",
+       "uei": "DTSXKA2BGMD9",
+       "match": 100.0,
+       "federal_award_total": 54634862.01,
+       "level": "C"
+      },
+      {
+       "legal_entity": "CUMMINS INC",
+       "uei": "KQ2SB6N1APB7",
+       "match": 100.0,
+       "federal_award_total": 12574061.39,
+       "level": "C"
+      },
+      {
+       "legal_entity": "CUMMINS INC.",
+       "uei": "CNZGG1YFX3A5",
+       "match": 100.0,
+       "federal_award_total": 440400.58,
+       "level": "P"
+      },
+      {
+       "legal_entity": "CUMMINS INC.",
+       "uei": "C1FYN5JLUJ67",
+       "match": 100.0,
+       "federal_award_total": 244898.47,
+       "level": "P"
+      },
+      {
+       "legal_entity": "CUMMINS INC",
+       "uei": "XCZ5MV8ZHGG5",
+       "match": 100.0,
+       "federal_award_total": 121936.09,
+       "level": "C"
+      },
+      {
+       "legal_entity": "CUMMINS INC",
+       "uei": "LCWLY2VTJXB5",
+       "match": 100.0,
+       "federal_award_total": 106070.41,
+       "level": "C"
+      },
+      {
+       "legal_entity": "CUMMINS INC",
+       "uei": "D5G6Y4PNFGC6",
+       "match": 100.0,
+       "federal_award_total": 93670.58,
+       "level": "C"
+      }
+     ],
+     "why": "identified by UEI KQ2SB6N1APB7 taken from its federal award record",
+     "uei": "KQ2SB6N1APB7",
+     "legal_entity": "CUMMINS INC",
+     "match": 100.0
+    },
+    "sam_exclusions": {
+     "source": "SAM.gov Exclusions API v4 (GSA)",
+     "endpoint": "https://api.sam.gov/entity-information/v4/exclusions",
+     "query": "KQ2SB6N1APB7",
+     "looked_up": "2026-11-26T16:38:35+00:00",
+     "status": "unavailable",
+     "why": "SAM.gov requires a personal API key (free, from a SAM.gov account); set SAM_API_KEY. Until then the federal exclusion check is NOT done, and the owner checks sam.gov by hand."
+    },
+    "screening_list": {
+     "source": "Consolidated Screening List (trade.gov: Commerce, State, Treasury export and sanctions lists)",
+     "endpoint": "https://data.trade.gov/downloadable_consolidated_screening_list/v1/consolidated.csv",
+     "query": "CUMMINS INC",
+     "looked_up": "2026-11-26T16:38:39+00:00",
+     "status": "no match",
+     "list_downloaded": "2026-11-26T13:58:47+00:00",
+     "records_searched": 26339,
+     "why": "26339 listed parties searched; none matches"
+    }
+   },
+   "CUMMINS INC.": {
+    "name": "CUMMINS INC.",
+    "entity": {
+     "source": "USAspending.gov recipient search (U.S. Treasury)",
+     "endpoint": "https://api.usaspending.gov/api/v2/recipient/",
+     "query": "CUMMINS INC.",
+     "looked_up": "2026-11-26T16:38:41+00:00",
+     "status": "confirmed",
+     "candidates": [
+      {
+       "legal_entity": "CUMMINS INC",
+       "uei": "VFJPN7HZN331",
+       "match": 100.0,
+       "federal_award_total": 85474394.13,
+       "level": "P"
+      },
+      {
+       "legal_entity": "CUMMINS INC.",
+       "uei": "DTSXKA2BGMD9",
+       "match": 100.0,
+       "federal_award_total": 54634862.01,
+       "level": "C"
+      },
+      {
+       "legal_entity": "CUMMINS INC",
+       "uei": "KQ2SB6N1APB7",
+       "match": 100.0,
+       "federal_award_total": 12574061.39,
+       "level": "C"
+      },
+      {
+       "legal_entity": "CUMMINS INC.",
+       "uei": "CNZGG1YFX3A5",
+       "match": 100.0,
+       "federal_award_total": 440400.58,
+       "level": "P"
+      },
+      {
+       "legal_entity": "CUMMINS INC.",
+       "uei": "C1FYN5JLUJ67",
+       "match": 100.0,
+       "federal_award_total": 244898.47,
+       "level": "P"
+      },
+      {
+       "legal_entity": "CUMMINS INC",
+       "uei": "XCZ5MV8ZHGG5",
+       "match": 100.0,
+       "federal_award_total": 121936.09,
+       "level": "C"
+      },
+      {
+       "legal_entity": "CUMMINS INC",
+       "uei": "LCWLY2VTJXB5",
+       "match": 100.0,
+       "federal_award_total": 106070.41,
+       "level": "C"
+      },
+      {
+       "legal_entity": "CUMMINS INC",
+       "uei": "D5G6Y4PNFGC6",
+       "match": 100.0,
+       "federal_award_total": 93670.58,
+       "level": "C"
+      }
+     ],
+     "why": "identified by UEI JEUPMER5ARS8 taken from its federal award record (name search did not return it)",
+     "uei": "JEUPMER5ARS8",
+     "legal_entity": "CUMMINS INC.",
+     "match": null
+    },
+    "sam_exclusions": {
+     "source": "SAM.gov Exclusions API v4 (GSA)",
+     "endpoint": "https://api.sam.gov/entity-information/v4/exclusions",
+     "query": "JEUPMER5ARS8",
+     "looked_up": "2026-11-26T16:38:41+00:00",
+     "status": "unavailable",
+     "why": "SAM.gov requires a personal API key (free, from a SAM.gov account); set SAM_API_KEY. Until then the federal exclusion check is NOT done, and the owner checks sam.gov by hand."
+    },
+    "screening_list": {
+     "source": "Consolidated Screening List (trade.gov: Commerce, State, Treasury export and sanctions lists)",
+     "endpoint": "https://data.trade.gov/downloadable_consolidated_screening_list/v1/consolidated.csv",
+     "query": "CUMMINS INC.",
+     "looked_up": "2026-11-26T16:39:06+00:00",
+     "status": "no match",
+     "list_downloaded": "2026-11-26T13:58:47+00:00",
+     "records_searched": 26339,
+     "why": "26339 listed parties searched; none matches"
+    }
+   },
+   "FEDERAL CONTRACTS LLC": {
+    "name": "FEDERAL CONTRACTS LLC",
+    "entity": {
+     "source": "USAspending.gov recipient search (U.S. Treasury)",
+     "endpoint": "https://api.usaspending.gov/api/v2/recipient/",
+     "query": "FEDERAL CONTRACTS LLC",
+     "looked_up": "2026-11-26T16:39:11+00:00",
+     "status": "confirmed",
+     "candidates": [
+      {
+       "legal_entity": "FEDERAL CONTRACTS LLC",
+       "uei": "TK67EL9NPMD9",
+       "match": 100.0,
+       "federal_award_total": 86327062.58,
+       "level": "C"
+      },
+      {
+       "legal_entity": "FEDERAL CONTRACTS CORP",
+       "uei": null,
+       "match": 100.0,
+       "federal_award_total": 0.0,
+       "level": "R"
+      },
+      {
+       "legal_entity": "MESSER FEDERAL CONTRACTS LLC",
+       "uei": "Y3LVM5E98WC7",
+       "match": 92.9,
+       "federal_award_total": 0.0,
+       "level": "C"
+      }
+     ],
+     "why": "identified by UEI TK67EL9NPMD9 taken from its federal award record",
+     "uei": "TK67EL9NPMD9",
+     "legal_entity": "FEDERAL CONTRACTS LLC",
+     "match": 100.0
+    },
+    "sam_exclusions": {
+     "source": "SAM.gov Exclusions API v4 (GSA)",
+     "endpoint": "https://api.sam.gov/entity-information/v4/exclusions",
+     "query": "TK67EL9NPMD9",
+     "looked_up": "2026-11-26T16:39:11+00:00",
+     "status": "unavailable",
+     "why": "SAM.gov requires a personal API key (free, from a SAM.gov account); set SAM_API_KEY. Until then the federal exclusion check is NOT done, and the owner checks sam.gov by hand."
+    },
+    "screening_list": {
+     "source": "Consolidated Screening List (trade.gov: Commerce, State, Treasury export and sanctions lists)",
+     "endpoint": "https://data.trade.gov/downloadable_consolidated_screening_list/v1/consolidated.csv",
+     "query": "FEDERAL CONTRACTS LLC",
+     "looked_up": "2026-11-26T16:39:38+00:00",
+     "status": "no match",
+     "list_downloaded": "2026-11-26T13:58:47+00:00",
+     "records_searched": 26339,
+     "why": "26339 listed parties searched; none matches"
+    }
+   },
+   "UNITED RENTALS, INC.": {
+    "name": "UNITED RENTALS, INC.",
+    "entity": {
+     "source": "USAspending.gov recipient search (U.S. Treasury)",
+     "endpoint": "https://api.usaspending.gov/api/v2/recipient/",
+     "query": "UNITED RENTALS, INC.",
+     "looked_up": "2026-11-26T16:39:39+00:00",
+     "status": "confirmed",
+     "candidates": [
+      {
+       "legal_entity": "UNITED RENTALS (NORTH AMERICA), INC.",
+       "uei": "QFG7EC12DQK4",
+       "match": 100.0,
+       "federal_award_total": 6150403.29,
+       "level": "C"
+      },
+      {
+       "legal_entity": "UNITED RENTALS, INC.",
+       "uei": "DZ4JXAPAU222",
+       "match": 100.0,
+       "federal_award_total": 1048432.63,
+       "level": "P"
+      },
+      {
+       "legal_entity": "UNITED RENTALS (NORTH AMERICA), INC.",
+       "uei": "MUMWF9MJCNN4",
+       "match": 100.0,
+       "federal_award_total": 0.0,
+       "level": "P"
+      },
+      {
+       "legal_entity": "UNITED RENTALS, INC.",
+       "uei": "N2UNMTCLGJC9",
+       "match": 100.0,
+       "federal_award_total": 0.0,
+       "level": "C"
+      },
+      {
+       "legal_entity": "UNITED RENTALS, INC.",
+       "uei": "KX8XHNK4NLF8",
+       "match": 100.0,
+       "federal_award_total": 0.0,
+       "level": "C"
+      },
+      {
+       "legal_entity": "UNITED RENTALS (NORTH AMERICA), INC.",
+       "uei": "GCYGEJH92V74",
+       "match": 100.0,
+       "federal_award_total": 0.0,
+       "level": "C"
+      },
+      {
+       "legal_entity": "UNITED RENTALS (NORTH AMERICA)  INC.",
+       "uei": "EZZ4ZBGW7U76",
+       "match": 100.0,
+       "federal_award_total": 0.0,
+       "level": "P"
+      },
+      {
+       "legal_entity": "UNITED RENTALS (NORTH AMERICA), INC.",
+       "uei": "HECPKTXP4RD8",
+       "match": 100.0,
+       "federal_award_total": 0.0,
+       "level": "C"
+      }
+     ],
+     "why": "identified by UEI DZ4JXAPAU222 taken from its federal award record",
+     "uei": "DZ4JXAPAU222",
+     "legal_entity": "UNITED RENTALS, INC.",
+     "match": 100.0
+    },
+    "sam_exclusions": {
+     "source": "SAM.gov Exclusions API v4 (GSA)",
+     "endpoint": "https://api.sam.gov/entity-information/v4/exclusions",
+     "query": "DZ4JXAPAU222",
+     "looked_up": "2026-11-26T16:39:39+00:00",
+     "status": "unavailable",
+     "why": "SAM.gov requires a personal API key (free, from a SAM.gov account); set SAM_API_KEY. Until then the federal exclusion check is NOT done, and the owner checks sam.gov by hand."
+    },
+    "screening_list": {
+     "source": "Consolidated Screening List (trade.gov: Commerce, State, Treasury export and sanctions lists)",
+     "endpoint": "https://data.trade.gov/downloadable_consolidated_screening_list/v1/consolidated.csv",
+     "query": "UNITED RENTALS, INC.",
+     "looked_up": "2026-11-26T16:39:45+00:00",
+     "status": "no match",
+     "list_downloaded": "2026-11-26T13:58:47+00:00",
+     "records_searched": 26339,
+     "why": "26339 listed parties searched; none matches"
+    }
+   },
+   "Northline Power Systems": {
+    "name": "Northline Power Systems",
+    "entity": {
+     "source": "USAspending.gov recipient search (U.S. Treasury)",
+     "endpoint": "https://api.usaspending.gov/api/v2/recipient/",
+     "query": "Northline Power Systems",
+     "looked_up": "2026-11-26T16:39:47+00:00",
+     "status": "no match",
+     "candidates": [],
+     "why": "the name search returned 0 records; none matches the name"
+    },
+    "sam_exclusions": {
+     "source": "SAM.gov Exclusions API v4 (GSA)",
+     "endpoint": "https://api.sam.gov/entity-information/v4/exclusions",
+     "query": "Northline Power Systems",
+     "looked_up": "2026-11-26T16:39:47+00:00",
+     "status": "unavailable",
+     "why": "SAM.gov requires a personal API key (free, from a SAM.gov account); set SAM_API_KEY. Until then the federal exclusion check is NOT done, and the owner checks sam.gov by hand."
+    },
+    "screening_list": {
+     "source": "Consolidated Screening List (trade.gov: Commerce, State, Treasury export and sanctions lists)",
+     "endpoint": "https://data.trade.gov/downloadable_consolidated_screening_list/v1/consolidated.csv",
+     "query": "Northline Power Systems",
+     "looked_up": "2026-11-26T16:39:53+00:00",
+     "status": "no match",
+     "list_downloaded": "2026-11-26T13:58:47+00:00",
+     "records_searched": 26339,
+     "why": "26339 listed parties searched; none matches"
+    }
+   },
+   "Tidewater Generator Co.": {
+    "name": "Tidewater Generator Co.",
+    "entity": {
+     "source": "USAspending.gov recipient search (U.S. Treasury)",
+     "endpoint": "https://api.usaspending.gov/api/v2/recipient/",
+     "query": "Tidewater Generator Co.",
+     "looked_up": "2026-11-26T16:39:54+00:00",
+     "status": "no match",
+     "candidates": [],
+     "why": "the name search returned 0 records; none matches the name"
+    },
+    "sam_exclusions": {
+     "source": "SAM.gov Exclusions API v4 (GSA)",
+     "endpoint": "https://api.sam.gov/entity-information/v4/exclusions",
+     "query": "Tidewater Generator Co.",
+     "looked_up": "2026-11-26T16:39:54+00:00",
+     "status": "unavailable",
+     "why": "SAM.gov requires a personal API key (free, from a SAM.gov account); set SAM_API_KEY. Until then the federal exclusion check is NOT done, and the owner checks sam.gov by hand."
+    },
+    "screening_list": {
+     "source": "Consolidated Screening List (trade.gov: Commerce, State, Treasury export and sanctions lists)",
+     "endpoint": "https://data.trade.gov/downloadable_consolidated_screening_list/v1/consolidated.csv",
+     "query": "Tidewater Generator Co.",
+     "looked_up": "2026-11-26T16:39:58+00:00",
+     "status": "no match",
+     "list_downloaded": "2026-11-26T13:58:47+00:00",
+     "records_searched": 26339,
+     "why": "26339 listed parties searched; none matches"
+    }
+   },
+   "Keystone Energy Equipment": {
+    "name": "Keystone Energy Equipment",
+    "entity": {
+     "source": "USAspending.gov recipient search (U.S. Treasury)",
+     "endpoint": "https://api.usaspending.gov/api/v2/recipient/",
+     "query": "Keystone Energy Equipment",
+     "looked_up": "2026-11-26T16:39:59+00:00",
+     "status": "no match",
+     "candidates": [],
+     "why": "the name search returned 0 records; none matches the name"
+    },
+    "sam_exclusions": {
+     "source": "SAM.gov Exclusions API v4 (GSA)",
+     "endpoint": "https://api.sam.gov/entity-information/v4/exclusions",
+     "query": "Keystone Energy Equipment",
+     "looked_up": "2026-11-26T16:39:59+00:00",
+     "status": "unavailable",
+     "why": "SAM.gov requires a personal API key (free, from a SAM.gov account); set SAM_API_KEY. Until then the federal exclusion check is NOT done, and the owner checks sam.gov by hand."
+    },
+    "screening_list": {
+     "source": "Consolidated Screening List (trade.gov: Commerce, State, Treasury export and sanctions lists)",
+     "endpoint": "https://data.trade.gov/downloadable_consolidated_screening_list/v1/consolidated.csv",
+     "query": "Keystone Energy Equipment",
+     "looked_up": "2026-11-26T16:40:03+00:00",
+     "status": "no match",
+     "list_downloaded": "2026-11-26T13:58:47+00:00",
+     "records_searched": 26339,
+     "why": "26339 listed parties searched; none matches"
+    }
+   },
+   "Ridgeway Power": {
+    "name": "Ridgeway Power",
+    "entity": {
+     "source": "USAspending.gov recipient search (U.S. Treasury)",
+     "endpoint": "https://api.usaspending.gov/api/v2/recipient/",
+     "query": "Ridgeway Power",
+     "looked_up": "2026-11-26T16:40:05+00:00",
+     "status": "no match",
+     "candidates": [],
+     "why": "the name search returned 0 records; none matches the name"
+    },
+    "sam_exclusions": {
+     "source": "SAM.gov Exclusions API v4 (GSA)",
+     "endpoint": "https://api.sam.gov/entity-information/v4/exclusions",
+     "query": "Ridgeway Power",
+     "looked_up": "2026-11-26T16:40:05+00:00",
+     "status": "unavailable",
+     "why": "SAM.gov requires a personal API key (free, from a SAM.gov account); set SAM_API_KEY. Until then the federal exclusion check is NOT done, and the owner checks sam.gov by hand."
+    },
+    "screening_list": {
+     "source": "Consolidated Screening List (trade.gov: Commerce, State, Treasury export and sanctions lists)",
+     "endpoint": "https://data.trade.gov/downloadable_consolidated_screening_list/v1/consolidated.csv",
+     "query": "Ridgeway Power",
+     "looked_up": "2026-11-26T16:40:08+00:00",
+     "status": "no match",
+     "list_downloaded": "2026-11-26T13:58:47+00:00",
+     "records_searched": 26339,
+     "why": "26339 listed parties searched; none matches"
+    }
+   }
+  }
+ },
+ "_summary": "6 legal entities in federal award records for this size (looked up 2026-11-26T16:40:08+00:00); in the project's vendor master (mock) 5 vendors could supply it, 3 set aside; first: Tidewater Generator Co. (9.84 points)"
 }

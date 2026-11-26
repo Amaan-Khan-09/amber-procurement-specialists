@@ -1,38 +1,34 @@
 # Demo video script (5 minutes maximum)
 
-The rules ask for up to 5 minutes showing the agent solving a realistic example from start to finish. Record the
-screen and talk over it in your own words. Practise once and keep to the times. Everything below is real output from
-this repo; the bids, vendors and replies are fictional documents (every page says so); the datasheets are real.
+One purchase decision, end to end, from vendor lookup to a verdict backed by exact words. Everything on screen comes
+from this repository. **Real**: the datasheets, the spec, the federal registry lookups. **Fictional**: the bidder
+companies, their bids, packets and replies (every page says so).
 
 ## Before you record
 
-1. In the project folder: `.venv\Scripts\activate`, then `python -m amber.web`. The page opens at http://127.0.0.1:8000.
-2. Click **Case file: one purchase, end to end** (top right) once, so it is cached; then go back.
-3. In a terminal in the project folder, run once to warm up: `python -m amber.case run --fresh --crash-at reconcile`
-   (about 1.5 minutes) and then `python -m amber.case run` (about 35 seconds). Neither calls a model. Clear the
-   terminal. In the video, cut while each command runs.
-4. Browser zoom 110 %, one colour mode for the whole video, close other tabs and notifications.
+1. `.venv\Scripts\activate`, then `python -m amber.web`; open http://127.0.0.1:8000 and click **Case file**.
+2. For step 5, warm up once in a terminal: `python -m amber.case run --fresh --crash-at reconcile` (about 1.5 minutes),
+   then `python -m amber.case run` (about 35 seconds). Cut while each runs. Neither calls a model.
+3. Browser zoom 110 %, one colour mode, notifications off.
 
 ## The script
 
-| Time | On screen | Say |
-|---|---|---|
-| 0:00 | Title slide | "A data center cannot switch on until its generators arrive and match the spec. Buying four 2000 kW generators means finding suppliers, checking they qualify, reading four bids and four datasheets against a 12-page spec, and chasing every gap. We built specialists Amber can call for each of those jobs, and one case file that runs them together." |
-| 0:20 | Case page, **Measured change** tiles | "First the number the brief cares about: can Amber rely on this without a person checking every answer? On 256 fixed cases, our earlier version sent 58 % to an engineer. This one sends 40 %. Another 23 % go straight to the supplier as a drafted question, because only the supplier can answer them. Right answers without a person went from 105 to 150, critical errors from 2 to 1, and every case that needs judgement still goes to a person." |
-| 0:55 | **Vendor discovery** | "Step one: who could supply it? Only vendors in our vendor master, only products whose datasheets we hold, and every point is shown. Tidewater ranks first: best product fit, shortest lead time, a manufacturer the spec names." |
-| 1:15 | **Pre-qualification**, the B2 rows (hover the yellow cells) | "But the first-ranked vendor does not pass pre-qualification yet. Its insurance expires before our need date, the manufacturer's letter is 'available on request', and it names no service branch, while our vendor master says Norfolk, 190 miles away. Conflicting records: the agent asks, it does not pick one. Keystone fails outright on its safety record." |
-| 1:45 | **Record links**, the B4 row | "Linking records. Ridgeway bid a 'C2000D6'. No document names that exactly. One datasheet is a C2000D6E, a different variant, and another bidder's quote says a C2000D6 is model DQKAB, a different document. Our earlier check called that a match. Now it is reported as ambiguous with both candidates, and Ridgeway is asked." |
-| 2:10 | **Reconciled answers**: rows B1 R12, B2 R19, then the blue note on B3 R09 | "The core technique: we read each supplier's bid as evidence, against the same spec, condition by condition. Caterpillar's datasheet never states its speed; the bid commits to 1800 rpm, so that is settled, with the quote. Tidewater's bid commits to a 12-hour fuel tank where 24 hours is required, a deviation the datasheet alone could not show. And Kohler's footnote says an enclosed silencer lowers the radiator rating by 9 °F. Keystone's bid says silencers inside. 122 minus 9 is 113, below the spec. The agent links the two and lays it out for an engineer." |
-| 2:50 | **Questions & replies**, then **Ranges** | "Every open item becomes a question that cites what was read. Two suppliers replied, and each reply is read only against that supplier's open items. Northline's settled 14 items and revealed a heater that does not meet the spec. Tidewater's replaced its tank at 18,000 a set, which replaces our 220,000 allowance in its leveled cost, and settled its pre-qualification. Costs and arrival dates are ranges, with every assumption listed." |
-| 3:25 | **Decision** | "And the decision stays with a person. Every option is likely to arrive after the need date, so the schedule is escalated, and each bidder shows exactly what still blocks it. Tidewater is now closest to an award." |
-| 3:45 | Terminal: `python -m amber.case run --fresh --crash-at reconcile`, cut, then `python -m amber.case run` | "This is long-running work, and every step saves its state. Here I stop the run inside a step on purpose and start it again: the finished steps are reused, and the interrupted one runs again. Replies that arrive days later flow back the same way." |
-| 4:20 | Case page: open **Every case the agent now gets wrong on its own** | "We show our failures too. Every case it still gets wrong on its own is listed beside the key's answer. The checks on datasheets it had never seen are in the README: 76 % on the newest set, and zero invented citations." |
-| 4:40 | Case page, top | "Nine MCP tools, one case file, sources on every answer. Specialists Amber can rely on, because they know which questions only a supplier or an engineer can answer." |
+| Step | Time | On screen | Say |
+|---|---|---|---|
+| | 0:00 | Title | "Buying four 2000 kW generators means finding suppliers, checking they may be bought from, and reading bids and datasheets against a spec. Our specialists do that and show the exact words behind every answer." |
+| 1 | 0:20 | **Public records** section; open one award link | "Discovery starts with real federal records: who has actually supplied 2000 kW sets, with their legal identifier. A record is not a qualification. And look at the exclusion column: it says *unavailable*, because the official list needs a key we do not have. The agent never reports that as clean." |
+| 2 | 0:50 | **One decision** steps 2 and 3 | "Now one bid. Tidewater is ranked first in our own vendor list, which is made-up data, and passes pre-qualification only after its reply. The bid names model DQKAB, and exactly one datasheet is about it." |
+| 3 | 1:20 | **One decision**: the evidence record for the fuel tank | "Does its fuel tank meet the spec? The datasheet says nothing. The bid offers a 12-hour tank: a deviation. The reply says it supplies a 24-hour UL 2085 tank *in place of* the 12-hour one. So the bid's line is marked superseded, the reply controls, with its exact words, page and date. Two replies that disagreed without saying that would stay a conflict." |
+| 4 | 2:00 | Below it: **B3 R09** | "The same method exposes a problem. Kohler's datasheet says its radiator is rated 122 degrees. Its footnote says an enclosed silencer takes 9 degrees off, and this bid puts the silencers inside. 122 minus 9 is 113, below the spec. An engineer confirms that, with both quotes side by side." |
+| 5 | 2:40 | **Decision** and **Ranges**; then the terminal | "The award stays with a person; cost is a range with its assumptions. It is long-running work: I stop a run inside a step and start it again, and it resumes there." |
+| 6 | 3:25 | **Measured** section | "Against our own previous version, on the same 256 cases: engineer hand-offs from 40 to 30 percent, correct decisions from 94 to 111, wrong decisions 1 and 1, no missed escalations. It costs something: more clarifications that were not needed." |
+| 6 | 4:05 | Fresh unseen table | "Then two datasheets nobody had seen, labelled after we froze the code. Hand-offs fell from 23 to 15 of 42, and it made one new mistake: it read a fuel flow figure as fuel consumption. We fixed it, added a test, and show both numbers." |
+| 6 | 4:35 | **Got worse** list | "Every case that got worse is listed. Our answer keys are our own and not yet reviewed by a person: that is the limit of these numbers." |
 
 ## Do not say
 
-* "The AI approves the purchase." It never awards on its own, and a screen is never an approval.
-* "70 % of answers go to a person" as today's figure: that was the earlier version. Say "58 % to 40 % on 256 fixed cases".
-* That the 256 cases are unseen: they are a fixed development set. Only the README's held-out sets are unseen.
-* Real company names for the bidders or vendors. They are fictional; the datasheets are real public documents.
-* Any number that is not on the case page or in the README.
+* "No supplier is excluded." The federal check was **not performed** (no SAM.gov key).
+* "10 points fewer hand-offs." It is 9.8 (102 to 77 of 256).
+* "13 to 6 against datasheets alone." That compared two changes at once; with the same routing it is 8 to 6.
+* "The AI approves the purchase", or that a clarification solved anything: none has been answered and verified yet.
+* Real company names for the fictional bidders.

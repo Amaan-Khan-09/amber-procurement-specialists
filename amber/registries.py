@@ -101,7 +101,7 @@ def lookup_entity(name: str, http=_http) -> dict:
     ranked = sorted(cands.values(), key=lambda c: -c["match"])
     if not ranked:
         return _result(src, USA_RECIPIENT, name, "no match", candidates=[],
-                       why=f"{data.get('page_metadata', {}).get('total', 0)} records searched; none matches the name")
+                       why=f"the name search returned {data.get('page_metadata', {}).get('total', 0)} records; none matches the name")
     strong = [c for c in ranked if c["match"] >= STRONG]
     if len(strong) == 1 and (len(ranked) == 1 or ranked[1]["match"] < STRONG):
         c = strong[0]
@@ -223,9 +223,101 @@ def screening_list(name: str, http=_http) -> dict:
                    "listed parties resemble the name: a person checks identity before concluding anything")
 
 
-def screen_supplier(name: str, http=_http) -> dict:
-    """All three checks for one supplier name."""
+def screen_supplier(name: str, http=_http, uei: str | None = None) -> dict:
+    """All three checks for one supplier. uei: an identifier already known for it (from an award record): the identity
+    is then settled by identifier, not by resemblance of names."""
     ent = lookup_entity(name, http=http)
+    if uei and ent["status"] != "unavailable":
+        hit = next((c for c in ent.get("candidates") or [] if c.get("uei") == uei), None)
+        ent = dict(ent, status="confirmed", uei=uei, legal_entity=(hit or {}).get("legal_entity") or name, match=(hit or {}).get("match"),
+                   why=f"identified by UEI {uei} taken from its federal award record" + ("" if hit else " (name search did not return it)"))
     uei = ent.get("uei") if ent["status"] == "confirmed" else None
     return {"name": name, "entity": ent, "sam_exclusions": sam_exclusions(name, uei, http=http),
             "screening_list": screening_list(name, http=http)}
+
+
+# ------------------------------------------------------------------ discovery of real suppliers for one requirement
+
+SIZE_WORDS = {2000: ["2000 KW", "2000KW", "2 MW", "2MW", "1500 KW", "2500 KW"],
+              1000: ["1000 KW", "1000KW", "1 MW", "1MW", "750 KW", "1250 KW"]}
+_SERVICE = re.compile(r"(?i)\b(inspect\w*|maint\w*|repair\w*|service\w*|upgrade|test\w*|install\w*|parts?)\b")
+_RENTAL = re.compile(r"(?i)\b(lease|leasing|rent|rental)\b")
+
+
+def kind_of_work(description: str) -> str:
+    """What the award record says was bought: never more than the words say."""
+    d = description or ""
+    return "rental" if _RENTAL.search(d) else "service" if _SERVICE.search(d) else "supply"
+
+
+def kw_in(description: str) -> float | None:
+    found = []
+    for n, unit in re.findall(r"(?i)(\d[\d,]*(?:\.\d+)?)\s*-?\s*(kw|mw)\b", description or ""):
+        v = float(n.replace(",", ""))
+        found.append(v * 1000 if unit.lower() == "mw" else v)
+    return max(found) if found else None
+
+
+def public_discovery(kw: float = 2000, since: str = "2019-01-01", http=_http) -> dict:
+    """Legal entities whose federal award records mention generator work at this size (PSC 6115, nationwide), ranked by
+    what the record establishes: supply of the size > rental > service. A record is not a pre-qualification."""
+    src = "USAspending.gov award search, product code 6115 with size keywords (U.S. Treasury)"
+    words = SIZE_WORDS.get(int(kw), [f"{kw:g} KW"])
+    body = {"filters": {"award_type_codes": ["A", "B", "C", "D"], "psc_codes": ["6115"], "keywords": words,
+                        "time_period": [{"start_date": since, "end_date": datetime.now().strftime("%Y-%m-%d")}]},
+            "fields": ["Award ID", "Recipient Name", "Recipient UEI", "Award Amount", "Description", "Awarding Agency",
+                       "Start Date", "Place of Performance State Code"], "limit": 100, "sort": "Award Amount", "order": "desc"}
+    query = f"PSC 6115 awards since {since} mentioning {', '.join(words)}"
+    try:
+        rows = json.loads(http(USA_AWARDS, body)).get("results") or []
+    except SourceError as e:
+        return _result(src, USA_AWARDS, query, "unavailable", candidates=[], why=str(e))
+    by: dict = {}
+    for r in rows:
+        desc = str(r.get("Description") or "")
+        key = r.get("Recipient UEI") or r.get("Recipient Name")
+        v = by.setdefault(key, {"legal_entity": r.get("Recipient Name"), "uei": r.get("Recipient UEI"), "evidence": []})
+        v["evidence"].append({"award_id": r.get("Award ID"), "date": r.get("Start Date"), "agency": r.get("Awarding Agency"),
+                              "state": r.get("Place of Performance State Code"), "amount": r.get("Award Amount"),
+                              "description": desc[:200], "work": kind_of_work(desc), "kw": kw_in(desc),
+                              "url": f"https://www.usaspending.gov/award/{r.get('generated_internal_id', '')}"})
+    order = {"supply": 0, "rental": 1, "service": 2}
+    for v in by.values():
+        v["evidence"].sort(key=lambda e: (order[e["work"]], -(e["kw"] or 0), e["date"] or ""))
+        best = v["evidence"][0]
+        v["establishes"] = best["work"]
+        v["largest_kw"] = max((e["kw"] or 0) for e in v["evidence"]) or None
+        points = {"supply": 3, "rental": 1, "service": 0.5}[best["work"]]
+        sized = bool(v["largest_kw"] and v["largest_kw"] >= 0.75 * kw)
+        points += 2 if sized else 0
+        points += min(len(v["evidence"]), 3) * 0.2
+        v["points"] = round(points, 2)
+        v["why"] = (f"{len(v['evidence'])} award record(s); best one is {best['work']}"
+                    + (f" mentioning {v['largest_kw']:g} kW" if v["largest_kw"] else "")
+                    + f" ({best['agency']}, {best['date']}, {best['state']}): {best['description'][:90]!r}")
+        v["not_established"] = ("willingness to bid, manufacturer authorization, service coverage near the site, insurance, "
+                                "safety record: all need pre-qualification")
+    ranked = sorted(by.values(), key=lambda v: -v["points"])
+    return _result(src, USA_AWARDS, query, "confirmed" if ranked else "no match", candidates=ranked,
+                   why=f"{len(rows)} award records, {len(ranked)} legal entities")
+
+
+SNAPSHOT = ROOT / "examples" / "registry" / "snapshot.json"
+
+
+def refresh_snapshot(bidder_names: list[str], kw: float = 2000, top: int = 5, http=_http) -> dict:
+    """Real lookups, saved with their times so the demo and tests replay them."""
+    disc = public_discovery(kw, http=http)
+    screens = {}
+    for v in disc.get("candidates", [])[:top]:
+        screens[v["legal_entity"]] = screen_supplier(v["legal_entity"], http=http, uei=v.get("uei"))
+    for n in bidder_names:
+        screens[n] = screen_supplier(n, http=http)
+    snap = {"taken": _now(), "discovery": disc, "screens": screens}
+    SNAPSHOT.parent.mkdir(parents=True, exist_ok=True)
+    SNAPSHOT.write_text(json.dumps(snap, indent=1), encoding="utf-8")
+    return snap
+
+
+def snapshot() -> dict | None:
+    return json.loads(SNAPSHOT.read_text(encoding="utf-8")) if SNAPSHOT.exists() else None

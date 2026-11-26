@@ -70,8 +70,13 @@ def build_cases() -> list[dict]:
         for l in k["labels"]:
             esc = bool(ESCALATE_NOTE.search(l.get("notes", "")))
             cat = "escalate" if esc else ("routine" if l["expected"] in ("complies", "deviates") else "missing_info")
-            route = "engineer" if esc else ("decide" if l["expected"] in ("complies", "deviates") else "ask_supplier")
-            grp = "unseen datasheet" if k.get("heldout_set") == 4 else "datasheet"  # set 4: labelled, then run once
+            route = l.get("expected_route") or ("engineer" if esc else
+                                                ("decide" if l["expected"] in ("complies", "deviates") else "ask_supplier"))
+            if l.get("expected_route"):  # newer keys state the route; the category follows it
+                cat = {"engineer": "escalate", "decide": "routine", "ask_supplier": "missing_info"}[route]
+            if not (ROOT / "examples" / f.name).exists():
+                continue  # labelled but not run yet
+            grp = {4: "unseen datasheet", 5: "fresh unseen"}.get(k.get("heldout_set"), "datasheet")  # labelled, then run once
             cases.append({"id": f"{f.stem}/{l['req_id']}", "group": grp, "case": f.stem, "req_id": l["req_id"],
                           "expected": l["expected"], "category": cat, "expected_route": route})
     pk = json.loads((KEYS / "package_GEN.json").read_text(encoding="utf-8"))
@@ -145,7 +150,7 @@ def datasheet_answers() -> dict[str, dict]:
     seconds, readers = C.second_readings(), C.second_answers()
     from amber.schema import RunInfo, ToolResult
     for f in sorted(KEYS.glob("*.json")):
-        if not re.fullmatch(r"[GU]\d+\.json", f.name):
+        if not re.fullmatch(r"[GU]\d+\.json", f.name) or not (ROOT / "examples" / f.name).exists():
             continue
         k = json.loads(f.read_text(encoding="utf-8"))
         reqs = _reqs(k)
@@ -181,7 +186,7 @@ def run() -> dict:
     results = []
     for c in cases:
         g = c["group"]
-        if g in ("datasheet", "unseen datasheet"):
+        if g in ("datasheet", "unseen datasheet", "fresh unseen"):
             got = {v: ds[v][c["id"]] for v in ("v1", "v2", "v3")}
         elif g == "package":
             pick = lambda fs: next(f for f in fs if f["data"]["req_id"] == c["req_id"])
@@ -253,13 +258,16 @@ def table(rows: list[dict], label: str, quiet: bool = False) -> dict:
 def main() -> None:
     res = run()
     rows = res["results"]
-    like = [r for r in rows if r["group"] not in ("prequal", "unseen datasheet")]
+    like = [r for r in rows if r["group"] not in ("prequal", "unseen datasheet", "fresh unseen")]
     summary = {"versions": VERSIONS, "like_for_like": table(like, "Like for like: the fixed development set"),
                "by_group": {g: table([r for r in rows if r["group"] == g], f"  group: {g}", quiet=True) for g in
                             ("datasheet", "package", "link", "bid scope", "decision")},
                "by_category": {c: table([r for r in like if r["category"] == c], f"  category: {c}", quiet=True) for c in
                                ("routine", "missing_info", "conflict", "escalate")},
                "unseen_set4": table([r for r in rows if r["group"] == "unseen datasheet"], "G9 (inspected earlier; regression case for the 50 C option)"),
+               "fresh_unseen_set5": table([r for r in rows if r["group"] == "fresh unseen"],
+                                          "Fresh unseen, held-out set 5 (G10 + G11: labelled after the code was frozen, run once)")
+                                    if any(r["group"] == "fresh unseen" for r in rows) else None,
                "new_specialist_prequal": table([r for r in rows if r["group"] == "prequal"], "pre-qualification", quiet=True)}
     print("\nEvery like-for-like case whose outcome changed from v2 to v3:")
     for r in like:

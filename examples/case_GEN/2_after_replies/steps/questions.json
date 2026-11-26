@@ -1,5 +1,5 @@
 {
- "_summary": "B1: 1 questions; B2: 2 questions; B3: 7 questions; B4: 18 questions",
+ "_summary": "B1: 1 questions; B2: 3 questions; B3: 8 questions; B4: 18 questions",
  "drafts": {
   "B1": {
    "to": "V-NPS",
@@ -23,6 +23,18 @@
    "to": "V-TGC",
    "questions": [
     {
+     "ref": "R07",
+     "ask": "Spec 2.1.D.5 (Starting System): Starting system shall be 24 volt, 2-wire, negative ground, gear engaging electric starter.. Please state what is supplied",
+     "we_read": [
+      {
+       "doc": "cummins-dqkab-submittal-csdg",
+       "page": 5,
+       "quote": "Engine Starter - 24 Volt DC Motor"
+      }
+     ],
+     "kind": "clarification"
+    },
+    {
      "ref": "S8",
      "ask": "Bid scope S8: B2 S8: qualified: the bid offers less than the scope or words it differently: a clarification request is drafted; leveling meanwhile uses ",
      "we_read": [],
@@ -41,6 +53,30 @@
    "to": "V-KEE",
    "questions": [
     {
+     "ref": "R06",
+     "ask": "Spec 2.1.D.3 (Governor): Governor shall be electronic speed-sensing capable of isochronous frequency regulation from no load to full rated load.. Please state what is supplied",
+     "we_read": [
+      {
+       "doc": "kohler-kd2000-g5-626",
+       "page": 2,
+       "quote": "Governor: type, make/model KODEC Electronic"
+      }
+     ],
+     "kind": "clarification"
+    },
+    {
+     "ref": "R13",
+     "ask": "Spec 2.1.G (Generator): Generator shall be 4-pole, brushless, and two-thirds pitch wound.. Please state what is supplied",
+     "we_read": [
+      {
+       "doc": "kohler-kd2000-g5-626",
+       "page": 3,
+       "quote": "Brushless alternator with brushless pilot exciter for excellent load response"
+      }
+     ],
+     "kind": "clarification"
+    },
+    {
      "ref": "R16",
      "ask": "Spec 2.1.H (Generator Output Circuit Breaker(s)): Provide 3-pole generator output circuit breaker(s) with solid-state trip units.. Please state what is supplied",
      "we_read": [],
@@ -51,23 +87,6 @@
      "ask": "Spec 2.1.I.4 (Total Harmonic Distortion (THD)): Total harmonic distortion of ac voltage waveform from no load to full linear load shall not exceed 5% of rated voltage.. Please state what is supplied",
      "we_read": [],
      "kind": "not stated"
-    },
-    {
-     "ref": "R21",
-     "ask": "Spec 2.1.K.9 (Generator Outdoor Housing): Provide a weatherproof and rodent-proof outdoor enclosure entirely enclosing the generator set, with silencers installed inside.. Please state what is supplied and resolve the difference between your documents",
-     "we_read": [
-      {
-       "doc": "kohler-kd2000-g5-626",
-       "page": 6,
-       "quote": "internal-mounted, exhaust silencers"
-      },
-      {
-       "doc": "b3-keystone-energy",
-       "page": 1,
-       "quote": "silencers inside"
-      }
-     ],
-     "kind": "conflicting records"
     },
     {
      "ref": "S8",
@@ -104,6 +123,18 @@
      "ask": "Spec 2.1.C.1: Motor starting capability shall be not less than 3000 kVA with a maximum voltage dip of 30% for 2000 kW sets.. Please state what is supplied",
      "we_read": [],
      "kind": "not established, read twice"
+    },
+    {
+     "ref": "R15",
+     "ask": "Spec 2.1.G.5: Provide a 120 V, single-phase space heater to prevent condensation in the generator.. Please state what is supplied",
+     "we_read": [
+      {
+       "doc": "cummins-c2000d6e-spec-sheet",
+       "page": 2,
+       "quote": "120/240V 100W control anti- condensation heater"
+      }
+     ],
+     "kind": "clarification"
     },
     {
      "ref": "R16",
@@ -162,12 +193,6 @@
     {
      "ref": "Q6",
      "ask": "Pre-qualification Q6: >= 3 completed projects with sets of 1500 kW or larger in the last 5 years. no pre-qualification packet received",
-     "we_read": [],
-     "kind": "pre-qualification"
-    },
-    {
-     "ref": "Q7",
-     "ask": "Pre-qualification Q7: Not excluded from federal procurement (owner checks SAM.gov). no pre-qualification packet received",
      "we_read": [],
      "kind": "pre-qualification"
     },

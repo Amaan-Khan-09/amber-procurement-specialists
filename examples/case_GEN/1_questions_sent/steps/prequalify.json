@@ -288,7 +288,7 @@
       "ocr": false
      }
     ],
-    "why": "the owner checks the federal exclusion list (SAM.gov) before award; the supplier's self-certification is recorded",
+    "why": "the official exclusion list could not be checked: SAM.gov requires a personal API key (free, from a SAM.gov account); set SAM_API_KEY. Until then the federal exclusion check is NOT done, and the owner checks sam.gov by hand.. SAM.gov exclusions: unavailable (looked up 2026-11-26T16:39:47+00:00); legal entity in federal award records: no match; export and sanctions screening list: no match (not the procurement exclusion list)",
     "route": "engineer",
     "source": {
      "source": "policy",
@@ -300,6 +300,36 @@
       "quote": "The supplier must not be excluded from federal procurement",
       "match": "exact",
       "ocr": false
+     }
+    },
+    "registry": {
+     "name": "Northline Power Systems",
+     "entity": {
+      "source": "USAspending.gov recipient search (U.S. Treasury)",
+      "endpoint": "https://api.usaspending.gov/api/v2/recipient/",
+      "query": "Northline Power Systems",
+      "looked_up": "2026-11-26T16:39:47+00:00",
+      "status": "no match",
+      "candidates": [],
+      "why": "the name search returned 0 records; none matches the name"
+     },
+     "sam_exclusions": {
+      "source": "SAM.gov Exclusions API v4 (GSA)",
+      "endpoint": "https://api.sam.gov/entity-information/v4/exclusions",
+      "query": "Northline Power Systems",
+      "looked_up": "2026-11-26T16:39:47+00:00",
+      "status": "unavailable",
+      "why": "SAM.gov requires a personal API key (free, from a SAM.gov account); set SAM_API_KEY. Until then the federal exclusion check is NOT done, and the owner checks sam.gov by hand."
+     },
+     "screening_list": {
+      "source": "Consolidated Screening List (trade.gov: Commerce, State, Treasury export and sanctions lists)",
+      "endpoint": "https://data.trade.gov/downloadable_consolidated_screening_list/v1/consolidated.csv",
+      "query": "Northline Power Systems",
+      "looked_up": "2026-11-26T16:39:53+00:00",
+      "status": "no match",
+      "list_downloaded": "2026-11-26T13:58:47+00:00",
+      "records_searched": 26339,
+      "why": "26339 listed parties searched; none matches"
      }
     }
    }
@@ -604,7 +634,7 @@
       "ocr": false
      }
     ],
-    "why": "the owner checks the federal exclusion list (SAM.gov) before award; the supplier's self-certification is recorded",
+    "why": "the official exclusion list could not be checked: SAM.gov requires a personal API key (free, from a SAM.gov account); set SAM_API_KEY. Until then the federal exclusion check is NOT done, and the owner checks sam.gov by hand.. SAM.gov exclusions: unavailable (looked up 2026-11-26T16:39:54+00:00); legal entity in federal award records: no match; export and sanctions screening list: no match (not the procurement exclusion list)",
     "route": "engineer",
     "source": {
      "source": "policy",
@@ -616,6 +646,36 @@
       "quote": "The supplier must not be excluded from federal procurement",
       "match": "exact",
       "ocr": false
+     }
+    },
+    "registry": {
+     "name": "Tidewater Generator Co.",
+     "entity": {
+      "source": "USAspending.gov recipient search (U.S. Treasury)",
+      "endpoint": "https://api.usaspending.gov/api/v2/recipient/",
+      "query": "Tidewater Generator Co.",
+      "looked_up": "2026-11-26T16:39:54+00:00",
+      "status": "no match",
+      "candidates": [],
+      "why": "the name search returned 0 records; none matches the name"
+     },
+     "sam_exclusions": {
+      "source": "SAM.gov Exclusions API v4 (GSA)",
+      "endpoint": "https://api.sam.gov/entity-information/v4/exclusions",
+      "query": "Tidewater Generator Co.",
+      "looked_up": "2026-11-26T16:39:54+00:00",
+      "status": "unavailable",
+      "why": "SAM.gov requires a personal API key (free, from a SAM.gov account); set SAM_API_KEY. Until then the federal exclusion check is NOT done, and the owner checks sam.gov by hand."
+     },
+     "screening_list": {
+      "source": "Consolidated Screening List (trade.gov: Commerce, State, Treasury export and sanctions lists)",
+      "endpoint": "https://data.trade.gov/downloadable_consolidated_screening_list/v1/consolidated.csv",
+      "query": "Tidewater Generator Co.",
+      "looked_up": "2026-11-26T16:39:58+00:00",
+      "status": "no match",
+      "list_downloaded": "2026-11-26T13:58:47+00:00",
+      "records_searched": 26339,
+      "why": "26339 listed parties searched; none matches"
      }
     }
    }
@@ -903,7 +963,7 @@
       "ocr": false
      }
     ],
-    "why": "the owner checks the federal exclusion list (SAM.gov) before award; the supplier's self-certification is recorded",
+    "why": "the official exclusion list could not be checked: SAM.gov requires a personal API key (free, from a SAM.gov account); set SAM_API_KEY. Until then the federal exclusion check is NOT done, and the owner checks sam.gov by hand.. SAM.gov exclusions: unavailable (looked up 2026-11-26T16:39:59+00:00); legal entity in federal award records: no match; export and sanctions screening list: no match (not the procurement exclusion list)",
     "route": "engineer",
     "source": {
      "source": "policy",
@@ -915,6 +975,36 @@
       "quote": "The supplier must not be excluded from federal procurement",
       "match": "exact",
       "ocr": false
+     }
+    },
+    "registry": {
+     "name": "Keystone Energy Equipment",
+     "entity": {
+      "source": "USAspending.gov recipient search (U.S. Treasury)",
+      "endpoint": "https://api.usaspending.gov/api/v2/recipient/",
+      "query": "Keystone Energy Equipment",
+      "looked_up": "2026-11-26T16:39:59+00:00",
+      "status": "no match",
+      "candidates": [],
+      "why": "the name search returned 0 records; none matches the name"
+     },
+     "sam_exclusions": {
+      "source": "SAM.gov Exclusions API v4 (GSA)",
+      "endpoint": "https://api.sam.gov/entity-information/v4/exclusions",
+      "query": "Keystone Energy Equipment",
+      "looked_up": "2026-11-26T16:39:59+00:00",
+      "status": "unavailable",
+      "why": "SAM.gov requires a personal API key (free, from a SAM.gov account); set SAM_API_KEY. Until then the federal exclusion check is NOT done, and the owner checks sam.gov by hand."
+     },
+     "screening_list": {
+      "source": "Consolidated Screening List (trade.gov: Commerce, State, Treasury export and sanctions lists)",
+      "endpoint": "https://data.trade.gov/downloadable_consolidated_screening_list/v1/consolidated.csv",
+      "query": "Keystone Energy Equipment",
+      "looked_up": "2026-11-26T16:40:03+00:00",
+      "status": "no match",
+      "list_downloaded": "2026-11-26T13:58:47+00:00",
+      "records_searched": 26339,
+      "why": "26339 listed parties searched; none matches"
      }
     }
    }
@@ -943,7 +1033,9 @@
    "Q6",
    "Q7"
   ],
-  "owner_checks": [],
+  "owner_checks": [
+   "Q7"
+  ],
   "criteria": {
    "P1": {
     "criterion": "P1",
@@ -1118,7 +1210,7 @@
     "criterion": "Q7",
     "text": "Not excluded from federal procurement (owner checks SAM.gov)",
     "status": "needs_verification",
-    "why": "no pre-qualification packet received",
+    "why": "the official exclusion list could not be checked: SAM.gov requires a personal API key (free, from a SAM.gov account); set SAM_API_KEY. Until then the federal exclusion check is NOT done, and the owner checks sam.gov by hand.. SAM.gov exclusions: unavailable (looked up 2026-11-26T16:40:05+00:00); legal entity in federal award records: no match; export and sanctions screening list: no match (not the procurement exclusion list)",
     "citations": [],
     "source": {
      "source": "policy",
@@ -1132,7 +1224,37 @@
       "ocr": false
      }
     },
-    "route": "ask_supplier"
+    "route": "engineer",
+    "registry": {
+     "name": "Ridgeway Power",
+     "entity": {
+      "source": "USAspending.gov recipient search (U.S. Treasury)",
+      "endpoint": "https://api.usaspending.gov/api/v2/recipient/",
+      "query": "Ridgeway Power",
+      "looked_up": "2026-11-26T16:40:05+00:00",
+      "status": "no match",
+      "candidates": [],
+      "why": "the name search returned 0 records; none matches the name"
+     },
+     "sam_exclusions": {
+      "source": "SAM.gov Exclusions API v4 (GSA)",
+      "endpoint": "https://api.sam.gov/entity-information/v4/exclusions",
+      "query": "Ridgeway Power",
+      "looked_up": "2026-11-26T16:40:05+00:00",
+      "status": "unavailable",
+      "why": "SAM.gov requires a personal API key (free, from a SAM.gov account); set SAM_API_KEY. Until then the federal exclusion check is NOT done, and the owner checks sam.gov by hand."
+     },
+     "screening_list": {
+      "source": "Consolidated Screening List (trade.gov: Commerce, State, Treasury export and sanctions lists)",
+      "endpoint": "https://data.trade.gov/downloadable_consolidated_screening_list/v1/consolidated.csv",
+      "query": "Ridgeway Power",
+      "looked_up": "2026-11-26T16:40:08+00:00",
+      "status": "no match",
+      "list_downloaded": "2026-11-26T13:58:47+00:00",
+      "records_searched": 26339,
+      "why": "26339 listed parties searched; none matches"
+     }
+    }
    }
   },
   "documents": []

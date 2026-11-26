@@ -1,138 +1,138 @@
 {
  "case": "GEN",
  "goal": "Buy the four 2000 kW standby generators (GEN-A..GEN-D) for Project Alpha, within budget, by the need date",
- "created": "2026-11-26T17:39:20",
+ "created": "2026-11-26T22:10:18",
  "version": "0.1.0",
  "steps": {
   "requirements": {
    "status": "done",
-   "started": "2026-11-26T17:39:20",
-   "inputs": "d812a1ddd635f552",
+   "started": "2026-11-26T22:10:19",
+   "inputs": "dd405f7b056b8ce6",
    "attempts": 1,
-   "finished": "2026-11-26T17:39:21",
-   "seconds": 1.04,
+   "finished": "2026-11-26T22:10:21",
+   "seconds": 1.92,
    "summary": "21 requirements from spec 26_32_13_engine_generators_ALPHA.pdf; need on site 2027-10-04",
    "output_sha": "68376c0d6a98f99c"
   },
   "discover": {
    "status": "done",
-   "started": "2026-11-26T17:39:21",
-   "inputs": "dac68915680699c6",
+   "started": "2026-11-26T22:10:21",
+   "inputs": "9bc68d163d4b6b5a",
    "attempts": 1,
-   "finished": "2026-11-26T17:40:21",
-   "seconds": 59.37,
-   "summary": "5 vendors could supply it, 3 set aside; first: Tidewater Generator Co. (9.84 points)",
-   "output_sha": "ebfcb3c02f823b2a"
+   "finished": "2026-11-26T22:11:10",
+   "seconds": 49.34,
+   "summary": "6 legal entities in federal award records for this size (looked up 2026-11-26T16:40:08+00:00); in the project's vendor master (mock) 5 vendors could supply it, 3 set aside; first: Tidewater Generator Co. (9.84 points)",
+   "output_sha": "81719248d48b3195"
   },
   "link": {
    "status": "done",
-   "started": "2026-11-26T17:40:21",
-   "inputs": "b89e63e1fcd9e34a",
+   "started": "2026-11-26T22:11:10",
+   "inputs": "d9cd526b49b81bfd",
    "attempts": 1,
-   "finished": "2026-11-26T17:40:55",
-   "seconds": 34.44,
+   "finished": "2026-11-26T22:13:35",
+   "seconds": 144.63,
    "summary": "3 of 4 bids linked to a datasheet; ambiguous: B4; 2 scope items linked to spec requirements, 1 conflicting reference(s)",
    "output_sha": "c7207c472ac340a1"
   },
   "datasheets": {
    "status": "done",
-   "started": "2026-11-26T17:40:55",
-   "inputs": "5241473bfd79634c",
+   "started": "2026-11-26T22:13:35",
+   "inputs": "2fb48f1e457500c3",
    "attempts": 1,
-   "finished": "2026-11-26T17:40:55",
-   "seconds": 0.07,
+   "finished": "2026-11-26T22:13:35",
+   "seconds": 0.08,
    "summary": "B1: cat_3516C_2000ekW_LEHE1376.pdf (linked); B2: cummins_DQKAB_submittal_CSDG.pdf (linked); B3: kohler_KD2000_G5-626.pdf (linked); B4: cummins_C2000D6E_spec_sheet.pdf (provisional)",
    "output_sha": "1d0650763c3359dc"
   },
   "bids": {
    "status": "done",
-   "started": "2026-11-26T17:40:55",
-   "inputs": "33236314a3941057",
+   "started": "2026-11-26T22:13:35",
+   "inputs": "dba2815f51a8d7af",
    "attempts": 1,
-   "finished": "2026-11-26T17:40:55",
+   "finished": "2026-11-26T22:13:35",
    "seconds": 0.01,
    "summary": "4 bids compared on 11 scope items (saved readings)",
    "output_sha": "4e65d7f72981ee44"
   },
   "commitments": {
    "status": "done",
-   "started": "2026-11-26T17:40:55",
-   "inputs": "0c42b33535be590b",
+   "started": "2026-11-26T22:13:35",
+   "inputs": "48157bc0c17c4d5f",
    "attempts": 1,
-   "finished": "2026-11-26T17:40:57",
-   "seconds": 1.18,
+   "finished": "2026-11-26T22:13:37",
+   "seconds": 1.47,
    "summary": "20 requirement answers found in the bids' own words (saved readings, decided again in code)",
    "output_sha": "eaca55ec05c99800"
   },
   "reconcile": {
    "status": "done",
-   "started": "2026-11-26T17:41:24",
-   "inputs": "7b400834898261ae",
+   "started": "2026-11-26T22:14:00",
+   "inputs": "4cbb62fc919df663",
    "attempts": 2,
-   "finished": "2026-11-26T17:41:41",
-   "seconds": 16.99,
-   "summary": "B1: 18 answers changed by the supplier's own documents; B2: 4 answers changed by the supplier's own documents; B3: 2 answers changed by the supplier's own documents; B4: 1 answers changed by the supplier's own documents",
-   "output_sha": "c3bfe69ea495c0bc"
+   "finished": "2026-11-26T22:14:15",
+   "seconds": 14.51,
+   "summary": "B1: 17 answers changed by the supplier's own documents; B2: 4 answers changed by the supplier's own documents; B3: 1 answers changed by the supplier's own documents; B4: 1 answers changed by the supplier's own documents",
+   "output_sha": "643416a44edb1d8c"
   },
   "prequalify": {
    "status": "done",
-   "started": "2026-11-26T17:41:41",
-   "inputs": "1f3428b72361ccb4",
+   "started": "2026-11-26T22:14:15",
+   "inputs": "f02d019449f75551",
    "attempts": 2,
-   "finished": "2026-11-26T17:41:49",
-   "seconds": 8.45,
+   "finished": "2026-11-26T22:14:20",
+   "seconds": 4.72,
    "summary": "B1 qualified pending the owner's checks; B2 qualified pending the owner's checks; B3 fails; B4 needs verification",
-   "output_sha": "54ac80320f6c038d"
+   "output_sha": "c8b797be901bbe47"
   },
   "ranges": {
    "status": "done",
-   "started": "2026-11-26T17:41:49",
-   "inputs": "10eb6157b34bd2ce",
+   "started": "2026-11-26T22:14:20",
+   "inputs": "06147fe1de4418c7",
    "attempts": 2,
-   "finished": "2026-11-26T17:41:49",
-   "seconds": 0.08,
+   "finished": "2026-11-26T22:14:20",
+   "seconds": 0.1,
    "summary": "cost ranges for B1 4,506,000-4,506,000, B2 4,599,000-4,685,000, B3 4,302,800-4,487,800, B4 4,469,800-4,469,800",
    "output_sha": "0182d14f39b7cd65"
   },
   "triage": {
    "status": "done",
-   "started": "2026-11-26T17:41:49",
-   "inputs": "89ec16a3519d4c5d",
+   "started": "2026-11-26T22:14:20",
+   "inputs": "c875817b1efa18fa",
    "attempts": 2,
-   "finished": "2026-11-26T17:41:49",
-   "seconds": 0.08,
-   "summary": "102 decided, 27 to the suppliers, 40 to an engineer (of 169)",
-   "output_sha": "af51091471cb00aa"
+   "finished": "2026-11-26T22:14:20",
+   "seconds": 0.16,
+   "summary": "109 decided, 29 to the suppliers, 31 to an engineer (of 169)",
+   "output_sha": "c11560703b83d538"
   },
   "questions": {
    "status": "done",
-   "started": "2026-11-26T17:41:49",
-   "inputs": "a076b364eccd8ba3",
+   "started": "2026-11-26T22:14:20",
+   "inputs": "5a78b31591fabd5e",
    "attempts": 2,
-   "finished": "2026-11-26T17:41:49",
-   "seconds": 0.03,
-   "summary": "B1: 1 questions; B2: 2 questions; B3: 7 questions; B4: 18 questions",
-   "output_sha": "6fc97b14bbbdebb8"
+   "finished": "2026-11-26T22:14:20",
+   "seconds": 0.08,
+   "summary": "B1: 1 questions; B2: 3 questions; B3: 8 questions; B4: 18 questions",
+   "output_sha": "587d429df44bb1bf"
   },
   "replies": {
    "status": "done",
-   "started": "2026-11-26T17:41:24",
-   "inputs": "5cb62bed338432df",
+   "started": "2026-11-26T22:14:00",
+   "inputs": "2ca37371e0314bba",
    "attempts": 2,
-   "summary": "2 of 2 replies read: B1 (16 open items asked), B2 (12 open items asked)",
-   "output_sha": "e7e4aa39d4d5c152",
-   "finished": "2026-11-26T17:41:24",
-   "seconds": 0.02
+   "summary": "2 of 2 replies read: B1 (15 open items asked), B2 (9 open items asked)",
+   "output_sha": "77b084fce38aa81f",
+   "finished": "2026-11-26T22:14:00",
+   "seconds": 0.04
   },
   "decision": {
    "status": "done",
-   "started": "2026-11-26T17:41:49",
-   "inputs": "5cdce6ceb7c889c2",
+   "started": "2026-11-26T22:14:20",
+   "inputs": "8c617fb9fd5f3a66",
    "attempts": 3,
-   "finished": "2026-11-26T17:41:49",
-   "seconds": 0.04,
-   "summary": "a person decides: every option is likely late; closest to an award: B2 (2 question(s) open with the supplier; 11 item(s) for an engineer; owner's checks: Q7 (federal exclusion list))",
-   "output_sha": "fc0dfbe2bdd218cd"
+   "finished": "2026-11-26T22:14:20",
+   "seconds": 0.03,
+   "summary": "a person decides: every option is likely late; closest to an award: B2 (3 question(s) open with the supplier; 7 item(s) for an engineer; owner's checks: Q7 (federal exclusion list))",
+   "output_sha": "abe191f8ac4bb14c"
   }
  },
  "memory": {
@@ -171,13 +171,15 @@
     "R20"
    ],
    "B2": [
+    "R07",
     "S8",
     "S9"
    ],
    "B3": [
+    "R06",
+    "R13",
     "R16",
     "R18",
-    "R21",
     "S8",
     "S9",
     "S10",
@@ -185,6 +187,7 @@
    ],
    "B4": [
     "R03",
+    "R15",
     "R16",
     "R19",
     "P2",
@@ -194,7 +197,6 @@
     "Q4",
     "Q5",
     "Q6",
-    "Q7",
     "model",
     "S4",
     "S5",
@@ -219,6 +221,7 @@
     "S2"
    ],
    "B2": [
+    "R07",
     "R19",
     "Q2",
     "Q4",
@@ -229,9 +232,10 @@
     "S9"
    ],
    "B3": [
+    "R06",
+    "R13",
     "R16",
     "R18",
-    "R21",
     "S8",
     "S9",
     "S10",
@@ -239,6 +243,7 @@
    ],
    "B4": [
     "R03",
+    "R15",
     "R16",
     "R19",
     "P2",
@@ -248,7 +253,6 @@
     "Q4",
     "Q5",
     "Q6",
-    "Q7",
     "model",
     "S4",
     "S5",

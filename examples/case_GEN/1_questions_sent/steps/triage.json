@@ -1,5 +1,5 @@
 {
- "_summary": "81 decided, 43 to the suppliers, 45 to an engineer (of 169)",
+ "_summary": "89 decided, 45 to the suppliers, 35 to an engineer (of 169)",
  "items": [
   {
    "group": "requirement",
@@ -82,11 +82,11 @@
    "group": "requirement",
    "bid": "B1",
    "id": "R08",
-   "status": "unclear",
-   "confidence": 0.5,
-   "route": "engineer",
-   "kind": "contested",
-   "why": "our reading found no value, but an independent reading says complies: a person checks the page",
+   "status": "complies",
+   "confidence": 0.75,
+   "route": "decide",
+   "kind": "decided",
+   "why": "verified quote and a comparison made in code",
    "claim": "Average fuel consumption at full standby load must not exceed 145 gph for a 2000 kW set."
   },
   {
@@ -319,7 +319,7 @@
    "status": "needs_verification",
    "route": "engineer",
    "kind": "owner check",
-   "why": "the owner checks the federal exclusion list (SAM.gov) before award; the supplier's self-certification is recorded",
+   "why": "the official exclusion list could not be checked: SAM.gov requires a personal API key (free, from a SAM.gov account); set SAM_API_KEY. Until then the federal exclusion check is NOT done, and the owner checks sam.gov by hand.. SAM.gov exclusions: unavailable (looked up 2026-11-26T16:39:47+00:00); legal entity in federal award records: no match; export and sanctions screening list: no match (not the procurement exclusion list)",
    "claim": "Not excluded from federal procurement (owner checks SAM.gov)"
   },
   {
@@ -337,7 +337,7 @@
    "bid": "B2",
    "id": "R01",
    "status": "complies",
-   "confidence": 0.95,
+   "confidence": 0.8,
    "route": "decide",
    "kind": "decided",
    "why": "verified quote and a comparison made in code",
@@ -402,11 +402,11 @@
    "group": "requirement",
    "bid": "B2",
    "id": "R07",
-   "status": "complies",
-   "confidence": 0.65,
-   "route": "engineer",
-   "kind": "confirm a reading",
-   "why": "the evidence is quoted but judged, not computed: a person confirms it",
+   "status": "unclear",
+   "confidence": 0.5,
+   "route": "ask_supplier",
+   "kind": "clarification",
+   "why": "one missing fact settles it, and the rest is met with verified evidence: please state: electric starter",
    "claim": "Starting system shall be 24 volt, 2-wire, negative ground, gear engaging electric starter."
   },
   {
@@ -469,10 +469,10 @@
    "bid": "B2",
    "id": "R13",
    "status": "complies",
-   "confidence": 0.65,
-   "route": "engineer",
-   "kind": "confirm a reading",
-   "why": "the evidence is quoted but judged, not computed: a person confirms it",
+   "confidence": 0.75,
+   "route": "decide",
+   "kind": "decided",
+   "why": "verified quote and a comparison made in code",
    "claim": "Generator shall be 4-pole, brushless, and two-thirds pitch wound."
   },
   {
@@ -513,10 +513,10 @@
    "bid": "B2",
    "id": "R17",
    "status": "complies",
-   "confidence": 0.65,
-   "route": "engineer",
-   "kind": "confirm a reading",
-   "why": "the evidence is quoted but judged, not computed: a person confirms it",
+   "confidence": 0.8,
+   "route": "decide",
+   "kind": "decided",
+   "why": "verified quote and a comparison made in code",
    "claim": "Maintain voltage regulation within plus 2% from no load to rated load."
   },
   {
@@ -524,10 +524,10 @@
    "bid": "B2",
    "id": "R18",
    "status": "complies",
-   "confidence": 0.65,
-   "route": "engineer",
-   "kind": "confirm a reading",
-   "why": "the evidence is quoted but judged, not computed: a person confirms it",
+   "confidence": 0.8,
+   "route": "decide",
+   "kind": "decided",
+   "why": "verified quote and a comparison made in code",
    "claim": "Total harmonic distortion of ac voltage waveform from no load to full linear load shall not exceed 5% of rated voltage."
   },
   {
@@ -556,11 +556,11 @@
    "group": "requirement",
    "bid": "B2",
    "id": "R21",
-   "status": "deviates",
-   "confidence": 0.65,
+   "status": "unclear",
+   "confidence": 0.5,
    "route": "engineer",
-   "kind": "confirm a reading",
-   "why": "the evidence is quoted but judged, not computed: a person confirms it",
+   "kind": "judgement",
+   "why": "the evidence needs judgement: no value found, but the submittal mentions proof, enclosure on page(s) [8, 40] | b2-tidewater-generator: the evidence 'weather protective enclosure with critica",
    "claim": "Provide a weatherproof and rodent-proof outdoor enclosure entirely enclosing the generator set, with silencers installed inside."
   },
   {
@@ -650,7 +650,7 @@
    "status": "needs_verification",
    "route": "engineer",
    "kind": "owner check",
-   "why": "the owner checks the federal exclusion list (SAM.gov) before award; the supplier's self-certification is recorded",
+   "why": "the official exclusion list could not be checked: SAM.gov requires a personal API key (free, from a SAM.gov account); set SAM_API_KEY. Until then the federal exclusion check is NOT done, and the owner checks sam.gov by hand.. SAM.gov exclusions: unavailable (looked up 2026-11-26T16:39:54+00:00); legal entity in federal award records: no match; export and sanctions screening list: no match (not the procurement exclusion list)",
    "claim": "Not excluded from federal procurement (owner checks SAM.gov)"
   },
   {
@@ -722,11 +722,11 @@
    "group": "requirement",
    "bid": "B3",
    "id": "R06",
-   "status": "complies",
-   "confidence": 0.65,
-   "route": "engineer",
-   "kind": "contested",
-   "why": "an independent reading says unclear; the evidence is quoted but judged, not computed: a person confirms it",
+   "status": "unclear",
+   "confidence": 0.5,
+   "route": "ask_supplier",
+   "kind": "clarification",
+   "why": "one missing fact settles it, and the rest is met with verified evidence: please state: isochronous",
    "claim": "Governor shall be electronic speed-sensing capable of isochronous frequency regulation from no load to full rated load."
   },
   {
@@ -799,11 +799,11 @@
    "group": "requirement",
    "bid": "B3",
    "id": "R13",
-   "status": "complies",
-   "confidence": 0.65,
-   "route": "engineer",
-   "kind": "confirm a reading",
-   "why": "the evidence is quoted but judged, not computed: a person confirms it",
+   "status": "unclear",
+   "confidence": 0.5,
+   "route": "ask_supplier",
+   "kind": "clarification",
+   "why": "one missing fact settles it, and the rest is met with verified evidence: please state: 4 pole, 2/3 pitch",
    "claim": "Generator shall be 4-pole, brushless, and two-thirds pitch wound."
   },
   {
@@ -876,11 +876,11 @@
    "group": "requirement",
    "bid": "B3",
    "id": "R20",
-   "status": "unclear",
+   "status": "deviates",
    "confidence": 0.5,
    "route": "engineer",
-   "kind": "contested",
-   "why": "our reading found no value, but an independent reading says deviates: a person checks the page",
+   "kind": "confirm a reading",
+   "why": "the evidence is quoted but judged, not computed: a person confirms it",
    "claim": "Provide two 5000 W, 480 V, 1-phase jacket-water heaters."
   },
   {
@@ -889,9 +889,9 @@
    "id": "R21",
    "status": "unclear",
    "confidence": 0.5,
-   "route": "ask_supplier",
-   "kind": "conflicting records",
-   "why": "two records disagree; the supplier is asked to say which applies, with both quotes",
+   "route": "engineer",
+   "kind": "contested",
+   "why": "our reading found no value, but an independent reading says complies: a person checks the page",
    "claim": "Provide a weatherproof and rodent-proof outdoor enclosure entirely enclosing the generator set, with silencers installed inside."
   },
   {
@@ -981,7 +981,7 @@
    "status": "needs_verification",
    "route": "engineer",
    "kind": "owner check",
-   "why": "the owner checks the federal exclusion list (SAM.gov) before award; the supplier's self-certification is recorded",
+   "why": "the official exclusion list could not be checked: SAM.gov requires a personal API key (free, from a SAM.gov account); set SAM_API_KEY. Until then the federal exclusion check is NOT done, and the owner checks sam.gov by hand.. SAM.gov exclusions: unavailable (looked up 2026-11-26T16:39:59+00:00); legal entity in federal award records: no match; export and sanctions screening list: no match (not the procurement exclusion list)",
    "claim": "Not excluded from federal procurement (owner checks SAM.gov)"
   },
   {
@@ -1043,10 +1043,10 @@
    "bid": "B4",
    "id": "R05",
    "status": "complies",
-   "confidence": 0.65,
-   "route": "engineer",
-   "kind": "confirm a reading",
-   "why": "the evidence is quoted but judged, not computed: a person confirms it",
+   "confidence": 0.8,
+   "route": "decide",
+   "kind": "decided",
+   "why": "verified quote and a comparison made in code",
    "claim": "Engine shall be an 8, 12, or 16 cylinder, 4-cycle diesel engine, either turbocharged/aftercooled or normally aspirated."
   },
   {
@@ -1131,10 +1131,10 @@
    "bid": "B4",
    "id": "R13",
    "status": "complies",
-   "confidence": 0.65,
-   "route": "engineer",
-   "kind": "confirm a reading",
-   "why": "the evidence is quoted but judged, not computed: a person confirms it",
+   "confidence": 0.75,
+   "route": "decide",
+   "kind": "decided",
+   "why": "verified quote and a comparison made in code",
    "claim": "Generator shall be 4-pole, brushless, and two-thirds pitch wound."
   },
   {
@@ -1153,10 +1153,10 @@
    "bid": "B4",
    "id": "R15",
    "status": "unclear",
-   "confidence": 0.65,
-   "route": "engineer",
-   "kind": "judgement",
-   "why": "the evidence needs judgement: the evidence shows heater but does not mention 120 v, single phase; nothing contradicts it, a person decides",
+   "confidence": 0.5,
+   "route": "ask_supplier",
+   "kind": "clarification",
+   "why": "one missing fact settles it, and the rest is met with verified evidence: please state: 120 v, 1 phase",
    "claim": "Provide a 120 V, single-phase space heater to prevent condensation in the generator."
   },
   {
@@ -1175,10 +1175,10 @@
    "bid": "B4",
    "id": "R17",
    "status": "complies",
-   "confidence": 0.65,
-   "route": "engineer",
-   "kind": "confirm a reading",
-   "why": "the evidence is quoted but judged, not computed: a person confirms it",
+   "confidence": 0.8,
+   "route": "decide",
+   "kind": "decided",
+   "why": "verified quote and a comparison made in code",
    "claim": "Maintain voltage regulation within plus 2% from no load to rated load."
   },
   {
@@ -1186,10 +1186,10 @@
    "bid": "B4",
    "id": "R18",
    "status": "complies",
-   "confidence": 0.65,
-   "route": "engineer",
-   "kind": "confirm a reading",
-   "why": "the evidence is quoted but judged, not computed: a person confirms it",
+   "confidence": 0.8,
+   "route": "decide",
+   "kind": "decided",
+   "why": "verified quote and a comparison made in code",
    "claim": "Total harmonic distortion of ac voltage waveform from no load to full linear load shall not exceed 5% of rated voltage."
   },
   {
@@ -1310,9 +1310,9 @@
    "bid": "B4",
    "id": "Q7",
    "status": "needs_verification",
-   "route": "ask_supplier",
-   "kind": "needs_verification",
-   "why": "no pre-qualification packet received",
+   "route": "engineer",
+   "kind": "owner check",
+   "why": "the official exclusion list could not be checked: SAM.gov requires a personal API key (free, from a SAM.gov account); set SAM_API_KEY. Until then the federal exclusion check is NOT done, and the owner checks sam.gov by hand.. SAM.gov exclusions: unavailable (looked up 2026-11-26T16:40:05+00:00); legal entity in federal award records: no match; export and sanctions screening list: no match (not the procurement exclusion list)",
    "claim": "Not excluded from federal procurement (owner checks SAM.gov)"
   },
   {
@@ -1777,25 +1777,25 @@
   }
  ],
  "summary": {
-  "decide": 81,
-  "ask_supplier": 43,
-  "engineer": 45,
+  "decide": 89,
+  "ask_supplier": 45,
+  "engineer": 35,
   "total": 169,
-  "engineer_share": 0.266,
+  "engineer_share": 0.207,
   "kinds": {
-   "decided": 56,
+   "decided": 64,
    "not established, read twice": 11,
    "judgement": 10,
-   "contested": 12,
+   "contested": 10,
    "not stated": 4,
    "meets": 21,
-   "owner check": 3,
+   "owner check": 4,
    "product link": 4,
-   "confirm a reading": 15,
+   "clarification": 4,
+   "confirm a reading": 6,
    "absence not confirmed": 3,
-   "needs_verification": 11,
+   "needs_verification": 10,
    "conditional rating": 1,
-   "conflicting records": 1,
    "fails": 1,
    "scope qualified": 9,
    "scope silent": 6,
@@ -1837,33 +1837,33 @@
   },
   "prequal": {
    "decide": 22,
-   "ask_supplier": 11,
-   "engineer": 3,
+   "ask_supplier": 10,
+   "engineer": 4,
    "total": 36,
-   "engineer_share": 0.083,
+   "engineer_share": 0.111,
    "kinds": {
     "meets": 21,
-    "owner check": 3,
-    "needs_verification": 11,
+    "owner check": 4,
+    "needs_verification": 10,
     "fails": 1
    }
   },
   "requirement": {
-   "decide": 27,
-   "ask_supplier": 16,
-   "engineer": 41,
+   "decide": 35,
+   "ask_supplier": 19,
+   "engineer": 30,
    "total": 84,
-   "engineer_share": 0.488,
+   "engineer_share": 0.357,
    "kinds": {
-    "decided": 27,
+    "decided": 35,
     "not established, read twice": 11,
     "judgement": 10,
-    "contested": 12,
+    "contested": 10,
     "not stated": 4,
-    "confirm a reading": 15,
+    "clarification": 4,
+    "confirm a reading": 6,
     "absence not confirmed": 3,
-    "conditional rating": 1,
-    "conflicting records": 1
+    "conditional rating": 1
    }
   }
  }

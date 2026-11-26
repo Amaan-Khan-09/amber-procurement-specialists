@@ -877,5 +877,231 @@
     "quote": "mentioned or stated without a verifiable quote"
    }
   }
+ },
+ "G10": {
+  "case": "G10",
+  "doc_id": "multiquip-egc2000c-data-sheet",
+  "model": "qwen/qwen3.8-27b",
+  "pages": 4,
+  "answers": {
+   "R01": {
+    "verdict": "unclear",
+    "page": null,
+    "quote": "chunks disagree: complies p1; deviates p2"
+   },
+   "R02": {
+    "verdict": "complies",
+    "page": 2,
+    "quote": "configured for standard 60 Hz, 480V output"
+   },
+   "R03": {
+    "verdict": "deviates",
+    "page": 2,
+    "quote": "Peak Motor Starting HP 750"
+   },
+   "R04": {
+    "verdict": "complies",
+    "page": 2,
+    "quote": "Generator Type Rotating Field; PMG"
+   },
+   "R05": {
+    "verdict": "complies",
+    "page": 2,
+    "quote": "4-cycle, Turbocharged, Watercooled, Aftercooler"
+   },
+   "R06": {
+    "verdict": "complies",
+    "page": 2,
+    "quote": "Electronic ... Isochronous under varying loads ... from no load to 100% rated load"
+   },
+   "R07": {
+    "verdict": "unclear",
+    "page": null,
+    "quote": "mentioned or stated without a verifiable quote"
+   },
+   "R08": {
+    "verdict": "deviates",
+    "page": 3,
+    "quote": "100% 124 gal/hr"
+   },
+   "R09": {
+    "verdict": "deviates",
+    "page": 3,
+    "quote": "Above 77°F derate at 10% per 18°F"
+   },
+   "R10": {
+    "verdict": "unclear",
+    "page": null,
+    "quote": "mentioned or stated without a verifiable quote"
+   },
+   "R11": {
+    "verdict": "deviates",
+    "page": 3,
+    "quote": "Above 77°F derate at 10% per 18°F"
+   },
+   "R12": {
+    "verdict": "complies",
+    "page": 2,
+    "quote": "Rated RPM (60Hz) 1800 RPM"
+   },
+   "R13": {
+    "verdict": "unclear",
+    "page": null,
+    "quote": "mentioned or stated without a verifiable quote"
+   },
+   "R14": {
+    "verdict": "complies",
+    "page": 1,
+    "quote": "Class H insulation system conforms to NEMA MG1-22"
+   },
+   "R15": {
+    "verdict": "unclear",
+    "page": null,
+    "quote": "mentioned or stated without a verifiable quote"
+   },
+   "R16": {
+    "verdict": "unclear",
+    "page": null,
+    "quote": "mentioned or stated without a verifiable quote"
+   },
+   "R17": {
+    "verdict": "complies",
+    "page": 2,
+    "quote": "Voltage Regulation 0.25 %"
+   },
+   "R18": {
+    "verdict": "complies",
+    "page": 2,
+    "quote": "L-L Harmonic Max Total 5.0%"
+   },
+   "R19": {
+    "verdict": "deviates",
+    "page": 1,
+    "quote": "1600 gallon, single wall fuel tank"
+   },
+   "R20": {
+    "verdict": "unclear",
+    "page": null,
+    "quote": "mentioned or stated without a verifiable quote"
+   },
+   "R21": {
+    "verdict": "complies",
+    "page": 1,
+    "quote": "45 ft. ISO container, sound-attenuated, foam-lined... Critical grade silencer"
+   }
+  }
+ },
+ "G11": {
+  "case": "G11",
+  "doc_id": "kohler-2000reozmd-spec-sheet",
+  "model": "qwen/qwen3.8-27b",
+  "pages": 5,
+  "answers": {
+   "R01": {
+    "verdict": "complies",
+    "page": 1,
+    "quote": "Standby 130C Rise Ratings ... 2000/2500 ... RATINGS: All three-phase units are rated at 0.8 power factor."
+   },
+   "R02": {
+    "verdict": "complies",
+    "page": 1,
+    "quote": "Alternator 7M4054 Voltage 277/480 Ph 3 Hz 60"
+   },
+   "R03": {
+    "verdict": "unclear",
+    "page": null,
+    "quote": "mentioned or stated without a verifiable quote"
+   },
+   "R04": {
+    "verdict": "complies",
+    "page": 1,
+    "quote": "The pilot-excited, permanent magnet (PM) alternator provides superior short-circuit capability."
+   },
+   "R05": {
+    "verdict": "complies",
+    "page": 2,
+    "quote": "Engine: type 4-Cycle, Turbocharged Cylinder arrangement 16 V"
+   },
+   "R06": {
+    "verdict": "complies",
+    "page": 1,
+    "quote": "An electronic, isochronous governor delivers precise frequency regulation."
+   },
+   "R07": {
+    "verdict": "unclear",
+    "page": null,
+    "quote": "mentioned or stated without a verifiable quote"
+   },
+   "R08": {
+    "verdict": "deviates",
+    "page": 3,
+    "quote": "Max. fuel flow, Lph (gph) 660 (174)"
+   },
+   "R09": {
+    "verdict": "unclear",
+    "page": null,
+    "quote": "mentioned or stated without a verifiable quote"
+   },
+   "R10": {
+    "verdict": "deviates",
+    "page": 1,
+    "quote": "Tier 2 EPA-certified for Stationary Emergency Applications"
+   },
+   "R11": {
+    "verdict": "unclear",
+    "page": null,
+    "quote": "mentioned or stated without a verifiable quote"
+   },
+   "R12": {
+    "verdict": "complies",
+    "page": 2,
+    "quote": "Rated rpm 1800"
+   },
+   "R13": {
+    "verdict": "complies",
+    "page": 2,
+    "quote": "Type 4-Pole, Rotating-Field ... Brushless ... two-thirds pitch stator"
+   },
+   "R14": {
+    "verdict": "complies",
+    "page": 2,
+    "quote": "Insulation: Material Class H, Synthetic, Nonhydroscopic"
+   },
+   "R15": {
+    "verdict": "missing",
+    "page": null,
+    "quote": ""
+   },
+   "R16": {
+    "verdict": "unclear",
+    "page": null,
+    "quote": "mentioned or stated without a verifiable quote"
+   },
+   "R17": {
+    "verdict": "complies",
+    "page": 2,
+    "quote": "Digital solid-state, volts-per-hertz voltage regulator with +/-0.25% no-load to full-load regulation."
+   },
+   "R18": {
+    "verdict": "missing",
+    "page": null,
+    "quote": ""
+   },
+   "R19": {
+    "verdict": "missing",
+    "page": null,
+    "quote": ""
+   },
+   "R20": {
+    "verdict": "missing",
+    "page": null,
+    "quote": ""
+   },
+   "R21": {
+    "verdict": "missing",
+    "page": null,
+    "quote": ""
+   }
+  }
  }
 }

@@ -338,6 +338,37 @@ def prequalify(vendor: dict, documents: list[str], need_date: date, as_of: date,
             "criteria": results, "documents": read}
 
 
+def apply_registry(result: dict, screen: dict | None) -> dict:
+    """Criterion Q7 (not excluded from federal procurement) from the public registries. Only an answer from the
+    official exclusion list (SAM.gov) can pass or fail it; any other outcome leaves it open, with what was checked."""
+    q7 = result["criteria"].get("Q7")
+    if q7 is None:
+        return result
+    if not screen:
+        q7["why"] += "; no registry lookup has been made for this name"
+        return result
+    sam, ent, csl = screen["sam_exclusions"], screen["entity"], screen["screening_list"]
+    q7["registry"] = screen
+    note = (f"SAM.gov exclusions: {sam['status']} (looked up {sam['looked_up']}); legal entity in federal award records: "
+            f"{ent['status']}" + (f" ({ent['legal_entity']}, UEI {ent['uei']})" if ent.get("uei") else "")
+            + f"; export and sanctions screening list: {csl['status']} (not the procurement exclusion list)")
+    if sam["status"] == "confirmed":
+        q7.update(status="fails", route="decide", why="an exclusion record matches on SAM.gov. " + note)
+    elif sam["status"] == "no match" and ent["status"] == "confirmed":
+        q7.update(status="meets", route="decide", why="no active exclusion for the confirmed entity. " + note)
+    else:
+        why = {"unavailable": "the official exclusion list could not be checked: " + sam.get("why", ""),
+               "ambiguous": "several exclusion records resemble the name: confirm identity",
+               "no match": "no exclusion record found, but the legal entity is not confirmed"}[sam["status"]]
+        q7.update(status="needs_verification", route="engineer", why=f"{why}. {note}")
+    st = [r["status"] for r in result["criteria"].values()]
+    result["fails"] = [k for k, r in result["criteria"].items() if r["status"] == "fails"]
+    result["owner_checks"] = [k for k, r in result["criteria"].items() if r.get("route") == "engineer" and r["status"] == "needs_verification"]
+    if "fails" in st:
+        result["overall"] = "fails"
+    return result
+
+
 def packet_for(vendor_id: str) -> list[str]:
     p = PACKETS / f"{vendor_id}_prequal.pdf"
     return [str(p)] if p.exists() else []

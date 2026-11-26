@@ -110,7 +110,36 @@ def test_a_unit_printed_in_the_table_heading_counts_only_for_the_same_attribute(
     assert I.unit_from_heading(other, fuel, "100% 528.3 (139.6)", 1) is None
 
 
+def test_internal_mounted_means_inside():
+    sil = {"attribute": "silencer_location", "kind": "text", "terms": ["inside"], "match": "all"}
+    assert I.compute_text(sil, "internal-mounted, exhaust silencers")["verdict"] == "complies"
+
+
 def test_cylinder_notation_is_read():
     cyl = {"attribute": "cylinder_count", "kind": "text", "terms": ["8 cylinder", "12 cylinder", "16 cylinder"], "match": "any"}
     assert I.compute_text(cyl, "Cylinder arrangement 16V")["verdict"] == "complies"
     assert I.compute_text(cyl, "Rated voltage 480V") is None
+
+
+def test_missing_descriptive_words_are_a_question_not_a_rejection():
+    enc = {"cid": "R21a", "attribute": "enclosure_type", "kind": "text", "terms": ["weatherproof", "rodent-proof"], "match": "all"}
+    part = {"cid": "R21a", "verdict": "deviates", "why": "does not meet all of: weatherproof, rodent-proof", "conf": 0.65, "source": "bid",
+            "cite": {"doc_id": "t", "page": 1, "quote": "weather protective enclosure", "match": "exact"}}
+    p, _ = _run(_doc("weather protective enclosure"), part, enc)
+    assert p["verdict"] == "unclear" and p["kind"] == "one missing fact"
+    p, _ = _run(_doc("enclosure not weatherproof"), dict(part, cite=dict(part["cite"], quote="enclosure not weatherproof")), enc)
+    assert p["verdict"] == "deviates"                       # the opposite is stated: stays a deviation
+    ul = {"cid": "R19a", "attribute": "fuel_tank_listing", "kind": "text", "terms": ["ul 2085"], "match": "all"}
+    p, _ = _run(_doc("UL 142 sub-base tank"), dict(part, cid="R19a", cite=dict(part["cite"], quote="UL 142 sub-base tank")), ul)
+    assert p["verdict"] == "deviates"                       # a different listing contradicts
+
+
+@pytest.mark.parametrize("quote,cond", [
+    ("Max Fuel Flow 158 gal/hr", {"attribute": "average_fuel_consumption_full_standby_load", "op": "<=", "value": 145, "unit": "gph"}),
+    ("Total Fuel Pump Flow (Combustion + Return) - 330 gph", {"attribute": "average_fuel_consumption_full_standby_load", "op": "<=", "value": 145, "unit": "gph"}),
+    ("Frequency regulation, steady state ± 0.25%", {"attribute": "voltage_regulation_no_load_to_rated_load", "op": "<=", "value": 2, "unit": "%"}),
+    ("Fan speed 710 rpm", {"attribute": "engine_speed", "op": "<=", "value": 1800, "unit": "rpm"}),
+])
+def test_regression_g10_a_neighbouring_quantity_is_never_compared(quote, cond):
+    """Held-out G10 (run once on frozen code): a fuel FLOW figure was computed as fuel consumption and rejected."""
+    assert I.compute_numeric(dict(cond, kind="numeric"), quote, "Fuel System Fuel Consumption") is None

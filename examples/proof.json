@@ -1,5 +1,5 @@
 {
- "key": "fe745a39ff58457a50b3",
+ "key": "759ed597c061443f4504",
  "built": "2026-11-26",
  "proof": {
   "cases": [
@@ -20,6 +20,42 @@
     "auto_correct": 7,
     "cost_usd": 0.007903,
     "result_id": "example:G1"
+   },
+   {
+    "case_id": "G10",
+    "split": "heldout",
+    "heldout_set": 5,
+    "document": "multiquip-egc2000c-data-sheet",
+    "label": "against 26-32-13-engine-generators-alpha",
+    "n": 21,
+    "correct": 16,
+    "accuracy": 0.7619047619047619,
+    "false_approvals": 0,
+    "false_rejections": 0,
+    "fabrications": 0,
+    "handoff_rate": 0.7619047619047619,
+    "auto_total": 5,
+    "auto_correct": 5,
+    "cost_usd": 0.002461,
+    "result_id": "example:G10"
+   },
+   {
+    "case_id": "G11",
+    "split": "heldout",
+    "heldout_set": 5,
+    "document": "kohler-2000reozmd-spec-sheet",
+    "label": "against 26-32-13-engine-generators-alpha",
+    "n": 21,
+    "correct": 18,
+    "accuracy": 0.8571428571428571,
+    "false_approvals": 0,
+    "false_rejections": 0,
+    "fabrications": 0,
+    "handoff_rate": 0.7142857142857143,
+    "auto_total": 6,
+    "auto_correct": 6,
+    "cost_usd": 0.00268,
+    "result_id": "example:G11"
    },
    {
     "case_id": "G2",
@@ -212,6 +248,13 @@
     "auto_total": 7,
     "auto_correct": 6,
     "false_approvals": 0
+   },
+   "5": {
+    "n": 42,
+    "correct": 34,
+    "auto_total": 11,
+    "auto_correct": 11,
+    "false_approvals": 0
    }
   },
   "fabrications": 0,
@@ -233,15 +276,17 @@
   },
   "cross": {
    "unclear_with_concrete_reader": {
-    "n": 25,
-    "right": 8
+    "n": 32,
+    "right": 11
    },
    "unclear_with_reader_missing": {
-    "n": 15,
-    "right": 13
+    "n": 18,
+    "right": 15
    },
    "model": "Qwen 3.8 27B",
    "documents": [
+    "G10",
+    "G11",
     "G2",
     "G4",
     "G5",
@@ -251,24 +296,24 @@
     "G9",
     "U1"
    ],
-   "n": 163,
-   "reviewer_agrees_with_key": 116,
-   "kappa": 0.57,
+   "n": 205,
+   "reviewer_agrees_with_key": 147,
+   "kappa": 0.58,
    "handed_agrees": {
-    "n": 59,
-    "right": 50
+    "n": 76,
+    "right": 66
    },
    "handed_disagrees": {
-    "n": 55,
-    "right": 23
+    "n": 69,
+    "right": 30
    },
    "auto_agrees": {
-    "n": 41,
-    "right": 40
+    "n": 49,
+    "right": 48
    },
    "auto_disagrees": {
-    "n": 8,
-    "right": 8
+    "n": 11,
+    "right": 11
    }
   }
  }

@@ -1,19 +1,13 @@
 # Devpost write-up (draft)
 
-> **Updated 26 Nov 2026 (read this first).** The project now has nine specialists, including **vendor discovery** and
-> **vendor pre-qualification**, joined in one **case file** (`case.html` in the app and the live demo: the button
-> "Case file: one purchase, end to end"). The video follows the NEW `DEMO_SCRIPT.md`; the full criteria map is
-> `SCORECARD.md`.
+> **Updated 26 Nov 2026, round two (this replaces the earlier note's numbers).** Measured on the same 256 cases against
+> our previous version: engineer hand-offs **102 to 77 (40 % to 30 %)**, correct decisions 94 to 111, wrong decisions 1 and
+> 1, no missed escalations; unneeded questions rose 3 to 11. Two fresh unseen datasheets: hand-offs 23 to 15 of 42, one
+> new wrong decision (then fixed). Reading the bid with the datasheet: 16 to 21 of 22 package answers right, hand-offs 8
+> to 6 (NOT "13 to 6"). The federal exclusion check is NOT performed (no SAM.gov key): never say a supplier is clear.
 >
-> **Pitch:** "Amber's procurement desk for critical power: specialists that find and pre-qualify suppliers, read every
-> bid and datasheet against the spec with the exact words on the page, and route each open item to whoever can settle
-> it (the agent, the supplier or an engineer), cutting engineer hand-offs from 58 % to 40 % on 256 fixed cases."
->
-> **Numbers to use (measured):** engineer hand-offs 148 → 102 of 256 fixed cases (58 % → 40 %); 59 go to the supplier as
-> drafted questions; right without a person 105 → 150; critical errors 2 → 1; the 17 cases that need judgement still all
-> go to a person. On a datasheet nobody had seen (held-out set 4): 17/21 right, engineer hand-offs 14 → 9 of 21.
-> **Do not say:** "70 % go to a person" as today's figure; that the 256 cases are unseen; that the vendor master,
-> packets or replies are real (they are fictional, like the bids).
+> **Pitch:** "Specialists that check bids and datasheets against the spec, show which exact words control each answer,
+> and on our fixed set of 256 cases cut engineer hand-offs from 40 % to 30 % with no added wrong decisions."
 
 
 Paste into the Devpost project form, section by section. Amaan: edit anything that is not in your voice, then keep
@@ -73,7 +67,7 @@ about 2 cents.
 ## Handing off to a person, honestly
 About two answers in three go to a person, and we say so. 27 % of the requirements are genuinely unclear in the datasheet, so no
 honest system can settle them. To help the person, a model of another family reads each datasheet blind and its verdict sits beside
-ours: when it contradicts an answer, that answer is right only 42 % of the time (85 % when it agrees), so the queue shows the
+ours: when it contradicts an answer, that answer is right only 43 % of the time (87 % when it agrees), so the queue shows the
 contested ones first. We also tried a cheaper version that only shows the second model our quoted evidence; it did not work, and we
 say so in the README.
 

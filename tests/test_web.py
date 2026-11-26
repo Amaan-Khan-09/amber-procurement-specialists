@@ -188,10 +188,10 @@ def test_results_carry_the_independent_readers_verdicts_without_changing_any_ver
 def test_the_proof_tab_reports_what_the_independent_reader_tells_us(client):
     web._proof_cache.clear()
     C = client.get("/api/proof").json()["cross"]
-    assert C["n"] == 163 and len(C["documents"]) == 8  # held-out set 4 (G9) added 26 Nov
-    assert (C["handed_agrees"]["n"], C["handed_agrees"]["right"]) == (59, 50)  # agreement sorts what a person must look at
-    assert (C["handed_disagrees"]["n"], C["handed_disagrees"]["right"]) == (55, 23)
+    assert C["n"] == 205 and len(C["documents"]) == 10  # held-out sets 4 and 5 added 26 Nov
+    assert (C["handed_agrees"]["n"], C["handed_agrees"]["right"]) == (76, 66)  # agreement sorts what a person must look at
+    assert (C["handed_disagrees"]["n"], C["handed_disagrees"]["right"]) == (69, 30)
     # agreement is not proof: G9 R09 was decided alone, the reader agreed, and both were wrong (a rating that needs an unmarked option)
-    assert (C["auto_agrees"]["n"], C["auto_agrees"]["right"]) == (41, 40)
-    assert (C["unclear_with_concrete_reader"]["n"], C["unclear_with_concrete_reader"]["right"]) == (25, 8)  # it never overrules
-    assert (C["unclear_with_reader_missing"]["n"], C["unclear_with_reader_missing"]["right"]) == (15, 13)
+    assert (C["auto_agrees"]["n"], C["auto_agrees"]["right"]) == (49, 48)
+    assert (C["unclear_with_concrete_reader"]["n"], C["unclear_with_concrete_reader"]["right"]) == (32, 11)  # it never overrules
+    assert (C["unclear_with_reader_missing"]["n"], C["unclear_with_reader_missing"]["right"]) == (18, 15)

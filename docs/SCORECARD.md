@@ -1,37 +1,53 @@
 # Judge's scorecard
 
-Every official criterion (Kaya AI Grand Challenge, Track 03 Vertical Agents), what we built for it, what a judge can
-open or run to check it, and what is still missing. Labels: **measured** (computed by a script in this repository),
-**mock data** (fictional companies and documents, labelled on every page), **assumption** (a stated modelling choice).
+Every official criterion (Kaya AI Grand Challenge, Track 03 Vertical Agents) mapped to a demo step, a test and a file.
+**Demo step** numbers refer to `docs/DEMO_SCRIPT.md`; the page is `docs/demo/case.html`. Labels: **measured**
+(computed by a script here), **mock data** (fictional companies and documents), **real** (public records and
+datasheets). Full tables and every case that changed: `docs/RESULTS.md`.
 
-## The judging criteria
+## The headline numbers (measured)
 
-| Criterion (official wording) | What we built | Evidence a judge can inspect | Remaining gap |
-|---|---|---|---|
-| **Accuracy**: does it get the job right on realistic examples? | Submittal checks on real public datasheets; bid leveling; reconciliation of a supplier's bid with its datasheet; pre-qualification; reply reading | Held-out datasheets, labelled before a single run and run once: set 3 **32/42 (76 %)**, set 4 **17/21 (81 %)**; on both, 0 false rejections, 0 invented citations, and no "complies" where the key says deviates or missing (one automatic "complies" where the key says unclear: G9 R09, a rating that needs an unmarked option) (**measured**, README "Evaluation"). Package level (bid + datasheet): right action **15 → 21 of 22** (**measured**, `eval/handoff_set/results.json`). Pre-qualification **36/36** criteria, supplier replies **17/18** answers (**measured** on **mock data**) | The package, pre-qualification and reply sets are small and the documents are ours; keys were written by us (an AI), not yet reviewed by an independent person |
-| **Customer value**: would a procurement manager or superintendent use it tomorrow, as a product? | One case file per purchase: who could supply it, who passes pre-qualification, what each supplier committed to, what is still open and with whom, cost and arrival ranges, and the award options with their blockers | `case.html` in the live demo (or `python -m amber.case run`), the web page (`python -m amber.web`), draft questions per supplier | Runs on one project's generator package; UPS has checks but no case file yet |
-| **Trustworthiness**: sources cited, sensible confidence scores, nothing made up | Model reads, code decides; every quote verified on its page; a question goes to the supplier only when two independent readings agree the document does not settle it; conflicts between records kept as conflicts | 0 invented citations in every scored run; critical autonomous errors **2 → 1** of 256 cases; the 17 cases that should escalate still all go to an engineer (**measured**); every wrong autonomous answer is listed on the case page | One critical error remains: a bid scope cell read as "included" where our key says "qualified" (B2 S2) |
-| **Build quality**: easy to run, cost and speed per run, code quality | 9 MCP tools, one shared result format, a resumable case file, 147 tests | Fresh-clone install, `pytest`, cost and tokens on every saved run (the whole bid-commitment reading: 38 calls, $0.017; pre-qualification: 3 calls, $0.0015) | Case file replays saved readings by default; a live run on new documents needs the free Groq allowance |
+| | Baseline (commit 9cd1b4e) | Now |
+|---|---|---|
+| Sent to an engineer, fixed set of 256 cases | 102 (40 %) | **77 (30 %)** |
+| Correct decisions made alone | 94 | **111** |
+| Wrong decisions (all critical) | 1 | **1** |
+| Missed mandatory escalations | 0 | **0** |
+| Clarifications asked (none yet resolved by a verified reply) | 0 | 10 |
+| Questions the key says were not needed (worse) | 3 | 11 |
+| Right action on any route (worse) | 218 | 213 |
+| Two fresh unseen sheets, frozen code: sent to an engineer | 23 of 42 | **15 of 42** |
+| Two fresh unseen sheets, frozen code: wrong decisions (worse) | 0 | 1 |
 
-## Track 03: what the brief looks for
+The 10-point hand-off stretch target was **just missed (9.8 points)**. On the unseen sheets the new version **added one
+wrong decision**; it was fixed afterwards with a regression test, which does not make those sheets unseen again.
 
-| What the brief asks | What we built | Evidence | Gap |
-|---|---|---|---|
-| "Amber has to be able to rely on your specialists without a person checking every answer" | Routing: decided / ask the supplier / engineer. On the fixed set of 256 cases, sent to an engineer **148 (58 %) → 102 (40 %)**; on the 184 datasheet answers **70 % → 51 %**, with 24 % now going straight to the supplier as a question; correct without a person **105 → 150** (**measured**) | `python scripts/eval_handoffs.py`; the case page's first section | Still 40 % to an engineer. The rest is judgement (derating footnotes, readings the model judged) or contested by the second reader |
-| Specialists right on unseen problems, every finding traced to its source | Held-out sets run once; every finding cites document, page and quote. New: held-out set 4 (Generac MD2000, key committed before the run): **17/21**, and the new routing sends **9 of 21** to an engineer instead of 14, with all 5 supplier questions right (**measured**) | README "Evaluation" and "Hand-offs"; Proof tab; the case page | One automatic error on that sheet, in both versions: a 50 °C rating that holds only with an unmarked option (not tuned on, listed as the next fix); 21 requirements is a small test |
-| A suite covering as much of the workflow as possible, without trading depth | All eight listed specialists: bid leveling, schedule and delivery risk, spec and submittal compliance, product discovery, lead time prediction, **vendor discovery**, **vendor pre-qualification**, private deployment | `run_case`, `discover_vendors`, `prequalify_vendors`, `check_submittal`, `level_bids`, `assess_delivery_risk`, `find_products`, `run_package_review`, `draft_follow_ups` | Vendor discovery uses a vendor master (**mock data**), not public registries; the federal exclusion list check is left to the owner, stated as such |
-| Clean hand-offs, "more than the sum of their parts" | Discovery ranks Tidewater first; pre-qualification then holds it until three items are verified; its reply settles them, reprices its tank and moves its leveled cost range from $4.53-4.99M to $4.60-4.69M | Case page: Discovery → Pre-qualification → Questions & replies → Ranges | Replies are **mock data** |
-| "Go deeper than an API call": long-running work with memory | A 13-step case file; state saved after each step; a run stopped inside a step resumes there; replies arriving later flow back into earlier steps | `python -m amber.case run --crash-at reconcile`, then `python -m amber.case run`; the journal on the case page; `tests/test_case.py` | None known |
-| Document understanding beyond basic OCR | Condition-level reconciliation across datasheet, bid and reply; a heading ("Options (not included in total)") governs the rows under it in a supplier's documents; a derating footnote is linked to the option the supplier commits to (122 °F − 9 °F = 113 °F, below the spec) | Case page "Reconciled answers"; `tests/test_case.py` | The footnote rule covers ambient-rating footnotes only |
-| Honest ranges | Leveled cost as a range (what is assumed, what has no upper bound); arrival P10/P50/P90 from weighted, cited reports, with dissent kept | Case page "Ranges", with assumptions and missing inputs listed | Allowances are the owner's (**mock data**) |
-| Linking records | Bid → datasheet (B4's "C2000D6" reported as ambiguous between two documents instead of picked); bid-form scope item → spec requirement (a wrong paragraph reference reported); tags → PO log → lead-time evidence | Case page "Record links" | Linking rules are written for model designations and paragraph references |
-| "A technique nobody else thought to apply" | Treating the supplier's own bid and replies as evidence, condition by condition, against the same spec, with two independent readings before asking the supplier | Package group: engineer hand-offs **13 → 6**, right action **15 → 21 of 22** (**measured**); baseline = the datasheet alone | Measured on one package (22 cases) |
+## Judging criteria
+
+| Criterion (official wording) | Demo step | Test | Artifact | Remaining gap |
+|---|---|---|---|---|
+| **Accuracy**: does it get the job right on realistic examples? | 6 | `tests/test_inspect.py`, `tests/test_accuracy.py` | `docs/RESULTS.md`; Proof tab (held-out sets 1 to 5) | Set 5 was read by the smaller `gpt-oss-20b`; answer keys are AI-written and unreviewed |
+| **Customer value**: would a procurement manager use it tomorrow? | 1 to 5 | `tests/test_case.py` | `python -m amber.case run`; the case page | One project, one equipment package; supplier replies are **mock data** |
+| **Trustworthiness**: sources cited, sensible confidence, nothing made up | 1, 3, 4 | `tests/test_evidence.py`, `tests/test_registries.py`, `tests/test_verify.py` | Evidence record; quotes verified on their page; 0 invented citations | One critical error remains (bid scope B2 S2); the federal exclusion check is **not performed** without a SAM.gov key |
+| **Build quality**: easy to run, cost and speed, code quality | 5 | the whole suite (`pytest`) | README quick start; cost and tokens on every saved run | Free model allowance (200k tokens a day per model) limits live runs |
+
+## Track 03: what the brief asks for
+
+| What the brief asks | Demo step | Test | What it shows | Gap |
+|---|---|---|---|---|
+| "Rely on your specialists without a person checking every answer" | 6 | `tests/test_inspect.py` | Engineer queue 40 % to 30 % | 77 cases still reach an engineer (41 of them needed per the key); 23 judged readings and 23 model disagreements are the largest groups |
+| Right on unseen problems, every finding traced to its source | 6 | `eval/handoff_set/fresh_unseen.json` | Two sheets labelled after a code freeze: correct decisions 9 to 14 of 42 | One new wrong decision; two sheets only |
+| A suite covering the workflow without trading depth | 1 to 5 | `tests/test_server.py` | All eight listed specialists as nine MCP tools | UPS has checks but no case file |
+| Clean hand-offs: "more than the sum of their parts" | 3, 4 | `tests/test_evidence.py` | Same routing, 22 package cases: datasheet alone 16 right and 8 to an engineer; with the bid 21 and 6; today 22 and 7 | Those 22 cases were inspected while fixing them |
+| Long-running work with memory | 5 | `tests/test_case.py` | Interrupted run resumes; replies flow back | None known |
+| Document reading beyond OCR | 3, 4 | `tests/test_inspect.py`, `tests/test_evidence.py` | Option ticks, derating footnotes, table-heading units, explicit supersession, conflicts | Rules cover the notations seen; a new one goes to a person |
+| Honest ranges | 5 | `tests/test_delivery.py` | Cost ranges with assumptions; arrival P10/P50/P90 from cited reports | Allowances are **mock data** |
+| Linking records | 2, 3 | `tests/test_case.py` | Ambiguous model reported; evidence tied to supplier, bid, tags, model, document, revision | Model designations and paragraph references only |
+| Vendor discovery and pre-qualification | 1 | `tests/test_registries.py`, `tests/test_case.py` | **Real** federal award records with UEIs; source, time and match status per supplier | SAM.gov exclusions **unverified** (needs a key); the bidder companies are fictional, so no federal record exists for them |
 
 ## The most convincing reason a judge would rank another entry higher
 
-**"It still sends 40 % of items to an engineer; a rival's agent looks finished."** Our answer, in the order we would show
-it: (1) the hand-off figure is measured on 256 fixed cases, against our own earlier version, and every wrong answer is
-listed; (2) 59 of the items no longer reach an engineer but go straight to the supplier as a drafted question, and that
-route is taken only when two independent readings agree the document does not say; (3) the cases that need judgement
-(17 of 17) still go to a person, so the reduction did not come from approving more; (4) after replies, the case closes
-items automatically: 45 → 40 engineer items and 43 → 27 open questions in this case.
+"Thirty percent still goes to an engineer, the team wrote its own answer keys, and the one fresh test added an error."
+Our reply: the share is measured against our own earlier version on identical inputs; every remaining case has a stated
+reason; the error is shown with its cause and the test that now guards it. What we cannot argue away is that **no person
+has reviewed the answer keys**.

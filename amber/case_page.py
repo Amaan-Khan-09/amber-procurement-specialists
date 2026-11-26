@@ -35,6 +35,7 @@ td .b{margin:1px 0}
 details summary{cursor:pointer;font-weight:600}
 .pq td{text-align:center}.pq td:first-child,.pq td:nth-child(2){text-align:left}
 .pq .b{min-width:22px}
+.walk li{margin-bottom:10px}
 @media (max-width:700px){.hide-sm{display:none}}
 @media (max-width:560px){.tiles,.grid{grid-template-columns:1fr}.toc a{font-size:12px}h1{font-size:19px}}
 body{overflow-wrap:anywhere}
@@ -80,6 +81,179 @@ def _money(x) -> str:
     return f"${x / 1e6:.3f}M" if isinstance(x, (int, float)) else "-"
 
 
+METRIC_LABELS = [("to an engineer", "Sent to an engineer"), ("clarification requests", "Focused clarification asked"),
+                 ("supplier questions", "Other question to the supplier"), ("correct decisions", "Correct decision made alone"),
+                 ("well-founded questions", "Questions the key agrees are needed"), ("questions not needed", "Questions not needed"),
+                 ("incorrect decisions (critical)", "Wrong decision: approves what fails, or rejects what complies"),
+                 ("incorrect decisions (minor)", "Wrong decision: minor"), ("missed escalations", "Missed mandatory escalation"),
+                 ("unnecessary hand-offs", "Unnecessary hand-off"), ("right action", "Right action (any route)")]
+
+
+def _three(title: str, s: dict, cols=(("v1", "v1: one queue"), ("v2", "v2: baseline"), ("v3", "v3: now"))) -> str:
+    n = s[cols[0][0]]["n"]
+    rows = "".join(f"<tr><td>{_e(lab)}</td>" + "".join(
+        f"<td class='n'>{s[v][k]} <span class='src'>({s[v][k] / n:.0%})</span></td>" for v, _ in cols) + "</tr>"
+        for k, lab in METRIC_LABELS)
+    return (f"<h3>{_e(title)} <span class='src'>n = {n}</span></h3><table><tr><th>Outcome</th>"
+            + "".join(f"<th class='n'>{_e(c)}</th>" for _, c in cols) + "</tr>" + rows + "</table>")
+
+
+def _measured(ev: dict, fresh_file: Path) -> str:
+    S = ev["summary"]
+    L = S["like_for_like"]
+    n = L["v2"]["n"]
+    fresh = json.loads(fresh_file.read_text(encoding="utf-8")) if fresh_file.exists() else None
+    F = fresh["summary"]["all"] if fresh else None
+
+    def tile(k, a, b, sub, cls="okt"):
+        return (f"<div class='tile kpi {cls}'><div class='k'>{_e(k)}</div><div class='v'>{a} <span class='arrow'>&rarr;</span> {b}</div>"
+                f"<div class='s'>{sub}</div></div>")
+    out = ["<h2 id='measured'>Measured: baseline (v2) against now (v3) <span class='tag m'>measured</span></h2><div class='tiles'>",
+           tile("Engineer hand-offs", f"{L['v2']['to an engineer']}/{n}", f"{L['v3']['to an engineer']}/{n}",
+                f"{L['v2']['to an engineer'] / n:.0%} &rarr; {L['v3']['to an engineer'] / n:.0%} on the fixed development set"),
+           tile("Correct decisions made alone", L["v2"]["correct decisions"], L["v3"]["correct decisions"], f"of {n}"),
+           tile("Wrong decisions", L["v2"]["incorrect decisions (critical)"] + L["v2"]["incorrect decisions (minor)"],
+                L["v3"]["incorrect decisions (critical)"] + L["v3"]["incorrect decisions (minor)"],
+                f"missed escalations {L['v2']['missed escalations']} &rarr; {L['v3']['missed escalations']}")]
+    if F:
+        wrong = lambda v: F[v]["incorrect decisions (critical)"] + F[v]["incorrect decisions (minor)"]
+        out.append(tile("Fresh unseen sheets: hand-offs", f"{F['v2']['to an engineer']}/{F['v2']['n']}",
+                        f"{F['v3']['to an engineer']}/{F['v3']['n']}", "frozen code, two sheets run once", "infot"))
+        out.append(tile("Fresh unseen: wrong decisions", wrong("v2"), wrong("v3"),
+                        "one added: a fuel FLOW figure read as consumption (since fixed, not unseen any more)", "badt"))
+    out.append("</div><div class='card scroll'>")
+    out.append(_three("Fixed development set (documents seen while building)", L))
+    if F:
+        out.append(_three(f"Fresh unseen: Multiquip and Kohler sheets, code frozen at {fresh['frozen_commit']}, "
+                          f"reading by {fresh['extraction_model']}", F))
+    after = S.get("fresh_unseen_set5")
+    if after:
+        out.append(_three("The same two sheets after the fix (a repair record, not an unseen result)", after))
+    out.append("<p class='small'><b>v1</b> = anything under 0.70 to one queue (commit 48b321c). <b>v2</b> = decided / supplier / "
+               "engineer, with the supplier's documents reconciled (commit 9cd1b4e). <b>v3</b> = v2 plus a second look in code at "
+               "the disputed clause and its evidence. All three read the same saved model output. A clarification is <b>not</b> "
+               "counted as resolved: it counts only as a question, and is scored resolved only where a reply verifies it (below). "
+               "Answer keys were written by an AI before the code they score, and are not yet reviewed by a person.</p>")
+    like = [r for r in ev["results"] if r["group"] not in ("prequal", "unseen datasheet", "fresh unseen")]
+    changed = [r for r in like if (r["v2"]["outcome"], r["v2"]["route"]) != (r["v3"]["outcome"], r["v3"]["route"])]
+    good = {"correct decision"}
+    better = [r for r in changed if r["v3"]["outcome"] in good or r["v3"]["outcome"].endswith("well-founded")]
+    worse = [r for r in changed if r["v3"]["outcome"] in ("incorrect decision", "missed escalation") or r["v3"]["outcome"].endswith("not needed")
+             or (r["v3"]["outcome"] == "unnecessary hand-off" and r["v2"]["outcome"] != "unnecessary hand-off")]
+    other = [r for r in changed if r not in better and r not in worse]
+
+    def lst(rows):
+        return ("<table><tr><th>Case</th><th>Key</th><th>v2</th><th>v3</th><th>Why (v3)</th></tr>" + "".join(
+            f"<tr><td class='mono'>{_e(r['id'])}</td><td>{_v(r['expected'])}</td><td>{_v(r['v2']['answer'])} {_r(r['v2']['route'])}</td>"
+            f"<td>{_v(r['v3']['answer'])} {_r(r['v3']['route'])}</td><td class='small'>{_e((r['v3'].get('why') or r['v3'].get('kind') or '')[:150])}</td></tr>"
+            for r in rows) + "</table>")
+    out.append(f"<details><summary>Improved ({len(better)} cases)</summary>{lst(better)}</details>")
+    out.append(f"<details><summary>Got worse ({len(worse)} cases)</summary>{lst(worse)}</details>")
+    if other:
+        out.append(f"<details><summary>Changed, neither better nor worse ({len(other)})</summary>{lst(other)}</details>")
+    why = {"confirm a reading": "the evidence is judged, not computed: a term or unit the code cannot confirm from the quote",
+           "contested": "two models disagree and the disputed clause does not settle it",
+           "judgement": "needs engineering judgement (partial statements, conditions, discarded values)",
+           "absence not confirmed": "the document was not read a second time (large or scanned), so absence is unconfirmed",
+           "conditional rating": "a derating footnote changes the rating when a fitted option applies",
+           None: "an award or schedule decision", "": "an award or schedule decision"}
+    eng = [r for r in like if r["v3"]["route"] == "engineer"]
+    kinds: dict = {}
+    for r in eng:
+        kinds.setdefault(r["v3"].get("kind"), []).append(r)
+    out.append(f"<h3>Why {len(eng)} cases still reach an engineer</h3><table><tr><th>Reason</th><th class='n'>Cases</th>"
+               "<th class='n'>needed (key agrees)</th><th>Examples</th></tr>" + "".join(
+                   f"<tr><td>{_e(why.get(k, k))}</td><td class='n'>{len(v)}</td><td class='n'>"
+                   f"{sum(1 for r in v if r['v3']['outcome'] == 'justified hand-off')}</td><td class='small mono'>"
+                   f"{_e(', '.join(r['id'] for r in v[:6]))}</td></tr>" for k, v in sorted(kinds.items(), key=lambda kv: -len(kv[1]))) + "</table>")
+    pf = fresh_file.with_name("package_compare.json")
+    if pf.exists():
+        pc = json.loads(pf.read_text(encoding="utf-8"))["summary"]
+        cols = list(next(iter(pc.values())))
+        out.append("<h3>What the supplier's own documents add: the same 22 package cases</h3><table><tr><th>Variant</th>"
+                   + "".join(f"<th class='n'>{_e(c)}</th>" for c in cols) + "</tr>" + "".join(
+                       f"<tr><td>{_e(v)}</td>" + "".join(f"<td class='n'>{s[c]}</td>" for c in cols) + "</tr>" for v, s in pc.items())
+                   + "</table><p class='small'>With the same routing on both sides, reading the bid next to the datasheet raises right "
+                     "actions from 16 to 21 of 22 and cuts hand-offs from 8 to 6; today's version gets 22 right with 7 hand-offs. "
+                     "These cases were inspected while fixing them (a repair record).</p>")
+    PQ = S["new_specialist_prequal"]["v3"]
+    out.append(f"<p class='small'>Pre-qualification, scored separately on mock packets: {PQ['right action']} of {PQ['n']} criteria right.</p></div>")
+    return "".join(out)
+
+
+def _public_record(pr: dict) -> str:
+    d = pr.get("discovery") or {}
+    out = ["<h2 id='public'>Vendor discovery from public federal records <span class='tag m'>real lookups</span></h2><div class='card scroll'>",
+           f"<p class='small'>{_e(d.get('source', ''))} &middot; <span class='mono'>{_e(d.get('endpoint', ''))}</span> &middot; looked up "
+           f"{_e(d.get('looked_up', '-'))} &middot; query: {_e(d.get('query', ''))} &middot; status {_e(d.get('status', 'unavailable'))}. "
+           "A record shows what the government bought from an entity; it does not pre-qualify anyone.</p><table><tr><th>Legal entity</th>"
+           "<th>UEI</th><th>What the record establishes</th><th>Evidence</th><th>Exclusion (SAM.gov)</th><th>Screening list</th></tr>"]
+    for v in d.get("candidates", []):
+        sc = (pr.get("screens") or {}).get(v["legal_entity"]) or {}
+        e = v["evidence"][0]
+        sam, csl = (sc.get("sam_exclusions") or {}), (sc.get("screening_list") or {})
+        size = f"{v['largest_kw']:g} kW" if v.get("largest_kw") else ""
+        out.append(f"<tr><td><b>{_e(v['legal_entity'])}</b></td><td class='mono'>{_e(v['uei'])}</td><td>{_b(v['establishes'], 'ok' if v['establishes'] == 'supply' else 'warn')} "
+                   f"{_e(size)}</td>"
+                   f"<td class='small'><a href='{_e(e['url'])}'>{_e(e['award_id'])}</a> {_e(e['date'])} {_e(e['state'])}: {_e(e['description'][:90])}</td>"
+                   f"<td>{_b(sam.get('status', 'not looked up'), 'warn' if sam.get('status') in (None, 'unavailable', 'ambiguous') else 'ok' if sam.get('status') == 'no match' else 'bad')}</td>"
+                   f"<td>{_b(csl.get('status', 'not looked up'), 'ok' if csl.get('status') == 'no match' else 'warn')}</td></tr>")
+    keyless = any(((s.get("sam_exclusions") or {}).get("status") == "unavailable") for s in (pr.get("screens") or {}).values())
+    note = ("<b>Unverified:</b> the federal exclusion list (SAM.gov) could not be asked: it needs a personal API key (SAM_API_KEY) "
+            "that this lookup did not have, so no supplier here is reported as cleared. " if keyless else "")
+    out.append(f"</table><p class='small'>{note}The trade.gov screening list is a separate export and sanctions screen, not the "
+               "procurement exclusion list.</p></div>")
+    return "".join(out)
+
+
+def _walkthrough(s2, state, disc, link, pq2, rec2, names, bv) -> str:
+    """One purchase decision from vendor lookup to a verdict backed by exact words: B2's fuel tank."""
+    b, rid = "B2", "R19"
+    f = next(x for x in rec2[b]["findings"] if x["data"]["req_id"] == rid)
+    vid = bv[b]
+    vname = names.get(vid, vid)
+    rank = next((v for v in disc["ranked"] if v["vendor_id"] == vid), None)
+    screen = (disc.get("public_record") or {}).get("screens", {}).get(vname) or {}
+    lk = link["products"][b]
+    ev_rows = [e for e in rec2[b]["evidence"] if e["req_id"] == rid]
+    flagged = [(bb, x) for bb in bv for x in rec2.get(bb, {}).get("findings", [])
+               if x["route"].get("kind") in ("conditional rating", "conflicting records")]
+    conflict = next(iter(sorted(flagged, key=lambda p: p[1]["route"]["kind"] != "conditional rating")), None)
+    reg = ""
+    if screen:
+        reg = ("<ul class='small'>" + "".join(
+            f"<li><b>{_e(lbl)}</b>: {_e(screen[k]['status'])} &middot; {_e(screen[k]['source'])} &middot; looked up {_e(screen[k]['looked_up'])}"
+            f"<div class='src'>{_e(screen[k].get('why', ''))}</div></li>" for k, lbl in
+            (("entity", "Legal entity"), ("sam_exclusions", "Federal exclusion list"), ("screening_list", "Export/sanctions screen"))) + "</ul>")
+    out = [f"<h2 id='walk'>One decision, end to end: does {_e(vname)}'s fuel tank meet the spec?</h2><div class='card scroll'><ol class='walk'>",
+           f"<li><b>Vendor lookup</b> (real public sources; this bidder is fictional, so no federal record is expected){reg}</li>",
+           f"<li><b>Vendor discovery</b>: ranked #{rank['rank'] if rank else '-'} in the project's vendor master (mock) with {_e(rank['points'] if rank else '-')} points; "
+           f"<b>pre-qualification</b>: {_e(pq2[b]['overall'])}.</li>",
+           f"<li><b>Which datasheet?</b> {_v(lk['status'])} {_e(lk['why'][:220])}</li>",
+           f"<li><b>The spec</b>: {_e(f['claim'])}{_cite(f['citations'][0] if f['citations'] else None, 200)}</li>",
+           "<li><b>The evidence record</b> (one row per document and per part of the requirement)<table><tr><th>Part of the requirement</th>"
+           "<th>Document</th><th>Revision / date</th><th>Page</th><th>Exact words</th><th>Says</th><th>Role</th><th>Why</th></tr>"
+           + "".join(f"<tr><td class='small'>{_e(str(e['attribute']).replace('_', ' '))}</td><td class='small'>{_e(e['document_kind'])}<div class='src'>{_e(e['document'])}</div></td>"
+                     f"<td class='small'>{_e(e['revision'] or e['date'] or 'none printed')}</td><td class='n'>{_e(e['page'] or '')}</td>"
+                     f"<td>{('<span class=q>' + _e(e['quote'][:90]) + '</span>') if e['quote'] else ''}</td>"
+                     f"<td>{_b(e['says'], VERDICT_CLS.get(e['says'], 'mute'))}</td><td>{_b(e['role'], {'controls': 'ok', 'superseded': 'mute', 'conflicts': 'bad'}.get(e['role'], 'info'))}</td>"
+                     f"<td class='small'>{_e(e['why'][:150])}</td></tr>" for e in ev_rows) + "</table>"
+           + (f"<div class='src'>Supplier {_e(ev_rows[0].get('supplier'))} &middot; bid {b} &middot; items {_e(ev_rows[0].get('tags'))} &middot; model {_e(ev_rows[0].get('model'))}</div>" if ev_rows else "")
+           + "</li>",
+           f"<li><b>Verdict</b>: {_v(f['status'])} {_r(f['route']['route'])}<div class='small'>Controlling words: "
+           + "; ".join(f"{_e(str(e['attribute']).replace('_', ' '))}: \"{_e(e['quote'][:80])}\" ({_e(e['document'])})" for e in ev_rows if e["role"] == "controls")
+           + "</div></li></ol>"]
+    if conflict:
+        bb, x = conflict
+        reason = next((c["why"] for c in x["data"]["conditions"] if c.get("kind") in ("conditional rating", "conflicting records")), x["why"])
+        quotes = [c for c in x["citations"][1:] if not str(c.get("doc_id", "")).startswith("equipment")]
+        out.append(f"<h3>Where the same method exposes a problem for review instead: {_e(bb)} {_e(x['data']['req_id'])}</h3>"
+                   f"<p class='small'>{_e(x['claim'])}</p><p>{_e(reason[:460])}</p>" + "".join(_cite(c, 170) for c in quotes)
+                   + f"<p>{_v(x['status'])} {_r(x['route']['route'])} <span class='small'>{_e(x['route'].get('why', ''))}</span></p>")
+    out.append("</div>")
+    return "".join(out)
+
+
 def render(snap: Path = SNAP, eval_file: Path = EVAL, back_href: str = "./") -> str:
     s1, s2, rs = snap / "1_questions_sent", snap / "2_after_replies", snap / "resume"
     state = json.loads((s2 / "state.json").read_text(encoding="utf-8"))
@@ -103,67 +277,16 @@ def render(snap: Path = SNAP, eval_file: Path = EVAL, back_href: str = "./") -> 
                "comes from <span class='mono'>scripts/eval_handoffs.py</span>. Labels: <span class='tag m'>measured</span> "
                "<span class='tag k'>mock data</span> <span class='tag a'>assumption</span>.</p>")
     out.append("<div class='toc'>" + "".join(f"<a href='#{a}'>{t}</a>" for a, t in [
-        ("measured", "Measured change"), ("steps", "Steps & resume"), ("decision", "Decision"), ("discovery", "Vendor discovery"),
+        ("walk", "One decision"), ("measured", "Measured"), ("public", "Public records"), ("steps", "Steps & resume"), ("decision", "Decision"), ("discovery", "Vendor discovery"),
         ("prequal", "Pre-qualification"), ("links", "Record links"), ("reconcile", "Reconciled answers"), ("ranges", "Ranges"),
         ("triage", "Who acts"), ("replies", "Questions & replies")]) + "</div>")
 
+    # ---- one decision, end to end
+    out.append(_walkthrough(s2, state, disc, link, pq2, rec2, names, bv))
+
     # ---- measured
     if ev:
-        L, D = ev["summary"]["like_for_like"], ev["summary"]["by_group"]["datasheet"]
-        P = ev["summary"]["by_group"]["package"]
-        U = ev["summary"].get("unseen_set4")
-        n = L["before"]["n"]
-
-        def tile(k, b, a, sub, cls="okt"):
-            return (f"<div class='tile kpi {cls}'><div class='k'>{_e(k)}</div><div class='v'>{b} <span class='arrow'>&rarr;</span> {a}</div>"
-                    f"<div class='s'>{sub}</div></div>")
-        e1, e2 = tri1["summary"], tri2["summary"]
-        out.append("<h2 id='measured'>Measured change in hand-offs <span class='tag m'>measured</span></h2>")
-        out.append("<div class='tiles'>"
-                   + tile("Sent to an engineer", L["before"]["to an engineer"], L["now"]["to an engineer"],
-                          f"of {n} fixed cases ({L['before']['to an engineer'] / n:.0%} &rarr; {L['now']['to an engineer'] / n:.0%})")
-                   + tile("Datasheet answers to an engineer", f"{D['before']['to an engineer'] / D['before']['n']:.0%}",
-                          f"{D['now']['to an engineer'] / D['now']['n']:.0%}",
-                          f"of {D['before']['n']}; {D['now']['to the supplier']} now go straight to the supplier as questions")
-                   + tile("Right without a person", L["before"]["correct autonomous"], L["now"]["correct autonomous"], f"of {n}")
-                   + tile("Critical errors", L["before"]["critical"], L["now"]["critical"], "accepting what fails, rejecting what complies",
-                          "okt" if L["now"]["critical"] <= L["before"]["critical"] else "badt")
-                   + tile("Package answers right", f"{P['before']['right action']}/{P['before']['n']}", f"{P['now']['right action']}/{P['now']['n']}",
-                          "reading the supplier's bid next to its datasheet")
-                   + (tile("Unseen datasheet (held out)", f"{U['before']['to an engineer']}/{U['before']['n']}",
-                           f"{U['now']['to an engineer']}/{U['now']['n']}",
-                           f"to an engineer; {U['now']['to the supplier']} supplier questions, all right; labelled before its one run",
-                           "infot") if U else "")
-                   + tile("After two replies (mock)", f"{e1['engineer']} / {e1['ask_supplier']}", f"{e2['engineer']} / {e2['ask_supplier']}",
-                          "engineer items / supplier questions in this case", "infot")
-                   + "</div>")
-        rows = ["correct autonomous", "justified hand-off", "unnecessary hand-off", "incorrect autonomous", "critical",
-                "to an engineer", "to the supplier", "right action"]
-        groups = [("All like-for-like", L)] + [(g, ev["summary"]["by_group"][g]) for g in ("datasheet", "package", "link", "bid scope", "decision")] \
-            + [(f"category: {c.replace('_', ' ')}", ev["summary"]["by_category"][c]) for c in ("routine", "missing_info", "conflict", "escalate")]
-        out.append("<div class='card scroll'><table><tr><th>Set</th><th class='n'>n</th>" + "".join(f"<th class='n'>{_e(r)}<br>before &rarr; now</th>" for r in rows) + "</tr>")
-        for lab, g in groups:
-            out.append(f"<tr><td>{_e(lab)}</td><td class='n'>{g['before']['n']}</td>" + "".join(
-                f"<td class='n'>{g['before'][r]} &rarr; <b>{g['now'][r]}</b></td>" for r in rows) + "</tr>")
-        if U:
-            out.append(f"<tr><td>unseen datasheet (held-out set 4)</td><td class='n'>{U['before']['n']}</td>" + "".join(
-                f"<td class='n'>{U['before'][r]} &rarr; <b>{U['now'][r]}</b></td>" for r in rows) + "</tr>")
-        PQ = ev["summary"]["new_specialist_prequal"]
-        out.append(f"<tr><td>new: pre-qualification (before = all by hand)</td><td class='n'>{PQ['before']['n']}</td>" + "".join(
-            f"<td class='n'>{PQ['before'][r]} &rarr; <b>{PQ['now'][r]}</b></td>" for r in rows) + "</tr></table>")
-        out.append("<p class='small'><b>Before</b> = the routing at commit 48b321c (anything under 0.70 to one queue). <b>Now</b> = the same "
-                   "saved model readings, routed by amber/triage.py and reconciled across the supplier's documents. "
-                   "<b>Correct autonomous</b>: the agent acted alone (decided, or asked the supplier) and the action was right. "
-                   "<b>Justified hand-off</b>: an engineer was asked and the case needs judgement or the agent's answer was wrong. "
-                   "<b>Unnecessary</b>: an engineer was asked but the agent was right and no judgement was needed. <b>Critical</b>: "
-                   "accepting what fails or is not shown, or rejecting what complies. These documents were seen during development: "
-                   "a repair record on a fixed set, not a held-out score. The bid and supplier documents are mock data.</p>")
-        bad = [r for r in ev["results"] if r["now"]["outcome"] == "incorrect autonomous"]
-        out.append("<details><summary>Every case the agent now gets wrong on its own (" + str(len(bad)) + ")</summary><table>"
-                   "<tr><th>Case</th><th>Expected</th><th>Now</th><th>Severity</th></tr>" + "".join(
-                       f"<tr><td class='mono'>{_e(r['id'])}</td><td>{_v(r['expected'])} {_r(r['expected_route'])}</td>"
-                       f"<td>{_v(r['now']['answer'])} {_r(r['now']['route'])}</td><td>{_e(r['now']['severity'])}</td></tr>" for r in bad)
-                   + "</table></details></div>")
+        out.append(_measured(ev, eval_file.with_name("fresh_unseen.json")))
 
     # ---- steps & resume
     out.append("<h2 id='steps'>Steps, memory and resuming</h2><div class='card scroll'><table class='steps'><tr><th>Step</th><th>Status</th>"
@@ -206,7 +329,8 @@ def render(snap: Path = SNAP, eval_file: Path = EVAL, back_href: str = "./") -> 
                "to the project manager. Bidders and prices are mock data.</p></div>")
 
     # ---- discovery
-    out.append("<h2 id='discovery'>Vendor discovery <span class='tag k'>mock vendor master</span></h2><div class='card scroll'>"
+    out.append(_public_record(disc.get("public_record") or {}))
+    out.append("<h2 id='discovery'>The project's own vendor master <span class='tag k'>mock vendor master</span></h2><div class='card scroll'>"
                "<p class='small'>Candidates come only from the vendor master and the datasheets we hold; nothing from model memory. "
                "Points are listed so a buyer can disagree with any of them. The spec's manufacturer list is quoted below.</p>")
     out.append(_cite(disc.get("spec_citation"), 160))
@@ -330,12 +454,15 @@ def render(snap: Path = SNAP, eval_file: Path = EVAL, back_href: str = "./") -> 
     out.append("<h3 style='margin-top:12px'>Replies read</h3><table>" + "".join(
         f"<tr><td>{_e(r.get('bid', ''))}</td><td class='mono'>{_e(r['file'])}</td><td class='small'>{_e(r.get('matched_by', r.get('note', '')))}; "
         f"read against {len(r.get('asked', []))} open items</td></tr>" for r in rep.get("read", [])) + "</table>")
-    out.append("<p class='small'>What the replies changed is in the 'After reply' column above, in the pre-qualification table and in the "
-               "cost ranges: Northline's reply settled 14 open items and revealed one deviation (a single 9 kW jacket-water heater where "
-               "two 5 kW are required); its 'will be confirmed with the final submittal' settled nothing; its claim of full rating "
-               "'with the 50 C cooling package', which it had not confirmed, went to an engineer. Tidewater's reply replaced the 12-hour "
-               "tank with a 24-hour UL 2085 tank at $18,000 a set, which replaced the $220,000 allowance in its leveled cost, and "
-               "settled its three pre-qualification items. Scored against the replies' key: 17 of 18 answers right.</p></div>")
+    key = json.loads((ROOT / "eval" / "answer_keys" / "replies_GEN.json").read_text(encoding="utf-8"))["replies"]
+    scored = [(b, rid, exp, next(f for f in rec2[b]["findings"] if f["data"]["req_id"] == rid)["status"])
+              for b, v in key.items() for rid, (exp, _) in v["requirements"].items()]
+    asked_clar = sum(1 for b in key for f in rec1[b]["findings"] if f["route"].get("kind") == "clarification")
+    verified = sum(1 for b in key for f in rec1[b]["findings"] if f["route"].get("kind") == "clarification"
+                   and (b, f["data"]["req_id"]) in {(x[0], x[1]) for x in scored if x[2] == x[3] and x[2] != "unclear"})
+    out.append(f"<p class='small'>Replies scored against their key, written before they were read: <b>{sum(1 for x in scored if x[2] == x[3])} of "
+               f"{len(scored)}</b> answers right. Focused clarifications asked of these two suppliers: {asked_clar}; settled by a reply "
+               f"with a verified correct answer: <b>{verified}</b>. The replies are mock documents.</p></div>")
     out.append("<p class='small'>Built by amber/case_page.py from examples/case_GEN (scripts/snapshot_case.py) and "
                "eval/handoff_set/results.json (scripts/eval_handoffs.py).</p></div></body></html>")
     return "".join(out)

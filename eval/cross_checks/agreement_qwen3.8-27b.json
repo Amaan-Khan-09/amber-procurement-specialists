@@ -27,7 +27,7 @@
   "human": true,
   "conf": 0.5,
   "reviewer": "unclear",
-  "why": "no value found, but the submittal mentions motor, starting, capacity on page(s) [1, 3]"
+  "why": "no value found, but the submittal mentions starting, motor, capacity on page(s) [1, 3]"
  },
  {
   "case": "G7",
@@ -67,7 +67,7 @@
   "human": true,
   "conf": 0.5,
   "reviewer": "unclear",
-  "why": "no value found, but the submittal mentions electric, starting, starter on page(s) [1, 2, 3, 4]"
+  "why": "no value found, but the submittal mentions electric, starting, volt on page(s) [1, 2, 3, 4]"
  },
  {
   "case": "G7",
@@ -77,7 +77,7 @@
   "human": true,
   "conf": 0.5,
   "reviewer": "complies",
-  "why": "no value found, but the submittal mentions fuel, consumption, average on page(s) [1, 3, 4]"
+  "why": "no value found, but the submittal mentions consumption, fuel, average on page(s) [1, 3, 4]"
  },
  {
   "case": "G7",
@@ -147,7 +147,7 @@
   "human": true,
   "conf": 0.5,
   "reviewer": "unclear",
-  "why": "no value found, but the submittal mentions single, heater, electrical on page(s) [2]"
+  "why": "no value found, but the submittal mentions single, electrical, heater on page(s) [2]"
  },
  {
   "case": "G7",
@@ -157,7 +157,7 @@
   "human": true,
   "conf": 0.5,
   "reviewer": "unclear",
-  "why": "no value found, but the submittal mentions output, pole, circuit on page(s) [1, 2, 4]"
+  "why": "no value found, but the submittal mentions output, circuit, breaker on page(s) [1, 2, 4]"
  },
  {
   "case": "G7",
@@ -197,7 +197,7 @@
   "human": true,
   "conf": 0.5,
   "reviewer": "unclear",
-  "why": "no value found, but the submittal mentions jacket, water, count on page(s) [1, 2, 3]; no value found, but the submittal mentions jacket, water, heater on page(s) [2, 3]; no value found, but the submittal mentions jacket, water, heater on page(s) [2, 3]"
+  "why": "no value found, but the submittal mentions jacket, water, count on page(s) [1, 2, 3]; no value found, but the submittal mentions jacket, water, heater on page(s) [2, 3]; no value found, but the submittal mentions water, jacket, electrical on page(s) [2, 3]"
  },
  {
   "case": "G7",
@@ -237,7 +237,7 @@
   "human": true,
   "conf": 0.5,
   "reviewer": "deviates",
-  "why": "no value found, but the submittal mentions capacity, motor, starting on page(s) [1, 2, 3]"
+  "why": "no value found, but the submittal mentions capacity, starting, motor on page(s) [1, 2, 3]"
  },
  {
   "case": "G2",
@@ -617,7 +617,7 @@
   "human": true,
   "conf": 0.5,
   "reviewer": "deviates",
-  "why": "no value found, but the submittal mentions heater, water on page(s) [2]; no value found, but the submittal mentions power, water, heater on page(s) [1, 2, 3, 4]; no value found, but the submittal mentions volt, phase, heater on page(s) [1, 2, 3, 4]"
+  "why": "no value found, but the submittal mentions water, heater on page(s) [2]; no value found, but the submittal mentions power, water, heater on page(s) [1, 2, 3, 4]; no value found, but the submittal mentions volt, phase, water on page(s) [1, 2, 3, 4]"
  },
  {
   "case": "G4",
@@ -787,7 +787,7 @@
   "human": true,
   "conf": 0.5,
   "reviewer": "missing",
-  "why": "no value found, but the submittal mentions state, output, solid on page(s) [2, 3]"
+  "why": "no value found, but the submittal mentions state, circuit, solid on page(s) [2, 3]"
  },
  {
   "case": "G5",
@@ -827,7 +827,7 @@
   "human": true,
   "conf": 0.5,
   "reviewer": "missing",
-  "why": "no value found, but the submittal mentions jacket, water on page(s) [2, 3]; no value found, but the submittal mentions jacket, water on page(s) [2, 3]; no value found, but the submittal mentions phase, jacket, water on page(s) [1, 2, 3]"
+  "why": "no value found, but the submittal mentions jacket, water on page(s) [2, 3]; no value found, but the submittal mentions jacket, water on page(s) [2, 3]; no value found, but the submittal mentions phase, water, jacket on page(s) [1, 2, 3]"
  },
  {
   "case": "G5",
@@ -997,7 +997,7 @@
   "human": true,
   "conf": 0.5,
   "reviewer": "unclear",
-  "why": "no value found, but the submittal mentions circuit, breaker, state on page(s) [1, 2, 3, 4]"
+  "why": "no value found, but the submittal mentions circuit, breaker, solid on page(s) [1, 2, 3, 4]"
  },
  {
   "case": "G6",
@@ -1037,7 +1037,7 @@
   "human": true,
   "conf": 0.5,
   "reviewer": "unclear",
-  "why": "no value found, but the submittal mentions water, jacket, heater on page(s) [2, 3, 4]; no value found, but the submittal mentions water, jacket, heater on page(s) [2, 3, 4]; no value found, but the submittal mentions electrical, water, phase on page(s) [1, 2, 3, 4]"
+  "why": "no value found, but the submittal mentions water, jacket, heater on page(s) [2, 3, 4]; no value found, but the submittal mentions water, jacket, heater on page(s) [2, 3, 4]; no value found, but the submittal mentions water, electrical, phase on page(s) [1, 2, 3, 4]"
  },
  {
   "case": "G6",
@@ -1247,7 +1247,7 @@
   "human": true,
   "conf": 0.5,
   "reviewer": "deviates",
-  "why": "no value found, but the submittal mentions heater, water on page(s) [2]; no value found, but the submittal mentions heater, water on page(s) [2]; no value found, but the submittal mentions electrical, phase, heater on page(s) [1, 2, 3, 4, 7]"
+  "why": "no value found, but the submittal mentions water, heater on page(s) [2]; no value found, but the submittal mentions water, heater on page(s) [2]; no value found, but the submittal mentions electrical, phase, water on page(s) [1, 2, 3, 4, 7]"
  },
  {
   "case": "G8",
@@ -1567,7 +1567,7 @@
   "human": true,
   "conf": 0.5,
   "reviewer": "unclear",
-  "why": "no value found, but the submittal mentions electrical, single, phase on page(s) [2, 3, 4, 5]"
+  "why": "no value found, but the submittal mentions electrical, phase, single on page(s) [2, 3, 4, 5]"
  },
  {
   "case": "G9",
@@ -1577,7 +1577,7 @@
   "human": true,
   "conf": 0.5,
   "reviewer": "unclear",
-  "why": "no value found, but the submittal mentions output, circuit, breaker on page(s) [2, 3, 4, 5]"
+  "why": "no value found, but the submittal mentions circuit, output, breaker on page(s) [2, 3, 4, 5]"
  },
  {
   "case": "G9",
@@ -1617,7 +1617,7 @@
   "human": true,
   "conf": 0.5,
   "reviewer": "unclear",
-  "why": "no value found, but the submittal mentions water, heater, jacket on page(s) [2, 3, 4, 5]; no value found, but the submittal mentions water, heater, jacket on page(s) [2, 3, 4, 5]; no value found, but the submittal mentions electrical, water, phase on page(s) [2, 3, 4, 5]"
+  "why": "no value found, but the submittal mentions water, heater, jacket on page(s) [2, 3, 4, 5]; no value found, but the submittal mentions water, heater, jacket on page(s) [2, 3, 4, 5]; no value found, but the submittal mentions water, electrical, phase on page(s) [2, 3, 4, 5]"
  },
  {
   "case": "G9",
@@ -1628,5 +1628,425 @@
   "conf": 0.5,
   "reviewer": "unclear",
   "why": "no value found, but the submittal mentions enclosure on page(s) [1, 2, 3, 6]; no value found, but the submittal mentions silencer on page(s) [3, 5]"
+ },
+ {
+  "case": "G10",
+  "req": "R01",
+  "key": "complies",
+  "pipeline": "complies",
+  "human": false,
+  "conf": 0.95,
+  "reviewer": "unclear",
+  "why": "offered 2000 kW meets >= 2000 kW; offered 2500 kVA meets >= 2500 kVA"
+ },
+ {
+  "case": "G10",
+  "req": "R02",
+  "key": "complies",
+  "pipeline": "unclear",
+  "human": true,
+  "conf": 0.4,
+  "reviewer": "complies",
+  "why": "reported quote not found in the submittal ('480Y/277 V, 3-phase, 4-wire'); value discarded; offered 60 Hz meets == 60 Hz; unit Hz is not shown in the quote, confirm"
+ },
+ {
+  "case": "G10",
+  "req": "R03",
+  "key": "unclear",
+  "pipeline": "unclear",
+  "human": true,
+  "conf": 0.5,
+  "reviewer": "deviates",
+  "why": "no value found, but the submittal mentions starting, motor, capacity on page(s) [1, 2, 3, 4]"
+ },
+ {
+  "case": "G10",
+  "req": "R04",
+  "key": "complies",
+  "pipeline": "complies",
+  "human": false,
+  "conf": 0.95,
+  "reviewer": "complies",
+  "why": "offered PMG PMG exciter meets one of: permanent magnet generator, PMG"
+ },
+ {
+  "case": "G10",
+  "req": "R05",
+  "key": "complies",
+  "pipeline": "complies",
+  "human": true,
+  "conf": 0.65,
+  "reviewer": "complies",
+  "why": "model judgement on verified quote: '4-cycle, Turbocharged, Factor Standby Prime'; offered 4 cycle 4-cycle, Turbocharged, Factor Standby Prime meets all of: 4 cycle; offered turbocharged 4-cycle, Turbocharged, Factor Standby Prime meets one of: turbocharged, aftercooled, normally aspirated"
+ },
+ {
+  "case": "G10",
+  "req": "R06",
+  "key": "complies",
+  "pipeline": "complies",
+  "human": false,
+  "conf": 0.95,
+  "reviewer": "complies",
+  "why": "offered electronic; isochronous Governor: Type; Make/Model Electronic 885oF (473oC) (Dry Exhaust) Frequency Regulation: Isochronous under varying loads meets all of: electronic, isochronous"
+ },
+ {
+  "case": "G10",
+  "req": "R07",
+  "key": "complies",
+  "pipeline": "complies",
+  "human": true,
+  "conf": 0.65,
+  "reviewer": "unclear",
+  "why": "model judgement on verified quote: 'Starter Motor Rated Voltage 24 VDC'"
+ },
+ {
+  "case": "G10",
+  "req": "R08",
+  "key": "unclear",
+  "pipeline": "deviates",
+  "human": true,
+  "conf": 0.65,
+  "reviewer": "deviates",
+  "why": "model judgement on verified quote: 'Max Fuel Flow 158 gal/hr (598 L/hr)'"
+ },
+ {
+  "case": "G10",
+  "req": "R09",
+  "key": "unclear",
+  "pipeline": "unclear",
+  "human": true,
+  "conf": 0.4,
+  "reviewer": "deviates",
+  "why": "reported quote not found in the submittal ('Unit-mounted radiator cooling system sized to maintain safe '); value discarded; reported quote not found in the submittal ('maximum ambient temperature.'); value discarded"
+ },
+ {
+  "case": "G10",
+  "req": "R10",
+  "key": "complies",
+  "pipeline": "complies",
+  "human": false,
+  "conf": 0.95,
+  "reviewer": "unclear",
+  "why": "offered Tier 2 EPA Tier 2 emissions standards meets one of: tier 2, tier 4"
+ },
+ {
+  "case": "G10",
+  "req": "R11",
+  "key": "deviates",
+  "pipeline": "unclear",
+  "human": true,
+  "conf": 0.4,
+  "reviewer": "deviates",
+  "why": "reported quote not found in the submittal ('300 ft altitude'); value discarded; reported quote not found in the submittal ('10 to 122\u00b0F ambient temperature'); value discarded"
+ },
+ {
+  "case": "G10",
+  "req": "R12",
+  "key": "complies",
+  "pipeline": "complies",
+  "human": true,
+  "conf": 0.65,
+  "reviewer": "complies",
+  "why": "model judgement on verified quote: 'Rated RPM (60Hz) 1800 RPM'"
+ },
+ {
+  "case": "G10",
+  "req": "R13",
+  "key": "unclear",
+  "pipeline": "complies",
+  "human": true,
+  "conf": 0.65,
+  "reviewer": "unclear",
+  "why": "model judgement on verified quote: 'Brushless, 4-pole, synchronous, WYE connection'"
+ },
+ {
+  "case": "G10",
+  "req": "R14",
+  "key": "complies",
+  "pipeline": "complies",
+  "human": false,
+  "conf": 0.95,
+  "reviewer": "complies",
+  "why": "offered Class H Class H insulation system conforms to NEMA MG1-22 meets one of: class f, class h"
+ },
+ {
+  "case": "G10",
+  "req": "R15",
+  "key": "unclear",
+  "pipeline": "unclear",
+  "human": true,
+  "conf": 0.5,
+  "reviewer": "unclear",
+  "why": "no value found, but the submittal mentions single, heater, electrical on page(s) [1, 2, 4]"
+ },
+ {
+  "case": "G10",
+  "req": "R16",
+  "key": "unclear",
+  "pipeline": "unclear",
+  "human": true,
+  "conf": 0.5,
+  "reviewer": "unclear",
+  "why": "no value found, but the submittal mentions circuit, solid, breaker on page(s) [1, 2]"
+ },
+ {
+  "case": "G10",
+  "req": "R17",
+  "key": "complies",
+  "pipeline": "complies",
+  "human": true,
+  "conf": 0.65,
+  "reviewer": "complies",
+  "why": "model judgement on verified quote: 'Voltage Regulation 0.25 %'"
+ },
+ {
+  "case": "G10",
+  "req": "R18",
+  "key": "complies",
+  "pipeline": "complies",
+  "human": true,
+  "conf": 0.65,
+  "reviewer": "complies",
+  "why": "model judgement on verified quote: 'L-L Harmonic Max Total 5.0%'"
+ },
+ {
+  "case": "G10",
+  "req": "R19",
+  "key": "deviates",
+  "pipeline": "unclear",
+  "human": true,
+  "conf": 0.5,
+  "reviewer": "deviates",
+  "why": "no value found, but the submittal mentions fuel, tank on page(s) [1, 3, 4]; could not compare units: Cannot convert from 'gallon' ([length] ** 3) to 'hour' ([time])"
+ },
+ {
+  "case": "G10",
+  "req": "R20",
+  "key": "unclear",
+  "pipeline": "unclear",
+  "human": true,
+  "conf": 0.5,
+  "reviewer": "unclear",
+  "why": "no value found, but the submittal mentions water, heater on page(s) [1, 2, 3, 4]; no value found, but the submittal mentions water, heater on page(s) [1, 2, 3, 4]; no value found, but the submittal mentions water, heater, electrical on page(s) [1, 2, 3, 4]"
+ },
+ {
+  "case": "G10",
+  "req": "R21",
+  "key": "unclear",
+  "pipeline": "unclear",
+  "human": true,
+  "conf": 0.5,
+  "reviewer": "complies",
+  "why": "no value found, but the submittal mentions proof on page(s) [1]; no value found, but the submittal mentions silencer on page(s) [1, 2]"
+ },
+ {
+  "case": "G11",
+  "req": "R01",
+  "key": "complies",
+  "pipeline": "complies",
+  "human": true,
+  "conf": 0.65,
+  "reviewer": "complies",
+  "why": "offered 2000 kW meets >= 2000 kW; unit kW is not shown in the quote, confirm; offered 2500 kVA meets >= 2500 kVA; unit kVA is not shown in the quote, confirm"
+ },
+ {
+  "case": "G11",
+  "req": "R02",
+  "key": "unclear",
+  "pipeline": "unclear",
+  "human": true,
+  "conf": 0.4,
+  "reviewer": "complies",
+  "why": "reported quote not found in the submittal ('480/277'); value discarded; offered 60 Hz meets == 60 Hz; unit Hz is not shown in the quote, confirm"
+ },
+ {
+  "case": "G11",
+  "req": "R03",
+  "key": "unclear",
+  "pipeline": "unclear",
+  "human": true,
+  "conf": 0.4,
+  "reviewer": "unclear",
+  "why": "reported quote not found in the submittal ('3000'); value discarded"
+ },
+ {
+  "case": "G11",
+  "req": "R04",
+  "key": "complies",
+  "pipeline": "complies",
+  "human": true,
+  "conf": 0.65,
+  "reviewer": "complies",
+  "why": "model judgement on verified quote: 'Permanent-Magnet Pilot Exciter'"
+ },
+ {
+  "case": "G11",
+  "req": "R05",
+  "key": "complies",
+  "pipeline": "complies",
+  "human": false,
+  "conf": 0.95,
+  "reviewer": "complies",
+  "why": "offered 16 Cylinder arrangement 16 V meets one of: 8 cylinder, 12 cylinder, 16 cylinder; offered 4 cycle Engine: type 4-Cycle meets all of: 4 cycle; offered turbocharged Engine: type 4-Cycle, Turbocharged meets one of: turbocharged, aftercooled, normally aspirated"
+ },
+ {
+  "case": "G11",
+  "req": "R06",
+  "key": "complies",
+  "pipeline": "complies",
+  "human": true,
+  "conf": 0.65,
+  "reviewer": "complies",
+  "why": "model judgement on verified quote: 'Governor: type, make/model Electronic'"
+ },
+ {
+  "case": "G11",
+  "req": "R07",
+  "key": "complies",
+  "pipeline": "complies",
+  "human": true,
+  "conf": 0.65,
+  "reviewer": "unclear",
+  "why": "model judgement on verified quote: 'Starter motor rated voltage (DC) Dual, 24'"
+ },
+ {
+  "case": "G11",
+  "req": "R08",
+  "key": "deviates",
+  "pipeline": "deviates",
+  "human": true,
+  "conf": 0.65,
+  "reviewer": "deviates",
+  "why": "model judgement on verified quote: 'Standby Fuel Consumption at 100% load 606 Lph (160.1 gph)'"
+ },
+ {
+  "case": "G11",
+  "req": "R09",
+  "key": "unclear",
+  "pipeline": "complies",
+  "human": true,
+  "conf": 0.65,
+  "reviewer": "unclear",
+  "why": "model judgement on verified quote: 'High Ambient Radiator System'; offered 122 \u00b0F meets >= 122 \u00b0F"
+ },
+ {
+  "case": "G11",
+  "req": "R10",
+  "key": "complies",
+  "pipeline": "complies",
+  "human": false,
+  "conf": 0.95,
+  "reviewer": "deviates",
+  "why": "offered Tier 2 Tier 2 EPA-certified meets one of: tier 2, tier 4"
+ },
+ {
+  "case": "G11",
+  "req": "R11",
+  "key": "unclear",
+  "pipeline": "unclear",
+  "human": true,
+  "conf": 0.5,
+  "reviewer": "unclear",
+  "why": "not stated in the submittal; no value found, but the submittal mentions temperature, ambient, range on page(s) [1, 2, 3, 4, 5]"
+ },
+ {
+  "case": "G11",
+  "req": "R12",
+  "key": "complies",
+  "pipeline": "complies",
+  "human": false,
+  "conf": 0.95,
+  "reviewer": "complies",
+  "why": "offered 1800 rpm meets <= 1800 rpm"
+ },
+ {
+  "case": "G11",
+  "req": "R13",
+  "key": "complies",
+  "pipeline": "complies",
+  "human": true,
+  "conf": 0.65,
+  "reviewer": "complies",
+  "why": "model judgement on verified quote: 'Type 4-Pole, Rotating-Field'"
+ },
+ {
+  "case": "G11",
+  "req": "R14",
+  "key": "complies",
+  "pipeline": "complies",
+  "human": false,
+  "conf": 0.95,
+  "reviewer": "complies",
+  "why": "offered Class H Class H meets one of: class f, class h"
+ },
+ {
+  "case": "G11",
+  "req": "R15",
+  "key": "unclear",
+  "pipeline": "unclear",
+  "human": true,
+  "conf": 0.5,
+  "reviewer": "missing",
+  "why": "no value found, but the submittal mentions phase, heater, electrical on page(s) [1, 3]"
+ },
+ {
+  "case": "G11",
+  "req": "R16",
+  "key": "unclear",
+  "pipeline": "unclear",
+  "human": true,
+  "conf": 0.5,
+  "reviewer": "unclear",
+  "why": "no value found, but the submittal mentions circuit, breaker, solid on page(s) [1, 2]"
+ },
+ {
+  "case": "G11",
+  "req": "R17",
+  "key": "complies",
+  "pipeline": "complies",
+  "human": true,
+  "conf": 0.65,
+  "reviewer": "complies",
+  "why": "model judgement on verified quote: '+/-0.25% no-load to full-load regulation'"
+ },
+ {
+  "case": "G11",
+  "req": "R18",
+  "key": "missing",
+  "pipeline": "missing",
+  "human": false,
+  "conf": 0.8,
+  "reviewer": "missing",
+  "why": "not stated in the submittal"
+ },
+ {
+  "case": "G11",
+  "req": "R19",
+  "key": "missing",
+  "pipeline": "unclear",
+  "human": true,
+  "conf": 0.5,
+  "reviewer": "missing",
+  "why": "no value found, but the submittal mentions fuel, listing on page(s) [1, 3, 5]; no value found, but the submittal mentions capacity, fuel on page(s) [1, 3, 4, 5]"
+ },
+ {
+  "case": "G11",
+  "req": "R20",
+  "key": "missing",
+  "pipeline": "unclear",
+  "human": true,
+  "conf": 0.5,
+  "reviewer": "missing",
+  "why": "no value found, but the submittal mentions water, heater, jacket on page(s) [1, 3, 4, 5]; no value found, but the submittal mentions water, heater, jacket on page(s) [1, 3, 4, 5]; no value found, but the submittal mentions water, phase, heater on page(s) [1, 3, 4, 5]"
+ },
+ {
+  "case": "G11",
+  "req": "R21",
+  "key": "missing",
+  "pipeline": "missing",
+  "human": false,
+  "conf": 0.8,
+  "reviewer": "missing",
+  "why": "not stated in the submittal; not stated in the submittal"
  }
 ]
