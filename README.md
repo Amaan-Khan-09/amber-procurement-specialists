@@ -2,7 +2,7 @@
 
 Kaya AI Grand Challenge, India Edition 2 · **Track 03: Vertical Agents** · Students division
 
-Three procurement specialists for a construction or data-center project, exposed as **MCP tools** so Amber (or any
+Procurement specialists for a construction or data-center project (all eight on the challenge's list), exposed as **MCP tools** so Amber (or any
 MCP client) can call them. They work on the critical-power package (generators, UPS, switchgear, transformers)
 and share one data format, so one tool's output is the next tool's input.
 
@@ -14,6 +14,9 @@ and share one data format, so one tool's output is the next tool's input.
 | `run_package_review` | All of the above for one package | one comparison table per bidder: leveled cost, scope gaps, submittal verdict, arrival range |
 | `find_products` | Which products could meet this spec (for example, to replace one that fails)? | candidates from the datasheets we hold, ranked likely fits / needs a closer look / does not fit, each key rating quoted from the datasheet; never a product from model memory, never an approval |
 | `draft_follow_ups` | What do we send the vendors now? | submittal review comments, bid clarification requests and expediting requests, built only from verified quotes; **no model calls**, never sent automatically |
+| `run_case` | Buy this equipment: where does the purchase stand, and who has to act? | a resumable case file: vendors found and pre-qualified, records linked, each supplier's bid and replies reconciled with its datasheet, cost and arrival ranges, every item routed (decided / ask the supplier / engineer), draft questions, award options with their blockers |
+| `discover_vendors` | Who could supply it? | vendors from the vendor master ranked on audited points (product fit with datasheet quotes, manufacturer named by the spec, bid and lead time, service distance, on-time history); those that cannot supply it set aside with the record that says why |
+| `prequalify_vendors` | May we buy from them? | meets / fails / needs verification for every criterion of the spec and the owner's policy, each with its quote; conflicting records and self-certifications flagged, never accepted |
 
 A **web page for project managers** (`python -m amber.web`) runs the same specialists from a browser: see below.
 
@@ -37,6 +40,71 @@ The judging criteria weigh trust heavily, so every rule below is enforced in cod
 7. **Nothing is invented.** Products, vendors and lead times come only from documents under `data/`, each cited.
    There are no built-in answers: the agent works on documents it has never seen.
 
+## One purchase, end to end: the case file (26 Nov 2026)
+
+`python -m amber.case run` runs the generator purchase as a **case file** (`amber/case.py`): 13 steps, from finding
+vendors to the award options, each saving its output and the memory the steps share (`runs/cases/GEN/state.json`,
+`steps/`, `journal.jsonl`). A step whose inputs have not changed is reused, so a run stopped inside a step
+(`--crash-at reconcile`) resumes there, and supplier replies that arrive later (`--replies`) flow back into the
+answers, the pre-qualification and the leveled cost. The live demo shows it as one page: **`case.html`**
+(built by `amber/case_page.py` from `examples/case_GEN/`). Scorecard against every criterion: `docs/SCORECARD.md`.
+
+What it adds, with what a judge can check:
+
+* **Who acts on each item.** "Handed to a person" was one queue. It is now three routes (`amber/triage.py`): decided by
+  the agent; **a question to the supplier**, only when the document does not settle it *and* an independent reading of
+  the whole document by a model of another family agrees; or **an engineer**, when the evidence needs judgement.
+* **The supplier's own documents as evidence.** Each bid (and later each reply) is read against the same requirements
+  as the datasheet (`scripts/read_commitments.py`) and reconciled **condition by condition**: a bid that commits to
+  1800 rpm settles what the datasheet leaves blank; B2's bid commits to a **12-hour** tank where 24 h is required (a
+  deviation the datasheet could not show); a UL 2085 tank listed under "Options (not included in total)" is not
+  counted as supplied; records that disagree stay a conflict for the supplier to resolve.
+* **Related sections.** Kohler's footnote "Enclosure with enclosed silencer reduces ambient temperature capability by
+  5 °C (9 °F)" is linked to B3's "silencers inside": 122 °F − 9 °F = 113 °F, below the spec, laid out for an engineer.
+* **Record linking with ambiguity.** B4 offers a "C2000D6": no document names it exactly; one sheet is the C2000D6**E**
+  variant and B2's bid equates C2000D6 with model DQKAB, a different document. It is reported as ambiguous with both
+  candidates, not silently picked (the earlier check called it a match). The bid form cites paragraph 2.1.K.1 for the
+  annunciator, which in the spec is the fuel tank: reported as a wrong reference, not linked.
+* **Vendor discovery and pre-qualification** (`amber/vendors.py`). Tidewater ranks first in discovery (best product
+  fit, shortest lead time) and **does not pass pre-qualification** until its reply: insurance that expires before the
+  need date, a manufacturer letter "available on request", and no named service branch where the vendor master says
+  Norfolk, 190 miles away. The spec's own criteria (1.4.A acceptable manufacturers, 1.4.G ten years) are checked
+  alongside the owner's policy. The vendor master, policy, packets and replies are **fictional**, like the bids.
+* **Honest ranges.** Leveled cost as a range (allowances, items read as "qualified", clauses with no upper bound such as
+  a metals surcharge); arrival P10/P50/P90 from weighted, cited reports with the dissenting source kept; assumptions
+  and missing inputs listed.
+
+### Hand-offs, measured before and after
+
+A fixed set of **256 cases** that both versions handle (`eval/handoff_set/cases.json`, built from answer keys written
+before this code): 184 datasheet requirements, 22 package-level requirements, 4 product links, 44 bid scope cells, 2
+decisions. Categories: routine, missing information, conflicting records, should escalate. Same saved model readings;
+**before** = the routing at commit 48b321c, **now** = this code (`python scripts/eval_handoffs.py`).
+
+| | Before | Now |
+|---|---|---|
+| sent to an engineer | 148 (58 %) | **102 (40 %)** |
+| sent to the supplier as a drafted question | 0 | 59 (23 %) |
+| correct autonomous (acted alone, right action) | 105 | **150** |
+| justified hand-off (needs judgement, or the agent was wrong) | 51 | 44 |
+| unnecessary hand-off (agent right, no judgement needed) | 97 | **58** |
+| incorrect autonomous | 3 | 4 |
+| of which critical (accepts what fails or is not shown, rejects what complies) | 2 | **1** |
+| right action overall | 210 (82 %) | 218 (85 %) |
+
+By group: datasheet answers to an engineer **128 → 94 of 184 (70 % → 51 %)**; package level (bid + datasheet) right
+action **15 → 21 of 22** and engineer hand-offs 13 → 6; product links 3 → 4 of 4 right (the critical wrong link is
+gone). By category: missing information, unnecessary hand-offs 57 → 22; conflicting records, right action 5 → 11 of 12;
+**should escalate: 17 of 17 still go to an engineer**. The extra incorrect autonomous answer is minor: bid cells our
+saved reading calls "qualified" where the key says "included" now become a question to the supplier instead of an
+engineer review. The remaining critical error is a saved bid reading (B2 S2 read as included; key: qualified), the same
+in both versions. These documents were seen during development, so this is a repair record on a fixed set, not a
+held-out score. The new pre-qualification specialist, scored separately (before: no specialist): 36 of 36 criteria
+right, 33 decided or asked alone, 3 owner checks left to a person (**mock data**). After the two (mock) replies, the
+case's own queue moves from 45 engineer items and 43 supplier questions to 40 and 27; the replies are read 17 of 18
+right against their key (the miss, a claim of full rating "with the 50 C cooling package" that the same reply leaves
+unconfirmed, went to an engineer, not through).
+
 ## Quick start
 
 ```bash
@@ -44,7 +112,7 @@ python -m venv .venv                                     # Python 3.11+
 source .venv/bin/activate                                # Windows: .venv\Scripts\activate
 pip install -e ".[dev]"
 python tools/data_prep/fetch_data.py                     # downloads the public test documents (not committed)
-python -m pytest -q                                      # 132 tests, no API key and no network needed
+python -m pytest -q                                      # 147 tests, no API key and no network needed
 python -m amber.web                                      # the web page: http://127.0.0.1:8000 (opens the browser)
 python scripts/demo_mcp_client.py                        # starts the MCP server and calls a tool (no key needed)
 cp .env.example .env                                     # add GROQ_API_KEY for the steps below

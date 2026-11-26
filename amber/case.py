@@ -466,6 +466,7 @@ class CaseFile:
         saved = saved_datasheet_runs()
         reqs = self._reqs()
         fit: dict[str, dict] = {}
+        by_file: dict[str, dict] = {}
         for p in lib:
             s = saved.get(Path(p).name)
             if not s:
@@ -486,9 +487,17 @@ class CaseFile:
                      "quotes": [cc.model_dump(mode="json") for f in scr for cc in f.citations if cc.doc_id == d_doc.doc_id][:3]}
             if mfr and (mfr not in fit or entry["complies"] - 2 * entry["deviates"] > fit[mfr]["complies"] - 2 * fit[mfr]["deviates"]):
                 fit[mfr] = entry
+            by_file[Path(p).name] = entry
         pkg = json.loads((ROOT / c["saved_package"]).read_text(encoding="utf-8"))["result"]["parts"]["level_bids"]
         dirs = vendors.load_directory()
-        by_file = {r["bid_file"]: r["vendor_id"] for r in dirs if r["bid_file"]}
+        bid_vendor = {r["bid_file"]: r["vendor_id"] for r in dirs if r["bid_file"]}
+        offered = linking.link_products(pkg["products"], lib, pkg.get("product_citations"))
+        for b, path in c["bids"].items():
+            lk = offered[b]
+            name = lk["datasheet"] or next((x["file"] for x in lk["candidates"] if x["kind"] == "variant"), None)
+            if name in by_file and bid_vendor.get(Path(path).name):
+                fit[bid_vendor[Path(path).name]] = dict(by_file[name], provisional=lk["status"] != "linked")
+        by_file = bid_vendor
         bids = {}
         for b, path in c["bids"].items():
             vid = by_file.get(Path(path).name)
@@ -912,3 +921,60 @@ def main() -> None:
 
 if __name__ == "__main__":
     main()
+
+
+# ------------------------------------------------------------------ as MCP tool results (amber/server.py)
+
+_PQ = {"meets": "complies", "fails": "deviates", "needs_verification": "unclear"}
+
+
+def _cites(cs: list) -> list:
+    from .schema import Citation
+    out = []
+    for c in cs or []:
+        if c and c.get("doc_id") and c.get("quote"):
+            out.append(Citation(doc_id=c["doc_id"], page=max(1, int(c.get("page") or 1)), locator=c.get("locator") or "",
+                                quote=c["quote"], match=c.get("match") or "exact", ocr=bool(c.get("ocr"))))
+    return out
+
+
+def as_tool_result(cf: CaseFile, part: str):
+    """part: 'case' (everything), 'discover' or 'prequalify'."""
+    from .schema import Finding, RunInfo, ToolResult
+    fs = []
+    if part in ("case", "discover"):
+        d = cf.output("discover")
+        for v in d["ranked"]:
+            fs.append(Finding(id=f"F-vendor-{v['vendor_id']}", claim=f"#{v['rank']} {v['name']} ({', '.join(v['manufacturers'])}): {v['points']} points",
+                              status="unclear" if v["needs_engineer"] else "complies", confidence=0.6 if v["needs_engineer"] else 0.8,
+                              needs_human=v["needs_engineer"], citations=_cites(v["citations"]), why="; ".join(v["reasons"]),
+                              data={"vendor_id": v["vendor_id"], "rank": v["rank"], "points": v["points"], "product": v["product"]}))
+        for x in d["excluded"]:
+            fs.append(Finding(id=f"F-vendor-{x['vendor_id']}", claim=f"set aside: {x['name']}", status="deviates", confidence=0.9,
+                              citations=_cites(x["citations"]), why=x["why"], data={"vendor_id": x["vendor_id"], "excluded": True}))
+    if part in ("case", "prequalify"):
+        for b, v in cf.output("prequalify").items():
+            if b.startswith("_"):
+                continue
+            for k, c in v["criteria"].items():
+                fs.append(Finding(id=f"F-prequal-{b}-{k}", claim=f"{v['name']} {k}: {c['text']}", status=_PQ[c["status"]],
+                                  confidence=0.9 if c["status"] != "needs_verification" else 0.5, needs_human=c["route"] == "engineer",
+                                  citations=_cites(c["citations"]), why=c["why"],
+                                  data={"bid": b, "criterion": k, "status": c["status"], "route": c["route"]}))
+    if part == "case":
+        for b, v in cf.output("reconcile").items():
+            if b.startswith("_") or "findings" not in v:
+                continue
+            for f in v["findings"]:
+                fs.append(Finding(id=f"F-{b}-{f['data']['req_id']}", claim=f"{b}: {f['claim']}", status=f["status"],
+                                  confidence=f["confidence"], needs_human=f["route"]["route"] == "engineer",
+                                  citations=_cites(f["citations"]), why=f["why"][:600],
+                                  data={"bid": b, **f["data"], "route": f["route"]}))
+    res = ToolResult(tool={"case": "run_case", "discover": "discover_vendors", "prequalify": "prequalify_vendors"}[part], findings=fs,
+                     result={"case": cf.id, "goal": cf.state["goal"],
+                             "steps": {s: {k: v.get(k) for k in ("status", "attempts", "summary")} for s, v in cf.state["steps"].items()},
+                             **({"decision": cf.output("decision"), "triage": cf.output("triage")["summary"],
+                                 "questions": cf.output("questions")["drafts"]} if part == "case" else {}),
+                             "case_folder": _rel(cf.dir)},
+                     run=RunInfo())
+    return res.finalize()

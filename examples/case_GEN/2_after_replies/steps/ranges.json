@@ -1,0 +1,487 @@
+{
+ "_summary": "cost ranges for B1 4,506,000-4,506,000, B2 4,599,000-4,685,000, B3 4,302,800-4,487,800, B4 4,469,800-4,469,800",
+ "cost": {
+  "B1": {
+   "base": 4316000.0,
+   "low": 4506000.0,
+   "high": 4506000.0,
+   "adjustments": {
+    "S7": 38000.0,
+    "S9": 56000.0,
+    "S11": 96000.0
+   },
+   "to_confirm": {},
+   "notes": [
+    "S2: qualified, owner's allowance 152,000",
+    "S7: excluded, owner's allowance 38,000",
+    "S9: excluded, owner's allowance 56,000",
+    "S11: bidder's alternate price 96,000",
+    "S2: confirmed included by the supplier's reply (b1-northline-power + b1-northline-reply); allowance 152,000 removed"
+   ],
+   "open_ended": [
+    {
+     "risk": "short_validity",
+     "note": "Price valid 30 days",
+     "citation": {
+      "doc_id": "b1-northline-power",
+      "page": 1,
+      "locator": "",
+      "quote": "Price valid 30 days",
+      "match": "exact",
+      "ocr": false
+     }
+    },
+    {
+     "risk": "unquantified_cost",
+     "note": "Copper and steel content subject to metals surcharge at time of shipment",
+     "citation": {
+      "doc_id": "b1-northline-power",
+      "page": 1,
+      "locator": "",
+      "quote": "Copper and steel content subject to metals surcharge at time of shipment",
+      "match": "exact",
+      "ocr": false
+     }
+    }
+   ],
+   "derivation": "base 4,316,000 + allowances and alternates 190,000 = 4,506,000 (high); low = high minus 0 for items read as 'qualified' that may turn out to be included; no upper bound for: Copper and steel content subject to metals surcharge at time of shipment"
+  },
+  "B2": {
+   "base": 4415000.0,
+   "low": 4599000.0,
+   "high": 4685000.0,
+   "adjustments": {
+    "S3": 72000.0,
+    "S6": 74000.0,
+    "S7": 38000.0,
+    "S8": 30000.0,
+    "S9": 56000.0
+   },
+   "to_confirm": {
+    "S8": 30000.0,
+    "S9": 56000.0
+   },
+   "notes": [
+    "S2: qualified, owner's allowance 152,000",
+    "S3: qualified, owner's allowance 220,000",
+    "S6: excluded, owner's allowance 74,000",
+    "S7: excluded, owner's allowance 38,000",
+    "S8: qualified, owner's allowance 30,000",
+    "S9: qualified, owner's allowance 56,000",
+    "S3: priced by the supplier's reply at 72,000 (b2-tidewater-generator + b2-tidewater-reply), replacing 220,000",
+    "S2: confirmed included by the supplier's reply (b2-tidewater-generator + b2-tidewater-reply); allowance 152,000 removed"
+   ],
+   "open_ended": [
+    {
+     "risk": "short_validity",
+     "note": "Pricing firm through validity date, no escalation",
+     "citation": {
+      "doc_id": "b2-tidewater-generator",
+      "page": 1,
+      "locator": "",
+      "quote": "Pricing firm through validity date. No escalation.",
+      "match": "normalized",
+      "ocr": false
+     }
+    }
+   ],
+   "derivation": "base 4,415,000 + allowances and alternates 270,000 = 4,685,000 (high); low = high minus 86,000 for items read as 'qualified' that may turn out to be included"
+  },
+  "B3": {
+   "base": 3980000.0,
+   "low": 4302800.0,
+   "high": 4487800.0,
+   "adjustments": {
+    "S3": 248000.0,
+    "S4": 12800.0,
+    "S5": 24000.0,
+    "S7": 38000.0,
+    "S8": 30000.0,
+    "S9": 56000.0,
+    "S10": 3000.0,
+    "S11": 96000.0
+   },
+   "to_confirm": {
+    "S8": 30000.0,
+    "S9": 56000.0,
+    "S10": 3000.0,
+    "S11": 96000.0
+   },
+   "notes": [
+    "S3: bidder's alternate price 248,000",
+    "S4: excluded, owner's allowance 12,800",
+    "S5: excluded, owner's allowance 24,000",
+    "S7: excluded, owner's allowance 38,000",
+    "S8: qualified, owner's allowance 30,000",
+    "S9: qualified, owner's allowance 56,000",
+    "S10: qualified, owner's allowance 3,000",
+    "S11: qualified, owner's allowance 96,000"
+   ],
+   "open_ended": [
+    {
+     "risk": "unquantified_cost",
+     "note": "Prices are subject to adjustment for tariffs, duties or trade measures enacted after the proposal date",
+     "citation": {
+      "doc_id": "b3-keystone-energy",
+      "page": 1,
+      "locator": "",
+      "quote": "Prices are subject to adjustment for tariffs, duties or trade measures enacted after the proposal date.",
+      "match": "normalized",
+      "ocr": false
+     }
+    }
+   ],
+   "derivation": "base 3,980,000 + allowances and alternates 507,800 = 4,487,800 (high); low = high minus 185,000 for items read as 'qualified' that may turn out to be included; no upper bound for: Prices are subject to adjustment for tariffs, duties or trade measures enacted after the proposal date"
+  },
+  "B4": {
+   "base": 4240000.0,
+   "low": 4469800.0,
+   "high": 4469800.0,
+   "adjustments": {
+    "S4": 12800.0,
+    "S5": 24000.0,
+    "S7": 38000.0,
+    "S9": 56000.0,
+    "S10": 3000.0,
+    "S11": 96000.0
+   },
+   "to_confirm": {},
+   "notes": [
+    "S4: silent, owner's allowance 12,800",
+    "S5: silent, owner's allowance 24,000",
+    "S7: silent, owner's allowance 38,000",
+    "S9: silent, owner's allowance 56,000",
+    "S10: silent, owner's allowance 3,000",
+    "S11: silent, owner's allowance 96,000"
+   ],
+   "open_ended": [
+    {
+     "risk": "short_validity",
+     "note": "Price firm 15 days",
+     "citation": {
+      "doc_id": "b4-ridgeway-power-email",
+      "page": 1,
+      "locator": "",
+      "quote": "Price firm 15 days",
+      "match": "exact",
+      "ocr": false
+     }
+    }
+   ],
+   "derivation": "base 4,240,000 + allowances and alternates 229,800 = 4,469,800 (high); low = high minus 0 for items read as 'qualified' that may turn out to be included"
+  }
+ },
+ "arrival": {
+  "market (not ordered)": {
+   "P10": "2027-12-07",
+   "P50": "2028-02-06",
+   "P90": "2028-05-03",
+   "p_late": 0.94,
+   "lead_weeks": {
+    "P10": 51.0,
+    "P50": 59.75,
+    "P90": 72.25
+   },
+   "submittal_weeks": 0.0,
+   "evidence": [
+    {
+     "id": "LT-002",
+     "range_weeks": [
+      50.0,
+      66.0
+     ],
+     "weight": 1.0,
+     "source": "Terrapin Construction Group (2026-06-10 (updated 2026-11))",
+     "dissent": false,
+     "notes": []
+    },
+    {
+     "id": "LT-003",
+     "range_weeks": [
+      50.0,
+      78.0
+     ],
+     "weight": 1.0,
+     "source": "Terrapin Construction Group (2026-06-10 (updated 2026-11))",
+     "dissent": false,
+     "notes": []
+    },
+    {
+     "id": "LT-006",
+     "range_weeks": [
+      12.0,
+      20.0
+     ],
+     "weight": 0.12,
+     "source": "iRecruit.co (2026-06-21)",
+     "dissent": true,
+     "notes": [
+      "source does not give a size band",
+      "far from the other sources (55-66 wk); kept as dissent, down-weighted"
+     ]
+    }
+   ],
+   "need_on_site": "2027-10-04"
+  },
+  "award to B1": {
+   "P10": "2028-01-25",
+   "P50": "2028-03-08",
+   "P90": "2028-04-28",
+   "p_late": 0.97,
+   "lead_weeks": {
+    "P10": 53.0,
+    "P50": 59.25,
+    "P90": 66.5
+   },
+   "submittal_weeks": 5.0,
+   "evidence": [
+    {
+     "id": "LT-002",
+     "range_weeks": [
+      50.0,
+      66.0
+     ],
+     "weight": 1.0,
+     "source": "Terrapin Construction Group (2026-06-10 (updated 2026-11))",
+     "dissent": false,
+     "notes": []
+    },
+    {
+     "id": "LT-003",
+     "range_weeks": [
+      50.0,
+      78.0
+     ],
+     "weight": 1.0,
+     "source": "Terrapin Construction Group (2026-06-10 (updated 2026-11))",
+     "dissent": false,
+     "notes": []
+    },
+    {
+     "id": "LT-006",
+     "range_weeks": [
+      12.0,
+      20.0
+     ],
+     "weight": 0.12,
+     "source": "iRecruit.co (2026-06-21)",
+     "dissent": true,
+     "notes": [
+      "source does not give a size band",
+      "far from the other sources (55-66 wk); kept as dissent, down-weighted"
+     ]
+    },
+    {
+     "id": "VENDOR",
+     "range_weeks": [
+      56.0,
+      62.0
+     ],
+     "weight": 2.0,
+     "source": "B1 bid lead time",
+     "dissent": false,
+     "notes": []
+    }
+   ],
+   "need_on_site": "2027-10-04"
+  },
+  "award to B2": {
+   "P10": "2028-01-07",
+   "P50": "2028-01-26",
+   "P90": "2028-04-28",
+   "p_late": 0.97,
+   "lead_weeks": {
+    "P10": 50.5,
+    "P50": 53.25,
+    "P90": 66.5
+   },
+   "submittal_weeks": 5.0,
+   "evidence": [
+    {
+     "id": "LT-002",
+     "range_weeks": [
+      50.0,
+      66.0
+     ],
+     "weight": 1.0,
+     "source": "Terrapin Construction Group (2026-06-10 (updated 2026-11))",
+     "dissent": false,
+     "notes": []
+    },
+    {
+     "id": "LT-003",
+     "range_weeks": [
+      50.0,
+      78.0
+     ],
+     "weight": 1.0,
+     "source": "Terrapin Construction Group (2026-06-10 (updated 2026-11))",
+     "dissent": false,
+     "notes": []
+    },
+    {
+     "id": "LT-006",
+     "range_weeks": [
+      12.0,
+      20.0
+     ],
+     "weight": 0.12,
+     "source": "iRecruit.co (2026-06-21)",
+     "dissent": true,
+     "notes": [
+      "source does not give a size band",
+      "far from the other sources (55-66 wk); kept as dissent, down-weighted"
+     ]
+    },
+    {
+     "id": "VENDOR",
+     "range_weeks": [
+      50.0,
+      54.0
+     ],
+     "weight": 2.0,
+     "source": "B2 bid lead time",
+     "dissent": false,
+     "notes": []
+    }
+   ],
+   "need_on_site": "2027-10-04"
+  },
+  "award to B3": {
+   "P10": "2027-12-21",
+   "P50": "2028-04-11",
+   "P90": "2028-05-12",
+   "p_late": 0.97,
+   "lead_weeks": {
+    "P10": 53.0,
+    "P50": 69.0,
+    "P90": 73.5
+   },
+   "submittal_weeks": 0.0,
+   "evidence": [
+    {
+     "id": "LT-002",
+     "range_weeks": [
+      50.0,
+      66.0
+     ],
+     "weight": 1.0,
+     "source": "Terrapin Construction Group (2026-06-10 (updated 2026-11))",
+     "dissent": false,
+     "notes": []
+    },
+    {
+     "id": "LT-003",
+     "range_weeks": [
+      50.0,
+      78.0
+     ],
+     "weight": 1.0,
+     "source": "Terrapin Construction Group (2026-06-10 (updated 2026-11))",
+     "dissent": false,
+     "notes": []
+    },
+    {
+     "id": "LT-006",
+     "range_weeks": [
+      12.0,
+      20.0
+     ],
+     "weight": 0.12,
+     "source": "iRecruit.co (2026-06-21)",
+     "dissent": true,
+     "notes": [
+      "source does not give a size band",
+      "far from the other sources (55-66 wk); kept as dissent, down-weighted"
+     ]
+    },
+    {
+     "id": "VENDOR",
+     "range_weeks": [
+      68.0,
+      74.0
+     ],
+     "weight": 2.0,
+     "source": "B3 bid lead time",
+     "dissent": false,
+     "notes": []
+    }
+   ],
+   "need_on_site": "2027-10-04"
+  },
+  "award to B4": {
+   "P10": "2027-12-21",
+   "P50": "2028-02-08",
+   "P90": "2028-03-24",
+   "p_late": 0.97,
+   "lead_weeks": {
+    "P10": 53.0,
+    "P50": 60.0,
+    "P90": 66.5
+   },
+   "submittal_weeks": 0.0,
+   "evidence": [
+    {
+     "id": "LT-002",
+     "range_weeks": [
+      50.0,
+      66.0
+     ],
+     "weight": 1.0,
+     "source": "Terrapin Construction Group (2026-06-10 (updated 2026-11))",
+     "dissent": false,
+     "notes": []
+    },
+    {
+     "id": "LT-003",
+     "range_weeks": [
+      50.0,
+      78.0
+     ],
+     "weight": 1.0,
+     "source": "Terrapin Construction Group (2026-06-10 (updated 2026-11))",
+     "dissent": false,
+     "notes": []
+    },
+    {
+     "id": "LT-006",
+     "range_weeks": [
+      12.0,
+      20.0
+     ],
+     "weight": 0.12,
+     "source": "iRecruit.co (2026-06-21)",
+     "dissent": true,
+     "notes": [
+      "source does not give a size band",
+      "far from the other sources (55-66 wk); kept as dissent, down-weighted"
+     ]
+    },
+    {
+     "id": "VENDOR",
+     "range_weeks": [
+      54.0,
+      66.0
+     ],
+     "weight": 2.0,
+     "source": "B4 bid lead time",
+     "dissent": false,
+     "notes": [
+      "single figure quoted (60 wk); treated as \u00b110%"
+     ]
+    }
+   ],
+   "need_on_site": "2027-10-04"
+  }
+ },
+ "assumptions": [
+  "2 weeks from award to purchase order (amber/delivery.py PROCURE_WEEKS)",
+  "a bid's lead time 'after approved submittals' adds the submittal cycle before the clock starts",
+  "market reports are weighted by who wrote them (contractor 1.0, vendor blog 0.6, trade press 0.5, recruiting 0.3); an outlier is kept as dissent and down-weighted",
+  "no production slot is reserved: a confirmed slot from the chosen supplier replaces the market range"
+ ],
+ "missing_inputs": [
+  "Ridgeway (B4) gave 'approx 60 wks' with no basis (after order or after approval)",
+  "no supplier has confirmed a production slot"
+ ]
+}

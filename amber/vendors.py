@@ -106,7 +106,7 @@ def _spec_cite(c: dict) -> dict | None:
 
 def discover_vendors(requirement: dict, product_fit: dict[str, dict], bids: dict[str, dict] | None = None,
                      directory: list[dict] | None = None) -> dict:
-    """requirement: {"tag", "item", "kw", "class"}. product_fit: manufacturer -> {"product", "complies", "deviates",
+    """requirement: {"tag", "item", "kw", "class"}. product_fit: vendor_id or manufacturer -> {"product", "complies", "deviates",
     "open", "quotes", "provisional"} from the datasheet checks. bids: vendor_id -> {"bid", "lead_max_weeks", "citation"}."""
     directory = directory or load_directory()
     bids = bids or {}
@@ -128,7 +128,8 @@ def discover_vendors(requirement: dict, product_fit: dict[str, dict], bids: dict
             continue
         mfrs = r["manufacturers"].split(";")
         on_list = [m for m in mfrs if any(m.lower() in a.lower() or a.lower() in m.lower() for a in ACCEPTABLE)]
-        fit = next((product_fit[m] for m in mfrs if m in product_fit), None)
+        # a vendor that bid is scored on the product it offered; otherwise on its manufacturer's best datasheet we hold
+        fit = product_fit.get(r["vendor_id"]) or next((product_fit[m] for m in mfrs if m in product_fit), None)
         points, reasons = 0.0, []
         if on_list:
             points += 2

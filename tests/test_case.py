@@ -173,3 +173,21 @@ def test_replies_flow_back_into_answers_prequalification_and_cost(case_dir):
     assert "S2" not in rg["cost"]["B2"]["adjustments"]
     dec = cf.output("decision")
     assert dec["auto_award"] is False and dec["escalate_schedule"] is True
+
+
+# ------------------------------------------------------------------ the case page
+
+def test_the_case_page_shows_every_section_and_labels_mock_data():
+    from amber import case_page
+    page = case_page.render()
+    for anchor in ("measured", "steps", "decision", "discovery", "prequal", "links", "reconcile", "ranges", "triage", "replies"):
+        assert f"id='{anchor}'" in page
+    assert "mock vendor master" in page and "mock replies" in page and "assumption" in page
+    assert "Tidewater" in page and "113" in page and "C2000D6E" in page
+
+
+def test_the_web_app_serves_the_case_page():
+    from starlette.testclient import TestClient
+    from amber import web
+    r = TestClient(web.app).get("/case.html")
+    assert r.status_code == 200 and "Case file" in r.text

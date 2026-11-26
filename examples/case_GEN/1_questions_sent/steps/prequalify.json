@@ -1,0 +1,1140 @@
+{
+ "_summary": "B1 qualified pending the owner's checks; B2 needs verification; B3 fails; B4 needs verification",
+ "B1": {
+  "vendor_id": "V-NPS",
+  "name": "Northline Power Systems",
+  "overall": "qualified pending the owner's checks",
+  "fails": [],
+  "to_verify": [],
+  "owner_checks": [
+   "Q7"
+  ],
+  "criteria": {
+   "P1": {
+    "criterion": "P1",
+    "text": "Manufacturer is one of those the spec names",
+    "status": "meets",
+    "citations": [
+     {
+      "doc_id": "v-nps-prequal",
+      "page": 1,
+      "locator": "",
+      "quote": "Manufacturer of the equipment offered: Caterpillar.",
+      "match": "normalized",
+      "ocr": false
+     }
+    ],
+    "why": "Caterpillar is named by the spec",
+    "source": {
+     "source": "spec",
+     "locator": "1.4.A",
+     "citation": {
+      "doc_id": "26-32-13-engine-generators-alpha",
+      "page": 1,
+      "locator": "1.4.A",
+      "quote": "Manufacturers: Provide products complying with these specifications",
+      "match": "exact",
+      "ocr": false
+     }
+    },
+    "route": "decide"
+   },
+   "P2": {
+    "criterion": "P2",
+    "text": "Manufacturer has produced engine-alternator sets for at least 10 years",
+    "status": "meets",
+    "citations": [
+     {
+      "doc_id": "v-nps-prequal",
+      "page": 1,
+      "locator": "",
+      "quote": "The manufacturer has produced engine-generator sets for more than 50 years.",
+      "match": "exact",
+      "ocr": false
+     }
+    ],
+    "why": "more than 50 years meets >= 10",
+    "source": {
+     "source": "spec",
+     "locator": "1.4.G",
+     "citation": {
+      "doc_id": "26-32-13-engine-generators-alpha",
+      "page": 2,
+      "locator": "1.4.G",
+      "quote": "minimum of 10 years",
+      "match": "exact",
+      "ocr": false
+     }
+    },
+    "route": "decide"
+   },
+   "Q1": {
+    "criterion": "Q1",
+    "text": "General liability insurance >= $2,000,000 per occurrence",
+    "status": "meets",
+    "citations": [
+     {
+      "doc_id": "v-nps-prequal",
+      "page": 1,
+      "locator": "",
+      "quote": "Commercial general liability Harborline Mutual (fictional) $5,000,000 $10,000,000 2028-06-30",
+      "match": "normalized",
+      "ocr": false
+     }
+    ],
+    "why": "$5,000,000 meets >= 2e+06",
+    "source": {
+     "source": "policy",
+     "locator": "PQ-01 Q1",
+     "citation": {
+      "doc_id": "prequal-policy-alpha",
+      "page": 1,
+      "locator": "PQ-01 Q1",
+      "quote": "Commercial general liability insurance of at least $2,000,000 per occurrence",
+      "match": "exact",
+      "ocr": false
+     }
+    },
+    "route": "decide"
+   },
+   "Q2": {
+    "criterion": "Q2",
+    "text": "Insurance certificate valid through the need date",
+    "status": "meets",
+    "citations": [
+     {
+      "doc_id": "v-nps-prequal",
+      "page": 1,
+      "locator": "",
+      "quote": "Commercial general liability Harborline Mutual (fictional) $5,000,000 $10,000,000 2028-06-30",
+      "match": "normalized",
+      "ocr": false
+     }
+    ],
+    "why": "expires 2028-06-30, after the need date 2027-10-04",
+    "source": {
+     "source": "policy",
+     "locator": "PQ-01 Q2",
+     "citation": {
+      "doc_id": "prequal-policy-alpha",
+      "page": 1,
+      "locator": "PQ-01 Q2",
+      "quote": "must remain valid through the equipment need date",
+      "match": "exact",
+      "ocr": false
+     }
+    },
+    "route": "decide"
+   },
+   "Q3": {
+    "criterion": "Q3",
+    "text": "EMR (three-year average) <= 1.00",
+    "status": "meets",
+    "citations": [
+     {
+      "doc_id": "v-nps-prequal",
+      "page": 1,
+      "locator": "",
+      "quote": "Three-year average 0.82",
+      "match": "exact",
+      "ocr": false
+     }
+    ],
+    "why": "0.82 meets <= 1",
+    "source": {
+     "source": "policy",
+     "locator": "PQ-01 Q3",
+     "citation": {
+      "doc_id": "prequal-policy-alpha",
+      "page": 1,
+      "locator": "PQ-01 Q3",
+      "quote": "Experience modification rate (EMR) of 1.00 or lower",
+      "match": "normalized",
+      "ocr": false
+     }
+    },
+    "route": "decide"
+   },
+   "Q4": {
+    "criterion": "Q4",
+    "text": "Manufacturer's authorization letter attached",
+    "status": "meets",
+    "citations": [
+     {
+      "doc_id": "v-nps-prequal",
+      "page": 1,
+      "locator": "",
+      "quote": "Attached: Caterpillar dealer authorization letter dated 2026-09-12 covering the 3516C generator set.",
+      "match": "exact",
+      "ocr": false
+     }
+    ],
+    "why": "the letter is attached",
+    "source": {
+     "source": "policy",
+     "locator": "PQ-01 Q4",
+     "citation": {
+      "doc_id": "prequal-policy-alpha",
+      "page": 1,
+      "locator": "PQ-01 Q4",
+      "quote": "A current letter from the manufacturer authorizing the supplier",
+      "match": "exact",
+      "ocr": false
+     }
+    },
+    "route": "decide"
+   },
+   "Q5": {
+    "criterion": "Q5",
+    "text": "Named service branch, 24/7 emergency response within 4 hours",
+    "status": "meets",
+    "citations": [
+     {
+      "doc_id": "v-nps-prequal",
+      "page": 1,
+      "locator": "",
+      "quote": "Service branch: Richmond, VA. 24/7 emergency response within 4 hours at the Ashburn site by factory-trained technicians.",
+      "match": "exact",
+      "ocr": false
+     }
+    ],
+    "why": "branch Richmond, VA; response within 4 hours",
+    "source": {
+     "source": "policy",
+     "locator": "PQ-01 Q5",
+     "citation": {
+      "doc_id": "prequal-policy-alpha",
+      "page": 1,
+      "locator": "PQ-01 Q5",
+      "quote": "Emergency service response within 4 hours at the site",
+      "match": "exact",
+      "ocr": false
+     }
+    },
+    "route": "decide"
+   },
+   "Q6": {
+    "criterion": "Q6",
+    "text": ">= 3 completed projects with sets of 1500 kW or larger in the last 5 years",
+    "status": "meets",
+    "citations": [
+     {
+      "doc_id": "v-nps-prequal",
+      "page": 1,
+      "locator": "",
+      "quote": "Data center DC-7, Richmond VA 2025 2500 J. Ortiz, facilities",
+      "match": "exact",
+      "ocr": false
+     },
+     {
+      "doc_id": "v-nps-prequal",
+      "page": 1,
+      "locator": "",
+      "quote": "Hospital tower, Norfolk VA 2024 2000 M. Chen, engineering",
+      "match": "exact",
+      "ocr": false
+     },
+     {
+      "doc_id": "v-nps-prequal",
+      "page": 1,
+      "locator": "",
+      "quote": "Campus central plant, Charlottesville VA 2023 1750 R. Patel, utilities",
+      "match": "exact",
+      "ocr": false
+     },
+     {
+      "doc_id": "v-nps-prequal",
+      "page": 1,
+      "locator": "",
+      "quote": "Water treatment plant, Roanoke VA 2022 1500 S. Brooks, operations",
+      "match": "exact",
+      "ocr": false
+     },
+     {
+      "doc_id": "v-nps-prequal",
+      "page": 1,
+      "locator": "",
+      "quote": "Office park, Glen Allen VA 2022 800 T. Nguyen, property",
+      "match": "normalized",
+      "ocr": false
+     }
+    ],
+    "why": "4 of 5 listed projects are 1500 kW or larger within 5 years (rows verified on the page, counted in code)",
+    "source": {
+     "source": "policy",
+     "locator": "PQ-01 Q6",
+     "citation": {
+      "doc_id": "prequal-policy-alpha",
+      "page": 1,
+      "locator": "PQ-01 Q6",
+      "quote": "At least three completed projects with generator sets of 1500 kW",
+      "match": "exact",
+      "ocr": false
+     }
+    },
+    "route": "decide"
+   },
+   "Q7": {
+    "criterion": "Q7",
+    "text": "Not excluded from federal procurement (owner checks SAM.gov)",
+    "status": "needs_verification",
+    "citations": [
+     {
+      "doc_id": "v-nps-prequal",
+      "page": 1,
+      "locator": "",
+      "quote": "We certify that the company is not debarred, suspended or excluded from federal procurement.",
+      "match": "exact",
+      "ocr": false
+     }
+    ],
+    "why": "the owner checks the federal exclusion list (SAM.gov) before award; the supplier's self-certification is recorded",
+    "route": "engineer",
+    "source": {
+     "source": "policy",
+     "locator": "PQ-01 Q7",
+     "citation": {
+      "doc_id": "prequal-policy-alpha",
+      "page": 1,
+      "locator": "PQ-01 Q7",
+      "quote": "The supplier must not be excluded from federal procurement",
+      "match": "exact",
+      "ocr": false
+     }
+    }
+   }
+  },
+  "documents": [
+   {
+    "doc": "v-nps-prequal",
+    "file": "V-NPS_prequal.pdf",
+    "replayed": true,
+    "note": null
+   }
+  ]
+ },
+ "B2": {
+  "vendor_id": "V-TGC",
+  "name": "Tidewater Generator Co.",
+  "overall": "needs verification",
+  "fails": [],
+  "to_verify": [
+   "Q2",
+   "Q4",
+   "Q5"
+  ],
+  "owner_checks": [
+   "Q7"
+  ],
+  "criteria": {
+   "P1": {
+    "criterion": "P1",
+    "text": "Manufacturer is one of those the spec names",
+    "status": "meets",
+    "citations": [
+     {
+      "doc_id": "v-tgc-prequal",
+      "page": 1,
+      "locator": "",
+      "quote": "Manufacturer of the equipment offered: Cummins.",
+      "match": "normalized",
+      "ocr": false
+     }
+    ],
+    "why": "Cummins is named by the spec",
+    "source": {
+     "source": "spec",
+     "locator": "1.4.A",
+     "citation": {
+      "doc_id": "26-32-13-engine-generators-alpha",
+      "page": 1,
+      "locator": "1.4.A",
+      "quote": "Manufacturers: Provide products complying with these specifications",
+      "match": "exact",
+      "ocr": false
+     }
+    },
+    "route": "decide"
+   },
+   "P2": {
+    "criterion": "P2",
+    "text": "Manufacturer has produced engine-alternator sets for at least 10 years",
+    "status": "meets",
+    "citations": [
+     {
+      "doc_id": "v-tgc-prequal",
+      "page": 1,
+      "locator": "",
+      "quote": "The manufacturer has produced engine-generator sets for more than 40 years.",
+      "match": "exact",
+      "ocr": false
+     }
+    ],
+    "why": "more than 40 years meets >= 10",
+    "source": {
+     "source": "spec",
+     "locator": "1.4.G",
+     "citation": {
+      "doc_id": "26-32-13-engine-generators-alpha",
+      "page": 2,
+      "locator": "1.4.G",
+      "quote": "minimum of 10 years",
+      "match": "exact",
+      "ocr": false
+     }
+    },
+    "route": "decide"
+   },
+   "Q1": {
+    "criterion": "Q1",
+    "text": "General liability insurance >= $2,000,000 per occurrence",
+    "status": "meets",
+    "citations": [
+     {
+      "doc_id": "v-tgc-prequal",
+      "page": 1,
+      "locator": "",
+      "quote": "Commercial general liability ... $2,000,000 ...",
+      "match": "segments",
+      "ocr": false
+     }
+    ],
+    "why": "$2,000,000 meets >= 2e+06",
+    "source": {
+     "source": "policy",
+     "locator": "PQ-01 Q1",
+     "citation": {
+      "doc_id": "prequal-policy-alpha",
+      "page": 1,
+      "locator": "PQ-01 Q1",
+      "quote": "Commercial general liability insurance of at least $2,000,000 per occurrence",
+      "match": "exact",
+      "ocr": false
+     }
+    },
+    "route": "decide"
+   },
+   "Q2": {
+    "criterion": "Q2",
+    "text": "Insurance certificate valid through the need date",
+    "status": "needs_verification",
+    "citations": [
+     {
+      "doc_id": "v-tgc-prequal",
+      "page": 1,
+      "locator": "",
+      "quote": "Expires 2027-03-31",
+      "match": "table",
+      "ocr": false
+     }
+    ],
+    "why": "expires 2027-03-31, before the need date 2027-10-04: a renewal certificate is needed before award",
+    "source": {
+     "source": "policy",
+     "locator": "PQ-01 Q2",
+     "citation": {
+      "doc_id": "prequal-policy-alpha",
+      "page": 1,
+      "locator": "PQ-01 Q2",
+      "quote": "must remain valid through the equipment need date",
+      "match": "exact",
+      "ocr": false
+     }
+    },
+    "route": "ask_supplier"
+   },
+   "Q3": {
+    "criterion": "Q3",
+    "text": "EMR (three-year average) <= 1.00",
+    "status": "meets",
+    "citations": [
+     {
+      "doc_id": "v-tgc-prequal",
+      "page": 1,
+      "locator": "",
+      "quote": "Three-year average 0.91",
+      "match": "exact",
+      "ocr": false
+     }
+    ],
+    "why": "0.91 meets <= 1",
+    "source": {
+     "source": "policy",
+     "locator": "PQ-01 Q3",
+     "citation": {
+      "doc_id": "prequal-policy-alpha",
+      "page": 1,
+      "locator": "PQ-01 Q3",
+      "quote": "Experience modification rate (EMR) of 1.00 or lower",
+      "match": "normalized",
+      "ocr": false
+     }
+    },
+    "route": "decide"
+   },
+   "Q4": {
+    "criterion": "Q4",
+    "text": "Manufacturer's authorization letter attached",
+    "status": "needs_verification",
+    "citations": [
+     {
+      "doc_id": "v-tgc-prequal",
+      "page": 1,
+      "locator": "",
+      "quote": "Cummins authorization letter: available on request.",
+      "match": "exact",
+      "ocr": false
+     }
+    ],
+    "why": "not attached ('Cummins authorization letter: available on request.'): ask for the letter",
+    "source": {
+     "source": "policy",
+     "locator": "PQ-01 Q4",
+     "citation": {
+      "doc_id": "prequal-policy-alpha",
+      "page": 1,
+      "locator": "PQ-01 Q4",
+      "quote": "A current letter from the manufacturer authorizing the supplier",
+      "match": "exact",
+      "ocr": false
+     }
+    },
+    "route": "ask_supplier"
+   },
+   "Q5": {
+    "criterion": "Q5",
+    "text": "Named service branch, 24/7 emergency response within 4 hours",
+    "status": "needs_verification",
+    "citations": [
+     {
+      "doc_id": "v-tgc-prequal",
+      "page": 1,
+      "locator": "",
+      "quote": "Mid-Atlantic coverage through our partner service network, 4-hour emergency response.",
+      "match": "exact",
+      "ocr": false
+     },
+     {
+      "doc_id": "supplier-directory",
+      "page": 3,
+      "locator": "vendor master row 3 (V-TGC)",
+      "quote": "service_branch=Norfolk; branch_miles_to_site=190; record_updated=2025-06-30",
+      "match": "record"
+     }
+    ],
+    "why": "no service branch is named; the vendor master lists Norfolk VA, 190 miles from site (record of 2025-06-30): conflicting records, ask the supplier to name the branch",
+    "source": {
+     "source": "policy",
+     "locator": "PQ-01 Q5",
+     "citation": {
+      "doc_id": "prequal-policy-alpha",
+      "page": 1,
+      "locator": "PQ-01 Q5",
+      "quote": "Emergency service response within 4 hours at the site",
+      "match": "exact",
+      "ocr": false
+     }
+    },
+    "route": "ask_supplier"
+   },
+   "Q6": {
+    "criterion": "Q6",
+    "text": ">= 3 completed projects with sets of 1500 kW or larger in the last 5 years",
+    "status": "meets",
+    "citations": [
+     {
+      "doc_id": "v-tgc-prequal",
+      "page": 1,
+      "locator": "",
+      "quote": "Colocation hall, Virginia Beach VA 2025 2250",
+      "match": "exact",
+      "ocr": false
+     },
+     {
+      "doc_id": "v-tgc-prequal",
+      "page": 1,
+      "locator": "",
+      "quote": "Port authority terminal, Norfolk VA 2024 2000",
+      "match": "exact",
+      "ocr": false
+     },
+     {
+      "doc_id": "v-tgc-prequal",
+      "page": 1,
+      "locator": "",
+      "quote": "County courthouse, Su\ufb00olk VA 2023 1250",
+      "match": "exact",
+      "ocr": false
+     },
+     {
+      "doc_id": "v-tgc-prequal",
+      "page": 1,
+      "locator": "",
+      "quote": "Naval supply depot (contractor), Chesapeake VA 2022 2000",
+      "match": "exact",
+      "ocr": false
+     }
+    ],
+    "why": "3 of 4 listed projects are 1500 kW or larger within 5 years (rows verified on the page, counted in code)",
+    "source": {
+     "source": "policy",
+     "locator": "PQ-01 Q6",
+     "citation": {
+      "doc_id": "prequal-policy-alpha",
+      "page": 1,
+      "locator": "PQ-01 Q6",
+      "quote": "At least three completed projects with generator sets of 1500 kW",
+      "match": "exact",
+      "ocr": false
+     }
+    },
+    "route": "decide"
+   },
+   "Q7": {
+    "criterion": "Q7",
+    "text": "Not excluded from federal procurement (owner checks SAM.gov)",
+    "status": "needs_verification",
+    "citations": [
+     {
+      "doc_id": "v-tgc-prequal",
+      "page": 1,
+      "locator": "",
+      "quote": "We certify that the company is not debarred, suspended or excluded from federal procurement.",
+      "match": "exact",
+      "ocr": false
+     }
+    ],
+    "why": "the owner checks the federal exclusion list (SAM.gov) before award; the supplier's self-certification is recorded",
+    "route": "engineer",
+    "source": {
+     "source": "policy",
+     "locator": "PQ-01 Q7",
+     "citation": {
+      "doc_id": "prequal-policy-alpha",
+      "page": 1,
+      "locator": "PQ-01 Q7",
+      "quote": "The supplier must not be excluded from federal procurement",
+      "match": "exact",
+      "ocr": false
+     }
+    }
+   }
+  },
+  "documents": [
+   {
+    "doc": "v-tgc-prequal",
+    "file": "V-TGC_prequal.pdf",
+    "replayed": true,
+    "note": null
+   }
+  ]
+ },
+ "B3": {
+  "vendor_id": "V-KEE",
+  "name": "Keystone Energy Equipment",
+  "overall": "fails",
+  "fails": [
+   "Q3"
+  ],
+  "to_verify": [],
+  "owner_checks": [
+   "Q7"
+  ],
+  "criteria": {
+   "P1": {
+    "criterion": "P1",
+    "text": "Manufacturer is one of those the spec names",
+    "status": "meets",
+    "citations": [
+     {
+      "doc_id": "v-kee-prequal",
+      "page": 1,
+      "locator": "",
+      "quote": "Manufacturer of the equipment offered: Kohler.",
+      "match": "normalized",
+      "ocr": false
+     }
+    ],
+    "why": "Kohler is named by the spec",
+    "source": {
+     "source": "spec",
+     "locator": "1.4.A",
+     "citation": {
+      "doc_id": "26-32-13-engine-generators-alpha",
+      "page": 1,
+      "locator": "1.4.A",
+      "quote": "Manufacturers: Provide products complying with these specifications",
+      "match": "exact",
+      "ocr": false
+     }
+    },
+    "route": "decide"
+   },
+   "P2": {
+    "criterion": "P2",
+    "text": "Manufacturer has produced engine-alternator sets for at least 10 years",
+    "status": "meets",
+    "citations": [
+     {
+      "doc_id": "v-kee-prequal",
+      "page": 1,
+      "locator": "",
+      "quote": "The manufacturer has produced engine-generator sets for more than 60 years.",
+      "match": "exact",
+      "ocr": false
+     }
+    ],
+    "why": "more than 60 years meets >= 10",
+    "source": {
+     "source": "spec",
+     "locator": "1.4.G",
+     "citation": {
+      "doc_id": "26-32-13-engine-generators-alpha",
+      "page": 2,
+      "locator": "1.4.G",
+      "quote": "minimum of 10 years",
+      "match": "exact",
+      "ocr": false
+     }
+    },
+    "route": "decide"
+   },
+   "Q1": {
+    "criterion": "Q1",
+    "text": "General liability insurance >= $2,000,000 per occurrence",
+    "status": "meets",
+    "citations": [
+     {
+      "doc_id": "v-kee-prequal",
+      "page": 1,
+      "locator": "",
+      "quote": "Commercial general liability ... Per occurrence $3,000,000",
+      "match": "segments",
+      "ocr": false
+     }
+    ],
+    "why": "$3,000,000 meets >= 2e+06",
+    "source": {
+     "source": "policy",
+     "locator": "PQ-01 Q1",
+     "citation": {
+      "doc_id": "prequal-policy-alpha",
+      "page": 1,
+      "locator": "PQ-01 Q1",
+      "quote": "Commercial general liability insurance of at least $2,000,000 per occurrence",
+      "match": "exact",
+      "ocr": false
+     }
+    },
+    "route": "decide"
+   },
+   "Q2": {
+    "criterion": "Q2",
+    "text": "Insurance certificate valid through the need date",
+    "status": "meets",
+    "citations": [
+     {
+      "doc_id": "v-kee-prequal",
+      "page": 1,
+      "locator": "",
+      "quote": "Expires 2027-12-31",
+      "match": "table",
+      "ocr": false
+     }
+    ],
+    "why": "expires 2027-12-31, after the need date 2027-10-04",
+    "source": {
+     "source": "policy",
+     "locator": "PQ-01 Q2",
+     "citation": {
+      "doc_id": "prequal-policy-alpha",
+      "page": 1,
+      "locator": "PQ-01 Q2",
+      "quote": "must remain valid through the equipment need date",
+      "match": "exact",
+      "ocr": false
+     }
+    },
+    "route": "decide"
+   },
+   "Q3": {
+    "criterion": "Q3",
+    "text": "EMR (three-year average) <= 1.00",
+    "status": "fails",
+    "citations": [
+     {
+      "doc_id": "v-kee-prequal",
+      "page": 1,
+      "locator": "",
+      "quote": "Three-year average 1.24",
+      "match": "exact",
+      "ocr": false
+     }
+    ],
+    "why": "1.24 does not meet <= 1",
+    "source": {
+     "source": "policy",
+     "locator": "PQ-01 Q3",
+     "citation": {
+      "doc_id": "prequal-policy-alpha",
+      "page": 1,
+      "locator": "PQ-01 Q3",
+      "quote": "Experience modification rate (EMR) of 1.00 or lower",
+      "match": "normalized",
+      "ocr": false
+     }
+    },
+    "route": "decide"
+   },
+   "Q4": {
+    "criterion": "Q4",
+    "text": "Manufacturer's authorization letter attached",
+    "status": "meets",
+    "citations": [
+     {
+      "doc_id": "v-kee-prequal",
+      "page": 1,
+      "locator": "",
+      "quote": "Attached: Kohler distributor authorization letter dated 2026-07-01 covering the KD2000 generator set.",
+      "match": "exact",
+      "ocr": false
+     }
+    ],
+    "why": "the letter is attached",
+    "source": {
+     "source": "policy",
+     "locator": "PQ-01 Q4",
+     "citation": {
+      "doc_id": "prequal-policy-alpha",
+      "page": 1,
+      "locator": "PQ-01 Q4",
+      "quote": "A current letter from the manufacturer authorizing the supplier",
+      "match": "exact",
+      "ocr": false
+     }
+    },
+    "route": "decide"
+   },
+   "Q5": {
+    "criterion": "Q5",
+    "text": "Named service branch, 24/7 emergency response within 4 hours",
+    "status": "meets",
+    "citations": [
+     {
+      "doc_id": "v-kee-prequal",
+      "page": 1,
+      "locator": "",
+      "quote": "Service branch: Baltimore, MD. 24/7 emergency response within 4 hours at the Ashburn site by factory-trained technicians.",
+      "match": "exact",
+      "ocr": false
+     }
+    ],
+    "why": "branch Baltimore, MD; response within 4 hours",
+    "source": {
+     "source": "policy",
+     "locator": "PQ-01 Q5",
+     "citation": {
+      "doc_id": "prequal-policy-alpha",
+      "page": 1,
+      "locator": "PQ-01 Q5",
+      "quote": "Emergency service response within 4 hours at the site",
+      "match": "exact",
+      "ocr": false
+     }
+    },
+    "route": "decide"
+   },
+   "Q6": {
+    "criterion": "Q6",
+    "text": ">= 3 completed projects with sets of 1500 kW or larger in the last 5 years",
+    "status": "meets",
+    "citations": [
+     {
+      "doc_id": "v-kee-prequal",
+      "page": 1,
+      "locator": "",
+      "quote": "Data center campus, Ashburn VA 2025 2000",
+      "match": "exact",
+      "ocr": false
+     },
+     {
+      "doc_id": "v-kee-prequal",
+      "page": 1,
+      "locator": "",
+      "quote": "University hospital, Baltimore MD 2024 1500",
+      "match": "exact",
+      "ocr": false
+     },
+     {
+      "doc_id": "v-kee-prequal",
+      "page": 1,
+      "locator": "",
+      "quote": "Logistics hub, Hagerstown MD 2023 2500",
+      "match": "exact",
+      "ocr": false
+     }
+    ],
+    "why": "3 of 3 listed projects are 1500 kW or larger within 5 years (rows verified on the page, counted in code)",
+    "source": {
+     "source": "policy",
+     "locator": "PQ-01 Q6",
+     "citation": {
+      "doc_id": "prequal-policy-alpha",
+      "page": 1,
+      "locator": "PQ-01 Q6",
+      "quote": "At least three completed projects with generator sets of 1500 kW",
+      "match": "exact",
+      "ocr": false
+     }
+    },
+    "route": "decide"
+   },
+   "Q7": {
+    "criterion": "Q7",
+    "text": "Not excluded from federal procurement (owner checks SAM.gov)",
+    "status": "needs_verification",
+    "citations": [
+     {
+      "doc_id": "v-kee-prequal",
+      "page": 1,
+      "locator": "",
+      "quote": "We certify that the company is not debarred, suspended or excluded from federal procurement.",
+      "match": "exact",
+      "ocr": false
+     }
+    ],
+    "why": "the owner checks the federal exclusion list (SAM.gov) before award; the supplier's self-certification is recorded",
+    "route": "engineer",
+    "source": {
+     "source": "policy",
+     "locator": "PQ-01 Q7",
+     "citation": {
+      "doc_id": "prequal-policy-alpha",
+      "page": 1,
+      "locator": "PQ-01 Q7",
+      "quote": "The supplier must not be excluded from federal procurement",
+      "match": "exact",
+      "ocr": false
+     }
+    }
+   }
+  },
+  "documents": [
+   {
+    "doc": "v-kee-prequal",
+    "file": "V-KEE_prequal.pdf",
+    "replayed": true,
+    "note": null
+   }
+  ]
+ },
+ "B4": {
+  "vendor_id": "V-RWP",
+  "name": "Ridgeway Power",
+  "overall": "needs verification",
+  "fails": [],
+  "to_verify": [
+   "P2",
+   "Q1",
+   "Q2",
+   "Q3",
+   "Q4",
+   "Q5",
+   "Q6",
+   "Q7"
+  ],
+  "owner_checks": [],
+  "criteria": {
+   "P1": {
+    "criterion": "P1",
+    "text": "Manufacturer is one of those the spec names",
+    "status": "meets",
+    "why": "Cummins (from the bid's product, via the product link); no packet received",
+    "citations": [
+     {
+      "doc_id": "b4-ridgeway-power-email",
+      "page": 1,
+      "locator": "",
+      "quote": "4 x Cummins C2000D6 2000kW standby 480V gensets with sound attenuated enclosures and 24 hr subbase tanks, freight included, startup included.",
+      "match": "exact",
+      "ocr": false
+     }
+    ],
+    "source": {
+     "source": "spec",
+     "locator": "1.4.A",
+     "citation": {
+      "doc_id": "26-32-13-engine-generators-alpha",
+      "page": 1,
+      "locator": "1.4.A",
+      "quote": "Manufacturers: Provide products complying with these specifications",
+      "match": "exact",
+      "ocr": false
+     }
+    },
+    "route": "decide"
+   },
+   "P2": {
+    "criterion": "P2",
+    "text": "Manufacturer has produced engine-alternator sets for at least 10 years",
+    "status": "needs_verification",
+    "why": "no pre-qualification packet received",
+    "citations": [],
+    "source": {
+     "source": "spec",
+     "locator": "1.4.G",
+     "citation": {
+      "doc_id": "26-32-13-engine-generators-alpha",
+      "page": 2,
+      "locator": "1.4.G",
+      "quote": "minimum of 10 years",
+      "match": "exact",
+      "ocr": false
+     }
+    },
+    "route": "ask_supplier"
+   },
+   "Q1": {
+    "criterion": "Q1",
+    "text": "General liability insurance >= $2,000,000 per occurrence",
+    "status": "needs_verification",
+    "why": "no pre-qualification packet received",
+    "citations": [],
+    "source": {
+     "source": "policy",
+     "locator": "PQ-01 Q1",
+     "citation": {
+      "doc_id": "prequal-policy-alpha",
+      "page": 1,
+      "locator": "PQ-01 Q1",
+      "quote": "Commercial general liability insurance of at least $2,000,000 per occurrence",
+      "match": "exact",
+      "ocr": false
+     }
+    },
+    "route": "ask_supplier"
+   },
+   "Q2": {
+    "criterion": "Q2",
+    "text": "Insurance certificate valid through the need date",
+    "status": "needs_verification",
+    "why": "no pre-qualification packet received",
+    "citations": [],
+    "source": {
+     "source": "policy",
+     "locator": "PQ-01 Q2",
+     "citation": {
+      "doc_id": "prequal-policy-alpha",
+      "page": 1,
+      "locator": "PQ-01 Q2",
+      "quote": "must remain valid through the equipment need date",
+      "match": "exact",
+      "ocr": false
+     }
+    },
+    "route": "ask_supplier"
+   },
+   "Q3": {
+    "criterion": "Q3",
+    "text": "EMR (three-year average) <= 1.00",
+    "status": "needs_verification",
+    "why": "no pre-qualification packet received",
+    "citations": [],
+    "source": {
+     "source": "policy",
+     "locator": "PQ-01 Q3",
+     "citation": {
+      "doc_id": "prequal-policy-alpha",
+      "page": 1,
+      "locator": "PQ-01 Q3",
+      "quote": "Experience modification rate (EMR) of 1.00 or lower",
+      "match": "normalized",
+      "ocr": false
+     }
+    },
+    "route": "ask_supplier"
+   },
+   "Q4": {
+    "criterion": "Q4",
+    "text": "Manufacturer's authorization letter attached",
+    "status": "needs_verification",
+    "why": "no pre-qualification packet received",
+    "citations": [],
+    "source": {
+     "source": "policy",
+     "locator": "PQ-01 Q4",
+     "citation": {
+      "doc_id": "prequal-policy-alpha",
+      "page": 1,
+      "locator": "PQ-01 Q4",
+      "quote": "A current letter from the manufacturer authorizing the supplier",
+      "match": "exact",
+      "ocr": false
+     }
+    },
+    "route": "ask_supplier"
+   },
+   "Q5": {
+    "criterion": "Q5",
+    "text": "Named service branch, 24/7 emergency response within 4 hours",
+    "status": "needs_verification",
+    "why": "no pre-qualification packet received",
+    "citations": [],
+    "source": {
+     "source": "policy",
+     "locator": "PQ-01 Q5",
+     "citation": {
+      "doc_id": "prequal-policy-alpha",
+      "page": 1,
+      "locator": "PQ-01 Q5",
+      "quote": "Emergency service response within 4 hours at the site",
+      "match": "exact",
+      "ocr": false
+     }
+    },
+    "route": "ask_supplier"
+   },
+   "Q6": {
+    "criterion": "Q6",
+    "text": ">= 3 completed projects with sets of 1500 kW or larger in the last 5 years",
+    "status": "needs_verification",
+    "why": "no pre-qualification packet received",
+    "citations": [],
+    "source": {
+     "source": "policy",
+     "locator": "PQ-01 Q6",
+     "citation": {
+      "doc_id": "prequal-policy-alpha",
+      "page": 1,
+      "locator": "PQ-01 Q6",
+      "quote": "At least three completed projects with generator sets of 1500 kW",
+      "match": "exact",
+      "ocr": false
+     }
+    },
+    "route": "ask_supplier"
+   },
+   "Q7": {
+    "criterion": "Q7",
+    "text": "Not excluded from federal procurement (owner checks SAM.gov)",
+    "status": "needs_verification",
+    "why": "no pre-qualification packet received",
+    "citations": [],
+    "source": {
+     "source": "policy",
+     "locator": "PQ-01 Q7",
+     "citation": {
+      "doc_id": "prequal-policy-alpha",
+      "page": 1,
+      "locator": "PQ-01 Q7",
+      "quote": "The supplier must not be excluded from federal procurement",
+      "match": "exact",
+      "ocr": false
+     }
+    },
+    "route": "ask_supplier"
+   }
+  },
+  "documents": []
+ }
+}

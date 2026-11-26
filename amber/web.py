@@ -362,6 +362,12 @@ async def page(_: Request) -> HTMLResponse:
     return HTMLResponse(PAGE.read_text(encoding="utf-8"), headers={"Cache-Control": "no-store"})
 
 
+async def case_file(_: Request) -> HTMLResponse:
+    """The generator purchase as one case file (amber/case.py), rendered from its frozen snapshot."""
+    from .case_page import render
+    return HTMLResponse(render(back_href="/"), headers={"Cache-Control": "no-store"})
+
+
 async def state(_: Request) -> JSONResponse:
     running = [{"id": j, "tool": v["tool"], "label": v["label"]} for j, v in _jobs.items() if v["state"] == "running"]
     return JSONResponse({
@@ -703,7 +709,7 @@ async def review(req: Request) -> JSONResponse:
 
 
 app = Starlette(routes=[
-    Route("/", page), Route("/api/state", state), Route("/api/upload", upload, methods=["POST"]),
+    Route("/", page), Route("/case.html", case_file), Route("/api/state", state), Route("/api/upload", upload, methods=["POST"]),
     Route("/api/run", run, methods=["POST"]), Route("/api/jobs/{jid}", job_status),
     Route("/api/source", source), Route("/api/overview", overview), Route("/api/proof", proof), Route("/api/file/{doc}", original),
     Route("/api/results/{rid}", result), Route("/api/results/{rid}/report", report),

@@ -1,0 +1,284 @@
+{
+ "_summary": "3 of 4 bids linked to a datasheet; ambiguous: B4; 2 scope items linked to spec requirements, 1 conflicting reference(s)",
+ "products": {
+  "B1": {
+   "product": "Caterpillar 3516C diesel generator sets",
+   "tokens": [
+    "3516C"
+   ],
+   "status": "linked",
+   "datasheet": "cat_3516C_2000ekW_LEHE1376.pdf",
+   "doc_id": "cat-3516c-2000ekw-lehe1376",
+   "candidates": [
+    {
+     "doc_id": "cat-3516c-2000ekw-lehe1376",
+     "file": "cat_3516C_2000ekW_LEHE1376.pdf",
+     "kind": "primary",
+     "rank": 0,
+     "token": "3516C",
+     "found": "3516C",
+     "hits": 4,
+     "datasheet_model": "3516C",
+     "citation": {
+      "doc_id": "cat-3516c-2000ekw-lehe1376",
+      "page": 1,
+      "locator": "",
+      "quote": "Cat\u00ae 3516C",
+      "match": "exact",
+      "ocr": false
+     },
+     "via": null
+    }
+   ],
+   "why": "3516C is the main model of cat_3516C_2000ekW_LEHE1376.pdf",
+   "bid_citation": {
+    "doc_id": "b1-northline-power",
+    "page": 1,
+    "locator": "",
+    "quote": "Four (4) Caterpillar 3516C diesel generator sets, 2000 ekW / 2500 kVA standby, 480/277 V, 3-phase, 4-wire, 60 Hz, 1800 rpm, EPA Tier 2 certified for stationary emergency use",
+    "match": "normalized",
+    "ocr": false
+   },
+   "route": "decide"
+  },
+  "B2": {
+   "product": "Cummins C2000D6 (model DQKAB) diesel generator set",
+   "tokens": [
+    "C2000D6",
+    "DQKAB"
+   ],
+   "status": "linked",
+   "datasheet": "cummins_DQKAB_submittal_CSDG.pdf",
+   "doc_id": "cummins-dqkab-submittal-csdg",
+   "candidates": [
+    {
+     "doc_id": "cummins-dqkab-submittal-csdg",
+     "file": "cummins_DQKAB_submittal_CSDG.pdf",
+     "kind": "exact",
+     "rank": 1,
+     "token": "DQKAB",
+     "found": "DQKAB",
+     "hits": 6,
+     "datasheet_model": "RECORD",
+     "citation": {
+      "doc_id": "cummins-dqkab-submittal-csdg",
+      "page": 5,
+      "locator": "",
+      "quote": "DQKAB DQKAB, Diesel Genset, 60Hz, 2000kW-Standby Rating 2",
+      "match": "exact",
+      "ocr": false
+     },
+     "via": null
+    },
+    {
+     "doc_id": "cummins-c2000d6e-spec-sheet",
+     "file": "cummins_C2000D6E_spec_sheet.pdf",
+     "kind": "variant",
+     "rank": 3,
+     "token": "C2000D6",
+     "found": "C2000D6E",
+     "hits": null,
+     "datasheet_model": "GENERATOR",
+     "citation": {
+      "doc_id": "cummins-c2000d6e-spec-sheet",
+      "page": 1,
+      "locator": "",
+      "quote": "C2000D6E",
+      "match": "exact",
+      "ocr": false
+     },
+     "via": null
+    }
+   ],
+   "why": "DQKAB is named in cummins_DQKAB_submittal_CSDG.pdf; cummins_C2000D6E_spec_sheet.pdf has only C2000D6E (a variant, not the same model)",
+   "bid_citation": {
+    "doc_id": "b2-tidewater-generator",
+    "page": 1,
+    "locator": "",
+    "quote": "Qty 4 - Cummins C2000D6 (model DQKAB) diesel generator set, 2000 kW / 2500 kVA standby rating, 277/480 V, 60 Hz, EPA Tier 2 stationary emergency. PowerCommand control, PMG excitation.",
+    "match": "exact",
+    "ocr": false
+   },
+   "route": "decide"
+  },
+  "B3": {
+   "product": "Kohler KD2000 2000 kW standby diesel generator sets",
+   "tokens": [
+    "KD2000"
+   ],
+   "status": "linked",
+   "datasheet": "kohler_KD2000_G5-626.pdf",
+   "doc_id": "kohler-kd2000-g5-626",
+   "candidates": [
+    {
+     "doc_id": "kohler-kd2000-g5-626",
+     "file": "kohler_KD2000_G5-626.pdf",
+     "kind": "primary",
+     "rank": 0,
+     "token": "KD2000",
+     "found": "KD2000",
+     "hits": 12,
+     "datasheet_model": "KD2000",
+     "citation": {
+      "doc_id": "kohler-kd2000-g5-626",
+      "page": 1,
+      "locator": "",
+      "quote": "Industrial Diesel Generator Set - KD2000",
+      "match": "exact",
+      "ocr": false
+     },
+     "via": null
+    },
+    {
+     "doc_id": "kohler-kd1000-submittal-wpc6593",
+     "file": "kohler_KD1000_submittal_WPC6593.pdf",
+     "kind": "exact",
+     "rank": 1,
+     "token": "KD2000",
+     "found": "KD2000",
+     "hits": 5,
+     "datasheet_model": "KD1000",
+     "citation": {
+      "doc_id": "kohler-kd1000-submittal-wpc6593",
+      "page": 19,
+      "locator": "",
+      "quote": "KD2000-KD2500 3000-5000",
+      "match": "exact",
+      "ocr": false
+     },
+     "via": null
+    }
+   ],
+   "why": "KD2000 is the main model of kohler_KD2000_G5-626.pdf; kohler_KD1000_submittal_WPC6593.pdf also mentions it but is about KD1000",
+   "bid_citation": {
+    "doc_id": "b3-keystone-energy",
+    "page": 1,
+    "locator": "",
+    "quote": "(4) Kohler KD2000 2000 kW standby diesel generator sets, 277/480 V 60 Hz, Tier 2, in sound attenuated aluminum enclosures (Sound Level 2), silencers inside",
+    "match": "table",
+    "ocr": false
+   },
+   "route": "decide"
+  },
+  "B4": {
+   "product": "Cummins C2000D6 2000kW standby 480V gensets",
+   "tokens": [
+    "C2000D6"
+   ],
+   "status": "ambiguous",
+   "datasheet": null,
+   "doc_id": null,
+   "candidates": [
+    {
+     "doc_id": "cummins-dqkab-submittal-csdg",
+     "file": "cummins_DQKAB_submittal_CSDG.pdf",
+     "kind": "alias",
+     "rank": 2,
+     "token": "C2000D6",
+     "found": "DQKAB",
+     "hits": null,
+     "datasheet_model": "RECORD",
+     "citation": {
+      "doc_id": "cummins-dqkab-submittal-csdg",
+      "page": 5,
+      "locator": "",
+      "quote": "DQKAB DQKAB, Diesel Genset, 60Hz, 2000kW-Standby Rating 2",
+      "match": "exact",
+      "ocr": false
+     },
+     "via": {
+      "bid": "B2",
+      "text": "C2000D6 (model DQKAB)"
+     }
+    },
+    {
+     "doc_id": "cummins-c2000d6e-spec-sheet",
+     "file": "cummins_C2000D6E_spec_sheet.pdf",
+     "kind": "variant",
+     "rank": 3,
+     "token": "C2000D6",
+     "found": "C2000D6E",
+     "hits": null,
+     "datasheet_model": "GENERATOR",
+     "citation": {
+      "doc_id": "cummins-c2000d6e-spec-sheet",
+      "page": 1,
+      "locator": "",
+      "quote": "C2000D6E",
+      "match": "exact",
+      "ocr": false
+     },
+     "via": null
+    }
+   ],
+   "why": "no datasheet names C2000D6 exactly; candidates: cummins_DQKAB_submittal_CSDG.pdf (alias: DQKAB, per B2's bid 'C2000D6 (model DQKAB)'); cummins_C2000D6E_spec_sheet.pdf (variant: C2000D6E). Only the supplier can say which model is offered.",
+   "bid_citation": {
+    "doc_id": "b4-ridgeway-power-email",
+    "page": 1,
+    "locator": "",
+    "quote": "4 x Cummins C2000D6 2000kW standby 480V gensets with sound attenuated enclosures and 24 hr subbase tanks, freight included, startup included.",
+    "match": "exact",
+    "ocr": false
+   },
+   "route": "ask_supplier"
+  }
+ },
+ "scope": {
+  "links": [
+   {
+    "scope_id": "S2",
+    "scope_item": "Outdoor sound\u2011attenuated weatherproof enclosure, silencer inside",
+    "req_id": "R21",
+    "spec_locator": "2.1.K (Generator Outdoor Housing)",
+    "form_line": "S2   Outdoor sound-attenuated weatherproof enclosure, silencer inside             2.1.K.9",
+    "why": "bid form S2 cites '2.1.K.9', which is R21's paragraph 2.1.K (Generator Outdoor Housing); both are about enclosure, outdoor, silencer"
+   },
+   {
+    "scope_id": "S3",
+    "scope_item": "UL 2085 sub\u2011base fuel tank, 24\u202fhours at full standby load",
+    "req_id": "R19",
+    "spec_locator": "2.1.K.1 (In Skid Diesel Fuel Tank)",
+    "form_line": "S3  UL 2085 sub-base fuel tank, 24 hours at full standby load                     2.1.K (In Skid Diesel Fuel Tank)",
+    "why": "bid form S3 cites 'In Skid Diesel Fuel Tank', which is R19's paragraph 2.1.K.1 (In Skid Diesel Fuel Tank); both are about base, fuel, tank"
+   }
+  ],
+  "conflicts": [
+   {
+    "scope_id": "S4",
+    "scope_item": "Remote annunciator, one per set",
+    "req_id": "R19",
+    "spec_locator": "2.1.K.1 (In Skid Diesel Fuel Tank)",
+    "form_line": "S4   Remote annunciator, one per set                                             2.1.K.1",
+    "why": "bid form S4 (Remote annunciator, one per set) cites paragraph 2.1.K.1, but in the spec that paragraph is R19 (UL 2085 sub-base fuel tank, >= 24 h at full standby load): the reference is wrong in one of the two documents; not linked"
+   }
+  ]
+ },
+ "records": {
+  "tags": [
+   "GEN-A",
+   "GEN-B",
+   "GEN-C",
+   "GEN-D"
+  ],
+  "need_dates": [
+   "2027-10-04"
+  ],
+  "po_log": [
+   {
+    "tag_group": "GEN",
+    "tags": "GEN-A;GEN-B;GEN-C;GEN-D",
+    "status": "not_placed",
+    "po_date": "",
+    "vendor": "",
+    "submittal_approved": "",
+    "quoted_min_weeks": "",
+    "quoted_max_weeks": "",
+    "quote_basis": "",
+    "quote_source": "",
+    "quote_text": ""
+   }
+  ],
+  "spec_section": "26 32 13",
+  "why": "4 schedule rows with GEN- tags and 2000 kW; PO log group GEN: not_placed"
+ }
+}

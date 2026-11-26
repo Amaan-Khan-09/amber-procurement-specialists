@@ -1,0 +1,394 @@
+{
+ "requirement": {
+  "tag": "GEN-A",
+  "item": "Diesel engine-generator set",
+  "kw": 2000.0,
+  "class": "generator"
+ },
+ "ranked": [
+  {
+   "vendor_id": "V-TGC",
+   "name": "Tidewater Generator Co.",
+   "manufacturers": [
+    "Cummins"
+   ],
+   "points": 9.84,
+   "reasons": [
+    "+2 Cummins is named by the spec (1.4.A)",
+    "+4 cummins_DQKAB_submittal_CSDG.pdf: 4 of 5 key ratings met, open: R12",
+    "+1 bid received (B2)",
+    "+2 quoted lead time up to 54 weeks",
+    "+0 service branch Norfolk VA is 190 miles from site",
+    "+0.84 on-time deliveries 92% over 24 months (vendor master)"
+   ],
+   "product": "cummins_DQKAB_submittal_CSDG.pdf",
+   "on_spec_list": true,
+   "needs_engineer": false,
+   "citations": [
+    {
+     "doc_id": "supplier-directory",
+     "page": 3,
+     "locator": "vendor master row 3 (V-TGC)",
+     "quote": "role=dealer; manufacturers=Cummins; product_classes=generator; max_genset_kw=3500; sells_new=yes",
+     "match": "record"
+    },
+    {
+     "doc_id": "cummins-dqkab-submittal-csdg",
+     "page": 13,
+     "locator": "",
+     "quote": "KW rating: 2000 standby",
+     "match": "exact",
+     "ocr": false
+    },
+    {
+     "doc_id": "cummins-dqkab-submittal-csdg",
+     "page": 13,
+     "locator": "",
+     "quote": "Ratings 2000 (2500)",
+     "match": "exact",
+     "ocr": false
+    },
+    {
+     "doc_id": "cummins-dqkab-submittal-csdg",
+     "page": 5,
+     "locator": "",
+     "quote": "Voltage - 277/480, 3 Phase, Wye, 4 Wire",
+     "match": "exact",
+     "ocr": false
+    },
+    {
+     "doc_id": "b2-tidewater-generator",
+     "page": 1,
+     "locator": "",
+     "quote": "50-54 weeks after receipt of approved submittals.",
+     "match": "exact",
+     "ocr": false
+    },
+    {
+     "doc_id": "supplier-directory",
+     "page": 3,
+     "locator": "vendor master row 3 (V-TGC)",
+     "quote": "service_branch=Norfolk; branch_miles_to_site=190; on_time_24mo=0.92; record_updated=2025-06-30",
+     "match": "record"
+    }
+   ],
+   "rank": 1
+  },
+  {
+   "vendor_id": "V-RWP",
+   "name": "Ridgeway Power",
+   "manufacturers": [
+    "Cummins"
+   ],
+   "points": 9.4,
+   "reasons": [
+    "+2 Cummins is named by the spec (1.4.A)",
+    "+4 cummins_C2000D6E_spec_sheet.pdf: 4 of 5 key ratings met, open: R02 (provisional: the exact model is not confirmed)",
+    "+1 bid received (B4)",
+    "+1.4 quoted lead time up to 60 weeks",
+    "+1 service branch Harrisburg PA, 150 miles from site",
+    "+0 no delivery history with us"
+   ],
+   "product": "cummins_C2000D6E_spec_sheet.pdf",
+   "on_spec_list": true,
+   "needs_engineer": false,
+   "citations": [
+    {
+     "doc_id": "supplier-directory",
+     "page": 5,
+     "locator": "vendor master row 5 (V-RWP)",
+     "quote": "role=dealer; manufacturers=Cummins; product_classes=generator; max_genset_kw=2500; sells_new=yes",
+     "match": "record"
+    },
+    {
+     "doc_id": "cummins-c2000d6e-spec-sheet",
+     "page": 5,
+     "locator": "",
+     "quote": "2000 kWe (2500 kVA) EMERGENCY STANDBY POWER (ESP)",
+     "match": "exact",
+     "ocr": false
+    },
+    {
+     "doc_id": "cummins-c2000d6e-spec-sheet",
+     "page": 5,
+     "locator": "",
+     "quote": "2000 kWe (2500 kVA) EMERGENCY STANDBY POWER (ESP)",
+     "match": "exact",
+     "ocr": false
+    },
+    {
+     "doc_id": "cummins-c2000d6e-spec-sheet",
+     "page": 2,
+     "locator": "",
+     "quote": "AVAILABLE VOLTAGES (60 Hz LINE-TO-NEUTRAL / LINE-TO-LINE) 277/480",
+     "match": "table",
+     "ocr": false
+    },
+    {
+     "doc_id": "b4-ridgeway-power-email",
+     "page": 1,
+     "locator": "",
+     "quote": "Lead time approx 60 wks right now.",
+     "match": "exact",
+     "ocr": false
+    },
+    {
+     "doc_id": "supplier-directory",
+     "page": 5,
+     "locator": "vendor master row 5 (V-RWP)",
+     "quote": "service_branch=Harrisburg; branch_miles_to_site=150; on_time_24mo=; record_updated=2026-11-19",
+     "match": "record"
+    }
+   ],
+   "rank": 2
+  },
+  {
+   "vendor_id": "V-NPS",
+   "name": "Northline Power Systems",
+   "manufacturers": [
+    "Caterpillar"
+   ],
+   "points": 7.96,
+   "reasons": [
+    "+2 Caterpillar is named by the spec (1.4.A)",
+    "+2 cat_3516C_2000ekW_LEHE1376.pdf: 2 of 5 key ratings met, open: R02, R09, R12",
+    "+1 bid received (B1)",
+    "+1.2 quoted lead time up to 62 weeks",
+    "+1 service branch Richmond VA, 105 miles from site",
+    "+0.76 on-time deliveries 88% over 24 months (vendor master)"
+   ],
+   "product": "cat_3516C_2000ekW_LEHE1376.pdf",
+   "on_spec_list": true,
+   "needs_engineer": false,
+   "citations": [
+    {
+     "doc_id": "supplier-directory",
+     "page": 2,
+     "locator": "vendor master row 2 (V-NPS)",
+     "quote": "role=distributor; manufacturers=Caterpillar; product_classes=generator; max_genset_kw=4000; sells_new=yes",
+     "match": "record"
+    },
+    {
+     "doc_id": "cat-3516c-2000ekw-lehe1376",
+     "page": 3,
+     "locator": "",
+     "quote": "Genset power rating with fan 2000 ekW",
+     "match": "exact",
+     "ocr": false
+    },
+    {
+     "doc_id": "cat-3516c-2000ekw-lehe1376",
+     "page": 3,
+     "locator": "",
+     "quote": "Genset power rating with fan @ 2500 kVA",
+     "match": "exact",
+     "ocr": false
+    },
+    {
+     "doc_id": "cat-3516c-2000ekw-lehe1376",
+     "page": 3,
+     "locator": "",
+     "quote": "Frequency 60 Hz",
+     "match": "exact",
+     "ocr": false
+    },
+    {
+     "doc_id": "b1-northline-power",
+     "page": 1,
+     "locator": "",
+     "quote": "Shipment 56-62 weeks after approved submittals",
+     "match": "exact",
+     "ocr": false
+    },
+    {
+     "doc_id": "supplier-directory",
+     "page": 2,
+     "locator": "vendor master row 2 (V-NPS)",
+     "quote": "service_branch=Richmond; branch_miles_to_site=105; on_time_24mo=0.88; record_updated=2026-09-30",
+     "match": "record"
+    }
+   ],
+   "rank": 3
+  },
+  {
+   "vendor_id": "V-KEE",
+   "name": "Keystone Energy Equipment",
+   "manufacturers": [
+    "Kohler"
+   ],
+   "points": 7.58,
+   "reasons": [
+    "+2 Kohler is named by the spec (1.4.A)",
+    "+3 kohler_KD2000_G5-626.pdf: 3 of 5 key ratings met, open: R02, R09",
+    "+1 bid received (B3)",
+    "+0 quoted lead time up to 74 weeks",
+    "+1 service branch Baltimore MD, 60 miles from site",
+    "+0.58 on-time deliveries 79% over 24 months (vendor master)"
+   ],
+   "product": "kohler_KD2000_G5-626.pdf",
+   "on_spec_list": true,
+   "needs_engineer": false,
+   "citations": [
+    {
+     "doc_id": "supplier-directory",
+     "page": 4,
+     "locator": "vendor master row 4 (V-KEE)",
+     "quote": "role=distributor; manufacturers=Kohler; product_classes=generator; max_genset_kw=3000; sells_new=yes",
+     "match": "record"
+    },
+    {
+     "doc_id": "kohler-kd2000-g5-626",
+     "page": 1,
+     "locator": "",
+     "quote": "Standby: kW 2000",
+     "match": "exact",
+     "ocr": false
+    },
+    {
+     "doc_id": "kohler-kd2000-g5-626",
+     "page": 1,
+     "locator": "",
+     "quote": "kVA 2500",
+     "match": "exact",
+     "ocr": false
+    },
+    {
+     "doc_id": "kohler-kd2000-g5-626",
+     "page": 1,
+     "locator": "",
+     "quote": "60 Hz",
+     "match": "exact",
+     "ocr": false
+    },
+    {
+     "doc_id": "b3-keystone-energy",
+     "page": 1,
+     "locator": "",
+     "quote": "Lead time 68-74 weeks from order.",
+     "match": "exact",
+     "ocr": false
+    },
+    {
+     "doc_id": "supplier-directory",
+     "page": 4,
+     "locator": "vendor master row 4 (V-KEE)",
+     "quote": "service_branch=Baltimore; branch_miles_to_site=60; on_time_24mo=0.79; record_updated=2026-08-15",
+     "match": "record"
+    }
+   ],
+   "rank": 4
+  },
+  {
+   "vendor_id": "V-PEP",
+   "name": "Potomac Engine & Power",
+   "manufacturers": [
+    "MTU"
+   ],
+   "points": 4.8,
+   "reasons": [
+    "+0 MTU is not named by the spec (1.4.A): only as an approved equal, an engineer decides",
+    "+3 mtu_16V4000_DS2250_60Hz_50C.pdf: 3 of 5 key ratings met, open: R09, R10",
+    "+1 service branch Frederick MD, 45 miles from site",
+    "+0.80 on-time deliveries 90% over 24 months (vendor master)"
+   ],
+   "product": "mtu_16V4000_DS2250_60Hz_50C.pdf",
+   "on_spec_list": false,
+   "needs_engineer": true,
+   "citations": [
+    {
+     "doc_id": "supplier-directory",
+     "page": 6,
+     "locator": "vendor master row 6 (V-PEP)",
+     "quote": "role=distributor; manufacturers=MTU; product_classes=generator; max_genset_kw=3250; sells_new=yes",
+     "match": "record"
+    },
+    {
+     "doc_id": "mtu-16v4000-ds2250-60hz-50c",
+     "page": 1,
+     "locator": "",
+     "quote": "2,250 kW",
+     "match": "exact",
+     "ocr": false
+    },
+    {
+     "doc_id": "mtu-16v4000-ds2250-60hz-50c",
+     "page": 1,
+     "locator": "",
+     "quote": "2,812 kVA",
+     "match": "table",
+     "ocr": false
+    },
+    {
+     "doc_id": "mtu-16v4000-ds2250-60hz-50c",
+     "page": 1,
+     "locator": "",
+     "quote": "Voltage (L-L) 480V \u2020 \u2021",
+     "match": "table",
+     "ocr": false
+    },
+    {
+     "doc_id": "supplier-directory",
+     "page": 6,
+     "locator": "vendor master row 6 (V-PEP)",
+     "quote": "service_branch=Frederick; branch_miles_to_site=45; on_time_24mo=0.9; record_updated=2026-07-01",
+     "match": "record"
+    }
+   ],
+   "rank": 5
+  }
+ ],
+ "excluded": [
+  {
+   "vendor_id": "V-ODG",
+   "name": "Old Dominion Generator Service",
+   "why": "largest set supplied is 1000 kW; 2000 kW is required",
+   "citations": [
+    {
+     "doc_id": "supplier-directory",
+     "page": 7,
+     "locator": "vendor master row 7 (V-ODG)",
+     "quote": "role=dealer; manufacturers=Kohler; product_classes=generator; max_genset_kw=1000; sells_new=yes",
+     "match": "record"
+    }
+   ]
+  },
+  {
+   "vendor_id": "V-SRP",
+   "name": "Shenandoah Rental Power",
+   "why": "a rental company: does not sell new equipment",
+   "citations": [
+    {
+     "doc_id": "supplier-directory",
+     "page": 8,
+     "locator": "vendor master row 8 (V-SRP)",
+     "quote": "role=rental; manufacturers=Caterpillar;Cummins; product_classes=generator; max_genset_kw=2000; sells_new=no",
+     "match": "record"
+    }
+   ]
+  },
+  {
+   "vendor_id": "V-BRC",
+   "name": "Blue Ridge Critical Power",
+   "why": "does not supply generators (product classes: ups;switchgear)",
+   "citations": [
+    {
+     "doc_id": "supplier-directory",
+     "page": 9,
+     "locator": "vendor master row 9 (V-BRC)",
+     "quote": "role=distributor; manufacturers=Vertiv; product_classes=ups;switchgear; max_genset_kw=; sells_new=yes",
+     "match": "record"
+    }
+   ]
+  }
+ ],
+ "spec_citation": {
+  "doc_id": "26-32-13-engine-generators-alpha",
+  "page": 1,
+  "locator": "1.4.A",
+  "quote": "Manufacturers: Provide products complying with these specifications and produced by one of the following",
+  "match": "exact",
+  "ocr": false
+ },
+ "note": "Vendors come only from the vendor master; products only from datasheets we hold. Points are listed so a buyer can disagree with any of them.",
+ "_summary": "5 vendors could supply it, 3 set aside; first: Tidewater Generator Co. (9.84 points)"
+}

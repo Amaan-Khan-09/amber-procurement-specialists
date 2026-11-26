@@ -1,0 +1,85 @@
+{
+ "_summary": "a person decides: every option is likely late; closest to an award: B1 (11 question(s) open with the supplier; 7 item(s) for an engineer; owner's checks: Q7 (federal exclusion list))",
+ "options": [
+  {
+   "bid": "B1",
+   "vendor": "V-NPS",
+   "cost_low": 4506000.0,
+   "cost_high": 4658000.0,
+   "arrival_P50": "2028-03-08",
+   "arrival_P90": "2028-04-28",
+   "p_late": 0.97,
+   "prequal": "qualified pending the owner's checks",
+   "blockers": [
+    "11 question(s) open with the supplier",
+    "7 item(s) for an engineer",
+    "owner's checks: Q7 (federal exclusion list)"
+   ],
+   "open_with_supplier": 11,
+   "open_with_engineer": 7,
+   "hard_blockers": 0
+  },
+  {
+   "bid": "B2",
+   "vendor": "V-TGC",
+   "cost_low": 4527000.0,
+   "cost_high": 4985000.0,
+   "arrival_P50": "2028-01-26",
+   "arrival_P90": "2028-04-28",
+   "p_late": 0.97,
+   "prequal": "needs verification",
+   "blockers": [
+    "2 requirement(s) not met: R19, R21",
+    "pre-qualification to verify: Q2, Q4, Q5",
+    "7 question(s) open with the supplier",
+    "12 item(s) for an engineer",
+    "owner's checks: Q7 (federal exclusion list)"
+   ],
+   "open_with_supplier": 7,
+   "open_with_engineer": 12,
+   "hard_blockers": 2
+  },
+  {
+   "bid": "B3",
+   "vendor": "V-KEE",
+   "cost_low": 4302800.0,
+   "cost_high": 4487800.0,
+   "arrival_P50": "2028-04-11",
+   "arrival_P90": "2028-05-12",
+   "p_late": 0.97,
+   "prequal": "fails",
+   "blockers": [
+    "1 requirement(s) not met: R09",
+    "pre-qualification fails: Q3",
+    "7 question(s) open with the supplier",
+    "14 item(s) for an engineer",
+    "owner's checks: Q7 (federal exclusion list)"
+   ],
+   "open_with_supplier": 7,
+   "open_with_engineer": 14,
+   "hard_blockers": 2
+  },
+  {
+   "bid": "B4",
+   "vendor": "V-RWP",
+   "cost_low": 4469800.0,
+   "cost_high": 4469800.0,
+   "arrival_P50": "2028-02-08",
+   "arrival_P90": "2028-03-24",
+   "p_late": 0.97,
+   "prequal": "needs verification",
+   "blockers": [
+    "pre-qualification to verify: P2, Q1, Q2, Q3, Q4, Q5, Q6, Q7",
+    "the exact product is not confirmed",
+    "18 question(s) open with the supplier",
+    "11 item(s) for an engineer"
+   ],
+   "open_with_supplier": 18,
+   "open_with_engineer": 11,
+   "hard_blockers": 2
+  }
+ ],
+ "auto_award": false,
+ "escalate_schedule": true,
+ "why": "the award is never automatic here: it weighs cost ranges, open supplier questions, pre-qualification and a schedule every option is likely to miss"
+}

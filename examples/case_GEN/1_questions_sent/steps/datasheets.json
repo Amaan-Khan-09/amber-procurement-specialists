@@ -1,0 +1,27 @@
+{
+ "_summary": "B1: cat_3516C_2000ekW_LEHE1376.pdf (linked); B2: cummins_DQKAB_submittal_CSDG.pdf (linked); B3: kohler_KD2000_G5-626.pdf (linked); B4: cummins_C2000D6E_spec_sheet.pdf (provisional)",
+ "B1": {
+  "datasheet": "cat_3516C_2000ekW_LEHE1376.pdf",
+  "saved_run": "examples/G7.json",
+  "case": "G7",
+  "provisional": false
+ },
+ "B2": {
+  "datasheet": "cummins_DQKAB_submittal_CSDG.pdf",
+  "saved_run": "examples/G1.json",
+  "case": "G1",
+  "provisional": false
+ },
+ "B3": {
+  "datasheet": "kohler_KD2000_G5-626.pdf",
+  "saved_run": "examples/G2.json",
+  "case": "G2",
+  "provisional": false
+ },
+ "B4": {
+  "datasheet": "cummins_C2000D6E_spec_sheet.pdf",
+  "saved_run": "examples/G8.json",
+  "case": "G8",
+  "provisional": true
+ }
+}

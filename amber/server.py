@@ -175,6 +175,55 @@ async def draft_follow_ups(result: dict[str, Any], project: str = "Project Alpha
         raise ToolError(str(e)) from e
 
 
+@server.tool(
+    name="run_case",
+    title="Run a purchase case file end to end",
+    description=(
+        "Run (or resume) one purchase as a case file: vendor discovery, record linking, datasheet checks, the bid "
+        "comparison, each bid read as the supplier's commitment and reconciled with its datasheet condition by condition, "
+        "pre-qualification, cost and arrival ranges, routing of every item (decided / ask the supplier / engineer), draft "
+        "questions per supplier, supplier replies read against open items, and the award options with what still blocks "
+        "each. State is saved after every step; an interrupted run resumes at the step it was in. Saved model readings are "
+        "replayed (no model call) unless live=true. Set replies=true once supplier replies are in the inbox."),
+)
+async def run_case(case: str = "GEN", replies: bool = False, live: bool = False) -> ToolResult:
+    from .case import CASES, as_tool_result, run_case as _run
+    if case not in CASES:
+        raise ToolError(f"unknown case {case!r}; known: {', '.join(CASES)}")
+    cf = await anyio.to_thread.run_sync(lambda: _run(case, replies=replies, live=live))
+    return as_tool_result(cf, "case")
+
+
+@server.tool(
+    name="discover_vendors",
+    title="Find and rank vendors for a requirement",
+    description=(
+        "Which vendors could supply this equipment? Candidates come only from the vendor master and the datasheets we "
+        "hold (never from model memory). Vendors that cannot supply it are set aside with the record that says why; the "
+        "rest are ranked on points a buyer can audit: product fit on five key ratings (datasheet quotes), manufacturer "
+        "named by the spec (quoted), bid received and lead time, service distance and on-time history. Code only."),
+)
+async def discover_vendors(case: str = "GEN") -> ToolResult:
+    from .case import as_tool_result, run_case as _run
+    cf = await anyio.to_thread.run_sync(lambda: _run(case, until="discover"))
+    return as_tool_result(cf, "discover")
+
+
+@server.tool(
+    name="prequalify_vendors",
+    title="Pre-qualify vendors against explicit criteria",
+    description=(
+        "Check each bidder against the spec's supplier criteria and the owner's pre-qualification policy: meets, fails or "
+        "needs verification for every criterion, each with the quote it rests on. The model reads the supplier's packet; "
+        "code verifies the words on the page and decides. Conflicting records (the packet and the vendor master disagree) "
+        "and self-certifications are flagged, never accepted."),
+)
+async def prequalify_vendors(case: str = "GEN", live: bool = False) -> ToolResult:
+    from .case import as_tool_result, run_case as _run
+    cf = await anyio.to_thread.run_sync(lambda: _run(case, until="prequalify", live=live))
+    return as_tool_result(cf, "prequalify")
+
+
 def main() -> None:
     if "--http" in sys.argv:
         server.run("streamable-http", host="127.0.0.1", port=int(os.getenv("AMBER_PORT", "8765")))

@@ -167,5 +167,7 @@ def build(out: Path) -> dict:
     marker = '<script>\n"use strict";'
     assert html.count(marker) == 1
     (out / "index.html").write_text(html.replace(marker, '<script src="demo-shim.js"></script>\n' + marker), encoding="utf-8")
+    from .case_page import write as write_case
+    write_case(out / "case.html", back_href="./")
     summary.update(results=len(results), citations=len(cites), page_images=pngs, third_party_excerpts=sum(e["kind"] == "quote" for e in entries.values()))
     return summary

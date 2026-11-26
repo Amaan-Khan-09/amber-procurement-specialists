@@ -1,0 +1,37 @@
+# Judge's scorecard
+
+Every official criterion (Kaya AI Grand Challenge, Track 03 Vertical Agents), what we built for it, what a judge can
+open or run to check it, and what is still missing. Labels: **measured** (computed by a script in this repository),
+**mock data** (fictional companies and documents, labelled on every page), **assumption** (a stated modelling choice).
+
+## The judging criteria
+
+| Criterion (official wording) | What we built | Evidence a judge can inspect | Remaining gap |
+|---|---|---|---|
+| **Accuracy**: does it get the job right on realistic examples? | Submittal checks on real public datasheets; bid leveling; reconciliation of a supplier's bid with its datasheet; pre-qualification; reply reading | Held-out datasheets, labelled before a single run and run once: set 3 **32/42 (76 %)**, 0 false approvals or rejections, 0 invented citations (**measured**, README "Evaluation"). Package level (bid + datasheet): right action **15 → 21 of 22** (**measured**, `eval/handoff_set/results.json`). Pre-qualification **36/36** criteria, supplier replies **17/18** answers (**measured** on **mock data**) | The package, pre-qualification and reply sets are small and the documents are ours; keys were written by us (an AI), not yet reviewed by an independent person |
+| **Customer value**: would a procurement manager or superintendent use it tomorrow, as a product? | One case file per purchase: who could supply it, who passes pre-qualification, what each supplier committed to, what is still open and with whom, cost and arrival ranges, and the award options with their blockers | `case.html` in the live demo (or `python -m amber.case run`), the web page (`python -m amber.web`), draft questions per supplier | Runs on one project's generator package; UPS has checks but no case file yet |
+| **Trustworthiness**: sources cited, sensible confidence scores, nothing made up | Model reads, code decides; every quote verified on its page; a question goes to the supplier only when two independent readings agree the document does not settle it; conflicts between records kept as conflicts | 0 invented citations in every scored run; critical autonomous errors **2 → 1** of 256 cases; the 17 cases that should escalate still all go to an engineer (**measured**); every wrong autonomous answer is listed on the case page | One critical error remains: a bid scope cell read as "included" where our key says "qualified" (B2 S2) |
+| **Build quality**: easy to run, cost and speed per run, code quality | 9 MCP tools, one shared result format, a resumable case file, 147 tests | Fresh-clone install, `pytest`, cost and tokens on every saved run (the whole bid-commitment reading: 38 calls, $0.017; pre-qualification: 3 calls, $0.0015) | Case file replays saved readings by default; a live run on new documents needs the free Groq allowance |
+
+## Track 03: what the brief looks for
+
+| What the brief asks | What we built | Evidence | Gap |
+|---|---|---|---|
+| "Amber has to be able to rely on your specialists without a person checking every answer" | Routing: decided / ask the supplier / engineer. On the fixed set of 256 cases, sent to an engineer **148 (58 %) → 102 (40 %)**; on the 184 datasheet answers **70 % → 51 %**, with 24 % now going straight to the supplier as a question; correct without a person **105 → 150** (**measured**) | `python scripts/eval_handoffs.py`; the case page's first section | Still 40 % to an engineer. The rest is judgement (derating footnotes, readings the model judged) or contested by the second reader |
+| Specialists right on unseen problems, every finding traced to its source | Held-out sets run once; every finding cites document, page and quote | README "Evaluation"; the source viewer | The new routing has not yet been run on a fresh held-out set |
+| A suite covering as much of the workflow as possible, without trading depth | All eight listed specialists: bid leveling, schedule and delivery risk, spec and submittal compliance, product discovery, lead time prediction, **vendor discovery**, **vendor pre-qualification**, private deployment | `run_case`, `discover_vendors`, `prequalify_vendors`, `check_submittal`, `level_bids`, `assess_delivery_risk`, `find_products`, `run_package_review`, `draft_follow_ups` | Vendor discovery uses a vendor master (**mock data**), not public registries; the federal exclusion list check is left to the owner, stated as such |
+| Clean hand-offs, "more than the sum of their parts" | Discovery ranks Tidewater first; pre-qualification then holds it until three items are verified; its reply settles them, reprices its tank and moves its leveled cost range from $4.53-4.99M to $4.60-4.69M | Case page: Discovery → Pre-qualification → Questions & replies → Ranges | Replies are **mock data** |
+| "Go deeper than an API call": long-running work with memory | A 13-step case file; state saved after each step; a run stopped inside a step resumes there; replies arriving later flow back into earlier steps | `python -m amber.case run --crash-at reconcile`, then `python -m amber.case run`; the journal on the case page; `tests/test_case.py` | None known |
+| Document understanding beyond basic OCR | Condition-level reconciliation across datasheet, bid and reply; a heading ("Options (not included in total)") governs the rows under it in a supplier's documents; a derating footnote is linked to the option the supplier commits to (122 °F − 9 °F = 113 °F, below the spec) | Case page "Reconciled answers"; `tests/test_case.py` | The footnote rule covers ambient-rating footnotes only |
+| Honest ranges | Leveled cost as a range (what is assumed, what has no upper bound); arrival P10/P50/P90 from weighted, cited reports, with dissent kept | Case page "Ranges", with assumptions and missing inputs listed | Allowances are the owner's (**mock data**) |
+| Linking records | Bid → datasheet (B4's "C2000D6" reported as ambiguous between two documents instead of picked); bid-form scope item → spec requirement (a wrong paragraph reference reported); tags → PO log → lead-time evidence | Case page "Record links" | Linking rules are written for model designations and paragraph references |
+| "A technique nobody else thought to apply" | Treating the supplier's own bid and replies as evidence, condition by condition, against the same spec, with two independent readings before asking the supplier | Package group: engineer hand-offs **13 → 6**, right action **15 → 21 of 22** (**measured**); baseline = the datasheet alone | Measured on one package (22 cases) |
+
+## The most convincing reason a judge would rank another entry higher
+
+**"It still sends 40 % of items to an engineer; a rival's agent looks finished."** Our answer, in the order we would show
+it: (1) the hand-off figure is measured on 256 fixed cases, against our own earlier version, and every wrong answer is
+listed; (2) 59 of the items no longer reach an engineer but go straight to the supplier as a drafted question, and that
+route is taken only when two independent readings agree the document does not say; (3) the cases that need judgement
+(17 of 17) still go to a person, so the reduction did not come from approving more; (4) after replies, the case closes
+items automatically: 45 → 40 engineer items and 43 → 27 open questions in this case.

@@ -1,0 +1,123 @@
+{
+ "_summary": "20 requirement answers found in the bids' own words (saved readings, decided again in code)",
+ "B1": {
+  "doc": "b1-northline-power",
+  "stated": {
+   "R01": {
+    "status": "complies",
+    "confidence": 0.95,
+    "why": "offered 2000 kW meets >= 2000 kW; offered 2500 kVA meets >= 2500 kVA"
+   },
+   "R02": {
+    "status": "complies",
+    "confidence": 0.95,
+    "why": "offered 480/277 V, 3-phase, 4-wire 480/277 V, 3-phase, 4-wire meets all of: 480Y/277, 3 phase, 4 wire; offered 60 Hz meets == 60 Hz"
+   },
+   "R10": {
+    "status": "complies",
+    "confidence": 0.921,
+    "why": "offered Tier 2 EPA Tier 2 certified meets one of: tier 2, tier 4"
+   },
+   "R12": {
+    "status": "complies",
+    "confidence": 0.95,
+    "why": "offered 1800 rpm meets <= 1800 rpm"
+   },
+   "R19": {
+    "status": "complies",
+    "confidence": 0.95,
+    "why": "offered UL 2085 4 x UL 2085 dual-wall sub-base tanks sized for 24 hrs at 100% standby load meets all of: ul 2085; offered 24 h meets >= 24 h"
+   },
+   "R21": {
+    "status": "unclear",
+    "confidence": 0.5,
+    "why": "no value found, but the submittal mentions enclosure on page(s) [1]; offered silencers inside silencers inside meets all of: inside"
+   }
+  }
+ },
+ "B2": {
+  "doc": "b2-tidewater-generator",
+  "stated": {
+   "R01": {
+    "status": "complies",
+    "confidence": 0.95,
+    "why": "offered 2000 kW meets >= 2000 kW; offered 2500 kVA meets >= 2500 kVA"
+   },
+   "R02": {
+    "status": "unclear",
+    "confidence": 0.65,
+    "why": "the evidence shows 480Y/277 but does not mention 3 phase, 4 wire; nothing contradicts it, a person decides; offered 60 Hz meets == 60 Hz"
+   },
+   "R04": {
+    "status": "complies",
+    "confidence": 0.95,
+    "why": "offered PMG PMG excitation meets one of: permanent magnet generator, PMG"
+   },
+   "R10": {
+    "status": "complies",
+    "confidence": 0.95,
+    "why": "offered Tier 2 EPA Tier 2 stationary emergency meets one of: tier 2, tier 4"
+   },
+   "R19": {
+    "status": "deviates",
+    "confidence": 0.95,
+    "why": "offered UL 2085 12-hour UL 2085 sub-base fuel tank meets all of: ul 2085; offered 12 h does not meet >= 24 h"
+   },
+   "R21": {
+    "status": "deviates",
+    "confidence": 0.65,
+    "why": "offered weather protective weather protective enclosure with critical grade silencer does not meet all of: weatherproof, rodent-proof; model judgement on verified quote: 'weather protective enclosure "
+   }
+  }
+ },
+ "B3": {
+  "doc": "b3-keystone-energy",
+  "stated": {
+   "R01": {
+    "status": "unclear",
+    "confidence": 0.6,
+    "why": "only partly stated: offered 2000 kW meets >= 2000 kW; not stated in the submittal"
+   },
+   "R02": {
+    "status": "complies",
+    "confidence": 0.65,
+    "why": "model judgement on verified quote: '277/480 V 60 Hz'; offered 60 Hz meets == 60 Hz"
+   },
+   "R10": {
+    "status": "complies",
+    "confidence": 0.95,
+    "why": "offered Tier 2 Tier 2 meets one of: tier 2, tier 4"
+   },
+   "R19": {
+    "status": "unclear",
+    "confidence": 0.5,
+    "why": "offered UL 2085 sub-base fuel tank UL 2085 sub-base fuel tank meets all of: ul 2085; but this is listed as a choice (a tick box or a list of what is available), not marked as supplied; offered 24 h me"
+   },
+   "R21": {
+    "status": "unclear",
+    "confidence": 0.5,
+    "why": "no value found, but the submittal mentions enclosure on page(s) [1]; offered inside silencers inside meets all of: inside"
+   }
+  }
+ },
+ "B4": {
+  "doc": "b4-ridgeway-power-email",
+  "stated": {
+   "R01": {
+    "status": "unclear",
+    "confidence": 0.5,
+    "why": "offered 2000 kW meets >= 2000 kW; no value found, but the submittal mentions power on page(s) [1]"
+   },
+   "R19": {
+    "status": "unclear",
+    "confidence": 0.5,
+    "why": "no value found, but the submittal mentions tank on page(s) [1]; offered 24 h meets >= 24 h"
+   },
+   "R21": {
+    "status": "unclear",
+    "confidence": 0.4,
+    "why": "model judgement on verified quote: 'sound attenuated enclosures'; reported quote not found in the submittal ('silencers installed inside'); value discarded"
+   }
+  }
+ }
+}

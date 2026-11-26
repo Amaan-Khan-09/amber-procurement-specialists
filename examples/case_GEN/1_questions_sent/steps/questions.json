@@ -1,0 +1,322 @@
+{
+ "_summary": "B1: 11 questions; B2: 8 questions; B3: 7 questions; B4: 18 questions",
+ "drafts": {
+  "B1": {
+   "to": "V-NPS",
+   "questions": [
+    {
+     "ref": "R03",
+     "ask": "Spec 2.1.C.1: Motor starting capability shall be not less than 3000 kVA with a maximum voltage dip of 30% for 2000 kW sets.. Please state what is supplied",
+     "we_read": [],
+     "kind": "not established, read twice"
+    },
+    {
+     "ref": "R07",
+     "ask": "Spec 2.1.D.5 (Starting System): Starting system shall be 24 volt, 2-wire, negative ground, gear engaging electric starter.. Please state what is supplied",
+     "we_read": [],
+     "kind": "not established, read twice"
+    },
+    {
+     "ref": "R13",
+     "ask": "Spec 2.1.G (Generator): Generator shall be 4-pole, brushless, and two-thirds pitch wound.. Please state what is supplied",
+     "we_read": [],
+     "kind": "not established, read twice"
+    },
+    {
+     "ref": "R14",
+     "ask": "Spec 2.1.G.1: Generator insulation shall be NEMA Class F or better.. Please state what is supplied",
+     "we_read": [],
+     "kind": "not stated"
+    },
+    {
+     "ref": "R15",
+     "ask": "Spec 2.1.G.5: Provide a 120 V, single-phase space heater to prevent condensation in the generator.. Please state what is supplied",
+     "we_read": [],
+     "kind": "not established, read twice"
+    },
+    {
+     "ref": "R16",
+     "ask": "Spec 2.1.H (Generator Output Circuit Breaker(s)): Provide 3-pole generator output circuit breaker(s) with solid-state trip units.. Please state what is supplied",
+     "we_read": [],
+     "kind": "not established, read twice"
+    },
+    {
+     "ref": "R17",
+     "ask": "Spec 2.1.I.2 (Voltage Regulation): Maintain voltage regulation within plus 2% from no load to rated load.. Please state what is supplied",
+     "we_read": [],
+     "kind": "not stated"
+    },
+    {
+     "ref": "R18",
+     "ask": "Spec 2.1.I.4 (Total Harmonic Distortion (THD)): Total harmonic distortion of ac voltage waveform from no load to full linear load shall not exceed 5% of rated voltage.. Please state what is supplied",
+     "we_read": [],
+     "kind": "not stated"
+    },
+    {
+     "ref": "R20",
+     "ask": "Spec 2.1.K.2 (Jacket-Water Heater): Provide two 5000 W, 480 V, 1-phase jacket-water heaters.. Please state what is supplied",
+     "we_read": [],
+     "kind": "not established, read twice"
+    },
+    {
+     "ref": "R21",
+     "ask": "Spec 2.1.K.9 (Generator Outdoor Housing): Provide a weatherproof and rodent-proof outdoor enclosure entirely enclosing the generator set, with silencers installed inside.. Please state what is supplied",
+     "we_read": [
+      {
+       "doc": "b1-northline-power",
+       "page": 1,
+       "quote": "silencers inside"
+      }
+     ],
+     "kind": "not established, read twice"
+    },
+    {
+     "ref": "S2",
+     "ask": "Bid scope S2: B1 S2: qualified: the bid offers less than the scope or words it differently: a clarification request is drafted; leveling meanwhile uses ",
+     "we_read": [],
+     "kind": "bid scope"
+    }
+   ],
+   "status": "draft (never sent automatically)"
+  },
+  "B2": {
+   "to": "V-TGC",
+   "questions": [
+    {
+     "ref": "R19",
+     "ask": "Spec 2.1.K.1 (In Skid Diesel Fuel Tank): Provide a UL 2085 listed in-skid fuel tank with usable capacity for at least 24 hours of operation at full standby load.. What you offer does not meet it (quoted below): revise the offer or confirm the deviation",
+     "we_read": [
+      {
+       "doc": "b2-tidewater-generator",
+       "page": 1,
+       "quote": "12-hour UL 2085 sub-base fuel tank"
+      }
+     ],
+     "kind": "deviation: revise"
+    },
+    {
+     "ref": "Q2",
+     "ask": "Pre-qualification Q2: Insurance certificate valid through the need date. expires 2027-03-31, before the need date 2027-10-04: a renewal certificate is needed before award",
+     "we_read": [],
+     "kind": "pre-qualification"
+    },
+    {
+     "ref": "Q4",
+     "ask": "Pre-qualification Q4: Manufacturer's authorization letter attached. not attached ('Cummins authorization letter: available on request.'): ask for the letter",
+     "we_read": [],
+     "kind": "pre-qualification"
+    },
+    {
+     "ref": "Q5",
+     "ask": "Pre-qualification Q5: Named service branch, 24/7 emergency response within 4 hours. no service branch is named; the vendor master lists Norfolk VA, 190 miles from site (record of 2025-06-30): conflicting records, ask the supplier to name the br",
+     "we_read": [],
+     "kind": "pre-qualification"
+    },
+    {
+     "ref": "S2",
+     "ask": "Bid scope S2: B2 S2: qualified: the bid offers less than the scope or words it differently: a clarification request is drafted; leveling meanwhile uses ",
+     "we_read": [],
+     "kind": "bid scope"
+    },
+    {
+     "ref": "S3",
+     "ask": "Bid scope S3: B2 S3: qualified: the bid offers less than the scope or words it differently: a clarification request is drafted; leveling meanwhile uses ",
+     "we_read": [],
+     "kind": "bid scope"
+    },
+    {
+     "ref": "S8",
+     "ask": "Bid scope S8: B2 S8: qualified: the bid offers less than the scope or words it differently: a clarification request is drafted; leveling meanwhile uses ",
+     "we_read": [],
+     "kind": "bid scope"
+    },
+    {
+     "ref": "S9",
+     "ask": "Bid scope S9: B2 S9: qualified: the bid offers less than the scope or words it differently: a clarification request is drafted; leveling meanwhile uses ",
+     "we_read": [],
+     "kind": "bid scope"
+    }
+   ],
+   "status": "draft (never sent automatically)"
+  },
+  "B3": {
+   "to": "V-KEE",
+   "questions": [
+    {
+     "ref": "R16",
+     "ask": "Spec 2.1.H (Generator Output Circuit Breaker(s)): Provide 3-pole generator output circuit breaker(s) with solid-state trip units.. Please state what is supplied",
+     "we_read": [],
+     "kind": "not established, read twice"
+    },
+    {
+     "ref": "R18",
+     "ask": "Spec 2.1.I.4 (Total Harmonic Distortion (THD)): Total harmonic distortion of ac voltage waveform from no load to full linear load shall not exceed 5% of rated voltage.. Please state what is supplied",
+     "we_read": [],
+     "kind": "not stated"
+    },
+    {
+     "ref": "R21",
+     "ask": "Spec 2.1.K.9 (Generator Outdoor Housing): Provide a weatherproof and rodent-proof outdoor enclosure entirely enclosing the generator set, with silencers installed inside.. Please state what is supplied and resolve the difference between your documents",
+     "we_read": [
+      {
+       "doc": "kohler-kd2000-g5-626",
+       "page": 6,
+       "quote": "internal-mounted, exhaust silencers"
+      },
+      {
+       "doc": "b3-keystone-energy",
+       "page": 1,
+       "quote": "silencers inside"
+      }
+     ],
+     "kind": "conflicting records"
+    },
+    {
+     "ref": "S8",
+     "ask": "Bid scope S8: B3 S8: qualified: the bid offers less than the scope or words it differently: a clarification request is drafted; leveling meanwhile uses ",
+     "we_read": [],
+     "kind": "bid scope"
+    },
+    {
+     "ref": "S9",
+     "ask": "Bid scope S9: B3 S9: qualified: the bid offers less than the scope or words it differently: a clarification request is drafted; leveling meanwhile uses ",
+     "we_read": [],
+     "kind": "bid scope"
+    },
+    {
+     "ref": "S10",
+     "ask": "Bid scope S10: B3 S10: qualified: the bid offers less than the scope or words it differently: a clarification request is drafted; leveling meanwhile uses ",
+     "we_read": [],
+     "kind": "bid scope"
+    },
+    {
+     "ref": "S11",
+     "ask": "Bid scope S11: B3 S11: qualified: the bid offers less than the scope or words it differently: a clarification request is drafted; leveling meanwhile uses ",
+     "we_read": [],
+     "kind": "bid scope"
+    }
+   ],
+   "status": "draft (never sent automatically)"
+  },
+  "B4": {
+   "to": "V-RWP",
+   "questions": [
+    {
+     "ref": "R03",
+     "ask": "Spec 2.1.C.1: Motor starting capability shall be not less than 3000 kVA with a maximum voltage dip of 30% for 2000 kW sets.. Please state what is supplied",
+     "we_read": [],
+     "kind": "not established, read twice"
+    },
+    {
+     "ref": "R16",
+     "ask": "Spec 2.1.H (Generator Output Circuit Breaker(s)): Provide 3-pole generator output circuit breaker(s) with solid-state trip units.. Please state what is supplied",
+     "we_read": [],
+     "kind": "not established, read twice"
+    },
+    {
+     "ref": "R19",
+     "ask": "Spec 2.1.K.1 (In Skid Diesel Fuel Tank): Provide a UL 2085 listed in-skid fuel tank with usable capacity for at least 24 hours of operation at full standby load.. Please state what is supplied",
+     "we_read": [
+      {
+       "doc": "b4-ridgeway-power-email",
+       "page": 1,
+       "quote": "24 hr subbase tanks"
+      }
+     ],
+     "kind": "not established, read twice"
+    },
+    {
+     "ref": "P2",
+     "ask": "Pre-qualification P2: Manufacturer has produced engine-alternator sets for at least 10 years. no pre-qualification packet received",
+     "we_read": [],
+     "kind": "pre-qualification"
+    },
+    {
+     "ref": "Q1",
+     "ask": "Pre-qualification Q1: General liability insurance >= $2,000,000 per occurrence. no pre-qualification packet received",
+     "we_read": [],
+     "kind": "pre-qualification"
+    },
+    {
+     "ref": "Q2",
+     "ask": "Pre-qualification Q2: Insurance certificate valid through the need date. no pre-qualification packet received",
+     "we_read": [],
+     "kind": "pre-qualification"
+    },
+    {
+     "ref": "Q3",
+     "ask": "Pre-qualification Q3: EMR (three-year average) <= 1.00. no pre-qualification packet received",
+     "we_read": [],
+     "kind": "pre-qualification"
+    },
+    {
+     "ref": "Q4",
+     "ask": "Pre-qualification Q4: Manufacturer's authorization letter attached. no pre-qualification packet received",
+     "we_read": [],
+     "kind": "pre-qualification"
+    },
+    {
+     "ref": "Q5",
+     "ask": "Pre-qualification Q5: Named service branch, 24/7 emergency response within 4 hours. no pre-qualification packet received",
+     "we_read": [],
+     "kind": "pre-qualification"
+    },
+    {
+     "ref": "Q6",
+     "ask": "Pre-qualification Q6: >= 3 completed projects with sets of 1500 kW or larger in the last 5 years. no pre-qualification packet received",
+     "we_read": [],
+     "kind": "pre-qualification"
+    },
+    {
+     "ref": "Q7",
+     "ask": "Pre-qualification Q7: Not excluded from federal procurement (owner checks SAM.gov). no pre-qualification packet received",
+     "we_read": [],
+     "kind": "pre-qualification"
+    },
+    {
+     "ref": "model",
+     "ask": "Confirm the exact model offered: no datasheet names C2000D6 exactly; candidates: cummins_DQKAB_submittal_CSDG.pdf (alias: DQKAB, per B2's bid 'C2000D6 (model DQKAB)'); cummins_C2000D6E_spec_sheet.pdf (variant: C2000D6E). Only the supplier can say which ",
+     "we_read": [],
+     "kind": "product link"
+    },
+    {
+     "ref": "S4",
+     "ask": "Bid scope S4: B4 S4: silent: the bid does not mention it: a clarification request is drafted; leveling meanwhile uses the owner's allowance",
+     "we_read": [],
+     "kind": "bid scope"
+    },
+    {
+     "ref": "S5",
+     "ask": "Bid scope S5: B4 S5: silent: the bid does not mention it: a clarification request is drafted; leveling meanwhile uses the owner's allowance",
+     "we_read": [],
+     "kind": "bid scope"
+    },
+    {
+     "ref": "S7",
+     "ask": "Bid scope S7: B4 S7: silent: the bid does not mention it: a clarification request is drafted; leveling meanwhile uses the owner's allowance",
+     "we_read": [],
+     "kind": "bid scope"
+    },
+    {
+     "ref": "S9",
+     "ask": "Bid scope S9: B4 S9: silent: the bid does not mention it: a clarification request is drafted; leveling meanwhile uses the owner's allowance",
+     "we_read": [],
+     "kind": "bid scope"
+    },
+    {
+     "ref": "S10",
+     "ask": "Bid scope S10: B4 S10: silent: the bid does not mention it: a clarification request is drafted; leveling meanwhile uses the owner's allowance",
+     "we_read": [],
+     "kind": "bid scope"
+    },
+    {
+     "ref": "S11",
+     "ask": "Bid scope S11: B4 S11: silent: the bid does not mention it: a clarification request is drafted; leveling meanwhile uses the owner's allowance",
+     "we_read": [],
+     "kind": "bid scope"
+    }
+   ],
+   "status": "draft (never sent automatically)"
+  }
+ }
+}

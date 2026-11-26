@@ -1,0 +1,316 @@
+{
+ "_summary": "21 requirements from spec 26_32_13_engine_generators_ALPHA.pdf; need on site 2027-10-04",
+ "tag": "GEN-A",
+ "need_on_site": "2027-10-04",
+ "schedule_row": {
+  "tag": "GEN-A",
+  "item": "Diesel engine-generator set",
+  "qty": "1",
+  "spec_section": "26 32 13",
+  "standby_kw": "2000",
+  "standby_kva": "2500",
+  "power_factor": "0.8",
+  "voltage": "480Y/277",
+  "phases": "3",
+  "wires": "4",
+  "frequency_hz": "60",
+  "need_on_site": "2027-10-04",
+  "notes": "Power block A; outdoor sound-attenuated enclosure"
+ },
+ "requirements": [
+  {
+   "req_id": "R01",
+   "locator": "2.1.C (System Capacity)",
+   "requirement": "Generator set continuous standby capacity shall meet the scheduled rating of 2000 kW and 2500 kVA at 0.8 PF.",
+   "conditions": 2,
+   "spec_citation": {
+    "doc_id": "26-32-13-engine-generators-alpha",
+    "page": 3,
+    "locator": "2.1.C (System Capacity)",
+    "quote": "shall be rated for the continuous standby capacity (kW and kVA at 0.8 PF) and output amperes scheduled on Drawing E-601",
+    "match": "exact",
+    "ocr": false
+   }
+  },
+  {
+   "req_id": "R02",
+   "locator": "2.1.C (System Capacity)",
+   "requirement": "Generator set output shall be 480Y/277 V, 3-phase, 4-wire, 60 Hz power.",
+   "conditions": 2,
+   "spec_citation": {
+    "doc_id": "26-32-13-engine-generators-alpha",
+    "page": 3,
+    "locator": "2.1.C (System Capacity)",
+    "quote": "while generating 480Y/277 volt, 3-phase, 4-wire, 60 Hz power, and with performance as specified herein.",
+    "match": "exact",
+    "ocr": false
+   }
+  },
+  {
+   "req_id": "R03",
+   "locator": "2.1.C.1",
+   "requirement": "Motor starting capability shall be not less than 3000 kVA with a maximum voltage dip of 30% for 2000 kW sets.",
+   "conditions": 1,
+   "spec_citation": {
+    "doc_id": "26-32-13-engine-generators-alpha",
+    "page": 3,
+    "locator": "2.1.C.1",
+    "quote": "shall be capable of developing not less than 3000 kVA (2000 kW sets) and 1500 kVA (1000 kW sets) for motor starting with a maximum voltage dip of 30%",
+    "match": "exact",
+    "ocr": false
+   }
+  },
+  {
+   "req_id": "R04",
+   "locator": "2.1.C.2",
+   "requirement": "Excitation power to the automatic voltage regulator shall be provided by a permanent magnet generator (PMG) or equal.",
+   "conditions": 1,
+   "spec_citation": {
+    "doc_id": "26-32-13-engine-generators-alpha",
+    "page": 4,
+    "locator": "2.1.C.2",
+    "quote": "A permanent magnet generator (PMG) or equal shall provide excitation power to the automatic voltage regulator",
+    "match": "exact",
+    "ocr": false
+   }
+  },
+  {
+   "req_id": "R05",
+   "locator": "2.1.D (Diesel Engine)",
+   "requirement": "Engine shall be an 8, 12, or 16 cylinder, 4-cycle diesel engine, either turbocharged/aftercooled or normally aspirated.",
+   "conditions": 3,
+   "spec_citation": {
+    "doc_id": "26-32-13-engine-generators-alpha",
+    "page": 4,
+    "locator": "2.1.D (Diesel Engine)",
+    "quote": "Engine shall be an 8, 12, or 16 cylinder, 4 cycle, turbocharged/aftercooled or normally aspirated fuel injected full diesel engine",
+    "match": "exact",
+    "ocr": false
+   }
+  },
+  {
+   "req_id": "R06",
+   "locator": "2.1.D.3 (Governor)",
+   "requirement": "Governor shall be electronic speed-sensing capable of isochronous frequency regulation from no load to full rated load.",
+   "conditions": 1,
+   "spec_citation": {
+    "doc_id": "26-32-13-engine-generators-alpha",
+    "page": 4,
+    "locator": "2.1.D.3 (Governor)",
+    "quote": "electronic speed-sensing governor capable of isochronous frequency regulation from no load to full rated load.",
+    "match": "exact",
+    "ocr": false
+   }
+  },
+  {
+   "req_id": "R07",
+   "locator": "2.1.D.5 (Starting System)",
+   "requirement": "Starting system shall be 24 volt, 2-wire, negative ground, gear engaging electric starter.",
+   "conditions": 1,
+   "spec_citation": {
+    "doc_id": "26-32-13-engine-generators-alpha",
+    "page": 4,
+    "locator": "2.1.D.5 (Starting System)",
+    "quote": "Starting System: Remote 24 volt, 2-wire, negative ground, starting system, positive shift, gear engaging electric starter",
+    "match": "exact",
+    "ocr": false
+   }
+  },
+  {
+   "req_id": "R08",
+   "locator": "2.1.D.1 (Diesel Fuel System)",
+   "requirement": "Average fuel consumption at full standby load must not exceed 145 gph for a 2000 kW set.",
+   "conditions": 1,
+   "spec_citation": {
+    "doc_id": "26-32-13-engine-generators-alpha",
+    "page": 4,
+    "locator": "2.1.D.1 (Diesel Fuel System)",
+    "quote": "Average fuel consumption at full standby load shall not exceed 145 gph for 2000 kW sets",
+    "match": "exact",
+    "ocr": false
+   }
+  },
+  {
+   "req_id": "R09",
+   "locator": "2.1.D.2 (Cooling System)",
+   "requirement": "Unit-mounted radiator cooling system sized to maintain safe operation at 122\u00b0F maximum ambient temperature.",
+   "conditions": 2,
+   "spec_citation": {
+    "doc_id": "26-32-13-engine-generators-alpha",
+    "page": 4,
+    "locator": "2.1.D.2 (Cooling System)",
+    "quote": "cooling system shall be unit mounted radiator cooled",
+    "match": "exact",
+    "ocr": false
+   }
+  },
+  {
+   "req_id": "R10",
+   "locator": "2.1.D.3 (Emissions Compliance)",
+   "requirement": "Engine emissions compliance with applicable EPA Tier levels for non-road engines.",
+   "conditions": 1,
+   "spec_citation": {
+    "doc_id": "26-32-13-engine-generators-alpha",
+    "page": 4,
+    "locator": "2.1.D.3 (Emissions Compliance)",
+    "quote": "comply with all applicable EPA Tier Levels for Non-Road Engines",
+    "match": "exact",
+    "ocr": false
+   }
+  },
+  {
+   "req_id": "R11",
+   "locator": "2.1.E.1",
+   "requirement": "Operate at ambient conditions of 300 ft altitude and 10 to 122\u00b0F ambient temperature.",
+   "conditions": 2,
+   "spec_citation": {
+    "doc_id": "26-32-13-engine-generators-alpha",
+    "page": 4,
+    "locator": "2.1.E.1",
+    "quote": "Ambient conditions of 300' altitude and an ambient temperature of 10 to 122\u00b0F.",
+    "match": "exact",
+    "ocr": false
+   }
+  },
+  {
+   "req_id": "R12",
+   "locator": "2.1.E.3",
+   "requirement": "Engine speed shall not exceed 1800 rpm.",
+   "conditions": 1,
+   "spec_citation": {
+    "doc_id": "26-32-13-engine-generators-alpha",
+    "page": 4,
+    "locator": "2.1.E.3",
+    "quote": "rpm of the engine shall not exceed 1800 rpm",
+    "match": "exact",
+    "ocr": false
+   }
+  },
+  {
+   "req_id": "R13",
+   "locator": "2.1.G (Generator)",
+   "requirement": "Generator shall be 4-pole, brushless, and two-thirds pitch wound.",
+   "conditions": 1,
+   "spec_citation": {
+    "doc_id": "26-32-13-engine-generators-alpha",
+    "page": 5,
+    "locator": "2.1.G (Generator)",
+    "quote": "Generator shall be 4-pole, revolving field type, brushless, dynamically balanced, skewed laminated, two thirds pitch wound",
+    "match": "exact",
+    "ocr": false
+   }
+  },
+  {
+   "req_id": "R14",
+   "locator": "2.1.G.1",
+   "requirement": "Generator insulation shall be NEMA Class F or better.",
+   "conditions": 1,
+   "spec_citation": {
+    "doc_id": "26-32-13-engine-generators-alpha",
+    "page": 5,
+    "locator": "2.1.G.1",
+    "quote": "NEMA Class F or better insulation as defined by NEMA MG1.65.",
+    "match": "exact",
+    "ocr": false
+   }
+  },
+  {
+   "req_id": "R15",
+   "locator": "2.1.G.5",
+   "requirement": "Provide a 120 V, single-phase space heater to prevent condensation in the generator.",
+   "conditions": 1,
+   "spec_citation": {
+    "doc_id": "26-32-13-engine-generators-alpha",
+    "page": 5,
+    "locator": "2.1.G.5",
+    "quote": "A 120 volt, single phase space heater shall be provided to prevent condensation in the generator.",
+    "match": "exact",
+    "ocr": false
+   }
+  },
+  {
+   "req_id": "R16",
+   "locator": "2.1.H (Generator Output Circuit Breaker(s))",
+   "requirement": "Provide 3-pole generator output circuit breaker(s) with solid-state trip units.",
+   "conditions": 1,
+   "spec_citation": {
+    "doc_id": "26-32-13-engine-generators-alpha",
+    "page": 5,
+    "locator": "2.1.H (Generator Output Circuit Breaker(s))",
+    "quote": "Generator set shall have 3 pole output circuit breaker(s) with solid state trip units as shown on the drawings.",
+    "match": "exact",
+    "ocr": false
+   }
+  },
+  {
+   "req_id": "R17",
+   "locator": "2.1.I.2 (Voltage Regulation)",
+   "requirement": "Maintain voltage regulation within plus 2% from no load to rated load.",
+   "conditions": 1,
+   "spec_citation": {
+    "doc_id": "26-32-13-engine-generators-alpha",
+    "page": 6,
+    "locator": "2.1.I.2 (Voltage Regulation)",
+    "quote": "Voltage Regulation: Plus 2% no load to rated load; rheostat for _5% voltage adjustment.",
+    "match": "exact",
+    "ocr": false
+   }
+  },
+  {
+   "req_id": "R18",
+   "locator": "2.1.I.4 (Total Harmonic Distortion (THD))",
+   "requirement": "Total harmonic distortion of ac voltage waveform from no load to full linear load shall not exceed 5% of rated voltage.",
+   "conditions": 1,
+   "spec_citation": {
+    "doc_id": "26-32-13-engine-generators-alpha",
+    "page": 6,
+    "locator": "2.1.I.4 (Total Harmonic Distortion (THD))",
+    "quote": "The sum of ac voltage waveform harmonies, from no load to full linear load shall not exceed 5% of the rated voltage",
+    "match": "exact",
+    "ocr": false
+   }
+  },
+  {
+   "req_id": "R19",
+   "locator": "2.1.K.1 (In Skid Diesel Fuel Tank)",
+   "requirement": "Provide a UL 2085 listed in-skid fuel tank with usable capacity for at least 24 hours of operation at full standby load.",
+   "conditions": 2,
+   "spec_citation": {
+    "doc_id": "26-32-13-engine-generators-alpha",
+    "page": 9,
+    "locator": "2.1.K.1 (In Skid Diesel Fuel Tank)",
+    "quote": "provided with a UL 2085 listed manufacturer's standard in skid fuel transfer day tank. The tank shall have usable capacity for not less than 24 hours of operation at full standby load,",
+    "match": "exact",
+    "ocr": false
+   }
+  },
+  {
+   "req_id": "R20",
+   "locator": "2.1.K.2 (Jacket-Water Heater)",
+   "requirement": "Provide two 5000 W, 480 V, 1-phase jacket-water heaters.",
+   "conditions": 3,
+   "spec_citation": {
+    "doc_id": "26-32-13-engine-generators-alpha",
+    "page": 8,
+    "locator": "2.1.K.2 (Jacket-Water Heater)",
+    "quote": "engine shall have two KIM #Hotstart (480 volt, 1-phase) or approved equal, 5000W jacket-water heaters supplied from a \"normal\" branch circuit.",
+    "match": "exact",
+    "ocr": false
+   }
+  },
+  {
+   "req_id": "R21",
+   "locator": "2.1.K.9 (Generator Outdoor Housing)",
+   "requirement": "Provide a weatherproof and rodent-proof outdoor enclosure entirely enclosing the generator set, with silencers installed inside.",
+   "conditions": 2,
+   "spec_citation": {
+    "doc_id": "26-32-13-engine-generators-alpha",
+    "page": 10,
+    "locator": "2.1.K.9 (Generator Outdoor Housing)",
+    "quote": "Provide a weatherproof and rodent-proof outdoor shelter to entirely enclose each generator set, including batteries. Silencers shall be installed inside enclosure.",
+    "match": "exact",
+    "ocr": false
+   }
+  }
+ ]
+}
