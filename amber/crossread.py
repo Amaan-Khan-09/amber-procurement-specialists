@@ -129,7 +129,10 @@ def stored_reviews(doc_id: str) -> dict | None:
                 continue
             for entry in data.values():
                 if isinstance(entry, dict) and entry.get("doc_id") == doc_id and "answers" in entry:
-                    return {"model": entry.get("model") or f.stem, "answers": entry["answers"], "file": f.name}
+                    answers = entry["answers"]
+                    if "pages_read" in entry:  # a reading of selected pages: only what it positively quotes is shown
+                        answers = {k: v for k, v in answers.items() if v.get("verdict") in ("complies", "deviates")}
+                    return {"model": entry.get("model") or f.stem, "answers": answers, "file": f.name}
     return None
 
 

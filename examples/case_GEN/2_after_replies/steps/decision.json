@@ -1,5 +1,5 @@
 {
- "_summary": "a person decides: every option is likely late; closest to an award: B2 (3 question(s) open with the supplier; 7 item(s) for an engineer; owner's checks: Q7 (federal exclusion list))",
+ "_summary": "a person decides: every option is likely late; closest to an award: B2 (2 question(s) open with the supplier; 7 item(s) for an engineer; owner's checks: Q7 (federal exclusion list))",
  "options": [
   {
    "bid": "B2",
@@ -11,11 +11,11 @@
    "p_late": 0.97,
    "prequal": "qualified pending the owner's checks",
    "blockers": [
-    "3 question(s) open with the supplier",
+    "2 question(s) open with the supplier",
     "7 item(s) for an engineer",
     "owner's checks: Q7 (federal exclusion list)"
    ],
-   "open_with_supplier": 3,
+   "open_with_supplier": 2,
    "open_with_engineer": 7,
    "hard_blockers": 0
   },
@@ -47,14 +47,14 @@
    "p_late": 0.97,
    "prequal": "fails",
    "blockers": [
-    "2 requirement(s) not met: R09, R20",
+    "1 requirement(s) not met: R09",
     "pre-qualification fails: Q3",
-    "8 question(s) open with the supplier",
-    "13 item(s) for an engineer",
+    "6 question(s) open with the supplier",
+    "11 item(s) for an engineer",
     "owner's checks: Q7 (federal exclusion list)"
    ],
-   "open_with_supplier": 8,
-   "open_with_engineer": 13,
+   "open_with_supplier": 6,
+   "open_with_engineer": 11,
    "hard_blockers": 2
   },
   {
@@ -70,11 +70,11 @@
     "pre-qualification to verify: P2, Q1, Q2, Q3, Q4, Q5, Q6, Q7",
     "the exact product is not confirmed",
     "18 question(s) open with the supplier",
-    "7 item(s) for an engineer",
+    "6 item(s) for an engineer",
     "owner's checks: Q7 (federal exclusion list)"
    ],
    "open_with_supplier": 18,
-   "open_with_engineer": 7,
+   "open_with_engineer": 6,
    "hard_blockers": 2
   }
  ],

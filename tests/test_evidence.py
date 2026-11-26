@@ -70,3 +70,25 @@ def test_a_conflict_between_two_replies_reaches_the_answer_and_absent_proof_neve
     assert roles == ["conflicts", "conflicts"]
     out = C.reconcile_supplier(req, ds, {}, [], [])
     assert out["findings"][0]["status"] != "complies"
+
+
+def test_conflicting_revisions_stay_a_conflict_unless_one_says_it_supersedes():
+    a = _doc("v-reply-revA", "Rev A\n1. The tank holds 24 hours at full load.")
+    b = _doc("v-reply-revB", "Rev B\n1. The tank holds 12 hours at full load.")
+    res, metas = _resolve((a, _part(a, "tank holds 24 hours", "complies")), (b, _part(b, "tank holds 12 hours", "deviates")))
+    assert res["conflict"] is not None and metas[1]["revision"].startswith("Rev B")
+    c = _doc("v-reply-revC", "Rev C\n1. Revised: the tank holds 12 hours at full load; this supersedes Rev A.")
+    res, _ = _resolve((a, _part(a, "tank holds 24 hours", "complies")), (c, _part(c, "tank holds 12 hours", "deviates")))
+    assert res["conflict"] is None and res["superseded"]
+
+
+def test_a_partial_second_read_never_confirms_that_a_document_says_nothing(tmp_path, monkeypatch):
+    import json
+    (tmp_path / "eval" / "cross_checks").mkdir(parents=True)
+    d = tmp_path / "eval" / "cross_checks"
+    ans = {"R1": {"verdict": "missing"}, "R2": {"verdict": "deviates"}, "R3": {"verdict": "unclear"}}
+    (d / "targeted_qwen3.8-27b.json").write_text(json.dumps({"BIG": {"answers": ans}}), encoding="utf-8")
+    (d / "qwen3.8-27b.json").write_text(json.dumps({"SMALL": {"answers": ans}}), encoding="utf-8")
+    monkeypatch.setattr(C, "ROOT", tmp_path)
+    assert C.second_readings()["BIG"] == {"R2": "deviates"}
+    assert C.second_readings()["SMALL"] == {"R1": "missing", "R2": "deviates", "R3": "unclear"}

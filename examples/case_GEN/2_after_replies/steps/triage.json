@@ -1,5 +1,5 @@
 {
- "_summary": "109 decided, 29 to the suppliers, 31 to an engineer (of 169)",
+ "_summary": "115 decided, 26 to the suppliers, 28 to an engineer (of 169)",
  "items": [
   {
    "group": "requirement",
@@ -348,7 +348,7 @@
    "bid": "B2",
    "id": "R02",
    "status": "complies",
-   "confidence": 0.95,
+   "confidence": 0.75,
    "route": "decide",
    "kind": "decided",
    "why": "verified quote and a comparison made in code",
@@ -402,11 +402,11 @@
    "group": "requirement",
    "bid": "B2",
    "id": "R07",
-   "status": "unclear",
-   "confidence": 0.5,
-   "route": "ask_supplier",
-   "kind": "clarification",
-   "why": "one missing fact settles it, and the rest is met with verified evidence: please state: electric starter",
+   "status": "complies",
+   "confidence": 0.8,
+   "route": "decide",
+   "kind": "decided",
+   "why": "verified quote and a comparison made in code",
    "claim": "Starting system shall be 24 volt, 2-wire, negative ground, gear engaging electric starter."
   },
   {
@@ -427,8 +427,8 @@
    "status": "complies",
    "confidence": 0.65,
    "route": "engineer",
-   "kind": "confirm a reading",
-   "why": "the evidence is quoted but judged, not computed: a person confirms it",
+   "kind": "contested",
+   "why": "an independent reading says deviates; the evidence is quoted but judged, not computed: a person confirms it",
    "claim": "Unit-mounted radiator cooling system sized to maintain safe operation at 122\u00b0F maximum ambient temperature."
   },
   {
@@ -504,8 +504,8 @@
    "status": "unclear",
    "confidence": 0.5,
    "route": "engineer",
-   "kind": "absence not confirmed",
-   "why": "the document does not seem to establish it, but it was not read a second time: a person checks before asking the supplier",
+   "kind": "contested",
+   "why": "our reading found no value, but an independent reading says deviates: a person checks the page",
    "claim": "Provide 3-pole generator output circuit breaker(s) with solid-state trip units."
   },
   {
@@ -548,8 +548,8 @@
    "status": "unclear",
    "confidence": 0.5,
    "route": "engineer",
-   "kind": "absence not confirmed",
-   "why": "the document does not seem to establish it, but it was not read a second time: a person checks before asking the supplier",
+   "kind": "contested",
+   "why": "our reading found no value, but an independent reading says deviates: a person checks the page",
    "claim": "Provide two 5000 W, 480 V, 1-phase jacket-water heaters."
   },
   {
@@ -701,10 +701,10 @@
    "bid": "B3",
    "id": "R04",
    "status": "complies",
-   "confidence": 0.65,
-   "route": "engineer",
-   "kind": "confirm a reading",
-   "why": "the evidence is quoted but judged, not computed: a person confirms it",
+   "confidence": 0.8,
+   "route": "decide",
+   "kind": "decided",
+   "why": "verified quote and a comparison made in code",
    "claim": "Excitation power to the automatic voltage regulator shall be provided by a permanent magnet generator (PMG) or equal."
   },
   {
@@ -722,11 +722,11 @@
    "group": "requirement",
    "bid": "B3",
    "id": "R06",
-   "status": "unclear",
-   "confidence": 0.5,
-   "route": "ask_supplier",
-   "kind": "clarification",
-   "why": "one missing fact settles it, and the rest is met with verified evidence: please state: isochronous",
+   "status": "complies",
+   "confidence": 0.75,
+   "route": "decide",
+   "kind": "decided",
+   "why": "verified quote and a comparison made in code",
    "claim": "Governor shall be electronic speed-sensing capable of isochronous frequency regulation from no load to full rated load."
   },
   {
@@ -799,11 +799,11 @@
    "group": "requirement",
    "bid": "B3",
    "id": "R13",
-   "status": "unclear",
-   "confidence": 0.5,
-   "route": "ask_supplier",
-   "kind": "clarification",
-   "why": "one missing fact settles it, and the rest is met with verified evidence: please state: 4 pole, 2/3 pitch",
+   "status": "complies",
+   "confidence": 0.75,
+   "route": "decide",
+   "kind": "decided",
+   "why": "verified quote and a comparison made in code",
    "claim": "Generator shall be 4-pole, brushless, and two-thirds pitch wound."
   },
   {
@@ -811,10 +811,10 @@
    "bid": "B3",
    "id": "R14",
    "status": "complies",
-   "confidence": 0.65,
-   "route": "engineer",
-   "kind": "confirm a reading",
-   "why": "the evidence is quoted but judged, not computed: a person confirms it",
+   "confidence": 0.8,
+   "route": "decide",
+   "kind": "decided",
+   "why": "verified quote and a comparison made in code",
    "claim": "Generator insulation shall be NEMA Class F or better."
   },
   {
@@ -876,11 +876,11 @@
    "group": "requirement",
    "bid": "B3",
    "id": "R20",
-   "status": "deviates",
+   "status": "unclear",
    "confidence": 0.5,
    "route": "engineer",
-   "kind": "confirm a reading",
-   "why": "the evidence is quoted but judged, not computed: a person confirms it",
+   "kind": "contested",
+   "why": "our reading found no value, but an independent reading says deviates: a person checks the page",
    "claim": "Provide two 5000 W, 480 V, 1-phase jacket-water heaters."
   },
   {
@@ -1064,11 +1064,11 @@
    "group": "requirement",
    "bid": "B4",
    "id": "R07",
-   "status": "unclear",
-   "confidence": 0.65,
-   "route": "engineer",
-   "kind": "judgement",
-   "why": "the evidence needs judgement: the evidence shows 24 volt but does not mention electric starter; nothing contradicts it, a person decides",
+   "status": "complies",
+   "confidence": 0.8,
+   "route": "decide",
+   "kind": "decided",
+   "why": "verified quote and a comparison made in code",
    "claim": "Starting system shall be 24 volt, 2-wire, negative ground, gear engaging electric starter."
   },
   {
@@ -1777,25 +1777,25 @@
   }
  ],
  "summary": {
-  "decide": 109,
-  "ask_supplier": 29,
-  "engineer": 31,
+  "decide": 115,
+  "ask_supplier": 26,
+  "engineer": 28,
   "total": 169,
-  "engineer_share": 0.183,
+  "engineer_share": 0.166,
   "kinds": {
-   "decided": 78,
-   "contested": 9,
-   "confirm a reading": 7,
+   "decided": 84,
+   "contested": 13,
+   "confirm a reading": 3,
    "meets": 24,
    "owner check": 4,
    "product link": 4,
-   "clarification": 4,
-   "judgement": 6,
-   "absence not confirmed": 3,
+   "judgement": 5,
+   "absence not confirmed": 1,
    "conditional rating": 1,
    "not established, read twice": 4,
    "not stated": 1,
    "fails": 1,
+   "clarification": 1,
    "needs_verification": 7,
    "settled by reply": 3,
    "scope qualified": 6,
@@ -1851,21 +1851,21 @@
    }
   },
   "requirement": {
-   "decide": 49,
-   "ask_supplier": 9,
-   "engineer": 26,
+   "decide": 55,
+   "ask_supplier": 6,
+   "engineer": 23,
    "total": 84,
-   "engineer_share": 0.31,
+   "engineer_share": 0.274,
    "kinds": {
-    "decided": 49,
-    "contested": 9,
-    "confirm a reading": 7,
-    "clarification": 4,
-    "judgement": 6,
-    "absence not confirmed": 3,
+    "decided": 55,
+    "contested": 13,
+    "confirm a reading": 3,
+    "judgement": 5,
+    "absence not confirmed": 1,
     "conditional rating": 1,
     "not established, read twice": 4,
-    "not stated": 1
+    "not stated": 1,
+    "clarification": 1
    }
   }
  }

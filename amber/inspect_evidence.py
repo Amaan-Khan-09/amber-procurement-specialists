@@ -20,7 +20,8 @@ from __future__ import annotations
 import re
 
 from . import docs
-from .verify import verify
+from .schema import Citation
+from .verify import listed_as_choice, verify
 
 EMPTY = "○❑❒☐□◯❏◻"      # o  ❑ ❒ ☐ □ ◯ ❏ ◻
 FULL = "●■☒☑✓✔◉◼"        # ● ■ ☒ ☑ ✓ ✔ ◉ ◼
@@ -39,6 +40,8 @@ GENERIC = {"rating", "type", "system", "load", "full", "standby", "maximum", "mi
 EQUIV = [(r"\btwo[- ]thirds?\b", "2/3"), (r"\bfour[- ]cycle\b", "4 cycle"), (r"\b(\d+)[- ](pole|cycle|wire|phase)\b", r"\1 \2"),
          (r"\bthree[- ]phase\b", "3 phase"), (r"\bsingle[- ]phase\b", "1 phase"), (r"\bfour[- ]wire\b", "4 wire"),
          (r"\bpermanent[- ]magnet\b", "permanent magnet"),
+         (r"\bon[- ]line\b", "online"),
+         (r"\b(permanent magnet(?:\s*\(pm\))?[ -]+(?:pilot )?exciter)\b", r"\1 pmg"),
          (r"\b(?:internal(?:ly)?[- ]mounted|mounted internally)\b", "inside"),
          (r"\bcylinder (?:arrangement|configuration)\s*:?\s*(\d+)\s*v\b", r"\1 cylinder"), (r"\bsolid[- ]state\b", "solid state"), (r"-", " ")]
 
@@ -113,6 +116,13 @@ _QUANTITY = {  # word in the attribute -> (must appear, must not appear in the q
 def same_quantity(c: dict, quote: str, context: str = "") -> bool:
     attr = str(c.get("attribute", "")).lower()
     q, about = quote.lower(), (quote + " " + context).lower()
+    # a standby requirement is not settled by a prime or continuous figure (held-out G10 printed fuel use for PRIME only)
+    if "standby" in attr and re.search(r"\b(prime|continuous)\b", q) and "standby" not in q:
+        return False
+    if "standby" in attr and "standby" not in about and re.search(r"\b(prime|continuous) (power|rating)", about):
+        return False
+    if "start" in attr and re.search(r"battery (?:voltage|rating)|charger|alternator (?:volts|voltage)", q):
+        return False
     for key, (need, never) in _QUANTITY.items():
         if key in attr:
             if not re.search(need, about) or (never and re.search(never, q)):
@@ -161,12 +171,28 @@ def compute_numeric(c: dict, quote: str, context: str = "") -> dict | None:
             "why": f"computed from the quote: {shown} {unit} {'meets' if ok else 'does not meet'} {op} {ref if op != 'between' else str(c['min']) + '-' + str(c['max'])} {unit}"}
 
 
-def compute_text(c: dict, quote: str) -> dict | None:
+def _starting(quote: str, context: str = "") -> set[str]:
+    """Which starting-system terms a quote establishes: '24 volt' and 'electric starter' from wording such as
+    'Starter motor rated voltage (DC) 24' or 'Engine Starter - 24 Volt DC Motor'. A battery or charger voltage is not it."""
+    q = quote.lower()
+    about = q + " " + context.lower()
+    if re.search(r"battery|charg|charging|alternator volt", q) or not re.search(r"start(?:er|ing)|crank", about):
+        return set()
+    volts = set(re.findall(r"(?<![\d.])(12|24|36|48)(?![\d.])\s*(?:v\b|volt|vdc)", q)) | \
+        set(re.findall(r"(?:volts?|vdc|\(dc\)|\bdc)(?:\W|dual){0,16}(?<![\d.])(12|24|36|48)(?![\d.])", q))
+    if volts != {"24"}:
+        return set()
+    return {"24 volt", "electric starter"} if re.search(r"start(?:er|ing)|crank", about) else {"24 volt"}
+
+
+def compute_text(c: dict, quote: str, context: str = "") -> dict | None:
     if c.get("kind") != "text" or not quote:
         return None
     q = norm(quote)
     terms = [norm(t) for t in c.get("terms") or []]
     hit = [t for t in terms if t and re.search(rf"(?<![\w/]){re.escape(t)}(?![\w/])", q)]
+    if "start" in str(c.get("attribute", "")).lower():
+        hit += [t for t in terms if t in _starting(quote, context) and t not in hit]
     need_all = c.get("match", "all") == "all"
     if (need_all and len(hit) == len(terms)) or (not need_all and hit):
         return {"verdict": "complies", "why": f"computed from the quote: it states {', '.join(hit)}"}
@@ -176,24 +202,48 @@ def compute_text(c: dict, quote: str) -> dict | None:
     return None
 
 
-def find_terms(doc: docs.Document, c: dict, terms: list[str]) -> list[dict] | None:
-    """Every missing term found on a line of the document that is about the same attribute (an attribute word or one
-    of the requirement's other terms on the same line), each verified on its page; None if any term is not found."""
+# words that appear all over a datasheet: they count only on a line that is about the attribute
+_COMMON_TERMS = {"electronic", "electric", "inside", "online", "outdoor", "standby", "included", "weather"}
+# nouns shared by many parts of a generator ('3 pole' breaker, '4 pole' alternator): they need their part named
+_NEEDS_PART = {"pole": r"alternator|generator|rotating|field|exciter|stator|revolving", "phase": r"output|voltage|generator|alternator|heater",
+               "wire": r"output|voltage|generator|alternator|wye", "cycle": r"engine|cylinder|diesel|turbo"}
+
+
+def _distinctive(term: str) -> bool:
+    return term not in _COMMON_TERMS and (bool(re.search(r"\d", term)) or " " in term or len(term) >= 8)
+
+
+def find_terms(doc: docs.Document, c: dict, terms: list[str], others: tuple = ()) -> list[dict] | None:
+    """Every missing term found somewhere in the supplier's documents (the datasheet first, then its bid and replies),
+    each verified on its page; None if any term is not found. A distinctive term ('two thirds pitch', 'isochronous')
+    counts wherever it is stated; a common word only on a line about the same attribute. Option and negated lines
+    never count."""
     words = _attr_words(c) | {norm(t) for t in c.get("terms") or []}
     out = []
     for term in terms:
         hit = None
-        for p in doc.pages:
-            for ln in p.text.splitlines():
-                n = norm(ln)
-                if re.search(rf"(?<![\w/]){re.escape(term)}(?![\w/])", n) and (
-                        any(w[:6] in n for w in words if w != term) or len(n) < 40):
-                    if ln.strip()[:1] in EMPTY + FULL:
-                        continue  # an option, not a statement
-                    cite = verify(doc, ln.strip()[:120], p.number)
-                    if cite:
-                        hit = {"term": term, "page": p.number, "line": ln.strip(), "citation": cite.model_dump(mode="json")}
+        part = next((rx for noun, rx in _NEEDS_PART.items() if re.search(rf"\b{noun}\b", term)), None)
+        for d in (doc, *others):
+            for p in d.pages:
+                lines = p.text.splitlines()
+                for i, ln in enumerate(lines):
+                    n = norm(ln)
+                    if not re.search(rf"(?<![\w/]){re.escape(term)}(?![\w/])", n):
+                        continue
+                    if ln.strip()[:1] in EMPTY + FULL or re.search(r"\b(not|optional|options?|available|excluded)\b", n):
+                        continue
+                    near = norm(" ".join(lines[max(0, i - 2): i + 2]))
+                    if part and not re.search(part, near):
+                        continue
+                    if not _distinctive(term) and not (any(w[:6] in n for w in words if w != term) or len(n) < 40):
+                        continue
+                    cite = verify(d, ln.strip()[:120], p.number)
+                    if cite and not listed_as_choice(d, cite):
+                        hit = {"term": term, "page": p.number, "doc": d.doc_id, "line": ln.strip(),
+                               "citation": cite.model_dump(mode="json")}
                         break
+                if hit:
+                    break
             if hit:
                 break
         if not hit:
@@ -221,6 +271,14 @@ def unit_from_heading(doc: docs.Document, c: dict, quote: str, page: int | None,
     pg = doc.page(page) if page else None
     if not u or not pg:
         return None
+    pair = re.search(r"([\d,]{3,6})\s*\(\s*([\d,]{3,6})\s*\)", quote)
+    if pair and str(unit).lower() in ("kw", "kva") and isinstance(c.get("value"), (int, float)):
+        position = 1 if str(unit).lower() == "kw" else 2
+        for ln in (pg.raw or pg.text).splitlines():
+            if re.search(r"(?i)\bk?we?\b\s*\(\s*kva\s*\)", ln) and _f(pair.group(position)) >= float(c["value"]):
+                cite = verify(doc, ln.strip()[:120], page)
+                if cite:
+                    return {"line": ln.strip(), "citation": cite.model_dump(mode="json")}
     words = _attr_words(c)
     lines = [ln.strip() for ln in (pg.raw or pg.text).splitlines()]
     head = re.sub(r"\s+", " ", quote).strip()[:14]
@@ -239,6 +297,10 @@ def unit_from_heading(doc: docs.Document, c: dict, quote: str, page: int | None,
     return None
 
 
+def _content_words(s: str) -> set[str]:
+    return {w for w in re.findall(r"[a-z]{4,}", s.lower()) if w not in GENERIC | {"with", "from", "that", "this"}}
+
+
 def option_state(doc: docs.Document, c: dict, value_tokens: list[str]) -> dict | None:
     """Is the compliant value offered as an option elsewhere in the document?
     -> {"state": "unselected" | "selected" | "listed", "page", "line", "citation"} or None.
@@ -247,6 +309,19 @@ def option_state(doc: docs.Document, c: dict, value_tokens: list[str]) -> dict |
         return None
     words = _attr_words(c) | ({"cooling", "ambient"} if "ambient" in str(c.get("attribute", "")) else set())
     listed = None
+    ticked: dict = {}  # the numbers of every TICKED option about this attribute: two different ones cannot both apply
+    for p in doc.pages:
+        for ln in p.text.splitlines():
+            s = ln.strip()
+            if s[:1] in FULL and any(re.search(rf"\b{re.escape(w[:6])}", s.lower()) for w in words):
+                nums = tuple(re.findall(r"\d+(?:\.\d+)?", s)[:1])
+                if nums:
+                    ticked.setdefault(nums, (p.number, s))
+    if len(ticked) > 1:
+        (page, line), (_, other) = list(ticked.values())[:2]
+        cite = verify(doc, line.lstrip(EMPTY + FULL + " ")[:120], page)
+        return {"state": "ambiguous", "page": page, "line": f"{line[:60]} AND {other[:60]}",
+                "citation": cite.model_dump(mode="json") if cite else None}
     for p in doc.pages:
         for ln in p.text.splitlines():
             s = ln.strip()
@@ -307,10 +382,110 @@ def soften_absence(c: dict, p: dict) -> dict:
                 why=f"the evidence {quote[:70]!r} does not state {', '.join(miss)}; nothing says the opposite")
 
 
+def _is_choice(doc: docs.Document, part: dict) -> bool:
+    """Evidence that is only something a buyer may choose can never be computed into an approval."""
+    if any(k in str(part.get("why", "")) for k in ("listed as a choice", "selected option is not marked")):
+        return True
+    cite = part.get("cite")
+    if not cite or cite.get("doc_id") != doc.doc_id:
+        return False
+    return listed_as_choice(doc, Citation(**cite))
+
+
+def unit_stated_elsewhere(doc: docs.Document, c: dict, offered: float) -> dict | None:
+    """The same number with its unit printed elsewhere in the same document ('60 Hz'), on a line that offers no other
+    value in that unit."""
+    unit = str(c.get("unit") or "")
+    if unit.lower() not in ("hz", "rpm"):  # other units belong to too many different quantities
+        return None
+    for p in doc.pages:
+        for ln in p.text.splitlines():
+            vals = {v for v, _ in values_in(ln, unit)}
+            if vals == {offered} and ln.strip()[:1] not in EMPTY + FULL and not re.search(r"\b(50|optional|available)\b", ln.lower()):
+                cite = verify(doc, ln.strip()[:120], p.number)
+                if cite and not listed_as_choice(doc, cite):
+                    return {"line": ln.strip(), "citation": cite.model_dump(mode="json")}
+    return None
+
+
+def rating_for_voltage(doc: docs.Document, c: dict, voltage: str) -> dict | None:
+    """A ratings table with several rows: the rows for the project's voltage ('277/480 3 60 2000/2500 3007') are the
+    selected option. Settled only if every such row meets the requirement."""
+    unit = str(c.get("unit") or "").lower()
+    if unit not in ("kw", "kva") or c.get("op") != ">=" or not voltage:
+        return None
+    rows = []
+    for p in doc.pages:
+        for ln in (p.raw or p.text).replace("\n", "\n").splitlines() + p.text.splitlines():
+            if not re.search(rf"(?<!\d){voltage}(?!\d)", ln):
+                continue
+            pairs = re.findall(r"(?<![\d/])(\d{3,4})\s*/\s*(\d{3,4})(?![\d/])", re.sub(r"\d{3}/\d{3}(?=\s+\d\s+\d\d\b)", " ", ln))
+            pairs = [(a, b) for a, b in pairs if int(b) > int(a) >= 100 and voltage not in (a, b)]
+            if pairs:
+                rows.append((p.number, ln.strip(), pairs[0]))
+    if not rows or not all(float(r[2][0 if unit == "kw" else 1]) >= float(c["value"]) for r in rows):
+        return None
+    cite = verify(doc, rows[0][1][:120], rows[0][0])
+    if not cite:
+        return None
+    return {"citation": cite.model_dump(mode="json"), "rows": len(rows),
+            "value": rows[0][2][0 if unit == "kw" else 1], "line": rows[0][1]}
+
+
+def excluded_for_size(quote: str, size: float | None) -> str | None:
+    """'Included 300-500 kW | Not included 600-1200 kW': does the project's size fall in the excluded range?"""
+    if not size:
+        return None
+    for m in re.finditer(r"(?i)not\s+(?:included|available|supplied)\s+(\d{2,5})\s*(?:-|–|to)\s*(\d{2,5})\s*(kw|kva)", quote):
+        if float(m.group(1)) <= size <= float(m.group(2)):
+            return m.group(0)
+    return None
+
+
+def _reader_cite(doc: docs.Document, answer: dict | None):
+    q = str((answer or {}).get("quote") or "")
+    if not q or "..." in q or "without a verifiable" in q or q.startswith("chunks disagree"):
+        return None
+    c = verify(doc, q, answer.get("page"))
+    return c if c and c.match in ("exact", "normalized", "compact", "table", "table-row") else None
+
+
 def inspect_parts(reqs: list[dict], parts_by_req: dict[str, list[dict]], doc: docs.Document,
-                  reader: dict | None = None) -> list[dict]:
-    """reader: {req_id: {"verdict", "quote", "page"}} from the independent reader, or None. Mutates parts; returns a log."""
+                  reader: dict | None = None, others: tuple = (), project: dict | None = None) -> list[dict]:
+    """reader: {req_id: {"verdict", "quote", "page"}} from the independent reader, or None. others: the supplier's own
+    bid and replies. project: {"voltage": "480", "kw": 2000}. Mutates parts; returns a log."""
     log = []
+    project = project or {}
+
+    def keep(rid, i, c, new):
+        parts_by_req[rid][i] = new
+        log.append({"req_id": rid, "cid": c["cid"], "kind": new["kind"], "verdict": new["verdict"], "why": new["why"]})
+        return new
+
+    # one line of a datasheet offered for two requirements belongs to the one whose wording it matches
+    shared: dict = {}
+    for r in reqs:
+        for i, p in enumerate(parts_by_req[r["req_id"]]):
+            if "probably a different attribute" in str(p.get("why", "")):
+                m = re.search(r"\((['\"])(.{8,}?)\1\)", str(p["why"]))
+                if m:
+                    shared.setdefault(m.group(2)[:40], []).append((r, i))
+    for quote, claimants in shared.items():
+        score = lambda r: len(_content_words(r.get("requirement", "")) & _content_words(quote))
+        ranked = sorted(claimants, key=lambda x: -score(x[0]))
+        if len(ranked) < 2 or score(ranked[0][0]) <= score(ranked[1][0]):
+            continue
+        r, i = ranked[0]
+        c = r["conditions"][i]
+        for p in doc.pages:
+            line = next((ln.strip() for ln in p.text.splitlines() if re.sub(r"\s+", " ", quote)[:30] in re.sub(r"\s+", " ", ln)), None)
+            if line:
+                cite = verify(doc, line[:120], p.number)
+                got = compute_numeric(c, line, lines_above(doc, line, p.number))
+                if cite and got and got["verdict"] == "complies" and not listed_as_choice(doc, cite):
+                    keep(r["req_id"], i, c, dict(parts_by_req[r["req_id"]][i], verdict="complies", conf=0.65, kind="shared line assigned", cite=cite.model_dump(mode="json"),
+                                                 why=f"the line is about this requirement more than the other that cited it; {got['why']} ({line[:80]!r})"))
+                break
     for r in reqs:
         rid = r["req_id"]
         for i, c in enumerate(r["conditions"]):
@@ -321,14 +496,35 @@ def inspect_parts(reqs: list[dict], parts_by_req: dict[str, list[dict]], doc: do
             judged = any(k in p["why"] for k in ("model judgement on verified quote", "is not shown in the quote",
                                                  "do not appear in the quote", "does not mention", "the expected words are missing"))
             new = None
+            a = (reader or {}).get(rid) or {}
+            rc = _reader_cite(doc, a) if reader else None
+            # 0a. excluded for this size: the document itself says the item is not part of what is offered at this rating
+            out_of_range = excluded_for_size(q + " " + str(p.get("why", "")), project.get("kw"))
+            if out_of_range and p["verdict"] in ("unclear", "missing"):
+                keep(rid, i, c, dict(p, verdict="deviates", conf=0.75, kind="excluded for this size",
+                                     why=f"the document says {out_of_range!r} and this project's rating is {project['kw']:g}: not included"))
+                continue
+            # 0b. a ratings table: the rows for the project's voltage are the selected option
+            if "selected option is not marked" in p["why"]:
+                got = rating_for_voltage(doc, c, project.get("voltage", ""))
+                if got:
+                    keep(rid, i, c, dict(p, verdict="complies", conf=0.75, kind="rating for the project voltage", cite=got["citation"],
+                                         why=f"every {project['voltage']} V row of the ratings table gives {got['value']} {c['unit']} >= {c['value']} "
+                                             f"({got['rows']} row(s), e.g. {got['line'][:70]!r})"))
+                    continue
             # 1. judged evidence: compute from the quote itself
             if judged and p.get("cite") and p["cite"].get("match") in ("exact", "normalized", "compact", "table", "table-row") \
-                    and "..." not in q and chr(0x2026) not in q:
-                got = compute_numeric(c, q, lines_above(doc, q, p["cite"].get("page"))) or compute_text(c, q)
+                    and "..." not in q and chr(0x2026) not in q and not _is_choice(doc, p):
+                above = lines_above(doc, q, p["cite"].get("page"))
+                got = compute_numeric(c, q, above) or compute_text(c, q, above)
+                if got and got["verdict"] == "complies" and rc and a.get("verdict") == "deviates":
+                    other = compute_numeric(c, rc.quote, lines_above(doc, rc.quote, rc.page)) or compute_text(c, rc.quote)
+                    if other and other["verdict"] == "deviates":
+                        got = None  # the second reading quotes the same quantity saying otherwise: a person decides
                 if got and got["verdict"] in ("complies", "deviates"):
                     new = dict(p, verdict=got["verdict"], why=got["why"] + f" ({q[:80]!r})", conf=0.8, kind="computed from the quote")
                 elif got and got["verdict"] == "partial":
-                    found = find_terms(doc, c, got["missing"])
+                    found = find_terms(doc, c, got["missing"], others)
                     if found is not None:  # the rest of the document states the missing words, next to the attribute
                         new = dict(p, verdict="complies", conf=0.75, kind="computed from the quote",
                                    other_cite=found[0]["citation"],
@@ -337,6 +533,21 @@ def inspect_parts(reqs: list[dict], parts_by_req: dict[str, list[dict]], doc: do
                     else:
                         new = dict(p, verdict="unclear", conf=0.5, why=got["why"] + "; not stated anywhere else in the document",
                                    kind="one missing fact", missing=got["missing"])
+            # 1b. judged, not computable from our quote, but the second reader quoted words the code can compute
+            if (new is None or new["verdict"] == "unclear") and judged and p["verdict"] == "complies" and rc \
+                    and a.get("verdict") == "complies" and not _is_choice(doc, p) and not listed_as_choice(doc, rc):
+                above = lines_above(doc, rc.quote, rc.page)
+                got = compute_numeric(c, rc.quote, above) or compute_text(c, rc.quote, above)
+                if got and got["verdict"] == "complies":
+                    new = dict(p, verdict="complies", conf=0.8, kind="confirmed by the second reading", other_cite=rc.model_dump(mode="json"),
+                               why=f"two independent readings agree, and the second one's quote computes: {got['why']} ({rc.quote[:80]!r})")
+            if new is None and "is not shown in the quote" in p["why"] and p["verdict"] in ("complies", "deviates") and p.get("cite") \
+                    and not _is_choice(doc, p):
+                m = re.search(r"offered ([\d.,]+) ", p["why"])
+                stated = unit_stated_elsewhere(doc, c, _f(m.group(1))) if m and p["verdict"] == "complies" else None
+                if stated:
+                    new = dict(p, conf=0.75, kind="unit stated elsewhere", other_cite=stated["citation"],
+                               why=p["why"].replace(", confirm", "") + f"; the same value with its unit is printed as {stated['line'][:60]!r}")
             if new is None and "is not shown in the quote" in p["why"] and p["verdict"] in ("complies", "deviates") and p.get("cite"):
                 hd = unit_from_heading(doc, c, q, p["cite"].get("page"))
                 if hd:
@@ -350,7 +561,7 @@ def inspect_parts(reqs: list[dict], parts_by_req: dict[str, list[dict]], doc: do
                 cite = verify(doc, rq, a.get("page")) if rq and "..." not in rq and "without a verifiable" not in rq else None
                 if cite and cite.match in ("exact", "normalized", "compact"):
                     got = compute_numeric(c, cite.quote, lines_above(doc, cite.quote, cite.page))
-                    if got and got["verdict"] in ("complies", "deviates") and \
+                    if got and got["verdict"] in ("complies", "deviates") and not listed_as_choice(doc, cite) and \
                             not any(k in p["why"] for k in ("listed as a choice", "selected option is not marked")):
                         new = dict(p, verdict=got["verdict"], cite=cite.model_dump(mode="json"), conf=0.75,
                                    why=f"disputed clause inspected: the independent reader's quote is on page {cite.page}; "
@@ -368,11 +579,12 @@ def inspect_parts(reqs: list[dict], parts_by_req: dict[str, list[dict]], doc: do
             # 3. option dependence: a compliant value the document offers only as an option
             if p["verdict"] == "complies" and p.get("source", "datasheet") == "datasheet":
                 st = option_state(doc, c, _tokens_for(c, p))
-                if st and st["state"] in ("unselected", "listed"):
+                if st and st["state"] in ("unselected", "listed", "ambiguous"):
                     parts_by_req[rid][i] = dict(p, verdict="unclear", conf=min(p["conf"], 0.5), kind="depends on an option",
                                                 option=st, other_cite=st["citation"],
                                                 why=f"{p['why']}; but the document offers it as an option that is "
-                                                    + ("not marked" if st["state"] == "unselected" else "available, with no mark of what is supplied")
+                                                    + {"unselected": "not marked", "listed": "available, with no mark of what is supplied",
+                                                       "ambiguous": "marked twice with different values"}[st["state"]]
                                                     + f" (p{st['page']}: {st['line']!r}): ask whether it is supplied")
                     log.append({"req_id": rid, "cid": c["cid"], "kind": "depends on an option", "verdict": "unclear",
                                 "why": f"option not marked: {st['line']}"})

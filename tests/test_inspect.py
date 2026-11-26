@@ -143,3 +143,72 @@ def test_missing_descriptive_words_are_a_question_not_a_rejection():
 def test_regression_g10_a_neighbouring_quantity_is_never_compared(quote, cond):
     """Held-out G10 (run once on frozen code): a fuel FLOW figure was computed as fuel consumption and rejected."""
     assert I.compute_numeric(dict(cond, kind="numeric"), quote, "Fuel System Fuel Consumption") is None
+
+
+# ------------------------------------------------------------------ ambiguous selections and look-alike labels
+
+def test_two_ticked_options_with_different_values_are_ambiguous_never_approved():
+    d = _doc("Maximum ambient 122 °F", "OPTIONS\n\u2612 40 °C ambient cooling system\n\u2612 50 °C ambient cooling system")
+    p, _ = _run(d, _part("Maximum ambient 122 °F"))
+    assert p["verdict"] == "unclear" and p["option"]["state"] == "ambiguous"
+
+
+@pytest.mark.parametrize("quote", ["Prime Fuel Consumption at 100% load 141.6 gph", "Fuel Consumption (Prime Power) 100% 124 gal/hr",
+                                   "Max Fuel Flow 158 gal/hr"])
+def test_a_prime_or_flow_figure_never_settles_a_standby_consumption_requirement(quote):
+    fuel = {"attribute": "average_fuel_consumption_full_standby_load", "kind": "numeric", "op": "<=", "value": 145, "unit": "gph"}
+    assert I.compute_numeric(fuel, quote, "Fuel consumption") is None
+
+
+def test_standby_consumption_is_still_computed():
+    fuel = {"attribute": "average_fuel_consumption_full_standby_load", "kind": "numeric", "op": "<=", "value": 145, "unit": "gph"}
+    assert I.compute_numeric(fuel, "Standby Fuel Consumption at 100% load 606 Lph (160.1 gph)")["verdict"] == "deviates"
+
+
+START = {"cid": "R07a", "attribute": "starting_system_voltage_and_type", "kind": "text", "terms": ["24 volt", "electric starter"], "match": "all"}
+
+
+@pytest.mark.parametrize("quote", ["Engine Starter - 24 Volt DC Motor", "Starting voltage 24 V, negative ground",
+                                   "Starter motor rated voltage (DC) Dual, 24"])
+def test_a_starter_voltage_is_read_from_its_usual_wordings(quote):
+    assert I.compute_text(START, quote)["verdict"] == "complies"
+
+
+@pytest.mark.parametrize("quote", ["Battery voltage (DC) 12", "Battery charger 24 V DC output", "Starter motor rated voltage (DC) 12",
+                                   "Control voltage 24 V DC"])
+def test_battery_charger_or_control_voltage_is_not_the_starting_system(quote):
+    got = I.compute_text(START, quote)
+    assert not got or got["verdict"] != "complies"
+
+
+def test_a_computed_approval_never_rests_on_a_choice():
+    gov = {"cid": "x", "attribute": "excitation_type", "kind": "text", "terms": ["pmg"], "match": "any"}
+    d = _doc("Excitation\n\u2751 PMG excitation")
+    part = {"cid": "x", "verdict": "unclear", "conf": 0.5, "source": "datasheet",
+            "why": "model judgement on verified quote: 'PMG excitation'; but this is listed as a choice",
+            "cite": {"doc_id": "t", "page": 1, "quote": "PMG excitation", "match": "exact"}}
+    p, _ = _run(d, part, gov)
+    assert p["verdict"] != "complies"
+
+
+def test_a_distinctive_term_stated_elsewhere_is_found_a_common_word_is_not_borrowed():
+    alt = {"cid": "x", "attribute": "alternator_construction", "kind": "text", "terms": ["4 pole", "2/3 pitch"], "match": "all"}
+    d = _doc("Brushless alternator", "Superior voltage waveform from a two-thirds pitch stator", "Type 4-Pole, Rotating-Field")
+    assert len(I.find_terms(d, alt, ["2/3 pitch", "4 pole"])) == 2
+    assert I.find_terms(_doc("Main line breaker 4 pole"), alt, ["4 pole"]) is None            # another part's poles
+    assert I.find_terms(_doc("Two-thirds pitch available as an option"), alt, ["2/3 pitch"]) is None
+    ctl = {"cid": "y", "attribute": "silencer_location", "kind": "text", "terms": ["inside"], "match": "all"}
+    assert I.find_terms(_doc("Keep the operator manual inside the control cabinet drawer at all times"), ctl, ["inside"]) is None
+
+
+def test_a_range_marked_not_included_excludes_this_projects_size():
+    assert I.excluded_for_size("Included 300-500 kW | Not included 600-1200 kW", 1200)
+    assert not I.excluded_for_size("Included 300-500 kW | Not included 600-1200 kW", 500)
+
+
+def test_only_the_rows_for_the_project_voltage_decide_a_rating():
+    kw = {"cid": "x", "attribute": "standby_power_rating_kw", "kind": "numeric", "op": ">=", "value": 2000, "unit": "kW"}
+    good = _doc("Alternator Voltage Ph Hz kW/kVA\n7M4054 277/480 3 60 2000/2500 3007\n7M4046 347/600 3 60 1590/1988 1913")
+    assert I.rating_for_voltage(good, kw, "480")["rows"] >= 1
+    mixed = _doc("7M4054 277/480 3 60 2000/2500\n7M4044 277/480 3 60 1590/1988")
+    assert I.rating_for_voltage(mixed, kw, "480") is None                                   # one 480 V row falls short

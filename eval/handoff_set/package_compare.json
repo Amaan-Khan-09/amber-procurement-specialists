@@ -12,8 +12,8 @@
   "datasheet only + look": {
    "n": 22,
    "right action": 17,
-   "to an engineer": 8,
-   "correct decisions": 7,
+   "to an engineer": 6,
+   "correct decisions": 9,
    "questions": 7,
    "wrong decisions": 0,
    "missed escalations": 0
@@ -412,11 +412,11 @@
     "expected": "complies",
     "expected_route": "decide",
     "answer": "complies",
-    "route": "engineer",
-    "kind": "confirm a reading",
-    "outcome": "unnecessary hand-off",
+    "route": "decide",
+    "kind": "decided",
+    "outcome": "correct decision",
     "severity": null,
-    "why": "offered 2000 kW meets >= 2000 kW; offered 2500 kVA meets >= 2500 kVA; unit kVA is not shown in the quote, confirm"
+    "why": "offered 2000 kW meets >= 2000 kW; offered 2500 kVA meets >= 2500 kVA; unit kVA is not shown in the quote; the unit is in the table heading 'kW (kVA)' (page 13)"
    },
    {
     "id": "PKG/B2/R02",
@@ -425,11 +425,11 @@
     "expected": "complies",
     "expected_route": "decide",
     "answer": "complies",
-    "route": "engineer",
-    "kind": "confirm a reading",
-    "outcome": "unnecessary hand-off",
+    "route": "decide",
+    "kind": "decided",
+    "outcome": "correct decision",
     "severity": null,
-    "why": "offered 277/480, 3 Phase, Wye, 4 Wire Voltage - 277/480, 3 Phase, Wye, 4 Wire meets all of: 480Y/277, 3 phase, 4 wire; offered 60 Hz meets == 60 Hz; unit Hz is not shown in the quote, confirm"
+    "why": "offered 277/480, 3 Phase, Wye, 4 Wire Voltage - 277/480, 3 Phase, Wye, 4 Wire meets all of: 480Y/277, 3 phase, 4 wire; offered 60 Hz meets == 60 Hz; unit Hz is not shown in the quote; the same value with its unit is printed as 'DQKAB      DQKAB, Diesel Genset, 60Hz, 2000kW-Standby Rating'"
    },
    {
     "id": "PKG/B2/R04",
@@ -1005,7 +1005,7 @@
     "kind": "decided",
     "outcome": "correct decision",
     "severity": null,
-    "why": "offered 277/480, 3 Phase, Wye, 4 Wire Voltage - 277/480, 3 Phase, Wye, 4 Wire meets all of: 480Y/277, 3 phase, 4 wire; offered 60 Hz meets == 60 Hz; unit Hz is not shown in the quote, confirm | confirmed by b2-tidewater-generator: offered 60 Hz meets == 60 Hz"
+    "why": "offered 277/480, 3 Phase, Wye, 4 Wire Voltage - 277/480, 3 Phase, Wye, 4 Wire meets all of: 480Y/277, 3 phase, 4 wire; offered 60 Hz meets == 60 Hz; unit Hz is not shown in the quote | confirmed by b2-tidewater-generator: offered 60 Hz meets == 60 Hz; the same value with its unit is printed as 'DQKA"
    },
    {
     "id": "PKG/B2/R04",

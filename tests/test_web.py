@@ -182,7 +182,9 @@ def test_results_carry_the_independent_readers_verdicts_without_changing_any_ver
     by_id = {f["id"]: f for f in r["result"]["findings"]}
     assert all(x["agrees"] == (x["verdict"] == by_id[i]["status"]) for i, x in cr.items())
     pkg = client.get("/api/results/example:package_GEN").json()["cross_read"]
-    assert {i.split("/")[0] for i in pkg} == {"submittal:B1", "submittal:B3", "submittal:B4"}  # B2's 66-page sheet is not cross-read
+    assert {i.split("/")[0] for i in pkg} == {"submittal:B1", "submittal:B2", "submittal:B3", "submittal:B4"}
+    # B2's 66-page package was read on selected pages only: it shows what that reading quoted, never "not found"
+    assert all(x["verdict"] in ("complies", "deviates") for i, x in pkg.items() if i.startswith("submittal:B2"))
 
 
 def test_the_proof_tab_reports_what_the_independent_reader_tells_us(client):

@@ -1,5 +1,5 @@
 {
- "_summary": "2 of 2 replies read: B1 (15 open items asked), B2 (9 open items asked)",
+ "_summary": "2 of 2 replies read: B1 (15 open items asked), B2 (8 open items asked)",
  "read": [
   {
    "file": "B1_northline_reply.txt",
@@ -29,7 +29,6 @@
    "bid": "B2",
    "matched_by": "sender name in the vendor master",
    "asked": [
-    "R07",
     "R09",
     "R11",
     "R12",

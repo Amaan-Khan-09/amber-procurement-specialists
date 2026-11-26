@@ -89,3 +89,14 @@ def test_the_saved_lookup_snapshot_names_sources_and_times():
     for sc in s["screens"].values():
         for k in ("entity", "sam_exclusions", "screening_list"):
             assert sc[k]["looked_up"] and sc[k]["source"] and sc[k]["status"] in ("confirmed", "no match", "ambiguous", "unavailable")
+
+
+def test_a_real_supplier_scorecard_never_passes_what_was_not_checked():
+    s = R.snapshot()
+    cand = s["discovery"]["candidates"][0]
+    card = R.scorecard(cand, s["screens"][cand["legal_entity"]])
+    by = {r["criterion"]: r["status"] for r in card["criteria"]}
+    assert by["Not excluded from federal procurement"] == "not verified" and card["overall"] != "pass"
+    assert all(by[n] == "not verified" for n, _ in R.NOT_CHECKABLE)
+    assert R.scorecard(cand, {"sam_exclusions": {"status": "confirmed"}})["overall"] == "fail"
+    assert R.scorecard({"legal_entity": "X"}, None)["overall"] == "flag"

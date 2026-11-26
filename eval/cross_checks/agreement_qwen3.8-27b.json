@@ -147,7 +147,7 @@
   "human": true,
   "conf": 0.5,
   "reviewer": "unclear",
-  "why": "no value found, but the submittal mentions single, electrical, heater on page(s) [2]"
+  "why": "no value found, but the submittal mentions heater, electrical, single on page(s) [2]"
  },
  {
   "case": "G7",
@@ -157,7 +157,7 @@
   "human": true,
   "conf": 0.5,
   "reviewer": "unclear",
-  "why": "no value found, but the submittal mentions output, circuit, breaker on page(s) [1, 2, 4]"
+  "why": "no value found, but the submittal mentions output, pole, breaker on page(s) [1, 2, 4]"
  },
  {
   "case": "G7",
@@ -197,7 +197,7 @@
   "human": true,
   "conf": 0.5,
   "reviewer": "unclear",
-  "why": "no value found, but the submittal mentions jacket, water, count on page(s) [1, 2, 3]; no value found, but the submittal mentions jacket, water, heater on page(s) [2, 3]; no value found, but the submittal mentions water, jacket, electrical on page(s) [2, 3]"
+  "why": "no value found, but the submittal mentions jacket, water, count on page(s) [1, 2, 3]; no value found, but the submittal mentions jacket, water, heater on page(s) [2, 3]; no value found, but the submittal mentions jacket, water, heater on page(s) [2, 3]"
  },
  {
   "case": "G7",
@@ -617,7 +617,7 @@
   "human": true,
   "conf": 0.5,
   "reviewer": "deviates",
-  "why": "no value found, but the submittal mentions water, heater on page(s) [2]; no value found, but the submittal mentions power, water, heater on page(s) [1, 2, 3, 4]; no value found, but the submittal mentions volt, phase, water on page(s) [1, 2, 3, 4]"
+  "why": "no value found, but the submittal mentions water, heater on page(s) [2]; no value found, but the submittal mentions power, heater, water on page(s) [1, 2, 3, 4]; no value found, but the submittal mentions volt, phase, heater on page(s) [1, 2, 3, 4]"
  },
  {
   "case": "G4",
@@ -787,7 +787,7 @@
   "human": true,
   "conf": 0.5,
   "reviewer": "missing",
-  "why": "no value found, but the submittal mentions state, circuit, solid on page(s) [2, 3]"
+  "why": "no value found, but the submittal mentions state, pole, solid on page(s) [2, 3]"
  },
  {
   "case": "G5",
@@ -827,7 +827,7 @@
   "human": true,
   "conf": 0.5,
   "reviewer": "missing",
-  "why": "no value found, but the submittal mentions jacket, water on page(s) [2, 3]; no value found, but the submittal mentions jacket, water on page(s) [2, 3]; no value found, but the submittal mentions phase, water, jacket on page(s) [1, 2, 3]"
+  "why": "no value found, but the submittal mentions jacket, water on page(s) [2, 3]; no value found, but the submittal mentions jacket, water on page(s) [2, 3]; no value found, but the submittal mentions phase, jacket, water on page(s) [1, 2, 3]"
  },
  {
   "case": "G5",
@@ -997,7 +997,7 @@
   "human": true,
   "conf": 0.5,
   "reviewer": "unclear",
-  "why": "no value found, but the submittal mentions circuit, breaker, solid on page(s) [1, 2, 3, 4]"
+  "why": "no value found, but the submittal mentions circuit, breaker, state on page(s) [1, 2, 3, 4]"
  },
  {
   "case": "G6",
@@ -1037,7 +1037,7 @@
   "human": true,
   "conf": 0.5,
   "reviewer": "unclear",
-  "why": "no value found, but the submittal mentions water, jacket, heater on page(s) [2, 3, 4]; no value found, but the submittal mentions water, jacket, heater on page(s) [2, 3, 4]; no value found, but the submittal mentions water, electrical, phase on page(s) [1, 2, 3, 4]"
+  "why": "no value found, but the submittal mentions water, jacket, heater on page(s) [2, 3, 4]; no value found, but the submittal mentions water, jacket, heater on page(s) [2, 3, 4]; no value found, but the submittal mentions electrical, water, phase on page(s) [1, 2, 3, 4]"
  },
  {
   "case": "G6",
@@ -1247,7 +1247,7 @@
   "human": true,
   "conf": 0.5,
   "reviewer": "deviates",
-  "why": "no value found, but the submittal mentions water, heater on page(s) [2]; no value found, but the submittal mentions water, heater on page(s) [2]; no value found, but the submittal mentions electrical, phase, water on page(s) [1, 2, 3, 4, 7]"
+  "why": "no value found, but the submittal mentions water, heater on page(s) [2]; no value found, but the submittal mentions water, heater on page(s) [2]; no value found, but the submittal mentions electrical, phase, heater on page(s) [1, 2, 3, 4, 7]"
  },
  {
   "case": "G8",
@@ -1547,7 +1547,7 @@
   "human": true,
   "conf": 0.5,
   "reviewer": "unclear",
-  "why": "no value found, but the submittal mentions alternator, construction, pitch on page(s) [1, 2, 3, 4]"
+  "why": "no value found, but the submittal mentions alternator, pitch, construction on page(s) [1, 2, 3, 4]"
  },
  {
   "case": "G9",
@@ -1567,7 +1567,7 @@
   "human": true,
   "conf": 0.5,
   "reviewer": "unclear",
-  "why": "no value found, but the submittal mentions electrical, phase, single on page(s) [2, 3, 4, 5]"
+  "why": "no value found, but the submittal mentions electrical, single, phase on page(s) [2, 3, 4, 5]"
  },
  {
   "case": "G9",
@@ -1617,7 +1617,7 @@
   "human": true,
   "conf": 0.5,
   "reviewer": "unclear",
-  "why": "no value found, but the submittal mentions water, heater, jacket on page(s) [2, 3, 4, 5]; no value found, but the submittal mentions water, heater, jacket on page(s) [2, 3, 4, 5]; no value found, but the submittal mentions water, electrical, phase on page(s) [2, 3, 4, 5]"
+  "why": "no value found, but the submittal mentions water, heater, jacket on page(s) [2, 3, 4, 5]; no value found, but the submittal mentions water, heater, jacket on page(s) [2, 3, 4, 5]; no value found, but the submittal mentions electrical, water, phase on page(s) [2, 3, 4, 5]"
  },
  {
   "case": "G9",
@@ -1777,7 +1777,7 @@
   "human": true,
   "conf": 0.5,
   "reviewer": "unclear",
-  "why": "no value found, but the submittal mentions single, heater, electrical on page(s) [1, 2, 4]"
+  "why": "no value found, but the submittal mentions heater, single, electrical on page(s) [1, 2, 4]"
  },
  {
   "case": "G10",
@@ -1787,7 +1787,7 @@
   "human": true,
   "conf": 0.5,
   "reviewer": "unclear",
-  "why": "no value found, but the submittal mentions circuit, solid, breaker on page(s) [1, 2]"
+  "why": "no value found, but the submittal mentions solid, circuit, pole on page(s) [1, 2]"
  },
  {
   "case": "G10",
@@ -1987,7 +1987,7 @@
   "human": true,
   "conf": 0.5,
   "reviewer": "missing",
-  "why": "no value found, but the submittal mentions phase, heater, electrical on page(s) [1, 3]"
+  "why": "no value found, but the submittal mentions heater, phase, electrical on page(s) [1, 3]"
  },
  {
   "case": "G11",
@@ -1997,7 +1997,7 @@
   "human": true,
   "conf": 0.5,
   "reviewer": "unclear",
-  "why": "no value found, but the submittal mentions circuit, breaker, solid on page(s) [1, 2]"
+  "why": "no value found, but the submittal mentions breaker, circuit, state on page(s) [1, 2]"
  },
  {
   "case": "G11",
@@ -2037,7 +2037,7 @@
   "human": true,
   "conf": 0.5,
   "reviewer": "missing",
-  "why": "no value found, but the submittal mentions water, heater, jacket on page(s) [1, 3, 4, 5]; no value found, but the submittal mentions water, heater, jacket on page(s) [1, 3, 4, 5]; no value found, but the submittal mentions water, phase, heater on page(s) [1, 3, 4, 5]"
+  "why": "no value found, but the submittal mentions water, heater, jacket on page(s) [1, 3, 4, 5]; no value found, but the submittal mentions water, heater, jacket on page(s) [1, 3, 4, 5]; no value found, but the submittal mentions water, heater, phase on page(s) [1, 3, 4, 5]"
  },
  {
   "case": "G11",

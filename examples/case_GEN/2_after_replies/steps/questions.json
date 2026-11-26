@@ -1,5 +1,5 @@
 {
- "_summary": "B1: 1 questions; B2: 3 questions; B3: 8 questions; B4: 18 questions",
+ "_summary": "B1: 1 questions; B2: 2 questions; B3: 6 questions; B4: 18 questions",
  "drafts": {
   "B1": {
    "to": "V-NPS",
@@ -23,18 +23,6 @@
    "to": "V-TGC",
    "questions": [
     {
-     "ref": "R07",
-     "ask": "Spec 2.1.D.5 (Starting System): Starting system shall be 24 volt, 2-wire, negative ground, gear engaging electric starter.. Please state what is supplied",
-     "we_read": [
-      {
-       "doc": "cummins-dqkab-submittal-csdg",
-       "page": 5,
-       "quote": "Engine Starter - 24 Volt DC Motor"
-      }
-     ],
-     "kind": "clarification"
-    },
-    {
      "ref": "S8",
      "ask": "Bid scope S8: B2 S8: qualified: the bid offers less than the scope or words it differently: a clarification request is drafted; leveling meanwhile uses ",
      "we_read": [],
@@ -52,30 +40,6 @@
   "B3": {
    "to": "V-KEE",
    "questions": [
-    {
-     "ref": "R06",
-     "ask": "Spec 2.1.D.3 (Governor): Governor shall be electronic speed-sensing capable of isochronous frequency regulation from no load to full rated load.. Please state what is supplied",
-     "we_read": [
-      {
-       "doc": "kohler-kd2000-g5-626",
-       "page": 2,
-       "quote": "Governor: type, make/model KODEC Electronic"
-      }
-     ],
-     "kind": "clarification"
-    },
-    {
-     "ref": "R13",
-     "ask": "Spec 2.1.G (Generator): Generator shall be 4-pole, brushless, and two-thirds pitch wound.. Please state what is supplied",
-     "we_read": [
-      {
-       "doc": "kohler-kd2000-g5-626",
-       "page": 3,
-       "quote": "Brushless alternator with brushless pilot exciter for excellent load response"
-      }
-     ],
-     "kind": "clarification"
-    },
     {
      "ref": "R16",
      "ask": "Spec 2.1.H (Generator Output Circuit Breaker(s)): Provide 3-pole generator output circuit breaker(s) with solid-state trip units.. Please state what is supplied",

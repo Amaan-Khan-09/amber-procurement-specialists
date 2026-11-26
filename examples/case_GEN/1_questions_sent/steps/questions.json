@@ -1,5 +1,5 @@
 {
- "_summary": "B1: 11 questions; B2: 9 questions; B3: 8 questions; B4: 18 questions",
+ "_summary": "B1: 11 questions; B2: 8 questions; B3: 6 questions; B4: 18 questions",
  "drafts": {
   "B1": {
    "to": "V-NPS",
@@ -83,18 +83,6 @@
    "to": "V-TGC",
    "questions": [
     {
-     "ref": "R07",
-     "ask": "Spec 2.1.D.5 (Starting System): Starting system shall be 24 volt, 2-wire, negative ground, gear engaging electric starter.. Please state what is supplied",
-     "we_read": [
-      {
-       "doc": "cummins-dqkab-submittal-csdg",
-       "page": 5,
-       "quote": "Engine Starter - 24 Volt DC Motor"
-      }
-     ],
-     "kind": "clarification"
-    },
-    {
      "ref": "R19",
      "ask": "Spec 2.1.K.1 (In Skid Diesel Fuel Tank): Provide a UL 2085 listed in-skid fuel tank with usable capacity for at least 24 hours of operation at full standby load.. What you offer does not meet it (quoted below): revise the offer or confirm the deviation",
      "we_read": [
@@ -154,30 +142,6 @@
   "B3": {
    "to": "V-KEE",
    "questions": [
-    {
-     "ref": "R06",
-     "ask": "Spec 2.1.D.3 (Governor): Governor shall be electronic speed-sensing capable of isochronous frequency regulation from no load to full rated load.. Please state what is supplied",
-     "we_read": [
-      {
-       "doc": "kohler-kd2000-g5-626",
-       "page": 2,
-       "quote": "Governor: type, make/model KODEC Electronic"
-      }
-     ],
-     "kind": "clarification"
-    },
-    {
-     "ref": "R13",
-     "ask": "Spec 2.1.G (Generator): Generator shall be 4-pole, brushless, and two-thirds pitch wound.. Please state what is supplied",
-     "we_read": [
-      {
-       "doc": "kohler-kd2000-g5-626",
-       "page": 3,
-       "quote": "Brushless alternator with brushless pilot exciter for excellent load response"
-      }
-     ],
-     "kind": "clarification"
-    },
     {
      "ref": "R16",
      "ask": "Spec 2.1.H (Generator Output Circuit Breaker(s)): Provide 3-pole generator output circuit breaker(s) with solid-state trip units.. Please state what is supplied",

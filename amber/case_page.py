@@ -9,6 +9,8 @@ import json
 import re
 from pathlib import Path
 
+from . import registries
+
 ROOT = Path(__file__).resolve().parents[1]
 SNAP = ROOT / "examples" / "case_GEN"
 EVAL = ROOT / "eval" / "handoff_set" / "results.json"
@@ -81,15 +83,18 @@ def _money(x) -> str:
     return f"${x / 1e6:.3f}M" if isinstance(x, (int, float)) else "-"
 
 
-METRIC_LABELS = [("to an engineer", "Sent to an engineer"), ("clarification requests", "Focused clarification asked"),
-                 ("supplier questions", "Other question to the supplier"), ("correct decisions", "Correct decision made alone"),
-                 ("well-founded questions", "Questions the key agrees are needed"), ("questions not needed", "Questions not needed"),
+METRIC_LABELS = [("to an engineer", "Sent to an engineer"), ("supplier questions", "Question to the supplier"),
+                 ("clarification requests", "Focused clarification"), ("unresolved", "Unresolved (engineer + any question)"),
+                 ("correct decisions", "Correct decision made alone"),
                  ("incorrect decisions (critical)", "Wrong decision: approves what fails, or rejects what complies"),
                  ("incorrect decisions (minor)", "Wrong decision: minor"), ("missed escalations", "Missed mandatory escalation"),
-                 ("unnecessary hand-offs", "Unnecessary hand-off"), ("right action", "Right action (any route)")]
+                 ("questions not needed", "Questions not needed"), ("unnecessary hand-offs", "Unnecessary hand-off"),
+                 ("right action", "Right action (any route)")]
+VERSION_COLS = (("v2", "v2: original"), ("v3", "v3: previous"), ("v4", "v4: candidate"))
 
 
-def _three(title: str, s: dict, cols=(("v1", "v1: one queue"), ("v2", "v2: baseline"), ("v3", "v3: now"))) -> str:
+def _versions(title: str, s: dict) -> str:
+    cols = [(v, c) for v, c in VERSION_COLS if v in s]
     n = s[cols[0][0]]["n"]
     rows = "".join(f"<tr><td>{_e(lab)}</td>" + "".join(
         f"<td class='n'>{s[v][k]} <span class='src'>({s[v][k] / n:.0%})</span></td>" for v, _ in cols) + "</tr>"
@@ -98,85 +103,88 @@ def _three(title: str, s: dict, cols=(("v1", "v1: one queue"), ("v2", "v2: basel
             + "".join(f"<th class='n'>{_e(c)}</th>" for _, c in cols) + "</tr>" + rows + "</table>")
 
 
-def _measured(ev: dict, fresh_file: Path) -> str:
+def _wrong(s: dict, v: str) -> int:
+    return s[v]["incorrect decisions (critical)"] + s[v]["incorrect decisions (minor)"]
+
+
+def _case_card(r: dict, title: str) -> str:
+    return (f"<div class='f'><b>{_e(title)}</b> <span class='mono'>{_e(r['id'])}</span> &middot; key: {_v(r['expected'])} {_r(r['expected_route'])}"
+            f"<div>Previous: {_v(r['v3']['answer'])} {_r(r['v3']['route'])} <span class='small'>{_e((r['v3'].get('why') or '')[:240])}</span></div>"
+            f"<div>Now: {_v(r['v4']['answer'])} {_r(r['v4']['route'])} <span class='small'>{_e((r['v4'].get('why') or '')[:300])}</span></div></div>")
+
+
+def _before_after(rows: list[dict]) -> str:
+    by = {r["id"]: r for r in rows}
+    out = ["<h2 id='change'>One case that needed a person and now does not, and one that still does</h2><div class='card'>"]
+    if "G6/R01" in by:
+        out.append(_case_card(by["G6/R01"], "Resolved: the ratings table has several rows; the project's voltage picks the row."))
+    if "G6/R11" in by:
+        out.append(_case_card(by["G6/R11"], "Still escalates: full rating depends on how a derating clause is read, and two readings differ."))
+    out.append("<p class='small'>Both are on a real Kohler datasheet (documents seen while building).</p></div>")
+    return "".join(out)
+
+
+def _measured(ev: dict, pkg_file: Path) -> str:
     S = ev["summary"]
-    L = S["like_for_like"]
-    n = L["v2"]["n"]
-    fresh = json.loads(fresh_file.read_text(encoding="utf-8")) if fresh_file.exists() else None
-    F = fresh["summary"]["all"] if fresh else None
+    L, F = S["like_for_like"], S.get("fresh_set6") or {}
+    n = L["v4"]["n"]
 
     def tile(k, a, b, sub, cls="okt"):
         return (f"<div class='tile kpi {cls}'><div class='k'>{_e(k)}</div><div class='v'>{a} <span class='arrow'>&rarr;</span> {b}</div>"
                 f"<div class='s'>{sub}</div></div>")
-    out = ["<h2 id='measured'>Measured: baseline (v2) against now (v3) <span class='tag m'>measured</span></h2><div class='tiles'>",
-           tile("Engineer hand-offs", f"{L['v2']['to an engineer']}/{n}", f"{L['v3']['to an engineer']}/{n}",
-                f"{L['v2']['to an engineer'] / n:.0%} &rarr; {L['v3']['to an engineer'] / n:.0%} on the fixed development set"),
-           tile("Correct decisions made alone", L["v2"]["correct decisions"], L["v3"]["correct decisions"], f"of {n}"),
-           tile("Wrong decisions", L["v2"]["incorrect decisions (critical)"] + L["v2"]["incorrect decisions (minor)"],
-                L["v3"]["incorrect decisions (critical)"] + L["v3"]["incorrect decisions (minor)"],
-                f"missed escalations {L['v2']['missed escalations']} &rarr; {L['v3']['missed escalations']}")]
+    out = [_before_after(ev["results"]),
+           "<h2 id='measured'>Measured: previous version (v3) against this candidate (v4) <span class='tag m'>measured</span></h2><div class='tiles'>",
+           tile("Unresolved cases", L["v3"]["unresolved"], L["v4"]["unresolved"], f"of {n}: sent to an engineer or asked of a supplier"),
+           tile("Engineer hand-offs", L["v3"]["to an engineer"], L["v4"]["to an engineer"], f"original version: {L['v2']['to an engineer']}"),
+           tile("Correct decisions made alone", L["v3"]["correct decisions"], L["v4"]["correct decisions"], f"original: {L['v2']['correct decisions']}"),
+           tile("Wrong decisions", _wrong(L, "v3"), _wrong(L, "v4"),
+                f"missed escalations {L['v3']['missed escalations']} &rarr; {L['v4']['missed escalations']}")]
     if F:
-        wrong = lambda v: F[v]["incorrect decisions (critical)"] + F[v]["incorrect decisions (minor)"]
-        out.append(tile("Fresh unseen sheets: hand-offs", f"{F['v2']['to an engineer']}/{F['v2']['n']}",
-                        f"{F['v3']['to an engineer']}/{F['v3']['n']}", "frozen code, two sheets run once", "infot"))
-        out.append(tile("Fresh unseen: wrong decisions", wrong("v2"), wrong("v3"),
-                        "one added: a fuel FLOW figure read as consumption (since fixed, not unseen any more)", "badt"))
+        out.append(tile("Fresh sheets: unresolved", F["v3"]["unresolved"], F["v4"]["unresolved"], f"of {F['v4']['n']}, candidate frozen first", "infot"))
+        out.append(tile("Fresh sheets: wrong decisions", _wrong(F, "v3"), _wrong(F, "v4"),
+                        f"missed escalations {F['v3']['missed escalations']} &rarr; {F['v4']['missed escalations']}",
+                        "infot" if _wrong(F, "v4") <= _wrong(F, "v3") else "badt"))
     out.append("</div><div class='card scroll'>")
-    out.append(_three("Fixed development set (documents seen while building)", L))
     if F:
-        out.append(_three(f"Fresh unseen: Multiquip and Kohler sheets, code frozen at {fresh['frozen_commit']}, "
-                          f"reading by {fresh['extraction_model']}", F))
-    after = S.get("fresh_unseen_set5")
-    if after:
-        out.append(_three("The same two sheets after the fix (a repair record, not an unseen result)", after))
-    out.append("<p class='small'><b>v1</b> = anything under 0.70 to one queue (commit 48b321c). <b>v2</b> = decided / supplier / "
-               "engineer, with the supplier's documents reconciled (commit 9cd1b4e). <b>v3</b> = v2 plus a second look in code at "
-               "the disputed clause and its evidence. All three read the same saved model output. A clarification is <b>not</b> "
-               "counted as resolved: it counts only as a question, and is scored resolved only where a reply verifies it (below). "
-               "Answer keys were written by an AI before the code they score, and are not yet reviewed by a person.</p>")
-    like = [r for r in ev["results"] if r["group"] not in ("prequal", "unseen datasheet", "fresh unseen")]
-    changed = [r for r in like if (r["v2"]["outcome"], r["v2"]["route"]) != (r["v3"]["outcome"], r["v3"]["route"])]
-    good = {"correct decision"}
-    better = [r for r in changed if r["v3"]["outcome"] in good or r["v3"]["outcome"].endswith("well-founded")]
-    worse = [r for r in changed if r["v3"]["outcome"] in ("incorrect decision", "missed escalation") or r["v3"]["outcome"].endswith("not needed")
-             or (r["v3"]["outcome"] == "unnecessary hand-off" and r["v2"]["outcome"] != "unnecessary hand-off")]
-    other = [r for r in changed if r not in better and r not in worse]
+        out.append(_versions("Fresh datasheets nobody had opened when the candidate was frozen", F))
+    out.append(_versions("Fixed development set (documents seen while building: a repair record)", L))
+    out.append("<p class='small'><b>v2</b> commit 9cd1b4e. <b>v3</b> commit 1d14f3e. <b>v4</b> this candidate. All read the same saved model "
+               "output. No question is counted as resolved without a verified follow-up, and there is none in these sets. Answer keys "
+               "were written by an AI before the code they score and are <b>not yet reviewed by a person</b>.</p>")
+    like = [r for r in ev["results"] if r["group"] in ("datasheet", "package", "link", "bid scope", "decision")]
+    changed = [r for r in like if (r["v3"]["answer"], r["v3"]["route"]) != (r["v4"]["answer"], r["v4"]["route"])]
+    worse = [r for r in changed if r["v4"]["outcome"] in ("incorrect decision", "missed escalation") or r["v4"]["outcome"].endswith("not needed")]
+    better = [r for r in changed if r not in worse]
 
     def lst(rows):
-        return ("<table><tr><th>Case</th><th>Key</th><th>v2</th><th>v3</th><th>Why (v3)</th></tr>" + "".join(
-            f"<tr><td class='mono'>{_e(r['id'])}</td><td>{_v(r['expected'])}</td><td>{_v(r['v2']['answer'])} {_r(r['v2']['route'])}</td>"
-            f"<td>{_v(r['v3']['answer'])} {_r(r['v3']['route'])}</td><td class='small'>{_e((r['v3'].get('why') or r['v3'].get('kind') or '')[:150])}</td></tr>"
-            for r in rows) + "</table>")
-    out.append(f"<details><summary>Improved ({len(better)} cases)</summary>{lst(better)}</details>")
+        return ("<table><tr><th>Case</th><th>Key</th><th>v3</th><th>v4</th><th>Why (v4)</th></tr>" + "".join(
+            f"<tr><td class='mono'>{_e(r['id'])}</td><td>{_v(r['expected'])}</td><td>{_v(r['v3']['answer'])} {_r(r['v3']['route'])}</td>"
+            f"<td>{_v(r['v4']['answer'])} {_r(r['v4']['route'])}<div class='src'>{_e(r['v4']['outcome'])}</div></td>"
+            f"<td class='small'>{_e((r['v4'].get('why') or r['v4'].get('kind') or '')[:170])}</td></tr>" for r in rows) + "</table>")
+    out.append(f"<details><summary>Changed for the better or sideways ({len(better)} cases)</summary>{lst(better)}</details>")
     out.append(f"<details><summary>Got worse ({len(worse)} cases)</summary>{lst(worse)}</details>")
-    if other:
-        out.append(f"<details><summary>Changed, neither better nor worse ({len(other)})</summary>{lst(other)}</details>")
-    why = {"confirm a reading": "the evidence is judged, not computed: a term or unit the code cannot confirm from the quote",
+    why = {"confirm a reading": "judged, not computable: a term or unit the code cannot confirm",
            "contested": "two models disagree and the disputed clause does not settle it",
-           "judgement": "needs engineering judgement (partial statements, conditions, discarded values)",
-           "absence not confirmed": "the document was not read a second time (large or scanned), so absence is unconfirmed",
-           "conditional rating": "a derating footnote changes the rating when a fitted option applies",
-           None: "an award or schedule decision", "": "an award or schedule decision"}
-    eng = [r for r in like if r["v3"]["route"] == "engineer"]
+           "judgement": "engineering judgement (partial or conditional statements, discarded values)",
+           "absence not confirmed": "large document: absence not confirmed by a whole second reading",
+           "conditional rating": "a derating footnote applies when a fitted option is fitted"}
+    eng = [r for r in like if r["v4"]["route"] == "engineer"]
     kinds: dict = {}
     for r in eng:
-        kinds.setdefault(r["v3"].get("kind"), []).append(r)
+        kinds.setdefault(r["v4"].get("kind"), []).append(r)
     out.append(f"<h3>Why {len(eng)} cases still reach an engineer</h3><table><tr><th>Reason</th><th class='n'>Cases</th>"
                "<th class='n'>needed (key agrees)</th><th>Examples</th></tr>" + "".join(
-                   f"<tr><td>{_e(why.get(k, k))}</td><td class='n'>{len(v)}</td><td class='n'>"
-                   f"{sum(1 for r in v if r['v3']['outcome'] == 'justified hand-off')}</td><td class='small mono'>"
+                   f"<tr><td>{_e(why.get(k, 'an award or schedule decision'))}</td><td class='n'>{len(v)}</td><td class='n'>"
+                   f"{sum(1 for r in v if r['v4']['outcome'] == 'justified hand-off')}</td><td class='small mono'>"
                    f"{_e(', '.join(r['id'] for r in v[:6]))}</td></tr>" for k, v in sorted(kinds.items(), key=lambda kv: -len(kv[1]))) + "</table>")
-    pf = fresh_file.with_name("package_compare.json")
-    if pf.exists():
-        pc = json.loads(pf.read_text(encoding="utf-8"))["summary"]
+    if pkg_file.exists():
+        pc = json.loads(pkg_file.read_text(encoding="utf-8"))["summary"]
         cols = list(next(iter(pc.values())))
-        out.append("<h3>What the supplier's own documents add: the same 22 package cases</h3><table><tr><th>Variant</th>"
+        out.append("<h3>What the supplier's own documents add: 22 package cases we worked on, identical routing</h3><table><tr><th>Variant</th>"
                    + "".join(f"<th class='n'>{_e(c)}</th>" for c in cols) + "</tr>" + "".join(
                        f"<tr><td>{_e(v)}</td>" + "".join(f"<td class='n'>{s[c]}</td>" for c in cols) + "</tr>" for v, s in pc.items())
-                   + "</table><p class='small'>With the same routing on both sides, reading the bid next to the datasheet raises right "
-                     "actions from 16 to 21 of 22 and cuts hand-offs from 8 to 6; today's version gets 22 right with 7 hand-offs. "
-                     "These cases were inspected while fixing them (a repair record).</p>")
-    PQ = S["new_specialist_prequal"]["v3"]
+                   + "</table>")
+    PQ = S["new_specialist_prequal"]["v4"]
     out.append(f"<p class='small'>Pre-qualification, scored separately on mock packets: {PQ['right action']} of {PQ['n']} criteria right.</p></div>")
     return "".join(out)
 
@@ -198,6 +206,23 @@ def _public_record(pr: dict) -> str:
                    f"<td class='small'><a href='{_e(e['url'])}'>{_e(e['award_id'])}</a> {_e(e['date'])} {_e(e['state'])}: {_e(e['description'][:90])}</td>"
                    f"<td>{_b(sam.get('status', 'not looked up'), 'warn' if sam.get('status') in (None, 'unavailable', 'ambiguous') else 'ok' if sam.get('status') == 'no match' else 'bad')}</td>"
                    f"<td>{_b(csl.get('status', 'not looked up'), 'ok' if csl.get('status') == 'no match' else 'warn')}</td></tr>")
+    cards = [registries.scorecard(v, (pr.get("screens") or {}).get(v["legal_entity"]))
+             for v in d.get("candidates", []) if (pr.get("screens") or {}).get(v["legal_entity"])]
+    if cards:
+        names = [r["criterion"] for r in cards[0]["criteria"]]
+        cls = {"pass": "ok", "flag": "warn", "fail": "bad", "not verified": "mute"}
+        out.append("</table><h3 style='margin-top:14px'>Pre-qualification scorecard for these real suppliers (public records only)</h3>"
+                   "<div class='scroll'><table><tr><th>Criterion</th>" + "".join(f"<th>{_e(c['legal_entity'])}</th>" for c in cards) + "</tr>"
+                   + "".join(f"<tr><td>{_e(n)}</td>" + "".join(
+                       f"<td title='{_e(c['criteria'][i]['why'])}'>{_b(c['criteria'][i]['status'], cls[c['criteria'][i]['status']])}</td>" for c in cards)
+                       + "</tr>" for i, n in enumerate(names))
+                   + "<tr><td><b>Overall</b></td>" + "".join(f"<td>{_b(c['overall'].upper(), cls[c['overall']])}</td>" for c in cards) + "</tr></table></div>")
+        first = cards[0]
+        out.append(f"<details><summary>Why, for {_e(first['legal_entity'])}</summary><table>" + "".join(
+            f"<tr><td>{_e(r['criterion'])}</td><td>{_b(r['status'], cls[r['status']])}</td><td class='small'>{_e(r['why'][:220])}"
+            + (f" &middot; <a href='{_e(r['url'])}'>record</a>" if r['url'] else "")
+            + (f"<div class='src'>{_e(r['source'])} {_e(r['looked_up'])}</div>" if r['source'] else "") + "</td></tr>"
+            for r in first["criteria"]) + "</table></details><table>")
     keyless = any(((s.get("sam_exclusions") or {}).get("status") == "unavailable") for s in (pr.get("screens") or {}).values())
     note = ("<b>Unverified:</b> the federal exclusion list (SAM.gov) could not be asked: it needs a personal API key (SAM_API_KEY) "
             "that this lookup did not have, so no supplier here is reported as cleared. " if keyless else "")
@@ -277,7 +302,7 @@ def render(snap: Path = SNAP, eval_file: Path = EVAL, back_href: str = "./") -> 
                "comes from <span class='mono'>scripts/eval_handoffs.py</span>. Labels: <span class='tag m'>measured</span> "
                "<span class='tag k'>mock data</span> <span class='tag a'>assumption</span>.</p>")
     out.append("<div class='toc'>" + "".join(f"<a href='#{a}'>{t}</a>" for a, t in [
-        ("walk", "One decision"), ("measured", "Measured"), ("public", "Public records"), ("steps", "Steps & resume"), ("decision", "Decision"), ("discovery", "Vendor discovery"),
+        ("walk", "One decision"), ("change", "Before and after"), ("measured", "Measured"), ("public", "Public records"), ("steps", "Steps & resume"), ("decision", "Decision"), ("discovery", "Vendor discovery"),
         ("prequal", "Pre-qualification"), ("links", "Record links"), ("reconcile", "Reconciled answers"), ("ranges", "Ranges"),
         ("triage", "Who acts"), ("replies", "Questions & replies")]) + "</div>")
 
@@ -286,7 +311,7 @@ def render(snap: Path = SNAP, eval_file: Path = EVAL, back_href: str = "./") -> 
 
     # ---- measured
     if ev:
-        out.append(_measured(ev, eval_file.with_name("fresh_unseen.json")))
+        out.append(_measured(ev, eval_file.with_name("package_compare.json")))
 
     # ---- steps & resume
     out.append("<h2 id='steps'>Steps, memory and resuming</h2><div class='card scroll'><table class='steps'><tr><th>Step</th><th>Status</th>"

@@ -321,3 +321,72 @@ def refresh_snapshot(bidder_names: list[str], kw: float = 2000, top: int = 5, ht
 
 def snapshot() -> dict | None:
     return json.loads(SNAPSHOT.read_text(encoding="utf-8")) if SNAPSHOT.exists() else None
+
+
+# ------------------------------------------------------------------ a pre-qualification scorecard for a REAL supplier
+
+NOT_CHECKABLE = [("Licensing", "state contractor or dealer licence: not looked up"),
+                 ("Safety record", "EMR or OSHA history: needs the insurer's letter; not looked up"),
+                 ("Finances", "financial standing: not looked up"),
+                 ("Insurance", "certificate of insurance: only the supplier can provide it"),
+                 ("Manufacturer authorization", "authorization letter: only the supplier or manufacturer can provide it"),
+                 ("Service response", "branch and response time near the site: only the supplier can state it")]
+
+
+def scorecard(candidate: dict, screen: dict | None) -> dict:
+    """pass / flag / fail / not verified for each criterion, from public records only. Nothing is passed on the strength
+    of an absence: 'not verified' says exactly what is missing."""
+    screen = screen or {}
+    ent, sam, csl = (screen.get(k) or {} for k in ("entity", "sam_exclusions", "screening_list"))
+    rows = []
+
+    def add(name, status, why, source="", looked_up="", url=""):
+        rows.append({"criterion": name, "status": status, "why": why, "source": source, "looked_up": looked_up, "url": url})
+
+    add("Legal entity identified", "pass" if ent.get("status") == "confirmed" else "flag" if ent.get("status") == "ambiguous" else "not verified",
+        ent.get("why", "not looked up") + (f"; UEI {ent['uei']}" if ent.get("uei") else ""), ent.get("source", ""), ent.get("looked_up", ""))
+    best = (candidate.get("evidence") or [{}])[0]
+    kind = candidate.get("establishes")
+    add("Has supplied equipment of this size", "pass" if kind == "supply" and candidate.get("largest_kw") else "flag",
+        f"best federal award record shows {kind or 'nothing'}" + (f" mentioning {candidate['largest_kw']:g} kW" if candidate.get("largest_kw") else "")
+        + f": {str(best.get('description', ''))[:110]!r}" + ("" if kind == "supply" else " (not a supply record)"),
+        "USAspending.gov award record", best.get("date", ""), best.get("url", ""))
+    add("Not excluded from federal procurement",
+        "fail" if sam.get("status") == "confirmed" else "pass" if sam.get("status") == "no match" else "not verified",
+        sam.get("why", "not looked up"), sam.get("source", "SAM.gov Exclusions"), sam.get("looked_up", ""))
+    add("Export and sanctions screen (not the exclusion list)",
+        "pass" if csl.get("status") == "no match" else "flag" if csl.get("status") in ("confirmed", "ambiguous") else "not verified",
+        csl.get("why", "not looked up"), csl.get("source", ""), csl.get("looked_up", ""))
+    for name, why in NOT_CHECKABLE:
+        add(name, "not verified", why)
+    st = [r["status"] for r in rows]
+    overall = "fail" if "fail" in st else "flag" if ("flag" in st or "not verified" in st) else "pass"
+    return {"legal_entity": candidate.get("legal_entity"), "uei": candidate.get("uei"), "overall": overall, "criteria": rows,
+            "meaning": "flag: nothing disqualifying found, but it cannot be approved until the open criteria are evidenced"}
+
+
+def main() -> None:
+    import argparse
+    ap = argparse.ArgumentParser(description="Public-record check of a supplier (saved lookups unless --live).")
+    ap.add_argument("name", nargs="?", help="legal entity name; default: every discovered candidate in the saved snapshot")
+    ap.add_argument("--live", action="store_true")
+    a = ap.parse_args()
+    snap = refresh_snapshot([]) if a.live and not a.name else snapshot() or {"discovery": {"candidates": []}, "screens": {}}
+    cands = snap["discovery"].get("candidates", [])
+    if a.name:
+        cand = next((c for c in cands if norm_name(a.name) == norm_name(c["legal_entity"])), {"legal_entity": a.name})
+        scr = screen_supplier(a.name, uei=cand.get("uei")) if a.live else snap["screens"].get(cand["legal_entity"])
+        cands, screens = [cand], {cand["legal_entity"]: scr}
+    else:
+        screens = snap["screens"]
+    for c in cands:
+        if not screens.get(c["legal_entity"]):
+            continue
+        s = scorecard(c, screens[c["legal_entity"]])
+        print(f"\n{s['legal_entity']}  (UEI {s['uei'] or '-'})  overall: {s['overall'].upper()}")
+        for r in s["criteria"]:
+            print(f"  {r['status']:13} {r['criterion']:52} {r['why'][:110]}")
+
+
+if __name__ == "__main__":
+    main()

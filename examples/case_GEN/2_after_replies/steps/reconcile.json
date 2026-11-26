@@ -1,5 +1,5 @@
 {
- "_summary": "B1: 17 answers changed by the supplier's own documents; B2: 4 answers changed by the supplier's own documents; B3: 1 answers changed by the supplier's own documents; B4: 1 answers changed by the supplier's own documents",
+ "_summary": "B1: 17 answers changed by the supplier's own documents; B2: 2 answers changed by the supplier's own documents; B3: 1 answers changed by the supplier's own documents; B4: 1 answers changed by the supplier's own documents",
  "B1": {
   "findings": [
    {
@@ -328,7 +328,7 @@
     "status": "complies",
     "confidence": 0.95,
     "needs_human": false,
-    "why": "committed in b1-northline-reply: offered 24 Starting: 24 volt DC electric starter meets all of: 24 volt, electric starter (the datasheet: no value found, but the submittal mentions electric, starting, starter on page(s) [1, 2, 3, 4])",
+    "why": "committed in b1-northline-reply: offered 24 Starting: 24 volt DC electric starter meets all of: 24 volt, electric starter (the datasheet: no value found, but the submittal mentions electric, starting, volt on page(s) [1, 2, 3, 4])",
     "citations": [
      {
       "doc_id": "26-32-13-engine-generators-alpha",
@@ -357,7 +357,7 @@
       {
        "cid": "R07a",
        "verdict": "complies",
-       "why": "committed in b1-northline-reply: offered 24 Starting: 24 volt DC electric starter meets all of: 24 volt, electric starter (the datasheet: no value found, but the submittal mentions electric, starting, starter on page(s) [1, 2, 3, 4])",
+       "why": "committed in b1-northline-reply: offered 24 Starting: 24 volt DC electric starter meets all of: 24 volt, electric starter (the datasheet: no value found, but the submittal mentions electric, starting, volt on page(s) [1, 2, 3, 4])",
        "source": "b1-northline-reply",
        "kind": "committed in writing"
       }
@@ -375,7 +375,7 @@
     "status": "complies",
     "confidence": 0.95,
     "needs_human": false,
-    "why": "committed in b1-northline-reply: offered 133.6 gph meets <= 145 gph (the datasheet: no value found, but the submittal mentions consumption, fuel, average on page(s) [1, 3, 4])",
+    "why": "committed in b1-northline-reply: offered 133.6 gph meets <= 145 gph (the datasheet: no value found, but the submittal mentions fuel, consumption, average on page(s) [1, 3, 4])",
     "citations": [
      {
       "doc_id": "26-32-13-engine-generators-alpha",
@@ -404,7 +404,7 @@
       {
        "cid": "R08a",
        "verdict": "complies",
-       "why": "committed in b1-northline-reply: offered 133.6 gph meets <= 145 gph (the datasheet: no value found, but the submittal mentions consumption, fuel, average on page(s) [1, 3, 4])",
+       "why": "committed in b1-northline-reply: offered 133.6 gph meets <= 145 gph (the datasheet: no value found, but the submittal mentions fuel, consumption, average on page(s) [1, 3, 4])",
        "source": "b1-northline-reply",
        "kind": "committed in writing"
       }
@@ -726,7 +726,7 @@
     "status": "complies",
     "confidence": 0.95,
     "needs_human": false,
-    "why": "committed in b1-northline-reply: offered 120 V; single phase Alternator space heater: 120 V, single phase, included meets all of: 120 v, single phase, heater (the datasheet: no value found, but the submittal mentions electrical, heater, single on page(s) [2])",
+    "why": "committed in b1-northline-reply: offered 120 V; single phase Alternator space heater: 120 V, single phase, included meets all of: 120 v, single phase, heater (the datasheet: no value found, but the submittal mentions heater, electrical, single on page(s) [2])",
     "citations": [
      {
       "doc_id": "26-32-13-engine-generators-alpha",
@@ -755,7 +755,7 @@
       {
        "cid": "R15a",
        "verdict": "complies",
-       "why": "committed in b1-northline-reply: offered 120 V; single phase Alternator space heater: 120 V, single phase, included meets all of: 120 v, single phase, heater (the datasheet: no value found, but the submittal mentions electrical, heater, single on page(s) [2])",
+       "why": "committed in b1-northline-reply: offered 120 V; single phase Alternator space heater: 120 V, single phase, included meets all of: 120 v, single phase, heater (the datasheet: no value found, but the submittal mentions heater, electrical, single on page(s) [2])",
        "source": "b1-northline-reply",
        "kind": "committed in writing"
       }
@@ -968,7 +968,7 @@
     "status": "deviates",
     "confidence": 0.95,
     "needs_human": false,
-    "why": "the supplier's own document commits to something that does not meet it: offered 1 does not meet == 2; the supplier's own document commits to something that does not meet it: offered 9000 W does not meet == 5000 W; committed in b1-northline-reply: offered 480 V; 1 phase one 9000 W, 480 V, 1 phase heater per set meets all of: 480 v, 1 phase (the datasheet: no value found, but the submittal mentions water, jacket, electrical on page(s) [2, 3])",
+    "why": "the supplier's own document commits to something that does not meet it: offered 1 does not meet == 2; the supplier's own document commits to something that does not meet it: offered 9000 W does not meet == 5000 W; committed in b1-northline-reply: offered 480 V; 1 phase one 9000 W, 480 V, 1 phase heater per set meets all of: 480 v, 1 phase (the datasheet: no value found, but the submittal mentions jacket, water, heater on page(s) [2, 3])",
     "citations": [
      {
       "doc_id": "26-32-13-engine-generators-alpha",
@@ -1011,7 +1011,7 @@
       {
        "cid": "R20c",
        "verdict": "complies",
-       "why": "committed in b1-northline-reply: offered 480 V; 1 phase one 9000 W, 480 V, 1 phase heater per set meets all of: 480 v, 1 phase (the datasheet: no value found, but the submittal mentions water, jacket, electrical on page(s) [2, 3])",
+       "why": "committed in b1-northline-reply: offered 480 V; 1 phase one 9000 W, 480 V, 1 phase heater per set meets all of: 480 v, 1 phase (the datasheet: no value found, but the submittal mentions jacket, water, heater on page(s) [2, 3])",
        "source": "b1-northline-reply",
        "kind": "committed in writing"
       }
@@ -3042,7 +3042,7 @@
      {
       "cid": "R07a",
       "verdict": "unclear",
-      "why": "no value found, but the submittal mentions electric, starting, starter on page(s) [1, 2, 3, 4]",
+      "why": "no value found, but the submittal mentions electric, starting, volt on page(s) [1, 2, 3, 4]",
       "conf": 0.5,
       "exact": false,
       "cite": null,
@@ -3056,7 +3056,7 @@
      {
       "cid": "R08a",
       "verdict": "unclear",
-      "why": "no value found, but the submittal mentions consumption, fuel, average on page(s) [1, 3, 4]",
+      "why": "no value found, but the submittal mentions fuel, consumption, average on page(s) [1, 3, 4]",
       "conf": 0.5,
       "exact": false,
       "cite": null,
@@ -3193,7 +3193,7 @@
      {
       "cid": "R15a",
       "verdict": "unclear",
-      "why": "no value found, but the submittal mentions electrical, heater, single on page(s) [2]",
+      "why": "no value found, but the submittal mentions heater, electrical, single on page(s) [2]",
       "conf": 0.5,
       "exact": false,
       "cite": null,
@@ -3281,7 +3281,7 @@
      {
       "cid": "R20b",
       "verdict": "unclear",
-      "why": "no value found, but the submittal mentions jacket, water, heater on page(s) [2, 3]",
+      "why": "no value found, but the submittal mentions water, jacket, heater on page(s) [2, 3]",
       "conf": 0.5,
       "exact": false,
       "cite": null,
@@ -3290,7 +3290,7 @@
      {
       "cid": "R20c",
       "verdict": "unclear",
-      "why": "no value found, but the submittal mentions water, jacket, electrical on page(s) [2, 3]",
+      "why": "no value found, but the submittal mentions jacket, water, heater on page(s) [2, 3]",
       "conf": 0.5,
       "exact": false,
       "cite": null,
@@ -3649,7 +3649,7 @@
     "status": "complies",
     "confidence": 0.95,
     "needs_human": false,
-    "why": "committed in b1-northline-reply: offered 24 Starting: 24 volt DC electric starter meets all of: 24 volt, electric starter (the datasheet: no value found, but the submittal mentions electric, starting, starter on page(s) [1, 2, 3, 4])",
+    "why": "committed in b1-northline-reply: offered 24 Starting: 24 volt DC electric starter meets all of: 24 volt, electric starter (the datasheet: no value found, but the submittal mentions electric, starting, volt on page(s) [1, 2, 3, 4])",
     "citations": [
      {
       "doc_id": "26-32-13-engine-generators-alpha",
@@ -3678,7 +3678,7 @@
       {
        "cid": "R07a",
        "verdict": "complies",
-       "why": "committed in b1-northline-reply: offered 24 Starting: 24 volt DC electric starter meets all of: 24 volt, electric starter (the datasheet: no value found, but the submittal mentions electric, starting, starter on page(s) [1, 2, 3, 4])",
+       "why": "committed in b1-northline-reply: offered 24 Starting: 24 volt DC electric starter meets all of: 24 volt, electric starter (the datasheet: no value found, but the submittal mentions electric, starting, volt on page(s) [1, 2, 3, 4])",
        "source": "b1-northline-reply",
        "kind": "committed in writing"
       }
@@ -3696,7 +3696,7 @@
     "status": "complies",
     "confidence": 0.95,
     "needs_human": false,
-    "why": "committed in b1-northline-reply: offered 133.6 gph meets <= 145 gph (the datasheet: no value found, but the submittal mentions consumption, fuel, average on page(s) [1, 3, 4])",
+    "why": "committed in b1-northline-reply: offered 133.6 gph meets <= 145 gph (the datasheet: no value found, but the submittal mentions fuel, consumption, average on page(s) [1, 3, 4])",
     "citations": [
      {
       "doc_id": "26-32-13-engine-generators-alpha",
@@ -3725,7 +3725,7 @@
       {
        "cid": "R08a",
        "verdict": "complies",
-       "why": "committed in b1-northline-reply: offered 133.6 gph meets <= 145 gph (the datasheet: no value found, but the submittal mentions consumption, fuel, average on page(s) [1, 3, 4])",
+       "why": "committed in b1-northline-reply: offered 133.6 gph meets <= 145 gph (the datasheet: no value found, but the submittal mentions fuel, consumption, average on page(s) [1, 3, 4])",
        "source": "b1-northline-reply",
        "kind": "committed in writing"
       }
@@ -4047,7 +4047,7 @@
     "status": "complies",
     "confidence": 0.95,
     "needs_human": false,
-    "why": "committed in b1-northline-reply: offered 120 V; single phase Alternator space heater: 120 V, single phase, included meets all of: 120 v, single phase, heater (the datasheet: no value found, but the submittal mentions electrical, heater, single on page(s) [2])",
+    "why": "committed in b1-northline-reply: offered 120 V; single phase Alternator space heater: 120 V, single phase, included meets all of: 120 v, single phase, heater (the datasheet: no value found, but the submittal mentions heater, electrical, single on page(s) [2])",
     "citations": [
      {
       "doc_id": "26-32-13-engine-generators-alpha",
@@ -4076,7 +4076,7 @@
       {
        "cid": "R15a",
        "verdict": "complies",
-       "why": "committed in b1-northline-reply: offered 120 V; single phase Alternator space heater: 120 V, single phase, included meets all of: 120 v, single phase, heater (the datasheet: no value found, but the submittal mentions electrical, heater, single on page(s) [2])",
+       "why": "committed in b1-northline-reply: offered 120 V; single phase Alternator space heater: 120 V, single phase, included meets all of: 120 v, single phase, heater (the datasheet: no value found, but the submittal mentions heater, electrical, single on page(s) [2])",
        "source": "b1-northline-reply",
        "kind": "committed in writing"
       }
@@ -4289,7 +4289,7 @@
     "status": "deviates",
     "confidence": 0.95,
     "needs_human": false,
-    "why": "the supplier's own document commits to something that does not meet it: offered 1 does not meet == 2; the supplier's own document commits to something that does not meet it: offered 9000 W does not meet == 5000 W; committed in b1-northline-reply: offered 480 V; 1 phase one 9000 W, 480 V, 1 phase heater per set meets all of: 480 v, 1 phase (the datasheet: no value found, but the submittal mentions water, jacket, electrical on page(s) [2, 3])",
+    "why": "the supplier's own document commits to something that does not meet it: offered 1 does not meet == 2; the supplier's own document commits to something that does not meet it: offered 9000 W does not meet == 5000 W; committed in b1-northline-reply: offered 480 V; 1 phase one 9000 W, 480 V, 1 phase heater per set meets all of: 480 v, 1 phase (the datasheet: no value found, but the submittal mentions jacket, water, heater on page(s) [2, 3])",
     "citations": [
      {
       "doc_id": "26-32-13-engine-generators-alpha",
@@ -4332,7 +4332,7 @@
       {
        "cid": "R20c",
        "verdict": "complies",
-       "why": "committed in b1-northline-reply: offered 480 V; 1 phase one 9000 W, 480 V, 1 phase heater per set meets all of: 480 v, 1 phase (the datasheet: no value found, but the submittal mentions water, jacket, electrical on page(s) [2, 3])",
+       "why": "committed in b1-northline-reply: offered 480 V; 1 phase one 9000 W, 480 V, 1 phase heater per set meets all of: 480 v, 1 phase (the datasheet: no value found, but the submittal mentions jacket, water, heater on page(s) [2, 3])",
        "source": "b1-northline-reply",
        "kind": "committed in writing"
       }
@@ -4725,7 +4725,7 @@
     "status": "unclear",
     "confidence": 0.5,
     "needs_human": true,
-    "why": "no value found, but the submittal mentions electric, starting, starter on page(s) [1, 2, 3, 4]",
+    "why": "no value found, but the submittal mentions electric, starting, volt on page(s) [1, 2, 3, 4]",
     "citations": [
      {
       "doc_id": "26-32-13-engine-generators-alpha",
@@ -4746,7 +4746,7 @@
       {
        "cid": "R07a",
        "verdict": "unclear",
-       "why": "no value found, but the submittal mentions electric, starting, starter on page(s) [1, 2, 3, 4]",
+       "why": "no value found, but the submittal mentions electric, starting, volt on page(s) [1, 2, 3, 4]",
        "source": "datasheet",
        "kind": null
       }
@@ -5083,7 +5083,7 @@
     "status": "unclear",
     "confidence": 0.5,
     "needs_human": true,
-    "why": "no value found, but the submittal mentions electrical, heater, single on page(s) [2]",
+    "why": "no value found, but the submittal mentions heater, electrical, single on page(s) [2]",
     "citations": [
      {
       "doc_id": "26-32-13-engine-generators-alpha",
@@ -5104,7 +5104,7 @@
       {
        "cid": "R15a",
        "verdict": "unclear",
-       "why": "no value found, but the submittal mentions electrical, heater, single on page(s) [2]",
+       "why": "no value found, but the submittal mentions heater, electrical, single on page(s) [2]",
        "source": "datasheet",
        "kind": null
       }
@@ -5285,7 +5285,7 @@
     "status": "unclear",
     "confidence": 0.5,
     "needs_human": true,
-    "why": "no value found, but the submittal mentions water, jacket, count on page(s) [1, 2, 3]; no value found, but the submittal mentions jacket, water, heater on page(s) [2, 3]; no value found, but the submittal mentions water, jacket, electrical on page(s) [2, 3]",
+    "why": "no value found, but the submittal mentions water, jacket, count on page(s) [1, 2, 3]; no value found, but the submittal mentions water, jacket, heater on page(s) [2, 3]; no value found, but the submittal mentions jacket, water, heater on page(s) [2, 3]",
     "citations": [
      {
       "doc_id": "26-32-13-engine-generators-alpha",
@@ -5313,14 +5313,14 @@
       {
        "cid": "R20b",
        "verdict": "unclear",
-       "why": "no value found, but the submittal mentions jacket, water, heater on page(s) [2, 3]",
+       "why": "no value found, but the submittal mentions water, jacket, heater on page(s) [2, 3]",
        "source": "datasheet",
        "kind": null
       },
       {
        "cid": "R20c",
        "verdict": "unclear",
-       "why": "no value found, but the submittal mentions water, jacket, electrical on page(s) [2, 3]",
+       "why": "no value found, but the submittal mentions jacket, water, heater on page(s) [2, 3]",
        "source": "datasheet",
        "kind": null
       }
@@ -5442,9 +5442,9 @@
     "id": "F-R02",
     "claim": "Generator set output shall be 480Y/277 V, 3-phase, 4-wire, 60 Hz power.",
     "status": "complies",
-    "confidence": 0.95,
+    "confidence": 0.75,
     "needs_human": false,
-    "why": "offered 277/480, 3 Phase, Wye, 4 Wire Voltage - 277/480, 3 Phase, Wye, 4 Wire meets all of: 480Y/277, 3 phase, 4 wire; offered 60 Hz meets == 60 Hz; unit Hz is not shown in the quote, confirm | confirmed by b2-tidewater-generator: offered 60 Hz meets == 60 Hz",
+    "why": "offered 277/480, 3 Phase, Wye, 4 Wire Voltage - 277/480, 3 Phase, Wye, 4 Wire meets all of: 480Y/277, 3 phase, 4 wire; offered 60 Hz meets == 60 Hz; unit Hz is not shown in the quote | confirmed by b2-tidewater-generator: offered 60 Hz meets == 60 Hz; the same value with its unit is printed as 'DQKAB      DQKAB, Diesel Genset, 60Hz, 2000kW-Standby Rating'",
     "citations": [
      {
       "doc_id": "26-32-13-engine-generators-alpha",
@@ -5469,6 +5469,14 @@
       "quote": "60 Hz",
       "match": "exact",
       "ocr": false
+     },
+     {
+      "doc_id": "cummins-dqkab-submittal-csdg",
+      "page": 5,
+      "locator": "",
+      "quote": "DQKAB DQKAB, Diesel Genset, 60Hz, 2000kW-Standby Rating 2",
+      "match": "exact",
+      "ocr": false
      }
     ],
     "data": {
@@ -5489,9 +5497,9 @@
       {
        "cid": "R02b",
        "verdict": "complies",
-       "why": "offered 60 Hz meets == 60 Hz; unit Hz is not shown in the quote, confirm | confirmed by b2-tidewater-generator: offered 60 Hz meets == 60 Hz",
+       "why": "offered 60 Hz meets == 60 Hz; unit Hz is not shown in the quote | confirmed by b2-tidewater-generator: offered 60 Hz meets == 60 Hz; the same value with its unit is printed as 'DQKAB      DQKAB, Diesel Genset, 60Hz, 2000kW-Standby Rating'",
        "source": "cummins-dqkab-submittal-csdg + b2-tidewater-generator",
-       "kind": "agree"
+       "kind": "unit stated elsewhere"
       }
      ]
     },
@@ -5722,10 +5730,10 @@
    {
     "id": "F-R07",
     "claim": "Starting system shall be 24 volt, 2-wire, negative ground, gear engaging electric starter.",
-    "status": "unclear",
-    "confidence": 0.5,
-    "needs_human": true,
-    "why": "the quote states 24 volt but not electric starter; not stated anywhere else in the document",
+    "status": "complies",
+    "confidence": 0.8,
+    "needs_human": false,
+    "why": "computed from the quote: it states 24 volt, electric starter ('Engine Starter - 24 Volt DC Motor')",
     "citations": [
      {
       "doc_id": "26-32-13-engine-generators-alpha",
@@ -5753,21 +5761,17 @@
      "conditions": [
       {
        "cid": "R07a",
-       "verdict": "unclear",
-       "why": "the quote states 24 volt but not electric starter; not stated anywhere else in the document",
+       "verdict": "complies",
+       "why": "computed from the quote: it states 24 volt, electric starter ('Engine Starter - 24 Volt DC Motor')",
        "source": "datasheet",
-       "kind": "one missing fact"
+       "kind": "computed from the quote"
       }
-     ],
-     "route": "ask_supplier",
-     "route_kind": "clarification",
-     "question": "please state: electric starter",
-     "route_why": "one missing fact settles it, and the rest is met with verified evidence: please state: electric starter"
+     ]
     },
     "route": {
-     "route": "ask_supplier",
-     "kind": "clarification",
-     "why": "one missing fact settles it, and the rest is met with verified evidence: please state: electric starter"
+     "route": "decide",
+     "kind": "decided",
+     "why": "verified quote and a comparison made in code"
     }
    },
    {
@@ -5875,8 +5879,8 @@
     },
     "route": {
      "route": "engineer",
-     "kind": "confirm a reading",
-     "why": "the evidence is quoted but judged, not computed: a person confirms it"
+     "kind": "contested",
+     "why": "an independent reading says deviates; the evidence is quoted but judged, not computed: a person confirms it"
     }
    },
    {
@@ -5932,7 +5936,7 @@
     "status": "unclear",
     "confidence": 0.5,
     "needs_human": true,
-    "why": "model judgement on verified quote: 'Engine power available up to 447 m (1466 ft) at ambient temperatures up to 40\u00b0C (104\u00b0F)'; no value found, but the submittal mentions temperature, ambient, range on page(s) [5, 7, 8, 9, 10, 13]",
+    "why": "model judgement on verified quote: 'Engine power available up to 447 m (1466 ft) at ambient temperatures up to 40\u00b0C (104\u00b0F)'; disputed clause inspected: the independent reader's quote is on page 15; computed from the quote: 104 \u00b0F meets between 10-122 \u00b0F; but the document offers it as an option that is available, with no mark of what is supplied (p15: 'Engine power available up to 447 m (1466 ft) at ambient temperatures up to 40\u00b0C (104\u00b0F).From'): ask whether it is supplied",
     "citations": [
      {
       "doc_id": "26-32-13-engine-generators-alpha",
@@ -5947,6 +5951,22 @@
       "page": 15,
       "locator": "",
       "quote": "Engine power available up to 447 m (1466 ft) at ambient temperatures up to 40\u00b0C (104\u00b0F)",
+      "match": "exact",
+      "ocr": false
+     },
+     {
+      "doc_id": "cummins-dqkab-submittal-csdg",
+      "page": 15,
+      "locator": "",
+      "quote": "Engine power available up to 447 m (1466 ft) at ambient temperatures up to 40\u00b0C (104\u00b0F).",
+      "match": "exact",
+      "ocr": false
+     },
+     {
+      "doc_id": "cummins-dqkab-submittal-csdg",
+      "page": 15,
+      "locator": "",
+      "quote": "Engine power available up to 447 m (1466 ft) at ambient temperatures up to 40\u00b0C (104\u00b0F).From",
       "match": "exact",
       "ocr": false
      }
@@ -5968,9 +5988,9 @@
       {
        "cid": "R11b",
        "verdict": "unclear",
-       "why": "no value found, but the submittal mentions temperature, ambient, range on page(s) [5, 7, 8, 9, 10, 13]",
+       "why": "disputed clause inspected: the independent reader's quote is on page 15; computed from the quote: 104 \u00b0F meets between 10-122 \u00b0F; but the document offers it as an option that is available, with no mark of what is supplied (p15: 'Engine power available up to 447 m (1466 ft) at ambient temperatures up to 40\u00b0C (104\u00b0F).From'): ask whether it is supplied",
        "source": "datasheet",
-       "kind": null
+       "kind": "depends on an option"
       }
      ]
     },
@@ -6195,8 +6215,8 @@
     },
     "route": {
      "route": "engineer",
-     "kind": "absence not confirmed",
-     "why": "the document does not seem to establish it, but it was not read a second time: a person checks before asking the supplier"
+     "kind": "contested",
+     "why": "our reading found no value, but an independent reading says deviates: a person checks the page"
     }
    },
    {
@@ -6405,8 +6425,8 @@
     },
     "route": {
      "route": "engineer",
-     "kind": "absence not confirmed",
-     "why": "the document does not seem to establish it, but it was not read a second time: a person checks before asking the supplier"
+     "kind": "contested",
+     "why": "our reading found no value, but an independent reading says deviates: a person checks the page"
     }
    },
    {
@@ -6483,11 +6503,32 @@
     "why": "computed from the quote: 2500 kVA meets >= 2500 kVA ('2000 kW / 2500 kVA standby rating')"
    },
    {
+    "req_id": "R02",
+    "cid": "R02b",
+    "kind": "unit stated elsewhere",
+    "verdict": "complies",
+    "why": "offered 60 Hz meets == 60 Hz; unit Hz is not shown in the quote | confirmed by b2-tidewater-generator: offered 60 Hz meets == 60 Hz; the same value with its unit is printed as 'DQKAB      DQKAB, Diesel Genset, 60Hz, 2000kW-Standby Rating'"
+   },
+   {
     "req_id": "R07",
     "cid": "R07a",
-    "kind": "one missing fact",
+    "kind": "computed from the quote",
+    "verdict": "complies",
+    "why": "computed from the quote: it states 24 volt, electric starter ('Engine Starter - 24 Volt DC Motor')"
+   },
+   {
+    "req_id": "R11",
+    "cid": "R11b",
+    "kind": "disputed clause resolved",
+    "verdict": "complies",
+    "why": "disputed clause inspected: the independent reader's quote is on page 15; computed from the quote: 104 \u00b0F meets between 10-122 \u00b0F"
+   },
+   {
+    "req_id": "R11",
+    "cid": "R11b",
+    "kind": "depends on an option",
     "verdict": "unclear",
-    "why": "the quote states 24 volt but not electric starter; not stated anywhere else in the document"
+    "why": "option not marked: Engine power available up to 447 m (1466 ft) at ambient temperatures up to 40\u00b0C (104\u00b0F).From"
    },
    {
     "req_id": "R13",
@@ -7106,7 +7147,7 @@
     "quote": "Engine Starter - 24 Volt DC Motor",
     "says": "complies",
     "role": "controls",
-    "why": "the quote states 24 volt but not electric starter; not stated anywhere else in the document"
+    "why": "model judgement on verified quote: 'Engine Starter - 24 Volt DC Motor'"
    },
    {
     "req_id": "R07",
@@ -7487,6 +7528,25 @@
     "says": "silent",
     "role": "silent",
     "why": "says nothing usable about this"
+   },
+   {
+    "req_id": "R11",
+    "cid": "R11b",
+    "attribute": "ambient_temperature_range",
+    "supplier": "Tidewater Generator Co.",
+    "bid": "B2",
+    "tags": "GEN-A..D",
+    "model": "Cummins C2000D6 (model DQKAB) diesel generator set",
+    "model_link": "linked",
+    "document": "cummins-dqkab-submittal-csdg",
+    "document_kind": "option list",
+    "revision": "Rev 6",
+    "date": "",
+    "page": 15,
+    "quote": "Engine power available up to 447 m (1466 ft) at ambient temperatures up to 40\u00b0C (104\u00b0F).From",
+    "says": "option listed",
+    "role": "controls",
+    "why": "the value is only offered as an option that is not marked as supplied"
    },
    {
     "req_id": "R12",
@@ -9301,8 +9361,8 @@
     },
     "route": {
      "route": "engineer",
-     "kind": "confirm a reading",
-     "why": "the evidence is quoted but judged, not computed: a person confirms it"
+     "kind": "contested",
+     "why": "an independent reading says deviates; the evidence is quoted but judged, not computed: a person confirms it"
     }
    },
    {
@@ -9613,8 +9673,8 @@
     },
     "route": {
      "route": "engineer",
-     "kind": "absence not confirmed",
-     "why": "the document does not seem to establish it, but it was not read a second time: a person checks before asking the supplier"
+     "kind": "contested",
+     "why": "our reading found no value, but an independent reading says deviates: a person checks the page"
     }
    },
    {
@@ -9823,8 +9883,8 @@
     },
     "route": {
      "route": "engineer",
-     "kind": "absence not confirmed",
-     "why": "the document does not seem to establish it, but it was not read a second time: a person checks before asking the supplier"
+     "kind": "contested",
+     "why": "our reading found no value, but an independent reading says deviates: a person checks the page"
     }
    },
    {
@@ -9896,9 +9956,9 @@
     "id": "F-R01",
     "claim": "Generator set continuous standby capacity shall meet the scheduled rating of 2000 kW and 2500 kVA at 0.8 PF.",
     "status": "complies",
-    "confidence": 0.65,
-    "needs_human": true,
-    "why": "offered 2000 kW meets >= 2000 kW; offered 2500 kVA meets >= 2500 kVA; unit kVA is not shown in the quote, confirm",
+    "confidence": 0.75,
+    "needs_human": false,
+    "why": "offered 2000 kW meets >= 2000 kW; offered 2500 kVA meets >= 2500 kVA; unit kVA is not shown in the quote; the unit is in the table heading 'kW (kVA)' (page 13)",
     "citations": [
      {
       "doc_id": "26-32-13-engine-generators-alpha",
@@ -9923,6 +9983,14 @@
       "quote": "Ratings 2000 (2500)",
       "match": "exact",
       "ocr": false
+     },
+     {
+      "doc_id": "cummins-dqkab-submittal-csdg",
+      "page": 13,
+      "locator": "",
+      "quote": "kW (kVA)",
+      "match": "exact",
+      "ocr": false
      }
     ],
     "data": {
@@ -9942,25 +10010,25 @@
       {
        "cid": "R01b",
        "verdict": "complies",
-       "why": "offered 2500 kVA meets >= 2500 kVA; unit kVA is not shown in the quote, confirm",
+       "why": "offered 2500 kVA meets >= 2500 kVA; unit kVA is not shown in the quote; the unit is in the table heading 'kW (kVA)' (page 13)",
        "source": "datasheet",
-       "kind": null
+       "kind": "unit from the table heading"
       }
      ]
     },
     "route": {
-     "route": "engineer",
-     "kind": "confirm a reading",
-     "why": "the evidence is quoted but judged, not computed: a person confirms it"
+     "route": "decide",
+     "kind": "decided",
+     "why": "verified quote and a comparison made in code"
     }
    },
    {
     "id": "F-R02",
     "claim": "Generator set output shall be 480Y/277 V, 3-phase, 4-wire, 60 Hz power.",
     "status": "complies",
-    "confidence": 0.65,
-    "needs_human": true,
-    "why": "offered 277/480, 3 Phase, Wye, 4 Wire Voltage - 277/480, 3 Phase, Wye, 4 Wire meets all of: 480Y/277, 3 phase, 4 wire; offered 60 Hz meets == 60 Hz; unit Hz is not shown in the quote, confirm",
+    "confidence": 0.75,
+    "needs_human": false,
+    "why": "offered 277/480, 3 Phase, Wye, 4 Wire Voltage - 277/480, 3 Phase, Wye, 4 Wire meets all of: 480Y/277, 3 phase, 4 wire; offered 60 Hz meets == 60 Hz; unit Hz is not shown in the quote; the same value with its unit is printed as 'DQKAB      DQKAB, Diesel Genset, 60Hz, 2000kW-Standby Rating'",
     "citations": [
      {
       "doc_id": "26-32-13-engine-generators-alpha",
@@ -9985,6 +10053,14 @@
       "quote": "Frequency: 60",
       "match": "exact",
       "ocr": false
+     },
+     {
+      "doc_id": "cummins-dqkab-submittal-csdg",
+      "page": 5,
+      "locator": "",
+      "quote": "DQKAB DQKAB, Diesel Genset, 60Hz, 2000kW-Standby Rating 2",
+      "match": "exact",
+      "ocr": false
      }
     ],
     "data": {
@@ -10004,16 +10080,16 @@
       {
        "cid": "R02b",
        "verdict": "complies",
-       "why": "offered 60 Hz meets == 60 Hz; unit Hz is not shown in the quote, confirm",
+       "why": "offered 60 Hz meets == 60 Hz; unit Hz is not shown in the quote; the same value with its unit is printed as 'DQKAB      DQKAB, Diesel Genset, 60Hz, 2000kW-Standby Rating'",
        "source": "datasheet",
-       "kind": null
+       "kind": "unit stated elsewhere"
       }
      ]
     },
     "route": {
-     "route": "engineer",
-     "kind": "confirm a reading",
-     "why": "the evidence is quoted but judged, not computed: a person confirms it"
+     "route": "decide",
+     "kind": "decided",
+     "why": "verified quote and a comparison made in code"
     }
    },
    {
@@ -10237,10 +10313,10 @@
    {
     "id": "F-R07",
     "claim": "Starting system shall be 24 volt, 2-wire, negative ground, gear engaging electric starter.",
-    "status": "unclear",
-    "confidence": 0.5,
-    "needs_human": true,
-    "why": "the quote states 24 volt but not electric starter; not stated anywhere else in the document",
+    "status": "complies",
+    "confidence": 0.8,
+    "needs_human": false,
+    "why": "computed from the quote: it states 24 volt, electric starter ('Engine Starter - 24 Volt DC Motor')",
     "citations": [
      {
       "doc_id": "26-32-13-engine-generators-alpha",
@@ -10268,21 +10344,17 @@
      "conditions": [
       {
        "cid": "R07a",
-       "verdict": "unclear",
-       "why": "the quote states 24 volt but not electric starter; not stated anywhere else in the document",
+       "verdict": "complies",
+       "why": "computed from the quote: it states 24 volt, electric starter ('Engine Starter - 24 Volt DC Motor')",
        "source": "datasheet",
-       "kind": "one missing fact"
+       "kind": "computed from the quote"
       }
-     ],
-     "route": "ask_supplier",
-     "route_kind": "clarification",
-     "question": "please state: electric starter",
-     "route_why": "one missing fact settles it, and the rest is met with verified evidence: please state: electric starter"
+     ]
     },
     "route": {
-     "route": "ask_supplier",
-     "kind": "clarification",
-     "why": "one missing fact settles it, and the rest is met with verified evidence: please state: electric starter"
+     "route": "decide",
+     "kind": "decided",
+     "why": "verified quote and a comparison made in code"
     }
    },
    {
@@ -10390,8 +10462,8 @@
     },
     "route": {
      "route": "engineer",
-     "kind": "confirm a reading",
-     "why": "the evidence is quoted but judged, not computed: a person confirms it"
+     "kind": "contested",
+     "why": "an independent reading says deviates; the evidence is quoted but judged, not computed: a person confirms it"
     }
    },
    {
@@ -10447,7 +10519,7 @@
     "status": "unclear",
     "confidence": 0.5,
     "needs_human": true,
-    "why": "model judgement on verified quote: 'Engine power available up to 447 m (1466 ft) at ambient temperatures up to 40\u00b0C (104\u00b0F)'; no value found, but the submittal mentions temperature, ambient, range on page(s) [5, 7, 8, 9, 10, 13]",
+    "why": "model judgement on verified quote: 'Engine power available up to 447 m (1466 ft) at ambient temperatures up to 40\u00b0C (104\u00b0F)'; disputed clause inspected: the independent reader's quote is on page 15; computed from the quote: 104 \u00b0F meets between 10-122 \u00b0F; but the document offers it as an option that is available, with no mark of what is supplied (p15: 'Engine power available up to 447 m (1466 ft) at ambient temperatures up to 40\u00b0C (104\u00b0F).From'): ask whether it is supplied",
     "citations": [
      {
       "doc_id": "26-32-13-engine-generators-alpha",
@@ -10462,6 +10534,22 @@
       "page": 15,
       "locator": "",
       "quote": "Engine power available up to 447 m (1466 ft) at ambient temperatures up to 40\u00b0C (104\u00b0F)",
+      "match": "exact",
+      "ocr": false
+     },
+     {
+      "doc_id": "cummins-dqkab-submittal-csdg",
+      "page": 15,
+      "locator": "",
+      "quote": "Engine power available up to 447 m (1466 ft) at ambient temperatures up to 40\u00b0C (104\u00b0F).",
+      "match": "exact",
+      "ocr": false
+     },
+     {
+      "doc_id": "cummins-dqkab-submittal-csdg",
+      "page": 15,
+      "locator": "",
+      "quote": "Engine power available up to 447 m (1466 ft) at ambient temperatures up to 40\u00b0C (104\u00b0F).From",
       "match": "exact",
       "ocr": false
      }
@@ -10483,9 +10571,9 @@
       {
        "cid": "R11b",
        "verdict": "unclear",
-       "why": "no value found, but the submittal mentions temperature, ambient, range on page(s) [5, 7, 8, 9, 10, 13]",
+       "why": "disputed clause inspected: the independent reader's quote is on page 15; computed from the quote: 104 \u00b0F meets between 10-122 \u00b0F; but the document offers it as an option that is available, with no mark of what is supplied (p15: 'Engine power available up to 447 m (1466 ft) at ambient temperatures up to 40\u00b0C (104\u00b0F).From'): ask whether it is supplied",
        "source": "datasheet",
-       "kind": null
+       "kind": "depends on an option"
       }
      ]
     },
@@ -10710,8 +10798,8 @@
     },
     "route": {
      "route": "engineer",
-     "kind": "absence not confirmed",
-     "why": "the document does not seem to establish it, but it was not read a second time: a person checks before asking the supplier"
+     "kind": "contested",
+     "why": "our reading found no value, but an independent reading says deviates: a person checks the page"
     }
    },
    {
@@ -10903,8 +10991,8 @@
     },
     "route": {
      "route": "engineer",
-     "kind": "absence not confirmed",
-     "why": "the document does not seem to establish it, but it was not read a second time: a person checks before asking the supplier"
+     "kind": "contested",
+     "why": "our reading found no value, but an independent reading says deviates: a person checks the page"
     }
    },
    {
@@ -11128,9 +11216,9 @@
     "id": "F-R04",
     "claim": "Excitation power to the automatic voltage regulator shall be provided by a permanent magnet generator (PMG) or equal.",
     "status": "complies",
-    "confidence": 0.65,
-    "needs_human": true,
-    "why": "model judgement on verified quote: 'Exciter type Brushless, Permanent- Magnet Pilot Exciter'",
+    "confidence": 0.8,
+    "needs_human": false,
+    "why": "two independent readings agree, and the second one's quote computes: computed from the quote: it states pmg ('Brushless, Permanent-Magnet Pilot Exciter')",
     "citations": [
      {
       "doc_id": "26-32-13-engine-generators-alpha",
@@ -11147,6 +11235,14 @@
       "quote": "Exciter type Brushless, Permanent- Magnet Pilot Exciter",
       "match": "table",
       "ocr": false
+     },
+     {
+      "doc_id": "kohler-kd2000-g5-626",
+      "page": 3,
+      "locator": "",
+      "quote": "Brushless, Permanent-Magnet Pilot Exciter",
+      "match": "table",
+      "ocr": false
      }
     ],
     "data": {
@@ -11159,16 +11255,16 @@
       {
        "cid": "R04a",
        "verdict": "complies",
-       "why": "model judgement on verified quote: 'Exciter type Brushless, Permanent- Magnet Pilot Exciter'",
+       "why": "two independent readings agree, and the second one's quote computes: computed from the quote: it states pmg ('Brushless, Permanent-Magnet Pilot Exciter')",
        "source": "datasheet",
-       "kind": null
+       "kind": "confirmed by the second reading"
       }
      ]
     },
     "route": {
-     "route": "engineer",
-     "kind": "confirm a reading",
-     "why": "the evidence is quoted but judged, not computed: a person confirms it"
+     "route": "decide",
+     "kind": "decided",
+     "why": "verified quote and a comparison made in code"
     }
    },
    {
@@ -11251,10 +11347,10 @@
    {
     "id": "F-R06",
     "claim": "Governor shall be electronic speed-sensing capable of isochronous frequency regulation from no load to full rated load.",
-    "status": "unclear",
-    "confidence": 0.5,
-    "needs_human": true,
-    "why": "the quote states electronic but not isochronous; not stated anywhere else in the document",
+    "status": "complies",
+    "confidence": 0.75,
+    "needs_human": false,
+    "why": "the quote states electronic but not isochronous; the document states isochronous on page 2 ('Frequency regulation, no-load to full-load        Isochronous         ')",
     "citations": [
      {
       "doc_id": "26-32-13-engine-generators-alpha",
@@ -11271,6 +11367,14 @@
       "quote": "Governor: type, make/model KODEC Electronic",
       "match": "exact",
       "ocr": false
+     },
+     {
+      "doc_id": "kohler-kd2000-g5-626",
+      "page": 2,
+      "locator": "",
+      "quote": "Frequency regulation, no-load to full-load Isochronous",
+      "match": "exact",
+      "ocr": false
      }
     ],
     "data": {
@@ -11282,21 +11386,17 @@
      "conditions": [
       {
        "cid": "R06a",
-       "verdict": "unclear",
-       "why": "the quote states electronic but not isochronous; not stated anywhere else in the document",
+       "verdict": "complies",
+       "why": "the quote states electronic but not isochronous; the document states isochronous on page 2 ('Frequency regulation, no-load to full-load        Isochronous         ')",
        "source": "datasheet",
-       "kind": "one missing fact"
+       "kind": "computed from the quote"
       }
-     ],
-     "route": "ask_supplier",
-     "route_kind": "clarification",
-     "question": "please state: isochronous",
-     "route_why": "one missing fact settles it, and the rest is met with verified evidence: please state: isochronous"
+     ]
     },
     "route": {
-     "route": "ask_supplier",
-     "kind": "clarification",
-     "why": "one missing fact settles it, and the rest is met with verified evidence: please state: isochronous"
+     "route": "decide",
+     "kind": "decided",
+     "why": "verified quote and a comparison made in code"
     }
    },
    {
@@ -11617,10 +11717,10 @@
    {
     "id": "F-R13",
     "claim": "Generator shall be 4-pole, brushless, and two-thirds pitch wound.",
-    "status": "unclear",
-    "confidence": 0.5,
-    "needs_human": true,
-    "why": "the quote states brushless but not 4 pole, 2/3 pitch; not stated anywhere else in the document",
+    "status": "complies",
+    "confidence": 0.75,
+    "needs_human": false,
+    "why": "the quote states brushless but not 4 pole, 2/3 pitch; the document states 4 pole on page 3 ('Exhaust flow at rated kW,                                     Type    '); 2/3 pitch on page 3 ('\u2022  Superior voltage waveform from two-thirds pitch windings')",
     "citations": [
      {
       "doc_id": "26-32-13-engine-generators-alpha",
@@ -11637,6 +11737,14 @@
       "quote": "Brushless alternator with brushless pilot exciter for excellent load response",
       "match": "exact",
       "ocr": false
+     },
+     {
+      "doc_id": "kohler-kd2000-g5-626",
+      "page": 3,
+      "locator": "",
+      "quote": "Exhaust flow at rated kW, Type 4-Pole, Rotating",
+      "match": "exact",
+      "ocr": false
      }
     ],
     "data": {
@@ -11648,30 +11756,26 @@
      "conditions": [
       {
        "cid": "R13a",
-       "verdict": "unclear",
-       "why": "the quote states brushless but not 4 pole, 2/3 pitch; not stated anywhere else in the document",
+       "verdict": "complies",
+       "why": "the quote states brushless but not 4 pole, 2/3 pitch; the document states 4 pole on page 3 ('Exhaust flow at rated kW,                                     Type    '); 2/3 pitch on page 3 ('\u2022  Superior voltage waveform from two-thirds pitch windings')",
        "source": "datasheet",
-       "kind": "one missing fact"
+       "kind": "computed from the quote"
       }
-     ],
-     "route": "ask_supplier",
-     "route_kind": "clarification",
-     "question": "please state: 4 pole, 2/3 pitch",
-     "route_why": "one missing fact settles it, and the rest is met with verified evidence: please state: 4 pole, 2/3 pitch"
+     ]
     },
     "route": {
-     "route": "ask_supplier",
-     "kind": "clarification",
-     "why": "one missing fact settles it, and the rest is met with verified evidence: please state: 4 pole, 2/3 pitch"
+     "route": "decide",
+     "kind": "decided",
+     "why": "verified quote and a comparison made in code"
     }
    },
    {
     "id": "F-R14",
     "claim": "Generator insulation shall be NEMA Class F or better.",
     "status": "complies",
-    "confidence": 0.65,
-    "needs_human": true,
-    "why": "model judgement on verified quote: 'Insulation: NEMA MG1, UL 1446,'",
+    "confidence": 0.8,
+    "needs_human": false,
+    "why": "two independent readings agree, and the second one's quote computes: computed from the quote: it states class h ('Class H, Synthetic')",
     "citations": [
      {
       "doc_id": "26-32-13-engine-generators-alpha",
@@ -11688,6 +11792,14 @@
       "quote": "Insulation: NEMA MG1, UL 1446,",
       "match": "exact",
       "ocr": false
+     },
+     {
+      "doc_id": "kohler-kd2000-g5-626",
+      "page": 3,
+      "locator": "",
+      "quote": "Class H, Synthetic",
+      "match": "exact",
+      "ocr": false
      }
     ],
     "data": {
@@ -11700,16 +11812,16 @@
       {
        "cid": "R14a",
        "verdict": "complies",
-       "why": "model judgement on verified quote: 'Insulation: NEMA MG1, UL 1446,'",
+       "why": "two independent readings agree, and the second one's quote computes: computed from the quote: it states class h ('Class H, Synthetic')",
        "source": "datasheet",
-       "kind": null
+       "kind": "confirmed by the second reading"
       }
      ]
     },
     "route": {
-     "route": "engineer",
-     "kind": "confirm a reading",
-     "why": "the evidence is quoted but judged, not computed: a person confirms it"
+     "route": "decide",
+     "kind": "decided",
+     "why": "verified quote and a comparison made in code"
     }
    },
    {
@@ -11941,24 +12053,16 @@
    {
     "id": "F-R20",
     "claim": "Provide two 5000 W, 480 V, 1-phase jacket-water heaters.",
-    "status": "deviates",
+    "status": "unclear",
     "confidence": 0.5,
     "needs_human": true,
-    "why": "no value found, but the submittal mentions water, heater, jacket on page(s) [2, 3, 4, 5]; disputed clause inspected: the independent reader's quote is on page 5; computed from the quote: 9000 W does not meet == 5000 W; no value found, but the submittal mentions water, electrical, heater on page(s) [1, 2, 3, 4, 5, 6]",
+    "why": "no value found, but the submittal mentions water, heater, jacket on page(s) [2, 3, 4, 5]; no value found, but the submittal mentions water, heater, jacket on page(s) [2, 3, 4, 5]; no value found, but the submittal mentions water, electrical, heater on page(s) [1, 2, 3, 4, 5, 6]",
     "citations": [
      {
       "doc_id": "26-32-13-engine-generators-alpha",
       "page": 8,
       "locator": "2.1.K.2 (Jacket-Water Heater)",
       "quote": "engine shall have two KIM #Hotstart (480 volt, 1-phase) or approved equal, 5000W jacket-water heaters supplied from a \"normal\" branch circuit.",
-      "match": "exact",
-      "ocr": false
-     },
-     {
-      "doc_id": "kohler-kd2000-g5-626",
-      "page": 5,
-      "locator": "",
-      "quote": "Block Heater, 9000 W, 208 V, (Select 1 Ph or 3 Ph)",
       "match": "exact",
       "ocr": false
      }
@@ -11979,10 +12083,10 @@
       },
       {
        "cid": "R20b",
-       "verdict": "deviates",
-       "why": "disputed clause inspected: the independent reader's quote is on page 5; computed from the quote: 9000 W does not meet == 5000 W",
+       "verdict": "unclear",
+       "why": "no value found, but the submittal mentions water, heater, jacket on page(s) [2, 3, 4, 5]",
        "source": "datasheet",
-       "kind": "disputed clause resolved"
+       "kind": null
       },
       {
        "cid": "R20c",
@@ -11995,8 +12099,8 @@
     },
     "route": {
      "route": "engineer",
-     "kind": "confirm a reading",
-     "why": "the evidence is quoted but judged, not computed: a person confirms it"
+     "kind": "contested",
+     "why": "our reading found no value, but an independent reading says deviates: a person checks the page"
     }
    },
    {
@@ -12065,25 +12169,32 @@
   ],
   "inspected": [
    {
+    "req_id": "R04",
+    "cid": "R04a",
+    "kind": "confirmed by the second reading",
+    "verdict": "complies",
+    "why": "two independent readings agree, and the second one's quote computes: computed from the quote: it states pmg ('Brushless, Permanent-Magnet Pilot Exciter')"
+   },
+   {
     "req_id": "R06",
     "cid": "R06a",
-    "kind": "one missing fact",
-    "verdict": "unclear",
-    "why": "the quote states electronic but not isochronous; not stated anywhere else in the document"
+    "kind": "computed from the quote",
+    "verdict": "complies",
+    "why": "the quote states electronic but not isochronous; the document states isochronous on page 2 ('Frequency regulation, no-load to full-load        Isochronous         ')"
    },
    {
     "req_id": "R13",
     "cid": "R13a",
-    "kind": "one missing fact",
-    "verdict": "unclear",
-    "why": "the quote states brushless but not 4 pole, 2/3 pitch; not stated anywhere else in the document"
+    "kind": "computed from the quote",
+    "verdict": "complies",
+    "why": "the quote states brushless but not 4 pole, 2/3 pitch; the document states 4 pole on page 3 ('Exhaust flow at rated kW,                                     Type    '); 2/3 pitch on page 3 ('\u2022  Superior voltage waveform from two-thirds pitch windings')"
    },
    {
-    "req_id": "R20",
-    "cid": "R20b",
-    "kind": "disputed clause resolved",
-    "verdict": "deviates",
-    "why": "disputed clause inspected: the independent reader's quote is on page 5; computed from the quote: 9000 W does not meet == 5000 W"
+    "req_id": "R14",
+    "cid": "R14a",
+    "kind": "confirmed by the second reading",
+    "verdict": "complies",
+    "why": "two independent readings agree, and the second one's quote computes: computed from the quote: it states class h ('Class H, Synthetic')"
    }
   ],
   "evidence": [
@@ -12446,7 +12557,7 @@
     "quote": "Governor: type, make/model KODEC Electronic",
     "says": "complies",
     "role": "controls",
-    "why": "the quote states electronic but not isochronous; not stated anywhere else in the document"
+    "why": "model judgement on verified quote: 'Governor: type, make/model KODEC Electronic'"
    },
    {
     "req_id": "R06",
@@ -12788,7 +12899,7 @@
     "quote": "Brushless alternator with brushless pilot exciter for excellent load response",
     "says": "complies",
     "role": "controls",
-    "why": "the quote states brushless but not 4 pole, 2/3 pitch; not stated anywhere else in the document"
+    "why": "model judgement on verified quote: 'Brushless alternator with brushless pilot exciter for excellent load response'"
    },
    {
     "req_id": "R13",
@@ -15030,9 +15141,9 @@
     "id": "F-R04",
     "claim": "Excitation power to the automatic voltage regulator shall be provided by a permanent magnet generator (PMG) or equal.",
     "status": "complies",
-    "confidence": 0.65,
-    "needs_human": true,
-    "why": "model judgement on verified quote: 'Exciter type Brushless, Permanent- Magnet Pilot Exciter'",
+    "confidence": 0.8,
+    "needs_human": false,
+    "why": "two independent readings agree, and the second one's quote computes: computed from the quote: it states pmg ('Brushless, Permanent-Magnet Pilot Exciter')",
     "citations": [
      {
       "doc_id": "26-32-13-engine-generators-alpha",
@@ -15049,6 +15160,14 @@
       "quote": "Exciter type Brushless, Permanent- Magnet Pilot Exciter",
       "match": "table",
       "ocr": false
+     },
+     {
+      "doc_id": "kohler-kd2000-g5-626",
+      "page": 3,
+      "locator": "",
+      "quote": "Brushless, Permanent-Magnet Pilot Exciter",
+      "match": "table",
+      "ocr": false
      }
     ],
     "data": {
@@ -15061,16 +15180,16 @@
       {
        "cid": "R04a",
        "verdict": "complies",
-       "why": "model judgement on verified quote: 'Exciter type Brushless, Permanent- Magnet Pilot Exciter'",
+       "why": "two independent readings agree, and the second one's quote computes: computed from the quote: it states pmg ('Brushless, Permanent-Magnet Pilot Exciter')",
        "source": "datasheet",
-       "kind": null
+       "kind": "confirmed by the second reading"
       }
      ]
     },
     "route": {
-     "route": "engineer",
-     "kind": "confirm a reading",
-     "why": "the evidence is quoted but judged, not computed: a person confirms it"
+     "route": "decide",
+     "kind": "decided",
+     "why": "verified quote and a comparison made in code"
     }
    },
    {
@@ -15153,10 +15272,10 @@
    {
     "id": "F-R06",
     "claim": "Governor shall be electronic speed-sensing capable of isochronous frequency regulation from no load to full rated load.",
-    "status": "unclear",
-    "confidence": 0.5,
-    "needs_human": true,
-    "why": "the quote states electronic but not isochronous; not stated anywhere else in the document",
+    "status": "complies",
+    "confidence": 0.75,
+    "needs_human": false,
+    "why": "the quote states electronic but not isochronous; the document states isochronous on page 2 ('Frequency regulation, no-load to full-load        Isochronous         ')",
     "citations": [
      {
       "doc_id": "26-32-13-engine-generators-alpha",
@@ -15173,6 +15292,14 @@
       "quote": "Governor: type, make/model KODEC Electronic",
       "match": "exact",
       "ocr": false
+     },
+     {
+      "doc_id": "kohler-kd2000-g5-626",
+      "page": 2,
+      "locator": "",
+      "quote": "Frequency regulation, no-load to full-load Isochronous",
+      "match": "exact",
+      "ocr": false
      }
     ],
     "data": {
@@ -15184,21 +15311,17 @@
      "conditions": [
       {
        "cid": "R06a",
-       "verdict": "unclear",
-       "why": "the quote states electronic but not isochronous; not stated anywhere else in the document",
+       "verdict": "complies",
+       "why": "the quote states electronic but not isochronous; the document states isochronous on page 2 ('Frequency regulation, no-load to full-load        Isochronous         ')",
        "source": "datasheet",
-       "kind": "one missing fact"
+       "kind": "computed from the quote"
       }
-     ],
-     "route": "ask_supplier",
-     "route_kind": "clarification",
-     "question": "please state: isochronous",
-     "route_why": "one missing fact settles it, and the rest is met with verified evidence: please state: isochronous"
+     ]
     },
     "route": {
-     "route": "ask_supplier",
-     "kind": "clarification",
-     "why": "one missing fact settles it, and the rest is met with verified evidence: please state: isochronous"
+     "route": "decide",
+     "kind": "decided",
+     "why": "verified quote and a comparison made in code"
     }
    },
    {
@@ -15519,10 +15642,10 @@
    {
     "id": "F-R13",
     "claim": "Generator shall be 4-pole, brushless, and two-thirds pitch wound.",
-    "status": "unclear",
-    "confidence": 0.5,
-    "needs_human": true,
-    "why": "the quote states brushless but not 4 pole, 2/3 pitch; not stated anywhere else in the document",
+    "status": "complies",
+    "confidence": 0.75,
+    "needs_human": false,
+    "why": "the quote states brushless but not 4 pole, 2/3 pitch; the document states 4 pole on page 3 ('Exhaust flow at rated kW,                                     Type    '); 2/3 pitch on page 3 ('\u2022  Superior voltage waveform from two-thirds pitch windings')",
     "citations": [
      {
       "doc_id": "26-32-13-engine-generators-alpha",
@@ -15539,6 +15662,14 @@
       "quote": "Brushless alternator with brushless pilot exciter for excellent load response",
       "match": "exact",
       "ocr": false
+     },
+     {
+      "doc_id": "kohler-kd2000-g5-626",
+      "page": 3,
+      "locator": "",
+      "quote": "Exhaust flow at rated kW, Type 4-Pole, Rotating",
+      "match": "exact",
+      "ocr": false
      }
     ],
     "data": {
@@ -15550,30 +15681,26 @@
      "conditions": [
       {
        "cid": "R13a",
-       "verdict": "unclear",
-       "why": "the quote states brushless but not 4 pole, 2/3 pitch; not stated anywhere else in the document",
+       "verdict": "complies",
+       "why": "the quote states brushless but not 4 pole, 2/3 pitch; the document states 4 pole on page 3 ('Exhaust flow at rated kW,                                     Type    '); 2/3 pitch on page 3 ('\u2022  Superior voltage waveform from two-thirds pitch windings')",
        "source": "datasheet",
-       "kind": "one missing fact"
+       "kind": "computed from the quote"
       }
-     ],
-     "route": "ask_supplier",
-     "route_kind": "clarification",
-     "question": "please state: 4 pole, 2/3 pitch",
-     "route_why": "one missing fact settles it, and the rest is met with verified evidence: please state: 4 pole, 2/3 pitch"
+     ]
     },
     "route": {
-     "route": "ask_supplier",
-     "kind": "clarification",
-     "why": "one missing fact settles it, and the rest is met with verified evidence: please state: 4 pole, 2/3 pitch"
+     "route": "decide",
+     "kind": "decided",
+     "why": "verified quote and a comparison made in code"
     }
    },
    {
     "id": "F-R14",
     "claim": "Generator insulation shall be NEMA Class F or better.",
     "status": "complies",
-    "confidence": 0.65,
-    "needs_human": true,
-    "why": "model judgement on verified quote: 'Insulation: NEMA MG1, UL 1446,'",
+    "confidence": 0.8,
+    "needs_human": false,
+    "why": "two independent readings agree, and the second one's quote computes: computed from the quote: it states class h ('Class H, Synthetic')",
     "citations": [
      {
       "doc_id": "26-32-13-engine-generators-alpha",
@@ -15590,6 +15717,14 @@
       "quote": "Insulation: NEMA MG1, UL 1446,",
       "match": "exact",
       "ocr": false
+     },
+     {
+      "doc_id": "kohler-kd2000-g5-626",
+      "page": 3,
+      "locator": "",
+      "quote": "Class H, Synthetic",
+      "match": "exact",
+      "ocr": false
      }
     ],
     "data": {
@@ -15602,16 +15737,16 @@
       {
        "cid": "R14a",
        "verdict": "complies",
-       "why": "model judgement on verified quote: 'Insulation: NEMA MG1, UL 1446,'",
+       "why": "two independent readings agree, and the second one's quote computes: computed from the quote: it states class h ('Class H, Synthetic')",
        "source": "datasheet",
-       "kind": null
+       "kind": "confirmed by the second reading"
       }
      ]
     },
     "route": {
-     "route": "engineer",
-     "kind": "confirm a reading",
-     "why": "the evidence is quoted but judged, not computed: a person confirms it"
+     "route": "decide",
+     "kind": "decided",
+     "why": "verified quote and a comparison made in code"
     }
    },
    {
@@ -15827,24 +15962,16 @@
    {
     "id": "F-R20",
     "claim": "Provide two 5000 W, 480 V, 1-phase jacket-water heaters.",
-    "status": "deviates",
+    "status": "unclear",
     "confidence": 0.5,
     "needs_human": true,
-    "why": "no value found, but the submittal mentions water, heater, jacket on page(s) [2, 3, 4, 5]; disputed clause inspected: the independent reader's quote is on page 5; computed from the quote: 9000 W does not meet == 5000 W; no value found, but the submittal mentions water, electrical, heater on page(s) [1, 2, 3, 4, 5, 6]",
+    "why": "no value found, but the submittal mentions water, heater, jacket on page(s) [2, 3, 4, 5]; no value found, but the submittal mentions water, heater, jacket on page(s) [2, 3, 4, 5]; no value found, but the submittal mentions water, electrical, heater on page(s) [1, 2, 3, 4, 5, 6]",
     "citations": [
      {
       "doc_id": "26-32-13-engine-generators-alpha",
       "page": 8,
       "locator": "2.1.K.2 (Jacket-Water Heater)",
       "quote": "engine shall have two KIM #Hotstart (480 volt, 1-phase) or approved equal, 5000W jacket-water heaters supplied from a \"normal\" branch circuit.",
-      "match": "exact",
-      "ocr": false
-     },
-     {
-      "doc_id": "kohler-kd2000-g5-626",
-      "page": 5,
-      "locator": "",
-      "quote": "Block Heater, 9000 W, 208 V, (Select 1 Ph or 3 Ph)",
       "match": "exact",
       "ocr": false
      }
@@ -15865,10 +15992,10 @@
       },
       {
        "cid": "R20b",
-       "verdict": "deviates",
-       "why": "disputed clause inspected: the independent reader's quote is on page 5; computed from the quote: 9000 W does not meet == 5000 W",
+       "verdict": "unclear",
+       "why": "no value found, but the submittal mentions water, heater, jacket on page(s) [2, 3, 4, 5]",
        "source": "datasheet",
-       "kind": "disputed clause resolved"
+       "kind": null
       },
       {
        "cid": "R20c",
@@ -15881,8 +16008,8 @@
     },
     "route": {
      "route": "engineer",
-     "kind": "confirm a reading",
-     "why": "the evidence is quoted but judged, not computed: a person confirms it"
+     "kind": "contested",
+     "why": "our reading found no value, but an independent reading says deviates: a person checks the page"
     }
    },
    {
@@ -16275,10 +16402,10 @@
    {
     "id": "F-R07",
     "claim": "Starting system shall be 24 volt, 2-wire, negative ground, gear engaging electric starter.",
-    "status": "unclear",
-    "confidence": 0.65,
-    "needs_human": true,
-    "why": "the evidence shows 24 volt but does not mention electric starter; nothing contradicts it, a person decides",
+    "status": "complies",
+    "confidence": 0.8,
+    "needs_human": false,
+    "why": "computed from the quote: it states 24 volt, electric starter ('Starting voltage 24 volts, negative ground')",
     "citations": [
      {
       "doc_id": "26-32-13-engine-generators-alpha",
@@ -16306,17 +16433,17 @@
      "conditions": [
       {
        "cid": "R07a",
-       "verdict": "unclear",
-       "why": "the evidence shows 24 volt but does not mention electric starter; nothing contradicts it, a person decides",
+       "verdict": "complies",
+       "why": "computed from the quote: it states 24 volt, electric starter ('Starting voltage 24 volts, negative ground')",
        "source": "datasheet",
-       "kind": null
+       "kind": "computed from the quote"
       }
      ]
     },
     "route": {
-     "route": "engineer",
-     "kind": "judgement",
-     "why": "the evidence needs judgement: the evidence shows 24 volt but does not mention electric starter; nothing contradicts it, a person decides"
+     "route": "decide",
+     "kind": "decided",
+     "why": "verified quote and a comparison made in code"
     }
    },
    {
@@ -16590,7 +16717,7 @@
     "status": "complies",
     "confidence": 0.75,
     "needs_human": false,
-    "why": "the quote states 4 pole, brushless but not 2/3 pitch; the document states 2/3 pitch on page 2 ('Stator                                         2/3 pitch')",
+    "why": "the quote states 4 pole, brushless but not 2/3 pitch; the document states 2/3 pitch on page 1 ('capability with low reactance 2/3 pitch windings, low waveform        ')",
     "citations": [
      {
       "doc_id": "26-32-13-engine-generators-alpha",
@@ -16610,9 +16737,9 @@
      },
      {
       "doc_id": "cummins-c2000d6e-spec-sheet",
-      "page": 2,
+      "page": 1,
       "locator": "",
-      "quote": "Stator 2/3 pitch",
+      "quote": "capability with low reactance 2/3 pitch windings, low waveform",
       "match": "exact",
       "ocr": false
      }
@@ -16627,7 +16754,7 @@
       {
        "cid": "R13a",
        "verdict": "complies",
-       "why": "the quote states 4 pole, brushless but not 2/3 pitch; the document states 2/3 pitch on page 2 ('Stator                                         2/3 pitch')",
+       "why": "the quote states 4 pole, brushless but not 2/3 pitch; the document states 2/3 pitch on page 1 ('capability with low reactance 2/3 pitch windings, low waveform        ')",
        "source": "datasheet",
        "kind": "computed from the quote"
       }
@@ -16931,7 +17058,7 @@
     "status": "unclear",
     "confidence": 0.5,
     "needs_human": true,
-    "why": "no value found, but the submittal mentions heater, water on page(s) [2]; no value found, but the submittal mentions heater, water on page(s) [2]; no value found, but the submittal mentions electrical, phase, water on page(s) [1, 2, 3, 4, 7]",
+    "why": "no value found, but the submittal mentions heater, water on page(s) [2]; no value found, but the submittal mentions heater, water on page(s) [2]; no value found, but the submittal mentions electrical, phase, heater on page(s) [1, 2, 3, 4, 7]",
     "citations": [
      {
       "doc_id": "26-32-13-engine-generators-alpha",
@@ -16966,7 +17093,7 @@
       {
        "cid": "R20c",
        "verdict": "unclear",
-       "why": "no value found, but the submittal mentions electrical, phase, water on page(s) [1, 2, 3, 4, 7]",
+       "why": "no value found, but the submittal mentions electrical, phase, heater on page(s) [1, 2, 3, 4, 7]",
        "source": "datasheet",
        "kind": null
       }
@@ -17044,11 +17171,18 @@
     "why": "computed from the quote: it states 4 cycle ('Configuration Four Cycle; Vee; 16 Cylinder')"
    },
    {
+    "req_id": "R07",
+    "cid": "R07a",
+    "kind": "computed from the quote",
+    "verdict": "complies",
+    "why": "computed from the quote: it states 24 volt, electric starter ('Starting voltage 24 volts, negative ground')"
+   },
+   {
     "req_id": "R13",
     "cid": "R13a",
     "kind": "computed from the quote",
     "verdict": "complies",
-    "why": "the quote states 4 pole, brushless but not 2/3 pitch; the document states 2/3 pitch on page 2 ('Stator                                         2/3 pitch')"
+    "why": "the quote states 4 pole, brushless but not 2/3 pitch; the document states 2/3 pitch on page 1 ('capability with low reactance 2/3 pitch windings, low waveform        ')"
    },
    {
     "req_id": "R15",
@@ -17469,8 +17603,8 @@
     "page": 2,
     "quote": "Starting voltage 24 volts, negative ground",
     "says": "unclear",
-    "role": "controls",
-    "why": "the evidence shows 24 volt but does not mention electric starter; nothing contradicts it, a person decides"
+    "role": "supports",
+    "why": "says unclear, not firm enough to decide: the evidence shows 24 volt but does not mention electric starter; nothing contradicts it, a person decides"
    },
    {
     "req_id": "R07",
@@ -18760,7 +18894,7 @@
      {
       "cid": "R20c",
       "verdict": "unclear",
-      "why": "no value found, but the submittal mentions electrical, phase, water on page(s) [1, 2, 3, 4, 7]",
+      "why": "no value found, but the submittal mentions electrical, phase, heater on page(s) [1, 2, 3, 4, 7]",
       "conf": 0.5,
       "exact": false,
       "cite": null,
@@ -19767,7 +19901,7 @@
     "status": "unclear",
     "confidence": 0.5,
     "needs_human": true,
-    "why": "no value found, but the submittal mentions heater, water on page(s) [2]; no value found, but the submittal mentions heater, water on page(s) [2]; no value found, but the submittal mentions electrical, phase, water on page(s) [1, 2, 3, 4, 7]",
+    "why": "no value found, but the submittal mentions heater, water on page(s) [2]; no value found, but the submittal mentions heater, water on page(s) [2]; no value found, but the submittal mentions electrical, phase, heater on page(s) [1, 2, 3, 4, 7]",
     "citations": [
      {
       "doc_id": "26-32-13-engine-generators-alpha",
@@ -19802,7 +19936,7 @@
       {
        "cid": "R20c",
        "verdict": "unclear",
-       "why": "no value found, but the submittal mentions electrical, phase, water on page(s) [1, 2, 3, 4, 7]",
+       "why": "no value found, but the submittal mentions electrical, phase, heater on page(s) [1, 2, 3, 4, 7]",
        "source": "datasheet",
        "kind": null
       }
@@ -20192,10 +20326,10 @@
    {
     "id": "F-R07",
     "claim": "Starting system shall be 24 volt, 2-wire, negative ground, gear engaging electric starter.",
-    "status": "unclear",
-    "confidence": 0.65,
-    "needs_human": true,
-    "why": "the evidence shows 24 volt but does not mention electric starter; nothing contradicts it, a person decides",
+    "status": "complies",
+    "confidence": 0.8,
+    "needs_human": false,
+    "why": "computed from the quote: it states 24 volt, electric starter ('Starting voltage 24 volts, negative ground')",
     "citations": [
      {
       "doc_id": "26-32-13-engine-generators-alpha",
@@ -20223,17 +20357,17 @@
      "conditions": [
       {
        "cid": "R07a",
-       "verdict": "unclear",
-       "why": "the evidence shows 24 volt but does not mention electric starter; nothing contradicts it, a person decides",
+       "verdict": "complies",
+       "why": "computed from the quote: it states 24 volt, electric starter ('Starting voltage 24 volts, negative ground')",
        "source": "datasheet",
-       "kind": null
+       "kind": "computed from the quote"
       }
      ]
     },
     "route": {
-     "route": "engineer",
-     "kind": "judgement",
-     "why": "the evidence needs judgement: the evidence shows 24 volt but does not mention electric starter; nothing contradicts it, a person decides"
+     "route": "decide",
+     "kind": "decided",
+     "why": "verified quote and a comparison made in code"
     }
    },
    {
@@ -20507,7 +20641,7 @@
     "status": "complies",
     "confidence": 0.75,
     "needs_human": false,
-    "why": "the quote states 4 pole, brushless but not 2/3 pitch; the document states 2/3 pitch on page 2 ('Stator                                         2/3 pitch')",
+    "why": "the quote states 4 pole, brushless but not 2/3 pitch; the document states 2/3 pitch on page 1 ('capability with low reactance 2/3 pitch windings, low waveform        ')",
     "citations": [
      {
       "doc_id": "26-32-13-engine-generators-alpha",
@@ -20527,9 +20661,9 @@
      },
      {
       "doc_id": "cummins-c2000d6e-spec-sheet",
-      "page": 2,
+      "page": 1,
       "locator": "",
-      "quote": "Stator 2/3 pitch",
+      "quote": "capability with low reactance 2/3 pitch windings, low waveform",
       "match": "exact",
       "ocr": false
      }
@@ -20544,7 +20678,7 @@
       {
        "cid": "R13a",
        "verdict": "complies",
-       "why": "the quote states 4 pole, brushless but not 2/3 pitch; the document states 2/3 pitch on page 2 ('Stator                                         2/3 pitch')",
+       "why": "the quote states 4 pole, brushless but not 2/3 pitch; the document states 2/3 pitch on page 1 ('capability with low reactance 2/3 pitch windings, low waveform        ')",
        "source": "datasheet",
        "kind": "computed from the quote"
       }
@@ -20839,7 +20973,7 @@
     "status": "unclear",
     "confidence": 0.5,
     "needs_human": true,
-    "why": "no value found, but the submittal mentions heater, water on page(s) [2]; no value found, but the submittal mentions heater, water on page(s) [2]; no value found, but the submittal mentions electrical, phase, water on page(s) [1, 2, 3, 4, 7]",
+    "why": "no value found, but the submittal mentions heater, water on page(s) [2]; no value found, but the submittal mentions heater, water on page(s) [2]; no value found, but the submittal mentions electrical, phase, heater on page(s) [1, 2, 3, 4, 7]",
     "citations": [
      {
       "doc_id": "26-32-13-engine-generators-alpha",
@@ -20874,7 +21008,7 @@
       {
        "cid": "R20c",
        "verdict": "unclear",
-       "why": "no value found, but the submittal mentions electrical, phase, water on page(s) [1, 2, 3, 4, 7]",
+       "why": "no value found, but the submittal mentions electrical, phase, heater on page(s) [1, 2, 3, 4, 7]",
        "source": "datasheet",
        "kind": null
       }

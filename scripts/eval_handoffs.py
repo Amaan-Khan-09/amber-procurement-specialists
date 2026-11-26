@@ -19,7 +19,8 @@ qualified/ambiguous -> ask the supplier; excluded/alternate -> price it.
   justified hand-off    an engineer was asked and the case needs judgement, or the agent's own answer was wrong
   unnecessary hand-off  an engineer was asked although the agent's answer was right and no judgement was needed
 
-usage: python scripts/eval_handoffs.py          prints both versions, writes eval/handoff_set/{cases,results}.json
+Earlier versions are not re-run: their stored answers (eval/handoff_set/frozen/) are re-scored against today's keys.
+usage: python scripts/eval_handoffs.py    prints the versions side by side, writes eval/handoff_set/{cases,results}.json
 """
 import json
 import re
@@ -31,8 +32,9 @@ ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
 sys.path.insert(0, str(ROOT / "scripts"))
 
-from amber import case as C, docs, linking, submittal, triage, vendors  # noqa: E402
-from amber.package import same_product  # noqa: E402
+from amber import case as C, docs, submittal, triage  # noqa: E402
+from amber.llm import Meter  # noqa: E402
+from amber.ocr import reader_from_env  # noqa: E402
 
 KEYS = ROOT / "eval" / "answer_keys"
 OUT = ROOT / "eval" / "handoff_set"
@@ -76,7 +78,8 @@ def build_cases() -> list[dict]:
                 cat = {"engineer": "escalate", "decide": "routine", "ask_supplier": "missing_info"}[route]
             if not (ROOT / "examples" / f.name).exists():
                 continue  # labelled but not run yet
-            grp = {4: "unseen datasheet", 5: "fresh unseen"}.get(k.get("heldout_set"), "datasheet")  # labelled, then run once
+            # sets 4 and 5 were fresh once; they have been inspected since and are regression material now
+            grp = {4: "regression set 4", 5: "regression set 5", 6: "fresh set 6"}.get(k.get("heldout_set"), "datasheet")
             cases.append({"id": f"{f.stem}/{l['req_id']}", "group": grp, "case": f.stem, "req_id": l["req_id"],
                           "expected": l["expected"], "category": cat, "expected_route": route})
     pk = json.loads((KEYS / "package_GEN.json").read_text(encoding="utf-8"))
@@ -115,10 +118,12 @@ def _reqs(case_key: dict):
     return submittal.structure_requirements(C._NoModel(), spec, row, docs.doc_id_for(ROOT / "data/schedules/equipment_schedule.csv"), ck)
 
 
-VERSIONS = {"v1": "routing at commit 48b321c (one queue: anything under 0.70 to a person)",
-            "v2": "commit 9cd1b4e: decided / ask the supplier / engineer, supplier's own documents reconciled",
-            "v3": "now: plus a second look in code at the clause (computed from the quote, disputed clause, option "
-                  "dependence, one missing fact -> focused clarification)"}
+VERSIONS = {"v1": "commit 48b321c: anything under 0.70 to one queue",
+            "v2": "commit 9cd1b4e (original baseline): decided / supplier / engineer",
+            "v3": "commit 1d14f3e: second look at the clause",
+            "v4": "candidate: second look on the whole evidence record, second reading of large documents"}
+ORDER = ("v1", "v2", "v3", "v4")
+FROZEN = [OUT / "frozen" / "results_1d14f3e.json", OUT / "frozen" / "fresh6_1d14f3e.json"]
 
 
 def outcome3(exp: dict, got: dict) -> tuple[str, str | None]:
@@ -130,7 +135,7 @@ def outcome3(exp: dict, got: dict) -> tuple[str, str | None]:
         if exp["expected_route"] == "engineer" or g_act != e_act:
             return "justified hand-off", None
         return "unnecessary hand-off", None
-    if exp["expected_route"] == "engineer" and exp["expected"] == "escalate":
+    if exp["expected_route"] == "engineer":  # the key says a person must look: acting alone or only asking is a miss
         return "missed escalation", "missed escalation"
     if route == "ask_supplier" or g_act == "ask":
         label = "clarification" if got.get("kind") == "clarification" else "supplier question"
@@ -144,30 +149,32 @@ def outcome3(exp: dict, got: dict) -> tuple[str, str | None]:
     return "incorrect decision", "critical" if critical else "minor"
 
 
+def frozen_answers() -> dict[str, dict]:
+    """The stored answers of earlier versions, produced by their own code: only their SCORES are recomputed here, so a
+    corrected label changes every version the same way."""
+    out: dict = {}
+    for f in FROZEN:
+        if f.exists():
+            for r in json.loads(f.read_text(encoding="utf-8"))["results"]:
+                out[r["id"]] = {v: {k: r[v].get(k) for k in ("answer", "route", "kind")} for v in ("v1", "v2", "v3") if v in r}
+    return out
+
+
 def datasheet_answers() -> dict[str, dict]:
-    """version -> {'G7/R01': {answer, route, kind}} on the same saved model readings."""
-    out = {"v1": {}, "v2": {}, "v3": {}}
+    """'G7/R01' -> {answer, route, kind, why} from today's code on the saved model readings."""
+    out: dict = {}
     seconds, readers = C.second_readings(), C.second_answers()
-    from amber.schema import RunInfo, ToolResult
     for f in sorted(KEYS.glob("*.json")):
         if not re.fullmatch(r"[GU]\d+\.json", f.name) or not (ROOT / "examples" / f.name).exists():
             continue
         k = json.loads(f.read_text(encoding="utf-8"))
         reqs = _reqs(k)
         run = json.loads((ROOT / "examples" / f.name).read_text(encoding="utf-8"))
-        offers = C.offers_from_run(run)
-        doc = docs.load(ROOT / k["submittal"])
-        o = json.loads(json.dumps(offers))
-        submittal._flag_shared_evidence(reqs, o)
-        fs, _ = submittal.decide_all(reqs, o, doc)
-        fs = ToolResult(tool="check_submittal", findings=fs, result={}, run=RunInfo(models=[], latency_ms=0)).finalize().findings
-        for x in fs:
-            out["v1"][f"{f.stem}/{x.data['req_id']}"] = {"answer": x.status.value, "route": "engineer" if x.needs_human else "decide"}
-        for v, ins in (("v2", False), ("v3", True)):
-            res = C.reconcile_supplier(reqs, doc, offers, [], [], seconds.get(f.stem), readers.get(f.stem), inspect=ins)
-            for x in res["findings"]:
-                out[v][f"{f.stem}/{x['data']['req_id']}"] = {"answer": x["status"], "route": x["route"]["route"],
-                                                              "kind": x["route"]["kind"], "why": x["why"][:300]}
+        doc = docs.load(ROOT / k["submittal"], ocr=reader_from_env(meter=Meter()))
+        res = C.reconcile_supplier(reqs, doc, C.offers_from_run(run), [], [], seconds.get(f.stem), readers.get(f.stem))
+        for x in res["findings"]:
+            out[f"{f.stem}/{x['data']['req_id']}"] = {"answer": x["status"], "route": x["route"]["route"],
+                                                       "kind": x["route"]["kind"], "why": x["why"][:300]}
     return out
 
 
@@ -176,68 +183,65 @@ def run() -> dict:
     OUT.mkdir(parents=True, exist_ok=True)
     (OUT / "cases.json").write_text(json.dumps({"built_from": "eval/answer_keys (written before the code scored here)",
                                                  "cases": cases}, indent=1), encoding="utf-8")
+    old = frozen_answers()
     ds = datasheet_answers()
     cf = C.run_case("GEN", root=ROOT / "runs" / "eval_cases", fresh=True)
     rec, link, pq = cf.output("reconcile"), cf.output("link"), cf.output("prequalify")
-    pkg = json.loads((ROOT / "examples/package_GEN.json").read_text(encoding="utf-8"))
     bl1 = json.loads((ROOT / "examples/BL1.json").read_text(encoding="utf-8"))
     cells = {(f["data"]["bid"], f["data"]["scope_id"]): f for f in bl1["findings"] if f["id"].startswith("F-B")}
-    key_pk = json.loads((KEYS / "package_GEN.json").read_text(encoding="utf-8"))
-    results = []
+    results, missing = [], []
     for c in cases:
         g = c["group"]
-        if g in ("datasheet", "unseen datasheet", "fresh unseen"):
-            got = {v: ds[v][c["id"]] for v in ("v1", "v2", "v3")}
+        if g in ("datasheet", "regression set 4", "regression set 5", "fresh set 6"):
+            now = ds[c["id"]]
         elif g == "package":
-            pick = lambda fs: next(f for f in fs if f["data"]["req_id"] == c["req_id"])
-            case_id = key_pk["bidders"][c["bid"]]["datasheet_case"]
-            f2, f3 = pick(rec[c["bid"]]["before_inspection"]), pick(rec[c["bid"]]["findings"])
-            got = {"v1": ds["v1"][f"{case_id}/{c['req_id']}"],
-                   "v2": {"answer": f2["status"], "route": f2["route"]["route"], "kind": f2["route"]["kind"]},
-                   "v3": {"answer": f3["status"], "route": f3["route"]["route"], "kind": f3["route"]["kind"]}}
+            f4 = next(f for f in rec[c["bid"]]["findings"] if f["data"]["req_id"] == c["req_id"])
+            now = {"answer": f4["status"], "route": f4["route"]["route"], "kind": f4["route"]["kind"], "why": f4["why"][:300]}
         elif g == "link":
-            sub = ROOT / "data/submittals" / (C.CaseFile("GEN", C.CASES["GEN"], root=ROOT / "runs" / "eval_cases")._datasheet_for(c["bid"]) or "")
-            sp = same_product(pkg["result"]["parts"]["level_bids"]["products"][c["bid"]], str(sub)) if sub.is_file() else {"status": "unknown"}
             lk = link["products"][c["bid"]]
-            n = {"answer": lk["status"], "route": lk["route"]}
+            now = {"answer": lk["status"], "route": lk["route"]}
             if lk["status"] == "linked" and c.get("datasheet") and lk["datasheet"] != c["datasheet"]:
-                n["answer"] = "wrong link"
-            got = {"v1": {"answer": "linked" if sp["status"] == "match" else "ambiguous",
-                          "route": "decide" if sp["status"] == "match" else "engineer"}, "v2": n, "v3": n}
+                now["answer"] = "wrong link"
         elif g == "decision":
-            got = {v: {"answer": "escalate", "route": "engineer"} for v in ("v1", "v2", "v3")}
+            now = {"answer": "escalate", "route": "engineer"}
         elif g == "bid scope":
             f = cells.get((c["bid"], c["scope_id"]))
             st = f["data"]["scope_status"] if f else "silent"
-            r = triage.route_bid_cell(f) if f else {"route": "ask_supplier"}
-            got = {"v1": {"answer": st, "route": "engineer" if f and f["needs_human"] else "decide"},
-                   "v2": {"answer": st, "route": r["route"]}, "v3": {"answer": st, "route": r["route"]}}
+            now = {"answer": st, "route": (triage.route_bid_cell(f) if f else {"route": "ask_supplier"})["route"]}
         elif g == "prequal":
             bid = next(bb for bb, v in cf.memory["bidder_vendor"].items() if v == c["vendor"])
             cr = pq[bid]["criteria"][c["criterion"]]
-            n = {"answer": cr["status"], "route": cr["route"]}
-            got = {"v1": {"answer": "needs_verification", "route": "engineer"}, "v2": n, "v3": n}
+            now = {"answer": cr["status"], "route": cr["route"]}
+        if c["id"] not in old:
+            missing.append(c["id"])
+            continue
         row = dict(c)
-        for v, x in got.items():
+        for v, x in {**old[c["id"]], "v4": now}.items():
             o, s = outcome3(c, x)
             row[v] = {**x, "outcome": o, "severity": s}
         results.append(row)
+    if missing:
+        print(f"WARNING: {len(missing)} cases have no stored earlier answers and are not scored: {missing[:5]}")
     return {"results": results}
 
 
-METRICS = ["to an engineer", "clarification requests", "supplier questions", "correct decisions",
-           "well-founded questions", "incorrect decisions (critical)", "incorrect decisions (minor)",
-           "questions not needed", "missed escalations", "unnecessary hand-offs", "right action"]
+METRICS = ["to an engineer", "supplier questions", "clarification requests", "unresolved", "correct decisions",
+           "incorrect decisions (critical)", "incorrect decisions (minor)", "missed escalations",
+           "well-founded questions", "questions not needed", "unnecessary hand-offs", "right action"]
 
 
 def table(rows: list[dict], label: str, quiet: bool = False) -> dict:
     out = {}
-    for v in ("v1", "v2", "v3"):
+    vs = [v for v in ORDER if rows and all(v in r for r in rows)]
+    for v in vs:
         o = Counter(r[v]["outcome"] for r in rows)
-        out[v] = {"n": len(rows),
-                  "to an engineer": sum(r[v]["route"] == "engineer" for r in rows),
+        eng = sum(r[v]["route"] == "engineer" for r in rows)
+        asked = sum(r[v]["route"] == "ask_supplier" for r in rows)
+        out[v] = {"n": len(rows), "to an engineer": eng,
                   "clarification requests": sum(r[v]["outcome"].startswith("clarification") for r in rows),
                   "supplier questions": sum(r[v]["outcome"].startswith("supplier question") for r in rows),
+                  # nothing here has a follow-up, so every question is still open: unresolved = engineer + questions
+                  "unresolved": eng + asked,
                   "correct decisions": o["correct decision"],
                   "well-founded questions": sum(r[v]["outcome"].endswith("well-founded") for r in rows),
                   "incorrect decisions (critical)": sum(r[v]["outcome"] == "incorrect decision" and r[v]["severity"] == "critical" for r in rows),
@@ -246,34 +250,34 @@ def table(rows: list[dict], label: str, quiet: bool = False) -> dict:
                   "missed escalations": o["missed escalation"],
                   "unnecessary hand-offs": o["unnecessary hand-off"],
                   "right action": sum(ACTION.get(r[v]["answer"], "ask") == ACTION[r["expected"]] for r in rows)}
-    if not quiet:
+    if not quiet and rows:
         n = len(rows)
         print(f"\n{label} (n = {n})")
-        print(f"  {'':32} {'v1':>12} {'v2 (baseline)':>15} {'v3 (now)':>12}")
+        print(f"  {'':32}" + "".join(f"{v:>14}" for v in vs))
         for k in METRICS:
-            print(f"  {k:32} " + " ".join(f"{out[v][k]:>5} ({out[v][k] / n:>4.0%})".rjust(w) for v, w in (("v1", 12), ("v2", 15), ("v3", 12))))
+            print(f"  {k:32}" + "".join(f"{out[v][k]:>7} ({out[v][k] / n:>4.0%})" for v in vs))
     return out
 
 
 def main() -> None:
     res = run()
     rows = res["results"]
-    like = [r for r in rows if r["group"] not in ("prequal", "unseen datasheet", "fresh unseen")]
-    summary = {"versions": VERSIONS, "like_for_like": table(like, "Like for like: the fixed development set"),
-               "by_group": {g: table([r for r in rows if r["group"] == g], f"  group: {g}", quiet=True) for g in
-                            ("datasheet", "package", "link", "bid scope", "decision")},
-               "by_category": {c: table([r for r in like if r["category"] == c], f"  category: {c}", quiet=True) for c in
+    pick = lambda g: [r for r in rows if r["group"] == g]
+    like = [r for r in rows if r["group"] in ("datasheet", "package", "link", "bid scope", "decision")]
+    summary = {"versions": VERSIONS, "like_for_like": table(like, "Fixed development set"),
+               "by_group": {g: table(pick(g), g, quiet=True) for g in ("datasheet", "package", "link", "bid scope", "decision")},
+               "by_category": {c: table([r for r in like if r["category"] == c], c, quiet=True) for c in
                                ("routine", "missing_info", "conflict", "escalate")},
-               "unseen_set4": table([r for r in rows if r["group"] == "unseen datasheet"], "G9 (inspected earlier; regression case for the 50 C option)"),
-               "fresh_unseen_set5": table([r for r in rows if r["group"] == "fresh unseen"],
-                                          "Fresh unseen, held-out set 5 (G10 + G11: labelled after the code was frozen, run once)")
-                                    if any(r["group"] == "fresh unseen" for r in rows) else None,
-               "new_specialist_prequal": table([r for r in rows if r["group"] == "prequal"], "pre-qualification", quiet=True)}
-    print("\nEvery like-for-like case whose outcome changed from v2 to v3:")
-    for r in like:
-        if (r["v2"]["outcome"], r["v2"]["route"]) != (r["v3"]["outcome"], r["v3"]["route"]):
-            print(f"   {r['id']:14} key {r['expected']:>9}/{r['expected_route']:12} v2 {r['v2']['answer']:>9}/{r['v2']['route']:12} -> "
-                  f"v3 {r['v3']['answer']:>9}/{r['v3']['route']:12} {r['v3']['outcome']}  ({r['v3'].get('kind', '')})")
+               "regression_set4": table(pick("regression set 4"), "Regression: G9"),
+               "regression_set5": table(pick("regression set 5"), "Regression: G10 + G11 (fresh last round, inspected since)"),
+               "fresh_set6": table(pick("fresh set 6"), "FRESH set 6: labelled after the candidate was frozen"),
+               "new_specialist_prequal": table(pick("prequal"), "pre-qualification", quiet=True)}
+    for a_, b_ in (("v3", "v4"),):
+        print(f"\nDevelopment cases whose outcome changed from {a_} to {b_}:")
+        for r in like:
+            if (r[a_]["outcome"], r[a_]["route"], r[a_]["answer"]) != (r[b_]["outcome"], r[b_]["route"], r[b_]["answer"]):
+                print(f"   {r['id']:14} key {r['expected'][:6]:>6}/{r['expected_route'][:3]}  {r[a_]['answer'][:6]:>6}/{r[a_]['route'][:3]} -> "
+                      f"{r[b_]['answer'][:6]:>6}/{r[b_]['route'][:3]}  {r[b_]['outcome']}  ({r[b_].get('kind', '')})")
     (OUT / "results.json").write_text(json.dumps({"summary": summary, "results": rows}, indent=1), encoding="utf-8")
 
 

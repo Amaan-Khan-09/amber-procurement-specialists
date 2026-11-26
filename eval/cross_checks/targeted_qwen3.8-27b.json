@@ -1,0 +1,231 @@
+{
+ "G1": {
+  "case": "G1",
+  "doc_id": "cummins-dqkab-submittal-csdg",
+  "model": "qwen/qwen3.8-27b",
+  "pages_read": [
+   2,
+   3,
+   5,
+   7,
+   8,
+   9,
+   10,
+   11,
+   13,
+   14,
+   15,
+   16,
+   17,
+   18,
+   19,
+   20,
+   21,
+   24,
+   26,
+   32,
+   33,
+   40,
+   41,
+   44,
+   65
+  ],
+  "of_pages": 66,
+  "answers": {
+   "R01": {
+    "verdict": "complies",
+    "page": 3,
+    "quote": "DQKAB, Diesel Genset, 60Hz, 2000kW-Standby Rating"
+   },
+   "R02": {
+    "verdict": "complies",
+    "page": 3,
+    "quote": "Voltage - 277/480, 3 Phase, Wye, 4 Wire"
+   },
+   "R07": {
+    "verdict": "unclear",
+    "page": null,
+    "quote": "mentioned or stated without a verifiable quote"
+   },
+   "R09": {
+    "verdict": "deviates",
+    "page": 5,
+    "quote": "Cooling system: 40 °C ambient"
+   },
+   "R11": {
+    "verdict": "deviates",
+    "page": 11,
+    "quote": "Engine power available up to 447 m (1466 ft) at ambient temperatures up to 40°C (104°F)."
+   },
+   "R12": {
+    "verdict": "unclear",
+    "page": null,
+    "quote": "chunks disagree: complies p9; deviates p24"
+   },
+   "R13": {
+    "verdict": "complies",
+    "page": 5,
+    "quote": "Brushless, 4 pole... Stator 2/3 pitch"
+   },
+   "R15": {
+    "verdict": "deviates",
+    "page": 3,
+    "quote": "Alternator Heater, 110/220 (120/240) Volt AC"
+   },
+   "R16": {
+    "verdict": "deviates",
+    "page": 3,
+    "quote": "Circuit Breaker or Entrance Box - None"
+   },
+   "R17": {
+    "verdict": "complies",
+    "page": 5,
+    "quote": "Voltage regulation, no load to full load ± 0.5%"
+   },
+   "R18": {
+    "verdict": "unclear",
+    "page": null,
+    "quote": "chunks disagree: complies p5; deviates p24"
+   },
+   "R19": {
+    "verdict": "missing",
+    "page": null,
+    "quote": ""
+   },
+   "R20": {
+    "verdict": "deviates",
+    "page": 3,
+    "quote": "Coolant Heater - 208/240/480 Volts AC, 40F Minimum Ambient Temperature"
+   },
+   "R21": {
+    "verdict": "missing",
+    "page": null,
+    "quote": ""
+   }
+  }
+ },
+ "G3": {
+  "case": "G3",
+  "doc_id": "kohler-kd1000-submittal-wpc6593",
+  "model": "qwen/qwen3.8-27b",
+  "pages_read": [
+   1,
+   2,
+   3,
+   5,
+   6,
+   7,
+   8,
+   9,
+   10,
+   11,
+   13,
+   14,
+   15,
+   16,
+   17,
+   18,
+   19,
+   20,
+   21,
+   23,
+   24,
+   25,
+   26,
+   27,
+   28,
+   29,
+   30,
+   31,
+   35,
+   36,
+   38,
+   40,
+   49,
+   53,
+   59,
+   62,
+   64,
+   77,
+   84,
+   96,
+   102,
+   103,
+   104,
+   105
+  ],
+  "of_pages": 105,
+  "answers": {
+   "R01": {
+    "verdict": "complies",
+    "page": 1,
+    "quote": "rated for 1000 kW/1250 kVA"
+   },
+   "R02": {
+    "verdict": "complies",
+    "page": 2,
+    "quote": "60Hz, 277/480V, Wye, 3Ph, 4W"
+   },
+   "R03": {
+    "verdict": "unclear",
+    "page": null,
+    "quote": "mentioned or stated without a verifiable quote"
+   },
+   "R06": {
+    "verdict": "complies",
+    "page": 5,
+    "quote": "Governor: type, make/model KODEC Electronic Control ... Frequency regulation, no-load to-full load Isochronous"
+   },
+   "R07": {
+    "verdict": "deviates",
+    "page": 2,
+    "quote": "Battery, 2/12V, AGM"
+   },
+   "R09": {
+    "verdict": "unclear",
+    "page": null,
+    "quote": "chunks disagree: deviates p2; complies p6"
+   },
+   "R11": {
+    "verdict": "deviates",
+    "page": 2,
+    "quote": "Unit Mounted Radiator, 50C"
+   },
+   "R13": {
+    "verdict": "complies",
+    "page": 5,
+    "quote": "Type 4-Pole, Rotating-Field ... All models are brushless ... two-thirds pitch windings"
+   },
+   "R15": {
+    "verdict": "deviates",
+    "page": 2,
+    "quote": "6000W,208V,1Ph,w/Valves"
+   },
+   "R16": {
+    "verdict": "deviates",
+    "page": 25,
+    "quote": "Main Breaker 100A, 1PH- 3W, 24SP"
+   },
+   "R18": {
+    "verdict": "complies",
+    "page": 31,
+    "quote": "Total Harmonic Distortion, on load DHT (%) 1,5"
+   },
+   "R19": {
+    "verdict": "complies",
+    "page": 2,
+    "quote": "Fuel Runtime (Approx.) 24 Hours"
+   },
+   "R20": {
+    "verdict": "deviates",
+    "page": 2,
+    "quote": "6000W,208V,1Ph,w/Valves"
+   },
+   "R21": {
+    "verdict": "unclear",
+    "page": null,
+    "quote": "mentioned or stated without a verifiable quote"
+   }
+  }
+ }
+}

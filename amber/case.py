@@ -127,19 +127,27 @@ def offers_from_run(run: dict) -> dict[str, dict]:
 
 def second_readings() -> dict[str, dict]:
     """datasheet case id -> {req_id: verdict} from the independent reader (eval/cross_checks/)."""
-    f = ROOT / "eval" / "cross_checks" / "qwen3.8-27b.json"
-    if not f.exists():
-        return {}
-    data = json.loads(f.read_text(encoding="utf-8"))
-    return {cid: {rid: (a or {}).get("verdict") for rid, a in (v.get("answers") or {}).items()} for cid, v in data.items()}
+    whole = ROOT / "eval" / "cross_checks" / "qwen3.8-27b.json"
+    complete = set(json.loads(whole.read_text(encoding="utf-8"))) if whole.exists() else set()
+    out = {}
+    for cid, answers in second_answers().items():
+        out[cid] = {rid: (a or {}).get("verdict") for rid, a in answers.items()
+                    # a reading of SELECTED pages can contradict an answer, but "not found" there proves nothing about
+                    # the whole document: it never confirms an absence (that sent a must-escalate item to the supplier)
+                    if cid in complete or (a or {}).get("verdict") in ("complies", "deviates")}
+    return out
 
 
 def second_answers() -> dict[str, dict]:
-    """datasheet case id -> {req_id: {"verdict", "quote", "page"}}: the independent reader's answers with its quotes."""
-    f = ROOT / "eval" / "cross_checks" / "qwen3.8-27b.json"
-    if not f.exists():
-        return {}
-    return {cid: dict(v.get("answers") or {}) for cid, v in json.loads(f.read_text(encoding="utf-8")).items()}
+    """datasheet case id -> {req_id: {"verdict", "quote", "page"}}: the independent reader's answers with its quotes,
+    from whole-document readings and from targeted readings of large documents (scripts/targeted_read.py)."""
+    out: dict = {}
+    for name in ("targeted_qwen3.8-27b.json", "qwen3.8-27b.json"):
+        f = ROOT / "eval" / "cross_checks" / name
+        if f.exists():
+            for cid, v in json.loads(f.read_text(encoding="utf-8")).items():
+                out[cid] = dict(v.get("answers") or {})
+    return out
 
 
 # ------------------------------------------------------------------ condition-level reconciliation
@@ -292,6 +300,28 @@ def apply_conditional(reqs: list[dict], parts_by_req: dict[str, list[dict]], doc
 CLARIFY = {"depends on an option", "one missing fact"}
 
 
+def project_facts(reqs: list[dict]) -> dict:
+    """What the schedule fixes about this item, read from the requirement conditions: voltage and size."""
+    out: dict = {}
+    for r in reqs:
+        for c in r["conditions"]:
+            for t in c.get("terms") or []:
+                m = re.match(r"\s*(\d{3})Y?/\d{3}", str(t))
+                if m:
+                    out.setdefault("voltage", m.group(1))
+            if c.get("source") == "schedule" and str(c.get("unit", "")).lower() in ("kw", "kva", "v"):
+                if str(c["unit"]).lower() == "v":
+                    out.setdefault("voltage", f"{c['value']:g}")
+                else:
+                    out.setdefault("kw", float(c["value"]))
+    if "kw" not in out:  # a checklist without schedule conditions: the rating requirement itself states the size
+        for r in reqs:
+            for c in r["conditions"]:
+                if str(c.get("unit", "")).lower() == "kw" and c.get("op") == ">=" and isinstance(c.get("value"), (int, float))                         and re.search(r"rating|power|capacity", str(c.get("attribute", ""))):
+                    out.setdefault("kw", float(c["value"]))
+    return out
+
+
 def needs_person(verdict: str, conf: float, cites: list) -> bool:
     """The same rule as ToolResult.finalize: low confidence, unclear, or a claim with no verified source."""
     return conf < AUTO or verdict == "unclear" or (verdict != "missing" and not cites)
@@ -347,7 +377,7 @@ def reconcile_supplier(reqs: list[dict], d_doc: docs.Document, d_offers: dict, c
     inspected = []
     if inspect:
         from .inspect_evidence import inspect_parts
-        inspected = inspect_parts(reqs, parts_by_req, d_doc, reader)
+        inspected = inspect_parts(reqs, parts_by_req, d_doc, reader, tuple(c_docs), project_facts(reqs))
     record = []
     for r in reqs:
         for i, c in enumerate(r["conditions"]):
