@@ -1,0 +1,777 @@
+{
+ "tool": "check_submittal",
+ "version": "1.0",
+ "result": {
+  "tag": "GEN-A",
+  "spec": "26-32-13-engine-generators-alpha",
+  "submittal": "b2-tidewater-reply",
+  "summary": {
+   "complies": 2,
+   "deviates": 0,
+   "missing": 9,
+   "unclear": 1
+  },
+  "overall": "review",
+  "rows": [
+   {
+    "req_id": "R07",
+    "locator": "2.1.D.5 (Starting System)",
+    "requirement": "Starting system shall be 24 volt, 2-wire, negative ground, gear engaging electric starter.",
+    "verdict": "missing",
+    "confidence": 0.8
+   },
+   {
+    "req_id": "R09",
+    "locator": "2.1.D.2 (Cooling System)",
+    "requirement": "Unit-mounted radiator cooling system sized to maintain safe operation at 122\u00b0F maximum ambient temperature.",
+    "verdict": "unclear",
+    "confidence": 0.5
+   },
+   {
+    "req_id": "R11",
+    "locator": "2.1.E.1",
+    "requirement": "Operate at ambient conditions of 300 ft altitude and 10 to 122\u00b0F ambient temperature.",
+    "verdict": "missing",
+    "confidence": 0.8
+   },
+   {
+    "req_id": "R12",
+    "locator": "2.1.E.3",
+    "requirement": "Engine speed shall not exceed 1800 rpm.",
+    "verdict": "missing",
+    "confidence": 0.8
+   },
+   {
+    "req_id": "R13",
+    "locator": "2.1.G (Generator)",
+    "requirement": "Generator shall be 4-pole, brushless, and two-thirds pitch wound.",
+    "verdict": "missing",
+    "confidence": 0.8
+   },
+   {
+    "req_id": "R15",
+    "locator": "2.1.G.5",
+    "requirement": "Provide a 120 V, single-phase space heater to prevent condensation in the generator.",
+    "verdict": "missing",
+    "confidence": 0.8
+   },
+   {
+    "req_id": "R16",
+    "locator": "2.1.H (Generator Output Circuit Breaker(s))",
+    "requirement": "Provide 3-pole generator output circuit breaker(s) with solid-state trip units.",
+    "verdict": "missing",
+    "confidence": 0.8
+   },
+   {
+    "req_id": "R17",
+    "locator": "2.1.I.2 (Voltage Regulation)",
+    "requirement": "Maintain voltage regulation within plus 2% from no load to rated load.",
+    "verdict": "missing",
+    "confidence": 0.8
+   },
+   {
+    "req_id": "R18",
+    "locator": "2.1.I.4 (Total Harmonic Distortion (THD))",
+    "requirement": "Total harmonic distortion of ac voltage waveform from no load to full linear load shall not exceed 5% of rated voltage.",
+    "verdict": "missing",
+    "confidence": 0.8
+   },
+   {
+    "req_id": "R19",
+    "locator": "2.1.K.1 (In Skid Diesel Fuel Tank)",
+    "requirement": "Provide a UL 2085 listed in-skid fuel tank with usable capacity for at least 24 hours of operation at full standby load.",
+    "verdict": "complies",
+    "confidence": 0.95
+   },
+   {
+    "req_id": "R20",
+    "locator": "2.1.K.2 (Jacket-Water Heater)",
+    "requirement": "Provide two 5000 W, 480 V, 1-phase jacket-water heaters.",
+    "verdict": "missing",
+    "confidence": 0.8
+   },
+   {
+    "req_id": "R21",
+    "locator": "2.1.K.9 (Generator Outdoor Housing)",
+    "requirement": "Provide a weatherproof and rodent-proof outdoor enclosure entirely enclosing the generator set, with silencers installed inside.",
+    "verdict": "complies",
+    "confidence": 0.95
+   }
+  ],
+  "unread_scanned_pages": [],
+  "provider_switches": []
+ },
+ "findings": [
+  {
+   "id": "F-R07",
+   "claim": "Starting system shall be 24 volt, 2-wire, negative ground, gear engaging electric starter.",
+   "status": "missing",
+   "confidence": 0.8,
+   "citations": [
+    {
+     "doc_id": "26-32-13-engine-generators-alpha",
+     "page": 4,
+     "locator": "2.1.D.5 (Starting System)",
+     "quote": "Starting System: Remote 24 volt, 2-wire, negative ground, starting system, positive shift, gear engaging electric starter",
+     "match": "exact",
+     "ocr": false
+    }
+   ],
+   "needs_human": false,
+   "why": "not stated in the submittal",
+   "data": {
+    "req_id": "R07",
+    "locator": "2.1.D.5 (Starting System)",
+    "conditions": [
+     {
+      "cid": "R07a",
+      "attribute": "starting_system_voltage_and_type",
+      "condition": "all of: 24 volt, electric starter",
+      "verdict": "missing",
+      "why": "not stated in the submittal",
+      "offered": {
+       "values": [],
+       "unit": null,
+       "selected": null,
+       "quote": null,
+       "page": null,
+       "meets": "no"
+      }
+     }
+    ]
+   }
+  },
+  {
+   "id": "F-R09",
+   "claim": "Unit-mounted radiator cooling system sized to maintain safe operation at 122\u00b0F maximum ambient temperature.",
+   "status": "unclear",
+   "confidence": 0.5,
+   "citations": [
+    {
+     "doc_id": "26-32-13-engine-generators-alpha",
+     "page": 4,
+     "locator": "2.1.D.2 (Cooling System)",
+     "quote": "cooling system shall be unit mounted radiator cooled",
+     "match": "exact",
+     "ocr": false
+    }
+   ],
+   "needs_human": true,
+   "why": "no value found, but the submittal mentions mounted on page(s) [1]; not stated in the submittal",
+   "data": {
+    "req_id": "R09",
+    "locator": "2.1.D.2 (Cooling System)",
+    "conditions": [
+     {
+      "cid": "R09a",
+      "attribute": "cooling_system_type",
+      "condition": "all of: unit mounted radiator",
+      "verdict": "unclear",
+      "why": "no value found, but the submittal mentions mounted on page(s) [1]",
+      "offered": {
+       "values": [],
+       "unit": null,
+       "selected": null,
+       "quote": null,
+       "page": null,
+       "meets": "no"
+      }
+     },
+     {
+      "cid": "R09b",
+      "attribute": "maximum_ambient_temperature",
+      "condition": ">= 122 \u00b0F",
+      "verdict": "missing",
+      "why": "not stated in the submittal",
+      "offered": {
+       "values": [],
+       "unit": "\u00b0F",
+       "selected": null,
+       "quote": null,
+       "page": null,
+       "meets": "no"
+      }
+     }
+    ]
+   }
+  },
+  {
+   "id": "F-R11",
+   "claim": "Operate at ambient conditions of 300 ft altitude and 10 to 122\u00b0F ambient temperature.",
+   "status": "missing",
+   "confidence": 0.8,
+   "citations": [
+    {
+     "doc_id": "26-32-13-engine-generators-alpha",
+     "page": 4,
+     "locator": "2.1.E.1",
+     "quote": "Ambient conditions of 300' altitude and an ambient temperature of 10 to 122\u00b0F.",
+     "match": "exact",
+     "ocr": false
+    }
+   ],
+   "needs_human": false,
+   "why": "not stated in the submittal; not stated in the submittal",
+   "data": {
+    "req_id": "R11",
+    "locator": "2.1.E.1",
+    "conditions": [
+     {
+      "cid": "R11a",
+      "attribute": "altitude_rating",
+      "condition": ">= 300 ft",
+      "verdict": "missing",
+      "why": "not stated in the submittal",
+      "offered": {
+       "values": [],
+       "unit": "ft",
+       "selected": null,
+       "quote": null,
+       "page": null,
+       "meets": "no"
+      }
+     },
+     {
+      "cid": "R11b",
+      "attribute": "ambient_temperature_range",
+      "condition": "10\u2013122 \u00b0F",
+      "verdict": "missing",
+      "why": "not stated in the submittal",
+      "offered": {
+       "values": [],
+       "unit": "\u00b0F",
+       "selected": null,
+       "quote": null,
+       "page": null,
+       "meets": "no"
+      }
+     }
+    ]
+   }
+  },
+  {
+   "id": "F-R12",
+   "claim": "Engine speed shall not exceed 1800 rpm.",
+   "status": "missing",
+   "confidence": 0.8,
+   "citations": [
+    {
+     "doc_id": "26-32-13-engine-generators-alpha",
+     "page": 4,
+     "locator": "2.1.E.3",
+     "quote": "rpm of the engine shall not exceed 1800 rpm",
+     "match": "exact",
+     "ocr": false
+    }
+   ],
+   "needs_human": false,
+   "why": "not stated in the submittal",
+   "data": {
+    "req_id": "R12",
+    "locator": "2.1.E.3",
+    "conditions": [
+     {
+      "cid": "R12a",
+      "attribute": "engine_speed",
+      "condition": "<= 1800 rpm",
+      "verdict": "missing",
+      "why": "not stated in the submittal",
+      "offered": {
+       "values": [],
+       "unit": "rpm",
+       "selected": null,
+       "quote": null,
+       "page": null,
+       "meets": "no"
+      }
+     }
+    ]
+   }
+  },
+  {
+   "id": "F-R13",
+   "claim": "Generator shall be 4-pole, brushless, and two-thirds pitch wound.",
+   "status": "missing",
+   "confidence": 0.8,
+   "citations": [
+    {
+     "doc_id": "26-32-13-engine-generators-alpha",
+     "page": 5,
+     "locator": "2.1.G (Generator)",
+     "quote": "Generator shall be 4-pole, revolving field type, brushless, dynamically balanced, skewed laminated, two thirds pitch wound",
+     "match": "exact",
+     "ocr": false
+    }
+   ],
+   "needs_human": false,
+   "why": "not stated in the submittal",
+   "data": {
+    "req_id": "R13",
+    "locator": "2.1.G (Generator)",
+    "conditions": [
+     {
+      "cid": "R13a",
+      "attribute": "alternator_construction",
+      "condition": "all of: 4-pole, brushless, two thirds pitch",
+      "verdict": "missing",
+      "why": "not stated in the submittal",
+      "offered": {
+       "values": [],
+       "unit": null,
+       "selected": null,
+       "quote": null,
+       "page": null,
+       "meets": "unknown"
+      }
+     }
+    ]
+   }
+  },
+  {
+   "id": "F-R15",
+   "claim": "Provide a 120 V, single-phase space heater to prevent condensation in the generator.",
+   "status": "missing",
+   "confidence": 0.8,
+   "citations": [
+    {
+     "doc_id": "26-32-13-engine-generators-alpha",
+     "page": 5,
+     "locator": "2.1.G.5",
+     "quote": "A 120 volt, single phase space heater shall be provided to prevent condensation in the generator.",
+     "match": "exact",
+     "ocr": false
+    }
+   ],
+   "needs_human": false,
+   "why": "not stated in the submittal",
+   "data": {
+    "req_id": "R15",
+    "locator": "2.1.G.5",
+    "conditions": [
+     {
+      "cid": "R15a",
+      "attribute": "space_heater_electrical",
+      "condition": "all of: 120 v, single phase, heater",
+      "verdict": "missing",
+      "why": "not stated in the submittal",
+      "offered": {
+       "values": [],
+       "unit": null,
+       "selected": null,
+       "quote": null,
+       "page": null,
+       "meets": "unknown"
+      }
+     }
+    ]
+   }
+  },
+  {
+   "id": "F-R16",
+   "claim": "Provide 3-pole generator output circuit breaker(s) with solid-state trip units.",
+   "status": "missing",
+   "confidence": 0.8,
+   "citations": [
+    {
+     "doc_id": "26-32-13-engine-generators-alpha",
+     "page": 5,
+     "locator": "2.1.H (Generator Output Circuit Breaker(s))",
+     "quote": "Generator set shall have 3 pole output circuit breaker(s) with solid state trip units as shown on the drawings.",
+     "match": "exact",
+     "ocr": false
+    }
+   ],
+   "needs_human": false,
+   "why": "not stated in the submittal",
+   "data": {
+    "req_id": "R16",
+    "locator": "2.1.H (Generator Output Circuit Breaker(s))",
+    "conditions": [
+     {
+      "cid": "R16a",
+      "attribute": "output_circuit_breaker",
+      "condition": "all of: 3 pole, solid state",
+      "verdict": "missing",
+      "why": "not stated in the submittal",
+      "offered": {
+       "values": [],
+       "unit": null,
+       "selected": null,
+       "quote": null,
+       "page": null,
+       "meets": "unknown"
+      }
+     }
+    ]
+   }
+  },
+  {
+   "id": "F-R17",
+   "claim": "Maintain voltage regulation within plus 2% from no load to rated load.",
+   "status": "missing",
+   "confidence": 0.8,
+   "citations": [
+    {
+     "doc_id": "26-32-13-engine-generators-alpha",
+     "page": 6,
+     "locator": "2.1.I.2 (Voltage Regulation)",
+     "quote": "Voltage Regulation: Plus 2% no load to rated load; rheostat for _5% voltage adjustment.",
+     "match": "exact",
+     "ocr": false
+    }
+   ],
+   "needs_human": false,
+   "why": "not stated in the submittal",
+   "data": {
+    "req_id": "R17",
+    "locator": "2.1.I.2 (Voltage Regulation)",
+    "conditions": [
+     {
+      "cid": "R17a",
+      "attribute": "voltage_regulation_no_load_to_rated_load",
+      "condition": "<= 2 %",
+      "verdict": "missing",
+      "why": "not stated in the submittal",
+      "offered": {
+       "values": [],
+       "unit": "%",
+       "selected": null,
+       "quote": null,
+       "page": null,
+       "meets": "unknown"
+      }
+     }
+    ]
+   }
+  },
+  {
+   "id": "F-R18",
+   "claim": "Total harmonic distortion of ac voltage waveform from no load to full linear load shall not exceed 5% of rated voltage.",
+   "status": "missing",
+   "confidence": 0.8,
+   "citations": [
+    {
+     "doc_id": "26-32-13-engine-generators-alpha",
+     "page": 6,
+     "locator": "2.1.I.4 (Total Harmonic Distortion (THD))",
+     "quote": "The sum of ac voltage waveform harmonies, from no load to full linear load shall not exceed 5% of the rated voltage",
+     "match": "exact",
+     "ocr": false
+    }
+   ],
+   "needs_human": false,
+   "why": "not stated in the submittal",
+   "data": {
+    "req_id": "R18",
+    "locator": "2.1.I.4 (Total Harmonic Distortion (THD))",
+    "conditions": [
+     {
+      "cid": "R18a",
+      "attribute": "voltage_thd_no_load_to_full_linear_load",
+      "condition": "<= 5 %",
+      "verdict": "missing",
+      "why": "not stated in the submittal",
+      "offered": {
+       "values": [],
+       "unit": "%",
+       "selected": null,
+       "quote": null,
+       "page": null,
+       "meets": "unknown"
+      }
+     }
+    ]
+   }
+  },
+  {
+   "id": "F-R19",
+   "claim": "Provide a UL 2085 listed in-skid fuel tank with usable capacity for at least 24 hours of operation at full standby load.",
+   "status": "complies",
+   "confidence": 0.95,
+   "citations": [
+    {
+     "doc_id": "26-32-13-engine-generators-alpha",
+     "page": 9,
+     "locator": "2.1.K.1 (In Skid Diesel Fuel Tank)",
+     "quote": "provided with a UL 2085 listed manufacturer's standard in skid fuel transfer day tank. The tank shall have usable capacity for not less than 24 hours of operation at full standby load,",
+     "match": "exact",
+     "ocr": false
+    },
+    {
+     "doc_id": "b2-tidewater-reply",
+     "page": 1,
+     "locator": "",
+     "quote": "24 hour UL 2085 sub-base fuel tank",
+     "match": "exact",
+     "ocr": false
+    },
+    {
+     "doc_id": "b2-tidewater-reply",
+     "page": 1,
+     "locator": "",
+     "quote": "we will supply a 24 hour UL 2085 sub-base fuel tank",
+     "match": "exact",
+     "ocr": false
+    }
+   ],
+   "needs_human": false,
+   "why": "offered 24 hour 24 hour UL 2085 sub-base fuel tank meets all of: ul 2085; offered 24 h meets >= 24 h",
+   "data": {
+    "req_id": "R19",
+    "locator": "2.1.K.1 (In Skid Diesel Fuel Tank)",
+    "conditions": [
+     {
+      "cid": "R19a",
+      "attribute": "fuel_tank_listing",
+      "condition": "all of: ul 2085",
+      "verdict": "complies",
+      "why": "offered 24 hour 24 hour UL 2085 sub-base fuel tank meets all of: ul 2085",
+      "offered": {
+       "values": [
+        "24 hour"
+       ],
+       "unit": "hour",
+       "selected": true,
+       "quote": "24 hour UL 2085 sub-base fuel tank",
+       "page": 1,
+       "meets": "yes"
+      }
+     },
+     {
+      "cid": "R19b",
+      "attribute": "fuel_tank_capacity_at_full_standby_load",
+      "condition": ">= 24 h",
+      "verdict": "complies",
+      "why": "offered 24 h meets >= 24 h",
+      "offered": {
+       "values": [
+        "24"
+       ],
+       "unit": "h",
+       "selected": null,
+       "quote": "we will supply a 24 hour UL 2085 sub-base fuel tank",
+       "page": 1,
+       "meets": "yes"
+      }
+     }
+    ]
+   }
+  },
+  {
+   "id": "F-R20",
+   "claim": "Provide two 5000 W, 480 V, 1-phase jacket-water heaters.",
+   "status": "missing",
+   "confidence": 0.8,
+   "citations": [
+    {
+     "doc_id": "26-32-13-engine-generators-alpha",
+     "page": 8,
+     "locator": "2.1.K.2 (Jacket-Water Heater)",
+     "quote": "engine shall have two KIM #Hotstart (480 volt, 1-phase) or approved equal, 5000W jacket-water heaters supplied from a \"normal\" branch circuit.",
+     "match": "exact",
+     "ocr": false
+    }
+   ],
+   "needs_human": false,
+   "why": "not stated in the submittal; not stated in the submittal; not stated in the submittal",
+   "data": {
+    "req_id": "R20",
+    "locator": "2.1.K.2 (Jacket-Water Heater)",
+    "conditions": [
+     {
+      "cid": "R20a",
+      "attribute": "jacket_water_heater_count",
+      "condition": "== 2",
+      "verdict": "missing",
+      "why": "not stated in the submittal",
+      "offered": {
+       "values": [],
+       "unit": "",
+       "selected": null,
+       "quote": "",
+       "page": null,
+       "meets": "unknown"
+      }
+     },
+     {
+      "cid": "R20b",
+      "attribute": "jacket_water_heater_rating",
+      "condition": "== 5000 W",
+      "verdict": "missing",
+      "why": "not stated in the submittal",
+      "offered": {
+       "values": [],
+       "unit": "",
+       "selected": null,
+       "quote": "",
+       "page": null,
+       "meets": "unknown"
+      }
+     },
+     {
+      "cid": "R20c",
+      "attribute": "jacket_water_heater_electrical",
+      "condition": "all of: 480 v, 1 phase",
+      "verdict": "missing",
+      "why": "not stated in the submittal",
+      "offered": {
+       "values": [],
+       "unit": "",
+       "selected": null,
+       "quote": "",
+       "page": null,
+       "meets": "unknown"
+      }
+     }
+    ]
+   }
+  },
+  {
+   "id": "F-R21",
+   "claim": "Provide a weatherproof and rodent-proof outdoor enclosure entirely enclosing the generator set, with silencers installed inside.",
+   "status": "complies",
+   "confidence": 0.95,
+   "citations": [
+    {
+     "doc_id": "26-32-13-engine-generators-alpha",
+     "page": 10,
+     "locator": "2.1.K.9 (Generator Outdoor Housing)",
+     "quote": "Provide a weatherproof and rodent-proof outdoor shelter to entirely enclose each generator set, including batteries. Silencers shall be installed inside enclosure.",
+     "match": "exact",
+     "ocr": false
+    },
+    {
+     "doc_id": "b2-tidewater-reply",
+     "page": 1,
+     "locator": "",
+     "quote": "weatherproof and rodent-proof",
+     "match": "exact",
+     "ocr": false
+    },
+    {
+     "doc_id": "b2-tidewater-reply",
+     "page": 1,
+     "locator": "",
+     "quote": "silencer mounted inside the enclosure",
+     "match": "exact",
+     "ocr": false
+    }
+   ],
+   "needs_human": false,
+   "why": "offered weatherproof; rodent-proof weatherproof and rodent-proof meets all of: weatherproof, rodent-proof; offered inside silencer mounted inside the enclosure meets all of: inside",
+   "data": {
+    "req_id": "R21",
+    "locator": "2.1.K.9 (Generator Outdoor Housing)",
+    "conditions": [
+     {
+      "cid": "R21a",
+      "attribute": "enclosure_type",
+      "condition": "all of: weatherproof, rodent-proof",
+      "verdict": "complies",
+      "why": "offered weatherproof; rodent-proof weatherproof and rodent-proof meets all of: weatherproof, rodent-proof",
+      "offered": {
+       "values": [
+        "weatherproof",
+        "rodent-proof"
+       ],
+       "unit": "",
+       "selected": null,
+       "quote": "weatherproof and rodent-proof",
+       "page": 1,
+       "meets": "yes"
+      }
+     },
+     {
+      "cid": "R21b",
+      "attribute": "silencer_location",
+      "condition": "all of: inside",
+      "verdict": "complies",
+      "why": "offered inside silencer mounted inside the enclosure meets all of: inside",
+      "offered": {
+       "values": [
+        "inside"
+       ],
+       "unit": "",
+       "selected": null,
+       "quote": "silencer mounted inside the enclosure",
+       "page": 1,
+       "meets": "yes"
+      }
+     }
+    ]
+   }
+  }
+ ],
+ "needs_human": [
+  {
+   "finding_id": "F-R09",
+   "reason": "no value found, but the submittal mentions mounted on page(s) [1]; not stated in the submittal"
+  }
+ ],
+ "run": {
+  "models": [
+   {
+    "name": "openai/gpt-oss-120b",
+    "provider": "groq",
+    "tokens_in": 6145,
+    "tokens_out": 1870,
+    "cost_usd": 0.002044,
+    "calls": 5
+   }
+  ],
+  "latency_ms": 8475,
+  "steps": [
+   {
+    "step": 1,
+    "purpose": "read submittal: R07a, R09a, R09b, R11a, R11b, R12a",
+    "provider": "groq",
+    "model": "openai/gpt-oss-120b",
+    "tokens_in": 1182,
+    "tokens_out": 328,
+    "ms": 1490,
+    "ok": true
+   },
+   {
+    "step": 2,
+    "purpose": "read submittal: R13a, R15a, R16a, R17a, R18a, R19a",
+    "provider": "groq",
+    "model": "openai/gpt-oss-120b",
+    "tokens_in": 1202,
+    "tokens_out": 360,
+    "ms": 1675,
+    "ok": true
+   },
+   {
+    "step": 3,
+    "purpose": "read submittal: R19b, R20a, R20b, R20c, R21a, R21b",
+    "provider": "groq",
+    "model": "openai/gpt-oss-120b",
+    "tokens_in": 1200,
+    "tokens_out": 521,
+    "ms": 1772,
+    "ok": true
+   },
+   {
+    "step": 4,
+    "purpose": "second look for not stated: R07a, R09a, R09b, R11a, R11b, R12a, R13a, R15a",
+    "provider": "groq",
+    "model": "openai/gpt-oss-120b",
+    "tokens_in": 1334,
+    "tokens_out": 374,
+    "ms": 1589,
+    "ok": true
+   },
+   {
+    "step": 5,
+    "purpose": "second look for not stated: R16a, R17a, R18a, R20a, R20b, R20c",
+    "provider": "groq",
+    "model": "openai/gpt-oss-120b",
+    "tokens_in": 1227,
+    "tokens_out": 287,
+    "ms": 994,
+    "ok": true
+   }
+  ]
+ },
+ "source_document": "data/replies/B2_tidewater_reply.txt"
+}

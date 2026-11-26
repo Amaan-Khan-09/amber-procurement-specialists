@@ -1,0 +1,50 @@
+{
+ "doc_id": "b1-northline-reply",
+ "sha256": "2ed674acd32cb74595ff827bbff938dcd4f3ffb5ce96a6de1cfe962946187d29",
+ "reading": {
+  "P1": {
+   "value": null,
+   "quote": null,
+   "page": null
+  },
+  "P2": {
+   "value": null,
+   "quote": null,
+   "page": null
+  },
+  "Q1": {
+   "value": null,
+   "quote": null,
+   "page": null
+  },
+  "Q2": {
+   "value": null,
+   "quote": null,
+   "page": null
+  },
+  "Q3": {
+   "value": null,
+   "quote": null,
+   "page": null
+  },
+  "Q4": {
+   "value": null,
+   "quote": null,
+   "page": null
+  },
+  "Q5": {
+   "value": null,
+   "quote": null,
+   "page": null
+  },
+  "Q6": {
+   "rows": []
+  },
+  "Q7": {
+   "value": null,
+   "quote": null,
+   "page": null
+  }
+ },
+ "model": "openai/gpt-oss-120b"
+}

@@ -675,8 +675,10 @@ def decide_all(reqs: list[dict], offers: dict[str, dict], sub_doc: docs.Document
 
 def check_submittal(spec_path: str, submittal_path: str, tag: str, schedule_path: str,
                     checklist: list[dict] | None = None, llm: LLM | None = None, ocr: bool = True,
-                    only: list[str] | None = None) -> ToolResult:
-    """only: check just these requirement ids (product discovery screens a few key ratings this way)."""
+                    only: list[str] | None = None, commitment: bool = False) -> ToolResult:
+    """only: check just these requirement ids (product discovery screens a few key ratings this way).
+    commitment: the document is the supplier's own bid or reply, read for what it commits to; a row under an
+    'Options', 'Alternates' or 'Exclusions' heading is then not counted as supplied."""
     t0 = time.time()
     llm = llm or LLM()
     reader = None
@@ -684,11 +686,12 @@ def check_submittal(spec_path: str, submittal_path: str, tag: str, schedule_path
         from .ocr import reader_from_env
         reader = reader_from_env(meter=llm.meter)
     spec_doc, sub_doc = docs.load(spec_path, ocr=reader), docs.load(submittal_path, ocr=reader)
+    sub_doc.commitment = commitment
     schedule_id = docs.doc_id_for(schedule_path)
     row = load_schedule(schedule_path, tag)
 
     use_cache = os.getenv("AMBER_RESULT_CACHE", "on").lower() != "off"
-    cache_file = _result_file(spec_doc, sub_doc, row, checklist, only, llm) if use_cache else None
+    cache_file = _result_file(spec_doc, sub_doc, row, checklist, (only or []) + (["<commitment>"] if commitment else []), llm) if use_cache else None
     if cache_file is not None and cache_file.exists():
         try:  # nothing this check depends on has changed since it was made: reuse it, and say so
             saved = json.loads(cache_file.read_text(encoding="utf-8"))

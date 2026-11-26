@@ -1,0 +1,6608 @@
+{
+ "summary": {
+  "like_for_like": {
+   "before": {
+    "n": 256,
+    "correct autonomous": 105,
+    "justified hand-off": 51,
+    "unnecessary hand-off": 97,
+    "incorrect autonomous": 3,
+    "critical": 2,
+    "to an engineer": 148,
+    "to the supplier": 0,
+    "right action": 210
+   },
+   "now": {
+    "n": 256,
+    "correct autonomous": 150,
+    "justified hand-off": 44,
+    "unnecessary hand-off": 58,
+    "incorrect autonomous": 4,
+    "critical": 1,
+    "to an engineer": 102,
+    "to the supplier": 59,
+    "right action": 218
+   }
+  },
+  "by_group": {
+   "datasheet": {
+    "before": {
+     "n": 184,
+     "correct autonomous": 56,
+     "justified hand-off": 41,
+     "unnecessary hand-off": 87,
+     "incorrect autonomous": 0,
+     "critical": 0,
+     "to an engineer": 128,
+     "to the supplier": 0,
+     "right action": 149
+    },
+    "now": {
+     "n": 184,
+     "correct autonomous": 89,
+     "justified hand-off": 40,
+     "unnecessary hand-off": 54,
+     "incorrect autonomous": 1,
+     "critical": 0,
+     "to an engineer": 94,
+     "to the supplier": 44,
+     "right action": 150
+    }
+   },
+   "package": {
+    "before": {
+     "n": 22,
+     "correct autonomous": 8,
+     "justified hand-off": 6,
+     "unnecessary hand-off": 7,
+     "incorrect autonomous": 1,
+     "critical": 0,
+     "to an engineer": 13,
+     "to the supplier": 0,
+     "right action": 15
+    },
+    "now": {
+     "n": 22,
+     "correct autonomous": 16,
+     "justified hand-off": 2,
+     "unnecessary hand-off": 4,
+     "incorrect autonomous": 0,
+     "critical": 0,
+     "to an engineer": 6,
+     "to the supplier": 3,
+     "right action": 21
+    }
+   },
+   "link": {
+    "before": {
+     "n": 4,
+     "correct autonomous": 3,
+     "justified hand-off": 0,
+     "unnecessary hand-off": 0,
+     "incorrect autonomous": 1,
+     "critical": 1,
+     "to an engineer": 0,
+     "to the supplier": 0,
+     "right action": 3
+    },
+    "now": {
+     "n": 4,
+     "correct autonomous": 4,
+     "justified hand-off": 0,
+     "unnecessary hand-off": 0,
+     "incorrect autonomous": 0,
+     "critical": 0,
+     "to an engineer": 0,
+     "to the supplier": 1,
+     "right action": 4
+    }
+   },
+   "bid scope": {
+    "before": {
+     "n": 44,
+     "correct autonomous": 38,
+     "justified hand-off": 2,
+     "unnecessary hand-off": 3,
+     "incorrect autonomous": 1,
+     "critical": 1,
+     "to an engineer": 5,
+     "to the supplier": 0,
+     "right action": 41
+    },
+    "now": {
+     "n": 44,
+     "correct autonomous": 41,
+     "justified hand-off": 0,
+     "unnecessary hand-off": 0,
+     "incorrect autonomous": 3,
+     "critical": 1,
+     "to an engineer": 0,
+     "to the supplier": 11,
+     "right action": 41
+    }
+   },
+   "decision": {
+    "before": {
+     "n": 2,
+     "correct autonomous": 0,
+     "justified hand-off": 2,
+     "unnecessary hand-off": 0,
+     "incorrect autonomous": 0,
+     "critical": 0,
+     "to an engineer": 2,
+     "to the supplier": 0,
+     "right action": 2
+    },
+    "now": {
+     "n": 2,
+     "correct autonomous": 0,
+     "justified hand-off": 2,
+     "unnecessary hand-off": 0,
+     "incorrect autonomous": 0,
+     "critical": 0,
+     "to an engineer": 2,
+     "to the supplier": 0,
+     "right action": 2
+    }
+   }
+  },
+  "by_category": {
+   "routine": {
+    "before": {
+     "n": 145,
+     "correct autonomous": 87,
+     "justified hand-off": 22,
+     "unnecessary hand-off": 36,
+     "incorrect autonomous": 0,
+     "critical": 0,
+     "to an engineer": 58,
+     "to the supplier": 0,
+     "right action": 123
+    },
+    "now": {
+     "n": 145,
+     "correct autonomous": 89,
+     "justified hand-off": 19,
+     "unnecessary hand-off": 34,
+     "incorrect autonomous": 3,
+     "critical": 0,
+     "to an engineer": 53,
+     "to the supplier": 3,
+     "right action": 123
+    }
+   },
+   "missing_info": {
+    "before": {
+     "n": 82,
+     "correct autonomous": 17,
+     "justified hand-off": 8,
+     "unnecessary hand-off": 57,
+     "incorrect autonomous": 0,
+     "critical": 0,
+     "to an engineer": 65,
+     "to the supplier": 0,
+     "right action": 74
+    },
+    "now": {
+     "n": 82,
+     "correct autonomous": 52,
+     "justified hand-off": 8,
+     "unnecessary hand-off": 22,
+     "incorrect autonomous": 0,
+     "critical": 0,
+     "to an engineer": 30,
+     "to the supplier": 52,
+     "right action": 74
+    }
+   },
+   "conflict": {
+    "before": {
+     "n": 12,
+     "correct autonomous": 1,
+     "justified hand-off": 4,
+     "unnecessary hand-off": 4,
+     "incorrect autonomous": 3,
+     "critical": 2,
+     "to an engineer": 8,
+     "to the supplier": 0,
+     "right action": 5
+    },
+    "now": {
+     "n": 12,
+     "correct autonomous": 9,
+     "justified hand-off": 0,
+     "unnecessary hand-off": 2,
+     "incorrect autonomous": 1,
+     "critical": 1,
+     "to an engineer": 2,
+     "to the supplier": 4,
+     "right action": 11
+    }
+   },
+   "escalate": {
+    "before": {
+     "n": 17,
+     "correct autonomous": 0,
+     "justified hand-off": 17,
+     "unnecessary hand-off": 0,
+     "incorrect autonomous": 0,
+     "critical": 0,
+     "to an engineer": 17,
+     "to the supplier": 0,
+     "right action": 8
+    },
+    "now": {
+     "n": 17,
+     "correct autonomous": 0,
+     "justified hand-off": 17,
+     "unnecessary hand-off": 0,
+     "incorrect autonomous": 0,
+     "critical": 0,
+     "to an engineer": 17,
+     "to the supplier": 0,
+     "right action": 10
+    }
+   }
+  },
+  "new_specialist_prequal": {
+   "before": {
+    "n": 36,
+    "correct autonomous": 0,
+    "justified hand-off": 26,
+    "unnecessary hand-off": 10,
+    "incorrect autonomous": 0,
+    "critical": 0,
+    "to an engineer": 36,
+    "to the supplier": 0,
+    "right action": 14
+   },
+   "now": {
+    "n": 36,
+    "correct autonomous": 33,
+    "justified hand-off": 3,
+    "unnecessary hand-off": 0,
+    "incorrect autonomous": 0,
+    "critical": 0,
+    "to an engineer": 3,
+    "to the supplier": 11,
+    "right action": 36
+   }
+  }
+ },
+ "results": [
+  {
+   "id": "G1/R01",
+   "group": "datasheet",
+   "case": "G1",
+   "req_id": "R01",
+   "expected": "complies",
+   "category": "routine",
+   "expected_route": "decide",
+   "before": {
+    "answer": "complies",
+    "route": "engineer",
+    "outcome": "unnecessary hand-off",
+    "severity": null
+   },
+   "now": {
+    "answer": "complies",
+    "route": "engineer",
+    "kind": "confirm a reading",
+    "outcome": "unnecessary hand-off",
+    "severity": null
+   }
+  },
+  {
+   "id": "G1/R02",
+   "group": "datasheet",
+   "case": "G1",
+   "req_id": "R02",
+   "expected": "complies",
+   "category": "routine",
+   "expected_route": "decide",
+   "before": {
+    "answer": "complies",
+    "route": "engineer",
+    "outcome": "unnecessary hand-off",
+    "severity": null
+   },
+   "now": {
+    "answer": "complies",
+    "route": "engineer",
+    "kind": "confirm a reading",
+    "outcome": "unnecessary hand-off",
+    "severity": null
+   }
+  },
+  {
+   "id": "G1/R03",
+   "group": "datasheet",
+   "case": "G1",
+   "req_id": "R03",
+   "expected": "complies",
+   "category": "routine",
+   "expected_route": "decide",
+   "before": {
+    "answer": "complies",
+    "route": "decide",
+    "outcome": "correct autonomous",
+    "severity": null
+   },
+   "now": {
+    "answer": "complies",
+    "route": "decide",
+    "kind": "decided",
+    "outcome": "correct autonomous",
+    "severity": null
+   }
+  },
+  {
+   "id": "G1/R04",
+   "group": "datasheet",
+   "case": "G1",
+   "req_id": "R04",
+   "expected": "complies",
+   "category": "routine",
+   "expected_route": "decide",
+   "before": {
+    "answer": "complies",
+    "route": "decide",
+    "outcome": "correct autonomous",
+    "severity": null
+   },
+   "now": {
+    "answer": "complies",
+    "route": "decide",
+    "kind": "decided",
+    "outcome": "correct autonomous",
+    "severity": null
+   }
+  },
+  {
+   "id": "G1/R05",
+   "group": "datasheet",
+   "case": "G1",
+   "req_id": "R05",
+   "expected": "complies",
+   "category": "routine",
+   "expected_route": "decide",
+   "before": {
+    "answer": "complies",
+    "route": "decide",
+    "outcome": "correct autonomous",
+    "severity": null
+   },
+   "now": {
+    "answer": "complies",
+    "route": "decide",
+    "kind": "decided",
+    "outcome": "correct autonomous",
+    "severity": null
+   }
+  },
+  {
+   "id": "G1/R06",
+   "group": "datasheet",
+   "case": "G1",
+   "req_id": "R06",
+   "expected": "complies",
+   "category": "routine",
+   "expected_route": "decide",
+   "before": {
+    "answer": "complies",
+    "route": "decide",
+    "outcome": "correct autonomous",
+    "severity": null
+   },
+   "now": {
+    "answer": "complies",
+    "route": "decide",
+    "kind": "decided",
+    "outcome": "correct autonomous",
+    "severity": null
+   }
+  },
+  {
+   "id": "G1/R07",
+   "group": "datasheet",
+   "case": "G1",
+   "req_id": "R07",
+   "expected": "complies",
+   "category": "routine",
+   "expected_route": "decide",
+   "before": {
+    "answer": "complies",
+    "route": "engineer",
+    "outcome": "unnecessary hand-off",
+    "severity": null
+   },
+   "now": {
+    "answer": "complies",
+    "route": "engineer",
+    "kind": "confirm a reading",
+    "outcome": "unnecessary hand-off",
+    "severity": null
+   }
+  },
+  {
+   "id": "G1/R08",
+   "group": "datasheet",
+   "case": "G1",
+   "req_id": "R08",
+   "expected": "complies",
+   "category": "routine",
+   "expected_route": "decide",
+   "before": {
+    "answer": "complies",
+    "route": "decide",
+    "outcome": "correct autonomous",
+    "severity": null
+   },
+   "now": {
+    "answer": "complies",
+    "route": "decide",
+    "kind": "decided",
+    "outcome": "correct autonomous",
+    "severity": null
+   }
+  },
+  {
+   "id": "G1/R09",
+   "group": "datasheet",
+   "case": "G1",
+   "req_id": "R09",
+   "expected": "unclear",
+   "category": "missing_info",
+   "expected_route": "ask_supplier",
+   "before": {
+    "answer": "complies",
+    "route": "engineer",
+    "outcome": "justified hand-off",
+    "severity": null
+   },
+   "now": {
+    "answer": "complies",
+    "route": "engineer",
+    "kind": "confirm a reading",
+    "outcome": "justified hand-off",
+    "severity": null
+   }
+  },
+  {
+   "id": "G1/R10",
+   "group": "datasheet",
+   "case": "G1",
+   "req_id": "R10",
+   "expected": "complies",
+   "category": "routine",
+   "expected_route": "decide",
+   "before": {
+    "answer": "complies",
+    "route": "decide",
+    "outcome": "correct autonomous",
+    "severity": null
+   },
+   "now": {
+    "answer": "complies",
+    "route": "decide",
+    "kind": "decided",
+    "outcome": "correct autonomous",
+    "severity": null
+   }
+  },
+  {
+   "id": "G1/R11",
+   "group": "datasheet",
+   "case": "G1",
+   "req_id": "R11",
+   "expected": "deviates",
+   "category": "escalate",
+   "expected_route": "engineer",
+   "before": {
+    "answer": "unclear",
+    "route": "engineer",
+    "outcome": "justified hand-off",
+    "severity": null
+   },
+   "now": {
+    "answer": "unclear",
+    "route": "engineer",
+    "kind": "judgement",
+    "outcome": "justified hand-off",
+    "severity": null
+   }
+  },
+  {
+   "id": "G1/R12",
+   "group": "datasheet",
+   "case": "G1",
+   "req_id": "R12",
+   "expected": "complies",
+   "category": "routine",
+   "expected_route": "decide",
+   "before": {
+    "answer": "unclear",
+    "route": "engineer",
+    "outcome": "justified hand-off",
+    "severity": null
+   },
+   "now": {
+    "answer": "unclear",
+    "route": "engineer",
+    "kind": "absence not confirmed",
+    "outcome": "justified hand-off",
+    "severity": null
+   }
+  },
+  {
+   "id": "G1/R13",
+   "group": "datasheet",
+   "case": "G1",
+   "req_id": "R13",
+   "expected": "complies",
+   "category": "routine",
+   "expected_route": "decide",
+   "before": {
+    "answer": "complies",
+    "route": "engineer",
+    "outcome": "unnecessary hand-off",
+    "severity": null
+   },
+   "now": {
+    "answer": "complies",
+    "route": "engineer",
+    "kind": "confirm a reading",
+    "outcome": "unnecessary hand-off",
+    "severity": null
+   }
+  },
+  {
+   "id": "G1/R14",
+   "group": "datasheet",
+   "case": "G1",
+   "req_id": "R14",
+   "expected": "complies",
+   "category": "routine",
+   "expected_route": "decide",
+   "before": {
+    "answer": "complies",
+    "route": "decide",
+    "outcome": "correct autonomous",
+    "severity": null
+   },
+   "now": {
+    "answer": "complies",
+    "route": "decide",
+    "kind": "decided",
+    "outcome": "correct autonomous",
+    "severity": null
+   }
+  },
+  {
+   "id": "G1/R15",
+   "group": "datasheet",
+   "case": "G1",
+   "req_id": "R15",
+   "expected": "complies",
+   "category": "routine",
+   "expected_route": "decide",
+   "before": {
+    "answer": "unclear",
+    "route": "engineer",
+    "outcome": "justified hand-off",
+    "severity": null
+   },
+   "now": {
+    "answer": "unclear",
+    "route": "engineer",
+    "kind": "judgement",
+    "outcome": "justified hand-off",
+    "severity": null
+   }
+  },
+  {
+   "id": "G1/R16",
+   "group": "datasheet",
+   "case": "G1",
+   "req_id": "R16",
+   "expected": "deviates",
+   "category": "routine",
+   "expected_route": "decide",
+   "before": {
+    "answer": "unclear",
+    "route": "engineer",
+    "outcome": "justified hand-off",
+    "severity": null
+   },
+   "now": {
+    "answer": "unclear",
+    "route": "engineer",
+    "kind": "absence not confirmed",
+    "outcome": "justified hand-off",
+    "severity": null
+   }
+  },
+  {
+   "id": "G1/R17",
+   "group": "datasheet",
+   "case": "G1",
+   "req_id": "R17",
+   "expected": "complies",
+   "category": "routine",
+   "expected_route": "decide",
+   "before": {
+    "answer": "complies",
+    "route": "engineer",
+    "outcome": "unnecessary hand-off",
+    "severity": null
+   },
+   "now": {
+    "answer": "complies",
+    "route": "engineer",
+    "kind": "confirm a reading",
+    "outcome": "unnecessary hand-off",
+    "severity": null
+   }
+  },
+  {
+   "id": "G1/R18",
+   "group": "datasheet",
+   "case": "G1",
+   "req_id": "R18",
+   "expected": "complies",
+   "category": "routine",
+   "expected_route": "decide",
+   "before": {
+    "answer": "complies",
+    "route": "engineer",
+    "outcome": "unnecessary hand-off",
+    "severity": null
+   },
+   "now": {
+    "answer": "complies",
+    "route": "engineer",
+    "kind": "confirm a reading",
+    "outcome": "unnecessary hand-off",
+    "severity": null
+   }
+  },
+  {
+   "id": "G1/R19",
+   "group": "datasheet",
+   "case": "G1",
+   "req_id": "R19",
+   "expected": "missing",
+   "category": "missing_info",
+   "expected_route": "ask_supplier",
+   "before": {
+    "answer": "unclear",
+    "route": "engineer",
+    "outcome": "unnecessary hand-off",
+    "severity": null
+   },
+   "now": {
+    "answer": "unclear",
+    "route": "engineer",
+    "kind": "absence not confirmed",
+    "outcome": "unnecessary hand-off",
+    "severity": null
+   }
+  },
+  {
+   "id": "G1/R20",
+   "group": "datasheet",
+   "case": "G1",
+   "req_id": "R20",
+   "expected": "unclear",
+   "category": "missing_info",
+   "expected_route": "ask_supplier",
+   "before": {
+    "answer": "unclear",
+    "route": "engineer",
+    "outcome": "unnecessary hand-off",
+    "severity": null
+   },
+   "now": {
+    "answer": "unclear",
+    "route": "engineer",
+    "kind": "absence not confirmed",
+    "outcome": "unnecessary hand-off",
+    "severity": null
+   }
+  },
+  {
+   "id": "G1/R21",
+   "group": "datasheet",
+   "case": "G1",
+   "req_id": "R21",
+   "expected": "missing",
+   "category": "escalate",
+   "expected_route": "engineer",
+   "before": {
+    "answer": "unclear",
+    "route": "engineer",
+    "outcome": "justified hand-off",
+    "severity": null
+   },
+   "now": {
+    "answer": "unclear",
+    "route": "engineer",
+    "kind": "absence not confirmed",
+    "outcome": "justified hand-off",
+    "severity": null
+   }
+  },
+  {
+   "id": "G2/R01",
+   "group": "datasheet",
+   "case": "G2",
+   "req_id": "R01",
+   "expected": "complies",
+   "category": "routine",
+   "expected_route": "decide",
+   "before": {
+    "answer": "complies",
+    "route": "decide",
+    "outcome": "correct autonomous",
+    "severity": null
+   },
+   "now": {
+    "answer": "complies",
+    "route": "decide",
+    "kind": "decided",
+    "outcome": "correct autonomous",
+    "severity": null
+   }
+  },
+  {
+   "id": "G2/R02",
+   "group": "datasheet",
+   "case": "G2",
+   "req_id": "R02",
+   "expected": "unclear",
+   "category": "missing_info",
+   "expected_route": "ask_supplier",
+   "before": {
+    "answer": "unclear",
+    "route": "engineer",
+    "outcome": "unnecessary hand-off",
+    "severity": null
+   },
+   "now": {
+    "answer": "unclear",
+    "route": "ask_supplier",
+    "kind": "not established, read twice",
+    "outcome": "correct autonomous",
+    "severity": null
+   }
+  },
+  {
+   "id": "G2/R03",
+   "group": "datasheet",
+   "case": "G2",
+   "req_id": "R03",
+   "expected": "complies",
+   "category": "escalate",
+   "expected_route": "engineer",
+   "before": {
+    "answer": "unclear",
+    "route": "engineer",
+    "outcome": "justified hand-off",
+    "severity": null
+   },
+   "now": {
+    "answer": "unclear",
+    "route": "engineer",
+    "kind": "contested",
+    "outcome": "justified hand-off",
+    "severity": null
+   }
+  },
+  {
+   "id": "G2/R04",
+   "group": "datasheet",
+   "case": "G2",
+   "req_id": "R04",
+   "expected": "complies",
+   "category": "routine",
+   "expected_route": "decide",
+   "before": {
+    "answer": "complies",
+    "route": "engineer",
+    "outcome": "unnecessary hand-off",
+    "severity": null
+   },
+   "now": {
+    "answer": "complies",
+    "route": "engineer",
+    "kind": "confirm a reading",
+    "outcome": "unnecessary hand-off",
+    "severity": null
+   }
+  },
+  {
+   "id": "G2/R05",
+   "group": "datasheet",
+   "case": "G2",
+   "req_id": "R05",
+   "expected": "complies",
+   "category": "routine",
+   "expected_route": "decide",
+   "before": {
+    "answer": "complies",
+    "route": "decide",
+    "outcome": "correct autonomous",
+    "severity": null
+   },
+   "now": {
+    "answer": "complies",
+    "route": "decide",
+    "kind": "decided",
+    "outcome": "correct autonomous",
+    "severity": null
+   }
+  },
+  {
+   "id": "G2/R06",
+   "group": "datasheet",
+   "case": "G2",
+   "req_id": "R06",
+   "expected": "complies",
+   "category": "routine",
+   "expected_route": "decide",
+   "before": {
+    "answer": "complies",
+    "route": "engineer",
+    "outcome": "unnecessary hand-off",
+    "severity": null
+   },
+   "now": {
+    "answer": "complies",
+    "route": "engineer",
+    "kind": "contested",
+    "outcome": "unnecessary hand-off",
+    "severity": null
+   }
+  },
+  {
+   "id": "G2/R07",
+   "group": "datasheet",
+   "case": "G2",
+   "req_id": "R07",
+   "expected": "complies",
+   "category": "routine",
+   "expected_route": "decide",
+   "before": {
+    "answer": "complies",
+    "route": "engineer",
+    "outcome": "unnecessary hand-off",
+    "severity": null
+   },
+   "now": {
+    "answer": "complies",
+    "route": "engineer",
+    "kind": "contested",
+    "outcome": "unnecessary hand-off",
+    "severity": null
+   }
+  },
+  {
+   "id": "G2/R08",
+   "group": "datasheet",
+   "case": "G2",
+   "req_id": "R08",
+   "expected": "complies",
+   "category": "routine",
+   "expected_route": "decide",
+   "before": {
+    "answer": "complies",
+    "route": "engineer",
+    "outcome": "unnecessary hand-off",
+    "severity": null
+   },
+   "now": {
+    "answer": "complies",
+    "route": "engineer",
+    "kind": "confirm a reading",
+    "outcome": "unnecessary hand-off",
+    "severity": null
+   }
+  },
+  {
+   "id": "G2/R09",
+   "group": "datasheet",
+   "case": "G2",
+   "req_id": "R09",
+   "expected": "deviates",
+   "category": "escalate",
+   "expected_route": "engineer",
+   "before": {
+    "answer": "unclear",
+    "route": "engineer",
+    "outcome": "justified hand-off",
+    "severity": null
+   },
+   "now": {
+    "answer": "deviates",
+    "route": "engineer",
+    "kind": "conditional rating",
+    "outcome": "justified hand-off",
+    "severity": null
+   }
+  },
+  {
+   "id": "G2/R10",
+   "group": "datasheet",
+   "case": "G2",
+   "req_id": "R10",
+   "expected": "complies",
+   "category": "routine",
+   "expected_route": "decide",
+   "before": {
+    "answer": "complies",
+    "route": "decide",
+    "outcome": "correct autonomous",
+    "severity": null
+   },
+   "now": {
+    "answer": "complies",
+    "route": "decide",
+    "kind": "decided",
+    "outcome": "correct autonomous",
+    "severity": null
+   }
+  },
+  {
+   "id": "G2/R11",
+   "group": "datasheet",
+   "case": "G2",
+   "req_id": "R11",
+   "expected": "unclear",
+   "category": "escalate",
+   "expected_route": "engineer",
+   "before": {
+    "answer": "unclear",
+    "route": "engineer",
+    "outcome": "justified hand-off",
+    "severity": null
+   },
+   "now": {
+    "answer": "unclear",
+    "route": "engineer",
+    "kind": "contested",
+    "outcome": "justified hand-off",
+    "severity": null
+   }
+  },
+  {
+   "id": "G2/R12",
+   "group": "datasheet",
+   "case": "G2",
+   "req_id": "R12",
+   "expected": "complies",
+   "category": "routine",
+   "expected_route": "decide",
+   "before": {
+    "answer": "complies",
+    "route": "decide",
+    "outcome": "correct autonomous",
+    "severity": null
+   },
+   "now": {
+    "answer": "complies",
+    "route": "decide",
+    "kind": "decided",
+    "outcome": "correct autonomous",
+    "severity": null
+   }
+  },
+  {
+   "id": "G2/R13",
+   "group": "datasheet",
+   "case": "G2",
+   "req_id": "R13",
+   "expected": "complies",
+   "category": "routine",
+   "expected_route": "decide",
+   "before": {
+    "answer": "complies",
+    "route": "engineer",
+    "outcome": "unnecessary hand-off",
+    "severity": null
+   },
+   "now": {
+    "answer": "complies",
+    "route": "engineer",
+    "kind": "confirm a reading",
+    "outcome": "unnecessary hand-off",
+    "severity": null
+   }
+  },
+  {
+   "id": "G2/R14",
+   "group": "datasheet",
+   "case": "G2",
+   "req_id": "R14",
+   "expected": "complies",
+   "category": "routine",
+   "expected_route": "decide",
+   "before": {
+    "answer": "complies",
+    "route": "engineer",
+    "outcome": "unnecessary hand-off",
+    "severity": null
+   },
+   "now": {
+    "answer": "complies",
+    "route": "engineer",
+    "kind": "confirm a reading",
+    "outcome": "unnecessary hand-off",
+    "severity": null
+   }
+  },
+  {
+   "id": "G2/R15",
+   "group": "datasheet",
+   "case": "G2",
+   "req_id": "R15",
+   "expected": "unclear",
+   "category": "missing_info",
+   "expected_route": "ask_supplier",
+   "before": {
+    "answer": "unclear",
+    "route": "engineer",
+    "outcome": "unnecessary hand-off",
+    "severity": null
+   },
+   "now": {
+    "answer": "unclear",
+    "route": "engineer",
+    "kind": "contested",
+    "outcome": "unnecessary hand-off",
+    "severity": null
+   }
+  },
+  {
+   "id": "G2/R16",
+   "group": "datasheet",
+   "case": "G2",
+   "req_id": "R16",
+   "expected": "unclear",
+   "category": "missing_info",
+   "expected_route": "ask_supplier",
+   "before": {
+    "answer": "unclear",
+    "route": "engineer",
+    "outcome": "unnecessary hand-off",
+    "severity": null
+   },
+   "now": {
+    "answer": "unclear",
+    "route": "ask_supplier",
+    "kind": "not established, read twice",
+    "outcome": "correct autonomous",
+    "severity": null
+   }
+  },
+  {
+   "id": "G2/R17",
+   "group": "datasheet",
+   "case": "G2",
+   "req_id": "R17",
+   "expected": "complies",
+   "category": "routine",
+   "expected_route": "decide",
+   "before": {
+    "answer": "complies",
+    "route": "decide",
+    "outcome": "correct autonomous",
+    "severity": null
+   },
+   "now": {
+    "answer": "complies",
+    "route": "decide",
+    "kind": "decided",
+    "outcome": "correct autonomous",
+    "severity": null
+   }
+  },
+  {
+   "id": "G2/R18",
+   "group": "datasheet",
+   "case": "G2",
+   "req_id": "R18",
+   "expected": "missing",
+   "category": "missing_info",
+   "expected_route": "ask_supplier",
+   "before": {
+    "answer": "missing",
+    "route": "decide",
+    "outcome": "correct autonomous",
+    "severity": null
+   },
+   "now": {
+    "answer": "missing",
+    "route": "ask_supplier",
+    "kind": "not stated",
+    "outcome": "correct autonomous",
+    "severity": null
+   }
+  },
+  {
+   "id": "G2/R19",
+   "group": "datasheet",
+   "case": "G2",
+   "req_id": "R19",
+   "expected": "deviates",
+   "category": "routine",
+   "expected_route": "decide",
+   "before": {
+    "answer": "unclear",
+    "route": "engineer",
+    "outcome": "justified hand-off",
+    "severity": null
+   },
+   "now": {
+    "answer": "unclear",
+    "route": "engineer",
+    "kind": "contested",
+    "outcome": "justified hand-off",
+    "severity": null
+   }
+  },
+  {
+   "id": "G2/R20",
+   "group": "datasheet",
+   "case": "G2",
+   "req_id": "R20",
+   "expected": "unclear",
+   "category": "missing_info",
+   "expected_route": "ask_supplier",
+   "before": {
+    "answer": "unclear",
+    "route": "engineer",
+    "outcome": "unnecessary hand-off",
+    "severity": null
+   },
+   "now": {
+    "answer": "unclear",
+    "route": "engineer",
+    "kind": "contested",
+    "outcome": "unnecessary hand-off",
+    "severity": null
+   }
+  },
+  {
+   "id": "G2/R21",
+   "group": "datasheet",
+   "case": "G2",
+   "req_id": "R21",
+   "expected": "unclear",
+   "category": "missing_info",
+   "expected_route": "ask_supplier",
+   "before": {
+    "answer": "deviates",
+    "route": "engineer",
+    "outcome": "justified hand-off",
+    "severity": null
+   },
+   "now": {
+    "answer": "deviates",
+    "route": "engineer",
+    "kind": "contested",
+    "outcome": "justified hand-off",
+    "severity": null
+   }
+  },
+  {
+   "id": "G3/R01",
+   "group": "datasheet",
+   "case": "G3",
+   "req_id": "R01",
+   "expected": "complies",
+   "category": "routine",
+   "expected_route": "decide",
+   "before": {
+    "answer": "complies",
+    "route": "engineer",
+    "outcome": "unnecessary hand-off",
+    "severity": null
+   },
+   "now": {
+    "answer": "complies",
+    "route": "engineer",
+    "kind": "confirm a reading",
+    "outcome": "unnecessary hand-off",
+    "severity": null
+   }
+  },
+  {
+   "id": "G3/R02",
+   "group": "datasheet",
+   "case": "G3",
+   "req_id": "R02",
+   "expected": "complies",
+   "category": "routine",
+   "expected_route": "decide",
+   "before": {
+    "answer": "unclear",
+    "route": "engineer",
+    "outcome": "justified hand-off",
+    "severity": null
+   },
+   "now": {
+    "answer": "unclear",
+    "route": "engineer",
+    "kind": "absence not confirmed",
+    "outcome": "justified hand-off",
+    "severity": null
+   }
+  },
+  {
+   "id": "G3/R03",
+   "group": "datasheet",
+   "case": "G3",
+   "req_id": "R03",
+   "expected": "complies",
+   "category": "routine",
+   "expected_route": "decide",
+   "before": {
+    "answer": "unclear",
+    "route": "engineer",
+    "outcome": "justified hand-off",
+    "severity": null
+   },
+   "now": {
+    "answer": "unclear",
+    "route": "engineer",
+    "kind": "absence not confirmed",
+    "outcome": "justified hand-off",
+    "severity": null
+   }
+  },
+  {
+   "id": "G3/R04",
+   "group": "datasheet",
+   "case": "G3",
+   "req_id": "R04",
+   "expected": "complies",
+   "category": "routine",
+   "expected_route": "decide",
+   "before": {
+    "answer": "complies",
+    "route": "decide",
+    "outcome": "correct autonomous",
+    "severity": null
+   },
+   "now": {
+    "answer": "complies",
+    "route": "decide",
+    "kind": "decided",
+    "outcome": "correct autonomous",
+    "severity": null
+   }
+  },
+  {
+   "id": "G3/R05",
+   "group": "datasheet",
+   "case": "G3",
+   "req_id": "R05",
+   "expected": "complies",
+   "category": "routine",
+   "expected_route": "decide",
+   "before": {
+    "answer": "complies",
+    "route": "decide",
+    "outcome": "correct autonomous",
+    "severity": null
+   },
+   "now": {
+    "answer": "complies",
+    "route": "decide",
+    "kind": "decided",
+    "outcome": "correct autonomous",
+    "severity": null
+   }
+  },
+  {
+   "id": "G3/R06",
+   "group": "datasheet",
+   "case": "G3",
+   "req_id": "R06",
+   "expected": "complies",
+   "category": "routine",
+   "expected_route": "decide",
+   "before": {
+    "answer": "complies",
+    "route": "engineer",
+    "outcome": "unnecessary hand-off",
+    "severity": null
+   },
+   "now": {
+    "answer": "complies",
+    "route": "engineer",
+    "kind": "confirm a reading",
+    "outcome": "unnecessary hand-off",
+    "severity": null
+   }
+  },
+  {
+   "id": "G3/R07",
+   "group": "datasheet",
+   "case": "G3",
+   "req_id": "R07",
+   "expected": "complies",
+   "category": "escalate",
+   "expected_route": "engineer",
+   "before": {
+    "answer": "unclear",
+    "route": "engineer",
+    "outcome": "justified hand-off",
+    "severity": null
+   },
+   "now": {
+    "answer": "unclear",
+    "route": "engineer",
+    "kind": "absence not confirmed",
+    "outcome": "justified hand-off",
+    "severity": null
+   }
+  },
+  {
+   "id": "G3/R08",
+   "group": "datasheet",
+   "case": "G3",
+   "req_id": "R08",
+   "expected": "complies",
+   "category": "routine",
+   "expected_route": "decide",
+   "before": {
+    "answer": "complies",
+    "route": "decide",
+    "outcome": "correct autonomous",
+    "severity": null
+   },
+   "now": {
+    "answer": "complies",
+    "route": "decide",
+    "kind": "decided",
+    "outcome": "correct autonomous",
+    "severity": null
+   }
+  },
+  {
+   "id": "G3/R09",
+   "group": "datasheet",
+   "case": "G3",
+   "req_id": "R09",
+   "expected": "deviates",
+   "category": "routine",
+   "expected_route": "decide",
+   "before": {
+    "answer": "unclear",
+    "route": "engineer",
+    "outcome": "justified hand-off",
+    "severity": null
+   },
+   "now": {
+    "answer": "unclear",
+    "route": "engineer",
+    "kind": "absence not confirmed",
+    "outcome": "justified hand-off",
+    "severity": null
+   }
+  },
+  {
+   "id": "G3/R10",
+   "group": "datasheet",
+   "case": "G3",
+   "req_id": "R10",
+   "expected": "complies",
+   "category": "routine",
+   "expected_route": "decide",
+   "before": {
+    "answer": "complies",
+    "route": "decide",
+    "outcome": "correct autonomous",
+    "severity": null
+   },
+   "now": {
+    "answer": "complies",
+    "route": "decide",
+    "kind": "decided",
+    "outcome": "correct autonomous",
+    "severity": null
+   }
+  },
+  {
+   "id": "G3/R11",
+   "group": "datasheet",
+   "case": "G3",
+   "req_id": "R11",
+   "expected": "unclear",
+   "category": "escalate",
+   "expected_route": "engineer",
+   "before": {
+    "answer": "unclear",
+    "route": "engineer",
+    "outcome": "justified hand-off",
+    "severity": null
+   },
+   "now": {
+    "answer": "unclear",
+    "route": "engineer",
+    "kind": "absence not confirmed",
+    "outcome": "justified hand-off",
+    "severity": null
+   }
+  },
+  {
+   "id": "G3/R12",
+   "group": "datasheet",
+   "case": "G3",
+   "req_id": "R12",
+   "expected": "complies",
+   "category": "routine",
+   "expected_route": "decide",
+   "before": {
+    "answer": "complies",
+    "route": "decide",
+    "outcome": "correct autonomous",
+    "severity": null
+   },
+   "now": {
+    "answer": "complies",
+    "route": "decide",
+    "kind": "decided",
+    "outcome": "correct autonomous",
+    "severity": null
+   }
+  },
+  {
+   "id": "G3/R13",
+   "group": "datasheet",
+   "case": "G3",
+   "req_id": "R13",
+   "expected": "complies",
+   "category": "routine",
+   "expected_route": "decide",
+   "before": {
+    "answer": "complies",
+    "route": "engineer",
+    "outcome": "unnecessary hand-off",
+    "severity": null
+   },
+   "now": {
+    "answer": "complies",
+    "route": "engineer",
+    "kind": "confirm a reading",
+    "outcome": "unnecessary hand-off",
+    "severity": null
+   }
+  },
+  {
+   "id": "G3/R14",
+   "group": "datasheet",
+   "case": "G3",
+   "req_id": "R14",
+   "expected": "complies",
+   "category": "routine",
+   "expected_route": "decide",
+   "before": {
+    "answer": "complies",
+    "route": "decide",
+    "outcome": "correct autonomous",
+    "severity": null
+   },
+   "now": {
+    "answer": "complies",
+    "route": "decide",
+    "kind": "decided",
+    "outcome": "correct autonomous",
+    "severity": null
+   }
+  },
+  {
+   "id": "G3/R15",
+   "group": "datasheet",
+   "case": "G3",
+   "req_id": "R15",
+   "expected": "unclear",
+   "category": "missing_info",
+   "expected_route": "ask_supplier",
+   "before": {
+    "answer": "unclear",
+    "route": "engineer",
+    "outcome": "unnecessary hand-off",
+    "severity": null
+   },
+   "now": {
+    "answer": "unclear",
+    "route": "engineer",
+    "kind": "absence not confirmed",
+    "outcome": "unnecessary hand-off",
+    "severity": null
+   }
+  },
+  {
+   "id": "G3/R16",
+   "group": "datasheet",
+   "case": "G3",
+   "req_id": "R16",
+   "expected": "unclear",
+   "category": "missing_info",
+   "expected_route": "ask_supplier",
+   "before": {
+    "answer": "unclear",
+    "route": "engineer",
+    "outcome": "unnecessary hand-off",
+    "severity": null
+   },
+   "now": {
+    "answer": "unclear",
+    "route": "engineer",
+    "kind": "absence not confirmed",
+    "outcome": "unnecessary hand-off",
+    "severity": null
+   }
+  },
+  {
+   "id": "G3/R17",
+   "group": "datasheet",
+   "case": "G3",
+   "req_id": "R17",
+   "expected": "complies",
+   "category": "routine",
+   "expected_route": "decide",
+   "before": {
+    "answer": "complies",
+    "route": "decide",
+    "outcome": "correct autonomous",
+    "severity": null
+   },
+   "now": {
+    "answer": "complies",
+    "route": "decide",
+    "kind": "decided",
+    "outcome": "correct autonomous",
+    "severity": null
+   }
+  },
+  {
+   "id": "G3/R18",
+   "group": "datasheet",
+   "case": "G3",
+   "req_id": "R18",
+   "expected": "complies",
+   "category": "routine",
+   "expected_route": "decide",
+   "before": {
+    "answer": "unclear",
+    "route": "engineer",
+    "outcome": "justified hand-off",
+    "severity": null
+   },
+   "now": {
+    "answer": "unclear",
+    "route": "engineer",
+    "kind": "judgement",
+    "outcome": "justified hand-off",
+    "severity": null
+   }
+  },
+  {
+   "id": "G3/R19",
+   "group": "datasheet",
+   "case": "G3",
+   "req_id": "R19",
+   "expected": "deviates",
+   "category": "routine",
+   "expected_route": "decide",
+   "before": {
+    "answer": "unclear",
+    "route": "engineer",
+    "outcome": "justified hand-off",
+    "severity": null
+   },
+   "now": {
+    "answer": "unclear",
+    "route": "engineer",
+    "kind": "absence not confirmed",
+    "outcome": "justified hand-off",
+    "severity": null
+   }
+  },
+  {
+   "id": "G3/R20",
+   "group": "datasheet",
+   "case": "G3",
+   "req_id": "R20",
+   "expected": "unclear",
+   "category": "missing_info",
+   "expected_route": "ask_supplier",
+   "before": {
+    "answer": "unclear",
+    "route": "engineer",
+    "outcome": "unnecessary hand-off",
+    "severity": null
+   },
+   "now": {
+    "answer": "unclear",
+    "route": "engineer",
+    "kind": "absence not confirmed",
+    "outcome": "unnecessary hand-off",
+    "severity": null
+   }
+  },
+  {
+   "id": "G3/R21",
+   "group": "datasheet",
+   "case": "G3",
+   "req_id": "R21",
+   "expected": "unclear",
+   "category": "missing_info",
+   "expected_route": "ask_supplier",
+   "before": {
+    "answer": "unclear",
+    "route": "engineer",
+    "outcome": "unnecessary hand-off",
+    "severity": null
+   },
+   "now": {
+    "answer": "unclear",
+    "route": "engineer",
+    "kind": "judgement",
+    "outcome": "unnecessary hand-off",
+    "severity": null
+   }
+  },
+  {
+   "id": "G4/R01",
+   "group": "datasheet",
+   "case": "G4",
+   "req_id": "R01",
+   "expected": "complies",
+   "category": "routine",
+   "expected_route": "decide",
+   "before": {
+    "answer": "complies",
+    "route": "engineer",
+    "outcome": "unnecessary hand-off",
+    "severity": null
+   },
+   "now": {
+    "answer": "complies",
+    "route": "engineer",
+    "kind": "confirm a reading",
+    "outcome": "unnecessary hand-off",
+    "severity": null
+   }
+  },
+  {
+   "id": "G4/R02",
+   "group": "datasheet",
+   "case": "G4",
+   "req_id": "R02",
+   "expected": "unclear",
+   "category": "missing_info",
+   "expected_route": "ask_supplier",
+   "before": {
+    "answer": "complies",
+    "route": "engineer",
+    "outcome": "justified hand-off",
+    "severity": null
+   },
+   "now": {
+    "answer": "complies",
+    "route": "engineer",
+    "kind": "confirm a reading",
+    "outcome": "justified hand-off",
+    "severity": null
+   }
+  },
+  {
+   "id": "G4/R03",
+   "group": "datasheet",
+   "case": "G4",
+   "req_id": "R03",
+   "expected": "missing",
+   "category": "missing_info",
+   "expected_route": "ask_supplier",
+   "before": {
+    "answer": "unclear",
+    "route": "engineer",
+    "outcome": "unnecessary hand-off",
+    "severity": null
+   },
+   "now": {
+    "answer": "unclear",
+    "route": "ask_supplier",
+    "kind": "not established, read twice",
+    "outcome": "correct autonomous",
+    "severity": null
+   }
+  },
+  {
+   "id": "G4/R04",
+   "group": "datasheet",
+   "case": "G4",
+   "req_id": "R04",
+   "expected": "complies",
+   "category": "routine",
+   "expected_route": "decide",
+   "before": {
+    "answer": "complies",
+    "route": "decide",
+    "outcome": "correct autonomous",
+    "severity": null
+   },
+   "now": {
+    "answer": "complies",
+    "route": "decide",
+    "kind": "decided",
+    "outcome": "correct autonomous",
+    "severity": null
+   }
+  },
+  {
+   "id": "G4/R05",
+   "group": "datasheet",
+   "case": "G4",
+   "req_id": "R05",
+   "expected": "deviates",
+   "category": "routine",
+   "expected_route": "decide",
+   "before": {
+    "answer": "deviates",
+    "route": "engineer",
+    "outcome": "unnecessary hand-off",
+    "severity": null
+   },
+   "now": {
+    "answer": "deviates",
+    "route": "engineer",
+    "kind": "confirm a reading",
+    "outcome": "unnecessary hand-off",
+    "severity": null
+   }
+  },
+  {
+   "id": "G4/R06",
+   "group": "datasheet",
+   "case": "G4",
+   "req_id": "R06",
+   "expected": "complies",
+   "category": "routine",
+   "expected_route": "decide",
+   "before": {
+    "answer": "complies",
+    "route": "decide",
+    "outcome": "correct autonomous",
+    "severity": null
+   },
+   "now": {
+    "answer": "complies",
+    "route": "decide",
+    "kind": "decided",
+    "outcome": "correct autonomous",
+    "severity": null
+   }
+  },
+  {
+   "id": "G4/R07",
+   "group": "datasheet",
+   "case": "G4",
+   "req_id": "R07",
+   "expected": "complies",
+   "category": "routine",
+   "expected_route": "decide",
+   "before": {
+    "answer": "unclear",
+    "route": "engineer",
+    "outcome": "justified hand-off",
+    "severity": null
+   },
+   "now": {
+    "answer": "unclear",
+    "route": "engineer",
+    "kind": "judgement",
+    "outcome": "justified hand-off",
+    "severity": null
+   }
+  },
+  {
+   "id": "G4/R08",
+   "group": "datasheet",
+   "case": "G4",
+   "req_id": "R08",
+   "expected": "missing",
+   "category": "missing_info",
+   "expected_route": "ask_supplier",
+   "before": {
+    "answer": "unclear",
+    "route": "engineer",
+    "outcome": "unnecessary hand-off",
+    "severity": null
+   },
+   "now": {
+    "answer": "unclear",
+    "route": "ask_supplier",
+    "kind": "not established, read twice",
+    "outcome": "correct autonomous",
+    "severity": null
+   }
+  },
+  {
+   "id": "G4/R09",
+   "group": "datasheet",
+   "case": "G4",
+   "req_id": "R09",
+   "expected": "unclear",
+   "category": "missing_info",
+   "expected_route": "ask_supplier",
+   "before": {
+    "answer": "unclear",
+    "route": "engineer",
+    "outcome": "unnecessary hand-off",
+    "severity": null
+   },
+   "now": {
+    "answer": "unclear",
+    "route": "engineer",
+    "kind": "judgement",
+    "outcome": "unnecessary hand-off",
+    "severity": null
+   }
+  },
+  {
+   "id": "G4/R10",
+   "group": "datasheet",
+   "case": "G4",
+   "req_id": "R10",
+   "expected": "complies",
+   "category": "routine",
+   "expected_route": "decide",
+   "before": {
+    "answer": "complies",
+    "route": "decide",
+    "outcome": "correct autonomous",
+    "severity": null
+   },
+   "now": {
+    "answer": "complies",
+    "route": "decide",
+    "kind": "decided",
+    "outcome": "correct autonomous",
+    "severity": null
+   }
+  },
+  {
+   "id": "G4/R11",
+   "group": "datasheet",
+   "case": "G4",
+   "req_id": "R11",
+   "expected": "unclear",
+   "category": "escalate",
+   "expected_route": "engineer",
+   "before": {
+    "answer": "unclear",
+    "route": "engineer",
+    "outcome": "justified hand-off",
+    "severity": null
+   },
+   "now": {
+    "answer": "unclear",
+    "route": "engineer",
+    "kind": "contested",
+    "outcome": "justified hand-off",
+    "severity": null
+   }
+  },
+  {
+   "id": "G4/R12",
+   "group": "datasheet",
+   "case": "G4",
+   "req_id": "R12",
+   "expected": "missing",
+   "category": "missing_info",
+   "expected_route": "ask_supplier",
+   "before": {
+    "answer": "missing",
+    "route": "decide",
+    "outcome": "correct autonomous",
+    "severity": null
+   },
+   "now": {
+    "answer": "missing",
+    "route": "ask_supplier",
+    "kind": "not stated",
+    "outcome": "correct autonomous",
+    "severity": null
+   }
+  },
+  {
+   "id": "G4/R13",
+   "group": "datasheet",
+   "case": "G4",
+   "req_id": "R13",
+   "expected": "complies",
+   "category": "routine",
+   "expected_route": "decide",
+   "before": {
+    "answer": "complies",
+    "route": "engineer",
+    "outcome": "unnecessary hand-off",
+    "severity": null
+   },
+   "now": {
+    "answer": "complies",
+    "route": "engineer",
+    "kind": "confirm a reading",
+    "outcome": "unnecessary hand-off",
+    "severity": null
+   }
+  },
+  {
+   "id": "G4/R14",
+   "group": "datasheet",
+   "case": "G4",
+   "req_id": "R14",
+   "expected": "complies",
+   "category": "routine",
+   "expected_route": "decide",
+   "before": {
+    "answer": "complies",
+    "route": "decide",
+    "outcome": "correct autonomous",
+    "severity": null
+   },
+   "now": {
+    "answer": "complies",
+    "route": "decide",
+    "kind": "decided",
+    "outcome": "correct autonomous",
+    "severity": null
+   }
+  },
+  {
+   "id": "G4/R15",
+   "group": "datasheet",
+   "case": "G4",
+   "req_id": "R15",
+   "expected": "unclear",
+   "category": "missing_info",
+   "expected_route": "ask_supplier",
+   "before": {
+    "answer": "unclear",
+    "route": "engineer",
+    "outcome": "unnecessary hand-off",
+    "severity": null
+   },
+   "now": {
+    "answer": "unclear",
+    "route": "engineer",
+    "kind": "judgement",
+    "outcome": "unnecessary hand-off",
+    "severity": null
+   }
+  },
+  {
+   "id": "G4/R16",
+   "group": "datasheet",
+   "case": "G4",
+   "req_id": "R16",
+   "expected": "missing",
+   "category": "missing_info",
+   "expected_route": "ask_supplier",
+   "before": {
+    "answer": "unclear",
+    "route": "engineer",
+    "outcome": "unnecessary hand-off",
+    "severity": null
+   },
+   "now": {
+    "answer": "unclear",
+    "route": "ask_supplier",
+    "kind": "not established, read twice",
+    "outcome": "correct autonomous",
+    "severity": null
+   }
+  },
+  {
+   "id": "G4/R17",
+   "group": "datasheet",
+   "case": "G4",
+   "req_id": "R17",
+   "expected": "complies",
+   "category": "routine",
+   "expected_route": "decide",
+   "before": {
+    "answer": "complies",
+    "route": "decide",
+    "outcome": "correct autonomous",
+    "severity": null
+   },
+   "now": {
+    "answer": "complies",
+    "route": "decide",
+    "kind": "decided",
+    "outcome": "correct autonomous",
+    "severity": null
+   }
+  },
+  {
+   "id": "G4/R18",
+   "group": "datasheet",
+   "case": "G4",
+   "req_id": "R18",
+   "expected": "missing",
+   "category": "missing_info",
+   "expected_route": "ask_supplier",
+   "before": {
+    "answer": "unclear",
+    "route": "engineer",
+    "outcome": "unnecessary hand-off",
+    "severity": null
+   },
+   "now": {
+    "answer": "unclear",
+    "route": "ask_supplier",
+    "kind": "not established, read twice",
+    "outcome": "correct autonomous",
+    "severity": null
+   }
+  },
+  {
+   "id": "G4/R19",
+   "group": "datasheet",
+   "case": "G4",
+   "req_id": "R19",
+   "expected": "unclear",
+   "category": "missing_info",
+   "expected_route": "ask_supplier",
+   "before": {
+    "answer": "unclear",
+    "route": "engineer",
+    "outcome": "unnecessary hand-off",
+    "severity": null
+   },
+   "now": {
+    "answer": "unclear",
+    "route": "ask_supplier",
+    "kind": "not established, read twice",
+    "outcome": "correct autonomous",
+    "severity": null
+   }
+  },
+  {
+   "id": "G4/R20",
+   "group": "datasheet",
+   "case": "G4",
+   "req_id": "R20",
+   "expected": "unclear",
+   "category": "missing_info",
+   "expected_route": "ask_supplier",
+   "before": {
+    "answer": "unclear",
+    "route": "engineer",
+    "outcome": "unnecessary hand-off",
+    "severity": null
+   },
+   "now": {
+    "answer": "unclear",
+    "route": "engineer",
+    "kind": "contested",
+    "outcome": "unnecessary hand-off",
+    "severity": null
+   }
+  },
+  {
+   "id": "G4/R21",
+   "group": "datasheet",
+   "case": "G4",
+   "req_id": "R21",
+   "expected": "unclear",
+   "category": "missing_info",
+   "expected_route": "ask_supplier",
+   "before": {
+    "answer": "unclear",
+    "route": "engineer",
+    "outcome": "unnecessary hand-off",
+    "severity": null
+   },
+   "now": {
+    "answer": "unclear",
+    "route": "ask_supplier",
+    "kind": "not established, read twice",
+    "outcome": "correct autonomous",
+    "severity": null
+   }
+  },
+  {
+   "id": "G5/R01",
+   "group": "datasheet",
+   "case": "G5",
+   "req_id": "R01",
+   "expected": "complies",
+   "category": "routine",
+   "expected_route": "decide",
+   "before": {
+    "answer": "complies",
+    "route": "decide",
+    "outcome": "correct autonomous",
+    "severity": null
+   },
+   "now": {
+    "answer": "complies",
+    "route": "decide",
+    "kind": "decided",
+    "outcome": "correct autonomous",
+    "severity": null
+   }
+  },
+  {
+   "id": "G5/R02",
+   "group": "datasheet",
+   "case": "G5",
+   "req_id": "R02",
+   "expected": "unclear",
+   "category": "missing_info",
+   "expected_route": "ask_supplier",
+   "before": {
+    "answer": "complies",
+    "route": "engineer",
+    "outcome": "justified hand-off",
+    "severity": null
+   },
+   "now": {
+    "answer": "complies",
+    "route": "engineer",
+    "kind": "contested",
+    "outcome": "justified hand-off",
+    "severity": null
+   }
+  },
+  {
+   "id": "G5/R03",
+   "group": "datasheet",
+   "case": "G5",
+   "req_id": "R03",
+   "expected": "complies",
+   "category": "routine",
+   "expected_route": "decide",
+   "before": {
+    "answer": "complies",
+    "route": "engineer",
+    "outcome": "unnecessary hand-off",
+    "severity": null
+   },
+   "now": {
+    "answer": "complies",
+    "route": "engineer",
+    "kind": "confirm a reading",
+    "outcome": "unnecessary hand-off",
+    "severity": null
+   }
+  },
+  {
+   "id": "G5/R04",
+   "group": "datasheet",
+   "case": "G5",
+   "req_id": "R04",
+   "expected": "complies",
+   "category": "routine",
+   "expected_route": "decide",
+   "before": {
+    "answer": "complies",
+    "route": "decide",
+    "outcome": "correct autonomous",
+    "severity": null
+   },
+   "now": {
+    "answer": "complies",
+    "route": "decide",
+    "kind": "decided",
+    "outcome": "correct autonomous",
+    "severity": null
+   }
+  },
+  {
+   "id": "G5/R05",
+   "group": "datasheet",
+   "case": "G5",
+   "req_id": "R05",
+   "expected": "complies",
+   "category": "routine",
+   "expected_route": "decide",
+   "before": {
+    "answer": "unclear",
+    "route": "engineer",
+    "outcome": "justified hand-off",
+    "severity": null
+   },
+   "now": {
+    "answer": "unclear",
+    "route": "engineer",
+    "kind": "judgement",
+    "outcome": "justified hand-off",
+    "severity": null
+   }
+  },
+  {
+   "id": "G5/R06",
+   "group": "datasheet",
+   "case": "G5",
+   "req_id": "R06",
+   "expected": "complies",
+   "category": "routine",
+   "expected_route": "decide",
+   "before": {
+    "answer": "complies",
+    "route": "decide",
+    "outcome": "correct autonomous",
+    "severity": null
+   },
+   "now": {
+    "answer": "complies",
+    "route": "decide",
+    "kind": "decided",
+    "outcome": "correct autonomous",
+    "severity": null
+   }
+  },
+  {
+   "id": "G5/R07",
+   "group": "datasheet",
+   "case": "G5",
+   "req_id": "R07",
+   "expected": "complies",
+   "category": "routine",
+   "expected_route": "decide",
+   "before": {
+    "answer": "complies",
+    "route": "engineer",
+    "outcome": "unnecessary hand-off",
+    "severity": null
+   },
+   "now": {
+    "answer": "complies",
+    "route": "engineer",
+    "kind": "contested",
+    "outcome": "unnecessary hand-off",
+    "severity": null
+   }
+  },
+  {
+   "id": "G5/R08",
+   "group": "datasheet",
+   "case": "G5",
+   "req_id": "R08",
+   "expected": "deviates",
+   "category": "routine",
+   "expected_route": "decide",
+   "before": {
+    "answer": "deviates",
+    "route": "decide",
+    "outcome": "correct autonomous",
+    "severity": null
+   },
+   "now": {
+    "answer": "deviates",
+    "route": "decide",
+    "kind": "decided",
+    "outcome": "correct autonomous",
+    "severity": null
+   }
+  },
+  {
+   "id": "G5/R09",
+   "group": "datasheet",
+   "case": "G5",
+   "req_id": "R09",
+   "expected": "complies",
+   "category": "escalate",
+   "expected_route": "engineer",
+   "before": {
+    "answer": "unclear",
+    "route": "engineer",
+    "outcome": "justified hand-off",
+    "severity": null
+   },
+   "now": {
+    "answer": "unclear",
+    "route": "engineer",
+    "kind": "judgement",
+    "outcome": "justified hand-off",
+    "severity": null
+   }
+  },
+  {
+   "id": "G5/R10",
+   "group": "datasheet",
+   "case": "G5",
+   "req_id": "R10",
+   "expected": "unclear",
+   "category": "missing_info",
+   "expected_route": "ask_supplier",
+   "before": {
+    "answer": "unclear",
+    "route": "engineer",
+    "outcome": "unnecessary hand-off",
+    "severity": null
+   },
+   "now": {
+    "answer": "unclear",
+    "route": "ask_supplier",
+    "kind": "not established, read twice",
+    "outcome": "correct autonomous",
+    "severity": null
+   }
+  },
+  {
+   "id": "G5/R11",
+   "group": "datasheet",
+   "case": "G5",
+   "req_id": "R11",
+   "expected": "unclear",
+   "category": "escalate",
+   "expected_route": "engineer",
+   "before": {
+    "answer": "unclear",
+    "route": "engineer",
+    "outcome": "justified hand-off",
+    "severity": null
+   },
+   "now": {
+    "answer": "unclear",
+    "route": "engineer",
+    "kind": "judgement",
+    "outcome": "justified hand-off",
+    "severity": null
+   }
+  },
+  {
+   "id": "G5/R12",
+   "group": "datasheet",
+   "case": "G5",
+   "req_id": "R12",
+   "expected": "complies",
+   "category": "routine",
+   "expected_route": "decide",
+   "before": {
+    "answer": "complies",
+    "route": "decide",
+    "outcome": "correct autonomous",
+    "severity": null
+   },
+   "now": {
+    "answer": "complies",
+    "route": "decide",
+    "kind": "decided",
+    "outcome": "correct autonomous",
+    "severity": null
+   }
+  },
+  {
+   "id": "G5/R13",
+   "group": "datasheet",
+   "case": "G5",
+   "req_id": "R13",
+   "expected": "complies",
+   "category": "routine",
+   "expected_route": "decide",
+   "before": {
+    "answer": "complies",
+    "route": "engineer",
+    "outcome": "unnecessary hand-off",
+    "severity": null
+   },
+   "now": {
+    "answer": "complies",
+    "route": "engineer",
+    "kind": "confirm a reading",
+    "outcome": "unnecessary hand-off",
+    "severity": null
+   }
+  },
+  {
+   "id": "G5/R14",
+   "group": "datasheet",
+   "case": "G5",
+   "req_id": "R14",
+   "expected": "missing",
+   "category": "missing_info",
+   "expected_route": "ask_supplier",
+   "before": {
+    "answer": "missing",
+    "route": "decide",
+    "outcome": "correct autonomous",
+    "severity": null
+   },
+   "now": {
+    "answer": "missing",
+    "route": "ask_supplier",
+    "kind": "not stated",
+    "outcome": "correct autonomous",
+    "severity": null
+   }
+  },
+  {
+   "id": "G5/R15",
+   "group": "datasheet",
+   "case": "G5",
+   "req_id": "R15",
+   "expected": "missing",
+   "category": "missing_info",
+   "expected_route": "ask_supplier",
+   "before": {
+    "answer": "unclear",
+    "route": "engineer",
+    "outcome": "unnecessary hand-off",
+    "severity": null
+   },
+   "now": {
+    "answer": "unclear",
+    "route": "ask_supplier",
+    "kind": "not established, read twice",
+    "outcome": "correct autonomous",
+    "severity": null
+   }
+  },
+  {
+   "id": "G5/R16",
+   "group": "datasheet",
+   "case": "G5",
+   "req_id": "R16",
+   "expected": "missing",
+   "category": "missing_info",
+   "expected_route": "ask_supplier",
+   "before": {
+    "answer": "unclear",
+    "route": "engineer",
+    "outcome": "unnecessary hand-off",
+    "severity": null
+   },
+   "now": {
+    "answer": "unclear",
+    "route": "ask_supplier",
+    "kind": "not established, read twice",
+    "outcome": "correct autonomous",
+    "severity": null
+   }
+  },
+  {
+   "id": "G5/R17",
+   "group": "datasheet",
+   "case": "G5",
+   "req_id": "R17",
+   "expected": "complies",
+   "category": "routine",
+   "expected_route": "decide",
+   "before": {
+    "answer": "complies",
+    "route": "engineer",
+    "outcome": "unnecessary hand-off",
+    "severity": null
+   },
+   "now": {
+    "answer": "complies",
+    "route": "engineer",
+    "kind": "confirm a reading",
+    "outcome": "unnecessary hand-off",
+    "severity": null
+   }
+  },
+  {
+   "id": "G5/R18",
+   "group": "datasheet",
+   "case": "G5",
+   "req_id": "R18",
+   "expected": "complies",
+   "category": "routine",
+   "expected_route": "decide",
+   "before": {
+    "answer": "complies",
+    "route": "engineer",
+    "outcome": "unnecessary hand-off",
+    "severity": null
+   },
+   "now": {
+    "answer": "complies",
+    "route": "engineer",
+    "kind": "confirm a reading",
+    "outcome": "unnecessary hand-off",
+    "severity": null
+   }
+  },
+  {
+   "id": "G5/R19",
+   "group": "datasheet",
+   "case": "G5",
+   "req_id": "R19",
+   "expected": "missing",
+   "category": "missing_info",
+   "expected_route": "ask_supplier",
+   "before": {
+    "answer": "unclear",
+    "route": "engineer",
+    "outcome": "unnecessary hand-off",
+    "severity": null
+   },
+   "now": {
+    "answer": "unclear",
+    "route": "ask_supplier",
+    "kind": "not established, read twice",
+    "outcome": "correct autonomous",
+    "severity": null
+   }
+  },
+  {
+   "id": "G5/R20",
+   "group": "datasheet",
+   "case": "G5",
+   "req_id": "R20",
+   "expected": "missing",
+   "category": "missing_info",
+   "expected_route": "ask_supplier",
+   "before": {
+    "answer": "unclear",
+    "route": "engineer",
+    "outcome": "unnecessary hand-off",
+    "severity": null
+   },
+   "now": {
+    "answer": "unclear",
+    "route": "ask_supplier",
+    "kind": "not established, read twice",
+    "outcome": "correct autonomous",
+    "severity": null
+   }
+  },
+  {
+   "id": "G5/R21",
+   "group": "datasheet",
+   "case": "G5",
+   "req_id": "R21",
+   "expected": "missing",
+   "category": "missing_info",
+   "expected_route": "ask_supplier",
+   "before": {
+    "answer": "unclear",
+    "route": "engineer",
+    "outcome": "unnecessary hand-off",
+    "severity": null
+   },
+   "now": {
+    "answer": "unclear",
+    "route": "ask_supplier",
+    "kind": "not established, read twice",
+    "outcome": "correct autonomous",
+    "severity": null
+   }
+  },
+  {
+   "id": "G6/R01",
+   "group": "datasheet",
+   "case": "G6",
+   "req_id": "R01",
+   "expected": "complies",
+   "category": "routine",
+   "expected_route": "decide",
+   "before": {
+    "answer": "unclear",
+    "route": "engineer",
+    "outcome": "justified hand-off",
+    "severity": null
+   },
+   "now": {
+    "answer": "unclear",
+    "route": "engineer",
+    "kind": "contested",
+    "outcome": "justified hand-off",
+    "severity": null
+   }
+  },
+  {
+   "id": "G6/R02",
+   "group": "datasheet",
+   "case": "G6",
+   "req_id": "R02",
+   "expected": "unclear",
+   "category": "missing_info",
+   "expected_route": "ask_supplier",
+   "before": {
+    "answer": "complies",
+    "route": "engineer",
+    "outcome": "justified hand-off",
+    "severity": null
+   },
+   "now": {
+    "answer": "complies",
+    "route": "engineer",
+    "kind": "contested",
+    "outcome": "justified hand-off",
+    "severity": null
+   }
+  },
+  {
+   "id": "G6/R03",
+   "group": "datasheet",
+   "case": "G6",
+   "req_id": "R03",
+   "expected": "complies",
+   "category": "escalate",
+   "expected_route": "engineer",
+   "before": {
+    "answer": "unclear",
+    "route": "engineer",
+    "outcome": "justified hand-off",
+    "severity": null
+   },
+   "now": {
+    "answer": "unclear",
+    "route": "engineer",
+    "kind": "judgement",
+    "outcome": "justified hand-off",
+    "severity": null
+   }
+  },
+  {
+   "id": "G6/R04",
+   "group": "datasheet",
+   "case": "G6",
+   "req_id": "R04",
+   "expected": "complies",
+   "category": "routine",
+   "expected_route": "decide",
+   "before": {
+    "answer": "complies",
+    "route": "decide",
+    "outcome": "correct autonomous",
+    "severity": null
+   },
+   "now": {
+    "answer": "complies",
+    "route": "decide",
+    "kind": "decided",
+    "outcome": "correct autonomous",
+    "severity": null
+   }
+  },
+  {
+   "id": "G6/R05",
+   "group": "datasheet",
+   "case": "G6",
+   "req_id": "R05",
+   "expected": "complies",
+   "category": "routine",
+   "expected_route": "decide",
+   "before": {
+    "answer": "complies",
+    "route": "engineer",
+    "outcome": "unnecessary hand-off",
+    "severity": null
+   },
+   "now": {
+    "answer": "complies",
+    "route": "engineer",
+    "kind": "confirm a reading",
+    "outcome": "unnecessary hand-off",
+    "severity": null
+   }
+  },
+  {
+   "id": "G6/R06",
+   "group": "datasheet",
+   "case": "G6",
+   "req_id": "R06",
+   "expected": "complies",
+   "category": "routine",
+   "expected_route": "decide",
+   "before": {
+    "answer": "complies",
+    "route": "engineer",
+    "outcome": "unnecessary hand-off",
+    "severity": null
+   },
+   "now": {
+    "answer": "complies",
+    "route": "engineer",
+    "kind": "confirm a reading",
+    "outcome": "unnecessary hand-off",
+    "severity": null
+   }
+  },
+  {
+   "id": "G6/R07",
+   "group": "datasheet",
+   "case": "G6",
+   "req_id": "R07",
+   "expected": "complies",
+   "category": "routine",
+   "expected_route": "decide",
+   "before": {
+    "answer": "complies",
+    "route": "engineer",
+    "outcome": "unnecessary hand-off",
+    "severity": null
+   },
+   "now": {
+    "answer": "complies",
+    "route": "engineer",
+    "kind": "contested",
+    "outcome": "unnecessary hand-off",
+    "severity": null
+   }
+  },
+  {
+   "id": "G6/R08",
+   "group": "datasheet",
+   "case": "G6",
+   "req_id": "R08",
+   "expected": "complies",
+   "category": "routine",
+   "expected_route": "decide",
+   "before": {
+    "answer": "complies",
+    "route": "engineer",
+    "outcome": "unnecessary hand-off",
+    "severity": null
+   },
+   "now": {
+    "answer": "complies",
+    "route": "engineer",
+    "kind": "contested",
+    "outcome": "unnecessary hand-off",
+    "severity": null
+   }
+  },
+  {
+   "id": "G6/R09",
+   "group": "datasheet",
+   "case": "G6",
+   "req_id": "R09",
+   "expected": "deviates",
+   "category": "routine",
+   "expected_route": "decide",
+   "before": {
+    "answer": "complies",
+    "route": "engineer",
+    "outcome": "justified hand-off",
+    "severity": null
+   },
+   "now": {
+    "answer": "complies",
+    "route": "engineer",
+    "kind": "confirm a reading",
+    "outcome": "justified hand-off",
+    "severity": null
+   }
+  },
+  {
+   "id": "G6/R10",
+   "group": "datasheet",
+   "case": "G6",
+   "req_id": "R10",
+   "expected": "unclear",
+   "category": "missing_info",
+   "expected_route": "ask_supplier",
+   "before": {
+    "answer": "unclear",
+    "route": "engineer",
+    "outcome": "unnecessary hand-off",
+    "severity": null
+   },
+   "now": {
+    "answer": "unclear",
+    "route": "engineer",
+    "kind": "contested",
+    "outcome": "unnecessary hand-off",
+    "severity": null
+   }
+  },
+  {
+   "id": "G6/R11",
+   "group": "datasheet",
+   "case": "G6",
+   "req_id": "R11",
+   "expected": "deviates",
+   "category": "escalate",
+   "expected_route": "engineer",
+   "before": {
+    "answer": "unclear",
+    "route": "engineer",
+    "outcome": "justified hand-off",
+    "severity": null
+   },
+   "now": {
+    "answer": "unclear",
+    "route": "engineer",
+    "kind": "judgement",
+    "outcome": "justified hand-off",
+    "severity": null
+   }
+  },
+  {
+   "id": "G6/R12",
+   "group": "datasheet",
+   "case": "G6",
+   "req_id": "R12",
+   "expected": "complies",
+   "category": "routine",
+   "expected_route": "decide",
+   "before": {
+    "answer": "complies",
+    "route": "decide",
+    "outcome": "correct autonomous",
+    "severity": null
+   },
+   "now": {
+    "answer": "complies",
+    "route": "decide",
+    "kind": "decided",
+    "outcome": "correct autonomous",
+    "severity": null
+   }
+  },
+  {
+   "id": "G6/R13",
+   "group": "datasheet",
+   "case": "G6",
+   "req_id": "R13",
+   "expected": "complies",
+   "category": "routine",
+   "expected_route": "decide",
+   "before": {
+    "answer": "complies",
+    "route": "engineer",
+    "outcome": "unnecessary hand-off",
+    "severity": null
+   },
+   "now": {
+    "answer": "complies",
+    "route": "engineer",
+    "kind": "confirm a reading",
+    "outcome": "unnecessary hand-off",
+    "severity": null
+   }
+  },
+  {
+   "id": "G6/R14",
+   "group": "datasheet",
+   "case": "G6",
+   "req_id": "R14",
+   "expected": "complies",
+   "category": "routine",
+   "expected_route": "decide",
+   "before": {
+    "answer": "complies",
+    "route": "decide",
+    "outcome": "correct autonomous",
+    "severity": null
+   },
+   "now": {
+    "answer": "complies",
+    "route": "decide",
+    "kind": "decided",
+    "outcome": "correct autonomous",
+    "severity": null
+   }
+  },
+  {
+   "id": "G6/R15",
+   "group": "datasheet",
+   "case": "G6",
+   "req_id": "R15",
+   "expected": "unclear",
+   "category": "missing_info",
+   "expected_route": "ask_supplier",
+   "before": {
+    "answer": "unclear",
+    "route": "engineer",
+    "outcome": "unnecessary hand-off",
+    "severity": null
+   },
+   "now": {
+    "answer": "unclear",
+    "route": "ask_supplier",
+    "kind": "not established, read twice",
+    "outcome": "correct autonomous",
+    "severity": null
+   }
+  },
+  {
+   "id": "G6/R16",
+   "group": "datasheet",
+   "case": "G6",
+   "req_id": "R16",
+   "expected": "unclear",
+   "category": "missing_info",
+   "expected_route": "ask_supplier",
+   "before": {
+    "answer": "unclear",
+    "route": "engineer",
+    "outcome": "unnecessary hand-off",
+    "severity": null
+   },
+   "now": {
+    "answer": "unclear",
+    "route": "ask_supplier",
+    "kind": "not established, read twice",
+    "outcome": "correct autonomous",
+    "severity": null
+   }
+  },
+  {
+   "id": "G6/R17",
+   "group": "datasheet",
+   "case": "G6",
+   "req_id": "R17",
+   "expected": "complies",
+   "category": "routine",
+   "expected_route": "decide",
+   "before": {
+    "answer": "complies",
+    "route": "decide",
+    "outcome": "correct autonomous",
+    "severity": null
+   },
+   "now": {
+    "answer": "complies",
+    "route": "decide",
+    "kind": "decided",
+    "outcome": "correct autonomous",
+    "severity": null
+   }
+  },
+  {
+   "id": "G6/R18",
+   "group": "datasheet",
+   "case": "G6",
+   "req_id": "R18",
+   "expected": "missing",
+   "category": "missing_info",
+   "expected_route": "ask_supplier",
+   "before": {
+    "answer": "missing",
+    "route": "decide",
+    "outcome": "correct autonomous",
+    "severity": null
+   },
+   "now": {
+    "answer": "missing",
+    "route": "ask_supplier",
+    "kind": "not stated",
+    "outcome": "correct autonomous",
+    "severity": null
+   }
+  },
+  {
+   "id": "G6/R19",
+   "group": "datasheet",
+   "case": "G6",
+   "req_id": "R19",
+   "expected": "unclear",
+   "category": "missing_info",
+   "expected_route": "ask_supplier",
+   "before": {
+    "answer": "unclear",
+    "route": "engineer",
+    "outcome": "unnecessary hand-off",
+    "severity": null
+   },
+   "now": {
+    "answer": "unclear",
+    "route": "ask_supplier",
+    "kind": "not established, read twice",
+    "outcome": "correct autonomous",
+    "severity": null
+   }
+  },
+  {
+   "id": "G6/R20",
+   "group": "datasheet",
+   "case": "G6",
+   "req_id": "R20",
+   "expected": "unclear",
+   "category": "missing_info",
+   "expected_route": "ask_supplier",
+   "before": {
+    "answer": "unclear",
+    "route": "engineer",
+    "outcome": "unnecessary hand-off",
+    "severity": null
+   },
+   "now": {
+    "answer": "unclear",
+    "route": "ask_supplier",
+    "kind": "not established, read twice",
+    "outcome": "correct autonomous",
+    "severity": null
+   }
+  },
+  {
+   "id": "G6/R21",
+   "group": "datasheet",
+   "case": "G6",
+   "req_id": "R21",
+   "expected": "missing",
+   "category": "missing_info",
+   "expected_route": "ask_supplier",
+   "before": {
+    "answer": "unclear",
+    "route": "engineer",
+    "outcome": "unnecessary hand-off",
+    "severity": null
+   },
+   "now": {
+    "answer": "unclear",
+    "route": "ask_supplier",
+    "kind": "not established, read twice",
+    "outcome": "correct autonomous",
+    "severity": null
+   }
+  },
+  {
+   "id": "G7/R01",
+   "group": "datasheet",
+   "case": "G7",
+   "req_id": "R01",
+   "expected": "complies",
+   "category": "routine",
+   "expected_route": "decide",
+   "before": {
+    "answer": "complies",
+    "route": "decide",
+    "outcome": "correct autonomous",
+    "severity": null
+   },
+   "now": {
+    "answer": "complies",
+    "route": "decide",
+    "kind": "decided",
+    "outcome": "correct autonomous",
+    "severity": null
+   }
+  },
+  {
+   "id": "G7/R02",
+   "group": "datasheet",
+   "case": "G7",
+   "req_id": "R02",
+   "expected": "unclear",
+   "category": "missing_info",
+   "expected_route": "ask_supplier",
+   "before": {
+    "answer": "unclear",
+    "route": "engineer",
+    "outcome": "unnecessary hand-off",
+    "severity": null
+   },
+   "now": {
+    "answer": "unclear",
+    "route": "ask_supplier",
+    "kind": "not established, read twice",
+    "outcome": "correct autonomous",
+    "severity": null
+   }
+  },
+  {
+   "id": "G7/R03",
+   "group": "datasheet",
+   "case": "G7",
+   "req_id": "R03",
+   "expected": "unclear",
+   "category": "missing_info",
+   "expected_route": "ask_supplier",
+   "before": {
+    "answer": "unclear",
+    "route": "engineer",
+    "outcome": "unnecessary hand-off",
+    "severity": null
+   },
+   "now": {
+    "answer": "unclear",
+    "route": "ask_supplier",
+    "kind": "not established, read twice",
+    "outcome": "correct autonomous",
+    "severity": null
+   }
+  },
+  {
+   "id": "G7/R04",
+   "group": "datasheet",
+   "case": "G7",
+   "req_id": "R04",
+   "expected": "unclear",
+   "category": "missing_info",
+   "expected_route": "ask_supplier",
+   "before": {
+    "answer": "unclear",
+    "route": "engineer",
+    "outcome": "unnecessary hand-off",
+    "severity": null
+   },
+   "now": {
+    "answer": "unclear",
+    "route": "engineer",
+    "kind": "judgement",
+    "outcome": "unnecessary hand-off",
+    "severity": null
+   }
+  },
+  {
+   "id": "G7/R05",
+   "group": "datasheet",
+   "case": "G7",
+   "req_id": "R05",
+   "expected": "unclear",
+   "category": "missing_info",
+   "expected_route": "ask_supplier",
+   "before": {
+    "answer": "unclear",
+    "route": "engineer",
+    "outcome": "unnecessary hand-off",
+    "severity": null
+   },
+   "now": {
+    "answer": "unclear",
+    "route": "engineer",
+    "kind": "judgement",
+    "outcome": "unnecessary hand-off",
+    "severity": null
+   }
+  },
+  {
+   "id": "G7/R06",
+   "group": "datasheet",
+   "case": "G7",
+   "req_id": "R06",
+   "expected": "unclear",
+   "category": "missing_info",
+   "expected_route": "ask_supplier",
+   "before": {
+    "answer": "unclear",
+    "route": "engineer",
+    "outcome": "unnecessary hand-off",
+    "severity": null
+   },
+   "now": {
+    "answer": "unclear",
+    "route": "engineer",
+    "kind": "judgement",
+    "outcome": "unnecessary hand-off",
+    "severity": null
+   }
+  },
+  {
+   "id": "G7/R07",
+   "group": "datasheet",
+   "case": "G7",
+   "req_id": "R07",
+   "expected": "unclear",
+   "category": "missing_info",
+   "expected_route": "ask_supplier",
+   "before": {
+    "answer": "unclear",
+    "route": "engineer",
+    "outcome": "unnecessary hand-off",
+    "severity": null
+   },
+   "now": {
+    "answer": "unclear",
+    "route": "ask_supplier",
+    "kind": "not established, read twice",
+    "outcome": "correct autonomous",
+    "severity": null
+   }
+  },
+  {
+   "id": "G7/R08",
+   "group": "datasheet",
+   "case": "G7",
+   "req_id": "R08",
+   "expected": "complies",
+   "category": "routine",
+   "expected_route": "decide",
+   "before": {
+    "answer": "unclear",
+    "route": "engineer",
+    "outcome": "justified hand-off",
+    "severity": null
+   },
+   "now": {
+    "answer": "unclear",
+    "route": "engineer",
+    "kind": "contested",
+    "outcome": "justified hand-off",
+    "severity": null
+   }
+  },
+  {
+   "id": "G7/R09",
+   "group": "datasheet",
+   "case": "G7",
+   "req_id": "R09",
+   "expected": "unclear",
+   "category": "missing_info",
+   "expected_route": "ask_supplier",
+   "before": {
+    "answer": "unclear",
+    "route": "engineer",
+    "outcome": "unnecessary hand-off",
+    "severity": null
+   },
+   "now": {
+    "answer": "unclear",
+    "route": "engineer",
+    "kind": "contested",
+    "outcome": "unnecessary hand-off",
+    "severity": null
+   }
+  },
+  {
+   "id": "G7/R10",
+   "group": "datasheet",
+   "case": "G7",
+   "req_id": "R10",
+   "expected": "complies",
+   "category": "routine",
+   "expected_route": "decide",
+   "before": {
+    "answer": "complies",
+    "route": "decide",
+    "outcome": "correct autonomous",
+    "severity": null
+   },
+   "now": {
+    "answer": "complies",
+    "route": "decide",
+    "kind": "decided",
+    "outcome": "correct autonomous",
+    "severity": null
+   }
+  },
+  {
+   "id": "G7/R11",
+   "group": "datasheet",
+   "case": "G7",
+   "req_id": "R11",
+   "expected": "unclear",
+   "category": "escalate",
+   "expected_route": "engineer",
+   "before": {
+    "answer": "unclear",
+    "route": "engineer",
+    "outcome": "justified hand-off",
+    "severity": null
+   },
+   "now": {
+    "answer": "unclear",
+    "route": "engineer",
+    "kind": "contested",
+    "outcome": "justified hand-off",
+    "severity": null
+   }
+  },
+  {
+   "id": "G7/R12",
+   "group": "datasheet",
+   "case": "G7",
+   "req_id": "R12",
+   "expected": "missing",
+   "category": "missing_info",
+   "expected_route": "ask_supplier",
+   "before": {
+    "answer": "missing",
+    "route": "decide",
+    "outcome": "correct autonomous",
+    "severity": null
+   },
+   "now": {
+    "answer": "missing",
+    "route": "ask_supplier",
+    "kind": "not stated",
+    "outcome": "correct autonomous",
+    "severity": null
+   }
+  },
+  {
+   "id": "G7/R13",
+   "group": "datasheet",
+   "case": "G7",
+   "req_id": "R13",
+   "expected": "missing",
+   "category": "missing_info",
+   "expected_route": "ask_supplier",
+   "before": {
+    "answer": "unclear",
+    "route": "engineer",
+    "outcome": "unnecessary hand-off",
+    "severity": null
+   },
+   "now": {
+    "answer": "unclear",
+    "route": "ask_supplier",
+    "kind": "not established, read twice",
+    "outcome": "correct autonomous",
+    "severity": null
+   }
+  },
+  {
+   "id": "G7/R14",
+   "group": "datasheet",
+   "case": "G7",
+   "req_id": "R14",
+   "expected": "missing",
+   "category": "missing_info",
+   "expected_route": "ask_supplier",
+   "before": {
+    "answer": "missing",
+    "route": "decide",
+    "outcome": "correct autonomous",
+    "severity": null
+   },
+   "now": {
+    "answer": "missing",
+    "route": "ask_supplier",
+    "kind": "not stated",
+    "outcome": "correct autonomous",
+    "severity": null
+   }
+  },
+  {
+   "id": "G7/R15",
+   "group": "datasheet",
+   "case": "G7",
+   "req_id": "R15",
+   "expected": "unclear",
+   "category": "missing_info",
+   "expected_route": "ask_supplier",
+   "before": {
+    "answer": "unclear",
+    "route": "engineer",
+    "outcome": "unnecessary hand-off",
+    "severity": null
+   },
+   "now": {
+    "answer": "unclear",
+    "route": "ask_supplier",
+    "kind": "not established, read twice",
+    "outcome": "correct autonomous",
+    "severity": null
+   }
+  },
+  {
+   "id": "G7/R16",
+   "group": "datasheet",
+   "case": "G7",
+   "req_id": "R16",
+   "expected": "unclear",
+   "category": "missing_info",
+   "expected_route": "ask_supplier",
+   "before": {
+    "answer": "unclear",
+    "route": "engineer",
+    "outcome": "unnecessary hand-off",
+    "severity": null
+   },
+   "now": {
+    "answer": "unclear",
+    "route": "ask_supplier",
+    "kind": "not established, read twice",
+    "outcome": "correct autonomous",
+    "severity": null
+   }
+  },
+  {
+   "id": "G7/R17",
+   "group": "datasheet",
+   "case": "G7",
+   "req_id": "R17",
+   "expected": "missing",
+   "category": "missing_info",
+   "expected_route": "ask_supplier",
+   "before": {
+    "answer": "missing",
+    "route": "decide",
+    "outcome": "correct autonomous",
+    "severity": null
+   },
+   "now": {
+    "answer": "missing",
+    "route": "ask_supplier",
+    "kind": "not stated",
+    "outcome": "correct autonomous",
+    "severity": null
+   }
+  },
+  {
+   "id": "G7/R18",
+   "group": "datasheet",
+   "case": "G7",
+   "req_id": "R18",
+   "expected": "missing",
+   "category": "missing_info",
+   "expected_route": "ask_supplier",
+   "before": {
+    "answer": "missing",
+    "route": "decide",
+    "outcome": "correct autonomous",
+    "severity": null
+   },
+   "now": {
+    "answer": "missing",
+    "route": "ask_supplier",
+    "kind": "not stated",
+    "outcome": "correct autonomous",
+    "severity": null
+   }
+  },
+  {
+   "id": "G7/R19",
+   "group": "datasheet",
+   "case": "G7",
+   "req_id": "R19",
+   "expected": "missing",
+   "category": "missing_info",
+   "expected_route": "ask_supplier",
+   "before": {
+    "answer": "unclear",
+    "route": "engineer",
+    "outcome": "unnecessary hand-off",
+    "severity": null
+   },
+   "now": {
+    "answer": "unclear",
+    "route": "ask_supplier",
+    "kind": "not established, read twice",
+    "outcome": "correct autonomous",
+    "severity": null
+   }
+  },
+  {
+   "id": "G7/R20",
+   "group": "datasheet",
+   "case": "G7",
+   "req_id": "R20",
+   "expected": "unclear",
+   "category": "missing_info",
+   "expected_route": "ask_supplier",
+   "before": {
+    "answer": "unclear",
+    "route": "engineer",
+    "outcome": "unnecessary hand-off",
+    "severity": null
+   },
+   "now": {
+    "answer": "unclear",
+    "route": "ask_supplier",
+    "kind": "not established, read twice",
+    "outcome": "correct autonomous",
+    "severity": null
+   }
+  },
+  {
+   "id": "G7/R21",
+   "group": "datasheet",
+   "case": "G7",
+   "req_id": "R21",
+   "expected": "missing",
+   "category": "missing_info",
+   "expected_route": "ask_supplier",
+   "before": {
+    "answer": "missing",
+    "route": "decide",
+    "outcome": "correct autonomous",
+    "severity": null
+   },
+   "now": {
+    "answer": "missing",
+    "route": "ask_supplier",
+    "kind": "not stated",
+    "outcome": "correct autonomous",
+    "severity": null
+   }
+  },
+  {
+   "id": "G8/R01",
+   "group": "datasheet",
+   "case": "G8",
+   "req_id": "R01",
+   "expected": "complies",
+   "category": "routine",
+   "expected_route": "decide",
+   "before": {
+    "answer": "complies",
+    "route": "decide",
+    "outcome": "correct autonomous",
+    "severity": null
+   },
+   "now": {
+    "answer": "complies",
+    "route": "decide",
+    "kind": "decided",
+    "outcome": "correct autonomous",
+    "severity": null
+   }
+  },
+  {
+   "id": "G8/R02",
+   "group": "datasheet",
+   "case": "G8",
+   "req_id": "R02",
+   "expected": "unclear",
+   "category": "missing_info",
+   "expected_route": "ask_supplier",
+   "before": {
+    "answer": "unclear",
+    "route": "engineer",
+    "outcome": "unnecessary hand-off",
+    "severity": null
+   },
+   "now": {
+    "answer": "unclear",
+    "route": "engineer",
+    "kind": "judgement",
+    "outcome": "unnecessary hand-off",
+    "severity": null
+   }
+  },
+  {
+   "id": "G8/R03",
+   "group": "datasheet",
+   "case": "G8",
+   "req_id": "R03",
+   "expected": "unclear",
+   "category": "missing_info",
+   "expected_route": "ask_supplier",
+   "before": {
+    "answer": "unclear",
+    "route": "engineer",
+    "outcome": "unnecessary hand-off",
+    "severity": null
+   },
+   "now": {
+    "answer": "unclear",
+    "route": "ask_supplier",
+    "kind": "not established, read twice",
+    "outcome": "correct autonomous",
+    "severity": null
+   }
+  },
+  {
+   "id": "G8/R04",
+   "group": "datasheet",
+   "case": "G8",
+   "req_id": "R04",
+   "expected": "complies",
+   "category": "routine",
+   "expected_route": "decide",
+   "before": {
+    "answer": "complies",
+    "route": "decide",
+    "outcome": "correct autonomous",
+    "severity": null
+   },
+   "now": {
+    "answer": "complies",
+    "route": "decide",
+    "kind": "decided",
+    "outcome": "correct autonomous",
+    "severity": null
+   }
+  },
+  {
+   "id": "G8/R05",
+   "group": "datasheet",
+   "case": "G8",
+   "req_id": "R05",
+   "expected": "complies",
+   "category": "routine",
+   "expected_route": "decide",
+   "before": {
+    "answer": "complies",
+    "route": "engineer",
+    "outcome": "unnecessary hand-off",
+    "severity": null
+   },
+   "now": {
+    "answer": "complies",
+    "route": "engineer",
+    "kind": "confirm a reading",
+    "outcome": "unnecessary hand-off",
+    "severity": null
+   }
+  },
+  {
+   "id": "G8/R06",
+   "group": "datasheet",
+   "case": "G8",
+   "req_id": "R06",
+   "expected": "complies",
+   "category": "routine",
+   "expected_route": "decide",
+   "before": {
+    "answer": "complies",
+    "route": "decide",
+    "outcome": "correct autonomous",
+    "severity": null
+   },
+   "now": {
+    "answer": "complies",
+    "route": "decide",
+    "kind": "decided",
+    "outcome": "correct autonomous",
+    "severity": null
+   }
+  },
+  {
+   "id": "G8/R07",
+   "group": "datasheet",
+   "case": "G8",
+   "req_id": "R07",
+   "expected": "complies",
+   "category": "routine",
+   "expected_route": "decide",
+   "before": {
+    "answer": "unclear",
+    "route": "engineer",
+    "outcome": "justified hand-off",
+    "severity": null
+   },
+   "now": {
+    "answer": "unclear",
+    "route": "engineer",
+    "kind": "judgement",
+    "outcome": "justified hand-off",
+    "severity": null
+   }
+  },
+  {
+   "id": "G8/R08",
+   "group": "datasheet",
+   "case": "G8",
+   "req_id": "R08",
+   "expected": "complies",
+   "category": "routine",
+   "expected_route": "decide",
+   "before": {
+    "answer": "complies",
+    "route": "decide",
+    "outcome": "correct autonomous",
+    "severity": null
+   },
+   "now": {
+    "answer": "complies",
+    "route": "decide",
+    "kind": "decided",
+    "outcome": "correct autonomous",
+    "severity": null
+   }
+  },
+  {
+   "id": "G8/R09",
+   "group": "datasheet",
+   "case": "G8",
+   "req_id": "R09",
+   "expected": "unclear",
+   "category": "missing_info",
+   "expected_route": "ask_supplier",
+   "before": {
+    "answer": "complies",
+    "route": "engineer",
+    "outcome": "justified hand-off",
+    "severity": null
+   },
+   "now": {
+    "answer": "complies",
+    "route": "engineer",
+    "kind": "contested",
+    "outcome": "justified hand-off",
+    "severity": null
+   }
+  },
+  {
+   "id": "G8/R10",
+   "group": "datasheet",
+   "case": "G8",
+   "req_id": "R10",
+   "expected": "complies",
+   "category": "routine",
+   "expected_route": "decide",
+   "before": {
+    "answer": "complies",
+    "route": "decide",
+    "outcome": "correct autonomous",
+    "severity": null
+   },
+   "now": {
+    "answer": "complies",
+    "route": "decide",
+    "kind": "decided",
+    "outcome": "correct autonomous",
+    "severity": null
+   }
+  },
+  {
+   "id": "G8/R11",
+   "group": "datasheet",
+   "case": "G8",
+   "req_id": "R11",
+   "expected": "deviates",
+   "category": "escalate",
+   "expected_route": "engineer",
+   "before": {
+    "answer": "unclear",
+    "route": "engineer",
+    "outcome": "justified hand-off",
+    "severity": null
+   },
+   "now": {
+    "answer": "unclear",
+    "route": "engineer",
+    "kind": "judgement",
+    "outcome": "justified hand-off",
+    "severity": null
+   }
+  },
+  {
+   "id": "G8/R12",
+   "group": "datasheet",
+   "case": "G8",
+   "req_id": "R12",
+   "expected": "complies",
+   "category": "routine",
+   "expected_route": "decide",
+   "before": {
+    "answer": "complies",
+    "route": "decide",
+    "outcome": "correct autonomous",
+    "severity": null
+   },
+   "now": {
+    "answer": "complies",
+    "route": "decide",
+    "kind": "decided",
+    "outcome": "correct autonomous",
+    "severity": null
+   }
+  },
+  {
+   "id": "G8/R13",
+   "group": "datasheet",
+   "case": "G8",
+   "req_id": "R13",
+   "expected": "complies",
+   "category": "routine",
+   "expected_route": "decide",
+   "before": {
+    "answer": "complies",
+    "route": "engineer",
+    "outcome": "unnecessary hand-off",
+    "severity": null
+   },
+   "now": {
+    "answer": "complies",
+    "route": "engineer",
+    "kind": "confirm a reading",
+    "outcome": "unnecessary hand-off",
+    "severity": null
+   }
+  },
+  {
+   "id": "G8/R14",
+   "group": "datasheet",
+   "case": "G8",
+   "req_id": "R14",
+   "expected": "complies",
+   "category": "routine",
+   "expected_route": "decide",
+   "before": {
+    "answer": "complies",
+    "route": "decide",
+    "outcome": "correct autonomous",
+    "severity": null
+   },
+   "now": {
+    "answer": "complies",
+    "route": "decide",
+    "kind": "decided",
+    "outcome": "correct autonomous",
+    "severity": null
+   }
+  },
+  {
+   "id": "G8/R15",
+   "group": "datasheet",
+   "case": "G8",
+   "req_id": "R15",
+   "expected": "unclear",
+   "category": "missing_info",
+   "expected_route": "ask_supplier",
+   "before": {
+    "answer": "unclear",
+    "route": "engineer",
+    "outcome": "unnecessary hand-off",
+    "severity": null
+   },
+   "now": {
+    "answer": "unclear",
+    "route": "engineer",
+    "kind": "judgement",
+    "outcome": "unnecessary hand-off",
+    "severity": null
+   }
+  },
+  {
+   "id": "G8/R16",
+   "group": "datasheet",
+   "case": "G8",
+   "req_id": "R16",
+   "expected": "unclear",
+   "category": "missing_info",
+   "expected_route": "ask_supplier",
+   "before": {
+    "answer": "unclear",
+    "route": "engineer",
+    "outcome": "unnecessary hand-off",
+    "severity": null
+   },
+   "now": {
+    "answer": "unclear",
+    "route": "ask_supplier",
+    "kind": "not established, read twice",
+    "outcome": "correct autonomous",
+    "severity": null
+   }
+  },
+  {
+   "id": "G8/R17",
+   "group": "datasheet",
+   "case": "G8",
+   "req_id": "R17",
+   "expected": "complies",
+   "category": "routine",
+   "expected_route": "decide",
+   "before": {
+    "answer": "complies",
+    "route": "engineer",
+    "outcome": "unnecessary hand-off",
+    "severity": null
+   },
+   "now": {
+    "answer": "complies",
+    "route": "engineer",
+    "kind": "confirm a reading",
+    "outcome": "unnecessary hand-off",
+    "severity": null
+   }
+  },
+  {
+   "id": "G8/R18",
+   "group": "datasheet",
+   "case": "G8",
+   "req_id": "R18",
+   "expected": "complies",
+   "category": "routine",
+   "expected_route": "decide",
+   "before": {
+    "answer": "complies",
+    "route": "engineer",
+    "outcome": "unnecessary hand-off",
+    "severity": null
+   },
+   "now": {
+    "answer": "complies",
+    "route": "engineer",
+    "kind": "confirm a reading",
+    "outcome": "unnecessary hand-off",
+    "severity": null
+   }
+  },
+  {
+   "id": "G8/R19",
+   "group": "datasheet",
+   "case": "G8",
+   "req_id": "R19",
+   "expected": "missing",
+   "category": "missing_info",
+   "expected_route": "ask_supplier",
+   "before": {
+    "answer": "unclear",
+    "route": "engineer",
+    "outcome": "unnecessary hand-off",
+    "severity": null
+   },
+   "now": {
+    "answer": "unclear",
+    "route": "ask_supplier",
+    "kind": "not established, read twice",
+    "outcome": "correct autonomous",
+    "severity": null
+   }
+  },
+  {
+   "id": "G8/R20",
+   "group": "datasheet",
+   "case": "G8",
+   "req_id": "R20",
+   "expected": "unclear",
+   "category": "missing_info",
+   "expected_route": "ask_supplier",
+   "before": {
+    "answer": "unclear",
+    "route": "engineer",
+    "outcome": "unnecessary hand-off",
+    "severity": null
+   },
+   "now": {
+    "answer": "unclear",
+    "route": "engineer",
+    "kind": "contested",
+    "outcome": "unnecessary hand-off",
+    "severity": null
+   }
+  },
+  {
+   "id": "G8/R21",
+   "group": "datasheet",
+   "case": "G8",
+   "req_id": "R21",
+   "expected": "missing",
+   "category": "missing_info",
+   "expected_route": "ask_supplier",
+   "before": {
+    "answer": "unclear",
+    "route": "engineer",
+    "outcome": "unnecessary hand-off",
+    "severity": null
+   },
+   "now": {
+    "answer": "unclear",
+    "route": "ask_supplier",
+    "kind": "not established, read twice",
+    "outcome": "correct autonomous",
+    "severity": null
+   }
+  },
+  {
+   "id": "U1/U01",
+   "group": "datasheet",
+   "case": "U1",
+   "req_id": "U01",
+   "expected": "complies",
+   "category": "routine",
+   "expected_route": "decide",
+   "before": {
+    "answer": "complies",
+    "route": "engineer",
+    "outcome": "unnecessary hand-off",
+    "severity": null
+   },
+   "now": {
+    "answer": "complies",
+    "route": "engineer",
+    "kind": "contested",
+    "outcome": "unnecessary hand-off",
+    "severity": null
+   }
+  },
+  {
+   "id": "U1/U02",
+   "group": "datasheet",
+   "case": "U1",
+   "req_id": "U02",
+   "expected": "deviates",
+   "category": "routine",
+   "expected_route": "decide",
+   "before": {
+    "answer": "complies",
+    "route": "engineer",
+    "outcome": "justified hand-off",
+    "severity": null
+   },
+   "now": {
+    "answer": "complies",
+    "route": "engineer",
+    "kind": "contested",
+    "outcome": "justified hand-off",
+    "severity": null
+   }
+  },
+  {
+   "id": "U1/U03",
+   "group": "datasheet",
+   "case": "U1",
+   "req_id": "U03",
+   "expected": "unclear",
+   "category": "missing_info",
+   "expected_route": "ask_supplier",
+   "before": {
+    "answer": "complies",
+    "route": "engineer",
+    "outcome": "justified hand-off",
+    "severity": null
+   },
+   "now": {
+    "answer": "complies",
+    "route": "engineer",
+    "kind": "contested",
+    "outcome": "justified hand-off",
+    "severity": null
+   }
+  },
+  {
+   "id": "U1/U04",
+   "group": "datasheet",
+   "case": "U1",
+   "req_id": "U04",
+   "expected": "complies",
+   "category": "routine",
+   "expected_route": "decide",
+   "before": {
+    "answer": "complies",
+    "route": "engineer",
+    "outcome": "unnecessary hand-off",
+    "severity": null
+   },
+   "now": {
+    "answer": "complies",
+    "route": "engineer",
+    "kind": "confirm a reading",
+    "outcome": "unnecessary hand-off",
+    "severity": null
+   }
+  },
+  {
+   "id": "U1/U05",
+   "group": "datasheet",
+   "case": "U1",
+   "req_id": "U05",
+   "expected": "complies",
+   "category": "routine",
+   "expected_route": "decide",
+   "before": {
+    "answer": "unclear",
+    "route": "engineer",
+    "outcome": "justified hand-off",
+    "severity": null
+   },
+   "now": {
+    "answer": "unclear",
+    "route": "engineer",
+    "kind": "judgement",
+    "outcome": "justified hand-off",
+    "severity": null
+   }
+  },
+  {
+   "id": "U1/U06",
+   "group": "datasheet",
+   "case": "U1",
+   "req_id": "U06",
+   "expected": "complies",
+   "category": "routine",
+   "expected_route": "decide",
+   "before": {
+    "answer": "complies",
+    "route": "decide",
+    "outcome": "correct autonomous",
+    "severity": null
+   },
+   "now": {
+    "answer": "complies",
+    "route": "decide",
+    "kind": "decided",
+    "outcome": "correct autonomous",
+    "severity": null
+   }
+  },
+  {
+   "id": "U1/U07",
+   "group": "datasheet",
+   "case": "U1",
+   "req_id": "U07",
+   "expected": "complies",
+   "category": "routine",
+   "expected_route": "decide",
+   "before": {
+    "answer": "complies",
+    "route": "decide",
+    "outcome": "correct autonomous",
+    "severity": null
+   },
+   "now": {
+    "answer": "complies",
+    "route": "decide",
+    "kind": "decided",
+    "outcome": "correct autonomous",
+    "severity": null
+   }
+  },
+  {
+   "id": "U1/U08",
+   "group": "datasheet",
+   "case": "U1",
+   "req_id": "U08",
+   "expected": "complies",
+   "category": "routine",
+   "expected_route": "decide",
+   "before": {
+    "answer": "complies",
+    "route": "decide",
+    "outcome": "correct autonomous",
+    "severity": null
+   },
+   "now": {
+    "answer": "complies",
+    "route": "decide",
+    "kind": "decided",
+    "outcome": "correct autonomous",
+    "severity": null
+   }
+  },
+  {
+   "id": "U1/U09",
+   "group": "datasheet",
+   "case": "U1",
+   "req_id": "U09",
+   "expected": "complies",
+   "category": "routine",
+   "expected_route": "decide",
+   "before": {
+    "answer": "unclear",
+    "route": "engineer",
+    "outcome": "justified hand-off",
+    "severity": null
+   },
+   "now": {
+    "answer": "unclear",
+    "route": "engineer",
+    "kind": "contested",
+    "outcome": "justified hand-off",
+    "severity": null
+   }
+  },
+  {
+   "id": "U1/U10",
+   "group": "datasheet",
+   "case": "U1",
+   "req_id": "U10",
+   "expected": "deviates",
+   "category": "routine",
+   "expected_route": "decide",
+   "before": {
+    "answer": "unclear",
+    "route": "engineer",
+    "outcome": "justified hand-off",
+    "severity": null
+   },
+   "now": {
+    "answer": "unclear",
+    "route": "ask_supplier",
+    "kind": "not established, read twice",
+    "outcome": "incorrect autonomous",
+    "severity": "minor"
+   }
+  },
+  {
+   "id": "U1/U11",
+   "group": "datasheet",
+   "case": "U1",
+   "req_id": "U11",
+   "expected": "unclear",
+   "category": "missing_info",
+   "expected_route": "ask_supplier",
+   "before": {
+    "answer": "unclear",
+    "route": "engineer",
+    "outcome": "unnecessary hand-off",
+    "severity": null
+   },
+   "now": {
+    "answer": "unclear",
+    "route": "ask_supplier",
+    "kind": "not established, read twice",
+    "outcome": "correct autonomous",
+    "severity": null
+   }
+  },
+  {
+   "id": "U1/U12",
+   "group": "datasheet",
+   "case": "U1",
+   "req_id": "U12",
+   "expected": "complies",
+   "category": "routine",
+   "expected_route": "decide",
+   "before": {
+    "answer": "complies",
+    "route": "decide",
+    "outcome": "correct autonomous",
+    "severity": null
+   },
+   "now": {
+    "answer": "complies",
+    "route": "decide",
+    "kind": "decided",
+    "outcome": "correct autonomous",
+    "severity": null
+   }
+  },
+  {
+   "id": "U1/U13",
+   "group": "datasheet",
+   "case": "U1",
+   "req_id": "U13",
+   "expected": "missing",
+   "category": "missing_info",
+   "expected_route": "ask_supplier",
+   "before": {
+    "answer": "missing",
+    "route": "decide",
+    "outcome": "correct autonomous",
+    "severity": null
+   },
+   "now": {
+    "answer": "missing",
+    "route": "ask_supplier",
+    "kind": "not stated",
+    "outcome": "correct autonomous",
+    "severity": null
+   }
+  },
+  {
+   "id": "U1/U14",
+   "group": "datasheet",
+   "case": "U1",
+   "req_id": "U14",
+   "expected": "unclear",
+   "category": "missing_info",
+   "expected_route": "ask_supplier",
+   "before": {
+    "answer": "unclear",
+    "route": "engineer",
+    "outcome": "unnecessary hand-off",
+    "severity": null
+   },
+   "now": {
+    "answer": "unclear",
+    "route": "ask_supplier",
+    "kind": "not established, read twice",
+    "outcome": "correct autonomous",
+    "severity": null
+   }
+  },
+  {
+   "id": "U1/U15",
+   "group": "datasheet",
+   "case": "U1",
+   "req_id": "U15",
+   "expected": "unclear",
+   "category": "missing_info",
+   "expected_route": "ask_supplier",
+   "before": {
+    "answer": "unclear",
+    "route": "engineer",
+    "outcome": "unnecessary hand-off",
+    "severity": null
+   },
+   "now": {
+    "answer": "unclear",
+    "route": "engineer",
+    "kind": "judgement",
+    "outcome": "unnecessary hand-off",
+    "severity": null
+   }
+  },
+  {
+   "id": "U1/U16",
+   "group": "datasheet",
+   "case": "U1",
+   "req_id": "U16",
+   "expected": "complies",
+   "category": "routine",
+   "expected_route": "decide",
+   "before": {
+    "answer": "unclear",
+    "route": "engineer",
+    "outcome": "justified hand-off",
+    "severity": null
+   },
+   "now": {
+    "answer": "unclear",
+    "route": "engineer",
+    "kind": "judgement",
+    "outcome": "justified hand-off",
+    "severity": null
+   }
+  },
+  {
+   "id": "PKG/B1/R01",
+   "group": "package",
+   "bid": "B1",
+   "req_id": "R01",
+   "expected": "complies",
+   "category": "routine",
+   "expected_route": "decide",
+   "before": {
+    "answer": "complies",
+    "route": "decide",
+    "outcome": "correct autonomous",
+    "severity": null
+   },
+   "now": {
+    "answer": "complies",
+    "route": "decide",
+    "kind": "decided",
+    "outcome": "correct autonomous",
+    "severity": null
+   }
+  },
+  {
+   "id": "PKG/B1/R02",
+   "group": "package",
+   "bid": "B1",
+   "req_id": "R02",
+   "expected": "complies",
+   "category": "conflict",
+   "expected_route": "decide",
+   "before": {
+    "answer": "unclear",
+    "route": "engineer",
+    "outcome": "justified hand-off",
+    "severity": null
+   },
+   "now": {
+    "answer": "complies",
+    "route": "decide",
+    "kind": "decided",
+    "outcome": "correct autonomous",
+    "severity": null
+   }
+  },
+  {
+   "id": "PKG/B1/R10",
+   "group": "package",
+   "bid": "B1",
+   "req_id": "R10",
+   "expected": "complies",
+   "category": "routine",
+   "expected_route": "decide",
+   "before": {
+    "answer": "complies",
+    "route": "decide",
+    "outcome": "correct autonomous",
+    "severity": null
+   },
+   "now": {
+    "answer": "complies",
+    "route": "decide",
+    "kind": "decided",
+    "outcome": "correct autonomous",
+    "severity": null
+   }
+  },
+  {
+   "id": "PKG/B1/R12",
+   "group": "package",
+   "bid": "B1",
+   "req_id": "R12",
+   "expected": "complies",
+   "category": "conflict",
+   "expected_route": "decide",
+   "before": {
+    "answer": "missing",
+    "route": "decide",
+    "outcome": "incorrect autonomous",
+    "severity": "minor"
+   },
+   "now": {
+    "answer": "complies",
+    "route": "decide",
+    "kind": "decided",
+    "outcome": "correct autonomous",
+    "severity": null
+   }
+  },
+  {
+   "id": "PKG/B1/R19",
+   "group": "package",
+   "bid": "B1",
+   "req_id": "R19",
+   "expected": "complies",
+   "category": "conflict",
+   "expected_route": "decide",
+   "before": {
+    "answer": "unclear",
+    "route": "engineer",
+    "outcome": "justified hand-off",
+    "severity": null
+   },
+   "now": {
+    "answer": "complies",
+    "route": "decide",
+    "kind": "decided",
+    "outcome": "correct autonomous",
+    "severity": null
+   }
+  },
+  {
+   "id": "PKG/B1/R21",
+   "group": "package",
+   "bid": "B1",
+   "req_id": "R21",
+   "expected": "unclear",
+   "category": "missing_info",
+   "expected_route": "ask_supplier",
+   "before": {
+    "answer": "missing",
+    "route": "decide",
+    "outcome": "correct autonomous",
+    "severity": null
+   },
+   "now": {
+    "answer": "unclear",
+    "route": "ask_supplier",
+    "kind": "not established, read twice",
+    "outcome": "correct autonomous",
+    "severity": null
+   }
+  },
+  {
+   "id": "PKG/B2/R01",
+   "group": "package",
+   "bid": "B2",
+   "req_id": "R01",
+   "expected": "complies",
+   "category": "routine",
+   "expected_route": "decide",
+   "before": {
+    "answer": "complies",
+    "route": "engineer",
+    "outcome": "unnecessary hand-off",
+    "severity": null
+   },
+   "now": {
+    "answer": "complies",
+    "route": "decide",
+    "kind": "decided",
+    "outcome": "correct autonomous",
+    "severity": null
+   }
+  },
+  {
+   "id": "PKG/B2/R02",
+   "group": "package",
+   "bid": "B2",
+   "req_id": "R02",
+   "expected": "complies",
+   "category": "routine",
+   "expected_route": "decide",
+   "before": {
+    "answer": "complies",
+    "route": "engineer",
+    "outcome": "unnecessary hand-off",
+    "severity": null
+   },
+   "now": {
+    "answer": "complies",
+    "route": "decide",
+    "kind": "decided",
+    "outcome": "correct autonomous",
+    "severity": null
+   }
+  },
+  {
+   "id": "PKG/B2/R04",
+   "group": "package",
+   "bid": "B2",
+   "req_id": "R04",
+   "expected": "complies",
+   "category": "routine",
+   "expected_route": "decide",
+   "before": {
+    "answer": "complies",
+    "route": "decide",
+    "outcome": "correct autonomous",
+    "severity": null
+   },
+   "now": {
+    "answer": "complies",
+    "route": "decide",
+    "kind": "decided",
+    "outcome": "correct autonomous",
+    "severity": null
+   }
+  },
+  {
+   "id": "PKG/B2/R10",
+   "group": "package",
+   "bid": "B2",
+   "req_id": "R10",
+   "expected": "complies",
+   "category": "routine",
+   "expected_route": "decide",
+   "before": {
+    "answer": "complies",
+    "route": "decide",
+    "outcome": "correct autonomous",
+    "severity": null
+   },
+   "now": {
+    "answer": "complies",
+    "route": "decide",
+    "kind": "decided",
+    "outcome": "correct autonomous",
+    "severity": null
+   }
+  },
+  {
+   "id": "PKG/B2/R19",
+   "group": "package",
+   "bid": "B2",
+   "req_id": "R19",
+   "expected": "deviates",
+   "category": "conflict",
+   "expected_route": "decide",
+   "before": {
+    "answer": "unclear",
+    "route": "engineer",
+    "outcome": "justified hand-off",
+    "severity": null
+   },
+   "now": {
+    "answer": "deviates",
+    "route": "decide",
+    "kind": "decided",
+    "outcome": "correct autonomous",
+    "severity": null
+   }
+  },
+  {
+   "id": "PKG/B2/R21",
+   "group": "package",
+   "bid": "B2",
+   "req_id": "R21",
+   "expected": "unclear",
+   "category": "missing_info",
+   "expected_route": "ask_supplier",
+   "before": {
+    "answer": "unclear",
+    "route": "engineer",
+    "outcome": "unnecessary hand-off",
+    "severity": null
+   },
+   "now": {
+    "answer": "deviates",
+    "route": "engineer",
+    "kind": "confirm a reading",
+    "outcome": "justified hand-off",
+    "severity": null
+   }
+  },
+  {
+   "id": "PKG/B3/R01",
+   "group": "package",
+   "bid": "B3",
+   "req_id": "R01",
+   "expected": "complies",
+   "category": "routine",
+   "expected_route": "decide",
+   "before": {
+    "answer": "complies",
+    "route": "decide",
+    "outcome": "correct autonomous",
+    "severity": null
+   },
+   "now": {
+    "answer": "complies",
+    "route": "decide",
+    "kind": "decided",
+    "outcome": "correct autonomous",
+    "severity": null
+   }
+  },
+  {
+   "id": "PKG/B3/R02",
+   "group": "package",
+   "bid": "B3",
+   "req_id": "R02",
+   "expected": "complies",
+   "category": "conflict",
+   "expected_route": "decide",
+   "before": {
+    "answer": "unclear",
+    "route": "engineer",
+    "outcome": "justified hand-off",
+    "severity": null
+   },
+   "now": {
+    "answer": "complies",
+    "route": "engineer",
+    "kind": "confirm a reading",
+    "outcome": "unnecessary hand-off",
+    "severity": null
+   }
+  },
+  {
+   "id": "PKG/B3/R09",
+   "group": "package",
+   "bid": "B3",
+   "req_id": "R09",
+   "expected": "deviates",
+   "category": "escalate",
+   "expected_route": "engineer",
+   "before": {
+    "answer": "unclear",
+    "route": "engineer",
+    "outcome": "justified hand-off",
+    "severity": null
+   },
+   "now": {
+    "answer": "deviates",
+    "route": "engineer",
+    "kind": "conditional rating",
+    "outcome": "justified hand-off",
+    "severity": null
+   }
+  },
+  {
+   "id": "PKG/B3/R10",
+   "group": "package",
+   "bid": "B3",
+   "req_id": "R10",
+   "expected": "complies",
+   "category": "routine",
+   "expected_route": "decide",
+   "before": {
+    "answer": "complies",
+    "route": "decide",
+    "outcome": "correct autonomous",
+    "severity": null
+   },
+   "now": {
+    "answer": "complies",
+    "route": "decide",
+    "kind": "decided",
+    "outcome": "correct autonomous",
+    "severity": null
+   }
+  },
+  {
+   "id": "PKG/B3/R19",
+   "group": "package",
+   "bid": "B3",
+   "req_id": "R19",
+   "expected": "unclear",
+   "category": "conflict",
+   "expected_route": "ask_supplier",
+   "before": {
+    "answer": "unclear",
+    "route": "engineer",
+    "outcome": "unnecessary hand-off",
+    "severity": null
+   },
+   "now": {
+    "answer": "unclear",
+    "route": "engineer",
+    "kind": "contested",
+    "outcome": "unnecessary hand-off",
+    "severity": null
+   }
+  },
+  {
+   "id": "PKG/B3/R21",
+   "group": "package",
+   "bid": "B3",
+   "req_id": "R21",
+   "expected": "unclear",
+   "category": "missing_info",
+   "expected_route": "ask_supplier",
+   "before": {
+    "answer": "deviates",
+    "route": "engineer",
+    "outcome": "justified hand-off",
+    "severity": null
+   },
+   "now": {
+    "answer": "unclear",
+    "route": "ask_supplier",
+    "kind": "conflicting records",
+    "outcome": "correct autonomous",
+    "severity": null
+   }
+  },
+  {
+   "id": "PKG/B4/R01",
+   "group": "package",
+   "bid": "B4",
+   "req_id": "R01",
+   "expected": "complies",
+   "category": "routine",
+   "expected_route": "decide",
+   "before": {
+    "answer": "complies",
+    "route": "decide",
+    "outcome": "correct autonomous",
+    "severity": null
+   },
+   "now": {
+    "answer": "complies",
+    "route": "decide",
+    "kind": "decided",
+    "outcome": "correct autonomous",
+    "severity": null
+   }
+  },
+  {
+   "id": "PKG/B4/R02",
+   "group": "package",
+   "bid": "B4",
+   "req_id": "R02",
+   "expected": "unclear",
+   "category": "missing_info",
+   "expected_route": "ask_supplier",
+   "before": {
+    "answer": "unclear",
+    "route": "engineer",
+    "outcome": "unnecessary hand-off",
+    "severity": null
+   },
+   "now": {
+    "answer": "unclear",
+    "route": "engineer",
+    "kind": "judgement",
+    "outcome": "unnecessary hand-off",
+    "severity": null
+   }
+  },
+  {
+   "id": "PKG/B4/R19",
+   "group": "package",
+   "bid": "B4",
+   "req_id": "R19",
+   "expected": "unclear",
+   "category": "missing_info",
+   "expected_route": "ask_supplier",
+   "before": {
+    "answer": "unclear",
+    "route": "engineer",
+    "outcome": "unnecessary hand-off",
+    "severity": null
+   },
+   "now": {
+    "answer": "unclear",
+    "route": "ask_supplier",
+    "kind": "not established, read twice",
+    "outcome": "correct autonomous",
+    "severity": null
+   }
+  },
+  {
+   "id": "PKG/B4/R21",
+   "group": "package",
+   "bid": "B4",
+   "req_id": "R21",
+   "expected": "unclear",
+   "category": "missing_info",
+   "expected_route": "ask_supplier",
+   "before": {
+    "answer": "unclear",
+    "route": "engineer",
+    "outcome": "unnecessary hand-off",
+    "severity": null
+   },
+   "now": {
+    "answer": "unclear",
+    "route": "engineer",
+    "kind": "judgement",
+    "outcome": "unnecessary hand-off",
+    "severity": null
+   }
+  },
+  {
+   "id": "LINK/B1",
+   "group": "link",
+   "bid": "B1",
+   "expected": "linked",
+   "datasheet": "cat_3516C_2000ekW_LEHE1376.pdf",
+   "category": "routine",
+   "expected_route": "decide",
+   "before": {
+    "answer": "linked",
+    "route": "decide",
+    "outcome": "correct autonomous",
+    "severity": null
+   },
+   "now": {
+    "answer": "linked",
+    "route": "decide",
+    "outcome": "correct autonomous",
+    "severity": null
+   }
+  },
+  {
+   "id": "LINK/B2",
+   "group": "link",
+   "bid": "B2",
+   "expected": "linked",
+   "datasheet": "cummins_DQKAB_submittal_CSDG.pdf",
+   "category": "routine",
+   "expected_route": "decide",
+   "before": {
+    "answer": "linked",
+    "route": "decide",
+    "outcome": "correct autonomous",
+    "severity": null
+   },
+   "now": {
+    "answer": "linked",
+    "route": "decide",
+    "outcome": "correct autonomous",
+    "severity": null
+   }
+  },
+  {
+   "id": "LINK/B3",
+   "group": "link",
+   "bid": "B3",
+   "expected": "linked",
+   "datasheet": "kohler_KD2000_G5-626.pdf",
+   "category": "conflict",
+   "expected_route": "decide",
+   "before": {
+    "answer": "linked",
+    "route": "decide",
+    "outcome": "correct autonomous",
+    "severity": null
+   },
+   "now": {
+    "answer": "linked",
+    "route": "decide",
+    "outcome": "correct autonomous",
+    "severity": null
+   }
+  },
+  {
+   "id": "LINK/B4",
+   "group": "link",
+   "bid": "B4",
+   "expected": "ambiguous",
+   "datasheet": null,
+   "category": "conflict",
+   "expected_route": "ask_supplier",
+   "before": {
+    "answer": "linked",
+    "route": "decide",
+    "outcome": "incorrect autonomous",
+    "severity": "critical"
+   },
+   "now": {
+    "answer": "ambiguous",
+    "route": "ask_supplier",
+    "outcome": "correct autonomous",
+    "severity": null
+   }
+  },
+  {
+   "id": "D-award",
+   "group": "decision",
+   "expected": "escalate",
+   "category": "escalate",
+   "expected_route": "engineer",
+   "before": {
+    "answer": "escalate",
+    "route": "engineer",
+    "outcome": "justified hand-off",
+    "severity": null
+   },
+   "now": {
+    "answer": "escalate",
+    "route": "engineer",
+    "outcome": "justified hand-off",
+    "severity": null
+   }
+  },
+  {
+   "id": "D-schedule",
+   "group": "decision",
+   "expected": "escalate",
+   "category": "escalate",
+   "expected_route": "engineer",
+   "before": {
+    "answer": "escalate",
+    "route": "engineer",
+    "outcome": "justified hand-off",
+    "severity": null
+   },
+   "now": {
+    "answer": "escalate",
+    "route": "engineer",
+    "outcome": "justified hand-off",
+    "severity": null
+   }
+  },
+  {
+   "id": "BID/B1/S1",
+   "group": "bid scope",
+   "bid": "B1",
+   "scope_id": "S1",
+   "expected": "included",
+   "category": "routine",
+   "expected_route": "decide",
+   "before": {
+    "answer": "included",
+    "route": "decide",
+    "outcome": "correct autonomous",
+    "severity": null
+   },
+   "now": {
+    "answer": "included",
+    "route": "decide",
+    "outcome": "correct autonomous",
+    "severity": null
+   }
+  },
+  {
+   "id": "BID/B2/S1",
+   "group": "bid scope",
+   "bid": "B2",
+   "scope_id": "S1",
+   "expected": "included",
+   "category": "routine",
+   "expected_route": "decide",
+   "before": {
+    "answer": "included",
+    "route": "decide",
+    "outcome": "correct autonomous",
+    "severity": null
+   },
+   "now": {
+    "answer": "included",
+    "route": "decide",
+    "outcome": "correct autonomous",
+    "severity": null
+   }
+  },
+  {
+   "id": "BID/B3/S1",
+   "group": "bid scope",
+   "bid": "B3",
+   "scope_id": "S1",
+   "expected": "included",
+   "category": "routine",
+   "expected_route": "decide",
+   "before": {
+    "answer": "included",
+    "route": "decide",
+    "outcome": "correct autonomous",
+    "severity": null
+   },
+   "now": {
+    "answer": "included",
+    "route": "decide",
+    "outcome": "correct autonomous",
+    "severity": null
+   }
+  },
+  {
+   "id": "BID/B4/S1",
+   "group": "bid scope",
+   "bid": "B4",
+   "scope_id": "S1",
+   "expected": "included",
+   "category": "routine",
+   "expected_route": "decide",
+   "before": {
+    "answer": "included",
+    "route": "decide",
+    "outcome": "correct autonomous",
+    "severity": null
+   },
+   "now": {
+    "answer": "included",
+    "route": "decide",
+    "outcome": "correct autonomous",
+    "severity": null
+   }
+  },
+  {
+   "id": "BID/B1/S2",
+   "group": "bid scope",
+   "bid": "B1",
+   "scope_id": "S2",
+   "expected": "included",
+   "category": "routine",
+   "expected_route": "decide",
+   "before": {
+    "answer": "included",
+    "route": "decide",
+    "outcome": "correct autonomous",
+    "severity": null
+   },
+   "now": {
+    "answer": "included",
+    "route": "decide",
+    "outcome": "correct autonomous",
+    "severity": null
+   }
+  },
+  {
+   "id": "BID/B2/S2",
+   "group": "bid scope",
+   "bid": "B2",
+   "scope_id": "S2",
+   "expected": "qualified",
+   "category": "conflict",
+   "expected_route": "ask_supplier",
+   "before": {
+    "answer": "included",
+    "route": "decide",
+    "outcome": "incorrect autonomous",
+    "severity": "critical"
+   },
+   "now": {
+    "answer": "included",
+    "route": "decide",
+    "outcome": "incorrect autonomous",
+    "severity": "critical"
+   }
+  },
+  {
+   "id": "BID/B3/S2",
+   "group": "bid scope",
+   "bid": "B3",
+   "scope_id": "S2",
+   "expected": "included",
+   "category": "routine",
+   "expected_route": "decide",
+   "before": {
+    "answer": "included",
+    "route": "decide",
+    "outcome": "correct autonomous",
+    "severity": null
+   },
+   "now": {
+    "answer": "included",
+    "route": "decide",
+    "outcome": "correct autonomous",
+    "severity": null
+   }
+  },
+  {
+   "id": "BID/B4/S2",
+   "group": "bid scope",
+   "bid": "B4",
+   "scope_id": "S2",
+   "expected": "included",
+   "category": "routine",
+   "expected_route": "decide",
+   "before": {
+    "answer": "included",
+    "route": "decide",
+    "outcome": "correct autonomous",
+    "severity": null
+   },
+   "now": {
+    "answer": "included",
+    "route": "decide",
+    "outcome": "correct autonomous",
+    "severity": null
+   }
+  },
+  {
+   "id": "BID/B1/S3",
+   "group": "bid scope",
+   "bid": "B1",
+   "scope_id": "S3",
+   "expected": "included",
+   "category": "routine",
+   "expected_route": "decide",
+   "before": {
+    "answer": "included",
+    "route": "decide",
+    "outcome": "correct autonomous",
+    "severity": null
+   },
+   "now": {
+    "answer": "included",
+    "route": "decide",
+    "outcome": "correct autonomous",
+    "severity": null
+   }
+  },
+  {
+   "id": "BID/B2/S3",
+   "group": "bid scope",
+   "bid": "B2",
+   "scope_id": "S3",
+   "expected": "qualified",
+   "category": "conflict",
+   "expected_route": "ask_supplier",
+   "before": {
+    "answer": "qualified",
+    "route": "engineer",
+    "outcome": "unnecessary hand-off",
+    "severity": null
+   },
+   "now": {
+    "answer": "qualified",
+    "route": "ask_supplier",
+    "outcome": "correct autonomous",
+    "severity": null
+   }
+  },
+  {
+   "id": "BID/B3/S3",
+   "group": "bid scope",
+   "bid": "B3",
+   "scope_id": "S3",
+   "expected": "alternate",
+   "category": "routine",
+   "expected_route": "decide",
+   "before": {
+    "answer": "alternate",
+    "route": "decide",
+    "outcome": "correct autonomous",
+    "severity": null
+   },
+   "now": {
+    "answer": "alternate",
+    "route": "decide",
+    "outcome": "correct autonomous",
+    "severity": null
+   }
+  },
+  {
+   "id": "BID/B4/S3",
+   "group": "bid scope",
+   "bid": "B4",
+   "scope_id": "S3",
+   "expected": "included",
+   "category": "routine",
+   "expected_route": "decide",
+   "before": {
+    "answer": "included",
+    "route": "decide",
+    "outcome": "correct autonomous",
+    "severity": null
+   },
+   "now": {
+    "answer": "included",
+    "route": "decide",
+    "outcome": "correct autonomous",
+    "severity": null
+   }
+  },
+  {
+   "id": "BID/B1/S4",
+   "group": "bid scope",
+   "bid": "B1",
+   "scope_id": "S4",
+   "expected": "included",
+   "category": "routine",
+   "expected_route": "decide",
+   "before": {
+    "answer": "included",
+    "route": "decide",
+    "outcome": "correct autonomous",
+    "severity": null
+   },
+   "now": {
+    "answer": "included",
+    "route": "decide",
+    "outcome": "correct autonomous",
+    "severity": null
+   }
+  },
+  {
+   "id": "BID/B2/S4",
+   "group": "bid scope",
+   "bid": "B2",
+   "scope_id": "S4",
+   "expected": "included",
+   "category": "routine",
+   "expected_route": "decide",
+   "before": {
+    "answer": "included",
+    "route": "decide",
+    "outcome": "correct autonomous",
+    "severity": null
+   },
+   "now": {
+    "answer": "included",
+    "route": "decide",
+    "outcome": "correct autonomous",
+    "severity": null
+   }
+  },
+  {
+   "id": "BID/B3/S4",
+   "group": "bid scope",
+   "bid": "B3",
+   "scope_id": "S4",
+   "expected": "excluded",
+   "category": "routine",
+   "expected_route": "decide",
+   "before": {
+    "answer": "excluded",
+    "route": "decide",
+    "outcome": "correct autonomous",
+    "severity": null
+   },
+   "now": {
+    "answer": "excluded",
+    "route": "decide",
+    "outcome": "correct autonomous",
+    "severity": null
+   }
+  },
+  {
+   "id": "BID/B4/S4",
+   "group": "bid scope",
+   "bid": "B4",
+   "scope_id": "S4",
+   "expected": "silent",
+   "category": "missing_info",
+   "expected_route": "ask_supplier",
+   "before": {
+    "answer": "silent",
+    "route": "decide",
+    "outcome": "correct autonomous",
+    "severity": null
+   },
+   "now": {
+    "answer": "silent",
+    "route": "ask_supplier",
+    "outcome": "correct autonomous",
+    "severity": null
+   }
+  },
+  {
+   "id": "BID/B1/S5",
+   "group": "bid scope",
+   "bid": "B1",
+   "scope_id": "S5",
+   "expected": "included",
+   "category": "routine",
+   "expected_route": "decide",
+   "before": {
+    "answer": "included",
+    "route": "decide",
+    "outcome": "correct autonomous",
+    "severity": null
+   },
+   "now": {
+    "answer": "included",
+    "route": "decide",
+    "outcome": "correct autonomous",
+    "severity": null
+   }
+  },
+  {
+   "id": "BID/B2/S5",
+   "group": "bid scope",
+   "bid": "B2",
+   "scope_id": "S5",
+   "expected": "included",
+   "category": "routine",
+   "expected_route": "decide",
+   "before": {
+    "answer": "included",
+    "route": "decide",
+    "outcome": "correct autonomous",
+    "severity": null
+   },
+   "now": {
+    "answer": "included",
+    "route": "decide",
+    "outcome": "correct autonomous",
+    "severity": null
+   }
+  },
+  {
+   "id": "BID/B3/S5",
+   "group": "bid scope",
+   "bid": "B3",
+   "scope_id": "S5",
+   "expected": "excluded",
+   "category": "routine",
+   "expected_route": "decide",
+   "before": {
+    "answer": "excluded",
+    "route": "decide",
+    "outcome": "correct autonomous",
+    "severity": null
+   },
+   "now": {
+    "answer": "excluded",
+    "route": "decide",
+    "outcome": "correct autonomous",
+    "severity": null
+   }
+  },
+  {
+   "id": "BID/B4/S5",
+   "group": "bid scope",
+   "bid": "B4",
+   "scope_id": "S5",
+   "expected": "silent",
+   "category": "missing_info",
+   "expected_route": "ask_supplier",
+   "before": {
+    "answer": "silent",
+    "route": "decide",
+    "outcome": "correct autonomous",
+    "severity": null
+   },
+   "now": {
+    "answer": "silent",
+    "route": "ask_supplier",
+    "outcome": "correct autonomous",
+    "severity": null
+   }
+  },
+  {
+   "id": "BID/B1/S6",
+   "group": "bid scope",
+   "bid": "B1",
+   "scope_id": "S6",
+   "expected": "included",
+   "category": "routine",
+   "expected_route": "decide",
+   "before": {
+    "answer": "included",
+    "route": "decide",
+    "outcome": "correct autonomous",
+    "severity": null
+   },
+   "now": {
+    "answer": "included",
+    "route": "decide",
+    "outcome": "correct autonomous",
+    "severity": null
+   }
+  },
+  {
+   "id": "BID/B2/S6",
+   "group": "bid scope",
+   "bid": "B2",
+   "scope_id": "S6",
+   "expected": "excluded",
+   "category": "routine",
+   "expected_route": "decide",
+   "before": {
+    "answer": "excluded",
+    "route": "decide",
+    "outcome": "correct autonomous",
+    "severity": null
+   },
+   "now": {
+    "answer": "excluded",
+    "route": "decide",
+    "outcome": "correct autonomous",
+    "severity": null
+   }
+  },
+  {
+   "id": "BID/B3/S6",
+   "group": "bid scope",
+   "bid": "B3",
+   "scope_id": "S6",
+   "expected": "included",
+   "category": "routine",
+   "expected_route": "decide",
+   "before": {
+    "answer": "included",
+    "route": "decide",
+    "outcome": "correct autonomous",
+    "severity": null
+   },
+   "now": {
+    "answer": "included",
+    "route": "decide",
+    "outcome": "correct autonomous",
+    "severity": null
+   }
+  },
+  {
+   "id": "BID/B4/S6",
+   "group": "bid scope",
+   "bid": "B4",
+   "scope_id": "S6",
+   "expected": "included",
+   "category": "routine",
+   "expected_route": "decide",
+   "before": {
+    "answer": "included",
+    "route": "decide",
+    "outcome": "correct autonomous",
+    "severity": null
+   },
+   "now": {
+    "answer": "included",
+    "route": "decide",
+    "outcome": "correct autonomous",
+    "severity": null
+   }
+  },
+  {
+   "id": "BID/B1/S7",
+   "group": "bid scope",
+   "bid": "B1",
+   "scope_id": "S7",
+   "expected": "excluded",
+   "category": "routine",
+   "expected_route": "decide",
+   "before": {
+    "answer": "excluded",
+    "route": "decide",
+    "outcome": "correct autonomous",
+    "severity": null
+   },
+   "now": {
+    "answer": "excluded",
+    "route": "decide",
+    "outcome": "correct autonomous",
+    "severity": null
+   }
+  },
+  {
+   "id": "BID/B2/S7",
+   "group": "bid scope",
+   "bid": "B2",
+   "scope_id": "S7",
+   "expected": "excluded",
+   "category": "routine",
+   "expected_route": "decide",
+   "before": {
+    "answer": "excluded",
+    "route": "decide",
+    "outcome": "correct autonomous",
+    "severity": null
+   },
+   "now": {
+    "answer": "excluded",
+    "route": "decide",
+    "outcome": "correct autonomous",
+    "severity": null
+   }
+  },
+  {
+   "id": "BID/B3/S7",
+   "group": "bid scope",
+   "bid": "B3",
+   "scope_id": "S7",
+   "expected": "excluded",
+   "category": "routine",
+   "expected_route": "decide",
+   "before": {
+    "answer": "excluded",
+    "route": "decide",
+    "outcome": "correct autonomous",
+    "severity": null
+   },
+   "now": {
+    "answer": "excluded",
+    "route": "decide",
+    "outcome": "correct autonomous",
+    "severity": null
+   }
+  },
+  {
+   "id": "BID/B4/S7",
+   "group": "bid scope",
+   "bid": "B4",
+   "scope_id": "S7",
+   "expected": "silent",
+   "category": "missing_info",
+   "expected_route": "ask_supplier",
+   "before": {
+    "answer": "silent",
+    "route": "decide",
+    "outcome": "correct autonomous",
+    "severity": null
+   },
+   "now": {
+    "answer": "silent",
+    "route": "ask_supplier",
+    "outcome": "correct autonomous",
+    "severity": null
+   }
+  },
+  {
+   "id": "BID/B1/S8",
+   "group": "bid scope",
+   "bid": "B1",
+   "scope_id": "S8",
+   "expected": "included",
+   "category": "routine",
+   "expected_route": "decide",
+   "before": {
+    "answer": "qualified",
+    "route": "engineer",
+    "outcome": "justified hand-off",
+    "severity": null
+   },
+   "now": {
+    "answer": "qualified",
+    "route": "ask_supplier",
+    "outcome": "incorrect autonomous",
+    "severity": "minor"
+   }
+  },
+  {
+   "id": "BID/B2/S8",
+   "group": "bid scope",
+   "bid": "B2",
+   "scope_id": "S8",
+   "expected": "included",
+   "category": "routine",
+   "expected_route": "decide",
+   "before": {
+    "answer": "qualified",
+    "route": "engineer",
+    "outcome": "justified hand-off",
+    "severity": null
+   },
+   "now": {
+    "answer": "qualified",
+    "route": "ask_supplier",
+    "outcome": "incorrect autonomous",
+    "severity": "minor"
+   }
+  },
+  {
+   "id": "BID/B3/S8",
+   "group": "bid scope",
+   "bid": "B3",
+   "scope_id": "S8",
+   "expected": "included",
+   "category": "routine",
+   "expected_route": "decide",
+   "before": {
+    "answer": "included",
+    "route": "decide",
+    "outcome": "correct autonomous",
+    "severity": null
+   },
+   "now": {
+    "answer": "included",
+    "route": "decide",
+    "outcome": "correct autonomous",
+    "severity": null
+   }
+  },
+  {
+   "id": "BID/B4/S8",
+   "group": "bid scope",
+   "bid": "B4",
+   "scope_id": "S8",
+   "expected": "included",
+   "category": "routine",
+   "expected_route": "decide",
+   "before": {
+    "answer": "included",
+    "route": "decide",
+    "outcome": "correct autonomous",
+    "severity": null
+   },
+   "now": {
+    "answer": "included",
+    "route": "decide",
+    "outcome": "correct autonomous",
+    "severity": null
+   }
+  },
+  {
+   "id": "BID/B1/S9",
+   "group": "bid scope",
+   "bid": "B1",
+   "scope_id": "S9",
+   "expected": "excluded",
+   "category": "routine",
+   "expected_route": "decide",
+   "before": {
+    "answer": "excluded",
+    "route": "decide",
+    "outcome": "correct autonomous",
+    "severity": null
+   },
+   "now": {
+    "answer": "excluded",
+    "route": "decide",
+    "outcome": "correct autonomous",
+    "severity": null
+   }
+  },
+  {
+   "id": "BID/B2/S9",
+   "group": "bid scope",
+   "bid": "B2",
+   "scope_id": "S9",
+   "expected": "included",
+   "category": "routine",
+   "expected_route": "decide",
+   "before": {
+    "answer": "included",
+    "route": "decide",
+    "outcome": "correct autonomous",
+    "severity": null
+   },
+   "now": {
+    "answer": "included",
+    "route": "decide",
+    "outcome": "correct autonomous",
+    "severity": null
+   }
+  },
+  {
+   "id": "BID/B3/S9",
+   "group": "bid scope",
+   "bid": "B3",
+   "scope_id": "S9",
+   "expected": "included",
+   "category": "routine",
+   "expected_route": "decide",
+   "before": {
+    "answer": "included",
+    "route": "decide",
+    "outcome": "correct autonomous",
+    "severity": null
+   },
+   "now": {
+    "answer": "included",
+    "route": "decide",
+    "outcome": "correct autonomous",
+    "severity": null
+   }
+  },
+  {
+   "id": "BID/B4/S9",
+   "group": "bid scope",
+   "bid": "B4",
+   "scope_id": "S9",
+   "expected": "silent",
+   "category": "missing_info",
+   "expected_route": "ask_supplier",
+   "before": {
+    "answer": "silent",
+    "route": "decide",
+    "outcome": "correct autonomous",
+    "severity": null
+   },
+   "now": {
+    "answer": "silent",
+    "route": "ask_supplier",
+    "outcome": "correct autonomous",
+    "severity": null
+   }
+  },
+  {
+   "id": "BID/B1/S10",
+   "group": "bid scope",
+   "bid": "B1",
+   "scope_id": "S10",
+   "expected": "included",
+   "category": "routine",
+   "expected_route": "decide",
+   "before": {
+    "answer": "included",
+    "route": "decide",
+    "outcome": "correct autonomous",
+    "severity": null
+   },
+   "now": {
+    "answer": "included",
+    "route": "decide",
+    "outcome": "correct autonomous",
+    "severity": null
+   }
+  },
+  {
+   "id": "BID/B2/S10",
+   "group": "bid scope",
+   "bid": "B2",
+   "scope_id": "S10",
+   "expected": "included",
+   "category": "routine",
+   "expected_route": "decide",
+   "before": {
+    "answer": "included",
+    "route": "decide",
+    "outcome": "correct autonomous",
+    "severity": null
+   },
+   "now": {
+    "answer": "included",
+    "route": "decide",
+    "outcome": "correct autonomous",
+    "severity": null
+   }
+  },
+  {
+   "id": "BID/B3/S10",
+   "group": "bid scope",
+   "bid": "B3",
+   "scope_id": "S10",
+   "expected": "qualified",
+   "category": "conflict",
+   "expected_route": "ask_supplier",
+   "before": {
+    "answer": "qualified",
+    "route": "engineer",
+    "outcome": "unnecessary hand-off",
+    "severity": null
+   },
+   "now": {
+    "answer": "qualified",
+    "route": "ask_supplier",
+    "outcome": "correct autonomous",
+    "severity": null
+   }
+  },
+  {
+   "id": "BID/B4/S10",
+   "group": "bid scope",
+   "bid": "B4",
+   "scope_id": "S10",
+   "expected": "silent",
+   "category": "missing_info",
+   "expected_route": "ask_supplier",
+   "before": {
+    "answer": "silent",
+    "route": "decide",
+    "outcome": "correct autonomous",
+    "severity": null
+   },
+   "now": {
+    "answer": "silent",
+    "route": "ask_supplier",
+    "outcome": "correct autonomous",
+    "severity": null
+   }
+  },
+  {
+   "id": "BID/B1/S11",
+   "group": "bid scope",
+   "bid": "B1",
+   "scope_id": "S11",
+   "expected": "alternate",
+   "category": "routine",
+   "expected_route": "decide",
+   "before": {
+    "answer": "alternate",
+    "route": "decide",
+    "outcome": "correct autonomous",
+    "severity": null
+   },
+   "now": {
+    "answer": "alternate",
+    "route": "decide",
+    "outcome": "correct autonomous",
+    "severity": null
+   }
+  },
+  {
+   "id": "BID/B2/S11",
+   "group": "bid scope",
+   "bid": "B2",
+   "scope_id": "S11",
+   "expected": "included",
+   "category": "routine",
+   "expected_route": "decide",
+   "before": {
+    "answer": "included",
+    "route": "decide",
+    "outcome": "correct autonomous",
+    "severity": null
+   },
+   "now": {
+    "answer": "included",
+    "route": "decide",
+    "outcome": "correct autonomous",
+    "severity": null
+   }
+  },
+  {
+   "id": "BID/B3/S11",
+   "group": "bid scope",
+   "bid": "B3",
+   "scope_id": "S11",
+   "expected": "qualified",
+   "category": "conflict",
+   "expected_route": "ask_supplier",
+   "before": {
+    "answer": "qualified",
+    "route": "engineer",
+    "outcome": "unnecessary hand-off",
+    "severity": null
+   },
+   "now": {
+    "answer": "qualified",
+    "route": "ask_supplier",
+    "outcome": "correct autonomous",
+    "severity": null
+   }
+  },
+  {
+   "id": "BID/B4/S11",
+   "group": "bid scope",
+   "bid": "B4",
+   "scope_id": "S11",
+   "expected": "silent",
+   "category": "missing_info",
+   "expected_route": "ask_supplier",
+   "before": {
+    "answer": "silent",
+    "route": "decide",
+    "outcome": "correct autonomous",
+    "severity": null
+   },
+   "now": {
+    "answer": "silent",
+    "route": "ask_supplier",
+    "outcome": "correct autonomous",
+    "severity": null
+   }
+  },
+  {
+   "id": "PQ/V-NPS/P1",
+   "group": "prequal",
+   "vendor": "V-NPS",
+   "criterion": "P1",
+   "expected": "meets",
+   "category": "routine",
+   "expected_route": "decide",
+   "before": {
+    "answer": "needs_verification",
+    "route": "engineer",
+    "outcome": "justified hand-off",
+    "severity": null
+   },
+   "now": {
+    "answer": "meets",
+    "route": "decide",
+    "outcome": "correct autonomous",
+    "severity": null
+   }
+  },
+  {
+   "id": "PQ/V-NPS/P2",
+   "group": "prequal",
+   "vendor": "V-NPS",
+   "criterion": "P2",
+   "expected": "meets",
+   "category": "routine",
+   "expected_route": "decide",
+   "before": {
+    "answer": "needs_verification",
+    "route": "engineer",
+    "outcome": "justified hand-off",
+    "severity": null
+   },
+   "now": {
+    "answer": "meets",
+    "route": "decide",
+    "outcome": "correct autonomous",
+    "severity": null
+   }
+  },
+  {
+   "id": "PQ/V-NPS/Q1",
+   "group": "prequal",
+   "vendor": "V-NPS",
+   "criterion": "Q1",
+   "expected": "meets",
+   "category": "routine",
+   "expected_route": "decide",
+   "before": {
+    "answer": "needs_verification",
+    "route": "engineer",
+    "outcome": "justified hand-off",
+    "severity": null
+   },
+   "now": {
+    "answer": "meets",
+    "route": "decide",
+    "outcome": "correct autonomous",
+    "severity": null
+   }
+  },
+  {
+   "id": "PQ/V-NPS/Q2",
+   "group": "prequal",
+   "vendor": "V-NPS",
+   "criterion": "Q2",
+   "expected": "meets",
+   "category": "routine",
+   "expected_route": "decide",
+   "before": {
+    "answer": "needs_verification",
+    "route": "engineer",
+    "outcome": "justified hand-off",
+    "severity": null
+   },
+   "now": {
+    "answer": "meets",
+    "route": "decide",
+    "outcome": "correct autonomous",
+    "severity": null
+   }
+  },
+  {
+   "id": "PQ/V-NPS/Q3",
+   "group": "prequal",
+   "vendor": "V-NPS",
+   "criterion": "Q3",
+   "expected": "meets",
+   "category": "routine",
+   "expected_route": "decide",
+   "before": {
+    "answer": "needs_verification",
+    "route": "engineer",
+    "outcome": "justified hand-off",
+    "severity": null
+   },
+   "now": {
+    "answer": "meets",
+    "route": "decide",
+    "outcome": "correct autonomous",
+    "severity": null
+   }
+  },
+  {
+   "id": "PQ/V-NPS/Q4",
+   "group": "prequal",
+   "vendor": "V-NPS",
+   "criterion": "Q4",
+   "expected": "meets",
+   "category": "routine",
+   "expected_route": "decide",
+   "before": {
+    "answer": "needs_verification",
+    "route": "engineer",
+    "outcome": "justified hand-off",
+    "severity": null
+   },
+   "now": {
+    "answer": "meets",
+    "route": "decide",
+    "outcome": "correct autonomous",
+    "severity": null
+   }
+  },
+  {
+   "id": "PQ/V-NPS/Q5",
+   "group": "prequal",
+   "vendor": "V-NPS",
+   "criterion": "Q5",
+   "expected": "meets",
+   "category": "routine",
+   "expected_route": "decide",
+   "before": {
+    "answer": "needs_verification",
+    "route": "engineer",
+    "outcome": "justified hand-off",
+    "severity": null
+   },
+   "now": {
+    "answer": "meets",
+    "route": "decide",
+    "outcome": "correct autonomous",
+    "severity": null
+   }
+  },
+  {
+   "id": "PQ/V-NPS/Q6",
+   "group": "prequal",
+   "vendor": "V-NPS",
+   "criterion": "Q6",
+   "expected": "meets",
+   "category": "routine",
+   "expected_route": "decide",
+   "before": {
+    "answer": "needs_verification",
+    "route": "engineer",
+    "outcome": "justified hand-off",
+    "severity": null
+   },
+   "now": {
+    "answer": "meets",
+    "route": "decide",
+    "outcome": "correct autonomous",
+    "severity": null
+   }
+  },
+  {
+   "id": "PQ/V-NPS/Q7",
+   "group": "prequal",
+   "vendor": "V-NPS",
+   "criterion": "Q7",
+   "expected": "needs_verification",
+   "category": "escalate",
+   "expected_route": "engineer",
+   "before": {
+    "answer": "needs_verification",
+    "route": "engineer",
+    "outcome": "justified hand-off",
+    "severity": null
+   },
+   "now": {
+    "answer": "needs_verification",
+    "route": "engineer",
+    "outcome": "justified hand-off",
+    "severity": null
+   }
+  },
+  {
+   "id": "PQ/V-TGC/P1",
+   "group": "prequal",
+   "vendor": "V-TGC",
+   "criterion": "P1",
+   "expected": "meets",
+   "category": "routine",
+   "expected_route": "decide",
+   "before": {
+    "answer": "needs_verification",
+    "route": "engineer",
+    "outcome": "justified hand-off",
+    "severity": null
+   },
+   "now": {
+    "answer": "meets",
+    "route": "decide",
+    "outcome": "correct autonomous",
+    "severity": null
+   }
+  },
+  {
+   "id": "PQ/V-TGC/P2",
+   "group": "prequal",
+   "vendor": "V-TGC",
+   "criterion": "P2",
+   "expected": "meets",
+   "category": "routine",
+   "expected_route": "decide",
+   "before": {
+    "answer": "needs_verification",
+    "route": "engineer",
+    "outcome": "justified hand-off",
+    "severity": null
+   },
+   "now": {
+    "answer": "meets",
+    "route": "decide",
+    "outcome": "correct autonomous",
+    "severity": null
+   }
+  },
+  {
+   "id": "PQ/V-TGC/Q1",
+   "group": "prequal",
+   "vendor": "V-TGC",
+   "criterion": "Q1",
+   "expected": "meets",
+   "category": "routine",
+   "expected_route": "decide",
+   "before": {
+    "answer": "needs_verification",
+    "route": "engineer",
+    "outcome": "justified hand-off",
+    "severity": null
+   },
+   "now": {
+    "answer": "meets",
+    "route": "decide",
+    "outcome": "correct autonomous",
+    "severity": null
+   }
+  },
+  {
+   "id": "PQ/V-TGC/Q2",
+   "group": "prequal",
+   "vendor": "V-TGC",
+   "criterion": "Q2",
+   "expected": "needs_verification",
+   "category": "missing_info",
+   "expected_route": "ask_supplier",
+   "before": {
+    "answer": "needs_verification",
+    "route": "engineer",
+    "outcome": "unnecessary hand-off",
+    "severity": null
+   },
+   "now": {
+    "answer": "needs_verification",
+    "route": "ask_supplier",
+    "outcome": "correct autonomous",
+    "severity": null
+   }
+  },
+  {
+   "id": "PQ/V-TGC/Q3",
+   "group": "prequal",
+   "vendor": "V-TGC",
+   "criterion": "Q3",
+   "expected": "meets",
+   "category": "routine",
+   "expected_route": "decide",
+   "before": {
+    "answer": "needs_verification",
+    "route": "engineer",
+    "outcome": "justified hand-off",
+    "severity": null
+   },
+   "now": {
+    "answer": "meets",
+    "route": "decide",
+    "outcome": "correct autonomous",
+    "severity": null
+   }
+  },
+  {
+   "id": "PQ/V-TGC/Q4",
+   "group": "prequal",
+   "vendor": "V-TGC",
+   "criterion": "Q4",
+   "expected": "needs_verification",
+   "category": "missing_info",
+   "expected_route": "ask_supplier",
+   "before": {
+    "answer": "needs_verification",
+    "route": "engineer",
+    "outcome": "unnecessary hand-off",
+    "severity": null
+   },
+   "now": {
+    "answer": "needs_verification",
+    "route": "ask_supplier",
+    "outcome": "correct autonomous",
+    "severity": null
+   }
+  },
+  {
+   "id": "PQ/V-TGC/Q5",
+   "group": "prequal",
+   "vendor": "V-TGC",
+   "criterion": "Q5",
+   "expected": "needs_verification",
+   "category": "conflict",
+   "expected_route": "ask_supplier",
+   "before": {
+    "answer": "needs_verification",
+    "route": "engineer",
+    "outcome": "unnecessary hand-off",
+    "severity": null
+   },
+   "now": {
+    "answer": "needs_verification",
+    "route": "ask_supplier",
+    "outcome": "correct autonomous",
+    "severity": null
+   }
+  },
+  {
+   "id": "PQ/V-TGC/Q6",
+   "group": "prequal",
+   "vendor": "V-TGC",
+   "criterion": "Q6",
+   "expected": "meets",
+   "category": "routine",
+   "expected_route": "decide",
+   "before": {
+    "answer": "needs_verification",
+    "route": "engineer",
+    "outcome": "justified hand-off",
+    "severity": null
+   },
+   "now": {
+    "answer": "meets",
+    "route": "decide",
+    "outcome": "correct autonomous",
+    "severity": null
+   }
+  },
+  {
+   "id": "PQ/V-TGC/Q7",
+   "group": "prequal",
+   "vendor": "V-TGC",
+   "criterion": "Q7",
+   "expected": "needs_verification",
+   "category": "escalate",
+   "expected_route": "engineer",
+   "before": {
+    "answer": "needs_verification",
+    "route": "engineer",
+    "outcome": "justified hand-off",
+    "severity": null
+   },
+   "now": {
+    "answer": "needs_verification",
+    "route": "engineer",
+    "outcome": "justified hand-off",
+    "severity": null
+   }
+  },
+  {
+   "id": "PQ/V-KEE/P1",
+   "group": "prequal",
+   "vendor": "V-KEE",
+   "criterion": "P1",
+   "expected": "meets",
+   "category": "routine",
+   "expected_route": "decide",
+   "before": {
+    "answer": "needs_verification",
+    "route": "engineer",
+    "outcome": "justified hand-off",
+    "severity": null
+   },
+   "now": {
+    "answer": "meets",
+    "route": "decide",
+    "outcome": "correct autonomous",
+    "severity": null
+   }
+  },
+  {
+   "id": "PQ/V-KEE/P2",
+   "group": "prequal",
+   "vendor": "V-KEE",
+   "criterion": "P2",
+   "expected": "meets",
+   "category": "routine",
+   "expected_route": "decide",
+   "before": {
+    "answer": "needs_verification",
+    "route": "engineer",
+    "outcome": "justified hand-off",
+    "severity": null
+   },
+   "now": {
+    "answer": "meets",
+    "route": "decide",
+    "outcome": "correct autonomous",
+    "severity": null
+   }
+  },
+  {
+   "id": "PQ/V-KEE/Q1",
+   "group": "prequal",
+   "vendor": "V-KEE",
+   "criterion": "Q1",
+   "expected": "meets",
+   "category": "routine",
+   "expected_route": "decide",
+   "before": {
+    "answer": "needs_verification",
+    "route": "engineer",
+    "outcome": "justified hand-off",
+    "severity": null
+   },
+   "now": {
+    "answer": "meets",
+    "route": "decide",
+    "outcome": "correct autonomous",
+    "severity": null
+   }
+  },
+  {
+   "id": "PQ/V-KEE/Q2",
+   "group": "prequal",
+   "vendor": "V-KEE",
+   "criterion": "Q2",
+   "expected": "meets",
+   "category": "routine",
+   "expected_route": "decide",
+   "before": {
+    "answer": "needs_verification",
+    "route": "engineer",
+    "outcome": "justified hand-off",
+    "severity": null
+   },
+   "now": {
+    "answer": "meets",
+    "route": "decide",
+    "outcome": "correct autonomous",
+    "severity": null
+   }
+  },
+  {
+   "id": "PQ/V-KEE/Q3",
+   "group": "prequal",
+   "vendor": "V-KEE",
+   "criterion": "Q3",
+   "expected": "fails",
+   "category": "routine",
+   "expected_route": "decide",
+   "before": {
+    "answer": "needs_verification",
+    "route": "engineer",
+    "outcome": "justified hand-off",
+    "severity": null
+   },
+   "now": {
+    "answer": "fails",
+    "route": "decide",
+    "outcome": "correct autonomous",
+    "severity": null
+   }
+  },
+  {
+   "id": "PQ/V-KEE/Q4",
+   "group": "prequal",
+   "vendor": "V-KEE",
+   "criterion": "Q4",
+   "expected": "meets",
+   "category": "routine",
+   "expected_route": "decide",
+   "before": {
+    "answer": "needs_verification",
+    "route": "engineer",
+    "outcome": "justified hand-off",
+    "severity": null
+   },
+   "now": {
+    "answer": "meets",
+    "route": "decide",
+    "outcome": "correct autonomous",
+    "severity": null
+   }
+  },
+  {
+   "id": "PQ/V-KEE/Q5",
+   "group": "prequal",
+   "vendor": "V-KEE",
+   "criterion": "Q5",
+   "expected": "meets",
+   "category": "routine",
+   "expected_route": "decide",
+   "before": {
+    "answer": "needs_verification",
+    "route": "engineer",
+    "outcome": "justified hand-off",
+    "severity": null
+   },
+   "now": {
+    "answer": "meets",
+    "route": "decide",
+    "outcome": "correct autonomous",
+    "severity": null
+   }
+  },
+  {
+   "id": "PQ/V-KEE/Q6",
+   "group": "prequal",
+   "vendor": "V-KEE",
+   "criterion": "Q6",
+   "expected": "meets",
+   "category": "routine",
+   "expected_route": "decide",
+   "before": {
+    "answer": "needs_verification",
+    "route": "engineer",
+    "outcome": "justified hand-off",
+    "severity": null
+   },
+   "now": {
+    "answer": "meets",
+    "route": "decide",
+    "outcome": "correct autonomous",
+    "severity": null
+   }
+  },
+  {
+   "id": "PQ/V-KEE/Q7",
+   "group": "prequal",
+   "vendor": "V-KEE",
+   "criterion": "Q7",
+   "expected": "needs_verification",
+   "category": "escalate",
+   "expected_route": "engineer",
+   "before": {
+    "answer": "needs_verification",
+    "route": "engineer",
+    "outcome": "justified hand-off",
+    "severity": null
+   },
+   "now": {
+    "answer": "needs_verification",
+    "route": "engineer",
+    "outcome": "justified hand-off",
+    "severity": null
+   }
+  },
+  {
+   "id": "PQ/V-RWP/P1",
+   "group": "prequal",
+   "vendor": "V-RWP",
+   "criterion": "P1",
+   "expected": "meets",
+   "category": "routine",
+   "expected_route": "decide",
+   "before": {
+    "answer": "needs_verification",
+    "route": "engineer",
+    "outcome": "justified hand-off",
+    "severity": null
+   },
+   "now": {
+    "answer": "meets",
+    "route": "decide",
+    "outcome": "correct autonomous",
+    "severity": null
+   }
+  },
+  {
+   "id": "PQ/V-RWP/P2",
+   "group": "prequal",
+   "vendor": "V-RWP",
+   "criterion": "P2",
+   "expected": "needs_verification",
+   "category": "missing_info",
+   "expected_route": "ask_supplier",
+   "before": {
+    "answer": "needs_verification",
+    "route": "engineer",
+    "outcome": "unnecessary hand-off",
+    "severity": null
+   },
+   "now": {
+    "answer": "needs_verification",
+    "route": "ask_supplier",
+    "outcome": "correct autonomous",
+    "severity": null
+   }
+  },
+  {
+   "id": "PQ/V-RWP/Q1",
+   "group": "prequal",
+   "vendor": "V-RWP",
+   "criterion": "Q1",
+   "expected": "needs_verification",
+   "category": "missing_info",
+   "expected_route": "ask_supplier",
+   "before": {
+    "answer": "needs_verification",
+    "route": "engineer",
+    "outcome": "unnecessary hand-off",
+    "severity": null
+   },
+   "now": {
+    "answer": "needs_verification",
+    "route": "ask_supplier",
+    "outcome": "correct autonomous",
+    "severity": null
+   }
+  },
+  {
+   "id": "PQ/V-RWP/Q2",
+   "group": "prequal",
+   "vendor": "V-RWP",
+   "criterion": "Q2",
+   "expected": "needs_verification",
+   "category": "missing_info",
+   "expected_route": "ask_supplier",
+   "before": {
+    "answer": "needs_verification",
+    "route": "engineer",
+    "outcome": "unnecessary hand-off",
+    "severity": null
+   },
+   "now": {
+    "answer": "needs_verification",
+    "route": "ask_supplier",
+    "outcome": "correct autonomous",
+    "severity": null
+   }
+  },
+  {
+   "id": "PQ/V-RWP/Q3",
+   "group": "prequal",
+   "vendor": "V-RWP",
+   "criterion": "Q3",
+   "expected": "needs_verification",
+   "category": "missing_info",
+   "expected_route": "ask_supplier",
+   "before": {
+    "answer": "needs_verification",
+    "route": "engineer",
+    "outcome": "unnecessary hand-off",
+    "severity": null
+   },
+   "now": {
+    "answer": "needs_verification",
+    "route": "ask_supplier",
+    "outcome": "correct autonomous",
+    "severity": null
+   }
+  },
+  {
+   "id": "PQ/V-RWP/Q4",
+   "group": "prequal",
+   "vendor": "V-RWP",
+   "criterion": "Q4",
+   "expected": "needs_verification",
+   "category": "missing_info",
+   "expected_route": "ask_supplier",
+   "before": {
+    "answer": "needs_verification",
+    "route": "engineer",
+    "outcome": "unnecessary hand-off",
+    "severity": null
+   },
+   "now": {
+    "answer": "needs_verification",
+    "route": "ask_supplier",
+    "outcome": "correct autonomous",
+    "severity": null
+   }
+  },
+  {
+   "id": "PQ/V-RWP/Q5",
+   "group": "prequal",
+   "vendor": "V-RWP",
+   "criterion": "Q5",
+   "expected": "needs_verification",
+   "category": "missing_info",
+   "expected_route": "ask_supplier",
+   "before": {
+    "answer": "needs_verification",
+    "route": "engineer",
+    "outcome": "unnecessary hand-off",
+    "severity": null
+   },
+   "now": {
+    "answer": "needs_verification",
+    "route": "ask_supplier",
+    "outcome": "correct autonomous",
+    "severity": null
+   }
+  },
+  {
+   "id": "PQ/V-RWP/Q6",
+   "group": "prequal",
+   "vendor": "V-RWP",
+   "criterion": "Q6",
+   "expected": "needs_verification",
+   "category": "missing_info",
+   "expected_route": "ask_supplier",
+   "before": {
+    "answer": "needs_verification",
+    "route": "engineer",
+    "outcome": "unnecessary hand-off",
+    "severity": null
+   },
+   "now": {
+    "answer": "needs_verification",
+    "route": "ask_supplier",
+    "outcome": "correct autonomous",
+    "severity": null
+   }
+  },
+  {
+   "id": "PQ/V-RWP/Q7",
+   "group": "prequal",
+   "vendor": "V-RWP",
+   "criterion": "Q7",
+   "expected": "needs_verification",
+   "category": "escalate",
+   "expected_route": "engineer",
+   "before": {
+    "answer": "needs_verification",
+    "route": "engineer",
+    "outcome": "justified hand-off",
+    "severity": null
+   },
+   "now": {
+    "answer": "needs_verification",
+    "route": "ask_supplier",
+    "outcome": "correct autonomous",
+    "severity": null
+   }
+  }
+ ]
+}

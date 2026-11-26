@@ -1,0 +1,79 @@
+{
+ "doc_id": "v-tgc-prequal",
+ "sha256": "0ad549a4c63e38068a1fa34ff8e8fb5c7c2b1bed2dc87e7e143ec4f5f9e9c209",
+ "reading": {
+  "P1": {
+   "value": "Cummins",
+   "quote": "Manufacturer of the equipment offered: Cummins.",
+   "page": 1
+  },
+  "P2": {
+   "value": "more than 40 years",
+   "quote": "The manufacturer has produced engine-generator sets for more than 40 years.",
+   "page": 1
+  },
+  "Q1": {
+   "value": "$2,000,000",
+   "quote": "Commercial general liability ... $2,000,000 ...",
+   "page": 1
+  },
+  "Q2": {
+   "value": "2027-03-31",
+   "quote": "Expires 2027-03-31",
+   "page": 1
+  },
+  "Q3": {
+   "value": "0.91",
+   "quote": "Three-year average                                                                                        0.91",
+   "page": 1
+  },
+  "Q4": {
+   "value": "yes",
+   "quote": "Cummins authorization letter: available on request.",
+   "page": 1
+  },
+  "Q5": {
+   "value": "Mid-Atlantic coverage through our partner service network, 4-hour emergency response.",
+   "quote": "Mid-Atlantic coverage through our partner service network, 4-hour emergency response.",
+   "page": 1
+  },
+  "Q6": {
+   "rows": [
+    {
+     "project": "Colocation hall, Virginia Beach VA",
+     "year": "2025",
+     "kw": "2250",
+     "quote": "Colocation hall, Virginia Beach VA                         2025 2250",
+     "page": 1
+    },
+    {
+     "project": "Port authority terminal, Norfolk VA",
+     "year": "2024",
+     "kw": "2000",
+     "quote": "Port authority terminal, Norfolk VA                         2024 2000",
+     "page": 1
+    },
+    {
+     "project": "County courthouse, Su\ufb00olk VA",
+     "year": "2023",
+     "kw": "1250",
+     "quote": "County courthouse, Su\ufb00olk VA                            2023 1250",
+     "page": 1
+    },
+    {
+     "project": "Naval supply depot (contractor), Chesapeake VA",
+     "year": "2022",
+     "kw": "2000",
+     "quote": "Naval supply depot (contractor), Chesapeake VA             2022 2000",
+     "page": 1
+    }
+   ]
+  },
+  "Q7": {
+   "value": "We certify that the company is not debarred, suspended or excluded from federal procurement.",
+   "quote": "We certify that the company is not debarred, suspended or excluded from federal procurement.",
+   "page": 1
+  }
+ },
+ "model": "openai/gpt-oss-120b"
+}

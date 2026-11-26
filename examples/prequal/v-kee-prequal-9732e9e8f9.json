@@ -1,0 +1,72 @@
+{
+ "doc_id": "v-kee-prequal",
+ "sha256": "9732e9e8f94cfb8c2222cd2068611d5248ca89e10dc64283e3665aaa13298407",
+ "reading": {
+  "P1": {
+   "value": "Kohler",
+   "quote": "Manufacturer of the equipment offered: Kohler.",
+   "page": 1
+  },
+  "P2": {
+   "value": "more than 60 years",
+   "quote": "The manufacturer has produced engine-generator sets for more than 60 years.",
+   "page": 1
+  },
+  "Q1": {
+   "value": "$3,000,000",
+   "quote": "Commercial general liability ... Per occurrence $3,000,000",
+   "page": 1
+  },
+  "Q2": {
+   "value": "2027-12-31",
+   "quote": "Expires 2027-12-31",
+   "page": 1
+  },
+  "Q3": {
+   "value": "1.24",
+   "quote": "Three-year average 1.24",
+   "page": 1
+  },
+  "Q4": {
+   "value": "Attached: Kohler distributor authorization letter dated 2026-07-01 covering the KD2000 generator set.",
+   "quote": "Attached: Kohler distributor authorization letter dated 2026-07-01 covering the KD2000 generator set.",
+   "page": 1
+  },
+  "Q5": {
+   "value": "Baltimore, MD. 24/7 emergency response within 4 hours at the Ashburn site by factory-trained technicians.",
+   "quote": "Service branch: Baltimore, MD. 24/7 emergency response within 4 hours at the Ashburn site by factory-trained technicians.",
+   "page": 1
+  },
+  "Q6": {
+   "rows": [
+    {
+     "project": "Data center campus, Ashburn VA",
+     "year": "2025",
+     "kw": "2000",
+     "quote": "Data center campus, Ashburn VA 2025 2000",
+     "page": 1
+    },
+    {
+     "project": "University hospital, Baltimore MD",
+     "year": "2024",
+     "kw": "1500",
+     "quote": "University hospital, Baltimore MD 2024 1500",
+     "page": 1
+    },
+    {
+     "project": "Logistics hub, Hagerstown MD",
+     "year": "2023",
+     "kw": "2500",
+     "quote": "Logistics hub, Hagerstown MD 2023 2500",
+     "page": 1
+    }
+   ]
+  },
+  "Q7": {
+   "value": "We certify that the company is not debarred, suspended or excluded from federal procurement.",
+   "quote": "We certify that the company is not debarred, suspended or excluded from federal procurement.",
+   "page": 1
+  }
+ },
+ "model": "openai/gpt-oss-120b"
+}

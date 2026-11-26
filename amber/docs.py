@@ -29,6 +29,7 @@ class Document:
     doc_id: str
     path: str
     pages: list[Page] = field(default_factory=list)
+    commitment: bool = False  # a supplier's own bid or reply (read for what it commits to), not a datasheet
     sha256: str = ""
 
     @property

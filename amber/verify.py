@@ -152,13 +152,51 @@ _TICK_BOXES = chr(0x2751) + chr(0x2752) + chr(0x2610) + chr(0x25A1) + chr(0x274F
 _CHOICES = re.compile(r"available\s+(?:voltages|options)|options\s+and\s+accessories|optional\s+equipment", re.I)
 
 
+# Section headings that govern the rows beneath them. A row under "Options (not included in total)", "Alternates" or
+# "Exclusions" is not part of what is supplied, however compliant its words (seen: a bid's optional UL 2085 tank read as
+# the tank supplied). A heading of the base scope ends the search.
+_OPTIONAL_HEAD = re.compile(r"^\W*(?:options?\b|optional\b|alternates?\b|exclusions?\b|clarifications and exclusions|"
+                            r"not included|add(?:itional)? options|available options|accessories\b)", re.I)
+_BASE_HEAD = re.compile(r"^\W*(?:equipment offered|base (?:bid|offer)|pricing summary|line\s+description|scope of supply|"
+                        r"standard features|each set includes|features\b|specifications\b|ratings\b|technical data)", re.I)
+
+
+def under_optional_heading(doc: Document, cite: Citation, lookback: int = 25) -> bool:
+    """Is the quoted line inside a section headed as options, alternates or exclusions? Walks up from the line to the
+    nearest heading in the document's own text order."""
+    pg = doc.page(cite.page)
+    if pg is None or not (pg.raw or pg.text):
+        return False
+    lines = (pg.raw or pg.text).splitlines()
+    head = compact(cite.quote)[:12]
+    if not head:
+        return False
+    at = next((i for i, ln in enumerate(lines) if head in compact(ln)), None)
+    if at is None:
+        return False
+    for ln in reversed(lines[max(0, at - lookback): at + 1]):
+        s = ln.strip()
+        if _BASE_HEAD.search(s):
+            return False
+        if _OPTIONAL_HEAD.search(s) and len(s) < 60:
+            return True
+    return False
+
+
 def listed_as_choice(doc: Document, cite: Citation) -> bool:
     """Is the evidence an item the buyer may choose, not something the datasheet says is supplied? True when the quote
-    carries an empty tick box, sits right after one in the PDF's own text order, or is headed as a list of choices."""
+    carries an empty tick box, sits right after one in the PDF's own text order, is headed as a list of choices, or (in a
+    supplier's own bid or reply) sits in a section headed as options, alternates or exclusions."""
     if any(ch in cite.quote for ch in _TICK_BOXES) or _CHOICES.search(cite.quote):
         return True
     pg = doc.page(cite.page)
-    if pg is None or not pg.raw:
+    if pg is None:
+        return False
+    # Headings govern rows only in prose the supplier writes to us (a bid, a reply). On a datasheet the text order runs
+    # across table columns, so a column header ('Optional') or a cell ('Not included 600-1200 kW') is not a heading.
+    if getattr(doc, "commitment", False) and under_optional_heading(doc, cite):
+        return True
+    if not pg.raw:
         return False
     page, q = compact(pg.raw), compact(cite.quote)
     starts = [m.start() for m in re.finditer(re.escape(q), page)] if q else []

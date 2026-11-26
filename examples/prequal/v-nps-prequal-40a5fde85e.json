@@ -1,0 +1,86 @@
+{
+ "doc_id": "v-nps-prequal",
+ "sha256": "40a5fde85e9014dc63187b05eb89604a57448781491eb7a95663564703c37ec0",
+ "reading": {
+  "P1": {
+   "value": "Caterpillar",
+   "quote": "Manufacturer of the equipment offered: Caterpillar.",
+   "page": 1
+  },
+  "P2": {
+   "value": "more than 50 years",
+   "quote": "The manufacturer has produced engine-generator sets for more than 50 years.",
+   "page": 1
+  },
+  "Q1": {
+   "value": "$5,000,000",
+   "quote": "Commercial general liability          Harborline Mutual (fictional)          $5,000,000        $10,000,000 2028-06-30",
+   "page": 1
+  },
+  "Q2": {
+   "value": "2028-06-30",
+   "quote": "Commercial general liability          Harborline Mutual (fictional)          $5,000,000        $10,000,000 2028-06-30",
+   "page": 1
+  },
+  "Q3": {
+   "value": "0.82",
+   "quote": "Three-year average                                                                                        0.82",
+   "page": 1
+  },
+  "Q4": {
+   "value": "Attached: Caterpillar dealer authorization letter dated 2026-09-12 covering the 3516C generator set.",
+   "quote": "Attached: Caterpillar dealer authorization letter dated 2026-09-12 covering the 3516C generator set.",
+   "page": 1
+  },
+  "Q5": {
+   "value": "Service branch: Richmond, VA. 24/7 emergency response within 4 hours at the Ashburn site by factory-trained technicians.",
+   "quote": "Service branch: Richmond, VA. 24/7 emergency response within 4 hours at the Ashburn site by factory-trained technicians.",
+   "page": 1
+  },
+  "Q6": {
+   "rows": [
+    {
+     "project": "Data center DC-7, Richmond VA",
+     "year": "2025",
+     "kw": "2500",
+     "quote": "Data center DC-7, Richmond VA                        2025 2500                    J. Ortiz, facilities",
+     "page": 1
+    },
+    {
+     "project": "Hospital tower, Norfolk VA",
+     "year": "2024",
+     "kw": "2000",
+     "quote": "Hospital tower, Norfolk VA                             2024 2000              M. Chen, engineering",
+     "page": 1
+    },
+    {
+     "project": "Campus central plant, Charlottesville VA",
+     "year": "2023",
+     "kw": "1750",
+     "quote": "Campus central plant, Charlottesville VA                  2023 1750                R. Patel, utilities",
+     "page": 1
+    },
+    {
+     "project": "Water treatment plant, Roanoke VA",
+     "year": "2022",
+     "kw": "1500",
+     "quote": "Water treatment plant, Roanoke VA                      2022 1500                 S. Brooks, operations",
+     "page": 1
+    },
+    {
+     "project": "Office park, Glen Allen VA",
+     "year": "2022",
+     "kw": "800",
+     "quote": "Office park, Glen Allen VA                             2022 800                   T. Nguyen, property",
+     "page": 1
+    }
+   ]
+  },
+  "Q7": {
+   "value": "We certify that the company is not debarred, suspended or excluded from federal procurement.",
+   "quote": "We certify that the company is not debarred, suspended or excluded from federal procurement.",
+   "page": 1
+  }
+ },
+ "model": "openai/gpt-oss-120b"
+}

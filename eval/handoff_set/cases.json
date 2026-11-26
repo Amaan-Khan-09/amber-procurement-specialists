@@ -1,0 +1,2629 @@
+{
+ "built_from": "eval/answer_keys (written before the code scored here)",
+ "cases": [
+  {
+   "id": "G1/R01",
+   "group": "datasheet",
+   "case": "G1",
+   "req_id": "R01",
+   "expected": "complies",
+   "category": "routine",
+   "expected_route": "decide"
+  },
+  {
+   "id": "G1/R02",
+   "group": "datasheet",
+   "case": "G1",
+   "req_id": "R02",
+   "expected": "complies",
+   "category": "routine",
+   "expected_route": "decide"
+  },
+  {
+   "id": "G1/R03",
+   "group": "datasheet",
+   "case": "G1",
+   "req_id": "R03",
+   "expected": "complies",
+   "category": "routine",
+   "expected_route": "decide"
+  },
+  {
+   "id": "G1/R04",
+   "group": "datasheet",
+   "case": "G1",
+   "req_id": "R04",
+   "expected": "complies",
+   "category": "routine",
+   "expected_route": "decide"
+  },
+  {
+   "id": "G1/R05",
+   "group": "datasheet",
+   "case": "G1",
+   "req_id": "R05",
+   "expected": "complies",
+   "category": "routine",
+   "expected_route": "decide"
+  },
+  {
+   "id": "G1/R06",
+   "group": "datasheet",
+   "case": "G1",
+   "req_id": "R06",
+   "expected": "complies",
+   "category": "routine",
+   "expected_route": "decide"
+  },
+  {
+   "id": "G1/R07",
+   "group": "datasheet",
+   "case": "G1",
+   "req_id": "R07",
+   "expected": "complies",
+   "category": "routine",
+   "expected_route": "decide"
+  },
+  {
+   "id": "G1/R08",
+   "group": "datasheet",
+   "case": "G1",
+   "req_id": "R08",
+   "expected": "complies",
+   "category": "routine",
+   "expected_route": "decide"
+  },
+  {
+   "id": "G1/R09",
+   "group": "datasheet",
+   "case": "G1",
+   "req_id": "R09",
+   "expected": "unclear",
+   "category": "missing_info",
+   "expected_route": "ask_supplier"
+  },
+  {
+   "id": "G1/R10",
+   "group": "datasheet",
+   "case": "G1",
+   "req_id": "R10",
+   "expected": "complies",
+   "category": "routine",
+   "expected_route": "decide"
+  },
+  {
+   "id": "G1/R11",
+   "group": "datasheet",
+   "case": "G1",
+   "req_id": "R11",
+   "expected": "deviates",
+   "category": "escalate",
+   "expected_route": "engineer"
+  },
+  {
+   "id": "G1/R12",
+   "group": "datasheet",
+   "case": "G1",
+   "req_id": "R12",
+   "expected": "complies",
+   "category": "routine",
+   "expected_route": "decide"
+  },
+  {
+   "id": "G1/R13",
+   "group": "datasheet",
+   "case": "G1",
+   "req_id": "R13",
+   "expected": "complies",
+   "category": "routine",
+   "expected_route": "decide"
+  },
+  {
+   "id": "G1/R14",
+   "group": "datasheet",
+   "case": "G1",
+   "req_id": "R14",
+   "expected": "complies",
+   "category": "routine",
+   "expected_route": "decide"
+  },
+  {
+   "id": "G1/R15",
+   "group": "datasheet",
+   "case": "G1",
+   "req_id": "R15",
+   "expected": "complies",
+   "category": "routine",
+   "expected_route": "decide"
+  },
+  {
+   "id": "G1/R16",
+   "group": "datasheet",
+   "case": "G1",
+   "req_id": "R16",
+   "expected": "deviates",
+   "category": "routine",
+   "expected_route": "decide"
+  },
+  {
+   "id": "G1/R17",
+   "group": "datasheet",
+   "case": "G1",
+   "req_id": "R17",
+   "expected": "complies",
+   "category": "routine",
+   "expected_route": "decide"
+  },
+  {
+   "id": "G1/R18",
+   "group": "datasheet",
+   "case": "G1",
+   "req_id": "R18",
+   "expected": "complies",
+   "category": "routine",
+   "expected_route": "decide"
+  },
+  {
+   "id": "G1/R19",
+   "group": "datasheet",
+   "case": "G1",
+   "req_id": "R19",
+   "expected": "missing",
+   "category": "missing_info",
+   "expected_route": "ask_supplier"
+  },
+  {
+   "id": "G1/R20",
+   "group": "datasheet",
+   "case": "G1",
+   "req_id": "R20",
+   "expected": "unclear",
+   "category": "missing_info",
+   "expected_route": "ask_supplier"
+  },
+  {
+   "id": "G1/R21",
+   "group": "datasheet",
+   "case": "G1",
+   "req_id": "R21",
+   "expected": "missing",
+   "category": "escalate",
+   "expected_route": "engineer"
+  },
+  {
+   "id": "G2/R01",
+   "group": "datasheet",
+   "case": "G2",
+   "req_id": "R01",
+   "expected": "complies",
+   "category": "routine",
+   "expected_route": "decide"
+  },
+  {
+   "id": "G2/R02",
+   "group": "datasheet",
+   "case": "G2",
+   "req_id": "R02",
+   "expected": "unclear",
+   "category": "missing_info",
+   "expected_route": "ask_supplier"
+  },
+  {
+   "id": "G2/R03",
+   "group": "datasheet",
+   "case": "G2",
+   "req_id": "R03",
+   "expected": "complies",
+   "category": "escalate",
+   "expected_route": "engineer"
+  },
+  {
+   "id": "G2/R04",
+   "group": "datasheet",
+   "case": "G2",
+   "req_id": "R04",
+   "expected": "complies",
+   "category": "routine",
+   "expected_route": "decide"
+  },
+  {
+   "id": "G2/R05",
+   "group": "datasheet",
+   "case": "G2",
+   "req_id": "R05",
+   "expected": "complies",
+   "category": "routine",
+   "expected_route": "decide"
+  },
+  {
+   "id": "G2/R06",
+   "group": "datasheet",
+   "case": "G2",
+   "req_id": "R06",
+   "expected": "complies",
+   "category": "routine",
+   "expected_route": "decide"
+  },
+  {
+   "id": "G2/R07",
+   "group": "datasheet",
+   "case": "G2",
+   "req_id": "R07",
+   "expected": "complies",
+   "category": "routine",
+   "expected_route": "decide"
+  },
+  {
+   "id": "G2/R08",
+   "group": "datasheet",
+   "case": "G2",
+   "req_id": "R08",
+   "expected": "complies",
+   "category": "routine",
+   "expected_route": "decide"
+  },
+  {
+   "id": "G2/R09",
+   "group": "datasheet",
+   "case": "G2",
+   "req_id": "R09",
+   "expected": "deviates",
+   "category": "escalate",
+   "expected_route": "engineer"
+  },
+  {
+   "id": "G2/R10",
+   "group": "datasheet",
+   "case": "G2",
+   "req_id": "R10",
+   "expected": "complies",
+   "category": "routine",
+   "expected_route": "decide"
+  },
+  {
+   "id": "G2/R11",
+   "group": "datasheet",
+   "case": "G2",
+   "req_id": "R11",
+   "expected": "unclear",
+   "category": "escalate",
+   "expected_route": "engineer"
+  },
+  {
+   "id": "G2/R12",
+   "group": "datasheet",
+   "case": "G2",
+   "req_id": "R12",
+   "expected": "complies",
+   "category": "routine",
+   "expected_route": "decide"
+  },
+  {
+   "id": "G2/R13",
+   "group": "datasheet",
+   "case": "G2",
+   "req_id": "R13",
+   "expected": "complies",
+   "category": "routine",
+   "expected_route": "decide"
+  },
+  {
+   "id": "G2/R14",
+   "group": "datasheet",
+   "case": "G2",
+   "req_id": "R14",
+   "expected": "complies",
+   "category": "routine",
+   "expected_route": "decide"
+  },
+  {
+   "id": "G2/R15",
+   "group": "datasheet",
+   "case": "G2",
+   "req_id": "R15",
+   "expected": "unclear",
+   "category": "missing_info",
+   "expected_route": "ask_supplier"
+  },
+  {
+   "id": "G2/R16",
+   "group": "datasheet",
+   "case": "G2",
+   "req_id": "R16",
+   "expected": "unclear",
+   "category": "missing_info",
+   "expected_route": "ask_supplier"
+  },
+  {
+   "id": "G2/R17",
+   "group": "datasheet",
+   "case": "G2",
+   "req_id": "R17",
+   "expected": "complies",
+   "category": "routine",
+   "expected_route": "decide"
+  },
+  {
+   "id": "G2/R18",
+   "group": "datasheet",
+   "case": "G2",
+   "req_id": "R18",
+   "expected": "missing",
+   "category": "missing_info",
+   "expected_route": "ask_supplier"
+  },
+  {
+   "id": "G2/R19",
+   "group": "datasheet",
+   "case": "G2",
+   "req_id": "R19",
+   "expected": "deviates",
+   "category": "routine",
+   "expected_route": "decide"
+  },
+  {
+   "id": "G2/R20",
+   "group": "datasheet",
+   "case": "G2",
+   "req_id": "R20",
+   "expected": "unclear",
+   "category": "missing_info",
+   "expected_route": "ask_supplier"
+  },
+  {
+   "id": "G2/R21",
+   "group": "datasheet",
+   "case": "G2",
+   "req_id": "R21",
+   "expected": "unclear",
+   "category": "missing_info",
+   "expected_route": "ask_supplier"
+  },
+  {
+   "id": "G3/R01",
+   "group": "datasheet",
+   "case": "G3",
+   "req_id": "R01",
+   "expected": "complies",
+   "category": "routine",
+   "expected_route": "decide"
+  },
+  {
+   "id": "G3/R02",
+   "group": "datasheet",
+   "case": "G3",
+   "req_id": "R02",
+   "expected": "complies",
+   "category": "routine",
+   "expected_route": "decide"
+  },
+  {
+   "id": "G3/R03",
+   "group": "datasheet",
+   "case": "G3",
+   "req_id": "R03",
+   "expected": "complies",
+   "category": "routine",
+   "expected_route": "decide"
+  },
+  {
+   "id": "G3/R04",
+   "group": "datasheet",
+   "case": "G3",
+   "req_id": "R04",
+   "expected": "complies",
+   "category": "routine",
+   "expected_route": "decide"
+  },
+  {
+   "id": "G3/R05",
+   "group": "datasheet",
+   "case": "G3",
+   "req_id": "R05",
+   "expected": "complies",
+   "category": "routine",
+   "expected_route": "decide"
+  },
+  {
+   "id": "G3/R06",
+   "group": "datasheet",
+   "case": "G3",
+   "req_id": "R06",
+   "expected": "complies",
+   "category": "routine",
+   "expected_route": "decide"
+  },
+  {
+   "id": "G3/R07",
+   "group": "datasheet",
+   "case": "G3",
+   "req_id": "R07",
+   "expected": "complies",
+   "category": "escalate",
+   "expected_route": "engineer"
+  },
+  {
+   "id": "G3/R08",
+   "group": "datasheet",
+   "case": "G3",
+   "req_id": "R08",
+   "expected": "complies",
+   "category": "routine",
+   "expected_route": "decide"
+  },
+  {
+   "id": "G3/R09",
+   "group": "datasheet",
+   "case": "G3",
+   "req_id": "R09",
+   "expected": "deviates",
+   "category": "routine",
+   "expected_route": "decide"
+  },
+  {
+   "id": "G3/R10",
+   "group": "datasheet",
+   "case": "G3",
+   "req_id": "R10",
+   "expected": "complies",
+   "category": "routine",
+   "expected_route": "decide"
+  },
+  {
+   "id": "G3/R11",
+   "group": "datasheet",
+   "case": "G3",
+   "req_id": "R11",
+   "expected": "unclear",
+   "category": "escalate",
+   "expected_route": "engineer"
+  },
+  {
+   "id": "G3/R12",
+   "group": "datasheet",
+   "case": "G3",
+   "req_id": "R12",
+   "expected": "complies",
+   "category": "routine",
+   "expected_route": "decide"
+  },
+  {
+   "id": "G3/R13",
+   "group": "datasheet",
+   "case": "G3",
+   "req_id": "R13",
+   "expected": "complies",
+   "category": "routine",
+   "expected_route": "decide"
+  },
+  {
+   "id": "G3/R14",
+   "group": "datasheet",
+   "case": "G3",
+   "req_id": "R14",
+   "expected": "complies",
+   "category": "routine",
+   "expected_route": "decide"
+  },
+  {
+   "id": "G3/R15",
+   "group": "datasheet",
+   "case": "G3",
+   "req_id": "R15",
+   "expected": "unclear",
+   "category": "missing_info",
+   "expected_route": "ask_supplier"
+  },
+  {
+   "id": "G3/R16",
+   "group": "datasheet",
+   "case": "G3",
+   "req_id": "R16",
+   "expected": "unclear",
+   "category": "missing_info",
+   "expected_route": "ask_supplier"
+  },
+  {
+   "id": "G3/R17",
+   "group": "datasheet",
+   "case": "G3",
+   "req_id": "R17",
+   "expected": "complies",
+   "category": "routine",
+   "expected_route": "decide"
+  },
+  {
+   "id": "G3/R18",
+   "group": "datasheet",
+   "case": "G3",
+   "req_id": "R18",
+   "expected": "complies",
+   "category": "routine",
+   "expected_route": "decide"
+  },
+  {
+   "id": "G3/R19",
+   "group": "datasheet",
+   "case": "G3",
+   "req_id": "R19",
+   "expected": "deviates",
+   "category": "routine",
+   "expected_route": "decide"
+  },
+  {
+   "id": "G3/R20",
+   "group": "datasheet",
+   "case": "G3",
+   "req_id": "R20",
+   "expected": "unclear",
+   "category": "missing_info",
+   "expected_route": "ask_supplier"
+  },
+  {
+   "id": "G3/R21",
+   "group": "datasheet",
+   "case": "G3",
+   "req_id": "R21",
+   "expected": "unclear",
+   "category": "missing_info",
+   "expected_route": "ask_supplier"
+  },
+  {
+   "id": "G4/R01",
+   "group": "datasheet",
+   "case": "G4",
+   "req_id": "R01",
+   "expected": "complies",
+   "category": "routine",
+   "expected_route": "decide"
+  },
+  {
+   "id": "G4/R02",
+   "group": "datasheet",
+   "case": "G4",
+   "req_id": "R02",
+   "expected": "unclear",
+   "category": "missing_info",
+   "expected_route": "ask_supplier"
+  },
+  {
+   "id": "G4/R03",
+   "group": "datasheet",
+   "case": "G4",
+   "req_id": "R03",
+   "expected": "missing",
+   "category": "missing_info",
+   "expected_route": "ask_supplier"
+  },
+  {
+   "id": "G4/R04",
+   "group": "datasheet",
+   "case": "G4",
+   "req_id": "R04",
+   "expected": "complies",
+   "category": "routine",
+   "expected_route": "decide"
+  },
+  {
+   "id": "G4/R05",
+   "group": "datasheet",
+   "case": "G4",
+   "req_id": "R05",
+   "expected": "deviates",
+   "category": "routine",
+   "expected_route": "decide"
+  },
+  {
+   "id": "G4/R06",
+   "group": "datasheet",
+   "case": "G4",
+   "req_id": "R06",
+   "expected": "complies",
+   "category": "routine",
+   "expected_route": "decide"
+  },
+  {
+   "id": "G4/R07",
+   "group": "datasheet",
+   "case": "G4",
+   "req_id": "R07",
+   "expected": "complies",
+   "category": "routine",
+   "expected_route": "decide"
+  },
+  {
+   "id": "G4/R08",
+   "group": "datasheet",
+   "case": "G4",
+   "req_id": "R08",
+   "expected": "missing",
+   "category": "missing_info",
+   "expected_route": "ask_supplier"
+  },
+  {
+   "id": "G4/R09",
+   "group": "datasheet",
+   "case": "G4",
+   "req_id": "R09",
+   "expected": "unclear",
+   "category": "missing_info",
+   "expected_route": "ask_supplier"
+  },
+  {
+   "id": "G4/R10",
+   "group": "datasheet",
+   "case": "G4",
+   "req_id": "R10",
+   "expected": "complies",
+   "category": "routine",
+   "expected_route": "decide"
+  },
+  {
+   "id": "G4/R11",
+   "group": "datasheet",
+   "case": "G4",
+   "req_id": "R11",
+   "expected": "unclear",
+   "category": "escalate",
+   "expected_route": "engineer"
+  },
+  {
+   "id": "G4/R12",
+   "group": "datasheet",
+   "case": "G4",
+   "req_id": "R12",
+   "expected": "missing",
+   "category": "missing_info",
+   "expected_route": "ask_supplier"
+  },
+  {
+   "id": "G4/R13",
+   "group": "datasheet",
+   "case": "G4",
+   "req_id": "R13",
+   "expected": "complies",
+   "category": "routine",
+   "expected_route": "decide"
+  },
+  {
+   "id": "G4/R14",
+   "group": "datasheet",
+   "case": "G4",
+   "req_id": "R14",
+   "expected": "complies",
+   "category": "routine",
+   "expected_route": "decide"
+  },
+  {
+   "id": "G4/R15",
+   "group": "datasheet",
+   "case": "G4",
+   "req_id": "R15",
+   "expected": "unclear",
+   "category": "missing_info",
+   "expected_route": "ask_supplier"
+  },
+  {
+   "id": "G4/R16",
+   "group": "datasheet",
+   "case": "G4",
+   "req_id": "R16",
+   "expected": "missing",
+   "category": "missing_info",
+   "expected_route": "ask_supplier"
+  },
+  {
+   "id": "G4/R17",
+   "group": "datasheet",
+   "case": "G4",
+   "req_id": "R17",
+   "expected": "complies",
+   "category": "routine",
+   "expected_route": "decide"
+  },
+  {
+   "id": "G4/R18",
+   "group": "datasheet",
+   "case": "G4",
+   "req_id": "R18",
+   "expected": "missing",
+   "category": "missing_info",
+   "expected_route": "ask_supplier"
+  },
+  {
+   "id": "G4/R19",
+   "group": "datasheet",
+   "case": "G4",
+   "req_id": "R19",
+   "expected": "unclear",
+   "category": "missing_info",
+   "expected_route": "ask_supplier"
+  },
+  {
+   "id": "G4/R20",
+   "group": "datasheet",
+   "case": "G4",
+   "req_id": "R20",
+   "expected": "unclear",
+   "category": "missing_info",
+   "expected_route": "ask_supplier"
+  },
+  {
+   "id": "G4/R21",
+   "group": "datasheet",
+   "case": "G4",
+   "req_id": "R21",
+   "expected": "unclear",
+   "category": "missing_info",
+   "expected_route": "ask_supplier"
+  },
+  {
+   "id": "G5/R01",
+   "group": "datasheet",
+   "case": "G5",
+   "req_id": "R01",
+   "expected": "complies",
+   "category": "routine",
+   "expected_route": "decide"
+  },
+  {
+   "id": "G5/R02",
+   "group": "datasheet",
+   "case": "G5",
+   "req_id": "R02",
+   "expected": "unclear",
+   "category": "missing_info",
+   "expected_route": "ask_supplier"
+  },
+  {
+   "id": "G5/R03",
+   "group": "datasheet",
+   "case": "G5",
+   "req_id": "R03",
+   "expected": "complies",
+   "category": "routine",
+   "expected_route": "decide"
+  },
+  {
+   "id": "G5/R04",
+   "group": "datasheet",
+   "case": "G5",
+   "req_id": "R04",
+   "expected": "complies",
+   "category": "routine",
+   "expected_route": "decide"
+  },
+  {
+   "id": "G5/R05",
+   "group": "datasheet",
+   "case": "G5",
+   "req_id": "R05",
+   "expected": "complies",
+   "category": "routine",
+   "expected_route": "decide"
+  },
+  {
+   "id": "G5/R06",
+   "group": "datasheet",
+   "case": "G5",
+   "req_id": "R06",
+   "expected": "complies",
+   "category": "routine",
+   "expected_route": "decide"
+  },
+  {
+   "id": "G5/R07",
+   "group": "datasheet",
+   "case": "G5",
+   "req_id": "R07",
+   "expected": "complies",
+   "category": "routine",
+   "expected_route": "decide"
+  },
+  {
+   "id": "G5/R08",
+   "group": "datasheet",
+   "case": "G5",
+   "req_id": "R08",
+   "expected": "deviates",
+   "category": "routine",
+   "expected_route": "decide"
+  },
+  {
+   "id": "G5/R09",
+   "group": "datasheet",
+   "case": "G5",
+   "req_id": "R09",
+   "expected": "complies",
+   "category": "escalate",
+   "expected_route": "engineer"
+  },
+  {
+   "id": "G5/R10",
+   "group": "datasheet",
+   "case": "G5",
+   "req_id": "R10",
+   "expected": "unclear",
+   "category": "missing_info",
+   "expected_route": "ask_supplier"
+  },
+  {
+   "id": "G5/R11",
+   "group": "datasheet",
+   "case": "G5",
+   "req_id": "R11",
+   "expected": "unclear",
+   "category": "escalate",
+   "expected_route": "engineer"
+  },
+  {
+   "id": "G5/R12",
+   "group": "datasheet",
+   "case": "G5",
+   "req_id": "R12",
+   "expected": "complies",
+   "category": "routine",
+   "expected_route": "decide"
+  },
+  {
+   "id": "G5/R13",
+   "group": "datasheet",
+   "case": "G5",
+   "req_id": "R13",
+   "expected": "complies",
+   "category": "routine",
+   "expected_route": "decide"
+  },
+  {
+   "id": "G5/R14",
+   "group": "datasheet",
+   "case": "G5",
+   "req_id": "R14",
+   "expected": "missing",
+   "category": "missing_info",
+   "expected_route": "ask_supplier"
+  },
+  {
+   "id": "G5/R15",
+   "group": "datasheet",
+   "case": "G5",
+   "req_id": "R15",
+   "expected": "missing",
+   "category": "missing_info",
+   "expected_route": "ask_supplier"
+  },
+  {
+   "id": "G5/R16",
+   "group": "datasheet",
+   "case": "G5",
+   "req_id": "R16",
+   "expected": "missing",
+   "category": "missing_info",
+   "expected_route": "ask_supplier"
+  },
+  {
+   "id": "G5/R17",
+   "group": "datasheet",
+   "case": "G5",
+   "req_id": "R17",
+   "expected": "complies",
+   "category": "routine",
+   "expected_route": "decide"
+  },
+  {
+   "id": "G5/R18",
+   "group": "datasheet",
+   "case": "G5",
+   "req_id": "R18",
+   "expected": "complies",
+   "category": "routine",
+   "expected_route": "decide"
+  },
+  {
+   "id": "G5/R19",
+   "group": "datasheet",
+   "case": "G5",
+   "req_id": "R19",
+   "expected": "missing",
+   "category": "missing_info",
+   "expected_route": "ask_supplier"
+  },
+  {
+   "id": "G5/R20",
+   "group": "datasheet",
+   "case": "G5",
+   "req_id": "R20",
+   "expected": "missing",
+   "category": "missing_info",
+   "expected_route": "ask_supplier"
+  },
+  {
+   "id": "G5/R21",
+   "group": "datasheet",
+   "case": "G5",
+   "req_id": "R21",
+   "expected": "missing",
+   "category": "missing_info",
+   "expected_route": "ask_supplier"
+  },
+  {
+   "id": "G6/R01",
+   "group": "datasheet",
+   "case": "G6",
+   "req_id": "R01",
+   "expected": "complies",
+   "category": "routine",
+   "expected_route": "decide"
+  },
+  {
+   "id": "G6/R02",
+   "group": "datasheet",
+   "case": "G6",
+   "req_id": "R02",
+   "expected": "unclear",
+   "category": "missing_info",
+   "expected_route": "ask_supplier"
+  },
+  {
+   "id": "G6/R03",
+   "group": "datasheet",
+   "case": "G6",
+   "req_id": "R03",
+   "expected": "complies",
+   "category": "escalate",
+   "expected_route": "engineer"
+  },
+  {
+   "id": "G6/R04",
+   "group": "datasheet",
+   "case": "G6",
+   "req_id": "R04",
+   "expected": "complies",
+   "category": "routine",
+   "expected_route": "decide"
+  },
+  {
+   "id": "G6/R05",
+   "group": "datasheet",
+   "case": "G6",
+   "req_id": "R05",
+   "expected": "complies",
+   "category": "routine",
+   "expected_route": "decide"
+  },
+  {
+   "id": "G6/R06",
+   "group": "datasheet",
+   "case": "G6",
+   "req_id": "R06",
+   "expected": "complies",
+   "category": "routine",
+   "expected_route": "decide"
+  },
+  {
+   "id": "G6/R07",
+   "group": "datasheet",
+   "case": "G6",
+   "req_id": "R07",
+   "expected": "complies",
+   "category": "routine",
+   "expected_route": "decide"
+  },
+  {
+   "id": "G6/R08",
+   "group": "datasheet",
+   "case": "G6",
+   "req_id": "R08",
+   "expected": "complies",
+   "category": "routine",
+   "expected_route": "decide"
+  },
+  {
+   "id": "G6/R09",
+   "group": "datasheet",
+   "case": "G6",
+   "req_id": "R09",
+   "expected": "deviates",
+   "category": "routine",
+   "expected_route": "decide"
+  },
+  {
+   "id": "G6/R10",
+   "group": "datasheet",
+   "case": "G6",
+   "req_id": "R10",
+   "expected": "unclear",
+   "category": "missing_info",
+   "expected_route": "ask_supplier"
+  },
+  {
+   "id": "G6/R11",
+   "group": "datasheet",
+   "case": "G6",
+   "req_id": "R11",
+   "expected": "deviates",
+   "category": "escalate",
+   "expected_route": "engineer"
+  },
+  {
+   "id": "G6/R12",
+   "group": "datasheet",
+   "case": "G6",
+   "req_id": "R12",
+   "expected": "complies",
+   "category": "routine",
+   "expected_route": "decide"
+  },
+  {
+   "id": "G6/R13",
+   "group": "datasheet",
+   "case": "G6",
+   "req_id": "R13",
+   "expected": "complies",
+   "category": "routine",
+   "expected_route": "decide"
+  },
+  {
+   "id": "G6/R14",
+   "group": "datasheet",
+   "case": "G6",
+   "req_id": "R14",
+   "expected": "complies",
+   "category": "routine",
+   "expected_route": "decide"
+  },
+  {
+   "id": "G6/R15",
+   "group": "datasheet",
+   "case": "G6",
+   "req_id": "R15",
+   "expected": "unclear",
+   "category": "missing_info",
+   "expected_route": "ask_supplier"
+  },
+  {
+   "id": "G6/R16",
+   "group": "datasheet",
+   "case": "G6",
+   "req_id": "R16",
+   "expected": "unclear",
+   "category": "missing_info",
+   "expected_route": "ask_supplier"
+  },
+  {
+   "id": "G6/R17",
+   "group": "datasheet",
+   "case": "G6",
+   "req_id": "R17",
+   "expected": "complies",
+   "category": "routine",
+   "expected_route": "decide"
+  },
+  {
+   "id": "G6/R18",
+   "group": "datasheet",
+   "case": "G6",
+   "req_id": "R18",
+   "expected": "missing",
+   "category": "missing_info",
+   "expected_route": "ask_supplier"
+  },
+  {
+   "id": "G6/R19",
+   "group": "datasheet",
+   "case": "G6",
+   "req_id": "R19",
+   "expected": "unclear",
+   "category": "missing_info",
+   "expected_route": "ask_supplier"
+  },
+  {
+   "id": "G6/R20",
+   "group": "datasheet",
+   "case": "G6",
+   "req_id": "R20",
+   "expected": "unclear",
+   "category": "missing_info",
+   "expected_route": "ask_supplier"
+  },
+  {
+   "id": "G6/R21",
+   "group": "datasheet",
+   "case": "G6",
+   "req_id": "R21",
+   "expected": "missing",
+   "category": "missing_info",
+   "expected_route": "ask_supplier"
+  },
+  {
+   "id": "G7/R01",
+   "group": "datasheet",
+   "case": "G7",
+   "req_id": "R01",
+   "expected": "complies",
+   "category": "routine",
+   "expected_route": "decide"
+  },
+  {
+   "id": "G7/R02",
+   "group": "datasheet",
+   "case": "G7",
+   "req_id": "R02",
+   "expected": "unclear",
+   "category": "missing_info",
+   "expected_route": "ask_supplier"
+  },
+  {
+   "id": "G7/R03",
+   "group": "datasheet",
+   "case": "G7",
+   "req_id": "R03",
+   "expected": "unclear",
+   "category": "missing_info",
+   "expected_route": "ask_supplier"
+  },
+  {
+   "id": "G7/R04",
+   "group": "datasheet",
+   "case": "G7",
+   "req_id": "R04",
+   "expected": "unclear",
+   "category": "missing_info",
+   "expected_route": "ask_supplier"
+  },
+  {
+   "id": "G7/R05",
+   "group": "datasheet",
+   "case": "G7",
+   "req_id": "R05",
+   "expected": "unclear",
+   "category": "missing_info",
+   "expected_route": "ask_supplier"
+  },
+  {
+   "id": "G7/R06",
+   "group": "datasheet",
+   "case": "G7",
+   "req_id": "R06",
+   "expected": "unclear",
+   "category": "missing_info",
+   "expected_route": "ask_supplier"
+  },
+  {
+   "id": "G7/R07",
+   "group": "datasheet",
+   "case": "G7",
+   "req_id": "R07",
+   "expected": "unclear",
+   "category": "missing_info",
+   "expected_route": "ask_supplier"
+  },
+  {
+   "id": "G7/R08",
+   "group": "datasheet",
+   "case": "G7",
+   "req_id": "R08",
+   "expected": "complies",
+   "category": "routine",
+   "expected_route": "decide"
+  },
+  {
+   "id": "G7/R09",
+   "group": "datasheet",
+   "case": "G7",
+   "req_id": "R09",
+   "expected": "unclear",
+   "category": "missing_info",
+   "expected_route": "ask_supplier"
+  },
+  {
+   "id": "G7/R10",
+   "group": "datasheet",
+   "case": "G7",
+   "req_id": "R10",
+   "expected": "complies",
+   "category": "routine",
+   "expected_route": "decide"
+  },
+  {
+   "id": "G7/R11",
+   "group": "datasheet",
+   "case": "G7",
+   "req_id": "R11",
+   "expected": "unclear",
+   "category": "escalate",
+   "expected_route": "engineer"
+  },
+  {
+   "id": "G7/R12",
+   "group": "datasheet",
+   "case": "G7",
+   "req_id": "R12",
+   "expected": "missing",
+   "category": "missing_info",
+   "expected_route": "ask_supplier"
+  },
+  {
+   "id": "G7/R13",
+   "group": "datasheet",
+   "case": "G7",
+   "req_id": "R13",
+   "expected": "missing",
+   "category": "missing_info",
+   "expected_route": "ask_supplier"
+  },
+  {
+   "id": "G7/R14",
+   "group": "datasheet",
+   "case": "G7",
+   "req_id": "R14",
+   "expected": "missing",
+   "category": "missing_info",
+   "expected_route": "ask_supplier"
+  },
+  {
+   "id": "G7/R15",
+   "group": "datasheet",
+   "case": "G7",
+   "req_id": "R15",
+   "expected": "unclear",
+   "category": "missing_info",
+   "expected_route": "ask_supplier"
+  },
+  {
+   "id": "G7/R16",
+   "group": "datasheet",
+   "case": "G7",
+   "req_id": "R16",
+   "expected": "unclear",
+   "category": "missing_info",
+   "expected_route": "ask_supplier"
+  },
+  {
+   "id": "G7/R17",
+   "group": "datasheet",
+   "case": "G7",
+   "req_id": "R17",
+   "expected": "missing",
+   "category": "missing_info",
+   "expected_route": "ask_supplier"
+  },
+  {
+   "id": "G7/R18",
+   "group": "datasheet",
+   "case": "G7",
+   "req_id": "R18",
+   "expected": "missing",
+   "category": "missing_info",
+   "expected_route": "ask_supplier"
+  },
+  {
+   "id": "G7/R19",
+   "group": "datasheet",
+   "case": "G7",
+   "req_id": "R19",
+   "expected": "missing",
+   "category": "missing_info",
+   "expected_route": "ask_supplier"
+  },
+  {
+   "id": "G7/R20",
+   "group": "datasheet",
+   "case": "G7",
+   "req_id": "R20",
+   "expected": "unclear",
+   "category": "missing_info",
+   "expected_route": "ask_supplier"
+  },
+  {
+   "id": "G7/R21",
+   "group": "datasheet",
+   "case": "G7",
+   "req_id": "R21",
+   "expected": "missing",
+   "category": "missing_info",
+   "expected_route": "ask_supplier"
+  },
+  {
+   "id": "G8/R01",
+   "group": "datasheet",
+   "case": "G8",
+   "req_id": "R01",
+   "expected": "complies",
+   "category": "routine",
+   "expected_route": "decide"
+  },
+  {
+   "id": "G8/R02",
+   "group": "datasheet",
+   "case": "G8",
+   "req_id": "R02",
+   "expected": "unclear",
+   "category": "missing_info",
+   "expected_route": "ask_supplier"
+  },
+  {
+   "id": "G8/R03",
+   "group": "datasheet",
+   "case": "G8",
+   "req_id": "R03",
+   "expected": "unclear",
+   "category": "missing_info",
+   "expected_route": "ask_supplier"
+  },
+  {
+   "id": "G8/R04",
+   "group": "datasheet",
+   "case": "G8",
+   "req_id": "R04",
+   "expected": "complies",
+   "category": "routine",
+   "expected_route": "decide"
+  },
+  {
+   "id": "G8/R05",
+   "group": "datasheet",
+   "case": "G8",
+   "req_id": "R05",
+   "expected": "complies",
+   "category": "routine",
+   "expected_route": "decide"
+  },
+  {
+   "id": "G8/R06",
+   "group": "datasheet",
+   "case": "G8",
+   "req_id": "R06",
+   "expected": "complies",
+   "category": "routine",
+   "expected_route": "decide"
+  },
+  {
+   "id": "G8/R07",
+   "group": "datasheet",
+   "case": "G8",
+   "req_id": "R07",
+   "expected": "complies",
+   "category": "routine",
+   "expected_route": "decide"
+  },
+  {
+   "id": "G8/R08",
+   "group": "datasheet",
+   "case": "G8",
+   "req_id": "R08",
+   "expected": "complies",
+   "category": "routine",
+   "expected_route": "decide"
+  },
+  {
+   "id": "G8/R09",
+   "group": "datasheet",
+   "case": "G8",
+   "req_id": "R09",
+   "expected": "unclear",
+   "category": "missing_info",
+   "expected_route": "ask_supplier"
+  },
+  {
+   "id": "G8/R10",
+   "group": "datasheet",
+   "case": "G8",
+   "req_id": "R10",
+   "expected": "complies",
+   "category": "routine",
+   "expected_route": "decide"
+  },
+  {
+   "id": "G8/R11",
+   "group": "datasheet",
+   "case": "G8",
+   "req_id": "R11",
+   "expected": "deviates",
+   "category": "escalate",
+   "expected_route": "engineer"
+  },
+  {
+   "id": "G8/R12",
+   "group": "datasheet",
+   "case": "G8",
+   "req_id": "R12",
+   "expected": "complies",
+   "category": "routine",
+   "expected_route": "decide"
+  },
+  {
+   "id": "G8/R13",
+   "group": "datasheet",
+   "case": "G8",
+   "req_id": "R13",
+   "expected": "complies",
+   "category": "routine",
+   "expected_route": "decide"
+  },
+  {
+   "id": "G8/R14",
+   "group": "datasheet",
+   "case": "G8",
+   "req_id": "R14",
+   "expected": "complies",
+   "category": "routine",
+   "expected_route": "decide"
+  },
+  {
+   "id": "G8/R15",
+   "group": "datasheet",
+   "case": "G8",
+   "req_id": "R15",
+   "expected": "unclear",
+   "category": "missing_info",
+   "expected_route": "ask_supplier"
+  },
+  {
+   "id": "G8/R16",
+   "group": "datasheet",
+   "case": "G8",
+   "req_id": "R16",
+   "expected": "unclear",
+   "category": "missing_info",
+   "expected_route": "ask_supplier"
+  },
+  {
+   "id": "G8/R17",
+   "group": "datasheet",
+   "case": "G8",
+   "req_id": "R17",
+   "expected": "complies",
+   "category": "routine",
+   "expected_route": "decide"
+  },
+  {
+   "id": "G8/R18",
+   "group": "datasheet",
+   "case": "G8",
+   "req_id": "R18",
+   "expected": "complies",
+   "category": "routine",
+   "expected_route": "decide"
+  },
+  {
+   "id": "G8/R19",
+   "group": "datasheet",
+   "case": "G8",
+   "req_id": "R19",
+   "expected": "missing",
+   "category": "missing_info",
+   "expected_route": "ask_supplier"
+  },
+  {
+   "id": "G8/R20",
+   "group": "datasheet",
+   "case": "G8",
+   "req_id": "R20",
+   "expected": "unclear",
+   "category": "missing_info",
+   "expected_route": "ask_supplier"
+  },
+  {
+   "id": "G8/R21",
+   "group": "datasheet",
+   "case": "G8",
+   "req_id": "R21",
+   "expected": "missing",
+   "category": "missing_info",
+   "expected_route": "ask_supplier"
+  },
+  {
+   "id": "U1/U01",
+   "group": "datasheet",
+   "case": "U1",
+   "req_id": "U01",
+   "expected": "complies",
+   "category": "routine",
+   "expected_route": "decide"
+  },
+  {
+   "id": "U1/U02",
+   "group": "datasheet",
+   "case": "U1",
+   "req_id": "U02",
+   "expected": "deviates",
+   "category": "routine",
+   "expected_route": "decide"
+  },
+  {
+   "id": "U1/U03",
+   "group": "datasheet",
+   "case": "U1",
+   "req_id": "U03",
+   "expected": "unclear",
+   "category": "missing_info",
+   "expected_route": "ask_supplier"
+  },
+  {
+   "id": "U1/U04",
+   "group": "datasheet",
+   "case": "U1",
+   "req_id": "U04",
+   "expected": "complies",
+   "category": "routine",
+   "expected_route": "decide"
+  },
+  {
+   "id": "U1/U05",
+   "group": "datasheet",
+   "case": "U1",
+   "req_id": "U05",
+   "expected": "complies",
+   "category": "routine",
+   "expected_route": "decide"
+  },
+  {
+   "id": "U1/U06",
+   "group": "datasheet",
+   "case": "U1",
+   "req_id": "U06",
+   "expected": "complies",
+   "category": "routine",
+   "expected_route": "decide"
+  },
+  {
+   "id": "U1/U07",
+   "group": "datasheet",
+   "case": "U1",
+   "req_id": "U07",
+   "expected": "complies",
+   "category": "routine",
+   "expected_route": "decide"
+  },
+  {
+   "id": "U1/U08",
+   "group": "datasheet",
+   "case": "U1",
+   "req_id": "U08",
+   "expected": "complies",
+   "category": "routine",
+   "expected_route": "decide"
+  },
+  {
+   "id": "U1/U09",
+   "group": "datasheet",
+   "case": "U1",
+   "req_id": "U09",
+   "expected": "complies",
+   "category": "routine",
+   "expected_route": "decide"
+  },
+  {
+   "id": "U1/U10",
+   "group": "datasheet",
+   "case": "U1",
+   "req_id": "U10",
+   "expected": "deviates",
+   "category": "routine",
+   "expected_route": "decide"
+  },
+  {
+   "id": "U1/U11",
+   "group": "datasheet",
+   "case": "U1",
+   "req_id": "U11",
+   "expected": "unclear",
+   "category": "missing_info",
+   "expected_route": "ask_supplier"
+  },
+  {
+   "id": "U1/U12",
+   "group": "datasheet",
+   "case": "U1",
+   "req_id": "U12",
+   "expected": "complies",
+   "category": "routine",
+   "expected_route": "decide"
+  },
+  {
+   "id": "U1/U13",
+   "group": "datasheet",
+   "case": "U1",
+   "req_id": "U13",
+   "expected": "missing",
+   "category": "missing_info",
+   "expected_route": "ask_supplier"
+  },
+  {
+   "id": "U1/U14",
+   "group": "datasheet",
+   "case": "U1",
+   "req_id": "U14",
+   "expected": "unclear",
+   "category": "missing_info",
+   "expected_route": "ask_supplier"
+  },
+  {
+   "id": "U1/U15",
+   "group": "datasheet",
+   "case": "U1",
+   "req_id": "U15",
+   "expected": "unclear",
+   "category": "missing_info",
+   "expected_route": "ask_supplier"
+  },
+  {
+   "id": "U1/U16",
+   "group": "datasheet",
+   "case": "U1",
+   "req_id": "U16",
+   "expected": "complies",
+   "category": "routine",
+   "expected_route": "decide"
+  },
+  {
+   "id": "PKG/B1/R01",
+   "group": "package",
+   "bid": "B1",
+   "req_id": "R01",
+   "expected": "complies",
+   "category": "routine",
+   "expected_route": "decide"
+  },
+  {
+   "id": "PKG/B1/R02",
+   "group": "package",
+   "bid": "B1",
+   "req_id": "R02",
+   "expected": "complies",
+   "category": "conflict",
+   "expected_route": "decide"
+  },
+  {
+   "id": "PKG/B1/R10",
+   "group": "package",
+   "bid": "B1",
+   "req_id": "R10",
+   "expected": "complies",
+   "category": "routine",
+   "expected_route": "decide"
+  },
+  {
+   "id": "PKG/B1/R12",
+   "group": "package",
+   "bid": "B1",
+   "req_id": "R12",
+   "expected": "complies",
+   "category": "conflict",
+   "expected_route": "decide"
+  },
+  {
+   "id": "PKG/B1/R19",
+   "group": "package",
+   "bid": "B1",
+   "req_id": "R19",
+   "expected": "complies",
+   "category": "conflict",
+   "expected_route": "decide"
+  },
+  {
+   "id": "PKG/B1/R21",
+   "group": "package",
+   "bid": "B1",
+   "req_id": "R21",
+   "expected": "unclear",
+   "category": "missing_info",
+   "expected_route": "ask_supplier"
+  },
+  {
+   "id": "PKG/B2/R01",
+   "group": "package",
+   "bid": "B2",
+   "req_id": "R01",
+   "expected": "complies",
+   "category": "routine",
+   "expected_route": "decide"
+  },
+  {
+   "id": "PKG/B2/R02",
+   "group": "package",
+   "bid": "B2",
+   "req_id": "R02",
+   "expected": "complies",
+   "category": "routine",
+   "expected_route": "decide"
+  },
+  {
+   "id": "PKG/B2/R04",
+   "group": "package",
+   "bid": "B2",
+   "req_id": "R04",
+   "expected": "complies",
+   "category": "routine",
+   "expected_route": "decide"
+  },
+  {
+   "id": "PKG/B2/R10",
+   "group": "package",
+   "bid": "B2",
+   "req_id": "R10",
+   "expected": "complies",
+   "category": "routine",
+   "expected_route": "decide"
+  },
+  {
+   "id": "PKG/B2/R19",
+   "group": "package",
+   "bid": "B2",
+   "req_id": "R19",
+   "expected": "deviates",
+   "category": "conflict",
+   "expected_route": "decide"
+  },
+  {
+   "id": "PKG/B2/R21",
+   "group": "package",
+   "bid": "B2",
+   "req_id": "R21",
+   "expected": "unclear",
+   "category": "missing_info",
+   "expected_route": "ask_supplier"
+  },
+  {
+   "id": "PKG/B3/R01",
+   "group": "package",
+   "bid": "B3",
+   "req_id": "R01",
+   "expected": "complies",
+   "category": "routine",
+   "expected_route": "decide"
+  },
+  {
+   "id": "PKG/B3/R02",
+   "group": "package",
+   "bid": "B3",
+   "req_id": "R02",
+   "expected": "complies",
+   "category": "conflict",
+   "expected_route": "decide"
+  },
+  {
+   "id": "PKG/B3/R09",
+   "group": "package",
+   "bid": "B3",
+   "req_id": "R09",
+   "expected": "deviates",
+   "category": "escalate",
+   "expected_route": "engineer"
+  },
+  {
+   "id": "PKG/B3/R10",
+   "group": "package",
+   "bid": "B3",
+   "req_id": "R10",
+   "expected": "complies",
+   "category": "routine",
+   "expected_route": "decide"
+  },
+  {
+   "id": "PKG/B3/R19",
+   "group": "package",
+   "bid": "B3",
+   "req_id": "R19",
+   "expected": "unclear",
+   "category": "conflict",
+   "expected_route": "ask_supplier"
+  },
+  {
+   "id": "PKG/B3/R21",
+   "group": "package",
+   "bid": "B3",
+   "req_id": "R21",
+   "expected": "unclear",
+   "category": "missing_info",
+   "expected_route": "ask_supplier"
+  },
+  {
+   "id": "PKG/B4/R01",
+   "group": "package",
+   "bid": "B4",
+   "req_id": "R01",
+   "expected": "complies",
+   "category": "routine",
+   "expected_route": "decide"
+  },
+  {
+   "id": "PKG/B4/R02",
+   "group": "package",
+   "bid": "B4",
+   "req_id": "R02",
+   "expected": "unclear",
+   "category": "missing_info",
+   "expected_route": "ask_supplier"
+  },
+  {
+   "id": "PKG/B4/R19",
+   "group": "package",
+   "bid": "B4",
+   "req_id": "R19",
+   "expected": "unclear",
+   "category": "missing_info",
+   "expected_route": "ask_supplier"
+  },
+  {
+   "id": "PKG/B4/R21",
+   "group": "package",
+   "bid": "B4",
+   "req_id": "R21",
+   "expected": "unclear",
+   "category": "missing_info",
+   "expected_route": "ask_supplier"
+  },
+  {
+   "id": "LINK/B1",
+   "group": "link",
+   "bid": "B1",
+   "expected": "linked",
+   "datasheet": "cat_3516C_2000ekW_LEHE1376.pdf",
+   "category": "routine",
+   "expected_route": "decide"
+  },
+  {
+   "id": "LINK/B2",
+   "group": "link",
+   "bid": "B2",
+   "expected": "linked",
+   "datasheet": "cummins_DQKAB_submittal_CSDG.pdf",
+   "category": "routine",
+   "expected_route": "decide"
+  },
+  {
+   "id": "LINK/B3",
+   "group": "link",
+   "bid": "B3",
+   "expected": "linked",
+   "datasheet": "kohler_KD2000_G5-626.pdf",
+   "category": "conflict",
+   "expected_route": "decide"
+  },
+  {
+   "id": "LINK/B4",
+   "group": "link",
+   "bid": "B4",
+   "expected": "ambiguous",
+   "datasheet": null,
+   "category": "conflict",
+   "expected_route": "ask_supplier"
+  },
+  {
+   "id": "D-award",
+   "group": "decision",
+   "expected": "escalate",
+   "category": "escalate",
+   "expected_route": "engineer"
+  },
+  {
+   "id": "D-schedule",
+   "group": "decision",
+   "expected": "escalate",
+   "category": "escalate",
+   "expected_route": "engineer"
+  },
+  {
+   "id": "BID/B1/S1",
+   "group": "bid scope",
+   "bid": "B1",
+   "scope_id": "S1",
+   "expected": "included",
+   "category": "routine",
+   "expected_route": "decide"
+  },
+  {
+   "id": "BID/B2/S1",
+   "group": "bid scope",
+   "bid": "B2",
+   "scope_id": "S1",
+   "expected": "included",
+   "category": "routine",
+   "expected_route": "decide"
+  },
+  {
+   "id": "BID/B3/S1",
+   "group": "bid scope",
+   "bid": "B3",
+   "scope_id": "S1",
+   "expected": "included",
+   "category": "routine",
+   "expected_route": "decide"
+  },
+  {
+   "id": "BID/B4/S1",
+   "group": "bid scope",
+   "bid": "B4",
+   "scope_id": "S1",
+   "expected": "included",
+   "category": "routine",
+   "expected_route": "decide"
+  },
+  {
+   "id": "BID/B1/S2",
+   "group": "bid scope",
+   "bid": "B1",
+   "scope_id": "S2",
+   "expected": "included",
+   "category": "routine",
+   "expected_route": "decide"
+  },
+  {
+   "id": "BID/B2/S2",
+   "group": "bid scope",
+   "bid": "B2",
+   "scope_id": "S2",
+   "expected": "qualified",
+   "category": "conflict",
+   "expected_route": "ask_supplier"
+  },
+  {
+   "id": "BID/B3/S2",
+   "group": "bid scope",
+   "bid": "B3",
+   "scope_id": "S2",
+   "expected": "included",
+   "category": "routine",
+   "expected_route": "decide"
+  },
+  {
+   "id": "BID/B4/S2",
+   "group": "bid scope",
+   "bid": "B4",
+   "scope_id": "S2",
+   "expected": "included",
+   "category": "routine",
+   "expected_route": "decide"
+  },
+  {
+   "id": "BID/B1/S3",
+   "group": "bid scope",
+   "bid": "B1",
+   "scope_id": "S3",
+   "expected": "included",
+   "category": "routine",
+   "expected_route": "decide"
+  },
+  {
+   "id": "BID/B2/S3",
+   "group": "bid scope",
+   "bid": "B2",
+   "scope_id": "S3",
+   "expected": "qualified",
+   "category": "conflict",
+   "expected_route": "ask_supplier"
+  },
+  {
+   "id": "BID/B3/S3",
+   "group": "bid scope",
+   "bid": "B3",
+   "scope_id": "S3",
+   "expected": "alternate",
+   "category": "routine",
+   "expected_route": "decide"
+  },
+  {
+   "id": "BID/B4/S3",
+   "group": "bid scope",
+   "bid": "B4",
+   "scope_id": "S3",
+   "expected": "included",
+   "category": "routine",
+   "expected_route": "decide"
+  },
+  {
+   "id": "BID/B1/S4",
+   "group": "bid scope",
+   "bid": "B1",
+   "scope_id": "S4",
+   "expected": "included",
+   "category": "routine",
+   "expected_route": "decide"
+  },
+  {
+   "id": "BID/B2/S4",
+   "group": "bid scope",
+   "bid": "B2",
+   "scope_id": "S4",
+   "expected": "included",
+   "category": "routine",
+   "expected_route": "decide"
+  },
+  {
+   "id": "BID/B3/S4",
+   "group": "bid scope",
+   "bid": "B3",
+   "scope_id": "S4",
+   "expected": "excluded",
+   "category": "routine",
+   "expected_route": "decide"
+  },
+  {
+   "id": "BID/B4/S4",
+   "group": "bid scope",
+   "bid": "B4",
+   "scope_id": "S4",
+   "expected": "silent",
+   "category": "missing_info",
+   "expected_route": "ask_supplier"
+  },
+  {
+   "id": "BID/B1/S5",
+   "group": "bid scope",
+   "bid": "B1",
+   "scope_id": "S5",
+   "expected": "included",
+   "category": "routine",
+   "expected_route": "decide"
+  },
+  {
+   "id": "BID/B2/S5",
+   "group": "bid scope",
+   "bid": "B2",
+   "scope_id": "S5",
+   "expected": "included",
+   "category": "routine",
+   "expected_route": "decide"
+  },
+  {
+   "id": "BID/B3/S5",
+   "group": "bid scope",
+   "bid": "B3",
+   "scope_id": "S5",
+   "expected": "excluded",
+   "category": "routine",
+   "expected_route": "decide"
+  },
+  {
+   "id": "BID/B4/S5",
+   "group": "bid scope",
+   "bid": "B4",
+   "scope_id": "S5",
+   "expected": "silent",
+   "category": "missing_info",
+   "expected_route": "ask_supplier"
+  },
+  {
+   "id": "BID/B1/S6",
+   "group": "bid scope",
+   "bid": "B1",
+   "scope_id": "S6",
+   "expected": "included",
+   "category": "routine",
+   "expected_route": "decide"
+  },
+  {
+   "id": "BID/B2/S6",
+   "group": "bid scope",
+   "bid": "B2",
+   "scope_id": "S6",
+   "expected": "excluded",
+   "category": "routine",
+   "expected_route": "decide"
+  },
+  {
+   "id": "BID/B3/S6",
+   "group": "bid scope",
+   "bid": "B3",
+   "scope_id": "S6",
+   "expected": "included",
+   "category": "routine",
+   "expected_route": "decide"
+  },
+  {
+   "id": "BID/B4/S6",
+   "group": "bid scope",
+   "bid": "B4",
+   "scope_id": "S6",
+   "expected": "included",
+   "category": "routine",
+   "expected_route": "decide"
+  },
+  {
+   "id": "BID/B1/S7",
+   "group": "bid scope",
+   "bid": "B1",
+   "scope_id": "S7",
+   "expected": "excluded",
+   "category": "routine",
+   "expected_route": "decide"
+  },
+  {
+   "id": "BID/B2/S7",
+   "group": "bid scope",
+   "bid": "B2",
+   "scope_id": "S7",
+   "expected": "excluded",
+   "category": "routine",
+   "expected_route": "decide"
+  },
+  {
+   "id": "BID/B3/S7",
+   "group": "bid scope",
+   "bid": "B3",
+   "scope_id": "S7",
+   "expected": "excluded",
+   "category": "routine",
+   "expected_route": "decide"
+  },
+  {
+   "id": "BID/B4/S7",
+   "group": "bid scope",
+   "bid": "B4",
+   "scope_id": "S7",
+   "expected": "silent",
+   "category": "missing_info",
+   "expected_route": "ask_supplier"
+  },
+  {
+   "id": "BID/B1/S8",
+   "group": "bid scope",
+   "bid": "B1",
+   "scope_id": "S8",
+   "expected": "included",
+   "category": "routine",
+   "expected_route": "decide"
+  },
+  {
+   "id": "BID/B2/S8",
+   "group": "bid scope",
+   "bid": "B2",
+   "scope_id": "S8",
+   "expected": "included",
+   "category": "routine",
+   "expected_route": "decide"
+  },
+  {
+   "id": "BID/B3/S8",
+   "group": "bid scope",
+   "bid": "B3",
+   "scope_id": "S8",
+   "expected": "included",
+   "category": "routine",
+   "expected_route": "decide"
+  },
+  {
+   "id": "BID/B4/S8",
+   "group": "bid scope",
+   "bid": "B4",
+   "scope_id": "S8",
+   "expected": "included",
+   "category": "routine",
+   "expected_route": "decide"
+  },
+  {
+   "id": "BID/B1/S9",
+   "group": "bid scope",
+   "bid": "B1",
+   "scope_id": "S9",
+   "expected": "excluded",
+   "category": "routine",
+   "expected_route": "decide"
+  },
+  {
+   "id": "BID/B2/S9",
+   "group": "bid scope",
+   "bid": "B2",
+   "scope_id": "S9",
+   "expected": "included",
+   "category": "routine",
+   "expected_route": "decide"
+  },
+  {
+   "id": "BID/B3/S9",
+   "group": "bid scope",
+   "bid": "B3",
+   "scope_id": "S9",
+   "expected": "included",
+   "category": "routine",
+   "expected_route": "decide"
+  },
+  {
+   "id": "BID/B4/S9",
+   "group": "bid scope",
+   "bid": "B4",
+   "scope_id": "S9",
+   "expected": "silent",
+   "category": "missing_info",
+   "expected_route": "ask_supplier"
+  },
+  {
+   "id": "BID/B1/S10",
+   "group": "bid scope",
+   "bid": "B1",
+   "scope_id": "S10",
+   "expected": "included",
+   "category": "routine",
+   "expected_route": "decide"
+  },
+  {
+   "id": "BID/B2/S10",
+   "group": "bid scope",
+   "bid": "B2",
+   "scope_id": "S10",
+   "expected": "included",
+   "category": "routine",
+   "expected_route": "decide"
+  },
+  {
+   "id": "BID/B3/S10",
+   "group": "bid scope",
+   "bid": "B3",
+   "scope_id": "S10",
+   "expected": "qualified",
+   "category": "conflict",
+   "expected_route": "ask_supplier"
+  },
+  {
+   "id": "BID/B4/S10",
+   "group": "bid scope",
+   "bid": "B4",
+   "scope_id": "S10",
+   "expected": "silent",
+   "category": "missing_info",
+   "expected_route": "ask_supplier"
+  },
+  {
+   "id": "BID/B1/S11",
+   "group": "bid scope",
+   "bid": "B1",
+   "scope_id": "S11",
+   "expected": "alternate",
+   "category": "routine",
+   "expected_route": "decide"
+  },
+  {
+   "id": "BID/B2/S11",
+   "group": "bid scope",
+   "bid": "B2",
+   "scope_id": "S11",
+   "expected": "included",
+   "category": "routine",
+   "expected_route": "decide"
+  },
+  {
+   "id": "BID/B3/S11",
+   "group": "bid scope",
+   "bid": "B3",
+   "scope_id": "S11",
+   "expected": "qualified",
+   "category": "conflict",
+   "expected_route": "ask_supplier"
+  },
+  {
+   "id": "BID/B4/S11",
+   "group": "bid scope",
+   "bid": "B4",
+   "scope_id": "S11",
+   "expected": "silent",
+   "category": "missing_info",
+   "expected_route": "ask_supplier"
+  },
+  {
+   "id": "PQ/V-NPS/P1",
+   "group": "prequal",
+   "vendor": "V-NPS",
+   "criterion": "P1",
+   "expected": "meets",
+   "category": "routine",
+   "expected_route": "decide"
+  },
+  {
+   "id": "PQ/V-NPS/P2",
+   "group": "prequal",
+   "vendor": "V-NPS",
+   "criterion": "P2",
+   "expected": "meets",
+   "category": "routine",
+   "expected_route": "decide"
+  },
+  {
+   "id": "PQ/V-NPS/Q1",
+   "group": "prequal",
+   "vendor": "V-NPS",
+   "criterion": "Q1",
+   "expected": "meets",
+   "category": "routine",
+   "expected_route": "decide"
+  },
+  {
+   "id": "PQ/V-NPS/Q2",
+   "group": "prequal",
+   "vendor": "V-NPS",
+   "criterion": "Q2",
+   "expected": "meets",
+   "category": "routine",
+   "expected_route": "decide"
+  },
+  {
+   "id": "PQ/V-NPS/Q3",
+   "group": "prequal",
+   "vendor": "V-NPS",
+   "criterion": "Q3",
+   "expected": "meets",
+   "category": "routine",
+   "expected_route": "decide"
+  },
+  {
+   "id": "PQ/V-NPS/Q4",
+   "group": "prequal",
+   "vendor": "V-NPS",
+   "criterion": "Q4",
+   "expected": "meets",
+   "category": "routine",
+   "expected_route": "decide"
+  },
+  {
+   "id": "PQ/V-NPS/Q5",
+   "group": "prequal",
+   "vendor": "V-NPS",
+   "criterion": "Q5",
+   "expected": "meets",
+   "category": "routine",
+   "expected_route": "decide"
+  },
+  {
+   "id": "PQ/V-NPS/Q6",
+   "group": "prequal",
+   "vendor": "V-NPS",
+   "criterion": "Q6",
+   "expected": "meets",
+   "category": "routine",
+   "expected_route": "decide"
+  },
+  {
+   "id": "PQ/V-NPS/Q7",
+   "group": "prequal",
+   "vendor": "V-NPS",
+   "criterion": "Q7",
+   "expected": "needs_verification",
+   "category": "escalate",
+   "expected_route": "engineer"
+  },
+  {
+   "id": "PQ/V-TGC/P1",
+   "group": "prequal",
+   "vendor": "V-TGC",
+   "criterion": "P1",
+   "expected": "meets",
+   "category": "routine",
+   "expected_route": "decide"
+  },
+  {
+   "id": "PQ/V-TGC/P2",
+   "group": "prequal",
+   "vendor": "V-TGC",
+   "criterion": "P2",
+   "expected": "meets",
+   "category": "routine",
+   "expected_route": "decide"
+  },
+  {
+   "id": "PQ/V-TGC/Q1",
+   "group": "prequal",
+   "vendor": "V-TGC",
+   "criterion": "Q1",
+   "expected": "meets",
+   "category": "routine",
+   "expected_route": "decide"
+  },
+  {
+   "id": "PQ/V-TGC/Q2",
+   "group": "prequal",
+   "vendor": "V-TGC",
+   "criterion": "Q2",
+   "expected": "needs_verification",
+   "category": "missing_info",
+   "expected_route": "ask_supplier"
+  },
+  {
+   "id": "PQ/V-TGC/Q3",
+   "group": "prequal",
+   "vendor": "V-TGC",
+   "criterion": "Q3",
+   "expected": "meets",
+   "category": "routine",
+   "expected_route": "decide"
+  },
+  {
+   "id": "PQ/V-TGC/Q4",
+   "group": "prequal",
+   "vendor": "V-TGC",
+   "criterion": "Q4",
+   "expected": "needs_verification",
+   "category": "missing_info",
+   "expected_route": "ask_supplier"
+  },
+  {
+   "id": "PQ/V-TGC/Q5",
+   "group": "prequal",
+   "vendor": "V-TGC",
+   "criterion": "Q5",
+   "expected": "needs_verification",
+   "category": "conflict",
+   "expected_route": "ask_supplier"
+  },
+  {
+   "id": "PQ/V-TGC/Q6",
+   "group": "prequal",
+   "vendor": "V-TGC",
+   "criterion": "Q6",
+   "expected": "meets",
+   "category": "routine",
+   "expected_route": "decide"
+  },
+  {
+   "id": "PQ/V-TGC/Q7",
+   "group": "prequal",
+   "vendor": "V-TGC",
+   "criterion": "Q7",
+   "expected": "needs_verification",
+   "category": "escalate",
+   "expected_route": "engineer"
+  },
+  {
+   "id": "PQ/V-KEE/P1",
+   "group": "prequal",
+   "vendor": "V-KEE",
+   "criterion": "P1",
+   "expected": "meets",
+   "category": "routine",
+   "expected_route": "decide"
+  },
+  {
+   "id": "PQ/V-KEE/P2",
+   "group": "prequal",
+   "vendor": "V-KEE",
+   "criterion": "P2",
+   "expected": "meets",
+   "category": "routine",
+   "expected_route": "decide"
+  },
+  {
+   "id": "PQ/V-KEE/Q1",
+   "group": "prequal",
+   "vendor": "V-KEE",
+   "criterion": "Q1",
+   "expected": "meets",
+   "category": "routine",
+   "expected_route": "decide"
+  },
+  {
+   "id": "PQ/V-KEE/Q2",
+   "group": "prequal",
+   "vendor": "V-KEE",
+   "criterion": "Q2",
+   "expected": "meets",
+   "category": "routine",
+   "expected_route": "decide"
+  },
+  {
+   "id": "PQ/V-KEE/Q3",
+   "group": "prequal",
+   "vendor": "V-KEE",
+   "criterion": "Q3",
+   "expected": "fails",
+   "category": "routine",
+   "expected_route": "decide"
+  },
+  {
+   "id": "PQ/V-KEE/Q4",
+   "group": "prequal",
+   "vendor": "V-KEE",
+   "criterion": "Q4",
+   "expected": "meets",
+   "category": "routine",
+   "expected_route": "decide"
+  },
+  {
+   "id": "PQ/V-KEE/Q5",
+   "group": "prequal",
+   "vendor": "V-KEE",
+   "criterion": "Q5",
+   "expected": "meets",
+   "category": "routine",
+   "expected_route": "decide"
+  },
+  {
+   "id": "PQ/V-KEE/Q6",
+   "group": "prequal",
+   "vendor": "V-KEE",
+   "criterion": "Q6",
+   "expected": "meets",
+   "category": "routine",
+   "expected_route": "decide"
+  },
+  {
+   "id": "PQ/V-KEE/Q7",
+   "group": "prequal",
+   "vendor": "V-KEE",
+   "criterion": "Q7",
+   "expected": "needs_verification",
+   "category": "escalate",
+   "expected_route": "engineer"
+  },
+  {
+   "id": "PQ/V-RWP/P1",
+   "group": "prequal",
+   "vendor": "V-RWP",
+   "criterion": "P1",
+   "expected": "meets",
+   "category": "routine",
+   "expected_route": "decide"
+  },
+  {
+   "id": "PQ/V-RWP/P2",
+   "group": "prequal",
+   "vendor": "V-RWP",
+   "criterion": "P2",
+   "expected": "needs_verification",
+   "category": "missing_info",
+   "expected_route": "ask_supplier"
+  },
+  {
+   "id": "PQ/V-RWP/Q1",
+   "group": "prequal",
+   "vendor": "V-RWP",
+   "criterion": "Q1",
+   "expected": "needs_verification",
+   "category": "missing_info",
+   "expected_route": "ask_supplier"
+  },
+  {
+   "id": "PQ/V-RWP/Q2",
+   "group": "prequal",
+   "vendor": "V-RWP",
+   "criterion": "Q2",
+   "expected": "needs_verification",
+   "category": "missing_info",
+   "expected_route": "ask_supplier"
+  },
+  {
+   "id": "PQ/V-RWP/Q3",
+   "group": "prequal",
+   "vendor": "V-RWP",
+   "criterion": "Q3",
+   "expected": "needs_verification",
+   "category": "missing_info",
+   "expected_route": "ask_supplier"
+  },
+  {
+   "id": "PQ/V-RWP/Q4",
+   "group": "prequal",
+   "vendor": "V-RWP",
+   "criterion": "Q4",
+   "expected": "needs_verification",
+   "category": "missing_info",
+   "expected_route": "ask_supplier"
+  },
+  {
+   "id": "PQ/V-RWP/Q5",
+   "group": "prequal",
+   "vendor": "V-RWP",
+   "criterion": "Q5",
+   "expected": "needs_verification",
+   "category": "missing_info",
+   "expected_route": "ask_supplier"
+  },
+  {
+   "id": "PQ/V-RWP/Q6",
+   "group": "prequal",
+   "vendor": "V-RWP",
+   "criterion": "Q6",
+   "expected": "needs_verification",
+   "category": "missing_info",
+   "expected_route": "ask_supplier"
+  },
+  {
+   "id": "PQ/V-RWP/Q7",
+   "group": "prequal",
+   "vendor": "V-RWP",
+   "criterion": "Q7",
+   "expected": "needs_verification",
+   "category": "escalate",
+   "expected_route": "engineer"
+  }
+ ]
+}
