@@ -1,0 +1,182 @@
+{
+ "case_id": "G11",
+ "split": "heldout",
+ "heldout_set": 5,
+ "tool": "check_submittal",
+ "spec": "data/specs/project_alpha/26_32_13_engine_generators_ALPHA.pdf",
+ "tag": "GEN-A",
+ "submittal": "data/submittals/kohler_2000REOZMD_spec_sheet.pdf",
+ "labeller": "Claude (AI), from the source PDF. Held-out set 5: labelled 26 Nov 2026 after the decision code was frozen at commit 3eac4a0 and BEFORE any model read this document.",
+ "labelled_on": "2026-11-26",
+ "reviewed_by": "",
+ "labels": [
+  {
+   "req_id": "R01",
+   "expected": "complies",
+   "expected_route": "decide",
+   "submittal_page": 1,
+   "submittal_quote": "2000/2500",
+   "notes": "Standby 2000 kW / 2500 kVA at 277/480 V (p1 ratings table)."
+  },
+  {
+   "req_id": "R02",
+   "expected": "unclear",
+   "expected_route": "ask_supplier",
+   "submittal_page": 1,
+   "submittal_quote": "277/480",
+   "notes": "277/480 V 3-phase 60 Hz listed; 4-wire is not stated and other voltages are offered."
+  },
+  {
+   "req_id": "R03",
+   "expected": "unclear",
+   "expected_route": "ask_supplier",
+   "submittal_page": 1,
+   "submittal_quote": "7000",
+   "notes": "Peak kVA 7000 with no voltage-dip basis."
+  },
+  {
+   "req_id": "R04",
+   "expected": "complies",
+   "expected_route": "decide",
+   "submittal_page": 1,
+   "submittal_quote": "permanent magnet",
+   "notes": "Pilot-excited permanent magnet alternator."
+  },
+  {
+   "req_id": "R05",
+   "expected": "complies",
+   "expected_route": "decide",
+   "submittal_page": 2,
+   "submittal_quote": "16 V",
+   "notes": "16 V cylinders, 4-cycle, turbocharged."
+  },
+  {
+   "req_id": "R06",
+   "expected": "complies",
+   "expected_route": "decide",
+   "submittal_page": 1,
+   "submittal_quote": "isochronous",
+   "notes": "Electronic isochronous governor."
+  },
+  {
+   "req_id": "R07",
+   "expected": "complies",
+   "expected_route": "decide",
+   "submittal_page": 3,
+   "submittal_quote": "24",
+   "notes": "24 V DC starter motor."
+  },
+  {
+   "req_id": "R08",
+   "expected": "deviates",
+   "expected_route": "decide",
+   "submittal_page": 5,
+   "submittal_quote": "160.1 gph",
+   "notes": "Standby consumption at 100 % load 160.1 gph > 145 (the prime figure 141.6 is not the standby figure)."
+  },
+  {
+   "req_id": "R09",
+   "expected": "unclear",
+   "expected_route": "ask_supplier",
+   "submittal_page": 4,
+   "submittal_quote": "High Ambient Radiator System",
+   "notes": "Two radiator systems, 40 C and 50 C, neither marked as supplied."
+  },
+  {
+   "req_id": "R10",
+   "expected": "complies",
+   "expected_route": "decide",
+   "submittal_page": 1,
+   "submittal_quote": "Tier 2 EPA",
+   "notes": "Tier 2 EPA certified, stationary emergency."
+  },
+  {
+   "req_id": "R11",
+   "expected": "unclear",
+   "expected_route": "ask_supplier",
+   "submittal_page": 1,
+   "submittal_quote": "site condition derates",
+   "notes": "Site derates are referred to TIB-101; full rating at 122 F is not established."
+  },
+  {
+   "req_id": "R12",
+   "expected": "complies",
+   "expected_route": "decide",
+   "submittal_page": 2,
+   "submittal_quote": "1800",
+   "notes": "Rated 1800 rpm."
+  },
+  {
+   "req_id": "R13",
+   "expected": "complies",
+   "expected_route": "decide",
+   "submittal_page": 2,
+   "submittal_quote": "two-thirds pitch",
+   "notes": "4-pole, brushless, two-thirds pitch."
+  },
+  {
+   "req_id": "R14",
+   "expected": "complies",
+   "expected_route": "decide",
+   "submittal_page": 2,
+   "submittal_quote": "Class H",
+   "notes": "Class H insulation."
+  },
+  {
+   "req_id": "R15",
+   "expected": "unclear",
+   "expected_route": "ask_supplier",
+   "submittal_page": 1,
+   "submittal_quote": "Alternator Strip Heater",
+   "notes": "Strip heater standard only on 3300 V and above; at 480 V nothing is stated as supplied."
+  },
+  {
+   "req_id": "R16",
+   "expected": "unclear",
+   "expected_route": "ask_supplier",
+   "submittal_page": 1,
+   "submittal_quote": "circuit breaker configurations",
+   "notes": "Breaker configurations offered; poles and trip type not stated."
+  },
+  {
+   "req_id": "R17",
+   "expected": "complies",
+   "expected_route": "decide",
+   "submittal_page": 2,
+   "submittal_quote": "no-load to full-load regulation",
+   "notes": "Digital regulator, +/-0.25 % no load to full load."
+  },
+  {
+   "req_id": "R18",
+   "expected": "missing",
+   "expected_route": "ask_supplier",
+   "submittal_page": null,
+   "submittal_quote": "",
+   "notes": "No harmonic distortion figure anywhere."
+  },
+  {
+   "req_id": "R19",
+   "expected": "missing",
+   "expected_route": "ask_supplier",
+   "submittal_page": null,
+   "submittal_quote": "",
+   "notes": "No fuel tank mentioned."
+  },
+  {
+   "req_id": "R20",
+   "expected": "missing",
+   "expected_route": "ask_supplier",
+   "submittal_page": null,
+   "submittal_quote": "",
+   "notes": "No jacket-water heater mentioned."
+  },
+  {
+   "req_id": "R21",
+   "expected": "missing",
+   "expected_route": "ask_supplier",
+   "submittal_page": null,
+   "submittal_quote": "",
+   "notes": "No enclosure mentioned."
+  }
+ ]
+}
