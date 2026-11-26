@@ -1,0 +1,161 @@
+{
+ "case_id": "G9",
+ "split": "heldout",
+ "heldout_set": 4,
+ "tool": "check_submittal",
+ "spec": "data/specs/project_alpha/26_32_13_engine_generators_ALPHA.pdf",
+ "tag": "GEN-A",
+ "submittal": "data/submittals/generac_MD2000_spec_sheet.pdf",
+ "labeller": "Claude (AI), from the source PDF, per eval/answer_keys/README.md. Held-out set 4: labelled 26 Nov 2026 BEFORE any agent or second-reader run on this document, to test the new routing (amber/triage.py) on a datasheet nobody had seen.",
+ "labelled_on": "2026-11-26",
+ "reviewed_by": "",
+ "labels": [
+  {
+   "req_id": "R01",
+   "expected": "complies",
+   "submittal_page": 5,
+   "submittal_quote": "Three-Phase 277/480 VAC @0.8pf",
+   "notes": "Standby 2,000 kW / 2,500 kVA at 0.8 pf (p5; also p1)."
+  },
+  {
+   "req_id": "R02",
+   "expected": "unclear",
+   "submittal_page": 5,
+   "submittal_quote": "Three-Phase 346/600 VAC @0.8pf",
+   "notes": "Two standby ratings are listed, 277/480 V and 346/600 V, neither marked as supplied; 60 Hz stated (p1); 4-wire not stated."
+  },
+  {
+   "req_id": "R03",
+   "expected": "complies",
+   "submittal_page": 5,
+   "submittal_quote": "7,709",
+   "notes": "7,709 skVA at 30% dip, 277/480 V, standard alternator K2112064N22 (p4 names it the standard model) >= 3000 kVA."
+  },
+  {
+   "req_id": "R04",
+   "expected": "complies",
+   "submittal_page": 4,
+   "submittal_quote": "Permanent Magnet",
+   "notes": "Standard excitation: permanent magnet (p4; p2 standard features)."
+  },
+  {
+   "req_id": "R05",
+   "expected": "complies",
+   "submittal_page": 4,
+   "submittal_quote": "4 Cycle - V16",
+   "notes": "16 cylinders, 4 cycle, turbocharged/intercooled (p4)."
+  },
+  {
+   "req_id": "R06",
+   "expected": "complies",
+   "submittal_page": 4,
+   "submittal_quote": "Electronic",
+   "notes": "Electronic governor (p4); isochronous governor control (p2)."
+  },
+  {
+   "req_id": "R07",
+   "expected": "complies",
+   "submittal_page": 4,
+   "submittal_quote": "24 VDC",
+   "notes": "24 VDC system, solenoid-activated starter motor (p2): the 24 V starter, as the other keys judge R07."
+  },
+  {
+   "req_id": "R08",
+   "expected": "deviates",
+   "submittal_page": 5,
+   "submittal_quote": "163.4 (618.5)",
+   "notes": "163.4 gph at 100% standby load > 145 gph. The 330 gph figure is total fuel pump flow, not consumption."
+  },
+  {
+   "req_id": "R09",
+   "expected": "unclear",
+   "submittal_page": 3,
+   "submittal_quote": "50 °C Ambient Cooling System",
+   "notes": "Unit-mounted radiator (p4) and 122 F / 50 C max operating ambient (p5), but the 50 C cooling system is a configurable option (p3) and p5 gives data for both 40 C and 50 C packages: which is supplied is not stated."
+  },
+  {
+   "req_id": "R10",
+   "expected": "complies",
+   "submittal_page": 4,
+   "submittal_quote": "Tier 2",
+   "notes": "EPA Tier 2 (p4); EPA Certified Stationary Emergency (every page)."
+  },
+  {
+   "req_id": "R11",
+   "expected": "unclear",
+   "submittal_page": 5,
+   "submittal_quote": "See Bulletin No. 0199280SSD",
+   "notes": "Ambient before derate is referred to a bulletin; derate factors 'may apply' (p5): full rating at 122 F is not established."
+  },
+  {
+   "req_id": "R12",
+   "expected": "complies",
+   "submittal_page": 5,
+   "submittal_quote": "1,800",
+   "notes": "Rated engine speed 1,800 rpm (p5)."
+  },
+  {
+   "req_id": "R13",
+   "expected": "unclear",
+   "submittal_page": 2,
+   "submittal_quote": "2/3 Pitch",
+   "notes": "4 poles (p4) and 2/3 pitch (p2) stated; brushless is not."
+  },
+  {
+   "req_id": "R14",
+   "expected": "complies",
+   "submittal_page": 4,
+   "submittal_quote": "Insulation Class - Stator",
+   "notes": "Class H rotor and stator (p4)."
+  },
+  {
+   "req_id": "R15",
+   "expected": "unclear",
+   "submittal_page": 3,
+   "submittal_quote": "Anti-Condensation Heater",
+   "notes": "Anti-condensation heater is a configurable option, not marked, no voltage or phase."
+  },
+  {
+   "req_id": "R16",
+   "expected": "unclear",
+   "submittal_page": 2,
+   "submittal_quote": "Main Line Circuit Breaker",
+   "notes": "A main line breaker is standard (p2); poles and trip type not stated; electronic trip is an option (p3)."
+  },
+  {
+   "req_id": "R17",
+   "expected": "complies",
+   "submittal_page": 4,
+   "submittal_quote": "Regulation Accuracy (Steady State)",
+   "notes": "Voltage regulation accuracy +/-0.5% (p4) <= 2%."
+  },
+  {
+   "req_id": "R18",
+   "expected": "complies",
+   "submittal_page": 4,
+   "submittal_quote": "Total Harmonic Distortion",
+   "notes": "THD < 5% (p4)."
+  },
+  {
+   "req_id": "R19",
+   "expected": "unclear",
+   "submittal_page": 2,
+   "submittal_quote": "UL 142/ULC S601",
+   "notes": "Tanks only 'if selected': the standard tank is UL 142 (p2), a UL2085 tank is an engineered option (p3), 24 h tanks are listed (p6); none is marked as supplied."
+  },
+  {
+   "req_id": "R20",
+   "expected": "missing",
+   "submittal_page": 3,
+   "submittal_quote": "Coolant Heater Ball Valves",
+   "notes": "No jacket-water (coolant) heater rating anywhere; only 'coolant heater ball valves' as an option."
+  },
+  {
+   "req_id": "R21",
+   "expected": "unclear",
+   "submittal_page": 3,
+   "submittal_quote": "Weather Protected Enclosure",
+   "notes": "Enclosures and critical silencers are configurable options, not marked; rodent-proofing and silencer location not stated."
+  }
+ ]
+}

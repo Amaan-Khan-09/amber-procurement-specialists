@@ -42,6 +42,8 @@ FILES = [
      "https://emc.cat.com/n/api/pubdirect?media_string_id=LEHE1376-"),
     ("data/submittals/cummins_C2000D6E_spec_sheet.pdf", "4e9bd4e02761997f",
      "https://csdieselgenerators.com/Images/Generators/4579/New-Cummins-C2000D6E-spec-sheet.pdf"),
+    ("data/submittals/generac_MD2000_spec_sheet.pdf", "20a12d5014313667",
+     "https://generac.com/globalassets/products/business/stationary-generators/diesel-industrial-generators/spec-sheets/md2000-spec-sheet.pdf"),
     ("data/submittals/vertiv_EXL_S1_300-1200kW.pdf", "cc897db544e07399",
      "https://www.vertiv.com/4a5725/globalassets/products/critical-power/uninterruptible-power-supplies-ups/liebert-exl-s1-/liebert-exl-s1_300-to-1200-kw.pdf"),
     ("data/submittals/vertiv_EXL_S1_site_planning_1000-1200kVA_SL-26092.pdf", "0cd7a33dabfe3984",
