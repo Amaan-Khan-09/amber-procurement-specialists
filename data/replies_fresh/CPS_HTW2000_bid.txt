@@ -1,0 +1,13 @@
+From: Chesapeake Power Supply (fictional company)
+To: Project Alpha GC, Procurement
+Date: 2026-11-30
+Subject: Proposal CPS-001 - standby generators, HIPOWER HTW 2000 T6
+
+We offer four HIPOWER HTW 2000 T6 diesel generator sets for GEN-A to GEN-D.
+
+Each set includes:
+1. A 24 hour UL 2085 sub-base fuel tank at full standby load.
+2. Alternator space heater, 120 V single phase.
+3. Fuel consumption at full standby load: 142.0 gph.
+
+-- FICTIONAL DOCUMENT for software testing (Project Alpha). Not a real company or offer.

@@ -1,0 +1,29 @@
+{
+ "case_id": "XDOC-6",
+ "labeller": "Claude (AI), the mock bid's author; written before the bid or the datasheet was read by any model",
+ "datasheet_case": "G12",
+ "bid": "data/replies_fresh/CPS_HTW2000_bid.txt",
+ "requirements": [
+  {
+   "req_id": "R19",
+   "expected": "complies",
+   "expected_route": "decide",
+   "kind": "resolves",
+   "notes": "The datasheet supplies no tank; the bid commits to a 24 h UL 2085 tank."
+  },
+  {
+   "req_id": "R15",
+   "expected": "complies",
+   "expected_route": "decide",
+   "kind": "resolves",
+   "notes": "An unticked option on the datasheet; the bid commits to a 120 V single-phase heater."
+  },
+  {
+   "req_id": "R08",
+   "expected": "unclear",
+   "expected_route": "ask_supplier",
+   "kind": "conflict",
+   "notes": "Datasheet 159.4 gph (fails), bid 142.0 gph (passes): the supplier must say which is right."
+  }
+ ]
+}

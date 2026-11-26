@@ -1,0 +1,182 @@
+{
+ "case_id": "G13",
+ "split": "heldout",
+ "heldout_set": 6,
+ "tool": "check_submittal",
+ "spec": "data/specs/project_alpha/26_32_13_engine_generators_ALPHA.pdf",
+ "tag": "GEN-M",
+ "submittal": "data/submittals/spmi_1MW_ULS_data_sheet.pdf",
+ "labeller": "Claude (AI), from the source PDF. Held-out set 6: labelled 27 Nov 2026 after the candidate was frozen at commit 4226fc1 and BEFORE any model read this document.",
+ "labelled_on": "2026-11-27",
+ "reviewed_by": "",
+ "labels": [
+  {
+   "req_id": "R01",
+   "expected": "complies",
+   "expected_route": "decide",
+   "submittal_page": 1,
+   "submittal_quote": "1000/1250",
+   "notes": "1000 kW / 1250 kVA standby."
+  },
+  {
+   "req_id": "R02",
+   "expected": "unclear",
+   "expected_route": "ask_supplier",
+   "submittal_page": 1,
+   "submittal_quote": "HIGH WYE",
+   "notes": "Several voltages listed (208 to 600 V), none marked as supplied."
+  },
+  {
+   "req_id": "R03",
+   "expected": "complies",
+   "expected_route": "decide",
+   "submittal_page": 2,
+   "submittal_quote": "(480V-600V) 3100 kVA",
+   "notes": "3100 kVA at 30 % dip >= 1500."
+  },
+  {
+   "req_id": "R04",
+   "expected": "complies",
+   "expected_route": "decide",
+   "submittal_page": 2,
+   "submittal_quote": "PMG excited",
+   "notes": "Brushless, PMG excited."
+  },
+  {
+   "req_id": "R05",
+   "expected": "complies",
+   "expected_route": "decide",
+   "submittal_page": 2,
+   "submittal_quote": "12 Cylinders",
+   "notes": "V-12, 4 cycle, turbo after-cooled."
+  },
+  {
+   "req_id": "R06",
+   "expected": "unclear",
+   "expected_route": "engineer",
+   "submittal_page": 2,
+   "submittal_quote": "Electronic, Bosch",
+   "notes": "Electronic governor; isochronous not stated, and two regulation figures (1/4 % and 1/2 %)."
+  },
+  {
+   "req_id": "R07",
+   "expected": "complies",
+   "expected_route": "decide",
+   "submittal_page": 2,
+   "submittal_quote": "24 VDC, negative ground",
+   "notes": "24 VDC starter."
+  },
+  {
+   "req_id": "R08",
+   "expected": "deviates",
+   "expected_route": "decide",
+   "submittal_page": 2,
+   "submittal_quote": "75.1 (284)",
+   "notes": "Standby 100 % load 75.1 gal/h > 75."
+  },
+  {
+   "req_id": "R09",
+   "expected": "complies",
+   "expected_route": "engineer",
+   "submittal_page": 3,
+   "submittal_quote": "Ambient Capacity of Radiator",
+   "notes": "Radiator rated 122 F (50 C); that it is unit mounted is inferred."
+  },
+  {
+   "req_id": "R10",
+   "expected": "unclear",
+   "expected_route": "ask_supplier",
+   "submittal_page": 1,
+   "submittal_quote": "EPA 40CFR",
+   "notes": "EPA regulation parts cited; no Tier level."
+  },
+  {
+   "req_id": "R11",
+   "expected": "deviates",
+   "expected_route": "engineer",
+   "submittal_page": 3,
+   "submittal_quote": "above 104",
+   "notes": "Generator derates 2 % per 10 F above 104 F, so full rating is not kept at 122 F (derating)."
+  },
+  {
+   "req_id": "R12",
+   "expected": "complies",
+   "expected_route": "decide",
+   "submittal_page": 2,
+   "submittal_quote": "1800 rpm",
+   "notes": "1800 rpm."
+  },
+  {
+   "req_id": "R13",
+   "expected": "unclear",
+   "expected_route": "ask_supplier",
+   "submittal_page": 2,
+   "submittal_quote": "4 Pole",
+   "notes": "4 pole and brushless stated; 2/3 pitch not."
+  },
+  {
+   "req_id": "R14",
+   "expected": "complies",
+   "expected_route": "decide",
+   "submittal_page": 1,
+   "submittal_quote": "class H",
+   "notes": "Class H."
+  },
+  {
+   "req_id": "R15",
+   "expected": "missing",
+   "expected_route": "ask_supplier",
+   "submittal_page": null,
+   "submittal_quote": "",
+   "notes": "No alternator space heater."
+  },
+  {
+   "req_id": "R16",
+   "expected": "unclear",
+   "expected_route": "ask_supplier",
+   "submittal_page": 4,
+   "submittal_quote": "Circuit",
+   "notes": "A breaker is installed; poles and trip type not stated."
+  },
+  {
+   "req_id": "R17",
+   "expected": "complies",
+   "expected_route": "decide",
+   "submittal_page": 2,
+   "submittal_quote": "No load to full load",
+   "notes": "Voltage regulation 1/2 % (page 4 says 1 %): both <= 2."
+  },
+  {
+   "req_id": "R18",
+   "expected": "complies",
+   "expected_route": "decide",
+   "submittal_page": 2,
+   "submittal_quote": "Total Harmonic Distortion",
+   "notes": "Max 3.5 %."
+  },
+  {
+   "req_id": "R19",
+   "expected": "unclear",
+   "expected_route": "ask_supplier",
+   "submittal_page": 1,
+   "submittal_quote": "UL142",
+   "notes": "UL142 in the standards list; no tank described or UL 2085."
+  },
+  {
+   "req_id": "R20",
+   "expected": "missing",
+   "expected_route": "ask_supplier",
+   "submittal_page": null,
+   "submittal_quote": "",
+   "notes": "No jacket water heater."
+  },
+  {
+   "req_id": "R21",
+   "expected": "unclear",
+   "expected_route": "ask_supplier",
+   "submittal_page": 1,
+   "submittal_quote": "no  enclosure",
+   "notes": "Open set or optional Level 2 enclosure; which is supplied is not stated."
+  }
+ ]
+}

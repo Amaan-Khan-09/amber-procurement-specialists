@@ -1,0 +1,182 @@
+{
+ "case_id": "G12",
+ "split": "heldout",
+ "heldout_set": 6,
+ "tool": "check_submittal",
+ "spec": "data/specs/project_alpha/26_32_13_engine_generators_ALPHA.pdf",
+ "tag": "GEN-A",
+ "submittal": "data/submittals/hipower_HTW2000_data_sheet.pdf",
+ "labeller": "Claude (AI), from the source PDF. Held-out set 6: labelled 27 Nov 2026 after the candidate was frozen at commit 4226fc1 and BEFORE any model read this document.",
+ "labelled_on": "2026-11-27",
+ "reviewed_by": "",
+ "labels": [
+  {
+   "req_id": "R01",
+   "expected": "complies",
+   "expected_route": "decide",
+   "submittal_page": 1,
+   "submittal_quote": "277/480  3  0.8  2000  2500",
+   "notes": "Standby 2000 kW / 2500 kVA."
+  },
+  {
+   "req_id": "R02",
+   "expected": "unclear",
+   "expected_route": "ask_supplier",
+   "submittal_page": 1,
+   "submittal_quote": "347/600",
+   "notes": "277/480 and 347/600 V both listed, none marked as supplied; 6 leads; 4-wire not stated."
+  },
+  {
+   "req_id": "R03",
+   "expected": "complies",
+   "expected_route": "decide",
+   "submittal_page": 2,
+   "submittal_quote": "skVA with 30% voltage dip at 480 volts",
+   "notes": "3930 skVA at 30 % dip, 480 V >= 3000."
+  },
+  {
+   "req_id": "R04",
+   "expected": "unclear",
+   "expected_route": "engineer",
+   "submittal_page": 3,
+   "submittal_quote": "PMG AVR for Stamford Alternator",
+   "notes": "PMG AVR is listed while page 1 and 3 call the alternator self-excited: conflicting statements."
+  },
+  {
+   "req_id": "R05",
+   "expected": "complies",
+   "expected_route": "decide",
+   "submittal_page": 2,
+   "submittal_quote": "Number of cylinders",
+   "notes": "16 cylinders, 4-stroke, turbocharged intercooled."
+  },
+  {
+   "req_id": "R06",
+   "expected": "unclear",
+   "expected_route": "engineer",
+   "submittal_page": 2,
+   "submittal_quote": "Ischronous",
+   "notes": "Frequency regulation 'Ischronous' (misspelt) and an 'Electrical' governor: electronic is not stated."
+  },
+  {
+   "req_id": "R07",
+   "expected": "complies",
+   "expected_route": "decide",
+   "submittal_page": 1,
+   "submittal_quote": "24 volt starter motor",
+   "notes": "24 V starter motor."
+  },
+  {
+   "req_id": "R08",
+   "expected": "deviates",
+   "expected_route": "decide",
+   "submittal_page": 3,
+   "submittal_quote": "159.4",
+   "notes": "Standby 100 % load 159.4 gal/h > 145."
+  },
+  {
+   "req_id": "R09",
+   "expected": "unclear",
+   "expected_route": "ask_supplier",
+   "submittal_page": 1,
+   "submittal_quote": "Radiator with belt driven pusher fan",
+   "notes": "Radiator stated, no ambient rating."
+  },
+  {
+   "req_id": "R10",
+   "expected": "complies",
+   "expected_route": "decide",
+   "submittal_page": 2,
+   "submittal_quote": "EPA certified",
+   "notes": "EPA Tier 2."
+  },
+  {
+   "req_id": "R11",
+   "expected": "missing",
+   "expected_route": "ask_supplier",
+   "submittal_page": null,
+   "submittal_quote": "",
+   "notes": "No altitude or ambient rating anywhere."
+  },
+  {
+   "req_id": "R12",
+   "expected": "complies",
+   "expected_route": "decide",
+   "submittal_page": 2,
+   "submittal_quote": "1,800 rpm",
+   "notes": "1800 rpm."
+  },
+  {
+   "req_id": "R13",
+   "expected": "complies",
+   "expected_route": "decide",
+   "submittal_page": 3,
+   "submittal_quote": "Stator Pitch",
+   "notes": "Four pole, brushless, 2/3 pitch."
+  },
+  {
+   "req_id": "R14",
+   "expected": "complies",
+   "expected_route": "decide",
+   "submittal_page": 3,
+   "submittal_quote": "Insulation  Class H",
+   "notes": "Class H."
+  },
+  {
+   "req_id": "R15",
+   "expected": "unclear",
+   "expected_route": "ask_supplier",
+   "submittal_page": 3,
+   "submittal_quote": "Alternator anti-condensation heaters",
+   "notes": "Unticked option, no voltage or phase."
+  },
+  {
+   "req_id": "R16",
+   "expected": "unclear",
+   "expected_route": "ask_supplier",
+   "submittal_page": 3,
+   "submittal_quote": "Main line ABB UL listed circuit breaker",
+   "notes": "Main breaker standard; poles and solid-state trip not stated."
+  },
+  {
+   "req_id": "R17",
+   "expected": "complies",
+   "expected_route": "decide",
+   "submittal_page": 2,
+   "submittal_quote": "plus or minus 1%",
+   "notes": "Voltage regulation +/-1 % <= 2."
+  },
+  {
+   "req_id": "R18",
+   "expected": "complies",
+   "expected_route": "decide",
+   "submittal_page": 3,
+   "submittal_quote": "Line harmonics",
+   "notes": "5 % maximum."
+  },
+  {
+   "req_id": "R19",
+   "expected": "unclear",
+   "expected_route": "ask_supplier",
+   "submittal_page": 3,
+   "submittal_quote": "mounting on fuel tank",
+   "notes": "Base for mounting on a tank; no tank supplied or listed."
+  },
+  {
+   "req_id": "R20",
+   "expected": "unclear",
+   "expected_route": "ask_supplier",
+   "submittal_page": 3,
+   "submittal_quote": "Engine block heater 12Kw",
+   "notes": "Unticked 12 kW option only."
+  },
+  {
+   "req_id": "R21",
+   "expected": "unclear",
+   "expected_route": "ask_supplier",
+   "submittal_page": 1,
+   "submittal_quote": "Open skid",
+   "notes": "Open skid; sound enclosure shown as an option; silencer optional."
+  }
+ ]
+}
