@@ -462,7 +462,8 @@
      "kind": "text",
      "terms": [
       "120 v",
-      "single phase"
+      "single phase",
+      "heater"
      ],
      "match": "all"
     }

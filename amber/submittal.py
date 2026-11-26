@@ -22,7 +22,7 @@ from pathlib import Path
 from . import checks, docs, retrieve, spec
 from .llm import LLM, LLMError
 from .schema import Citation, Finding, RunInfo, ToolResult, Verdict
-from .verify import MATCH_TRUST, reads_as_one, verify
+from .verify import MATCH_TRUST, listed_as_choice, reads_as_one, verify
 
 BATCH = 6  # conditions per extraction call
 PASSAGES_PER_COND = 3
@@ -196,6 +196,36 @@ def _context(doc: docs.Document, conds: list[dict], k: int = PASSAGES_PER_COND, 
     return "\n\n---\n\n".join(blocks)
 
 
+LAYOUT_CHARS = 13000  # whole pages per call: fits one free-tier request with its reply
+LAYOUT_NOTE = "Tables are written one row per line with cells separated by |.\n"
+
+
+def _page_context(doc: docs.Document, conds: list[dict], skip: frozenset = frozenset(),
+                  limit: int = LAYOUT_CHARS) -> tuple[str, frozenset]:
+    """Whole pages of the layout reading, most relevant first, taking turns between the conditions so none is starved.
+    Pages in `skip` (already read) come last. Returns the context and the page numbers it holds."""
+    view = docs.Document(doc.doc_id, doc.path, sha256=doc.sha256,
+                         pages=[docs.Page(p.number, p.layout or p.text) for p in doc.pages])
+    ranked = []
+    for c in conds:
+        q = " ".join([str(c.get("attribute", "")).replace("_", " "), str(c.get("unit") or ""),
+                      " ".join(c.get("terms") or []), str(c.get("value") or ""), str(c.get("requirement") or "")])
+        ranked.append(retrieve.rank_pages(view, q, k=len(view.pages)))
+    order = [r[i] for i in range(len(view.pages)) for r in ranked if i < len(r)]
+    order = list(dict.fromkeys(_config_pages(view) + order + [p.number for p in view.pages if p.text.strip()]))
+    order.sort(key=lambda n: n in skip)  # stable: unread pages first, in the same relevance order
+    chosen, used = {}, 0
+    for n in order:
+        text = view.page(n).text.strip()
+        if used + len(text) > limit:
+            if chosen:
+                continue  # a shorter page further down may still fit
+            text = text[:limit]
+        chosen[n] = text
+        used += len(text)
+    return LAYOUT_NOTE + "\n\n---\n\n".join(f"[page {n}]\n{chosen[n]}" for n in sorted(chosen)), frozenset(chosen)
+
+
 OFFER_SCHEMA = {"type": "object", "required": ["offers"], "properties": {"offers": {"type": "array", "items": {
     "type": "object", "required": ["cid", "stated", "values", "unit", "quote", "page", "meets"],
     "properties": {"cid": {"type": "string"}, "stated": {"type": "boolean"},
@@ -217,9 +247,15 @@ def extract_offers(llm: LLM, sub_doc: docs.Document, reqs: list[dict]) -> dict[s
     conds = [dict(c, requirement=r.get("requirement")) for r in reqs for c in r["conditions"]]
     offers: dict[str, dict] = {}
     lim = _limits(llm)
+    whole_pages = not llm.local and any(p.layout for p in sub_doc.pages)
+    read: dict[str, frozenset] = {}  # condition -> pages it was shown
     for i in range(0, len(conds), lim["batch"]):
         batch = conds[i:i + lim["batch"]]
-        ctx = _context(sub_doc, batch, k=lim["k"], limit=lim["chars"])
+        if whole_pages:
+            ctx, shown = _page_context(sub_doc, batch)
+            read.update({c["cid"]: shown for c in batch})
+        else:
+            ctx = _context(sub_doc, batch, k=lim["k"], limit=lim["chars"])
         if not ctx:
             continue
         ask = [{k: c.get(k) for k in ("cid", "attribute", "requirement", "kind", "op", "value", "min", "max", "unit", "terms")
@@ -241,7 +277,11 @@ def extract_offers(llm: LLM, sub_doc: docs.Document, reqs: list[dict]) -> dict[s
              and not (offers.get(c["cid"]) or {}).get("not_checked")]
     for i in range(0, len(again), lim["batch2"]):
         batch = again[i:i + lim["batch2"]]
-        ctx = _context(sub_doc, batch, k=lim["k2"], limit=lim["chars2"])
+        if whole_pages:  # the second look starts with the pages these conditions have not been shown
+            seen = frozenset.intersection(*[read.get(c["cid"], frozenset()) for c in batch])
+            ctx = _page_context(sub_doc, batch, skip=seen)[0]
+        else:
+            ctx = _context(sub_doc, batch, k=lim["k2"], limit=lim["chars2"])
         if not ctx:
             continue
         ask = [{k: c.get(k) for k in ("cid", "attribute", "requirement", "kind", "op", "value", "min", "max", "unit", "terms")
@@ -548,6 +588,16 @@ def _decide_condition(c: dict, o: dict | None, sub_doc: docs.Document):
         elif "..." in cite.quote or chr(0x2026) in cite.quote:  # a stitched quote never passes on its own
             conf = min(conf, JUDGEMENT_CAP)
             d = checks.Decision(d.verdict, d.why + "; the quote was shortened, confirm on the page", d.exact)
+    if d.verdict == Verdict.missing:
+        # seen: 'temperatures up to 50 C' quoted with no value to compare, reported as "not stated". A passage that is
+        # on the page and was offered as the evidence cannot support a claim that the document says nothing.
+        d = checks.Decision(Verdict.unclear, f"the submittal has a passage about it ({cite.quote[:90]!r}) but no value "
+                                             f"that can be compared", False)
+        conf = min(conf, 0.5)
+    if d.verdict == Verdict.complies and listed_as_choice(sub_doc, cite):
+        d = checks.Decision(Verdict.unclear, f"{d.why}; but this is listed as a choice (a tick box or a list of what is "
+                                             f"available), not marked as supplied", False)
+        conf = min(conf, 0.5)
     if cite.ocr:
         # vision OCR can misread digits and model numbers (seen: KD1000 read as KD2000), so evidence from
         # a scanned page is a candidate for a person to confirm, never an automatic pass or fail
@@ -574,7 +624,8 @@ def _combine(parts: list[tuple]) -> tuple[Verdict, str, float]:
 
 
 RESULT_CACHE = Path(__file__).resolve().parents[1] / ".cache" / "check_results"
-_CODE_FILES = ("submittal.py", "checks.py", "verify.py", "retrieve.py", "spec.py", "docs.py", "ocr.py", "schema.py")
+_CODE_FILES = ("submittal.py", "checks.py", "verify.py", "retrieve.py", "spec.py", "docs.py", "layout.py", "ocr.py",
+               "schema.py")
 
 
 def code_fingerprint() -> str:
@@ -588,7 +639,7 @@ def code_fingerprint() -> str:
 
 def _result_file(spec_doc: docs.Document, sub_doc: docs.Document, row: dict, checklist, only, llm: LLM) -> Path:
     key = json.dumps([spec_doc.sha256, sub_doc.sha256, row, checklist, sorted(only or []), llm.provider, llm.model,
-                      os.getenv("AMBER_TARGETED_READ", "off"), os.getenv("AMBER_OCR", "cached"), code_fingerprint()],
+                      os.getenv("AMBER_TARGETED_READ", "off"), os.getenv("AMBER_OCR", "cached"), os.getenv("AMBER_READING", "plain"), code_fingerprint()],
                      sort_keys=True, ensure_ascii=False, default=str)
     return RESULT_CACHE / (hashlib.sha256(key.encode()).hexdigest()[:24] + ".json")
 

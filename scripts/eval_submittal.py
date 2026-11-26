@@ -23,6 +23,7 @@ sys.path.insert(0, str(ROOT))
 
 from amber import docs  # noqa: E402
 from amber.verify import match_level  # noqa: E402
+from amber import layout  # noqa: E402
 
 KEYS = ROOT / "eval/answer_keys"
 RUNS = ROOT / "runs"
@@ -47,6 +48,12 @@ def labelled_cases(split: str) -> list[dict]:
     return out
 
 
+def _on_layout(d, c) -> bool:
+    """A run made with the layout reading quotes table rows as that reading prints them."""
+    texts = layout.pages(d.path, d.sha256, len(d.pages))
+    return bool(texts) and match_level(c["quote"], texts[c["page"] - 1]) is not None
+
+
 def recheck_citations(run: dict, paths: dict[str, str]) -> int:
     """Count citations whose quote is not on the cited page (fresh check, independent of the agent)."""
     loaded, bad = {}, 0
@@ -58,7 +65,7 @@ def recheck_citations(run: dict, paths: dict[str, str]) -> int:
                 loaded[c["doc_id"]] = docs.load(paths[c["doc_id"]])
             d = loaded[c["doc_id"]]
             pg = d.page(c["page"])
-            if pg is None or match_level(c["quote"], pg.text) is None:
+            if pg is None or (match_level(c["quote"], pg.text) is None and not _on_layout(d, c)):
                 bad += 1
     return bad
 

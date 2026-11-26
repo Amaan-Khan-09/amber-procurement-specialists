@@ -27,7 +27,7 @@
   "human": true,
   "conf": 0.5,
   "reviewer": "unclear",
-  "why": "no value found, but the submittal mentions starting, motor, capacity on page(s) [1, 3]"
+  "why": "no value found, but the submittal mentions motor, starting, capacity on page(s) [1, 3]"
  },
  {
   "case": "G7",
@@ -67,7 +67,7 @@
   "human": true,
   "conf": 0.5,
   "reviewer": "unclear",
-  "why": "no value found, but the submittal mentions electric, starting, starter on page(s) [1, 2, 3, 4]"
+  "why": "no value found, but the submittal mentions electric, starting, volt on page(s) [1, 2, 3, 4]"
  },
  {
   "case": "G7",
@@ -97,17 +97,17 @@
   "human": false,
   "conf": 0.95,
   "reviewer": "complies",
-  "why": "offered Tier 2 EPA ESE (TIER 2) meets one of: tier 2, tier 4, epa"
+  "why": "offered Tier 2 EPA ESE (TIER 2) meets one of: tier 2, tier 4"
  },
  {
   "case": "G7",
   "req": "R11",
   "key": "unclear",
-  "pipeline": "missing",
-  "human": false,
-  "conf": 0.8,
+  "pipeline": "unclear",
+  "human": true,
+  "conf": 0.5,
   "reviewer": "deviates",
-  "why": "not stated in the submittal; not stated in the submittal"
+  "why": "not stated in the submittal; the submittal has a passage about it ('temperatures up to 50\u00b0C (122\u00b0F)') but no value that can be compared"
  },
  {
   "case": "G7",
@@ -147,7 +147,7 @@
   "human": true,
   "conf": 0.5,
   "reviewer": "unclear",
-  "why": "no value found, but the submittal mentions electrical, single, heater on page(s) [2]"
+  "why": "no value found, but the submittal mentions single, heater, electrical on page(s) [2]"
  },
  {
   "case": "G7",
@@ -157,7 +157,7 @@
   "human": true,
   "conf": 0.5,
   "reviewer": "unclear",
-  "why": "no value found, but the submittal mentions output, circuit, breaker on page(s) [1, 2, 4]"
+  "why": "no value found, but the submittal mentions output, pole, breaker on page(s) [1, 2, 4]"
  },
  {
   "case": "G7",
@@ -197,7 +197,7 @@
   "human": true,
   "conf": 0.5,
   "reviewer": "unclear",
-  "why": "no value found, but the submittal mentions jacket, water, count on page(s) [1, 2, 3]; no value found, but the submittal mentions jacket, water, heater on page(s) [2, 3]; no value found, but the submittal mentions jacket, water, electrical on page(s) [2, 3]"
+  "why": "no value found, but the submittal mentions jacket, water, count on page(s) [1, 2, 3]; no value found, but the submittal mentions jacket, water, heater on page(s) [2, 3]; no value found, but the submittal mentions jacket, water, heater on page(s) [2, 3]"
  },
  {
   "case": "G7",
@@ -237,7 +237,7 @@
   "human": true,
   "conf": 0.5,
   "reviewer": "deviates",
-  "why": "no value found, but the submittal mentions capacity, starting, motor on page(s) [1, 2, 3]"
+  "why": "no value found, but the submittal mentions capacity, motor, starting on page(s) [1, 2, 3]"
  },
  {
   "case": "G2",
@@ -307,7 +307,7 @@
   "human": false,
   "conf": 0.95,
   "reviewer": "complies",
-  "why": "offered Tier 2 Tier 2 EPA-Certified meets one of: tier 2, tier 4, epa"
+  "why": "offered Tier 2 Tier 2 EPA-Certified meets one of: tier 2, tier 4"
  },
  {
   "case": "G2",
@@ -617,7 +617,7 @@
   "human": true,
   "conf": 0.5,
   "reviewer": "deviates",
-  "why": "no value found, but the submittal mentions heater, water on page(s) [2]; no value found, but the submittal mentions power, heater, water on page(s) [1, 2, 3, 4]; no value found, but the submittal mentions volt, phase, water on page(s) [1, 2, 3, 4]"
+  "why": "no value found, but the submittal mentions water, heater on page(s) [2]; no value found, but the submittal mentions power, water, heater on page(s) [1, 2, 3, 4]; no value found, but the submittal mentions volt, phase, water on page(s) [1, 2, 3, 4]"
  },
  {
   "case": "G4",
@@ -787,7 +787,7 @@
   "human": true,
   "conf": 0.5,
   "reviewer": "missing",
-  "why": "no value found, but the submittal mentions state, solid, output on page(s) [2, 3]"
+  "why": "no value found, but the submittal mentions state, pole, solid on page(s) [2, 3]"
  },
  {
   "case": "G5",
@@ -997,7 +997,7 @@
   "human": true,
   "conf": 0.5,
   "reviewer": "unclear",
-  "why": "no value found, but the submittal mentions circuit, breaker, solid on page(s) [1, 2, 3, 4]"
+  "why": "no value found, but the submittal mentions circuit, breaker, pole on page(s) [1, 2, 3, 4]"
  },
  {
   "case": "G6",
@@ -1037,7 +1037,7 @@
   "human": true,
   "conf": 0.5,
   "reviewer": "unclear",
-  "why": "no value found, but the submittal mentions water, jacket, heater on page(s) [2, 3, 4]; no value found, but the submittal mentions water, jacket, heater on page(s) [2, 3, 4]; no value found, but the submittal mentions electrical, water, phase on page(s) [1, 2, 3, 4]"
+  "why": "no value found, but the submittal mentions water, jacket, heater on page(s) [2, 3, 4]; no value found, but the submittal mentions water, jacket, heater on page(s) [2, 3, 4]; no value found, but the submittal mentions water, electrical, phase on page(s) [1, 2, 3, 4]"
  },
  {
   "case": "G6",
@@ -1063,11 +1063,11 @@
   "case": "G8",
   "req": "R02",
   "key": "unclear",
-  "pipeline": "complies",
+  "pipeline": "unclear",
   "human": true,
-  "conf": 0.65,
+  "conf": 0.5,
   "reviewer": "unclear",
-  "why": "model judgement on verified quote: 'AVAILABLE VOLTAGES (60 Hz LINE-TO-NEUTRAL / LINE-TO-LINE) 277/480'; offered 60 Hz meets == 60 Hz"
+  "why": "model judgement on verified quote: 'AVAILABLE VOLTAGES (60 Hz LINE-TO-NEUTRAL / LINE-TO-LINE) 277/480'; but this is listed as a choice (a tick box or a list of what is available), not marked as supplied; offered 60 Hz meets == 60 Hz"
  },
  {
   "case": "G8",
@@ -1147,7 +1147,7 @@
   "human": false,
   "conf": 0.95,
   "reviewer": "complies",
-  "why": "offered TIER 2 EMISSIONS CERTIFICATION: EPA NSPS STATIONARY EMERGENCY TIER 2 meets one of: tier 2, tier 4, epa"
+  "why": "offered TIER 2 EMISSIONS CERTIFICATION: EPA NSPS STATIONARY EMERGENCY TIER 2 meets one of: tier 2, tier 4"
  },
  {
   "case": "G8",
@@ -1155,9 +1155,9 @@
   "key": "deviates",
   "pipeline": "unclear",
   "human": true,
-  "conf": 0.6,
+  "conf": 0.5,
   "reviewer": "deviates",
-  "why": "only partly stated: model judgement on verified quote: 'Full engine power available up to 400 m (1312 ft)'; not stated in the submittal"
+  "why": "model judgement on verified quote: 'Full engine power available up to 400 m (1312 ft)'; the submittal has a passage about it ('ambient temperature up to 50\u00b0C (122\u00b0F)') but no value that can be compared"
  },
  {
   "case": "G8",
@@ -1197,7 +1197,7 @@
   "human": true,
   "conf": 0.65,
   "reviewer": "unclear",
-  "why": "offered 120/240V 100W control anti- condensation heater 120/240V 100W control anti- condensation heater does not meet all of: 120 v, single phase; the expected words are missing from the quote but nothing contradicts the requirement"
+  "why": "the evidence shows heater but does not mention 120 v, single phase; nothing contradicts it, a person decides"
  },
  {
   "case": "G8",
@@ -1247,7 +1247,7 @@
   "human": true,
   "conf": 0.5,
   "reviewer": "deviates",
-  "why": "no value found, but the submittal mentions water, heater on page(s) [2]; no value found, but the submittal mentions heater, water on page(s) [2]; no value found, but the submittal mentions electrical, phase, heater on page(s) [1, 2, 3, 4, 7]"
+  "why": "no value found, but the submittal mentions water, heater on page(s) [2]; no value found, but the submittal mentions water, heater on page(s) [2]; no value found, but the submittal mentions electrical, phase, water on page(s) [1, 2, 3, 4, 7]"
  },
  {
   "case": "G8",

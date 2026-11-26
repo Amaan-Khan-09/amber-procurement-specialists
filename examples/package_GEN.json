@@ -19,10 +19,10 @@
         ],
         "submittal": "review",
         "submittal_summary": {
-          "complies": 13,
+          "complies": 12,
           "deviates": 0,
           "missing": 0,
-          "unclear": 8
+          "unclear": 9
         },
         "same_product": "match",
         "arrival_P50": "2028-02-08",
@@ -71,8 +71,8 @@
         "submittal_summary": {
           "complies": 2,
           "deviates": 0,
-          "missing": 6,
-          "unclear": 13
+          "missing": 5,
+          "unclear": 14
         },
         "same_product": "match",
         "arrival_P50": "2028-03-08",
@@ -726,8 +726,8 @@
           "summary": {
             "complies": 2,
             "deviates": 0,
-            "missing": 6,
-            "unclear": 13
+            "missing": 5,
+            "unclear": 14
           },
           "overall": "review",
           "rows": [
@@ -805,8 +805,8 @@
               "req_id": "R11",
               "locator": "2.1.E.1",
               "requirement": "Operate at ambient conditions of 300 ft altitude and 10 to 122°F ambient temperature.",
-              "verdict": "missing",
-              "confidence": 0.8
+              "verdict": "unclear",
+              "confidence": 0.5
             },
             {
               "req_id": "R12",
@@ -1214,10 +1214,10 @@
           "spec": "26-32-13-engine-generators-alpha",
           "submittal": "cummins-c2000d6e-spec-sheet",
           "summary": {
-            "complies": 13,
+            "complies": 12,
             "deviates": 0,
             "missing": 0,
-            "unclear": 8
+            "unclear": 9
           },
           "overall": "review",
           "rows": [
@@ -1232,8 +1232,8 @@
               "req_id": "R02",
               "locator": "2.1.C (System Capacity)",
               "requirement": "Generator set output shall be 480Y/277 V, 3-phase, 4-wire, 60 Hz power.",
-              "verdict": "complies",
-              "confidence": 0.65
+              "verdict": "unclear",
+              "confidence": 0.5
             },
             {
               "req_id": "R03",
@@ -1296,7 +1296,7 @@
               "locator": "2.1.E.1",
               "requirement": "Operate at ambient conditions of 300 ft altitude and 10 to 122°F ambient temperature.",
               "verdict": "unclear",
-              "confidence": 0.6
+              "confidence": 0.5
             },
             {
               "req_id": "R12",
@@ -1408,7 +1408,7 @@
         "to": "Supplier of cat-3516c-2000ekw-lehe1376",
         "kind": "submittal_review",
         "subject": "Project Alpha GEN-A - submittal review comments (19 items)",
-        "body": "Hello,\n\nWe have reviewed your submittal (cat-3516c-2000ekw-lehe1376) against the project specification. Please respond to each item below.\n\n1. Generator set output shall be 480Y/277 V, 3-phase, 4-wire, 60 Hz power. (spec 2.1.C (System Capacity))\n   Specification: 26-32-13-engine-generators-alpha p.3, 2.1.C (System Capacity): \"while generating 480Y/277 volt, 3-phase, 4-wire, 60 Hz power, and with performance as specified herein.\"\n   Your submittal: cat-3516c-2000ekw-lehe1376 p.3: \"Frequency 60 Hz\"\n   Request: The submittal is not clear on this point. Please confirm exactly what will be supplied for this project.\n\n2. Motor starting capability shall be not less than 3000 kVA with a maximum voltage dip of 30% for 2000 kW sets. (spec 2.1.C.1)\n   Specification: 26-32-13-engine-generators-alpha p.3, 2.1.C.1: \"shall be capable of developing not less than 3000 kVA (2000 kW sets) and 1500 kVA (1000 kW sets) for motor starting with a maximum voltage dip of 30%\"\n   Request: The submittal is not clear on this point. Please confirm exactly what will be supplied for this project.\n\n3. Excitation power to the automatic voltage regulator shall be provided by a permanent magnet generator (PMG) or equal. (spec 2.1.C.2)\n   Specification: 26-32-13-engine-generators-alpha p.4, 2.1.C.2: \"A permanent magnet generator (PMG) or equal shall provide excitation power to the automatic voltage regulator\"\n   Your submittal: cat-3516c-2000ekw-lehe1376 p.2: \"Permanent magnet (PM)\"\n   Request: The submittal is not clear on this point. Please confirm exactly what will be supplied for this project.\n\n4. Engine shall be an 8, 12, or 16 cylinder, 4-cycle diesel engine, either turbocharged/aftercooled or normally aspirated. (spec 2.1.D (Diesel Engine))\n   Specification: 26-32-13-engine-generators-alpha p.4, 2.1.D (Diesel Engine): \"Engine shall be an 8, 12, or 16 cylinder, 4 cycle, turbocharged/aftercooled or normally aspirated fuel injected full diesel engine\"\n   Your submittal: cat-3516c-2000ekw-lehe1376 p.1: \"Aspiration TA\"\n   Request: The submittal is not clear on this point. Please confirm exactly what will be supplied for this project.\n\n5. Governor shall be electronic speed-sensing capable of isochronous frequency regulation from no load to full rated load. (spec 2.1.D.3 (Governor))\n   Specification: 26-32-13-engine-generators-alpha p.4, 2.1.D.3 (Governor): \"electronic speed-sensing governor capable of isochronous frequency regulation from no load to full rated load.\"\n   Your submittal: cat-3516c-2000ekw-lehe1376 p.1: \"Governor Type A6E4\"\n   Request: The submittal is not clear on this point. Please confirm exactly what will be supplied for this project.\n\n6. Starting system shall be 24 volt, 2-wire, negative ground, gear engaging electric starter. (spec 2.1.D.5 (Starting System))\n   Specification: 26-32-13-engine-generators-alpha p.4, 2.1.D.5 (Starting System): \"Starting System: Remote 24 volt, 2-wire, negative ground, starting system, positive shift, gear engaging electric starter\"\n   Request: The submittal is not clear on this point. Please confirm exactly what will be supplied for this project.\n\n7. Average fuel consumption at full standby load must not exceed 145 gph for a 2000 kW set. (spec 2.1.D.1 (Diesel Fuel System))\n   Specification: 26-32-13-engine-generators-alpha p.4, 2.1.D.1 (Diesel Fuel System): \"Average fuel consumption at full standby load shall not exceed 145 gph for 2000 kW sets\"\n   Request: The submittal is not clear on this point. Please confirm exactly what will be supplied for this project.\n\n8. Unit-mounted radiator cooling system sized to maintain safe operation at 122°F maximum ambient temperature. (spec 2.1.D.2 (Cooling System))\n   Specification: 26-32-13-engine-generators-alpha p.4, 2.1.D.2 (Cooling System): \"cooling system shall be unit mounted radiator cooled\"\n   Your submittal: cat-3516c-2000ekw-lehe1376 p.1: \"temperatures up to 50°C (122°F)\"\n   Request: The submittal is not clear on this point. Please confirm exactly what will be supplied for this project.\n\n9. Operate at ambient conditions of 300 ft altitude and 10 to 122°F ambient temperature. (spec 2.1.E.1)\n   Specification: 26-32-13-engine-generators-alpha p.4, 2.1.E.1: \"Ambient conditions of 300' altitude and an ambient temperature of 10 to 122°F.\"\n   Your submittal: cat-3516c-2000ekw-lehe1376 p.1: \"temperatures up to 50°C (122°F)\"\n   Request: We could not find this in the submittal. Please provide the data sheet section or a written confirmation.\n\n10. Engine speed shall not exceed 1800 rpm. (spec 2.1.E.3)\n   Specification: 26-32-13-engine-generators-alpha p.4, 2.1.E.3: \"rpm of the engine shall not exceed 1800 rpm\"\n   Request: We could not find this in the submittal. Please provide the data sheet section or a written confirmation.\n\n11. Generator shall be 4-pole, brushless, and two-thirds pitch wound. (spec 2.1.G (Generator))\n   Specification: 26-32-13-engine-generators-alpha p.5, 2.1.G (Generator): \"Generator shall be 4-pole, revolving field type, brushless, dynamically balanced, skewed laminated, two thirds pitch wound\"\n   Request: The submittal is not clear on this point. Please confirm exactly what will be supplied for this project.\n\n12. Generator insulation shall be NEMA Class F or better. (spec 2.1.G.1)\n   Specification: 26-32-13-engine-generators-alpha p.5, 2.1.G.1: \"NEMA Class F or better insulation as defined by NEMA MG1.65.\"\n   Request: We could not find this in the submittal. Please provide the data sheet section or a written confirmation.\n\n13. Provide a 120 V, single-phase space heater to prevent condensation in the generator. (spec 2.1.G.5)\n   Specification: 26-32-13-engine-generators-alpha p.5, 2.1.G.5: \"A 120 volt, single phase space heater shall be provided to prevent condensation in the generator.\"\n   Request: The submittal is not clear on this point. Please confirm exactly what will be supplied for this project.\n\n14. Provide 3-pole generator output circuit breaker(s) with solid-state trip units. (spec 2.1.H (Generator Output Circuit Breaker(s)))\n   Specification: 26-32-13-engine-generators-alpha p.5, 2.1.H (Generator Output Circuit Breaker(s)): \"Generator set shall have 3 pole output circuit breaker(s) with solid state trip units as shown on the drawings.\"\n   Request: The submittal is not clear on this point. Please confirm exactly what will be supplied for this project.\n\n15. Maintain voltage regulation within plus 2% from no load to rated load. (spec 2.1.I.2 (Voltage Regulation))\n   Specification: 26-32-13-engine-generators-alpha p.6, 2.1.I.2 (Voltage Regulation): \"Voltage Regulation: Plus 2% no load to rated load; rheostat for _5% voltage adjustment.\"\n   Request: We could not find this in the submittal. Please provide the data sheet section or a written confirmation.\n\n16. Total harmonic distortion of ac voltage waveform from no load to full linear load shall not exceed 5% of rated voltage. (spec 2.1.I.4 (Total Harmonic Distortion (THD)))\n   Specification: 26-32-13-engine-generators-alpha p.6, 2.1.I.4 (Total Harmonic Distortion (THD)): \"The sum of ac voltage waveform harmonies, from no load to full linear load shall not exceed 5% of the rated voltage\"\n   Request: We could not find this in the submittal. Please provide the data sheet section or a written confirmation.\n\n17. Provide a UL 2085 listed in-skid fuel tank with usable capacity for at least 24 hours of operation at full standby load. (spec 2.1.K.1 (In Skid Diesel Fuel Tank))\n   Specification: 26-32-13-engine-generators-alpha p.9, 2.1.K.1 (In Skid Diesel Fuel Tank): \"provided with a UL 2085 listed manufacturer's standard in skid fuel transfer day tank. The tank shall have usable capacity for not less than 24 hours of operati\"\n   Request: The submittal is not clear on this point. Please confirm exactly what will be supplied for this project.\n\n18. Provide two 5000 W, 480 V, 1-phase jacket-water heaters. (spec 2.1.K.2 (Jacket-Water Heater))\n   Specification: 26-32-13-engine-generators-alpha p.8, 2.1.K.2 (Jacket-Water Heater): \"engine shall have two KIM #Hotstart (480 volt, 1-phase) or approved equal, 5000W jacket-water heaters supplied from a \"normal\" branch circuit.\"\n   Request: The submittal is not clear on this point. Please confirm exactly what will be supplied for this project.\n\n19. Provide a weatherproof and rodent-proof outdoor enclosure entirely enclosing the generator set, with silencers installed inside. (spec 2.1.K.9 (Generator Outdoor Housing))\n   Specification: 26-32-13-engine-generators-alpha p.10, 2.1.K.9 (Generator Outdoor Housing): \"Provide a weatherproof and rodent-proof outdoor shelter to entirely enclose each generator set, including batteries. Silencers shall be installed inside enclosu\"\n   Request: We could not find this in the submittal. Please provide the data sheet section or a written confirmation.\n\nThank you.\nProcurement, Project Alpha",
+        "body": "Hello,\n\nWe have reviewed your submittal (cat-3516c-2000ekw-lehe1376) against the project specification. Please respond to each item below.\n\n1. Generator set output shall be 480Y/277 V, 3-phase, 4-wire, 60 Hz power. (spec 2.1.C (System Capacity))\n   Specification: 26-32-13-engine-generators-alpha p.3, 2.1.C (System Capacity): \"while generating 480Y/277 volt, 3-phase, 4-wire, 60 Hz power, and with performance as specified herein.\"\n   Your submittal: cat-3516c-2000ekw-lehe1376 p.3: \"Frequency 60 Hz\"\n   Request: The submittal is not clear on this point. Please confirm exactly what will be supplied for this project.\n\n2. Motor starting capability shall be not less than 3000 kVA with a maximum voltage dip of 30% for 2000 kW sets. (spec 2.1.C.1)\n   Specification: 26-32-13-engine-generators-alpha p.3, 2.1.C.1: \"shall be capable of developing not less than 3000 kVA (2000 kW sets) and 1500 kVA (1000 kW sets) for motor starting with a maximum voltage dip of 30%\"\n   Request: The submittal is not clear on this point. Please confirm exactly what will be supplied for this project.\n\n3. Excitation power to the automatic voltage regulator shall be provided by a permanent magnet generator (PMG) or equal. (spec 2.1.C.2)\n   Specification: 26-32-13-engine-generators-alpha p.4, 2.1.C.2: \"A permanent magnet generator (PMG) or equal shall provide excitation power to the automatic voltage regulator\"\n   Your submittal: cat-3516c-2000ekw-lehe1376 p.2: \"Permanent magnet (PM)\"\n   Request: The submittal is not clear on this point. Please confirm exactly what will be supplied for this project.\n\n4. Engine shall be an 8, 12, or 16 cylinder, 4-cycle diesel engine, either turbocharged/aftercooled or normally aspirated. (spec 2.1.D (Diesel Engine))\n   Specification: 26-32-13-engine-generators-alpha p.4, 2.1.D (Diesel Engine): \"Engine shall be an 8, 12, or 16 cylinder, 4 cycle, turbocharged/aftercooled or normally aspirated fuel injected full diesel engine\"\n   Your submittal: cat-3516c-2000ekw-lehe1376 p.1: \"Aspiration TA\"\n   Request: The submittal is not clear on this point. Please confirm exactly what will be supplied for this project.\n\n5. Governor shall be electronic speed-sensing capable of isochronous frequency regulation from no load to full rated load. (spec 2.1.D.3 (Governor))\n   Specification: 26-32-13-engine-generators-alpha p.4, 2.1.D.3 (Governor): \"electronic speed-sensing governor capable of isochronous frequency regulation from no load to full rated load.\"\n   Your submittal: cat-3516c-2000ekw-lehe1376 p.1: \"Governor Type A6E4\"\n   Request: The submittal is not clear on this point. Please confirm exactly what will be supplied for this project.\n\n6. Starting system shall be 24 volt, 2-wire, negative ground, gear engaging electric starter. (spec 2.1.D.5 (Starting System))\n   Specification: 26-32-13-engine-generators-alpha p.4, 2.1.D.5 (Starting System): \"Starting System: Remote 24 volt, 2-wire, negative ground, starting system, positive shift, gear engaging electric starter\"\n   Request: The submittal is not clear on this point. Please confirm exactly what will be supplied for this project.\n\n7. Average fuel consumption at full standby load must not exceed 145 gph for a 2000 kW set. (spec 2.1.D.1 (Diesel Fuel System))\n   Specification: 26-32-13-engine-generators-alpha p.4, 2.1.D.1 (Diesel Fuel System): \"Average fuel consumption at full standby load shall not exceed 145 gph for 2000 kW sets\"\n   Request: The submittal is not clear on this point. Please confirm exactly what will be supplied for this project.\n\n8. Unit-mounted radiator cooling system sized to maintain safe operation at 122°F maximum ambient temperature. (spec 2.1.D.2 (Cooling System))\n   Specification: 26-32-13-engine-generators-alpha p.4, 2.1.D.2 (Cooling System): \"cooling system shall be unit mounted radiator cooled\"\n   Your submittal: cat-3516c-2000ekw-lehe1376 p.1: \"temperatures up to 50°C (122°F)\"\n   Request: The submittal is not clear on this point. Please confirm exactly what will be supplied for this project.\n\n9. Operate at ambient conditions of 300 ft altitude and 10 to 122°F ambient temperature. (spec 2.1.E.1)\n   Specification: 26-32-13-engine-generators-alpha p.4, 2.1.E.1: \"Ambient conditions of 300' altitude and an ambient temperature of 10 to 122°F.\"\n   Your submittal: cat-3516c-2000ekw-lehe1376 p.1: \"temperatures up to 50°C (122°F)\"\n   Request: The submittal is not clear on this point. Please confirm exactly what will be supplied for this project.\n\n10. Engine speed shall not exceed 1800 rpm. (spec 2.1.E.3)\n   Specification: 26-32-13-engine-generators-alpha p.4, 2.1.E.3: \"rpm of the engine shall not exceed 1800 rpm\"\n   Request: We could not find this in the submittal. Please provide the data sheet section or a written confirmation.\n\n11. Generator shall be 4-pole, brushless, and two-thirds pitch wound. (spec 2.1.G (Generator))\n   Specification: 26-32-13-engine-generators-alpha p.5, 2.1.G (Generator): \"Generator shall be 4-pole, revolving field type, brushless, dynamically balanced, skewed laminated, two thirds pitch wound\"\n   Request: The submittal is not clear on this point. Please confirm exactly what will be supplied for this project.\n\n12. Generator insulation shall be NEMA Class F or better. (spec 2.1.G.1)\n   Specification: 26-32-13-engine-generators-alpha p.5, 2.1.G.1: \"NEMA Class F or better insulation as defined by NEMA MG1.65.\"\n   Request: We could not find this in the submittal. Please provide the data sheet section or a written confirmation.\n\n13. Provide a 120 V, single-phase space heater to prevent condensation in the generator. (spec 2.1.G.5)\n   Specification: 26-32-13-engine-generators-alpha p.5, 2.1.G.5: \"A 120 volt, single phase space heater shall be provided to prevent condensation in the generator.\"\n   Request: The submittal is not clear on this point. Please confirm exactly what will be supplied for this project.\n\n14. Provide 3-pole generator output circuit breaker(s) with solid-state trip units. (spec 2.1.H (Generator Output Circuit Breaker(s)))\n   Specification: 26-32-13-engine-generators-alpha p.5, 2.1.H (Generator Output Circuit Breaker(s)): \"Generator set shall have 3 pole output circuit breaker(s) with solid state trip units as shown on the drawings.\"\n   Request: The submittal is not clear on this point. Please confirm exactly what will be supplied for this project.\n\n15. Maintain voltage regulation within plus 2% from no load to rated load. (spec 2.1.I.2 (Voltage Regulation))\n   Specification: 26-32-13-engine-generators-alpha p.6, 2.1.I.2 (Voltage Regulation): \"Voltage Regulation: Plus 2% no load to rated load; rheostat for _5% voltage adjustment.\"\n   Request: We could not find this in the submittal. Please provide the data sheet section or a written confirmation.\n\n16. Total harmonic distortion of ac voltage waveform from no load to full linear load shall not exceed 5% of rated voltage. (spec 2.1.I.4 (Total Harmonic Distortion (THD)))\n   Specification: 26-32-13-engine-generators-alpha p.6, 2.1.I.4 (Total Harmonic Distortion (THD)): \"The sum of ac voltage waveform harmonies, from no load to full linear load shall not exceed 5% of the rated voltage\"\n   Request: We could not find this in the submittal. Please provide the data sheet section or a written confirmation.\n\n17. Provide a UL 2085 listed in-skid fuel tank with usable capacity for at least 24 hours of operation at full standby load. (spec 2.1.K.1 (In Skid Diesel Fuel Tank))\n   Specification: 26-32-13-engine-generators-alpha p.9, 2.1.K.1 (In Skid Diesel Fuel Tank): \"provided with a UL 2085 listed manufacturer's standard in skid fuel transfer day tank. The tank shall have usable capacity for not less than 24 hours of operati\"\n   Request: The submittal is not clear on this point. Please confirm exactly what will be supplied for this project.\n\n18. Provide two 5000 W, 480 V, 1-phase jacket-water heaters. (spec 2.1.K.2 (Jacket-Water Heater))\n   Specification: 26-32-13-engine-generators-alpha p.8, 2.1.K.2 (Jacket-Water Heater): \"engine shall have two KIM #Hotstart (480 volt, 1-phase) or approved equal, 5000W jacket-water heaters supplied from a \"normal\" branch circuit.\"\n   Request: The submittal is not clear on this point. Please confirm exactly what will be supplied for this project.\n\n19. Provide a weatherproof and rodent-proof outdoor enclosure entirely enclosing the generator set, with silencers installed inside. (spec 2.1.K.9 (Generator Outdoor Housing))\n   Specification: 26-32-13-engine-generators-alpha p.10, 2.1.K.9 (Generator Outdoor Housing): \"Provide a weatherproof and rodent-proof outdoor shelter to entirely enclose each generator set, including batteries. Silencers shall be installed inside enclosu\"\n   Request: We could not find this in the submittal. Please provide the data sheet section or a written confirmation.\n\nThank you.\nProcurement, Project Alpha",
         "items": 19
       },
       {
@@ -1428,9 +1428,9 @@
       {
         "to": "Supplier of cummins-c2000d6e-spec-sheet",
         "kind": "submittal_review",
-        "subject": "Project Alpha GEN-A - submittal review comments (8 items)",
-        "body": "Hello,\n\nWe have reviewed your submittal (cummins-c2000d6e-spec-sheet) against the project specification. Please respond to each item below.\n\n1. Motor starting capability shall be not less than 3000 kVA with a maximum voltage dip of 30% for 2000 kW sets. (spec 2.1.C.1)\n   Specification: 26-32-13-engine-generators-alpha p.3, 2.1.C.1: \"shall be capable of developing not less than 3000 kVA (2000 kW sets) and 1500 kVA (1000 kW sets) for motor starting with a maximum voltage dip of 30%\"\n   Request: The submittal is not clear on this point. Please confirm exactly what will be supplied for this project.\n\n2. Starting system shall be 24 volt, 2-wire, negative ground, gear engaging electric starter. (spec 2.1.D.5 (Starting System))\n   Specification: 26-32-13-engine-generators-alpha p.4, 2.1.D.5 (Starting System): \"Starting System: Remote 24 volt, 2-wire, negative ground, starting system, positive shift, gear engaging electric starter\"\n   Your submittal: cummins-c2000d6e-spec-sheet p.2: \"Starting voltage 24 volts, negative ground\"\n   Request: The submittal is not clear on this point. Please confirm exactly what will be supplied for this project.\n\n3. Operate at ambient conditions of 300 ft altitude and 10 to 122°F ambient temperature. (spec 2.1.E.1)\n   Specification: 26-32-13-engine-generators-alpha p.4, 2.1.E.1: \"Ambient conditions of 300' altitude and an ambient temperature of 10 to 122°F.\"\n   Your submittal: cummins-c2000d6e-spec-sheet p.7: \"Full engine power available up to 400 m (1312 ft)\"\n   Request: The submittal is not clear on this point. Please confirm exactly what will be supplied for this project.\n\n4. Provide a 120 V, single-phase space heater to prevent condensation in the generator. (spec 2.1.G.5)\n   Specification: 26-32-13-engine-generators-alpha p.5, 2.1.G.5: \"A 120 volt, single phase space heater shall be provided to prevent condensation in the generator.\"\n   Your submittal: cummins-c2000d6e-spec-sheet p.2: \"120/240V 100W control anti- condensation heater\"\n   Request: The submittal is not clear on this point. Please confirm exactly what will be supplied for this project.\n\n5. Provide 3-pole generator output circuit breaker(s) with solid-state trip units. (spec 2.1.H (Generator Output Circuit Breaker(s)))\n   Specification: 26-32-13-engine-generators-alpha p.5, 2.1.H (Generator Output Circuit Breaker(s)): \"Generator set shall have 3 pole output circuit breaker(s) with solid state trip units as shown on the drawings.\"\n   Request: The submittal is not clear on this point. Please confirm exactly what will be supplied for this project.\n\n6. Provide a UL 2085 listed in-skid fuel tank with usable capacity for at least 24 hours of operation at full standby load. (spec 2.1.K.1 (In Skid Diesel Fuel Tank))\n   Specification: 26-32-13-engine-generators-alpha p.9, 2.1.K.1 (In Skid Diesel Fuel Tank): \"provided with a UL 2085 listed manufacturer's standard in skid fuel transfer day tank. The tank shall have usable capacity for not less than 24 hours of operati\"\n   Request: The submittal is not clear on this point. Please confirm exactly what will be supplied for this project.\n\n7. Provide two 5000 W, 480 V, 1-phase jacket-water heaters. (spec 2.1.K.2 (Jacket-Water Heater))\n   Specification: 26-32-13-engine-generators-alpha p.8, 2.1.K.2 (Jacket-Water Heater): \"engine shall have two KIM #Hotstart (480 volt, 1-phase) or approved equal, 5000W jacket-water heaters supplied from a \"normal\" branch circuit.\"\n   Request: The submittal is not clear on this point. Please confirm exactly what will be supplied for this project.\n\n8. Provide a weatherproof and rodent-proof outdoor enclosure entirely enclosing the generator set, with silencers installed inside. (spec 2.1.K.9 (Generator Outdoor Housing))\n   Specification: 26-32-13-engine-generators-alpha p.10, 2.1.K.9 (Generator Outdoor Housing): \"Provide a weatherproof and rodent-proof outdoor shelter to entirely enclose each generator set, including batteries. Silencers shall be installed inside enclosu\"\n   Request: The submittal is not clear on this point. Please confirm exactly what will be supplied for this project.\n\nThank you.\nProcurement, Project Alpha",
-        "items": 8
+        "subject": "Project Alpha GEN-A - submittal review comments (9 items)",
+        "body": "Hello,\n\nWe have reviewed your submittal (cummins-c2000d6e-spec-sheet) against the project specification. Please respond to each item below.\n\n1. Generator set output shall be 480Y/277 V, 3-phase, 4-wire, 60 Hz power. (spec 2.1.C (System Capacity))\n   Specification: 26-32-13-engine-generators-alpha p.3, 2.1.C (System Capacity): \"while generating 480Y/277 volt, 3-phase, 4-wire, 60 Hz power, and with performance as specified herein.\"\n   Your submittal: cummins-c2000d6e-spec-sheet p.2: \"AVAILABLE VOLTAGES (60 Hz LINE-TO-NEUTRAL / LINE-TO-LINE) 277/480\"\n   Request: The submittal is not clear on this point. Please confirm exactly what will be supplied for this project.\n\n2. Motor starting capability shall be not less than 3000 kVA with a maximum voltage dip of 30% for 2000 kW sets. (spec 2.1.C.1)\n   Specification: 26-32-13-engine-generators-alpha p.3, 2.1.C.1: \"shall be capable of developing not less than 3000 kVA (2000 kW sets) and 1500 kVA (1000 kW sets) for motor starting with a maximum voltage dip of 30%\"\n   Request: The submittal is not clear on this point. Please confirm exactly what will be supplied for this project.\n\n3. Starting system shall be 24 volt, 2-wire, negative ground, gear engaging electric starter. (spec 2.1.D.5 (Starting System))\n   Specification: 26-32-13-engine-generators-alpha p.4, 2.1.D.5 (Starting System): \"Starting System: Remote 24 volt, 2-wire, negative ground, starting system, positive shift, gear engaging electric starter\"\n   Your submittal: cummins-c2000d6e-spec-sheet p.2: \"Starting voltage 24 volts, negative ground\"\n   Request: The submittal is not clear on this point. Please confirm exactly what will be supplied for this project.\n\n4. Operate at ambient conditions of 300 ft altitude and 10 to 122°F ambient temperature. (spec 2.1.E.1)\n   Specification: 26-32-13-engine-generators-alpha p.4, 2.1.E.1: \"Ambient conditions of 300' altitude and an ambient temperature of 10 to 122°F.\"\n   Your submittal: cummins-c2000d6e-spec-sheet p.7: \"Full engine power available up to 400 m (1312 ft)\"\n   Request: The submittal is not clear on this point. Please confirm exactly what will be supplied for this project.\n\n5. Provide a 120 V, single-phase space heater to prevent condensation in the generator. (spec 2.1.G.5)\n   Specification: 26-32-13-engine-generators-alpha p.5, 2.1.G.5: \"A 120 volt, single phase space heater shall be provided to prevent condensation in the generator.\"\n   Your submittal: cummins-c2000d6e-spec-sheet p.2: \"120/240V 100W control anti- condensation heater\"\n   Request: The submittal is not clear on this point. Please confirm exactly what will be supplied for this project.\n\n6. Provide 3-pole generator output circuit breaker(s) with solid-state trip units. (spec 2.1.H (Generator Output Circuit Breaker(s)))\n   Specification: 26-32-13-engine-generators-alpha p.5, 2.1.H (Generator Output Circuit Breaker(s)): \"Generator set shall have 3 pole output circuit breaker(s) with solid state trip units as shown on the drawings.\"\n   Request: The submittal is not clear on this point. Please confirm exactly what will be supplied for this project.\n\n7. Provide a UL 2085 listed in-skid fuel tank with usable capacity for at least 24 hours of operation at full standby load. (spec 2.1.K.1 (In Skid Diesel Fuel Tank))\n   Specification: 26-32-13-engine-generators-alpha p.9, 2.1.K.1 (In Skid Diesel Fuel Tank): \"provided with a UL 2085 listed manufacturer's standard in skid fuel transfer day tank. The tank shall have usable capacity for not less than 24 hours of operati\"\n   Request: The submittal is not clear on this point. Please confirm exactly what will be supplied for this project.\n\n8. Provide two 5000 W, 480 V, 1-phase jacket-water heaters. (spec 2.1.K.2 (Jacket-Water Heater))\n   Specification: 26-32-13-engine-generators-alpha p.8, 2.1.K.2 (Jacket-Water Heater): \"engine shall have two KIM #Hotstart (480 volt, 1-phase) or approved equal, 5000W jacket-water heaters supplied from a \"normal\" branch circuit.\"\n   Request: The submittal is not clear on this point. Please confirm exactly what will be supplied for this project.\n\n9. Provide a weatherproof and rodent-proof outdoor enclosure entirely enclosing the generator set, with silencers installed inside. (spec 2.1.K.9 (Generator Outdoor Housing))\n   Specification: 26-32-13-engine-generators-alpha p.10, 2.1.K.9 (Generator Outdoor Housing): \"Provide a weatherproof and rodent-proof outdoor shelter to entirely enclose each generator set, including batteries. Silencers shall be installed inside enclosu\"\n   Request: The submittal is not clear on this point. Please confirm exactly what will be supplied for this project.\n\nThank you.\nProcurement, Project Alpha",
+        "items": 9
       },
       {
         "to": "Supplier of SWGR",
@@ -1440,7 +1440,7 @@
         "items": 1
       }
     ],
-    "decided_again": "The model readings are those of the 25 Nov 2026 run. The decision code was applied to them again on 26 Nov 2026 after a fix (a rejection may not rest on two columns run together); no model was called."
+    "decided_again": "The model readings are those of the 25 Nov 2026 run. The decision code was applied to them again on 26 Nov 2026 after the fixes described in the README (rejections, tick-box choices, quotes without a value, qualified bid readings); no model was called."
   },
   "findings": [
     {
@@ -4035,7 +4035,7 @@
         }
       ],
       "needs_human": true,
-      "why": "no value found, but the submittal mentions starting, motor, capacity on page(s) [1, 3]",
+      "why": "no value found, but the submittal mentions motor, starting, capacity on page(s) [1, 3]",
       "data": {
         "req_id": "R03",
         "locator": "2.1.C.1",
@@ -4045,7 +4045,7 @@
             "attribute": "motor_starting_capacity_at_30pct_max_voltage_dip",
             "condition": ">= 3000 kVA",
             "verdict": "unclear",
-            "why": "no value found, but the submittal mentions starting, motor, capacity on page(s) [1, 3]",
+            "why": "no value found, but the submittal mentions motor, starting, capacity on page(s) [1, 3]",
             "offered": {
               "values": [],
               "unit": "",
@@ -4291,7 +4291,7 @@
         }
       ],
       "needs_human": true,
-      "why": "no value found, but the submittal mentions fuel, consumption, average on page(s) [1, 3, 4]",
+      "why": "no value found, but the submittal mentions consumption, fuel, average on page(s) [1, 3, 4]",
       "data": {
         "req_id": "R08",
         "locator": "2.1.D.1 (Diesel Fuel System)",
@@ -4301,7 +4301,7 @@
             "attribute": "average_fuel_consumption_full_standby_load",
             "condition": "<= 145 gph",
             "verdict": "unclear",
-            "why": "no value found, but the submittal mentions fuel, consumption, average on page(s) [1, 3, 4]",
+            "why": "no value found, but the submittal mentions consumption, fuel, average on page(s) [1, 3, 4]",
             "offered": {
               "values": [],
               "unit": "gph",
@@ -4402,7 +4402,7 @@
         }
       ],
       "needs_human": false,
-      "why": "offered Tier 2 EPA ESE (TIER 2) meets one of: tier 2, tier 4, epa",
+      "why": "offered Tier 2 EPA ESE (TIER 2) meets one of: tier 2, tier 4",
       "data": {
         "req_id": "R10",
         "locator": "2.1.D.3 (Emissions Compliance)",
@@ -4410,9 +4410,9 @@
           {
             "cid": "R10a",
             "attribute": "emissions_compliance",
-            "condition": "one of: tier 2, tier 4, epa",
+            "condition": "one of: tier 2, tier 4",
             "verdict": "complies",
-            "why": "offered Tier 2 EPA ESE (TIER 2) meets one of: tier 2, tier 4, epa",
+            "why": "offered Tier 2 EPA ESE (TIER 2) meets one of: tier 2, tier 4",
             "offered": {
               "values": [
                 "Tier 2"
@@ -4430,8 +4430,8 @@
     {
       "id": "submittal:B1/F-R11",
       "claim": "Operate at ambient conditions of 300 ft altitude and 10 to 122°F ambient temperature.",
-      "status": "missing",
-      "confidence": 0.8,
+      "status": "unclear",
+      "confidence": 0.5,
       "citations": [
         {
           "doc_id": "26-32-13-engine-generators-alpha",
@@ -4450,8 +4450,8 @@
           "ocr": false
         }
       ],
-      "needs_human": false,
-      "why": "not stated in the submittal; not stated in the submittal",
+      "needs_human": true,
+      "why": "not stated in the submittal; the submittal has a passage about it ('temperatures up to 50°C (122°F)') but no value that can be compared",
       "data": {
         "req_id": "R11",
         "locator": "2.1.E.1",
@@ -4475,8 +4475,8 @@
             "cid": "R11b",
             "attribute": "ambient_temperature_range",
             "condition": "10–122 °F",
-            "verdict": "missing",
-            "why": "not stated in the submittal",
+            "verdict": "unclear",
+            "why": "the submittal has a passage about it ('temperatures up to 50°C (122°F)') but no value that can be compared",
             "offered": {
               "values": [],
               "unit": "°F",
@@ -4622,7 +4622,7 @@
         }
       ],
       "needs_human": true,
-      "why": "no value found, but the submittal mentions single, heater, electrical on page(s) [2]",
+      "why": "no value found, but the submittal mentions electrical, single, heater on page(s) [2]",
       "data": {
         "req_id": "R15",
         "locator": "2.1.G.5",
@@ -4630,9 +4630,9 @@
           {
             "cid": "R15a",
             "attribute": "space_heater_electrical",
-            "condition": "all of: 120 v, single phase",
+            "condition": "all of: 120 v, single phase, heater",
             "verdict": "unclear",
-            "why": "no value found, but the submittal mentions single, heater, electrical on page(s) [2]",
+            "why": "no value found, but the submittal mentions electrical, single, heater on page(s) [2]",
             "offered": {
               "values": [],
               "unit": null,
@@ -4661,7 +4661,7 @@
         }
       ],
       "needs_human": true,
-      "why": "no value found, but the submittal mentions output, circuit, pole on page(s) [1, 2, 4]",
+      "why": "no value found, but the submittal mentions output, circuit, breaker on page(s) [1, 2, 4]",
       "data": {
         "req_id": "R16",
         "locator": "2.1.H (Generator Output Circuit Breaker(s))",
@@ -4671,7 +4671,7 @@
             "attribute": "output_circuit_breaker",
             "condition": "all of: 3 pole, solid state",
             "verdict": "unclear",
-            "why": "no value found, but the submittal mentions output, circuit, pole on page(s) [1, 2, 4]",
+            "why": "no value found, but the submittal mentions output, circuit, breaker on page(s) [1, 2, 4]",
             "offered": {
               "values": [],
               "unit": null,
@@ -4832,7 +4832,7 @@
         }
       ],
       "needs_human": true,
-      "why": "no value found, but the submittal mentions jacket, water, count on page(s) [1, 2, 3]; no value found, but the submittal mentions jacket, water, heater on page(s) [2, 3]; no value found, but the submittal mentions jacket, water, heater on page(s) [2, 3]",
+      "why": "no value found, but the submittal mentions water, jacket, count on page(s) [1, 2, 3]; no value found, but the submittal mentions water, jacket, heater on page(s) [2, 3]; no value found, but the submittal mentions water, jacket, electrical on page(s) [2, 3]",
       "data": {
         "req_id": "R20",
         "locator": "2.1.K.2 (Jacket-Water Heater)",
@@ -4842,7 +4842,7 @@
             "attribute": "jacket_water_heater_count",
             "condition": "== 2",
             "verdict": "unclear",
-            "why": "no value found, but the submittal mentions jacket, water, count on page(s) [1, 2, 3]",
+            "why": "no value found, but the submittal mentions water, jacket, count on page(s) [1, 2, 3]",
             "offered": {
               "values": [],
               "unit": null,
@@ -4857,7 +4857,7 @@
             "attribute": "jacket_water_heater_rating",
             "condition": "== 5000 W",
             "verdict": "unclear",
-            "why": "no value found, but the submittal mentions jacket, water, heater on page(s) [2, 3]",
+            "why": "no value found, but the submittal mentions water, jacket, heater on page(s) [2, 3]",
             "offered": {
               "values": [],
               "unit": "W",
@@ -4872,7 +4872,7 @@
             "attribute": "jacket_water_heater_electrical",
             "condition": "all of: 480 v, 1 phase",
             "verdict": "unclear",
-            "why": "no value found, but the submittal mentions jacket, water, heater on page(s) [2, 3]",
+            "why": "no value found, but the submittal mentions water, jacket, electrical on page(s) [2, 3]",
             "offered": {
               "values": [],
               "unit": null,
@@ -5541,7 +5541,7 @@
         }
       ],
       "needs_human": false,
-      "why": "offered Tier 2 Emission Certification, EPA, Tier 2 meets one of: tier 2, tier 4, epa",
+      "why": "offered Tier 2 Emission Certification, EPA, Tier 2 meets one of: tier 2, tier 4",
       "data": {
         "req_id": "R10",
         "locator": "2.1.D.3 (Emissions Compliance)",
@@ -5549,9 +5549,9 @@
           {
             "cid": "R10a",
             "attribute": "emissions_compliance",
-            "condition": "one of: tier 2, tier 4, epa",
+            "condition": "one of: tier 2, tier 4",
             "verdict": "complies",
-            "why": "offered Tier 2 Emission Certification, EPA, Tier 2 meets one of: tier 2, tier 4, epa",
+            "why": "offered Tier 2 Emission Certification, EPA, Tier 2 meets one of: tier 2, tier 4",
             "offered": {
               "values": [
                 "Tier 2"
@@ -5812,7 +5812,7 @@
           {
             "cid": "R15a",
             "attribute": "space_heater_electrical",
-            "condition": "all of: 120 v, single phase",
+            "condition": "all of: 120 v, single phase, heater",
             "verdict": "complies",
             "why": "model judgement on verified quote: 'Alternator Heater, 110/220 (120/240) Volt AC'",
             "offered": {
@@ -6740,7 +6740,7 @@
         }
       ],
       "needs_human": false,
-      "why": "offered Tier 2 Tier 2 EPA-Certified for Stationary Emergency Applications meets one of: tier 2, tier 4, epa",
+      "why": "offered Tier 2 Tier 2 EPA-Certified for Stationary Emergency Applications meets one of: tier 2, tier 4",
       "data": {
         "req_id": "R10",
         "locator": "2.1.D.3 (Emissions Compliance)",
@@ -6748,9 +6748,9 @@
           {
             "cid": "R10a",
             "attribute": "emissions_compliance",
-            "condition": "one of: tier 2, tier 4, epa",
+            "condition": "one of: tier 2, tier 4",
             "verdict": "complies",
-            "why": "offered Tier 2 Tier 2 EPA-Certified for Stationary Emergency Applications meets one of: tier 2, tier 4, epa",
+            "why": "offered Tier 2 Tier 2 EPA-Certified for Stationary Emergency Applications meets one of: tier 2, tier 4",
             "offered": {
               "values": [
                 "Tier 2"
@@ -6980,7 +6980,7 @@
           {
             "cid": "R15a",
             "attribute": "space_heater_electrical",
-            "condition": "all of: 120 v, single phase",
+            "condition": "all of: 120 v, single phase, heater",
             "verdict": "unclear",
             "why": "no value found, but the submittal mentions electrical, heater, phase on page(s) [1, 3, 4, 5, 6]",
             "offered": {
@@ -7413,8 +7413,8 @@
     {
       "id": "submittal:B4/F-R02",
       "claim": "Generator set output shall be 480Y/277 V, 3-phase, 4-wire, 60 Hz power.",
-      "status": "complies",
-      "confidence": 0.65,
+      "status": "unclear",
+      "confidence": 0.5,
       "citations": [
         {
           "doc_id": "26-32-13-engine-generators-alpha",
@@ -7442,7 +7442,7 @@
         }
       ],
       "needs_human": true,
-      "why": "model judgement on verified quote: 'AVAILABLE VOLTAGES (60 Hz LINE-TO-NEUTRAL / LINE-TO-LINE) 277/480'; offered 60 Hz meets == 60 Hz",
+      "why": "model judgement on verified quote: 'AVAILABLE VOLTAGES (60 Hz LINE-TO-NEUTRAL / LINE-TO-LINE) 277/480'; but this is listed as a choice (a tick box or a list of what is available), not marked as supplied; offered 60 Hz meets == 60 Hz",
       "data": {
         "req_id": "R02",
         "locator": "2.1.C (System Capacity)",
@@ -7451,8 +7451,8 @@
             "cid": "R02a",
             "attribute": "electrical_system_configuration",
             "condition": "all of: 480Y/277, 3 phase, 4 wire",
-            "verdict": "complies",
-            "why": "model judgement on verified quote: 'AVAILABLE VOLTAGES (60 Hz LINE-TO-NEUTRAL / LINE-TO-LINE) 277/480'",
+            "verdict": "unclear",
+            "why": "model judgement on verified quote: 'AVAILABLE VOLTAGES (60 Hz LINE-TO-NEUTRAL / LINE-TO-LINE) 277/480'; but this is listed as a choice (a tick box or a list of what is available), not marked as supplied",
             "offered": {
               "values": [
                 "277/480"
@@ -7918,7 +7918,7 @@
         }
       ],
       "needs_human": false,
-      "why": "offered TIER 2 EMISSIONS CERTIFICATION: EPA NSPS STATIONARY EMERGENCY TIER 2 meets one of: tier 2, tier 4, epa",
+      "why": "offered TIER 2 EMISSIONS CERTIFICATION: EPA NSPS STATIONARY EMERGENCY TIER 2 meets one of: tier 2, tier 4",
       "data": {
         "req_id": "R10",
         "locator": "2.1.D.3 (Emissions Compliance)",
@@ -7926,9 +7926,9 @@
           {
             "cid": "R10a",
             "attribute": "emissions_compliance",
-            "condition": "one of: tier 2, tier 4, epa",
+            "condition": "one of: tier 2, tier 4",
             "verdict": "complies",
-            "why": "offered TIER 2 EMISSIONS CERTIFICATION: EPA NSPS STATIONARY EMERGENCY TIER 2 meets one of: tier 2, tier 4, epa",
+            "why": "offered TIER 2 EMISSIONS CERTIFICATION: EPA NSPS STATIONARY EMERGENCY TIER 2 meets one of: tier 2, tier 4",
             "offered": {
               "values": [
                 "TIER 2"
@@ -7947,7 +7947,7 @@
       "id": "submittal:B4/F-R11",
       "claim": "Operate at ambient conditions of 300 ft altitude and 10 to 122°F ambient temperature.",
       "status": "unclear",
-      "confidence": 0.6,
+      "confidence": 0.5,
       "citations": [
         {
           "doc_id": "26-32-13-engine-generators-alpha",
@@ -7975,7 +7975,7 @@
         }
       ],
       "needs_human": true,
-      "why": "only partly stated: model judgement on verified quote: 'Full engine power available up to 400 m (1312 ft)'; not stated in the submittal",
+      "why": "model judgement on verified quote: 'Full engine power available up to 400 m (1312 ft)'; the submittal has a passage about it ('ambient temperature up to 50°C (122°F)') but no value that can be compared",
       "data": {
         "req_id": "R11",
         "locator": "2.1.E.1",
@@ -7999,8 +7999,8 @@
             "cid": "R11b",
             "attribute": "ambient_temperature_range",
             "condition": "10–122 °F",
-            "verdict": "missing",
-            "why": "not stated in the submittal",
+            "verdict": "unclear",
+            "why": "the submittal has a passage about it ('ambient temperature up to 50°C (122°F)') but no value that can be compared",
             "offered": {
               "values": [],
               "unit": "°F",
@@ -8180,7 +8180,7 @@
         }
       ],
       "needs_human": true,
-      "why": "offered 120/240V 100W control anti- condensation heater 120/240V 100W control anti- condensation heater does not meet all of: 120 v, single phase; the expected words are missing from the quote but nothing contradicts the requirement",
+      "why": "the evidence shows heater but does not mention 120 v, single phase; nothing contradicts it, a person decides",
       "data": {
         "req_id": "R15",
         "locator": "2.1.G.5",
@@ -8188,9 +8188,9 @@
           {
             "cid": "R15a",
             "attribute": "space_heater_electrical",
-            "condition": "all of: 120 v, single phase",
+            "condition": "all of: 120 v, single phase, heater",
             "verdict": "unclear",
-            "why": "offered 120/240V 100W control anti- condensation heater 120/240V 100W control anti- condensation heater does not meet all of: 120 v, single phase; the expected words are missing from the quote but nothing contradicts the requirement",
+            "why": "the evidence shows heater but does not mention 120 v, single phase; nothing contradicts it, a person decides",
             "offered": {
               "values": [],
               "unit": null,
@@ -8406,7 +8406,7 @@
         }
       ],
       "needs_human": true,
-      "why": "no value found, but the submittal mentions water, heater on page(s) [2]; no value found, but the submittal mentions water, heater on page(s) [2]; no value found, but the submittal mentions electrical, phase, heater on page(s) [1, 2, 3, 4, 7]",
+      "why": "no value found, but the submittal mentions water, heater on page(s) [2]; no value found, but the submittal mentions water, heater on page(s) [2]; no value found, but the submittal mentions electrical, phase, water on page(s) [1, 2, 3, 4, 7]",
       "data": {
         "req_id": "R20",
         "locator": "2.1.K.2 (Jacket-Water Heater)",
@@ -8446,7 +8446,7 @@
             "attribute": "jacket_water_heater_electrical",
             "condition": "all of: 480 v, 1 phase",
             "verdict": "unclear",
-            "why": "no value found, but the submittal mentions electrical, phase, heater on page(s) [1, 2, 3, 4, 7]",
+            "why": "no value found, but the submittal mentions electrical, phase, water on page(s) [1, 2, 3, 4, 7]",
             "offered": {
               "values": [],
               "unit": null,
@@ -8577,7 +8577,7 @@
     },
     {
       "finding_id": "submittal:B1/F-R03",
-      "reason": "no value found, but the submittal mentions starting, motor, capacity on page(s) [1, 3]"
+      "reason": "no value found, but the submittal mentions motor, starting, capacity on page(s) [1, 3]"
     },
     {
       "finding_id": "submittal:B1/F-R04",
@@ -8597,11 +8597,15 @@
     },
     {
       "finding_id": "submittal:B1/F-R08",
-      "reason": "no value found, but the submittal mentions fuel, consumption, average on page(s) [1, 3, 4]"
+      "reason": "no value found, but the submittal mentions consumption, fuel, average on page(s) [1, 3, 4]"
     },
     {
       "finding_id": "submittal:B1/F-R09",
       "reason": "no value found, but the submittal mentions cooling, unit, radiator on page(s) [1, 2, 3, 4]; offered 122 °F meets >= 122 °F"
+    },
+    {
+      "finding_id": "submittal:B1/F-R11",
+      "reason": "not stated in the submittal; the submittal has a passage about it ('temperatures up to 50°C (122°F)') but no value that can be compared"
     },
     {
       "finding_id": "submittal:B1/F-R13",
@@ -8609,11 +8613,11 @@
     },
     {
       "finding_id": "submittal:B1/F-R15",
-      "reason": "no value found, but the submittal mentions single, heater, electrical on page(s) [2]"
+      "reason": "no value found, but the submittal mentions electrical, single, heater on page(s) [2]"
     },
     {
       "finding_id": "submittal:B1/F-R16",
-      "reason": "no value found, but the submittal mentions output, circuit, pole on page(s) [1, 2, 4]"
+      "reason": "no value found, but the submittal mentions output, circuit, breaker on page(s) [1, 2, 4]"
     },
     {
       "finding_id": "submittal:B1/F-R19",
@@ -8621,7 +8625,7 @@
     },
     {
       "finding_id": "submittal:B1/F-R20",
-      "reason": "no value found, but the submittal mentions jacket, water, count on page(s) [1, 2, 3]; no value found, but the submittal mentions jacket, water, heater on page(s) [2, 3]; no value found, but the submittal mentions jacket, water, heater on page(s) [2, 3]"
+      "reason": "no value found, but the submittal mentions water, jacket, count on page(s) [1, 2, 3]; no value found, but the submittal mentions water, jacket, heater on page(s) [2, 3]; no value found, but the submittal mentions water, jacket, electrical on page(s) [2, 3]"
     },
     {
       "finding_id": "submittal:B2/F-R01",
@@ -8737,7 +8741,7 @@
     },
     {
       "finding_id": "submittal:B4/F-R02",
-      "reason": "model judgement on verified quote: 'AVAILABLE VOLTAGES (60 Hz LINE-TO-NEUTRAL / LINE-TO-LINE) 277/480'; offered 60 Hz meets == 60 Hz"
+      "reason": "model judgement on verified quote: 'AVAILABLE VOLTAGES (60 Hz LINE-TO-NEUTRAL / LINE-TO-LINE) 277/480'; but this is listed as a choice (a tick box or a list of what is available), not marked as supplied; offered 60 Hz meets == 60 Hz"
     },
     {
       "finding_id": "submittal:B4/F-R03",
@@ -8757,7 +8761,7 @@
     },
     {
       "finding_id": "submittal:B4/F-R11",
-      "reason": "only partly stated: model judgement on verified quote: 'Full engine power available up to 400 m (1312 ft)'; not stated in the submittal"
+      "reason": "model judgement on verified quote: 'Full engine power available up to 400 m (1312 ft)'; the submittal has a passage about it ('ambient temperature up to 50°C (122°F)') but no value that can be compared"
     },
     {
       "finding_id": "submittal:B4/F-R13",
@@ -8765,7 +8769,7 @@
     },
     {
       "finding_id": "submittal:B4/F-R15",
-      "reason": "offered 120/240V 100W control anti- condensation heater 120/240V 100W control anti- condensation heater does not meet all of: 120 v, single phase; the expected words are missing from the quote but nothing contradicts the requirement"
+      "reason": "the evidence shows heater but does not mention 120 v, single phase; nothing contradicts it, a person decides"
     },
     {
       "finding_id": "submittal:B4/F-R16",
@@ -8785,7 +8789,7 @@
     },
     {
       "finding_id": "submittal:B4/F-R20",
-      "reason": "no value found, but the submittal mentions water, heater on page(s) [2]; no value found, but the submittal mentions water, heater on page(s) [2]; no value found, but the submittal mentions electrical, phase, heater on page(s) [1, 2, 3, 4, 7]"
+      "reason": "no value found, but the submittal mentions water, heater on page(s) [2]; no value found, but the submittal mentions water, heater on page(s) [2]; no value found, but the submittal mentions electrical, phase, water on page(s) [1, 2, 3, 4, 7]"
     },
     {
       "finding_id": "submittal:B4/F-R21",

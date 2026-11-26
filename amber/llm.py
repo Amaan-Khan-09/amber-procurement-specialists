@@ -60,8 +60,18 @@ PRICES.setdefault("gpt-oss-120b", PRICES["openai/gpt-oss-120b"])
 FREE_FALLBACKS = "openrouter,cerebras,nvidia,huggingface"  # tried in this order after the primary, only if their keys are set
 
 
+_PRIVATE = re.compile(r"\b(org|proj|project|user|key|acct)([_-])[A-Za-z0-9]{8,}|\b(gsk|sk|hf|nvapi)([_-])[A-Za-z0-9_-]{16,}"
+                      r"|\bAIza[A-Za-z0-9_-]{20,}")
+
+
+def scrub(text: str) -> str:
+    """Remove account identifiers and API keys from a provider's message: errors are stored inside results."""
+    return _PRIVATE.sub("(hidden)", text)
+
+
 class LLMError(RuntimeError):
-    pass
+    def __init__(self, message: str = ""):
+        super().__init__(scrub(str(message)))
 
 
 @dataclass
@@ -191,7 +201,7 @@ class LLM:
                 continue
             break
         if r.status_code >= 400:
-            raise LLMError(f"{self.provider} HTTP {r.status_code}: {r.text[:300]}")
+            raise LLMError(f"{self.provider} HTTP {r.status_code}: {scrub(r.text)[:300]}")
         return r.json()
 
     def _groq(self, system: str, user: str, max_tokens: int) -> str:

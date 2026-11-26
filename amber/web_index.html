@@ -891,7 +891,7 @@ function crossCardHtml(C) {
     <tr><td>handed to a person</td><td><b>agrees</b></td><td class="n">${C.handed_agrees.n}</td><td class="n"><b>${p(C.handed_agrees)}</b></td></tr>
     <tr><td>handed to a person</td><td><b>disagrees</b></td><td class="n">${C.handed_disagrees.n}</td><td class="n"><b>${p(C.handed_disagrees)}</b></td></tr></table></div>
     <p class="small" style="margin:8px 0 0">So a contested answer is far more likely to be wrong, and the review queue shows those first. Agreement is not strong enough to
-    approve anything on its own (84 % is not the 98 % that "decided alone" achieved), so every answer it does not settle still goes to a person.
+    approve anything on its own (84 % is well short of what "decided alone" achieved), so every answer it does not settle still goes to a person.
     It also never overrules us: where the pipeline said "unclear" and the reader gave a concrete verdict (complies or deviates), the reader was right only ${p(C.unclear_with_concrete_reader)}; where it said "missing" it was right ${p(C.unclear_with_reader_missing)}.
     A cheaper version that only showed the second model the quoted evidence did <b>not</b> work (its agreement did not predict a right answer, 70 % versus 83 %), so it is not used.</p></div>`;
 }

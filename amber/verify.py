@@ -131,7 +131,39 @@ def reads_as_one(doc: Document, cite: Citation) -> bool:
     pg = doc.page(cite.page)
     if pg is None or not pg.raw or pg.ocr:  # nothing to compare with (a text file, or a scan, capped elsewhere)
         return True
-    return compact(cite.quote) in compact(pg.raw)
+    q = compact(_no_bars(cite.quote))
+    return q in compact(pg.raw) or bool(pg.layout) and q in compact(_no_bars(pg.layout))
+
+
+def _no_bars(s: str) -> str:
+    return s.replace("|", " ")  # the layout reading separates table cells with bars; they are not part of the document
+
+
+def _best_level(quote: str, pg) -> str | None:
+    """How well the quote matches the page: the stricter of the plain text and, when present, the layout reading."""
+    levels = [match_level(quote, pg.text)]
+    if pg.layout:
+        levels.append(match_level(_no_bars(quote), _no_bars(pg.layout)))
+    found = [x for x in levels if x]
+    return max(found, key=lambda x: MATCH_TRUST[x]) if found else None
+
+
+_TICK_BOXES = chr(0x2751) + chr(0x2752) + chr(0x2610) + chr(0x25A1) + chr(0x274F)  # empty boxes datasheets print
+_CHOICES = re.compile(r"available\s+(?:voltages|options)|options\s+and\s+accessories|optional\s+equipment", re.I)
+
+
+def listed_as_choice(doc: Document, cite: Citation) -> bool:
+    """Is the evidence an item the buyer may choose, not something the datasheet says is supplied? True when the quote
+    carries an empty tick box, sits right after one in the PDF's own text order, or is headed as a list of choices."""
+    if any(ch in cite.quote for ch in _TICK_BOXES) or _CHOICES.search(cite.quote):
+        return True
+    pg = doc.page(cite.page)
+    if pg is None or not pg.raw:
+        return False
+    page, q = compact(pg.raw), compact(cite.quote)
+    starts = [m.start() for m in re.finditer(re.escape(q), page)] if q else []
+    # a choice only if every place the words appear is boxed: the same words stated plainly elsewhere still count
+    return bool(starts) and all(i > 0 and page[i - 1] in _TICK_BOXES for i in starts)
 
 
 def verify(doc: Document, quote: str, page: int | None = None, locator: str = "") -> Citation | None:
@@ -156,7 +188,7 @@ def verify(doc: Document, quote: str, page: int | None = None, locator: str = ""
             continue
         seen.add(n)
         pg = doc.page(n)
-        level = match_level(quote, pg.text)
+        level = _best_level(quote, pg)
         if level:
             return Citation(doc_id=doc.doc_id, page=n, locator=locator, quote=collapse(quote),
                             match=level, ocr=pg.ocr)

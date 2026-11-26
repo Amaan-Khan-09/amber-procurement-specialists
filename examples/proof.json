@@ -1,5 +1,5 @@
 {
- "key": "2e3c7c0adb3742d90710",
+ "key": "45a12c793a6d11da0123",
  "built": "2026-11-26",
  "proof": {
   "cases": [
@@ -208,7 +208,7 @@
   },
   "cross": {
    "unclear_with_concrete_reader": {
-    "n": 22,
+    "n": 23,
     "right": 7
    },
    "unclear_with_reader_missing": {
@@ -229,19 +229,19 @@
    "reviewer_agrees_with_key": 100,
    "kappa": 0.57,
    "handed_agrees": {
-    "n": 49,
-    "right": 41
+    "n": 50,
+    "right": 42
    },
    "handed_disagrees": {
     "n": 50,
-    "right": 19
+    "right": 20
    },
    "auto_agrees": {
     "n": 34,
     "right": 34
    },
    "auto_disagrees": {
-    "n": 9,
+    "n": 8,
     "right": 8
    }
   }

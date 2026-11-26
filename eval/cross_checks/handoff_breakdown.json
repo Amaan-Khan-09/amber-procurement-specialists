@@ -6,11 +6,11 @@
    "right": 8
   },
   "decided by the agent alone": {
-   "n": 57,
+   "n": 56,
    "right": 56
   },
   "complies: the model's judgement of a verified quote": {
-   "n": 34,
+   "n": 33,
    "right": 25
   },
   "unclear: related words found, but no value": {
@@ -22,8 +22,8 @@
    "right": 1
   },
   "unclear: other": {
-   "n": 9,
-   "right": 4
+   "n": 10,
+   "right": 5
   },
   "deviates: other": {
    "n": 1,
@@ -34,8 +34,8 @@
    "right": 1
   },
   "unclear: only some of the required words found": {
-   "n": 2,
-   "right": 0
+   "n": 3,
+   "right": 1
   },
   "unclear: the model and the code disagree": {
    "n": 3,

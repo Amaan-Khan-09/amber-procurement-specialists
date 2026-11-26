@@ -9,6 +9,8 @@ from pathlib import Path
 
 import pymupdf
 
+from . import layout as layout_reading
+
 MIN_TEXT_CHARS = 40  # below this a page is treated as scanned (image only)
 CACHE = Path(__file__).resolve().parents[1] / ".cache" / "ocr"
 
@@ -19,6 +21,7 @@ class Page:
     text: str
     ocr: bool = False
     raw: str = ""  # the same text in the PDF's own order, which keeps columns apart (empty for scans and text files)
+    layout: str = ""  # layout-aware reading (columns apart, table rows together); only when that reading is on
 
 
 @dataclass
@@ -73,6 +76,11 @@ def load(path: str | Path, doc_id: str | None = None, ocr=None) -> Document:
             except Exception:  # OCR unavailable: the page stays unread and is reported as such
                 pass
         doc.pages.append(page)
+    if layout_reading.enabled():
+        texts = layout_reading.pages(path, doc.sha256, len(doc.pages))
+        for page, text in zip(doc.pages, texts or []):
+            if not page.ocr and len(page.text.strip()) >= MIN_TEXT_CHARS:
+                page.layout = text
     return doc
 
 

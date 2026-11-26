@@ -11,7 +11,7 @@ this repository a judge can check. Status: **met**, **partly met** (with the gap
 | Be callable by another agent: run as an MCP server | met | `python -m amber.server` (stdio or `--http`), six tools; `scripts/demo_mcp_client.py` calls it as an agent would |
 | Show its sources for every answer: document, page, row, photo, recording or website | met | Every finding carries `citations` (document, page, paragraph or row, exact quote); quotes are verified on the page (`amber/verify.py`); award and package decisions cite the clauses they rest on (`tests/test_bids.py::test_award_answer_cites_its_evidence`); lead-time figures cite the website, date and quote (`data/leadtime_sources/leadtime_evidence.csv`) |
 | Give a confidence score with each answer, and hand off to a human when it isn't sure | met | `confidence` on every finding, built from evidence; under 0.70 → `needs_human` with a reason |
-| Hand off to a human when it isn't sure, and say how often | met | Two answers in three go to a person; the Proof tab and README break down why (27 % of requirements are genuinely unclear in the datasheet), and a blind independent reader sorts the queue (contested answers are right 38 % of the time, confirmed ones 84 %) |
+| Hand off to a human when it isn't sure, and say how often | met | Two answers in three go to a person; the Proof tab and README break down why (27 % of requirements are genuinely unclear in the datasheet), and a blind independent reader sorts the queue (contested answers are right 40 % of the time, confirmed ones 84 %) |
 | Never make things up | met | 0 fabricated citations in every scored run, dev and held-out; the scorer re-checks each citation independently (`scripts/eval_submittal.py`); numbers must appear in their own quote |
 | Be easy to run, with a README and simple setup steps | met | README Quick start, verified from a fresh clone of the GitHub repo with no keys (all tests pass, MCP demo runs) |
 | Name the AI models used, with a rough cost and response time per run | met | README "Models, cost and time"; every result reports models, tokens, cost and latency, and logs each model call (`run.steps`) |
@@ -37,7 +37,7 @@ this repository a judge can check. Status: **met**, **partly met** (with the gap
 | Accuracy | Held-out set 1 (run once, before fixes): 34/58 (59 %). Held-out set 2 (run once, after fixes): 28/42 (67 %). Held-out set 3 (fresh documents, labelled before the run, run once, after the accuracy fixes): 32/42 (76 %), 0 false approvals, 0 false rejections. On sets 2 and 3, 25 of 26 automatic answers matched the key; 0 fabricated citations in every run. Bid leveling 41/44 scope cells on one reading and 39/44 on a second (same documents, same model), all four base prices exact both times, award withheld both times |
 | Customer value | Package review answers the real question (who to award, what is missing, what will be late) in one table; follow-up drafts for every gap; a web page for managers with a one-click source viewer (the cited page, quote highlighted) and a review queue |
 | Trustworthiness | Sources on every answer, verified quotes, 0 fabricated citations, cautious handoffs, failures never become claims |
-| Build quality | 126 tests, fresh-clone install verified, cost and time per run measured |
+| Build quality | 132 tests, fresh-clone install verified, cost and time per run measured |
 
 ## What to submit (Round 1, by Sunday 6 December 2026)
 

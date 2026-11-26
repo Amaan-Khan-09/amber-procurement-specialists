@@ -64,6 +64,52 @@ def test_a_rejection_that_reads_as_one_run_of_text_still_stands():
     assert d.verdict == Verdict.deviates and conf >= 0.70
 
 
+# ---- a quoted passage is never "missing"
+def test_a_verified_quote_with_no_value_is_unclear_not_missing():
+    doc = _doc("Cooling systems available to operate in temperatures up to 50 C ")
+    cond = {"cid": "R11b", "kind": "numeric", "op": "between", "min": 10, "max": 122, "unit": "°F"}
+    offer = {"cid": "R11b", "stated": True, "values": [], "quote": "temperatures up to 50 C", "page": 1, "meets": "unknown"}
+    d, cite, conf = _decide_condition(cond, offer, doc)
+    assert cite is not None and d.verdict == Verdict.unclear and conf < 0.70
+
+
+# ---- the layout reading: whole pages, columns apart
+def test_layout_cleaning_keeps_words_numbers_and_tick_boxes():
+    from amber import layout
+    md = "## **Alternator**\n|**Type**|4-Pole<sup>1</sup>|\n|---|---|\n- " + chr(0x2751) + " Battery Charger<br>(1 Ph)"
+    out = layout.clean(md)
+    assert "Type | 4-Pole1" in out and chr(0x2751) + " Battery Charger (1 Ph)" in out and "**" not in out
+
+
+def test_the_second_look_starts_with_pages_not_yet_read():
+    from amber.submittal import _page_context
+    doc = Document("d", "d.pdf", pages=[Page(n, "p", layout=f"fuel tank page {n} " + "x" * 5000) for n in (1, 2, 3, 4)])
+    cond = [{"cid": "a", "attribute": "fuel_tank"}]
+    first_text, first = _page_context(doc, cond, limit=11000)
+    _, second = _page_context(doc, cond, skip=first, limit=11000)
+    assert len(first) == 2 and first | second == {1, 2, 3, 4} and "[page" in first_text
+
+
+def test_a_quote_from_a_table_row_is_found_on_the_layout_reading():
+    from amber.verify import reads_as_one, verify
+    doc = Document("d", "d.pdf", pages=[Page(1, "Peak kVA: 480 V 4, 1110 9957", raw="Peak kVA:\n480 V\n9957",
+                                            layout="Peak motor starting kVA: | (35% dip)\n480 V KH07801TO4D | 9957")])
+    c = verify(doc, "480 V KH07801TO4D | 9957", 1)
+    assert c is not None and reads_as_one(doc, c)
+
+
+# ---- a choice on a list is not a supplied item
+def test_a_ticked_list_item_cannot_comply_on_its_own():
+    boxed = chr(0x2751)
+    cond = {"cid": "R16a", "kind": "text", "terms": ["3 pole"], "match": "all"}
+    offer = {"cid": "R16a", "stated": True, "values": ["3-pole"], "quote": "3-pole breaker", "page": 1}
+    listed = Document("d", "d.pdf", pages=[Page(1, boxed + " 3-pole breaker " * 1 + "x" * 40, raw=boxed + "\n3-pole breaker\n")])
+    d, _, conf = _decide_condition(cond, dict(offer), listed)
+    assert d.verdict == Verdict.unclear and conf < 0.70 and "choice" in d.why
+    stated = Document("d", "d.pdf", pages=[Page(1, "Standard: 3-pole breaker " + "x" * 40, raw="Standard: 3-pole breaker")])
+    assert _decide_condition(cond, dict(offer), stated)[0].verdict == Verdict.complies
+
+
 # ---- text conditions
 def _doc(text):
     return Document("d", "d.pdf", pages=[Page(1, text * 3)])

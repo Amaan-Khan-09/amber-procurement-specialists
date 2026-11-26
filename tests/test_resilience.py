@@ -135,3 +135,11 @@ def test_a_host_that_rejects_a_setting_is_asked_again_with_plain_settings(monkey
     monkeypatch.setattr(llm, "_post", fake_post)
     assert llm.json("s", "u") == {"ok": True}
     assert "reasoning_effort" not in sent[-1] and "response_format" not in sent[-1]
+
+
+def test_account_ids_and_keys_never_reach_a_saved_message():
+    from amber.llm import LLMError
+    msg = ("groq HTTP 429: Rate limit reached in organization `org_" + "0a1b2c3d4e5f6g7h8i9j` key gsk_" + "A" * 40
+           + " and AIza" + "B" * 35)
+    out = str(LLMError(msg))
+    assert "org_" not in out and "gsk_" not in out and "AIza" not in out and "Rate limit reached" in out

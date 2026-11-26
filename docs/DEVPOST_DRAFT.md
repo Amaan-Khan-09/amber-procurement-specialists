@@ -57,7 +57,7 @@ about 2 cents.
 ## Handing off to a person, honestly
 About two answers in three go to a person, and we say so. 27 % of the requirements are genuinely unclear in the datasheet, so no
 honest system can settle them. To help the person, a model of another family reads each datasheet blind and its verdict sits beside
-ours: when it contradicts an answer, that answer is right only 38 % of the time (84 % when it agrees), so the queue shows the
+ours: when it contradicts an answer, that answer is right only 40 % of the time (84 % when it agrees), so the queue shows the
 contested ones first. We also tried a cheaper version that only shows the second model our quoted evidence; it did not work, and we
 say so in the README.
 

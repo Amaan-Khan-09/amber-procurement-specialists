@@ -312,8 +312,7 @@
      "kind": "text",
      "terms": [
       "tier 2",
-      "tier 4",
-      "epa"
+      "tier 4"
      ],
      "match": "any"
     }
@@ -452,7 +451,8 @@
      "kind": "text",
      "terms": [
       "120 v",
-      "single phase"
+      "single phase",
+      "heater"
      ],
      "match": "all"
     }

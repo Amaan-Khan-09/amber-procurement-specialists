@@ -44,7 +44,7 @@ python -m venv .venv                                     # Python 3.11+
 source .venv/bin/activate                                # Windows: .venv\Scripts\activate
 pip install -e ".[dev]"
 python tools/data_prep/fetch_data.py                     # downloads the public test documents (not committed)
-python -m pytest -q                                      # 126 tests, no API key and no network needed
+python -m pytest -q                                      # 132 tests, no API key and no network needed
 python -m amber.web                                      # the web page: http://127.0.0.1:8000 (opens the browser)
 python scripts/demo_mcp_client.py                        # starts the MCP server and calls a tool (no key needed)
 cp .env.example .env                                     # add GROQ_API_KEY for the steps below
@@ -316,9 +316,39 @@ The saved package review and bid comparison were decided again from **the same m
 not "reject". Our key says its fuel tank deviates (UL 142 where UL 2085 is required); the agent did not catch that on this
 reading and neither did the independent reader. It is in the person's queue, as `unclear`, with the datasheet page.
 
+### A second round: where answers get lost (26 Nov 2026)
+
+We traced all 53 wrong answers on the saved runs, rebuilding what the model was shown (no model call needed):
+
+| Where it went wrong | Answers |
+|---|---|
+| the key says `missing`; we answered `unclear` because related words occur (cautious by design) | 16 |
+| the evidence was shown, the model quoted something else | 14 |
+| the evidence was **not in the passages shown** to the model | 9 |
+| the right words were quoted; the rules decided differently | 9 |
+| the evidence was shown, the model reported nothing | 5 |
+
+Four rules came out of it. On the replay of all 184 requirements (same model readings) they move **131 to 133 correct, and
+every answer decided alone, 56 of 56, matches the key** (before: 56 of 57). These documents had been seen, so this is a
+repair record, not an accuracy measurement.
+
+* A passage that was quoted but holds no comparable value is `unclear`, never `missing`. This was the one wrong automatic
+  answer on held-out set 3 (G7 R11); the table above for that set still shows the run as it happened.
+* An item behind an empty tick box, or on a list of available choices, cannot `comply` on its own.
+* "EPA" with no Tier no longer satisfies the emissions requirement, and a 120 V single-phase item must be a *heater*.
+* Account identifiers and keys are removed from provider error messages before they are stored in a result.
+
+Still true: the requirement "24 V, 2-wire, negative ground, gear-engaging starter" is judged on the 24 V starter only.
+
+**Layout-aware reading (experimental, off by default: `AMBER_READING=layout`).** For datasheets up to 24 pages the model
+is given whole pages with the columns kept apart, table rows kept together and tick boxes visible, and the second look
+starts with the pages not yet read. One live run on a development datasheet (G2) scored 18 of 21 with 7 of 7 automatic
+answers right (earlier runs of that sheet with the plain reading: 17 and 15). One run proves nothing: it stays off until
+it has been compared with the plain reading on datasheets neither has seen.
+
 ## What goes to a person, and the independent reader
 
-About two answers in three go to a person (64 % on the newest set, 69 % over all 184 labelled requirements). Two facts put
+About two answers in three go to a person (64 % on the newest set as it ran, 70 % over all 184 labelled requirements with today's rules). Two facts put
 that in proportion. First, **27 % of the requirements are genuinely unclear in the datasheet** (our keys mark 50 of 184 as
 `unclear`: an option listed but not marked as supplied, a claim without numbers), so only the supplier can answer them: any
 honest system hands those over. Second, what is inside the rest (`python scripts/handoff_breakdown.py`, current code, all labelled
@@ -326,11 +356,11 @@ answers):
 
 | What the answer is | Answers | Right |
 |---|---|---|
-| decided by the agent alone | 57 | 56 (98 %) |
+| decided by the agent alone | 56 | 56 (100 %) |
 | unclear: related words found, but no value | 63 | 34 (54 %) |
-| complies: the model's judgement of a verified quote | 34 | 25 (74 %) |
+| complies: the model's judgement of a verified quote | 33 | 25 (76 %) |
 | number found, its unit not printed beside it | 8 | 8 (100 %) |
-| unclear: other kinds (a reported value not in its own quote, only some required words found, model and code disagree) | 20 | 7 (35 %) |
+| other hand-offs (a quote without a comparable value, a reported value not in its own quote, only some required words found, model and code disagree) | 24 | 10 (42 %) |
 
 The "judgement" answers are right three times in four, so they are not "just glance": one in four is a derating footnote or an
 unmarked option that needs a person.
@@ -343,16 +373,16 @@ datasheets (`python scripts/analyze_agreement.py`):
 | Our pipeline's answer | Independent reader | Answers | Pipeline right |
 |---|---|---|---|
 | decided by the agent alone | agrees | 34 | 34 (100 %) |
-| handed to a person | **agrees** | 49 | **41 (84 %)** |
-| handed to a person | **disagrees** | 50 | **19 (38 %)** |
+| handed to a person | **agrees** | 50 | **42 (84 %)** |
+| handed to a person | **disagrees** | 50 | **20 (40 %)** |
 
 So a contested answer is far more likely to be wrong, and that is what the queue order uses. Agreement is not strong enough to approve
-anything on its own (84 % against the 98 % of the answers the agent decides alone), so everything it does not settle still goes to a
+anything on its own (84 % is well short of the answers the agent decides alone), so everything it does not settle still goes to a
 person. Two negative results, kept because they shape the design: (1) a cheaper second opinion that only sees the *quoted evidence*
 did **not** work (agreement 14 right of 20, disagreement 20 of 24: the second model shares the first one's blind spots, such as a
 derating footnote or an unmarked option elsewhere in the sheet), so it is not used; (2) where the pipeline says "unclear" and the reader
-gives a concrete verdict (complies or deviates) the reader is right only 7 of 22 times, so it never overrules (when it says "missing" it
-is right 13 of 15). The reader costs about 8,000 to 18,000 tokens a datasheet on its own free allowance and reads one page-chunk a
+gives a concrete verdict (complies or deviates) the reader is right only 7 of 23 times, so it never overrules (when it says "missing" it
+is right 13 of 15). These figures are the saved readings decided with today's rules, as on the Proof tab. The reader costs about 8,000 to 18,000 tokens a datasheet on its own free allowance and reads one page-chunk a
 minute on a free tier, so it is run for datasheets of up to 20 pages (`scripts/cross_check_keys.py`); the 66- and 105-page packages are
 not cross-read.
 
