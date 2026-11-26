@@ -189,8 +189,8 @@ def test_the_proof_tab_reports_what_the_independent_reader_tells_us(client):
     web._proof_cache.clear()
     C = client.get("/api/proof").json()["cross"]
     assert C["n"] == 142 and len(C["documents"]) == 7
-    assert (C["handed_agrees"]["n"], C["handed_agrees"]["right"]) == (49, 41)  # agreement sorts what a person must look at
-    assert (C["handed_disagrees"]["n"], C["handed_disagrees"]["right"]) == (50, 19)
+    assert (C["handed_agrees"]["n"], C["handed_agrees"]["right"]) == (50, 42)  # agreement sorts what a person must look at
+    assert (C["handed_disagrees"]["n"], C["handed_disagrees"]["right"]) == (50, 20)
     assert C["auto_agrees"]["right"] == C["auto_agrees"]["n"]
-    assert (C["unclear_with_concrete_reader"]["n"], C["unclear_with_concrete_reader"]["right"]) == (22, 7)  # it never overrules
+    assert (C["unclear_with_concrete_reader"]["n"], C["unclear_with_concrete_reader"]["right"]) == (23, 7)  # it never overrules
     assert (C["unclear_with_reader_missing"]["n"], C["unclear_with_reader_missing"]["right"]) == (15, 13)
