@@ -1,0 +1,231 @@
+"""Public registries: who is this supplier legally, have they supplied this equipment before, and are they excluded?
+
+Sources (all official US government sources):
+  USAspending.gov API (Treasury, no key)        legal entity names and UEI identifiers of federal award recipients;
+                                                 awards by product code (PSC 6115 = generators and generator sets)
+  SAM.gov Exclusions API v4 (GSA, needs a key)   THE federal procurement exclusion list. It requires a personal API
+                                                 key (free, from a SAM.gov account): set SAM_API_KEY. Without it the
+                                                 check is reported as 'lookup unavailable', never as 'not excluded'.
+  Consolidated Screening List (trade.gov, no key) export and sanctions screening lists of Commerce, State and Treasury
+                                                 (OFAC SDN among them). Not the procurement exclusion list: reported as
+                                                 a separate screen.
+
+Every answer records the source, the endpoint, the lookup time (UTC), the legal entity and identifier found, how
+confidently it matches the name we hold, and one status:
+  confirmed      exactly one entity matches (or the list holds a record for it)
+  no match       the source answered and nothing matches
+  ambiguous      several different entities match the name: a person picks, with the candidates shown
+  unavailable    the source could not be asked (no key, network or server failure): nothing is concluded
+"""
+from __future__ import annotations
+
+import csv
+import io
+import json
+import os
+import re
+import time
+import urllib.error
+import urllib.request
+from datetime import datetime, timezone
+from pathlib import Path
+
+from rapidfuzz import fuzz
+
+ROOT = Path(__file__).resolve().parents[1]
+CACHE = ROOT / ".cache" / "registries"
+USA_RECIPIENT = "https://api.usaspending.gov/api/v2/recipient/"
+USA_AWARDS = "https://api.usaspending.gov/api/v2/search/spending_by_award/"
+SAM_EXCLUSIONS = "https://api.sam.gov/entity-information/v4/exclusions"
+CSL_CSV = "https://data.trade.gov/downloadable_consolidated_screening_list/v1/consolidated.csv"
+UA = {"User-Agent": "amber-procurement-specialists (hackathon research tool)", "Content-Type": "application/json"}
+_SUFFIX = re.compile(r"\b(inc|incorporated|llc|l\.l\.c|co|corp|corporation|company|ltd|limited|lp|llp|plc|the)\b\.?", re.I)
+STRONG, POSSIBLE = 92, 85
+
+
+class SourceError(RuntimeError):
+    pass
+
+
+def _now() -> str:
+    return datetime.now(timezone.utc).isoformat(timespec="seconds")
+
+
+def _http(url: str, body: dict | None = None, timeout: float = 30) -> bytes:
+    """One request; any failure becomes SourceError (a lookup that fails is 'unavailable', never 'no match')."""
+    try:
+        req = urllib.request.Request(url, data=json.dumps(body).encode() if body is not None else None,
+                                     headers=UA, method="POST" if body is not None else "GET")
+        with urllib.request.urlopen(req, timeout=timeout) as r:
+            return r.read()
+    except (urllib.error.URLError, TimeoutError, OSError, ValueError) as e:
+        raise SourceError(f"{type(e).__name__}: {str(e)[:120]}") from e
+
+
+def norm_name(s: str) -> str:
+    s = re.sub(r"\(.*?\)", " ", str(s).lower())
+    s = _SUFFIX.sub(" ", s)
+    return re.sub(r"[^a-z0-9& ]+", " ", re.sub(r"\s+", " ", s)).split("  ")[0].strip()
+
+
+def score(a: str, b: str) -> float:
+    na, nb = norm_name(a), norm_name(b)
+    if not na or not nb:
+        return 0.0
+    if na == nb:
+        return 100.0
+    return float(min(fuzz.token_set_ratio(na, nb), fuzz.ratio(na, nb) + 10))
+
+
+def _result(source: str, endpoint: str, query: str, status: str, **kw) -> dict:
+    return {"source": source, "endpoint": endpoint, "query": query, "looked_up": _now(), "status": status, **kw}
+
+
+# ------------------------------------------------------------------ legal entity (USAspending)
+
+def lookup_entity(name: str, http=_http) -> dict:
+    src = "USAspending.gov recipient search (U.S. Treasury)"
+    try:
+        data = json.loads(http(USA_RECIPIENT, {"keyword": norm_name(name) or name, "limit": 50}))
+    except SourceError as e:
+        return _result(src, USA_RECIPIENT, name, "unavailable", why=f"the source could not be reached ({e})")
+    cands = {}
+    for r in data.get("results") or []:
+        sc = score(name, r.get("name", ""))
+        if sc < POSSIBLE:
+            continue
+        key = r.get("uei") or r.get("name")
+        if key not in cands or sc > cands[key]["match"]:
+            cands[key] = {"legal_entity": r.get("name"), "uei": r.get("uei"), "match": round(sc, 1),
+                          "federal_award_total": r.get("amount"), "level": r.get("recipient_level")}
+    ranked = sorted(cands.values(), key=lambda c: -c["match"])
+    if not ranked:
+        return _result(src, USA_RECIPIENT, name, "no match", candidates=[],
+                       why=f"{data.get('page_metadata', {}).get('total', 0)} records searched; none matches the name")
+    strong = [c for c in ranked if c["match"] >= STRONG]
+    if len(strong) == 1 and (len(ranked) == 1 or ranked[1]["match"] < STRONG):
+        c = strong[0]
+        return _result(src, USA_RECIPIENT, name, "confirmed", legal_entity=c["legal_entity"], uei=c["uei"],
+                       match=c["match"], candidates=ranked[:5], why=f"one entity matches ({c['match']:.0f}/100)")
+    return _result(src, USA_RECIPIENT, name, "ambiguous", candidates=ranked[:8],
+                   why=f"{len(ranked)} different entities match the name; a person picks the right one by address or UEI")
+
+
+# ------------------------------------------------------------------ discovery from federal awards (USAspending)
+
+def federal_suppliers(psc: str = "6115", states: tuple = ("VA", "MD", "DC", "PA", "WV", "NC"), since: str = "2021-10-01",
+                      http=_http) -> dict:
+    """Vendors with federal awards for this product code, performed near the site, grouped by legal entity."""
+    src = f"USAspending.gov award search, product code {psc} (U.S. Treasury)"
+    body = {"filters": {"award_type_codes": ["A", "B", "C", "D"], "psc_codes": [psc],
+                        "time_period": [{"start_date": since, "end_date": datetime.now().strftime("%Y-%m-%d")}],
+                        "place_of_performance_locations": [{"country": "USA", "state": s} for s in states]},
+            "fields": ["Award ID", "Recipient Name", "Recipient UEI", "Award Amount", "Description", "Awarding Agency",
+                       "Start Date", "Place of Performance State Code"],
+            "limit": 100, "sort": "Award Amount", "order": "desc"}
+    try:
+        rows = json.loads(http(USA_AWARDS, body)).get("results") or []
+    except SourceError as e:
+        return _result(src, USA_AWARDS, f"PSC {psc} in {', '.join(states)}", "unavailable", vendors=[], why=str(e))
+    by = {}
+    for r in rows:
+        k = r.get("Recipient UEI") or r.get("Recipient Name")
+        v = by.setdefault(k, {"legal_entity": r.get("Recipient Name"), "uei": r.get("Recipient UEI"), "awards": 0,
+                              "total": 0.0, "latest": "", "evidence": []})
+        v["awards"] += 1
+        v["total"] += float(r.get("Award Amount") or 0)
+        v["latest"] = max(v["latest"], r.get("Start Date") or "")
+        if len(v["evidence"]) < 2:
+            v["evidence"].append({"award_id": r.get("Award ID"), "agency": r.get("Awarding Agency"), "date": r.get("Start Date"),
+                                  "state": r.get("Place of Performance State Code"), "amount": r.get("Award Amount"),
+                                  "description": str(r.get("Description") or "")[:140],
+                                  "url": f"https://www.usaspending.gov/award/{r.get('generated_internal_id', '')}"})
+    vendors = sorted(by.values(), key=lambda v: (-v["awards"], -v["total"]))
+    return _result(src, USA_AWARDS, f"PSC {psc} performed in {', '.join(states)} since {since}", "confirmed" if vendors else "no match",
+                   vendors=vendors, why=f"{len(rows)} awards, {len(vendors)} legal entities")
+
+
+# ------------------------------------------------------------------ exclusions (SAM.gov v4, needs a key)
+
+def sam_exclusions(name: str, uei: str | None = None, http=_http, key: str | None = None) -> dict:
+    src = "SAM.gov Exclusions API v4 (GSA)"
+    key = key if key is not None else os.getenv("SAM_API_KEY", "")
+    if not key:
+        return _result(src, SAM_EXCLUSIONS, uei or name, "unavailable",
+                       why="SAM.gov requires a personal API key (free, from a SAM.gov account); set SAM_API_KEY. "
+                           "Until then the federal exclusion check is NOT done, and the owner checks sam.gov by hand.")
+    q = f"ueiSAM={uei}" if uei else "exclusionName=" + urllib.request.quote(name)
+    try:
+        data = json.loads(http(f"{SAM_EXCLUSIONS}?api_key={key}&{q}"))
+    except SourceError as e:
+        return _result(src, SAM_EXCLUSIONS, uei or name, "unavailable", why=f"the source could not be reached ({str(e).replace(key, '***')})")
+    recs = data.get("excludedEntity") or data.get("exclusionDetails") or []
+    hits = []
+    for r in recs:
+        ident = r.get("exclusionIdentification") or {}
+        nm = ident.get("entityName") or " ".join(filter(None, [ident.get("firstName"), ident.get("lastName")]))
+        sc = 100.0 if uei and ident.get("ueiSAM") == uei else score(name, nm)
+        if sc >= POSSIBLE:
+            hits.append({"legal_entity": nm, "uei": ident.get("ueiSAM"), "match": sc,
+                         "exclusion_type": (r.get("exclusionDetails") or {}).get("exclusionType"),
+                         "agency": (r.get("exclusionDetails") or {}).get("excludingAgencyName")})
+    if not hits:
+        return _result(src, SAM_EXCLUSIONS, uei or name, "no match", total_records=data.get("totalRecords"),
+                       why="no active exclusion record matches")
+    strong = [h for h in hits if h["match"] >= STRONG]
+    status = "confirmed" if len(strong) == 1 else "ambiguous"
+    return _result(src, SAM_EXCLUSIONS, uei or name, status, candidates=hits[:5],
+                   why="an exclusion record matches: the supplier is excluded" if status == "confirmed"
+                   else "several exclusion records resemble the name: a person checks identity")
+
+
+# ------------------------------------------------------------------ export / sanctions screening (trade.gov CSL, no key)
+
+_CSL_MEMO: dict = {}
+
+
+def _csl_rows(http=_http, max_age_h: float = 24) -> tuple[list[dict], str]:
+    CACHE.mkdir(parents=True, exist_ok=True)
+    f = CACHE / "consolidated.csv"
+    if http is not _http:  # a test passes its own source: never touch the real cache
+        return list(csv.DictReader(io.StringIO(http(CSL_CSV).decode("utf-8", "replace")))), _now()
+    if not f.exists() or time.time() - f.stat().st_mtime > max_age_h * 3600:
+        f.write_bytes(http(CSL_CSV, timeout=90))
+        _CSL_MEMO.clear()
+    fetched = datetime.fromtimestamp(f.stat().st_mtime, timezone.utc).isoformat(timespec="seconds")
+    if fetched not in _CSL_MEMO:
+        csv.field_size_limit(10_000_000)
+        _CSL_MEMO.clear()
+        _CSL_MEMO[fetched] = list(csv.DictReader(io.StringIO(f.read_text(encoding="utf-8", errors="replace"))))
+    return _CSL_MEMO[fetched], fetched
+
+
+def screening_list(name: str, http=_http) -> dict:
+    src = "Consolidated Screening List (trade.gov: Commerce, State, Treasury export and sanctions lists)"
+    try:
+        rows, fetched = _csl_rows(http)
+    except SourceError as e:
+        return _result(src, CSL_CSV, name, "unavailable", why=f"the list could not be downloaded ({e})")
+    hits = []
+    for r in rows:
+        names = [r.get("name", "")] + [a for a in (r.get("alt_names") or "").split(";") if a.strip()]
+        best = max((score(name, n) for n in names), default=0)
+        if best >= POSSIBLE:
+            hits.append({"listed_name": r.get("name"), "list": r.get("source"), "match": round(best, 1),
+                         "country": r.get("addresses", "")[:60], "id": r.get("_id") or r.get("id")})
+    hits.sort(key=lambda h: -h["match"])
+    if not hits:
+        return _result(src, CSL_CSV, name, "no match", list_downloaded=fetched, records_searched=len(rows),
+                       why=f"{len(rows)} listed parties searched; none matches")
+    strong = [h for h in hits if h["match"] >= 97]
+    return _result(src, CSL_CSV, name, "confirmed" if len(strong) == 1 else "ambiguous", list_downloaded=fetched,
+                   candidates=hits[:5], why="a listed party matches the name" if len(strong) == 1 else
+                   "listed parties resemble the name: a person checks identity before concluding anything")
+
+
+def screen_supplier(name: str, http=_http) -> dict:
+    """All three checks for one supplier name."""
+    ent = lookup_entity(name, http=http)
+    uei = ent.get("uei") if ent["status"] == "confirmed" else None
+    return {"name": name, "entity": ent, "sam_exclusions": sam_exclusions(name, uei, http=http),
+            "screening_list": screening_list(name, http=http)}

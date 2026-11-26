@@ -134,6 +134,14 @@ def second_readings() -> dict[str, dict]:
     return {cid: {rid: (a or {}).get("verdict") for rid, a in (v.get("answers") or {}).items()} for cid, v in data.items()}
 
 
+def second_answers() -> dict[str, dict]:
+    """datasheet case id -> {req_id: {"verdict", "quote", "page"}}: the independent reader's answers with its quotes."""
+    f = ROOT / "eval" / "cross_checks" / "qwen3.8-27b.json"
+    if not f.exists():
+        return {}
+    return {cid: dict(v.get("answers") or {}) for cid, v in json.loads(f.read_text(encoding="utf-8")).items()}
+
+
 # ------------------------------------------------------------------ condition-level reconciliation
 
 def _part(c: dict, offer: dict | None, doc: docs.Document) -> dict:
@@ -281,6 +289,9 @@ def apply_conditional(reqs: list[dict], parts_by_req: dict[str, list[dict]], doc
     return applied
 
 
+CLARIFY = {"depends on an option", "one missing fact"}
+
+
 def needs_person(verdict: str, conf: float, cites: list) -> bool:
     """The same rule as ToolResult.finalize: low confidence, unclear, or a claim with no verified source."""
     return conf < AUTO or verdict == "unclear" or (verdict != "missing" and not cites)
@@ -289,8 +300,11 @@ def needs_person(verdict: str, conf: float, cites: list) -> bool:
 # ------------------------------------------------------------------ reconcile one supplier's package
 
 def reconcile_supplier(reqs: list[dict], d_doc: docs.Document, d_offers: dict, c_docs: list[docs.Document],
-                       c_offers: list[dict], second: dict | None = None) -> dict:
-    """Datasheet + the supplier's own documents (bid, replies) -> one finding per requirement, routed."""
+                       c_offers: list[dict], second: dict | None = None, reader: dict | None = None,
+                       inspect: bool = True) -> dict:
+    """Datasheet + the supplier's own documents (bid, replies) -> one finding per requirement, routed.
+    reader: the independent reader's answers with quotes; inspect=False gives the version before the second look
+    (amber/inspect_evidence.py), so both can be compared on the same readings."""
     d_offers = copy.deepcopy(d_offers)
     submittal._flag_shared_evidence(reqs, d_offers)
     c_offers = [copy.deepcopy(o) for o in c_offers]
@@ -306,6 +320,10 @@ def reconcile_supplier(reqs: list[dict], d_doc: docs.Document, d_offers: dict, c
             merged.append(merge_condition(dparts[i], commits))
         parts_by_req[r["req_id"]] = merged
     conditional = apply_conditional(reqs, parts_by_req, d_doc, c_docs)
+    inspected = []
+    if inspect:
+        from .inspect_evidence import inspect_parts
+        inspected = inspect_parts(reqs, parts_by_req, d_doc, reader)
     findings = []
     for r in reqs:
         parts = parts_by_req[r["req_id"]]
@@ -326,6 +344,13 @@ def reconcile_supplier(reqs: list[dict], d_doc: docs.Document, d_offers: dict, c
         if "conflicting records" in kinds:
             f["data"].update(route="ask_supplier", route_kind="conflicting records",
                              route_why="two records disagree; the supplier is asked to say which applies, with both quotes")
+        elif kinds & CLARIFY and all(p.get("kind") in CLARIFY or (p["verdict"] == "complies" and p["conf"] >= AUTO)
+                                     for p in parts):
+            asks = [p for p in parts if p.get("kind") in CLARIFY]
+            q = "; ".join(("is this option supplied: " + p["option"]["line"]) if p.get("option") else
+                          ("please state: " + ", ".join(p.get("missing") or [])) for p in asks)
+            f["data"].update(route="ask_supplier", route_kind="clarification", question=q,
+                             route_why="one missing fact settles it, and the rest is met with verified evidence: " + q)
         elif "conditional rating" in kinds:
             f["data"].update(route="engineer", route_kind="conditional rating",
                              route_why="a footnote changes the rating when an option is fitted, and the option is fitted: an engineer confirms the lowered rating")
@@ -333,7 +358,7 @@ def reconcile_supplier(reqs: list[dict], d_doc: docs.Document, d_offers: dict, c
                           ((second or {}).get(r["req_id"]) if f["status"] in triage.OPEN else None))
         f["route"] = rt
         findings.append(f)
-    return {"findings": findings, "conditional": conditional,
+    return {"findings": findings, "conditional": conditional, "inspected": inspected,
             "baseline": [{"req_id": r["req_id"], "parts": base_by_req[r["req_id"]]} for r in reqs]}
 
 
@@ -591,6 +616,7 @@ class CaseFile:
     def step_reconcile(self, crash=False) -> dict:
         reqs = self._reqs()
         seconds = second_readings()
+        readers = second_answers()
         out, summary = {}, []
         for i, b in enumerate(self.cfg["bids"]):
             if crash and i == 2:
@@ -603,8 +629,10 @@ class CaseFile:
             d_doc = docs.load(ROOT / "data" / "submittals" / name)
             d_offers = offers_from_run(json.loads(saved["run"].read_text(encoding="utf-8")))
             c_docs, c_offers = self._commitment_offers(b)
-            res = reconcile_supplier(reqs, d_doc, d_offers, c_docs, c_offers, seconds.get(saved["case"]))
-            base = reconcile_supplier(reqs, d_doc, d_offers, [], [], seconds.get(saved["case"]))
+            res = reconcile_supplier(reqs, d_doc, d_offers, c_docs, c_offers, seconds.get(saved["case"]), readers.get(saved["case"]))
+            base = reconcile_supplier(reqs, d_doc, d_offers, [], [], seconds.get(saved["case"]), readers.get(saved["case"]))
+            res["before_inspection"] = reconcile_supplier(reqs, d_doc, d_offers, c_docs, c_offers, seconds.get(saved["case"]),
+                                                          inspect=False)["findings"]
             res["datasheet_only"] = base["findings"]
             res["datasheet_case"] = saved["case"]
             res["provisional"] = self.output("link")["products"][b]["status"] != "linked"

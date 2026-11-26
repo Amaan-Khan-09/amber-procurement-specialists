@@ -110,10 +110,40 @@ def _reqs(case_key: dict):
     return submittal.structure_requirements(C._NoModel(), spec, row, docs.doc_id_for(ROOT / "data/schedules/equipment_schedule.csv"), ck)
 
 
-def datasheet_answers() -> tuple[dict, dict]:
-    """(before, now) per 'G7/R01' -> {answer, route}"""
-    before, now = {}, {}
-    seconds = C.second_readings()
+VERSIONS = {"v1": "routing at commit 48b321c (one queue: anything under 0.70 to a person)",
+            "v2": "commit 9cd1b4e: decided / ask the supplier / engineer, supplier's own documents reconciled",
+            "v3": "now: plus a second look in code at the clause (computed from the quote, disputed clause, option "
+                  "dependence, one missing fact -> focused clarification)"}
+
+
+def outcome3(exp: dict, got: dict) -> tuple[str, str | None]:
+    """Strict outcome. Only a DECISION can be a resolution. A question to the supplier is counted as a question
+    (well-founded or not); a clarification counts as resolved only when a reply verifies it (scored separately)."""
+    e_act, g_act = ACTION[exp["expected"]], ACTION.get(got["answer"], "ask")
+    route = got["route"]
+    if route == "engineer":
+        if exp["expected_route"] == "engineer" or g_act != e_act:
+            return "justified hand-off", None
+        return "unnecessary hand-off", None
+    if exp["expected_route"] == "engineer" and exp["expected"] == "escalate":
+        return "missed escalation", "missed escalation"
+    if route == "ask_supplier" or g_act == "ask":
+        label = "clarification" if got.get("kind") == "clarification" else "supplier question"
+        if e_act == "ask":
+            return f"{label}: well-founded", None
+        return f"{label}: not needed", ("minor" if e_act in ("accept", "price") else "minor (a rejection was due)")
+    if g_act == e_act:
+        return "correct decision", None
+    critical = (g_act == "accept" and e_act in ("reject", "ask")) or (g_act == "reject" and e_act == "accept") \
+        or (g_act == "price" and e_act == "accept") or (g_act == "accept" and e_act == "price")
+    return "incorrect decision", "critical" if critical else "minor"
+
+
+def datasheet_answers() -> dict[str, dict]:
+    """version -> {'G7/R01': {answer, route, kind}} on the same saved model readings."""
+    out = {"v1": {}, "v2": {}, "v3": {}}
+    seconds, readers = C.second_readings(), C.second_answers()
+    from amber.schema import RunInfo, ToolResult
     for f in sorted(KEYS.glob("*.json")):
         if not re.fullmatch(r"[GU]\d+\.json", f.name):
             continue
@@ -125,14 +155,15 @@ def datasheet_answers() -> tuple[dict, dict]:
         o = json.loads(json.dumps(offers))
         submittal._flag_shared_evidence(reqs, o)
         fs, _ = submittal.decide_all(reqs, o, doc)
-        from amber.schema import RunInfo, ToolResult
         fs = ToolResult(tool="check_submittal", findings=fs, result={}, run=RunInfo(models=[], latency_ms=0)).finalize().findings
         for x in fs:
-            before[f"{f.stem}/{x.data['req_id']}"] = {"answer": x.status.value, "route": "engineer" if x.needs_human else "decide"}
-        res = C.reconcile_supplier(reqs, doc, offers, [], [], seconds.get(f.stem))
-        for x in res["findings"]:
-            now[f"{f.stem}/{x['data']['req_id']}"] = {"answer": x["status"], "route": x["route"]["route"], "kind": x["route"]["kind"]}
-    return before, now
+            out["v1"][f"{f.stem}/{x.data['req_id']}"] = {"answer": x.status.value, "route": "engineer" if x.needs_human else "decide"}
+        for v, ins in (("v2", False), ("v3", True)):
+            res = C.reconcile_supplier(reqs, doc, offers, [], [], seconds.get(f.stem), readers.get(f.stem), inspect=ins)
+            for x in res["findings"]:
+                out[v][f"{f.stem}/{x['data']['req_id']}"] = {"answer": x["status"], "route": x["route"]["route"],
+                                                              "kind": x["route"]["kind"], "why": x["why"][:300]}
+    return out
 
 
 def run() -> dict:
@@ -140,7 +171,7 @@ def run() -> dict:
     OUT.mkdir(parents=True, exist_ok=True)
     (OUT / "cases.json").write_text(json.dumps({"built_from": "eval/answer_keys (written before the code scored here)",
                                                  "cases": cases}, indent=1), encoding="utf-8")
-    ds_before, ds_now = datasheet_answers()
+    ds = datasheet_answers()
     cf = C.run_case("GEN", root=ROOT / "runs" / "eval_cases", fresh=True)
     rec, link, pq = cf.output("reconcile"), cf.output("link"), cf.output("prequalify")
     pkg = json.loads((ROOT / "examples/package_GEN.json").read_text(encoding="utf-8"))
@@ -151,57 +182,71 @@ def run() -> dict:
     for c in cases:
         g = c["group"]
         if g in ("datasheet", "unseen datasheet"):
-            b, n = ds_before[c["id"]], ds_now[c["id"]]
+            got = {v: ds[v][c["id"]] for v in ("v1", "v2", "v3")}
         elif g == "package":
-            ds = {f["data"]["req_id"]: f for f in rec[c["bid"]]["datasheet_only"]}[c["req_id"]]
-            nf = {f["data"]["req_id"]: f for f in rec[c["bid"]]["findings"]}[c["req_id"]]
+            pick = lambda fs: next(f for f in fs if f["data"]["req_id"] == c["req_id"])
             case_id = key_pk["bidders"][c["bid"]]["datasheet_case"]
-            b = ds_before[f"{case_id}/{c['req_id']}"]
-            n = {"answer": nf["status"], "route": nf["route"]["route"], "kind": nf["route"]["kind"]}
+            f2, f3 = pick(rec[c["bid"]]["before_inspection"]), pick(rec[c["bid"]]["findings"])
+            got = {"v1": ds["v1"][f"{case_id}/{c['req_id']}"],
+                   "v2": {"answer": f2["status"], "route": f2["route"]["route"], "kind": f2["route"]["kind"]},
+                   "v3": {"answer": f3["status"], "route": f3["route"]["route"], "kind": f3["route"]["kind"]}}
         elif g == "link":
             sub = ROOT / "data/submittals" / (C.CaseFile("GEN", C.CASES["GEN"], root=ROOT / "runs" / "eval_cases")._datasheet_for(c["bid"]) or "")
             sp = same_product(pkg["result"]["parts"]["level_bids"]["products"][c["bid"]], str(sub)) if sub.is_file() else {"status": "unknown"}
-            b = {"answer": "linked" if sp["status"] == "match" else "ambiguous", "route": "decide" if sp["status"] == "match" else "engineer"}
             lk = link["products"][c["bid"]]
             n = {"answer": lk["status"], "route": lk["route"]}
             if lk["status"] == "linked" and c.get("datasheet") and lk["datasheet"] != c["datasheet"]:
                 n["answer"] = "wrong link"
+            got = {"v1": {"answer": "linked" if sp["status"] == "match" else "ambiguous",
+                          "route": "decide" if sp["status"] == "match" else "engineer"}, "v2": n, "v3": n}
         elif g == "decision":
-            b = n = {"answer": "escalate", "route": "engineer"}
+            got = {v: {"answer": "escalate", "route": "engineer"} for v in ("v1", "v2", "v3")}
         elif g == "bid scope":
             f = cells.get((c["bid"], c["scope_id"]))
             st = f["data"]["scope_status"] if f else "silent"
-            b = {"answer": st, "route": "engineer" if f and f["needs_human"] else "decide"}
             r = triage.route_bid_cell(f) if f else {"route": "ask_supplier"}
-            n = {"answer": st, "route": r["route"]}
+            got = {"v1": {"answer": st, "route": "engineer" if f and f["needs_human"] else "decide"},
+                   "v2": {"answer": st, "route": r["route"]}, "v3": {"answer": st, "route": r["route"]}}
         elif g == "prequal":
             bid = next(bb for bb, v in cf.memory["bidder_vendor"].items() if v == c["vendor"])
             cr = pq[bid]["criteria"][c["criterion"]]
-            b = {"answer": "needs_verification", "route": "engineer"}  # before: no specialist, a person did it all
             n = {"answer": cr["status"], "route": cr["route"]}
-        ob, sb = outcome(c, b)
-        on, sn = outcome(c, n)
-        results.append({**c, "before": {**b, "outcome": ob, "severity": sb}, "now": {**n, "outcome": on, "severity": sn}})
+            got = {"v1": {"answer": "needs_verification", "route": "engineer"}, "v2": n, "v3": n}
+        row = dict(c)
+        for v, x in got.items():
+            o, s = outcome3(c, x)
+            row[v] = {**x, "outcome": o, "severity": s}
+        results.append(row)
     return {"results": results}
 
 
-def table(rows: list[dict], label: str) -> dict:
+METRICS = ["to an engineer", "clarification requests", "supplier questions", "correct decisions",
+           "well-founded questions", "incorrect decisions (critical)", "incorrect decisions (minor)",
+           "questions not needed", "missed escalations", "unnecessary hand-offs", "right action"]
+
+
+def table(rows: list[dict], label: str, quiet: bool = False) -> dict:
     out = {}
-    for v in ("before", "now"):
-        cnt = Counter(r[v]["outcome"] for r in rows)
-        crit = sum(1 for r in rows if r[v]["severity"] == "critical")
-        eng = sum(1 for r in rows if r[v]["route"] == "engineer")
-        sup = sum(1 for r in rows if r[v]["route"] == "ask_supplier")
-        right = sum(1 for r in rows if ACTION.get(r[v]["answer"], "ask") == ACTION[r["expected"]])
-        out[v] = {"n": len(rows), "correct autonomous": cnt["correct autonomous"], "justified hand-off": cnt["justified hand-off"],
-                  "unnecessary hand-off": cnt["unnecessary hand-off"], "incorrect autonomous": cnt["incorrect autonomous"],
-                  "critical": crit, "to an engineer": eng, "to the supplier": sup, "right action": right}
-    print(f"\n{label} ({len(rows)} cases)")
-    print(f"  {'':22} {'before':>16} {'now':>16}")
-    for k in ("correct autonomous", "justified hand-off", "unnecessary hand-off", "incorrect autonomous", "critical",
-              "to an engineer", "to the supplier", "right action"):
-        b, n = out["before"][k], out["now"][k]
-        print(f"  {k:22} {b:>6} ({b / len(rows):>4.0%})    {n:>6} ({n / len(rows):>4.0%})")
+    for v in ("v1", "v2", "v3"):
+        o = Counter(r[v]["outcome"] for r in rows)
+        out[v] = {"n": len(rows),
+                  "to an engineer": sum(r[v]["route"] == "engineer" for r in rows),
+                  "clarification requests": sum(r[v]["outcome"].startswith("clarification") for r in rows),
+                  "supplier questions": sum(r[v]["outcome"].startswith("supplier question") for r in rows),
+                  "correct decisions": o["correct decision"],
+                  "well-founded questions": sum(r[v]["outcome"].endswith("well-founded") for r in rows),
+                  "incorrect decisions (critical)": sum(r[v]["outcome"] == "incorrect decision" and r[v]["severity"] == "critical" for r in rows),
+                  "incorrect decisions (minor)": sum(r[v]["outcome"] == "incorrect decision" and r[v]["severity"] == "minor" for r in rows),
+                  "questions not needed": sum(r[v]["outcome"].endswith("not needed") for r in rows),
+                  "missed escalations": o["missed escalation"],
+                  "unnecessary hand-offs": o["unnecessary hand-off"],
+                  "right action": sum(ACTION.get(r[v]["answer"], "ask") == ACTION[r["expected"]] for r in rows)}
+    if not quiet:
+        n = len(rows)
+        print(f"\n{label} (n = {n})")
+        print(f"  {'':32} {'v1':>12} {'v2 (baseline)':>15} {'v3 (now)':>12}")
+        for k in METRICS:
+            print(f"  {k:32} " + " ".join(f"{out[v][k]:>5} ({out[v][k] / n:>4.0%})".rjust(w) for v, w in (("v1", 12), ("v2", 15), ("v3", 12))))
     return out
 
 
@@ -209,21 +254,18 @@ def main() -> None:
     res = run()
     rows = res["results"]
     like = [r for r in rows if r["group"] not in ("prequal", "unseen datasheet")]
-    summary = {"like_for_like": table(like, "Like for like: every case both versions handle"),
-               "by_group": {g: table([r for r in rows if r["group"] == g], f"  group: {g}") for g in
+    summary = {"versions": VERSIONS, "like_for_like": table(like, "Like for like: the fixed development set"),
+               "by_group": {g: table([r for r in rows if r["group"] == g], f"  group: {g}", quiet=True) for g in
                             ("datasheet", "package", "link", "bid scope", "decision")},
-               "by_category": {c: table([r for r in like if r["category"] == c], f"  category: {c}") for c in
+               "by_category": {c: table([r for r in like if r["category"] == c], f"  category: {c}", quiet=True) for c in
                                ("routine", "missing_info", "conflict", "escalate")},
-               "unseen_set4": table([r for r in rows if r["group"] == "unseen datasheet"],
-                                    "Unseen datasheet (held-out set 4, G9: labelled before its one run)"),
-               "new_specialist_prequal": table([r for r in rows if r["group"] == "prequal"],
-                                               "New specialist: pre-qualification (before = no specialist, a person does it all)")}
-    changed = [r for r in like if (r["before"]["outcome"], r["before"]["route"]) != (r["now"]["outcome"], r["now"]["route"])]
-    print(f"\n{len(changed)} like-for-like cases changed outcome or route; worst now:")
-    for r in rows:
-        if r["now"]["outcome"] == "incorrect autonomous":
-            print(f"   {r['id']:16} expected {r['expected']:>18}/{r['expected_route']:12} now {r['now']['answer']:>10}/{r['now']['route']:12} "
-                  f"{r['now']['severity']}  ({r['now'].get('kind', '')})")
+               "unseen_set4": table([r for r in rows if r["group"] == "unseen datasheet"], "G9 (inspected earlier; regression case for the 50 C option)"),
+               "new_specialist_prequal": table([r for r in rows if r["group"] == "prequal"], "pre-qualification", quiet=True)}
+    print("\nEvery like-for-like case whose outcome changed from v2 to v3:")
+    for r in like:
+        if (r["v2"]["outcome"], r["v2"]["route"]) != (r["v3"]["outcome"], r["v3"]["route"]):
+            print(f"   {r['id']:14} key {r['expected']:>9}/{r['expected_route']:12} v2 {r['v2']['answer']:>9}/{r['v2']['route']:12} -> "
+                  f"v3 {r['v3']['answer']:>9}/{r['v3']['route']:12} {r['v3']['outcome']}  ({r['v3'].get('kind', '')})")
     (OUT / "results.json").write_text(json.dumps({"summary": summary, "results": rows}, indent=1), encoding="utf-8")
 
 
