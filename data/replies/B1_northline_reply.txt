@@ -1,0 +1,26 @@
+From: Northline Power Systems (fictional company)
+To: Project Alpha GC, Procurement
+Date: 2026-12-02
+Subject: RE: BP-26-04 submittal review comments - Caterpillar 3516C (GEN-A to GEN-D)
+
+Responses to your review comments, in your numbering:
+
+1. Motor starting: 5,840 skVA at 30% voltage dip.
+2. Excitation: permanent magnet generator (PMG) excitation is included.
+3. Engine: 16 cylinder, 4 cycle, turbocharged and aftercooled.
+4. Governor: electronic, isochronous from no load to full load.
+5. Starting: 24 volt DC electric starter.
+6. Fuel consumption at 100% standby load: 133.6 gph.
+7. Cooling: the 50 C (122 F) ambient cooling package will be confirmed with the final submittal.
+8. Ambient and altitude: full rated output at 300 ft and up to 122 F ambient with the 50 C cooling package.
+9. Alternator: 4-pole, brushless, two thirds pitch winding; insulation class H.
+10. Alternator space heater: 120 V, single phase, included.
+11. Output circuit breaker: 3 pole, solid state trip unit.
+12. Voltage regulation: +/-0.25% no load to rated load. Voltage THD: less than 5% no load to full linear load.
+13. Jacket water heater: one 9000 W, 480 V, 1 phase heater per set.
+14. Enclosure: weatherproof and rodent-proof (screened openings), silencer mounted inside the enclosure.
+
+Regards,
+Northline Power Systems
+
+-- FICTIONAL DOCUMENT for software testing (Project Alpha). Not a real company or offer.

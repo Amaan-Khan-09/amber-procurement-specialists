@@ -1,0 +1,167 @@
+{
+ "case_id": "PQ-GEN",
+ "split": "dev",
+ "tool": "prequalify_vendors",
+ "labeller": "planted by tools/data_prep/make_vendor_data.py (the packets' author); written before any packet was read",
+ "status_vocabulary": "meets | fails | needs_verification",
+ "expected_route": {
+  "meets": "decide",
+  "fails": "decide",
+  "needs_verification": "ask_supplier",
+  "Q7": "engineer (the owner checks the federal exclusion list; a self-certification is not verification)"
+ },
+ "vendors": {
+  "V-NPS": {
+   "P1": {
+    "expected": "meets",
+    "notes": ""
+   },
+   "P2": {
+    "expected": "meets",
+    "notes": ""
+   },
+   "Q1": {
+    "expected": "meets",
+    "notes": ""
+   },
+   "Q2": {
+    "expected": "meets",
+    "notes": ""
+   },
+   "Q3": {
+    "expected": "meets",
+    "notes": ""
+   },
+   "Q4": {
+    "expected": "meets",
+    "notes": ""
+   },
+   "Q5": {
+    "expected": "meets",
+    "notes": ""
+   },
+   "Q6": {
+    "expected": "meets",
+    "notes": "Five projects listed, four of them 1500 kW or larger."
+   },
+   "Q7": {
+    "expected": "needs_verification",
+    "notes": ""
+   }
+  },
+  "V-TGC": {
+   "P1": {
+    "expected": "meets",
+    "notes": ""
+   },
+   "P2": {
+    "expected": "meets",
+    "notes": ""
+   },
+   "Q1": {
+    "expected": "meets",
+    "notes": ""
+   },
+   "Q2": {
+    "expected": "needs_verification",
+    "notes": "The certificate expires 2027-03-31, before the 2027-10-04 need date: a renewal certificate is required."
+   },
+   "Q3": {
+    "expected": "meets",
+    "notes": ""
+   },
+   "Q4": {
+    "expected": "needs_verification",
+    "notes": "The letter is 'available on request', not attached."
+   },
+   "Q5": {
+    "expected": "needs_verification",
+    "notes": "No branch is named; the vendor master lists Norfolk VA, 190 miles away (record of 2025-06-30). Conflicting records."
+   },
+   "Q6": {
+    "expected": "meets",
+    "notes": "Four projects listed, three of them 1500 kW or larger (1250 kW does not count)."
+   },
+   "Q7": {
+    "expected": "needs_verification",
+    "notes": ""
+   }
+  },
+  "V-KEE": {
+   "P1": {
+    "expected": "meets",
+    "notes": ""
+   },
+   "P2": {
+    "expected": "meets",
+    "notes": ""
+   },
+   "Q1": {
+    "expected": "meets",
+    "notes": ""
+   },
+   "Q2": {
+    "expected": "meets",
+    "notes": ""
+   },
+   "Q3": {
+    "expected": "fails",
+    "notes": "Three-year average EMR 1.24 > 1.00."
+   },
+   "Q4": {
+    "expected": "meets",
+    "notes": ""
+   },
+   "Q5": {
+    "expected": "meets",
+    "notes": ""
+   },
+   "Q6": {
+    "expected": "meets",
+    "notes": ""
+   },
+   "Q7": {
+    "expected": "needs_verification",
+    "notes": ""
+   }
+  },
+  "V-RWP": {
+   "P1": {
+    "expected": "meets",
+    "notes": "From the bid (Cummins), via the product link; no packet was sent."
+   },
+   "P2": {
+    "expected": "needs_verification",
+    "notes": ""
+   },
+   "Q1": {
+    "expected": "needs_verification",
+    "notes": ""
+   },
+   "Q2": {
+    "expected": "needs_verification",
+    "notes": ""
+   },
+   "Q3": {
+    "expected": "needs_verification",
+    "notes": ""
+   },
+   "Q4": {
+    "expected": "needs_verification",
+    "notes": ""
+   },
+   "Q5": {
+    "expected": "needs_verification",
+    "notes": ""
+   },
+   "Q6": {
+    "expected": "needs_verification",
+    "notes": ""
+   },
+   "Q7": {
+    "expected": "needs_verification",
+    "notes": ""
+   }
+  }
+ }
+}

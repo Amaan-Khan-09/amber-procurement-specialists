@@ -1,0 +1,9 @@
+vendor_id,name,role,manufacturers,product_classes,max_genset_kw,sells_new,service_branch,branch_state,branch_miles_to_site,on_time_24mo,open_ncrs,record_updated,bid_file,record_note
+V-NPS,Northline Power Systems,distributor,Caterpillar,generator,4000,yes,Richmond,VA,105,0.88,0,2026-09-30,B1_northline_power.pdf,FICTIONAL vendor master record (mock ERP export)
+V-TGC,Tidewater Generator Co.,dealer,Cummins,generator,3500,yes,Norfolk,VA,190,0.92,1,2025-06-30,B2_tidewater_generator.pdf,FICTIONAL vendor master record (mock ERP export)
+V-KEE,Keystone Energy Equipment,distributor,Kohler,generator,3000,yes,Baltimore,MD,60,0.79,2,2026-08-15,B3_keystone_energy.pdf,FICTIONAL vendor master record (mock ERP export)
+V-RWP,Ridgeway Power,dealer,Cummins,generator,2500,yes,Harrisburg,PA,150,,0,2026-11-19,B4_ridgeway_power_email.txt,FICTIONAL vendor master record (mock ERP export)
+V-PEP,Potomac Engine & Power,distributor,MTU,generator,3250,yes,Frederick,MD,45,0.9,0,2026-07-01,,FICTIONAL vendor master record (mock ERP export)
+V-ODG,Old Dominion Generator Service,dealer,Kohler,generator,1000,yes,Winchester,VA,50,0.95,0,2026-10-10,,FICTIONAL vendor master record (mock ERP export)
+V-SRP,Shenandoah Rental Power,rental,Caterpillar;Cummins,generator,2000,no,Manassas,VA,25,,0,2026-05-20,,FICTIONAL vendor master record (mock ERP export)
+V-BRC,Blue Ridge Critical Power,distributor,Vertiv,ups;switchgear,,yes,Sterling,VA,8,0.91,0,2026-10-01,,FICTIONAL vendor master record (mock ERP export)

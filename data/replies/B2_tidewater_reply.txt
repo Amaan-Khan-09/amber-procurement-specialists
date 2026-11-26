@@ -1,0 +1,16 @@
+From: Tidewater Generator Co. (fictional company)
+To: Project Alpha GC, Procurement
+Date: 2026-12-03
+Subject: RE: BP-26-04 clarifications and pre-qualification items - Cummins DQKAB
+
+1. Fuel tank: we will supply a 24 hour UL 2085 sub-base fuel tank in place of the 12-hour tank, add $18,000 per set.
+2. Enclosure: weatherproof and rodent-proof (rodent screens on all openings), critical grade silencer mounted inside the enclosure.
+3. Insurance: renewal certificate attached. Commercial general liability $2,000,000 per occurrence, expires 2028-03-31.
+4. Manufacturer authorization: Cummins authorization letter dated 2026-11-30 attached.
+5. Emergency service: service branch Fredericksburg, VA, 24/7 emergency response within 4 hours at the Ashburn site by
+   factory-trained technicians.
+
+Regards,
+Tidewater Generator Co.
+
+-- FICTIONAL DOCUMENT for software testing (Project Alpha). Not a real company or offer.

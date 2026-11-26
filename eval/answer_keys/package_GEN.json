@@ -1,0 +1,88 @@
+{
+  "case_id": "PKG-GEN",
+  "split": "dev",
+  "tool": "run_case (package level: bid + datasheet together)",
+  "package": "BP-26-04 Standby Generators (GEN-A..D), 4 sets",
+  "labeller": "Claude (AI), from the bid documents and the committed datasheet keys; written 26 Nov 2026 BEFORE the reconciliation and linking code existed or was run",
+  "labelled_on": "2026-11-26",
+  "reviewed_by": "",
+  "rules": [
+    "A bid is the supplier's written commitment. Where the datasheet leaves a requirement open (an option not marked, or not stated) and the bid states the required value, the package complies.",
+    "Where the bid commits to something that fails the spec, the package deviates, whatever the datasheet says.",
+    "Where the bid and the datasheet describe different things (for example the bid's optional tank is UL 2085, the datasheet's tank is UL 142), the package is unclear and the supplier must say which applies.",
+    "Where a datasheet rating depends on an option (a footnote) and the bid commits to that option, the conditional rating applies.",
+    "Where the bid is silent, the package answer is the datasheet key (those items are not repeated here).",
+    "expected_route: decide = the answer is settled by the documents; ask_supplier = only the supplier can settle it; engineer = it needs a person's judgement even with all the evidence."
+  ],
+  "bidders": {
+    "B1": {"bid": "data/bids/B1_northline_power.pdf", "datasheet_case": "G7"},
+    "B2": {"bid": "data/bids/B2_tidewater_generator.pdf", "datasheet_case": "G1"},
+    "B3": {"bid": "data/bids/B3_keystone_energy.pdf", "datasheet_case": "G2"},
+    "B4": {"bid": "data/bids/B4_ridgeway_power_email.txt", "datasheet_case": "G8"}
+  },
+  "requirements": [
+    {"bid": "B1", "req_id": "R01", "datasheet": "complies", "expected": "complies", "category": "routine", "expected_route": "decide",
+     "bid_quote": "2000 ekW / 2500 kVA standby", "notes": "Bid and datasheet agree."},
+    {"bid": "B1", "req_id": "R02", "datasheet": "unclear", "expected": "complies", "category": "conflict", "expected_route": "decide",
+     "bid_quote": "480/277 V, 3-phase, 4-wire, 60 Hz", "notes": "The datasheet lists voltages with check boxes, none marked; the bid commits to 480/277 V 3-phase 4-wire 60 Hz, which the datasheet offers."},
+    {"bid": "B1", "req_id": "R10", "datasheet": "complies", "expected": "complies", "category": "routine", "expected_route": "decide",
+     "bid_quote": "EPA Tier 2 certified for stationary emergency use", "notes": "Agree."},
+    {"bid": "B1", "req_id": "R12", "datasheet": "missing", "expected": "complies", "category": "conflict", "expected_route": "decide",
+     "bid_quote": "1800 rpm", "notes": "The datasheet has no rpm; the bid states 1800 rpm."},
+    {"bid": "B1", "req_id": "R19", "datasheet": "missing", "expected": "complies", "category": "conflict", "expected_route": "decide",
+     "bid_quote": "UL 2085 dual-wall sub-base tanks sized for 24 hrs at 100% standby load", "notes": "The datasheet has no tank; the bid commits to a UL 2085, 24 h tank."},
+    {"bid": "B1", "req_id": "R21", "datasheet": "missing", "expected": "unclear", "category": "missing_info", "expected_route": "ask_supplier",
+     "bid_quote": "level 2 sound attenuated walk-in enclosures, silencers inside", "notes": "Silencer inside is stated; weatherproof and rodent-proof are not."},
+
+    {"bid": "B2", "req_id": "R01", "datasheet": "complies", "expected": "complies", "category": "routine", "expected_route": "decide",
+     "bid_quote": "2000 kW / 2500 kVA standby rating", "notes": "Agree."},
+    {"bid": "B2", "req_id": "R02", "datasheet": "complies", "expected": "complies", "category": "routine", "expected_route": "decide",
+     "bid_quote": "277/480 V, 60 Hz", "notes": "The BOM selects 277/480 V 3-phase wye 4-wire; the bid agrees on voltage and frequency."},
+    {"bid": "B2", "req_id": "R04", "datasheet": "complies", "expected": "complies", "category": "routine", "expected_route": "decide",
+     "bid_quote": "PMG excitation", "notes": "Agree."},
+    {"bid": "B2", "req_id": "R10", "datasheet": "complies", "expected": "complies", "category": "routine", "expected_route": "decide",
+     "bid_quote": "EPA Tier 2 stationary emergency", "notes": "Agree."},
+    {"bid": "B2", "req_id": "R19", "datasheet": "missing", "expected": "deviates", "category": "conflict", "expected_route": "decide",
+     "bid_quote": "12-hour UL 2085 sub-base fuel tank", "notes": "The datasheet package has no tank; the bid commits to a 12-hour tank, the spec requires 24 hours."},
+    {"bid": "B2", "req_id": "R21", "datasheet": "missing", "expected": "unclear", "category": "missing_info", "expected_route": "ask_supplier",
+     "bid_quote": "weather protective enclosure with critical grade silencer", "notes": "Weather protection is stated; rodent-proofing and the silencer's location are not."},
+
+    {"bid": "B3", "req_id": "R01", "datasheet": "complies", "expected": "complies", "category": "routine", "expected_route": "decide",
+     "bid_quote": "2000 kW standby", "notes": "Agree (kVA from the datasheet)."},
+    {"bid": "B3", "req_id": "R02", "datasheet": "unclear", "expected": "complies", "category": "conflict", "expected_route": "decide",
+     "bid_quote": "277/480 V 60 Hz", "notes": "The bid selects 277/480 V 60 Hz from the datasheet's options. 277/480 V can only be a 3-phase 4-wire wye system (277 = 480/sqrt 3), but '3-phase' and '4-wire' are not written: a strict check would call this unclear."},
+    {"bid": "B3", "req_id": "R09", "datasheet": "deviates", "expected": "deviates", "category": "escalate", "expected_route": "engineer",
+     "bid_quote": "silencers inside", "notes": "Datasheet p2 footnote: an enclosure with enclosed silencer reduces the radiator's ambient capability by 5 C (50 C -> 45 C); the bid commits to silencers inside, so the reduced rating applies. Interpreting a derating footnote is an engineer's call."},
+    {"bid": "B3", "req_id": "R10", "datasheet": "complies", "expected": "complies", "category": "routine", "expected_route": "decide",
+     "bid_quote": "Tier 2", "notes": "Agree."},
+    {"bid": "B3", "req_id": "R19", "datasheet": "deviates", "expected": "unclear", "category": "conflict", "expected_route": "ask_supplier",
+     "bid_quote": "UL 2085 sub-base fuel tank, 24 hr runtime at full load", "notes": "The bid offers a UL 2085 24 h tank only as Option O1 (not in the total, tanks excluded otherwise); the datasheet's only tank is UL 142. The supplier must say which tank is offered."},
+    {"bid": "B3", "req_id": "R21", "datasheet": "unclear", "expected": "unclear", "category": "missing_info", "expected_route": "ask_supplier",
+     "bid_quote": "sound attenuated aluminum enclosures (Sound Level 2), silencers inside", "notes": "Silencer inside is stated; weatherproof and rodent-proof are not."},
+
+    {"bid": "B4", "req_id": "R01", "datasheet": "complies", "expected": "complies", "category": "routine", "expected_route": "decide",
+     "bid_quote": "2000kW standby", "notes": "Agree on kW (kVA from the datasheet). The product link itself is ambiguous (see links)."},
+    {"bid": "B4", "req_id": "R02", "datasheet": "unclear", "expected": "unclear", "category": "missing_info", "expected_route": "ask_supplier",
+     "bid_quote": "480V", "notes": "'480V' alone does not say wye or delta, phases or wires."},
+    {"bid": "B4", "req_id": "R19", "datasheet": "missing", "expected": "unclear", "category": "missing_info", "expected_route": "ask_supplier",
+     "bid_quote": "24 hr subbase tanks", "notes": "Runtime stated; the UL listing is not."},
+    {"bid": "B4", "req_id": "R21", "datasheet": "missing", "expected": "unclear", "category": "missing_info", "expected_route": "ask_supplier",
+     "bid_quote": "sound attenuated enclosures", "notes": "Weatherproof, rodent-proof and silencer location are not stated."}
+  ],
+  "links": [
+    {"bid": "B1", "product": "Caterpillar 3516C", "expected": "linked", "datasheet": "cat_3516C_2000ekW_LEHE1376.pdf", "category": "routine", "expected_route": "decide",
+     "notes": "3516C appears only in this datasheet."},
+    {"bid": "B2", "product": "Cummins C2000D6 (model DQKAB)", "expected": "linked", "datasheet": "cummins_DQKAB_submittal_CSDG.pdf", "category": "routine", "expected_route": "decide",
+     "notes": "DQKAB appears only in this package. C2000D6E (another sheet) is a different variant."},
+    {"bid": "B3", "product": "Kohler KD2000", "expected": "linked", "datasheet": "kohler_KD2000_G5-626.pdf", "category": "conflict", "expected_route": "decide",
+     "notes": "KD2000 also appears 5 times in the KD1000 submittal package, which is for a KD1000: a distractor, not the product."},
+    {"bid": "B4", "product": "Cummins C2000D6", "expected": "ambiguous", "datasheet": null, "category": "conflict", "expected_route": "ask_supplier",
+     "notes": "No document names a C2000D6 exactly. The C2000D6E sheet is a variant with a suffix; B2's quote says a C2000D6 is model DQKAB, which is a different document. Only Ridgeway can say which they offer."}
+  ],
+  "decisions": [
+    {"id": "D-award", "expected": "escalate", "category": "escalate", "expected_route": "engineer",
+     "notes": "Award recommendation: the price order between B4 and B3 rests on readings a person must confirm, and every bid is likely late. Never automatic here."},
+    {"id": "D-schedule", "expected": "escalate", "category": "escalate", "expected_route": "engineer",
+     "notes": "Every option is likely to miss the 2027-10-04 need date: schedule mitigation is a project manager's decision."}
+  ]
+}
