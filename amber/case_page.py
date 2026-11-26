@@ -36,6 +36,8 @@ details summary{cursor:pointer;font-weight:600}
 .pq td{text-align:center}.pq td:first-child,.pq td:nth-child(2){text-align:left}
 .pq .b{min-width:22px}
 @media (max-width:700px){.hide-sm{display:none}}
+@media (max-width:560px){.tiles,.grid{grid-template-columns:1fr}.toc a{font-size:12px}h1{font-size:19px}}
+body{overflow-wrap:anywhere}
 """
 
 
@@ -109,6 +111,7 @@ def render(snap: Path = SNAP, eval_file: Path = EVAL, back_href: str = "./") -> 
     if ev:
         L, D = ev["summary"]["like_for_like"], ev["summary"]["by_group"]["datasheet"]
         P = ev["summary"]["by_group"]["package"]
+        U = ev["summary"].get("unseen_set4")
         n = L["before"]["n"]
 
         def tile(k, b, a, sub, cls="okt"):
@@ -127,6 +130,10 @@ def render(snap: Path = SNAP, eval_file: Path = EVAL, back_href: str = "./") -> 
                           "okt" if L["now"]["critical"] <= L["before"]["critical"] else "badt")
                    + tile("Package answers right", f"{P['before']['right action']}/{P['before']['n']}", f"{P['now']['right action']}/{P['now']['n']}",
                           "reading the supplier's bid next to its datasheet")
+                   + (tile("Unseen datasheet (held out)", f"{U['before']['to an engineer']}/{U['before']['n']}",
+                           f"{U['now']['to an engineer']}/{U['now']['n']}",
+                           f"to an engineer; {U['now']['to the supplier']} supplier questions, all right; labelled before its one run",
+                           "infot") if U else "")
                    + tile("After two replies (mock)", f"{e1['engineer']} / {e1['ask_supplier']}", f"{e2['engineer']} / {e2['ask_supplier']}",
                           "engineer items / supplier questions in this case", "infot")
                    + "</div>")
@@ -138,6 +145,9 @@ def render(snap: Path = SNAP, eval_file: Path = EVAL, back_href: str = "./") -> 
         for lab, g in groups:
             out.append(f"<tr><td>{_e(lab)}</td><td class='n'>{g['before']['n']}</td>" + "".join(
                 f"<td class='n'>{g['before'][r]} &rarr; <b>{g['now'][r]}</b></td>" for r in rows) + "</tr>")
+        if U:
+            out.append(f"<tr><td>unseen datasheet (held-out set 4)</td><td class='n'>{U['before']['n']}</td>" + "".join(
+                f"<td class='n'>{U['before'][r]} &rarr; <b>{U['now'][r]}</b></td>" for r in rows) + "</tr>")
         PQ = ev["summary"]["new_specialist_prequal"]
         out.append(f"<tr><td>new: pre-qualification (before = all by hand)</td><td class='n'>{PQ['before']['n']}</td>" + "".join(
             f"<td class='n'>{PQ['before'][r]} &rarr; <b>{PQ['now'][r]}</b></td>" for r in rows) + "</tr></table>")

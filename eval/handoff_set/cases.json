@@ -1514,6 +1514,195 @@
    "expected_route": "ask_supplier"
   },
   {
+   "id": "G9/R01",
+   "group": "unseen datasheet",
+   "case": "G9",
+   "req_id": "R01",
+   "expected": "complies",
+   "category": "routine",
+   "expected_route": "decide"
+  },
+  {
+   "id": "G9/R02",
+   "group": "unseen datasheet",
+   "case": "G9",
+   "req_id": "R02",
+   "expected": "unclear",
+   "category": "missing_info",
+   "expected_route": "ask_supplier"
+  },
+  {
+   "id": "G9/R03",
+   "group": "unseen datasheet",
+   "case": "G9",
+   "req_id": "R03",
+   "expected": "complies",
+   "category": "routine",
+   "expected_route": "decide"
+  },
+  {
+   "id": "G9/R04",
+   "group": "unseen datasheet",
+   "case": "G9",
+   "req_id": "R04",
+   "expected": "complies",
+   "category": "routine",
+   "expected_route": "decide"
+  },
+  {
+   "id": "G9/R05",
+   "group": "unseen datasheet",
+   "case": "G9",
+   "req_id": "R05",
+   "expected": "complies",
+   "category": "routine",
+   "expected_route": "decide"
+  },
+  {
+   "id": "G9/R06",
+   "group": "unseen datasheet",
+   "case": "G9",
+   "req_id": "R06",
+   "expected": "complies",
+   "category": "routine",
+   "expected_route": "decide"
+  },
+  {
+   "id": "G9/R07",
+   "group": "unseen datasheet",
+   "case": "G9",
+   "req_id": "R07",
+   "expected": "complies",
+   "category": "routine",
+   "expected_route": "decide"
+  },
+  {
+   "id": "G9/R08",
+   "group": "unseen datasheet",
+   "case": "G9",
+   "req_id": "R08",
+   "expected": "deviates",
+   "category": "routine",
+   "expected_route": "decide"
+  },
+  {
+   "id": "G9/R09",
+   "group": "unseen datasheet",
+   "case": "G9",
+   "req_id": "R09",
+   "expected": "unclear",
+   "category": "missing_info",
+   "expected_route": "ask_supplier"
+  },
+  {
+   "id": "G9/R10",
+   "group": "unseen datasheet",
+   "case": "G9",
+   "req_id": "R10",
+   "expected": "complies",
+   "category": "routine",
+   "expected_route": "decide"
+  },
+  {
+   "id": "G9/R11",
+   "group": "unseen datasheet",
+   "case": "G9",
+   "req_id": "R11",
+   "expected": "unclear",
+   "category": "escalate",
+   "expected_route": "engineer"
+  },
+  {
+   "id": "G9/R12",
+   "group": "unseen datasheet",
+   "case": "G9",
+   "req_id": "R12",
+   "expected": "complies",
+   "category": "routine",
+   "expected_route": "decide"
+  },
+  {
+   "id": "G9/R13",
+   "group": "unseen datasheet",
+   "case": "G9",
+   "req_id": "R13",
+   "expected": "unclear",
+   "category": "missing_info",
+   "expected_route": "ask_supplier"
+  },
+  {
+   "id": "G9/R14",
+   "group": "unseen datasheet",
+   "case": "G9",
+   "req_id": "R14",
+   "expected": "complies",
+   "category": "routine",
+   "expected_route": "decide"
+  },
+  {
+   "id": "G9/R15",
+   "group": "unseen datasheet",
+   "case": "G9",
+   "req_id": "R15",
+   "expected": "unclear",
+   "category": "missing_info",
+   "expected_route": "ask_supplier"
+  },
+  {
+   "id": "G9/R16",
+   "group": "unseen datasheet",
+   "case": "G9",
+   "req_id": "R16",
+   "expected": "unclear",
+   "category": "missing_info",
+   "expected_route": "ask_supplier"
+  },
+  {
+   "id": "G9/R17",
+   "group": "unseen datasheet",
+   "case": "G9",
+   "req_id": "R17",
+   "expected": "complies",
+   "category": "routine",
+   "expected_route": "decide"
+  },
+  {
+   "id": "G9/R18",
+   "group": "unseen datasheet",
+   "case": "G9",
+   "req_id": "R18",
+   "expected": "complies",
+   "category": "routine",
+   "expected_route": "decide"
+  },
+  {
+   "id": "G9/R19",
+   "group": "unseen datasheet",
+   "case": "G9",
+   "req_id": "R19",
+   "expected": "unclear",
+   "category": "missing_info",
+   "expected_route": "ask_supplier"
+  },
+  {
+   "id": "G9/R20",
+   "group": "unseen datasheet",
+   "case": "G9",
+   "req_id": "R20",
+   "expected": "missing",
+   "category": "missing_info",
+   "expected_route": "ask_supplier"
+  },
+  {
+   "id": "G9/R21",
+   "group": "unseen datasheet",
+   "case": "G9",
+   "req_id": "R21",
+   "expected": "unclear",
+   "category": "missing_info",
+   "expected_route": "ask_supplier"
+  },
+  {
    "id": "U1/U01",
    "group": "datasheet",
    "case": "U1",

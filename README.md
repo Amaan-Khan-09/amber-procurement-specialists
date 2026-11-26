@@ -105,6 +105,25 @@ case's own queue moves from 45 engineer items and 43 supplier questions to 40 an
 right against their key (the miss, a claim of full rating "with the 50 C cooling package" that the same reply leaves
 unconfirmed, went to an engineer, not through).
 
+**On a datasheet nobody had seen (held-out set 4, run once).** To test the new routing honestly, we downloaded a fresh
+public datasheet (Generac MD2000, 2000 kW), wrote its answer key (`eval/answer_keys/G9.json`, committed before any run),
+then ran the check once on `gpt-oss-120b` and the independent reader once. The check scored **17 of 21 (81 %)**, with no
+false rejection and no invented citation, and caught the real deviation (163.4 gph at full load against 145; the 330 gph
+"total fuel pump flow" was not taken). Routing on the same answers:
+
+| G9 (21 requirements, unseen) | Before | Now |
+|---|---|---|
+| sent to an engineer | 14 (67 %) | **9 (43 %)** |
+| sent to the supplier as a question | 0 | 5 (all 5 right: the sheet does not settle them) |
+| correct autonomous | 6 | **11** |
+| unnecessary hand-off | 11 | 6 |
+| incorrect autonomous (critical) | 1 (1) | 1 (1) |
+
+The one critical error is in both versions and we did **not** tune on it: R09 was decided "complies" on "Maximum
+Operating Ambient Temperature 122 (50)", but the 50 °C cooling system is an unmarked option on page 3, so the key says
+unclear. It is the same pattern as the derating footnote (a rating that holds only with an option); the next fix is to
+check a compliant rating against the options list of the same document. Twenty-one requirements is a small test.
+
 ## Quick start
 
 ```bash
@@ -435,21 +454,21 @@ unmarked option that needs a person.
 
 **The independent reader.** A model of another family (Qwen 3.8 27B) reads each whole datasheet **blind** (it never sees our answers
 or our keys) and answers every requirement; the result is shown next to each answer on the page, and answers it contradicts are
-filtered as "contested" and put first in the review queue. It never changes a verdict. On 142 labelled requirements from 7
+filtered as "contested" and put first in the review queue. It never changes a verdict. On 163 labelled requirements from 8
 datasheets (`python scripts/analyze_agreement.py`):
 
 | Our pipeline's answer | Independent reader | Answers | Pipeline right |
 |---|---|---|---|
-| decided by the agent alone | agrees | 34 | 34 (100 %) |
-| handed to a person | **agrees** | 50 | **42 (84 %)** |
-| handed to a person | **disagrees** | 50 | **20 (40 %)** |
+| decided by the agent alone | agrees | 41 | 40 (98 %) |
+| handed to a person | **agrees** | 59 | **50 (85 %)** |
+| handed to a person | **disagrees** | 55 | **23 (42 %)** |
 
 So a contested answer is far more likely to be wrong, and that is what the queue order uses. Agreement is not strong enough to approve
-anything on its own (84 % is well short of the answers the agent decides alone), so everything it does not settle still goes to a
+anything on its own (85 % is well short of the answers the agent decides alone), so everything it does not settle still goes to a
 person. Two negative results, kept because they shape the design: (1) a cheaper second opinion that only sees the *quoted evidence*
 did **not** work (agreement 14 right of 20, disagreement 20 of 24: the second model shares the first one's blind spots, such as a
 derating footnote or an unmarked option elsewhere in the sheet), so it is not used; (2) where the pipeline says "unclear" and the reader
-gives a concrete verdict (complies or deviates) the reader is right only 7 of 23 times, so it never overrules (when it says "missing" it
+gives a concrete verdict (complies or deviates) the reader is right only 8 of 25 times, so it never overrules (when it says "missing" it
 is right 13 of 15). These figures are the saved readings decided with today's rules, as on the Proof tab. The reader costs about 8,000 to 18,000 tokens a datasheet on its own free allowance and reads one page-chunk a
 minute on a free tier, so it is run for datasheets of up to 20 pages (`scripts/cross_check_keys.py`); the 66- and 105-page packages are
 not cross-read.

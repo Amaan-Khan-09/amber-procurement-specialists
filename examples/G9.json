@@ -1,0 +1,1512 @@
+{
+  "tool": "check_submittal",
+  "version": "1.0",
+  "result": {
+    "tag": "GEN-A",
+    "spec": "26-32-13-engine-generators-alpha",
+    "submittal": "generac-md2000-spec-sheet",
+    "summary": {
+      "complies": 12,
+      "deviates": 1,
+      "missing": 0,
+      "unclear": 8
+    },
+    "overall": "reject",
+    "rows": [
+      {
+        "req_id": "R01",
+        "locator": "2.1.C (System Capacity)",
+        "requirement": "Generator set continuous standby capacity shall meet the scheduled rating of 2000 kW and 2500 kVA at 0.8 PF.",
+        "verdict": "complies",
+        "confidence": 0.836
+      },
+      {
+        "req_id": "R02",
+        "locator": "2.1.C (System Capacity)",
+        "requirement": "Generator set output shall be 480Y/277 V, 3-phase, 4-wire, 60 Hz power.",
+        "verdict": "complies",
+        "confidence": 0.65
+      },
+      {
+        "req_id": "R03",
+        "locator": "2.1.C.1",
+        "requirement": "Motor starting capability shall be not less than 3000 kVA with a maximum voltage dip of 30% for 2000 kW sets.",
+        "verdict": "unclear",
+        "confidence": 0.4
+      },
+      {
+        "req_id": "R04",
+        "locator": "2.1.C.2",
+        "requirement": "Excitation power to the automatic voltage regulator shall be provided by a permanent magnet generator (PMG) or equal.",
+        "verdict": "complies",
+        "confidence": 0.65
+      },
+      {
+        "req_id": "R05",
+        "locator": "2.1.D (Diesel Engine)",
+        "requirement": "Engine shall be an 8, 12, or 16 cylinder, 4-cycle diesel engine, either turbocharged/aftercooled or normally aspirated.",
+        "verdict": "complies",
+        "confidence": 0.95
+      },
+      {
+        "req_id": "R06",
+        "locator": "2.1.D.3 (Governor)",
+        "requirement": "Governor shall be electronic speed-sensing capable of isochronous frequency regulation from no load to full rated load.",
+        "verdict": "complies",
+        "confidence": 0.65
+      },
+      {
+        "req_id": "R07",
+        "locator": "2.1.D.5 (Starting System)",
+        "requirement": "Starting system shall be 24 volt, 2-wire, negative ground, gear engaging electric starter.",
+        "verdict": "complies",
+        "confidence": 0.65
+      },
+      {
+        "req_id": "R08",
+        "locator": "2.1.D.1 (Diesel Fuel System)",
+        "requirement": "Average fuel consumption at full standby load must not exceed 145 gph for a 2000 kW set.",
+        "verdict": "deviates",
+        "confidence": 0.65
+      },
+      {
+        "req_id": "R09",
+        "locator": "2.1.D.2 (Cooling System)",
+        "requirement": "Unit-mounted radiator cooling system sized to maintain safe operation at 122°F maximum ambient temperature.",
+        "verdict": "complies",
+        "confidence": 0.95
+      },
+      {
+        "req_id": "R10",
+        "locator": "2.1.D.3 (Emissions Compliance)",
+        "requirement": "Engine emissions compliance with applicable EPA Tier levels for non-road engines.",
+        "verdict": "complies",
+        "confidence": 0.95
+      },
+      {
+        "req_id": "R11",
+        "locator": "2.1.E.1",
+        "requirement": "Operate at ambient conditions of 300 ft altitude and 10 to 122°F ambient temperature.",
+        "verdict": "unclear",
+        "confidence": 0.5
+      },
+      {
+        "req_id": "R12",
+        "locator": "2.1.E.3",
+        "requirement": "Engine speed shall not exceed 1800 rpm.",
+        "verdict": "complies",
+        "confidence": 0.95
+      },
+      {
+        "req_id": "R13",
+        "locator": "2.1.G (Generator)",
+        "requirement": "Generator shall be 4-pole, brushless, and two-thirds pitch wound.",
+        "verdict": "unclear",
+        "confidence": 0.5
+      },
+      {
+        "req_id": "R14",
+        "locator": "2.1.G.1",
+        "requirement": "Generator insulation shall be NEMA Class F or better.",
+        "verdict": "complies",
+        "confidence": 0.65
+      },
+      {
+        "req_id": "R15",
+        "locator": "2.1.G.5",
+        "requirement": "Provide a 120 V, single-phase space heater to prevent condensation in the generator.",
+        "verdict": "unclear",
+        "confidence": 0.5
+      },
+      {
+        "req_id": "R16",
+        "locator": "2.1.H (Generator Output Circuit Breaker(s))",
+        "requirement": "Provide 3-pole generator output circuit breaker(s) with solid-state trip units.",
+        "verdict": "unclear",
+        "confidence": 0.5
+      },
+      {
+        "req_id": "R17",
+        "locator": "2.1.I.2 (Voltage Regulation)",
+        "requirement": "Maintain voltage regulation within plus 2% from no load to rated load.",
+        "verdict": "complies",
+        "confidence": 0.95
+      },
+      {
+        "req_id": "R18",
+        "locator": "2.1.I.4 (Total Harmonic Distortion (THD))",
+        "requirement": "Total harmonic distortion of ac voltage waveform from no load to full linear load shall not exceed 5% of rated voltage.",
+        "verdict": "complies",
+        "confidence": 0.95
+      },
+      {
+        "req_id": "R19",
+        "locator": "2.1.K.1 (In Skid Diesel Fuel Tank)",
+        "requirement": "Provide a UL 2085 listed in-skid fuel tank with usable capacity for at least 24 hours of operation at full standby load.",
+        "verdict": "unclear",
+        "confidence": 0.4
+      },
+      {
+        "req_id": "R20",
+        "locator": "2.1.K.2 (Jacket-Water Heater)",
+        "requirement": "Provide two 5000 W, 480 V, 1-phase jacket-water heaters.",
+        "verdict": "unclear",
+        "confidence": 0.5
+      },
+      {
+        "req_id": "R21",
+        "locator": "2.1.K.9 (Generator Outdoor Housing)",
+        "requirement": "Provide a weatherproof and rodent-proof outdoor enclosure entirely enclosing the generator set, with silencers installed inside.",
+        "verdict": "unclear",
+        "confidence": 0.5
+      }
+    ],
+    "unread_scanned_pages": [],
+    "provider_switches": []
+  },
+  "findings": [
+    {
+      "id": "F-R01",
+      "claim": "Generator set continuous standby capacity shall meet the scheduled rating of 2000 kW and 2500 kVA at 0.8 PF.",
+      "status": "complies",
+      "confidence": 0.836,
+      "citations": [
+        {
+          "doc_id": "26-32-13-engine-generators-alpha",
+          "page": 3,
+          "locator": "2.1.C (System Capacity)",
+          "quote": "shall be rated for the continuous standby capacity (kW and kVA at 0.8 PF) and output amperes scheduled on Drawing E-601",
+          "match": "exact",
+          "ocr": false
+        },
+        {
+          "doc_id": "equipment-schedule",
+          "page": 1,
+          "locator": "GEN-A / standby_kw",
+          "quote": "standby_kw = 2000",
+          "match": "exact",
+          "ocr": false
+        },
+        {
+          "doc_id": "equipment-schedule",
+          "page": 1,
+          "locator": "GEN-A / standby_kva",
+          "quote": "standby_kva = 2500",
+          "match": "exact",
+          "ocr": false
+        },
+        {
+          "doc_id": "generac-md2000-spec-sheet",
+          "page": 1,
+          "locator": "",
+          "quote": "Standby Power Rating 2,000 kW",
+          "match": "exact",
+          "ocr": false
+        },
+        {
+          "doc_id": "generac-md2000-spec-sheet",
+          "page": 1,
+          "locator": "",
+          "quote": "Standby Power Rating 2,500 kVA",
+          "match": "table",
+          "ocr": false
+        }
+      ],
+      "needs_human": false,
+      "why": "offered 2000 kW meets >= 2000 kW; offered 2500 kVA meets >= 2500 kVA",
+      "data": {
+        "req_id": "R01",
+        "locator": "2.1.C (System Capacity)",
+        "conditions": [
+          {
+            "cid": "R01a",
+            "attribute": "standby_power_rating_kw",
+            "condition": ">= 2000 kW",
+            "verdict": "complies",
+            "why": "offered 2000 kW meets >= 2000 kW",
+            "offered": {
+              "values": [
+                2000
+              ],
+              "unit": "kW",
+              "selected": true,
+              "quote": "Standby Power Rating 2,000 kW",
+              "page": 1,
+              "meets": "yes"
+            }
+          },
+          {
+            "cid": "R01b",
+            "attribute": "standby_apparent_power_rating_kva",
+            "condition": ">= 2500 kVA",
+            "verdict": "complies",
+            "why": "offered 2500 kVA meets >= 2500 kVA",
+            "offered": {
+              "values": [
+                2500
+              ],
+              "unit": "kVA",
+              "selected": true,
+              "quote": "Standby Power Rating 2,500 kVA",
+              "page": 1,
+              "meets": "yes"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "F-R02",
+      "claim": "Generator set output shall be 480Y/277 V, 3-phase, 4-wire, 60 Hz power.",
+      "status": "complies",
+      "confidence": 0.65,
+      "citations": [
+        {
+          "doc_id": "26-32-13-engine-generators-alpha",
+          "page": 3,
+          "locator": "2.1.C (System Capacity)",
+          "quote": "while generating 480Y/277 volt, 3-phase, 4-wire, 60 Hz power, and with performance as specified herein.",
+          "match": "exact",
+          "ocr": false
+        },
+        {
+          "doc_id": "generac-md2000-spec-sheet",
+          "page": 5,
+          "locator": "",
+          "quote": "Three-Phase 277/480 VAC @0.8pf",
+          "match": "exact",
+          "ocr": false
+        },
+        {
+          "doc_id": "generac-md2000-spec-sheet",
+          "page": 1,
+          "locator": "",
+          "quote": "60 Hz",
+          "match": "exact",
+          "ocr": false
+        }
+      ],
+      "needs_human": true,
+      "why": "model judgement on verified quote: 'Three-Phase 277/480 VAC @0.8pf'; offered 60 Hz meets == 60 Hz",
+      "data": {
+        "req_id": "R02",
+        "locator": "2.1.C (System Capacity)",
+        "conditions": [
+          {
+            "cid": "R02a",
+            "attribute": "electrical_system_configuration",
+            "condition": "all of: 480Y/277, 3 phase, 4 wire",
+            "verdict": "complies",
+            "why": "model judgement on verified quote: 'Three-Phase 277/480 VAC @0.8pf'",
+            "offered": {
+              "values": [
+                "277/480 VAC"
+              ],
+              "unit": "V",
+              "selected": null,
+              "quote": "Three-Phase 277/480 VAC @0.8pf",
+              "page": 5,
+              "meets": "yes"
+            }
+          },
+          {
+            "cid": "R02b",
+            "attribute": "frequency",
+            "condition": "== 60 Hz",
+            "verdict": "complies",
+            "why": "offered 60 Hz meets == 60 Hz",
+            "offered": {
+              "values": [
+                60
+              ],
+              "unit": "Hz",
+              "selected": null,
+              "quote": "60 Hz",
+              "page": 1,
+              "meets": "yes"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "F-R03",
+      "claim": "Motor starting capability shall be not less than 3000 kVA with a maximum voltage dip of 30% for 2000 kW sets.",
+      "status": "unclear",
+      "confidence": 0.4,
+      "citations": [
+        {
+          "doc_id": "26-32-13-engine-generators-alpha",
+          "page": 3,
+          "locator": "2.1.C.1",
+          "quote": "shall be capable of developing not less than 3000 kVA (2000 kW sets) and 1500 kVA (1000 kW sets) for motor starting with a maximum voltage dip of 30%",
+          "match": "exact",
+          "ocr": false
+        },
+        {
+          "doc_id": "generac-md2000-spec-sheet",
+          "page": 5,
+          "locator": "",
+          "quote": "skVA vs. Voltage Dip 277/480 VAC 30% K2112064N22 7,709",
+          "match": "exact",
+          "ocr": false
+        }
+      ],
+      "needs_human": true,
+      "why": "reported value(s) [9417] do not appear in the quote 'skVA vs. Voltage Dip 277/480 VAC 30% K2112064N22 7,709'; discarded",
+      "data": {
+        "req_id": "R03",
+        "locator": "2.1.C.1",
+        "conditions": [
+          {
+            "cid": "R03a",
+            "attribute": "motor_starting_capacity_at_30pct_max_voltage_dip",
+            "condition": ">= 3000 kVA",
+            "verdict": "unclear",
+            "why": "reported value(s) [9417] do not appear in the quote 'skVA vs. Voltage Dip 277/480 VAC 30% K2112064N22 7,709'; discarded",
+            "offered": {
+              "values": [
+                7709,
+                9417
+              ],
+              "unit": "kVA",
+              "selected": null,
+              "quote": "skVA vs. Voltage Dip 277/480 VAC 30% K2112064N22 7,709",
+              "page": 5,
+              "meets": "yes"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "F-R04",
+      "claim": "Excitation power to the automatic voltage regulator shall be provided by a permanent magnet generator (PMG) or equal.",
+      "status": "complies",
+      "confidence": 0.65,
+      "citations": [
+        {
+          "doc_id": "26-32-13-engine-generators-alpha",
+          "page": 4,
+          "locator": "2.1.C.2",
+          "quote": "A permanent magnet generator (PMG) or equal shall provide excitation power to the automatic voltage regulator",
+          "match": "exact",
+          "ocr": false
+        },
+        {
+          "doc_id": "generac-md2000-spec-sheet",
+          "page": 4,
+          "locator": "",
+          "quote": "Standard Excitation Permanent Magnet",
+          "match": "exact",
+          "ocr": false
+        }
+      ],
+      "needs_human": true,
+      "why": "model judgement on verified quote: 'Standard Excitation Permanent Magnet'",
+      "data": {
+        "req_id": "R04",
+        "locator": "2.1.C.2",
+        "conditions": [
+          {
+            "cid": "R04a",
+            "attribute": "excitation_type",
+            "condition": "one of: permanent magnet generator, PMG",
+            "verdict": "complies",
+            "why": "model judgement on verified quote: 'Standard Excitation Permanent Magnet'",
+            "offered": {
+              "values": [
+                "Permanent Magnet"
+              ],
+              "unit": "",
+              "selected": null,
+              "quote": "Standard Excitation  Permanent Magnet",
+              "page": 4,
+              "meets": "yes"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "F-R05",
+      "claim": "Engine shall be an 8, 12, or 16 cylinder, 4-cycle diesel engine, either turbocharged/aftercooled or normally aspirated.",
+      "status": "complies",
+      "confidence": 0.95,
+      "citations": [
+        {
+          "doc_id": "26-32-13-engine-generators-alpha",
+          "page": 4,
+          "locator": "2.1.D (Diesel Engine)",
+          "quote": "Engine shall be an 8, 12, or 16 cylinder, 4 cycle, turbocharged/aftercooled or normally aspirated fuel injected full diesel engine",
+          "match": "exact",
+          "ocr": false
+        },
+        {
+          "doc_id": "generac-md2000-spec-sheet",
+          "page": 4,
+          "locator": "",
+          "quote": "Cylinder # 16",
+          "match": "exact",
+          "ocr": false
+        },
+        {
+          "doc_id": "generac-md2000-spec-sheet",
+          "page": 4,
+          "locator": "",
+          "quote": "4 Cycle",
+          "match": "exact",
+          "ocr": false
+        },
+        {
+          "doc_id": "generac-md2000-spec-sheet",
+          "page": 4,
+          "locator": "",
+          "quote": "Intake Air Method Turbocharged/Intercooled",
+          "match": "exact",
+          "ocr": false
+        }
+      ],
+      "needs_human": false,
+      "why": "offered 16 cylinder Cylinder # 16 meets one of: 8 cylinder, 12 cylinder, 16 cylinder; offered 4 Cycle 4 Cycle meets all of: 4 cycle; offered Turbocharged/Intercooled Intake Air Method Turbocharged/Intercooled meets one of: turbocharged, aftercooled, normally aspirated",
+      "data": {
+        "req_id": "R05",
+        "locator": "2.1.D (Diesel Engine)",
+        "conditions": [
+          {
+            "cid": "R05a",
+            "attribute": "cylinder_count",
+            "condition": "one of: 8 cylinder, 12 cylinder, 16 cylinder",
+            "verdict": "complies",
+            "why": "offered 16 cylinder Cylinder # 16 meets one of: 8 cylinder, 12 cylinder, 16 cylinder",
+            "offered": {
+              "values": [
+                "16 cylinder"
+              ],
+              "unit": null,
+              "selected": true,
+              "quote": "Cylinder #  16",
+              "page": 4,
+              "meets": "yes"
+            }
+          },
+          {
+            "cid": "R05b",
+            "attribute": "operating_cycle",
+            "condition": "all of: 4 cycle",
+            "verdict": "complies",
+            "why": "offered 4 Cycle 4 Cycle meets all of: 4 cycle",
+            "offered": {
+              "values": [
+                "4 Cycle"
+              ],
+              "unit": null,
+              "selected": true,
+              "quote": "4 Cycle",
+              "page": 4,
+              "meets": "yes"
+            }
+          },
+          {
+            "cid": "R05c",
+            "attribute": "aspiration",
+            "condition": "one of: turbocharged, aftercooled, normally aspirated",
+            "verdict": "complies",
+            "why": "offered Turbocharged/Intercooled Intake Air Method Turbocharged/Intercooled meets one of: turbocharged, aftercooled, normally aspirated",
+            "offered": {
+              "values": [
+                "Turbocharged/Intercooled"
+              ],
+              "unit": null,
+              "selected": true,
+              "quote": "Intake Air Method  Turbocharged/Intercooled",
+              "page": 4,
+              "meets": "yes"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "F-R06",
+      "claim": "Governor shall be electronic speed-sensing capable of isochronous frequency regulation from no load to full rated load.",
+      "status": "complies",
+      "confidence": 0.65,
+      "citations": [
+        {
+          "doc_id": "26-32-13-engine-generators-alpha",
+          "page": 4,
+          "locator": "2.1.D.3 (Governor)",
+          "quote": "electronic speed-sensing governor capable of isochronous frequency regulation from no load to full rated load.",
+          "match": "exact",
+          "ocr": false
+        },
+        {
+          "doc_id": "generac-md2000-spec-sheet",
+          "page": 4,
+          "locator": "",
+          "quote": "Governor Electronic",
+          "match": "exact",
+          "ocr": false
+        }
+      ],
+      "needs_human": true,
+      "why": "model judgement on verified quote: 'Governor Electronic'",
+      "data": {
+        "req_id": "R06",
+        "locator": "2.1.D.3 (Governor)",
+        "conditions": [
+          {
+            "cid": "R06a",
+            "attribute": "governor_type",
+            "condition": "all of: electronic, isochronous",
+            "verdict": "complies",
+            "why": "model judgement on verified quote: 'Governor Electronic'",
+            "offered": {
+              "values": [
+                "Electronic"
+              ],
+              "unit": null,
+              "selected": true,
+              "quote": "Governor  Electronic",
+              "page": 4,
+              "meets": "yes"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "F-R07",
+      "claim": "Starting system shall be 24 volt, 2-wire, negative ground, gear engaging electric starter.",
+      "status": "complies",
+      "confidence": 0.65,
+      "citations": [
+        {
+          "doc_id": "26-32-13-engine-generators-alpha",
+          "page": 4,
+          "locator": "2.1.D.5 (Starting System)",
+          "quote": "Starting System: Remote 24 volt, 2-wire, negative ground, starting system, positive shift, gear engaging electric starter",
+          "match": "exact",
+          "ocr": false
+        },
+        {
+          "doc_id": "generac-md2000-spec-sheet",
+          "page": 4,
+          "locator": "",
+          "quote": "System Voltage 24 VDC",
+          "match": "exact",
+          "ocr": false
+        }
+      ],
+      "needs_human": true,
+      "why": "model judgement on verified quote: 'System Voltage 24 VDC'",
+      "data": {
+        "req_id": "R07",
+        "locator": "2.1.D.5 (Starting System)",
+        "conditions": [
+          {
+            "cid": "R07a",
+            "attribute": "starting_system_voltage_and_type",
+            "condition": "all of: 24 volt, electric starter",
+            "verdict": "complies",
+            "why": "model judgement on verified quote: 'System Voltage 24 VDC'",
+            "offered": {
+              "values": [
+                "24 volt"
+              ],
+              "unit": "volt",
+              "selected": true,
+              "quote": "System Voltage  24 VDC",
+              "page": 4,
+              "meets": "yes"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "F-R08",
+      "claim": "Average fuel consumption at full standby load must not exceed 145 gph for a 2000 kW set.",
+      "status": "deviates",
+      "confidence": 0.65,
+      "citations": [
+        {
+          "doc_id": "26-32-13-engine-generators-alpha",
+          "page": 4,
+          "locator": "2.1.D.1 (Diesel Fuel System)",
+          "quote": "Average fuel consumption at full standby load shall not exceed 145 gph for 2000 kW sets",
+          "match": "exact",
+          "ocr": false
+        },
+        {
+          "doc_id": "generac-md2000-spec-sheet",
+          "page": 5,
+          "locator": "",
+          "quote": "100% 163.4 (618.5)",
+          "match": "exact",
+          "ocr": false
+        }
+      ],
+      "needs_human": true,
+      "why": "offered 163.4 gph does not meet <= 145 gph; unit gph is not shown in the quote, confirm",
+      "data": {
+        "req_id": "R08",
+        "locator": "2.1.D.1 (Diesel Fuel System)",
+        "conditions": [
+          {
+            "cid": "R08a",
+            "attribute": "average_fuel_consumption_full_standby_load",
+            "condition": "<= 145 gph",
+            "verdict": "deviates",
+            "why": "offered 163.4 gph does not meet <= 145 gph; unit gph is not shown in the quote, confirm",
+            "offered": {
+              "values": [
+                "163.4"
+              ],
+              "unit": "gph",
+              "selected": null,
+              "quote": "100%  163.4 (618.5)",
+              "page": 5,
+              "meets": "no"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "F-R09",
+      "claim": "Unit-mounted radiator cooling system sized to maintain safe operation at 122°F maximum ambient temperature.",
+      "status": "complies",
+      "confidence": 0.95,
+      "citations": [
+        {
+          "doc_id": "26-32-13-engine-generators-alpha",
+          "page": 4,
+          "locator": "2.1.D.2 (Cooling System)",
+          "quote": "cooling system shall be unit mounted radiator cooled",
+          "match": "exact",
+          "ocr": false
+        },
+        {
+          "doc_id": "generac-md2000-spec-sheet",
+          "page": 4,
+          "locator": "",
+          "quote": "Cooling System Type Unit Mounted Radiator",
+          "match": "exact",
+          "ocr": false
+        },
+        {
+          "doc_id": "generac-md2000-spec-sheet",
+          "page": 5,
+          "locator": "",
+          "quote": "Maximum Operating Ambient Temperature °F (°C) 122 (50)",
+          "match": "exact",
+          "ocr": false
+        }
+      ],
+      "needs_human": false,
+      "why": "offered Unit Mounted Radiator Cooling System Type Unit Mounted Radiator meets all of: unit mounted radiator; offered 122 °F meets >= 122 °F",
+      "data": {
+        "req_id": "R09",
+        "locator": "2.1.D.2 (Cooling System)",
+        "conditions": [
+          {
+            "cid": "R09a",
+            "attribute": "cooling_system_type",
+            "condition": "all of: unit mounted radiator",
+            "verdict": "complies",
+            "why": "offered Unit Mounted Radiator Cooling System Type Unit Mounted Radiator meets all of: unit mounted radiator",
+            "offered": {
+              "values": [
+                "Unit Mounted Radiator"
+              ],
+              "unit": null,
+              "selected": true,
+              "quote": "Cooling System Type  Unit Mounted Radiator",
+              "page": 4,
+              "meets": "yes"
+            }
+          },
+          {
+            "cid": "R09b",
+            "attribute": "maximum_ambient_temperature",
+            "condition": ">= 122 °F",
+            "verdict": "complies",
+            "why": "offered 122 °F meets >= 122 °F",
+            "offered": {
+              "values": [
+                "122"
+              ],
+              "unit": "°F",
+              "selected": true,
+              "quote": "Maximum Operating Ambient Temperature  °F (°C)  122 (50)",
+              "page": 5,
+              "meets": "yes"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "F-R10",
+      "claim": "Engine emissions compliance with applicable EPA Tier levels for non-road engines.",
+      "status": "complies",
+      "confidence": 0.95,
+      "citations": [
+        {
+          "doc_id": "26-32-13-engine-generators-alpha",
+          "page": 4,
+          "locator": "2.1.D.3 (Emissions Compliance)",
+          "quote": "comply with all applicable EPA Tier Levels for Non-Road Engines",
+          "match": "exact",
+          "ocr": false
+        },
+        {
+          "doc_id": "generac-md2000-spec-sheet",
+          "page": 4,
+          "locator": "",
+          "quote": "EPA Emissions Compliance Tier 2",
+          "match": "exact",
+          "ocr": false
+        }
+      ],
+      "needs_human": false,
+      "why": "offered Tier 2 EPA Emissions Compliance Tier 2 meets one of: tier 2, tier 4",
+      "data": {
+        "req_id": "R10",
+        "locator": "2.1.D.3 (Emissions Compliance)",
+        "conditions": [
+          {
+            "cid": "R10a",
+            "attribute": "emissions_compliance",
+            "condition": "one of: tier 2, tier 4",
+            "verdict": "complies",
+            "why": "offered Tier 2 EPA Emissions Compliance Tier 2 meets one of: tier 2, tier 4",
+            "offered": {
+              "values": [
+                "Tier 2"
+              ],
+              "unit": null,
+              "selected": true,
+              "quote": "EPA Emissions Compliance  Tier 2",
+              "page": 4,
+              "meets": "yes"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "F-R11",
+      "claim": "Operate at ambient conditions of 300 ft altitude and 10 to 122°F ambient temperature.",
+      "status": "unclear",
+      "confidence": 0.5,
+      "citations": [
+        {
+          "doc_id": "26-32-13-engine-generators-alpha",
+          "page": 4,
+          "locator": "2.1.E.1",
+          "quote": "Ambient conditions of 300' altitude and an ambient temperature of 10 to 122°F.",
+          "match": "exact",
+          "ocr": false
+        }
+      ],
+      "needs_human": true,
+      "why": "not stated in the submittal; no value found, but the submittal mentions temperature, ambient on page(s) [2, 3, 5]",
+      "data": {
+        "req_id": "R11",
+        "locator": "2.1.E.1",
+        "conditions": [
+          {
+            "cid": "R11a",
+            "attribute": "altitude_rating",
+            "condition": ">= 300 ft",
+            "verdict": "missing",
+            "why": "not stated in the submittal",
+            "offered": {
+              "values": [],
+              "unit": "ft",
+              "selected": null,
+              "quote": null,
+              "page": null,
+              "meets": "unknown"
+            }
+          },
+          {
+            "cid": "R11b",
+            "attribute": "ambient_temperature_range",
+            "condition": "10–122 °F",
+            "verdict": "unclear",
+            "why": "no value found, but the submittal mentions temperature, ambient on page(s) [2, 3, 5]",
+            "offered": {
+              "values": [],
+              "unit": "°F",
+              "selected": null,
+              "quote": null,
+              "page": null,
+              "meets": "unknown"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "F-R12",
+      "claim": "Engine speed shall not exceed 1800 rpm.",
+      "status": "complies",
+      "confidence": 0.95,
+      "citations": [
+        {
+          "doc_id": "26-32-13-engine-generators-alpha",
+          "page": 4,
+          "locator": "2.1.E.3",
+          "quote": "rpm of the engine shall not exceed 1800 rpm",
+          "match": "exact",
+          "ocr": false
+        },
+        {
+          "doc_id": "generac-md2000-spec-sheet",
+          "page": 5,
+          "locator": "",
+          "quote": "Rated Engine Speed RPM 1,800",
+          "match": "exact",
+          "ocr": false
+        }
+      ],
+      "needs_human": false,
+      "why": "offered 1800 rpm meets <= 1800 rpm",
+      "data": {
+        "req_id": "R12",
+        "locator": "2.1.E.3",
+        "conditions": [
+          {
+            "cid": "R12a",
+            "attribute": "engine_speed",
+            "condition": "<= 1800 rpm",
+            "verdict": "complies",
+            "why": "offered 1800 rpm meets <= 1800 rpm",
+            "offered": {
+              "values": [
+                "1800"
+              ],
+              "unit": "rpm",
+              "selected": true,
+              "quote": "Rated Engine Speed  RPM  1,800",
+              "page": 5,
+              "meets": "yes"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "F-R13",
+      "claim": "Generator shall be 4-pole, brushless, and two-thirds pitch wound.",
+      "status": "unclear",
+      "confidence": 0.5,
+      "citations": [
+        {
+          "doc_id": "26-32-13-engine-generators-alpha",
+          "page": 5,
+          "locator": "2.1.G (Generator)",
+          "quote": "Generator shall be 4-pole, revolving field type, brushless, dynamically balanced, skewed laminated, two thirds pitch wound",
+          "match": "exact",
+          "ocr": false
+        }
+      ],
+      "needs_human": true,
+      "why": "no value found, but the submittal mentions alternator, construction, pitch on page(s) [1, 2, 3, 4]",
+      "data": {
+        "req_id": "R13",
+        "locator": "2.1.G (Generator)",
+        "conditions": [
+          {
+            "cid": "R13a",
+            "attribute": "alternator_construction",
+            "condition": "all of: 4-pole, brushless, two thirds pitch",
+            "verdict": "unclear",
+            "why": "no value found, but the submittal mentions alternator, construction, pitch on page(s) [1, 2, 3, 4]",
+            "offered": {
+              "values": [],
+              "unit": null,
+              "selected": null,
+              "quote": null,
+              "page": null,
+              "meets": "no"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "F-R14",
+      "claim": "Generator insulation shall be NEMA Class F or better.",
+      "status": "complies",
+      "confidence": 0.65,
+      "citations": [
+        {
+          "doc_id": "26-32-13-engine-generators-alpha",
+          "page": 5,
+          "locator": "2.1.G.1",
+          "quote": "NEMA Class F or better insulation as defined by NEMA MG1.65.",
+          "match": "exact",
+          "ocr": false
+        },
+        {
+          "doc_id": "generac-md2000-spec-sheet",
+          "page": 4,
+          "locator": "",
+          "quote": "Insulation Class - Rotor H",
+          "match": "exact",
+          "ocr": false
+        }
+      ],
+      "needs_human": true,
+      "why": "model judgement on verified quote: 'Insulation Class - Rotor H'",
+      "data": {
+        "req_id": "R14",
+        "locator": "2.1.G.1",
+        "conditions": [
+          {
+            "cid": "R14a",
+            "attribute": "insulation_class",
+            "condition": "one of: class f, class h",
+            "verdict": "complies",
+            "why": "model judgement on verified quote: 'Insulation Class - Rotor H'",
+            "offered": {
+              "values": [
+                "H"
+              ],
+              "unit": null,
+              "selected": true,
+              "quote": "Insulation Class - Rotor  H",
+              "page": 4,
+              "meets": "yes"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "F-R15",
+      "claim": "Provide a 120 V, single-phase space heater to prevent condensation in the generator.",
+      "status": "unclear",
+      "confidence": 0.5,
+      "citations": [
+        {
+          "doc_id": "26-32-13-engine-generators-alpha",
+          "page": 5,
+          "locator": "2.1.G.5",
+          "quote": "A 120 volt, single phase space heater shall be provided to prevent condensation in the generator.",
+          "match": "exact",
+          "ocr": false
+        }
+      ],
+      "needs_human": true,
+      "why": "no value found, but the submittal mentions electrical, phase, single on page(s) [2, 3, 4, 5]",
+      "data": {
+        "req_id": "R15",
+        "locator": "2.1.G.5",
+        "conditions": [
+          {
+            "cid": "R15a",
+            "attribute": "space_heater_electrical",
+            "condition": "all of: 120 v, single phase, heater",
+            "verdict": "unclear",
+            "why": "no value found, but the submittal mentions electrical, phase, single on page(s) [2, 3, 4, 5]",
+            "offered": {
+              "values": [],
+              "unit": null,
+              "selected": null,
+              "quote": null,
+              "page": null,
+              "meets": "no"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "F-R16",
+      "claim": "Provide 3-pole generator output circuit breaker(s) with solid-state trip units.",
+      "status": "unclear",
+      "confidence": 0.5,
+      "citations": [
+        {
+          "doc_id": "26-32-13-engine-generators-alpha",
+          "page": 5,
+          "locator": "2.1.H (Generator Output Circuit Breaker(s))",
+          "quote": "Generator set shall have 3 pole output circuit breaker(s) with solid state trip units as shown on the drawings.",
+          "match": "exact",
+          "ocr": false
+        }
+      ],
+      "needs_human": true,
+      "why": "no value found, but the submittal mentions output, circuit, breaker on page(s) [2, 3, 4, 5]",
+      "data": {
+        "req_id": "R16",
+        "locator": "2.1.H (Generator Output Circuit Breaker(s))",
+        "conditions": [
+          {
+            "cid": "R16a",
+            "attribute": "output_circuit_breaker",
+            "condition": "all of: 3 pole, solid state",
+            "verdict": "unclear",
+            "why": "no value found, but the submittal mentions output, circuit, breaker on page(s) [2, 3, 4, 5]",
+            "offered": {
+              "values": [],
+              "unit": null,
+              "selected": null,
+              "quote": null,
+              "page": null,
+              "meets": "no"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "F-R17",
+      "claim": "Maintain voltage regulation within plus 2% from no load to rated load.",
+      "status": "complies",
+      "confidence": 0.95,
+      "citations": [
+        {
+          "doc_id": "26-32-13-engine-generators-alpha",
+          "page": 6,
+          "locator": "2.1.I.2 (Voltage Regulation)",
+          "quote": "Voltage Regulation: Plus 2% no load to rated load; rheostat for _5% voltage adjustment.",
+          "match": "exact",
+          "ocr": false
+        },
+        {
+          "doc_id": "generac-md2000-spec-sheet",
+          "page": 4,
+          "locator": "",
+          "quote": "Regulation Accuracy (Steady State) ±0.5%",
+          "match": "exact",
+          "ocr": false
+        }
+      ],
+      "needs_human": false,
+      "why": "offered ±0.5% % meets <= 2 %",
+      "data": {
+        "req_id": "R17",
+        "locator": "2.1.I.2 (Voltage Regulation)",
+        "conditions": [
+          {
+            "cid": "R17a",
+            "attribute": "voltage_regulation_no_load_to_rated_load",
+            "condition": "<= 2 %",
+            "verdict": "complies",
+            "why": "offered ±0.5% % meets <= 2 %",
+            "offered": {
+              "values": [
+                "±0.5%"
+              ],
+              "unit": "%",
+              "selected": true,
+              "quote": "Regulation Accuracy (Steady State)  ±0.5%",
+              "page": 4,
+              "meets": "yes"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "F-R18",
+      "claim": "Total harmonic distortion of ac voltage waveform from no load to full linear load shall not exceed 5% of rated voltage.",
+      "status": "complies",
+      "confidence": 0.95,
+      "citations": [
+        {
+          "doc_id": "26-32-13-engine-generators-alpha",
+          "page": 6,
+          "locator": "2.1.I.4 (Total Harmonic Distortion (THD))",
+          "quote": "The sum of ac voltage waveform harmonies, from no load to full linear load shall not exceed 5% of the rated voltage",
+          "match": "exact",
+          "ocr": false
+        },
+        {
+          "doc_id": "generac-md2000-spec-sheet",
+          "page": 4,
+          "locator": "",
+          "quote": "Total Harmonic Distortion <5%",
+          "match": "exact",
+          "ocr": false
+        }
+      ],
+      "needs_human": false,
+      "why": "offered <5% % meets <= 5 %",
+      "data": {
+        "req_id": "R18",
+        "locator": "2.1.I.4 (Total Harmonic Distortion (THD))",
+        "conditions": [
+          {
+            "cid": "R18a",
+            "attribute": "voltage_thd_no_load_to_full_linear_load",
+            "condition": "<= 5 %",
+            "verdict": "complies",
+            "why": "offered <5% % meets <= 5 %",
+            "offered": {
+              "values": [
+                "<5%"
+              ],
+              "unit": "%",
+              "selected": true,
+              "quote": "Total Harmonic Distortion  <5%",
+              "page": 4,
+              "meets": "yes"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "F-R19",
+      "claim": "Provide a UL 2085 listed in-skid fuel tank with usable capacity for at least 24 hours of operation at full standby load.",
+      "status": "unclear",
+      "confidence": 0.4,
+      "citations": [
+        {
+          "doc_id": "26-32-13-engine-generators-alpha",
+          "page": 9,
+          "locator": "2.1.K.1 (In Skid Diesel Fuel Tank)",
+          "quote": "provided with a UL 2085 listed manufacturer's standard in skid fuel transfer day tank. The tank shall have usable capacity for not less than 24 hours of operation at full standby load,",
+          "match": "exact",
+          "ocr": false
+        },
+        {
+          "doc_id": "generac-md2000-spec-sheet",
+          "page": 3,
+          "locator": "",
+          "quote": "○UL2085 Tank",
+          "match": "exact",
+          "ocr": false
+        }
+      ],
+      "needs_human": true,
+      "why": "offered UL2085 ○UL2085 Tank meets all of: ul 2085; reported quote not found in the submittal ('24  …  (14,574)'); value discarded",
+      "data": {
+        "req_id": "R19",
+        "locator": "2.1.K.1 (In Skid Diesel Fuel Tank)",
+        "conditions": [
+          {
+            "cid": "R19a",
+            "attribute": "fuel_tank_listing",
+            "condition": "all of: ul 2085",
+            "verdict": "complies",
+            "why": "offered UL2085 ○UL2085 Tank meets all of: ul 2085",
+            "offered": {
+              "values": [
+                "UL2085"
+              ],
+              "unit": null,
+              "selected": null,
+              "quote": "○UL2085 Tank",
+              "page": 3,
+              "meets": "unknown"
+            }
+          },
+          {
+            "cid": "R19b",
+            "attribute": "fuel_tank_capacity_at_full_standby_load",
+            "condition": ">= 24 h",
+            "verdict": "unclear",
+            "why": "reported quote not found in the submittal ('24  …  (14,574)'); value discarded",
+            "offered": {
+              "values": [
+                14714
+              ],
+              "unit": "gal",
+              "selected": null,
+              "quote": "24  …  (14,574)",
+              "page": 6,
+              "meets": "yes"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "F-R20",
+      "claim": "Provide two 5000 W, 480 V, 1-phase jacket-water heaters.",
+      "status": "unclear",
+      "confidence": 0.5,
+      "citations": [
+        {
+          "doc_id": "26-32-13-engine-generators-alpha",
+          "page": 8,
+          "locator": "2.1.K.2 (Jacket-Water Heater)",
+          "quote": "engine shall have two KIM #Hotstart (480 volt, 1-phase) or approved equal, 5000W jacket-water heaters supplied from a \"normal\" branch circuit.",
+          "match": "exact",
+          "ocr": false
+        }
+      ],
+      "needs_human": true,
+      "why": "no value found, but the submittal mentions water, heater, jacket on page(s) [2, 3, 4, 5]; no value found, but the submittal mentions water, heater, jacket on page(s) [2, 3, 4, 5]; no value found, but the submittal mentions electrical, water, phase on page(s) [2, 3, 4, 5]",
+      "data": {
+        "req_id": "R20",
+        "locator": "2.1.K.2 (Jacket-Water Heater)",
+        "conditions": [
+          {
+            "cid": "R20a",
+            "attribute": "jacket_water_heater_count",
+            "condition": "== 2",
+            "verdict": "unclear",
+            "why": "no value found, but the submittal mentions water, heater, jacket on page(s) [2, 3, 4, 5]",
+            "offered": {
+              "values": [],
+              "unit": null,
+              "selected": null,
+              "quote": null,
+              "page": null,
+              "meets": "unknown"
+            }
+          },
+          {
+            "cid": "R20b",
+            "attribute": "jacket_water_heater_rating",
+            "condition": "== 5000 W",
+            "verdict": "unclear",
+            "why": "no value found, but the submittal mentions water, heater, jacket on page(s) [2, 3, 4, 5]",
+            "offered": {
+              "values": [],
+              "unit": "W",
+              "selected": null,
+              "quote": null,
+              "page": null,
+              "meets": "unknown"
+            }
+          },
+          {
+            "cid": "R20c",
+            "attribute": "jacket_water_heater_electrical",
+            "condition": "all of: 480 v, 1 phase",
+            "verdict": "unclear",
+            "why": "no value found, but the submittal mentions electrical, water, phase on page(s) [2, 3, 4, 5]",
+            "offered": {
+              "values": [],
+              "unit": null,
+              "selected": null,
+              "quote": null,
+              "page": null,
+              "meets": "unknown"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "F-R21",
+      "claim": "Provide a weatherproof and rodent-proof outdoor enclosure entirely enclosing the generator set, with silencers installed inside.",
+      "status": "unclear",
+      "confidence": 0.5,
+      "citations": [
+        {
+          "doc_id": "26-32-13-engine-generators-alpha",
+          "page": 10,
+          "locator": "2.1.K.9 (Generator Outdoor Housing)",
+          "quote": "Provide a weatherproof and rodent-proof outdoor shelter to entirely enclose each generator set, including batteries. Silencers shall be installed inside enclosure.",
+          "match": "exact",
+          "ocr": false
+        }
+      ],
+      "needs_human": true,
+      "why": "no value found, but the submittal mentions enclosure on page(s) [1, 2, 3, 6]; no value found, but the submittal mentions silencer on page(s) [3, 5]",
+      "data": {
+        "req_id": "R21",
+        "locator": "2.1.K.9 (Generator Outdoor Housing)",
+        "conditions": [
+          {
+            "cid": "R21a",
+            "attribute": "enclosure_type",
+            "condition": "all of: weatherproof, rodent-proof",
+            "verdict": "unclear",
+            "why": "no value found, but the submittal mentions enclosure on page(s) [1, 2, 3, 6]",
+            "offered": {
+              "values": [],
+              "unit": null,
+              "selected": null,
+              "quote": null,
+              "page": null,
+              "meets": "unknown"
+            }
+          },
+          {
+            "cid": "R21b",
+            "attribute": "silencer_location",
+            "condition": "all of: inside",
+            "verdict": "unclear",
+            "why": "no value found, but the submittal mentions silencer on page(s) [3, 5]",
+            "offered": {
+              "values": [],
+              "unit": "",
+              "selected": null,
+              "quote": "",
+              "page": "",
+              "meets": "no"
+            }
+          }
+        ]
+      }
+    }
+  ],
+  "needs_human": [
+    {
+      "finding_id": "F-R02",
+      "reason": "model judgement on verified quote: 'Three-Phase 277/480 VAC @0.8pf'; offered 60 Hz meets == 60 Hz"
+    },
+    {
+      "finding_id": "F-R03",
+      "reason": "reported value(s) [9417] do not appear in the quote 'skVA vs. Voltage Dip 277/480 VAC 30% K2112064N22 7,709'; discarded"
+    },
+    {
+      "finding_id": "F-R04",
+      "reason": "model judgement on verified quote: 'Standard Excitation Permanent Magnet'"
+    },
+    {
+      "finding_id": "F-R06",
+      "reason": "model judgement on verified quote: 'Governor Electronic'"
+    },
+    {
+      "finding_id": "F-R07",
+      "reason": "model judgement on verified quote: 'System Voltage 24 VDC'"
+    },
+    {
+      "finding_id": "F-R08",
+      "reason": "offered 163.4 gph does not meet <= 145 gph; unit gph is not shown in the quote, confirm"
+    },
+    {
+      "finding_id": "F-R11",
+      "reason": "not stated in the submittal; no value found, but the submittal mentions temperature, ambient on page(s) [2, 3, 5]"
+    },
+    {
+      "finding_id": "F-R13",
+      "reason": "no value found, but the submittal mentions alternator, construction, pitch on page(s) [1, 2, 3, 4]"
+    },
+    {
+      "finding_id": "F-R14",
+      "reason": "model judgement on verified quote: 'Insulation Class - Rotor H'"
+    },
+    {
+      "finding_id": "F-R15",
+      "reason": "no value found, but the submittal mentions electrical, phase, single on page(s) [2, 3, 4, 5]"
+    },
+    {
+      "finding_id": "F-R16",
+      "reason": "no value found, but the submittal mentions output, circuit, breaker on page(s) [2, 3, 4, 5]"
+    },
+    {
+      "finding_id": "F-R19",
+      "reason": "offered UL2085 ○UL2085 Tank meets all of: ul 2085; reported quote not found in the submittal ('24  …  (14,574)'); value discarded"
+    },
+    {
+      "finding_id": "F-R20",
+      "reason": "no value found, but the submittal mentions water, heater, jacket on page(s) [2, 3, 4, 5]; no value found, but the submittal mentions water, heater, jacket on page(s) [2, 3, 4, 5]; no value found, but the submittal mentions electrical, water, phase on page(s) [2, 3, 4, 5]"
+    },
+    {
+      "finding_id": "F-R21",
+      "reason": "no value found, but the submittal mentions enclosure on page(s) [1, 2, 3, 6]; no value found, but the submittal mentions silencer on page(s) [3, 5]"
+    }
+  ],
+  "run": {
+    "models": [
+      {
+        "name": "openai/gpt-oss-120b",
+        "provider": "groq",
+        "tokens_in": 15972,
+        "tokens_out": 3437,
+        "cost_usd": 0.004458,
+        "calls": 6
+      }
+    ],
+    "latency_ms": 92743,
+    "steps": [
+      {
+        "step": 1,
+        "purpose": "read submittal: R01a, R01b, R02a, R02b, R03a, R04a",
+        "provider": "groq",
+        "model": "openai/gpt-oss-120b",
+        "tokens_in": 3002,
+        "tokens_out": 624,
+        "ms": 2241,
+        "ok": true
+      },
+      {
+        "step": 2,
+        "purpose": "read submittal: R05a, R05b, R05c, R06a, R07a, R08a",
+        "provider": "groq",
+        "model": "openai/gpt-oss-120b",
+        "tokens_in": 3027,
+        "tokens_out": 685,
+        "ms": 1884,
+        "ok": true
+      },
+      {
+        "step": 3,
+        "purpose": "read submittal: R09a, R09b, R10a, R11a, R11b, R12a",
+        "provider": "groq",
+        "model": "openai/gpt-oss-120b",
+        "tokens_in": 2105,
+        "tokens_out": 584,
+        "ms": 14813,
+        "ok": true
+      },
+      {
+        "step": 4,
+        "purpose": "read submittal: R13a, R14a, R15a, R16a, R17a, R18a",
+        "provider": "groq",
+        "model": "openai/gpt-oss-120b",
+        "tokens_in": 3039,
+        "tokens_out": 654,
+        "ms": 27138,
+        "ok": true
+      },
+      {
+        "step": 5,
+        "purpose": "read submittal: R19a, R19b, R20a, R20b, R20c, R21a",
+        "provider": "groq",
+        "model": "openai/gpt-oss-120b",
+        "tokens_in": 3491,
+        "tokens_out": 748,
+        "ms": 31827,
+        "ok": true
+      },
+      {
+        "step": 6,
+        "purpose": "read submittal: R21b",
+        "provider": "groq",
+        "model": "openai/gpt-oss-120b",
+        "tokens_in": 1308,
+        "tokens_out": 142,
+        "ms": 12097,
+        "ok": true
+      },
+      {
+        "step": 7,
+        "purpose": "second look for not stated: R11a, R11b, R13a, R15a, R16a, R20a, R20b, R20c",
+        "provider": "groq",
+        "model": "openai/gpt-oss-120b",
+        "tokens_in": 0,
+        "tokens_out": 0,
+        "ms": 142,
+        "ok": false,
+        "error": "groq HTTP 429: {\"error\":{\"message\":\"Rate limit reached for model `openai/gpt-oss-120b` in organization `(hidden)` service tier `on_demand` on tokens per day (TP"
+      },
+      {
+        "step": 8,
+        "purpose": "second look for not stated: R21a, R21b",
+        "provider": "groq",
+        "model": "openai/gpt-oss-120b",
+        "tokens_in": 0,
+        "tokens_out": 0,
+        "ms": 101,
+        "ok": false,
+        "error": "groq HTTP 429: {\"error\":{\"message\":\"Rate limit reached for model `openai/gpt-oss-120b` in organization `(hidden)` service tier `on_demand` on tokens per day (TP"
+      }
+    ]
+  }
+}

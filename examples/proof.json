@@ -1,5 +1,5 @@
 {
- "key": "45a12c793a6d11da0123",
+ "key": "fe745a39ff58457a50b3",
  "built": "2026-11-26",
  "proof": {
   "cases": [
@@ -148,6 +148,24 @@
     "result_id": "example:G8"
    },
    {
+    "case_id": "G9",
+    "split": "heldout",
+    "heldout_set": 4,
+    "document": "generac-md2000-spec-sheet",
+    "label": "against 26-32-13-engine-generators-alpha",
+    "n": 21,
+    "correct": 17,
+    "accuracy": 0.8095238095238095,
+    "false_approvals": 0,
+    "false_rejections": 0,
+    "fabrications": 0,
+    "handoff_rate": 0.6666666666666666,
+    "auto_total": 7,
+    "auto_correct": 6,
+    "cost_usd": 0.004458,
+    "result_id": "example:G9"
+   },
+   {
     "case_id": "U1",
     "split": "heldout",
     "heldout_set": 1,
@@ -187,6 +205,13 @@
     "auto_total": 15,
     "auto_correct": 14,
     "false_approvals": 0
+   },
+   "4": {
+    "n": 21,
+    "correct": 17,
+    "auto_total": 7,
+    "auto_correct": 6,
+    "false_approvals": 0
    }
   },
   "fabrications": 0,
@@ -208,8 +233,8 @@
   },
   "cross": {
    "unclear_with_concrete_reader": {
-    "n": 23,
-    "right": 7
+    "n": 25,
+    "right": 8
    },
    "unclear_with_reader_missing": {
     "n": 15,
@@ -223,22 +248,23 @@
     "G6",
     "G7",
     "G8",
+    "G9",
     "U1"
    ],
-   "n": 142,
-   "reviewer_agrees_with_key": 100,
+   "n": 163,
+   "reviewer_agrees_with_key": 116,
    "kappa": 0.57,
    "handed_agrees": {
-    "n": 50,
-    "right": 42
+    "n": 59,
+    "right": 50
    },
    "handed_disagrees": {
-    "n": 50,
-    "right": 20
+    "n": 55,
+    "right": 23
    },
    "auto_agrees": {
-    "n": 34,
-    "right": 34
+    "n": 41,
+    "right": 40
    },
    "auto_disagrees": {
     "n": 8,

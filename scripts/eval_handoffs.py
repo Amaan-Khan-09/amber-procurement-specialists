@@ -71,7 +71,8 @@ def build_cases() -> list[dict]:
             esc = bool(ESCALATE_NOTE.search(l.get("notes", "")))
             cat = "escalate" if esc else ("routine" if l["expected"] in ("complies", "deviates") else "missing_info")
             route = "engineer" if esc else ("decide" if l["expected"] in ("complies", "deviates") else "ask_supplier")
-            cases.append({"id": f"{f.stem}/{l['req_id']}", "group": "datasheet", "case": f.stem, "req_id": l["req_id"],
+            grp = "unseen datasheet" if k.get("heldout_set") == 4 else "datasheet"  # set 4: labelled, then run once
+            cases.append({"id": f"{f.stem}/{l['req_id']}", "group": grp, "case": f.stem, "req_id": l["req_id"],
                           "expected": l["expected"], "category": cat, "expected_route": route})
     pk = json.loads((KEYS / "package_GEN.json").read_text(encoding="utf-8"))
     for r in pk["requirements"]:
@@ -149,7 +150,7 @@ def run() -> dict:
     results = []
     for c in cases:
         g = c["group"]
-        if g == "datasheet":
+        if g in ("datasheet", "unseen datasheet"):
             b, n = ds_before[c["id"]], ds_now[c["id"]]
         elif g == "package":
             ds = {f["data"]["req_id"]: f for f in rec[c["bid"]]["datasheet_only"]}[c["req_id"]]
@@ -207,12 +208,14 @@ def table(rows: list[dict], label: str) -> dict:
 def main() -> None:
     res = run()
     rows = res["results"]
-    like = [r for r in rows if r["group"] != "prequal"]
+    like = [r for r in rows if r["group"] not in ("prequal", "unseen datasheet")]
     summary = {"like_for_like": table(like, "Like for like: every case both versions handle"),
                "by_group": {g: table([r for r in rows if r["group"] == g], f"  group: {g}") for g in
                             ("datasheet", "package", "link", "bid scope", "decision")},
                "by_category": {c: table([r for r in like if r["category"] == c], f"  category: {c}") for c in
                                ("routine", "missing_info", "conflict", "escalate")},
+               "unseen_set4": table([r for r in rows if r["group"] == "unseen datasheet"],
+                                    "Unseen datasheet (held-out set 4, G9: labelled before its one run)"),
                "new_specialist_prequal": table([r for r in rows if r["group"] == "prequal"],
                                                "New specialist: pre-qualification (before = no specialist, a person does it all)")}
     changed = [r for r in like if (r["before"]["outcome"], r["before"]["route"]) != (r["now"]["outcome"], r["now"]["route"])]

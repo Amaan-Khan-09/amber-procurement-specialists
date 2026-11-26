@@ -764,5 +764,118 @@
   },
   "doc_id": "vertiv-exl-s1-package",
   "model": "qwen/qwen3.8-27b"
+ },
+ "G9": {
+  "case": "G9",
+  "doc_id": "generac-md2000-spec-sheet",
+  "model": "qwen/qwen3.8-27b",
+  "pages": 6,
+  "answers": {
+   "R01": {
+    "verdict": "complies",
+    "page": 1,
+    "quote": "Standby Power Rating 2,000 kW, 2,500 kVA, 60 Hz"
+   },
+   "R02": {
+    "verdict": "unclear",
+    "page": null,
+    "quote": "mentioned or stated without a verifiable quote"
+   },
+   "R03": {
+    "verdict": "complies",
+    "page": 5,
+    "quote": "277/480 VAC 30% K2112064N22 7,709"
+   },
+   "R04": {
+    "verdict": "complies",
+    "page": 2,
+    "quote": "Permanent Magnet Excitation"
+   },
+   "R05": {
+    "verdict": "complies",
+    "page": 4,
+    "quote": "Cylinder # 16 Type 4 Cycle - V16 ... Turbocharged/Intercooled"
+   },
+   "R06": {
+    "verdict": "complies",
+    "page": 2,
+    "quote": "Isochronous Governor Control"
+   },
+   "R07": {
+    "verdict": "deviates",
+    "page": 4,
+    "quote": "System Voltage 24 VDC ... Battery Voltage (4) - 12 VDC"
+   },
+   "R08": {
+    "verdict": "deviates",
+    "page": 5,
+    "quote": "100% 163.4 (618.5)"
+   },
+   "R09": {
+    "verdict": "complies",
+    "page": 5,
+    "quote": "Maximum Operating Ambient Temperature °F (°C) 122 (50)"
+   },
+   "R10": {
+    "verdict": "complies",
+    "page": 2,
+    "quote": "EPA Certified Stationary Emergency"
+   },
+   "R11": {
+    "verdict": "deviates",
+    "page": 5,
+    "quote": "Maximum Operating Ambient Temperature °F (°C) 122 (50)"
+   },
+   "R12": {
+    "verdict": "complies",
+    "page": 5,
+    "quote": "Rated Engine Speed RPM 1,800"
+   },
+   "R13": {
+    "verdict": "unclear",
+    "page": null,
+    "quote": "mentioned or stated without a verifiable quote"
+   },
+   "R14": {
+    "verdict": "unclear",
+    "page": null,
+    "quote": "chunks disagree: deviates p2; complies p4"
+   },
+   "R15": {
+    "verdict": "unclear",
+    "page": null,
+    "quote": "mentioned or stated without a verifiable quote"
+   },
+   "R16": {
+    "verdict": "unclear",
+    "page": null,
+    "quote": "mentioned or stated without a verifiable quote"
+   },
+   "R17": {
+    "verdict": "complies",
+    "page": 4,
+    "quote": "Regulation Accuracy (Steady State) ±0.5%"
+   },
+   "R18": {
+    "verdict": "complies",
+    "page": 4,
+    "quote": "Total Harmonic Distortion <5%"
+   },
+   "R19": {
+    "verdict": "unclear",
+    "page": null,
+    "quote": "mentioned or stated without a verifiable quote"
+   },
+   "R20": {
+    "verdict": "unclear",
+    "page": null,
+    "quote": "mentioned or stated without a verifiable quote"
+   },
+   "R21": {
+    "verdict": "unclear",
+    "page": null,
+    "quote": "mentioned or stated without a verifiable quote"
+   }
+  }
  }
 }
