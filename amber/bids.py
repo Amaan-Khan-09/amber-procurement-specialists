@@ -51,10 +51,11 @@ Rules:
 - "quote": copy 4-25 words EXACTLY from the bid that support the status (omit only for silent).
 - For alternate: give "alt_amount" and "alt_basis" ("per_unit" or "total") as written in the bid.
 - "base_total": the bid's total base price (number) with its quote.
+- If no base total is explicitly quoted, return null for base_total and base_quote. Never use zero for a missing price.
 - "offered_product": manufacturer and model exactly as written in the bid.
 - "lead_time": {"min_weeks", "max_weeks", "basis": "after_order|after_submittal_approval|unknown", "quote"}.
 - "terms": short notes on validity, escalation, tariffs, surcharges, budget/non-firm pricing, each with a quote.
-Reply with JSON: {"bidder": "...", "offered_product": "...", "product_quote": "...", "base_total": 0, "base_quote": "...",
+Reply with JSON: {"bidder": "...", "offered_product": "...", "product_quote": "...", "base_total": null, "base_quote": null,
  "items": [{"scope_id": "S1", "status": "...", "quote": "...", "alt_amount": null, "alt_basis": null, "note": "..."}],
  "lead_time": {...}, "terms": [{"note": "...", "quote": "...", "risk": "none|unquantified_cost|short_validity|not_firm"}]}"""
 
@@ -107,8 +108,13 @@ def read_bid(llm: LLM, bid: docs.Document, form: dict) -> dict:
     scope = [{"id": s["id"], "item": s["item"]} for s in form.get("scope", [])]
     b = llm.json(BID_SYSTEM, "Scope items:\n" + json.dumps(scope) + "\n\nBid text:\n" + bid.text()[:12000], max_tokens=3000,
                  purpose=f"read bid {bid.doc_id}")
-    b["base_total"] = _num(b.get("base_total"))
     b["base_citation"] = _cite(bid, b.get("base_quote"))
+    base = _num(b.get("base_total"))
+    # A model can return 0 when a bid says no price was offered. A real zero is valid only
+    # when the verified quote itself contains that number; otherwise the bid is unpriced.
+    quoted_numbers = [_num(m.group()) for m in re.finditer(r"-?\d[\d,]*\.?\d*", (b["base_citation"] or {}).get("quote", ""))]
+    b["base_total"] = base if b["base_citation"] and base is not None and any(
+        n is not None and abs(n - base) <= 0.001 for n in quoted_numbers) else None
     b["product_citation"] = _cite(bid, b.get("product_quote") or b.get("offered_product"))
     lt = b.get("lead_time") or {}
     lt["citation"] = _cite(bid, lt.get("quote"))
@@ -179,8 +185,11 @@ def level(form: dict, bids: dict[str, dict]) -> dict:
                     notes.append(f"{sid}: {st}, owner's allowance {amt:,.0f}")
                 else:
                     notes.append(f"{sid}: {st}, no allowance in the bid form - not priced")
-        base = b.get("base_total") or 0
-        table[bid_id] = {"base": base, "adjustments": adds, "adjusted": base + sum(adds.values()), "notes": notes}
+        base = b.get("base_total")
+        if base is None:
+            notes.insert(0, "No verified base price: ask the bidder for a complete price before ranking")
+        table[bid_id] = {"base": base, "adjustments": adds,
+                         "adjusted": base + sum(adds.values()) if base is not None else None, "notes": notes}
         table[bid_id].update(to_confirm(table[bid_id], {sid: i["status"] for sid, i in b["items"].items()}))
     return table
 
@@ -189,7 +198,9 @@ def to_confirm(row: dict, statuses: dict[str, str]) -> dict:
     """The part of a leveled total that rests on 'qualified' calls: whether an offer falls short of the scope is a
     reading of the bidder's wording, so the total is also shown as it would be if a person finds the item included."""
     open_items = {s: a for s, a in row["adjustments"].items() if statuses.get(s) == "qualified"}
-    return {"to_confirm": open_items, "adjusted_if_confirmed": row["adjusted"] - sum(open_items.values())}
+    adjusted = row["adjusted"]
+    return {"to_confirm": open_items,
+            "adjusted_if_confirmed": adjusted - sum(open_items.values()) if adjusted is not None else None}
 
 
 def _lead_max(b: dict) -> float | None:
@@ -210,12 +221,20 @@ def _award_citations(decision: dict, bids: dict) -> list[Citation]:
 
 
 def award(table: dict, bids: dict) -> dict:
-    ranked = sorted(table, key=lambda k: table[k]["adjusted"])
+    unpriced = [k for k, row in table.items() if row["adjusted"] is None]
+    ranked = sorted((k for k in table if k not in unpriced), key=lambda k: table[k]["adjusted"])
+    if not ranked:
+        why = "No priced bid can be ranked; ask for a verified base price from " + ", ".join(unpriced)
+        return {"recommend": None, "auto_award": False, "ranked": [], "unpriced": unpriced,
+                "options": [], "clarify_before_award": unpriced, "blockers": [why], "why": why}
     cheapest = ranked[0]
     leads = {k: _lead_max(bids[k]) for k in bids}
-    known = {k: v for k, v in leads.items() if v is not None}
+    known = {k: v for k, v in leads.items() if k in ranked and v is not None}
     fastest = min(known, key=known.get) if known else None
     blockers = []
+    if unpriced:
+        blockers.append("unpriced bids cannot be compared or excluded from consideration: ask "
+                        + ", ".join(unpriced) + " for a complete base price")
     risky = [t["note"] for t in bids[cheapest].get("terms", []) or [] if t.get("risk") not in (None, "none")]
     if risky:
         blockers.append(f"{cheapest} has open commercial risk: " + "; ".join(risky))
@@ -240,10 +259,10 @@ def award(table: dict, bids: dict) -> dict:
         opts.append({"bid": fastest, "reason": "shortest lead time", "adjusted": table[fastest]["adjusted"],
                      "lead_max_weeks": known[fastest],
                      "premium_vs_cheapest": table[fastest]["adjusted"] - table[cheapest]["adjusted"]})
-    clarify = [k for k in bids if sum(i["status"] in ("silent", "unclear") for i in bids[k]["items"].values()) >= 3
+    clarify = [k for k in bids if k in unpriced or sum(i["status"] in ("silent", "unclear") for i in bids[k]["items"].values()) >= 3
                or any(t.get("risk") == "not_firm" for t in bids[k].get("terms", []) or [])]
     return {"recommend": None, "auto_award": False, "ranked": ranked, "options": opts,
-            "clarify_before_award": clarify, "blockers": blockers,
+            "unpriced": unpriced, "clarify_before_award": clarify, "blockers": blockers,
             "why": "A person should decide: " + " | ".join(blockers)}
 
 
@@ -329,10 +348,12 @@ def level_bids(form_path: str, bid_paths: dict[str, str], llm: LLM | None = None
                                     why=why,
                                     data={"bid": bid_id, "scope_id": sid, "scope_status": st,
                                           "adjustment": table[bid_id]["adjustments"].get(sid)}))
-        if not b.get("base_citation"):
-            findings.append(Finding(id=f"F-{bid_id}-base", claim=f"{bid_id} base price {b.get('base_total')}",
+        if b.get("base_total") is None:
+            findings.append(Finding(id=f"F-{bid_id}-base", claim=f"{bid_id} has no verified base price",
                                     status=Verdict.unclear, confidence=0.3,
-                                    why="base price quote not found in the bid", data={"bid": bid_id}))
+                                    why="Ask the bidder for a complete base price; this bid cannot be ranked",
+                                    citations=[Citation(**b["base_citation"])] if b.get("base_citation") else [],
+                                    data={"bid": bid_id}))
     uncovered = uncovered_scope(form, bids)
     for u in uncovered:
         cites = [Citation(**b["items"][u["id"]]["citation"]) for b in bids.values()

@@ -56,15 +56,15 @@ def _path(p: str) -> str:
     title="Check a submittal against the spec",
     description=(
         "Check a supplier's product submittal (PDF datasheet or submittal package) against a specification "
-        "section, for one equipment tag. Returns one finding per requirement: complies / deviates / missing / "
+        "section. For a new project set schedule_path to null; the equipment tag is optional. Returns one finding per requirement: complies / deviates / missing / "
         "unclear, citing the spec paragraph and the submittal page with exact quotes, a confidence score, and "
         "an overall approve / review / reject. Paths are relative to the server's data folder."),
 )
-async def check_submittal(spec_path: str, submittal_path: str, tag: str,
-                          schedule_path: str = "schedules/equipment_schedule.csv",
+async def check_submittal(spec_path: str, submittal_path: str, tag: str = "User project",
+                          schedule_path: str | None = "schedules/equipment_schedule.csv",
                           checklist: list[dict[str, Any]] | None = None,
                           provider: str | None = None) -> ToolResult:
-    args = (_path(spec_path), _path(submittal_path), tag, _path(schedule_path))
+    args = (_path(spec_path), _path(submittal_path), tag, _path(schedule_path) if schedule_path else None)
     llm = LLM(provider=provider)
     res = await anyio.to_thread.run_sync(lambda: _check_submittal(*args, checklist=checklist, llm=llm))
     return res

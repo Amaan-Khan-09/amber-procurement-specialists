@@ -149,19 +149,29 @@ decisions **0 to 1** (a "Max Fuel Flow" figure computed as fuel consumption; fix
 
 ## Quick start
 
-```bash
-python -m venv .venv                                     # Python 3.11+
-source .venv/bin/activate                                # Windows: .venv\Scripts\activate
-pip install -e ".[dev]"
-python tools/data_prep/fetch_data.py                     # downloads the public test documents (not committed)
-python -m pytest -q                                      # 184 tests, no API key and no network needed
-python -m amber.web                                      # the web page: http://127.0.0.1:8000 (opens the browser)
-python scripts/demo_mcp_client.py                        # starts the MCP server and calls a tool (no key needed)
-cp .env.example .env                                     # add GROQ_API_KEY for the steps below
-python scripts/run_package.py                            # full package review on Project Alpha
-python scripts/make_report.py runs/package_GEN.json      # the same result as an HTML page
-python -m amber.server                                   # MCP server on stdio (--http for streamable HTTP)
+From a fresh checkout with Python 3.11 or later (PowerShell):
+
+```powershell
+py -3.11 -m venv .venv
+.venv\Scripts\python.exe -m pip install -e ".[dev]"
+.venv\Scripts\python.exe -m pytest -q
+.venv\Scripts\python.exe -m amber.web
 ```
+
+Open http://127.0.0.1:8000. Without a key, use **Saved results** and **Delivery risk** to inspect findings,
+source words, review actions and the case-file demo. A live submittal or bid reading needs a configured model.
+For a live first-upload example, copy `.env.example` to `.env`, add a free `GROQ_API_KEY` there, restart the page,
+then open **Check a submittal**. Upload both PDFs from `examples/judge_own_data/` (start with
+`transformer_spec.pdf` and `transformer_offer.pdf`), check **Review my project**, and run. This fictional,
+complete pair is committed so the first ten minutes do not depend on third-party downloads. Open a finding's
+**Compare side by side**, then record a decision in the review queue. A result takes model calls and may take
+several minutes on the free tier.
+
+For MCP without a key, run `.venv\Scripts\python.exe scripts\demo_mcp_client.py`. For a live custom pair,
+call `check_submittal` with paths under `data/` and `schedule_path: null`; no Project Alpha tag or checklist is
+required. The web upload copies files into `data/uploads/`. Public evaluation PDFs are optional:
+`.venv\Scripts\python.exe tools\data_prep\fetch_data.py`. Some source sites block automated downloads;
+the script gives the URL and destination, while the quick start above remains usable.
 
 Notes for a fresh clone:
 

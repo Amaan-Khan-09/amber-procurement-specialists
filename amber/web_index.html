@@ -278,11 +278,14 @@ kbd{font:600 11px ui-monospace,Consolas,monospace;border:1px solid var(--line);b
     <p class="lead">One answer per requirement (complies, deviates, missing or unclear), each with the spec paragraph and the datasheet page quoted word for word. Anything the agent is not sure about goes to you.</p>
     <div class="card">
       <div class="grid">
-        <div><label for="s-tag">Equipment tag</label><select id="s-tag" data-list="tags"></select></div>
+        <div><label for="s-tag">Demo equipment tag (optional for your project)</label><select id="s-tag" data-list="tags"></select></div>
         <div><label for="s-spec">Specification</label><select id="s-spec" data-list="specs"></select></div>
+        <div><label for="s-spec-up">Or upload your specification (PDF)</label><input type="file" id="s-spec-up" accept=".pdf,application/pdf" data-kind="specs" data-target="s-spec"></div>
         <div><label for="s-sub">Product submittal</label><select id="s-sub" data-list="submittals"></select></div>
         <div><label for="s-up">Or upload a submittal (PDF)</label><input type="file" id="s-up" accept=".pdf,application/pdf" data-kind="submittals" data-target="s-sub"></div>
       </div>
+      <label class="small"><input type="checkbox" id="s-own"> Review my project without the bundled equipment schedule</label>
+      <p class="small">For your project, select both PDFs and check the box. Requirements that depend on a missing schedule value go to review. Text PDFs work best; scanned pages need OCR.</p>
       <div class="row" style="margin-top:16px"><button class="btn primary" id="s-run">Check submittal</button><span class="small">About 8-10 model calls on the free tier; 2-4 minutes.</span></div>
       <p class="small hidden" id="sealed-note"></p>
     </div>
@@ -643,7 +646,9 @@ document.querySelectorAll("input[type=file]").forEach(inp => inp.onchange = asyn
   if (!inp.files.length) return;
   const fd = new FormData(); fd.append("kind", inp.dataset.kind); fd.append("file", inp.files[0]);
   try { const r = await api("/api/upload", {method: "POST", body: fd}); await loadState(false);
-    if (inp.dataset.target) $("#" + inp.dataset.target).value = r.path; toast("Uploaded " + short(r.path)); }
+    if (inp.dataset.target) $("#" + inp.dataset.target).value = r.path;
+    if (inp.id === "s-spec-up") $("#s-own").checked = true;
+    toast("Uploaded " + short(r.path)); }
   catch (e) { toast(e.message); } finally { inp.value = ""; }
 });
 
@@ -737,7 +742,8 @@ async function poll(jid, tool) {
 }
 $("#p-run").onclick = () => { const {bids, subs} = readBids($("#p-bids"));
   run("run_package_review", {bid_form: $("#p-form").value, bids, submittals: subs, spec: $("#p-spec").value, tag: $("#p-tag").value, as_of: $("#p-asof").value}); };
-$("#s-run").onclick = () => run("check_submittal", {spec: $("#s-spec").value, submittal: $("#s-sub").value, tag: $("#s-tag").value});
+$("#s-run").onclick = () => run("check_submittal", {spec: $("#s-spec").value, submittal: $("#s-sub").value,
+  tag: $("#s-own").checked ? "User project" : $("#s-tag").value, own_project: $("#s-own").checked});
 $("#b-run").onclick = () => run("level_bids", {bid_form: $("#b-form").value, bids: readBids($("#b-bids")).bids});
 $("#d-run").onclick = () => run("assess_delivery_risk", {as_of: $("#d-asof").value});
 $("#d2-run").onclick = () => run("find_products", {tag: $("#d2-tag").value, spec: $("#d2-spec").value});
@@ -805,7 +811,9 @@ function headlineTile(res) {
   return `<div class="tile ${high ? "badt" : "okt"}"><div class="k">Likely late</div><div class="v">${high} of ${rows.length}</div><div class="s">item groups at high risk</div></div>`;
 }
 function submittalSummary(R) {
-  return `<div class="card"><div class="small">Spec: ${esc(R.spec || "")} · Submittal: ${esc(R.submittal || "")} · Tag ${esc(R.tag || "")}${(R.unread_scanned_pages || []).length ? ` · scanned pages not read: ${esc(R.unread_scanned_pages.join(", "))}` : ""}</div></div>`;
+  const c = R.coverage || {};
+  return `<div class="card"><div class="small">Spec: ${esc(R.spec || "")} · Submittal: ${esc(R.submittal || "")} · Tag ${esc(R.tag || "")}${(R.unread_scanned_pages || []).length ? ` · scanned pages not read: ${esc(R.unread_scanned_pages.join(", "))}` : ""}</div>
+    <div style="margin-top:8px"><b>Coverage:</b> ${esc(c.dispositions ?? "?")} dispositions from ${esc(c.parsed_product_clauses ?? "?")} ${esc(c.scope || "")}; ${esc((c.not_checkable || []).length)} need requirement review.</div></div>`;
 }
 function matrixTable(scope, M, findings, prefix) {
   const bids = Object.keys(M), q = {};
@@ -820,7 +828,7 @@ function bidsSummary(R, findings) {
   let h = `<div class="card banner ${A.auto_award ? "safe" : ""}"><h3>${A.auto_award ? "Award recommended: " + esc(A.recommend) : "No automatic award: a person should decide"}</h3><div>${esc(A.why || "")}</div>
     ${(A.blockers || []).length ? `<ul>${A.blockers.map(b => `<li>${esc(b)}</li>`).join("")}</ul>` : ""}</div>`;
   h += `<div class="card scroll"><table><tr><th>Bid</th><th>Product</th><th class="n">Base</th><th class="n">Leveled</th><th>Lead time</th><th>Adjustments</th></tr>` +
-    Object.entries(R.leveling || {}).sort((a, b) => a[1].adjusted - b[1].adjusted).map(([b, v]) => { const lt = (R.lead_time || {})[b] || {};
+    Object.entries(R.leveling || {}).sort((a, b) => (a[1].adjusted ?? Infinity) - (b[1].adjusted ?? Infinity)).map(([b, v]) => { const lt = (R.lead_time || {})[b] || {};
       return `<tr><td><b>${esc(b)}</b></td><td>${esc((R.products || {})[b] || "")}</td><td class="n">${money(v.base)}</td><td class="n"><b>${money(v.adjusted)}</b></td>
       <td class="nw">${lt.min_weeks ? `${lt.min_weeks}-${lt.max_weeks} wk` : "-"}<div class="small">${esc((lt.basis || "").replace(/_/g, " "))}</div>${lt.citation ? citeBtn(lt.citation, "source") : ""}</td><td class="small">${(v.notes || []).map(esc).join("<br>")}</td></tr>`; }).join("") + `</table></div>`;
   return h + matrixTable(R.scope || [], R.matrix || {}, findings);
@@ -901,7 +909,8 @@ function findingCard(f) {
   const cites = f.citations.map(c => `<div class="cite"><b>${esc(c.doc_id)}</b> p.${c.page} ${esc(c.locator || "")}${c.ocr ? " (scanned page, read by OCR)" : ""}${c.match && c.match !== "exact" ? ` <span class="b mute">${esc(c.match)} match</span>` : ""}
     · ${citeBtn(c, "View on the page")}<q>${esc(c.quote)}</q></div>`).join("");
   const quick = f.citations.slice(0, 2).map(c => citeBtn(c, `${c.doc_id.length > 28 ? c.doc_id.slice(0, 26) + "…" : c.doc_id} p.${c.page}`)).join(" · ");
-  const specC = f.citations.find(c => /^26-/.test(c.doc_id)), subC = f.citations.find(c => !/^(26-|equipment-schedule|leadtime-evidence|po-status)/.test(c.doc_id));
+  const ownSpec = current.result.tool === "check_submittal" ? f.citations.find(c => c.doc_id === current.result.result.spec) : null;
+  const specC = ownSpec || f.citations.find(c => /^26-/.test(c.doc_id)), subC = f.citations.find(c => c.doc_id === (current.result.result || {}).submittal) || f.citations.find(c => !/^(26-|equipment-schedule|leadtime-evidence|po-status)/.test(c.doc_id) && c !== specC);
   const cmpBtn = specC && subC ? ` · <button class="linkbtn" data-cmp="${cite(specC)},${cite(subC)}">Compare side by side</button>` : "";
   let rev = "";
   if (f.needs_human) {
@@ -913,7 +922,7 @@ function findingCard(f) {
     : f.id.startsWith("delivery/") ? "delivery" : "";
   return `<div class="f ${f.needs_human ? "human" : ""} ${r ? "done" : ""}"><div class="fhead">${part ? `<span class="b info">${esc(part)}</span>` : ""}<span class="b ${STATUS[f.status] || "mute"}">${esc(f.status)}</span>${xBadge(f)}<div class="claim">${esc(f.claim)}${(f.data || {}).locator ? ` <span class="small">${esc(f.data.locator)}</span>` : ""}</div>
     <span class="small nw" title="confidence">${f.confidence.toFixed(2)} <span class="conf"><i style="width:${Math.round(f.confidence * 100)}%"></i></span></span></div>
-    <div class="small" style="margin-top:4px">${esc(f.why)}</div>${quick ? `<div class="small" style="margin-top:4px">Sources: ${quick}${cmpBtn}</div>` : ""}${f.citations.length ? `<details><summary>${f.citations.length} quoted source${f.citations.length > 1 ? "s" : ""}</summary>${cites}</details>` : ""}${rev}</div>`;
+    <div class="small" style="margin-top:4px">${esc(f.why)}</div>${f.data && f.data.next_action ? `<div class="small" style="margin-top:5px"><b>Next action:</b> ${esc(f.data.next_action)}</div>` : ""}${quick ? `<div class="small" style="margin-top:4px">Sources: ${quick}${cmpBtn}</div>` : ""}${f.citations.length ? `<details><summary>${f.citations.length} quoted source${f.citations.length > 1 ? "s" : ""}</summary>${cites}</details>` : ""}${rev}</div>`;
 }
 function wireFindings() {
   document.querySelectorAll("[data-filter]").forEach(b => b.onclick = () => { filter = b.dataset.filter; renderResult(); });

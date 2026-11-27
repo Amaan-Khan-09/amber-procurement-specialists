@@ -115,9 +115,21 @@ def structure_requirements(llm: LLM, spec_doc: docs.Document, row: dict, schedul
     return out
 
 
+def _review_clauses(spec_doc: docs.Document) -> tuple[list[spec.Clause], str]:
+    parsed = spec.parse(spec_doc)
+    product = spec.products(parsed)
+    if product:
+        return product, "product section"
+    if parsed:
+        return parsed, "all parsed clauses (no product section found)"
+    return ([spec.Clause(f"page {p.number}", "", p.text[:6000], p.number, 2)
+             for p in spec_doc.pages if p.text.strip()], "document pages (no numbered clauses found)")
+
+
 def _structure_requirements(llm: LLM, spec_doc: docs.Document, row: dict, schedule_id: str,
                             checklist: list[dict] | None = None) -> list[dict]:
-    clauses = spec.products(spec.parse(spec_doc))
+    clauses, _ = _review_clauses(spec_doc)
+    unmatched = []
     if checklist:
         payload = []
         for item in checklist:
@@ -127,11 +139,15 @@ def _structure_requirements(llm: LLM, spec_doc: docs.Document, row: dict, schedu
             if c:
                 payload.append({"req_id": item["req_id"], "locator": c.cite_label(), "page": c.page,
                                 "clause": c.text, "focus": item["requirement"]})
+            else:
+                unmatched.append({"req_id": item["req_id"], "locator": item.get("spec_locator", ""),
+                                  "requirement": item["requirement"], "conditions": [],
+                                  "error": "not checked: checklist clause not found in this spec; engineer must review"})
     else:
         payload = [{"req_id": f"R{i + 1:02d}", "locator": c.cite_label(), "page": c.page, "clause": c.text}
                    for i, c in enumerate(clauses)]
 
-    out: list[dict] = []
+    out: list[dict] = unmatched
     for i in range(0, len(payload), 7):
         part = payload[i:i + 7]
         user = ("Equipment schedule row for this tag:\n" + json.dumps(row) +
@@ -146,8 +162,14 @@ def _structure_requirements(llm: LLM, spec_doc: docs.Document, row: dict, schedu
                 out.append({"req_id": p["req_id"], "locator": p["locator"], "requirement": p.get("focus") or p["clause"][:120],
                             "conditions": [], "error": f"model unavailable: {str(e)[:100]}"})
             continue
-        for r in _items(reply.get("requirements", reply), "req_id"):
-            s = src.get(r.get("req_id"), {})
+        returned = {r.get("req_id"): r for r in _items(reply.get("requirements", reply), "req_id")
+                    if r.get("req_id") in src}
+        for p in part:
+            r = returned.get(p["req_id"])
+            if r is None:
+                r = {"req_id": p["req_id"], "requirement": p.get("focus") or p["clause"],
+                     "conditions": [], "error": "not checked: the model omitted this spec clause; engineer must review it"}
+            s = src[p["req_id"]]
             cite = verify(spec_doc, r.get("quote", ""), s.get("page"), s.get("locator", r.get("locator", "")))
             if cite is None and s.get("clause"):
                 # fall back to citing the clause opening, which is certainly on the page
@@ -165,6 +187,37 @@ def _structure_requirements(llm: LLM, spec_doc: docs.Document, row: dict, schedu
             r["conditions"] = conds
             out.append(r)
     return out
+
+
+def _numeric_evidence_caveat(c: dict, o: dict, quote: str) -> str | None:
+    """A bound or operating context is not an exact measured value. Never turn a ceiling into
+    proof of a minimum, or a family-level peak into a full-load guarantee."""
+    if c.get("kind", "numeric") != "numeric":
+        return None
+    op = c.get("op", ">=")
+    values = [str(v).strip().lower() for v in o.get("values") or []]
+    if op in (">=", ">", "==") and any(re.match(r"^(?:<|≤|<=)\s*\d", v) for v in values):
+        return "the offered value is an upper bound, not proof of the required minimum"
+    if op in (">=", ">", "==") and re.search(r"(?:<|≤|<=)\s*\d", quote):
+        return "the quoted value is an upper bound, not proof of the required minimum"
+    if op in ("<=", "<", "==") and any(re.match(r"^(?:>|≥|>=)\s*\d", v) for v in values):
+        return "the offered value is a lower bound, not proof of the required maximum"
+    if op in ("<=", "<", "==") and re.search(r"(?:>|≥|>=)\s*\d", quote):
+        return "the quoted value is a lower bound, not proof of the required maximum"
+    attr = str(c.get("attribute") or "").lower()
+    spec_words = str(c.get("_spec_quote") or "")
+    contexts = re.findall(r"\bat\s+(\d+(?:\.\d+)?)\s*(°?\s*[CF]|%)(?=\W|$)(?:\s+(ambient|load))?", spec_words, re.I)
+    for value, unit, noun in contexts:
+        wanted = re.compile(r"\bat\s+" + re.escape(value) + r"\s*" + re.escape(unit.strip()) +
+                            (r"\s+" + re.escape(noun) if noun else ""), re.I)
+        if not wanted.search(quote):
+            return f"the quote does not establish the required operating condition at {value}{unit} {noun}".strip()
+    if op in (">=", ">", "==") and re.search(r"\bup to\s*\d", quote, re.I) and re.search(
+            r"efficien|power.factor|runtime|duration|autonomy|backup", attr):
+        return "'up to' states a best case, not a guaranteed minimum at the required operating condition"
+    if re.search(r"(?:at_(?:100|full)pct(?:_load)?|(?:at_)?full_load)", attr) and not re.search(r"100\s*%|full[ -]load", quote, re.I):
+        return "the quoted value does not identify the required full-load operating condition"
+    return None
 
 
 CONFIG_CHARS = 3000
@@ -526,6 +579,9 @@ def _decide_condition(c: dict, o: dict | None, sub_doc: docs.Document):
         vals = [v for v in (o.get("values") or []) if v not in (None, "") and _grounded([v], cite.quote)]
         o = dict(o, values=vals or [cite.quote], quote_only=not vals and bool(o.get("values")),
                  negated=bool(_NEGATION.search(raw + " | " + cite.quote)))
+    caveat = _numeric_evidence_caveat(c, o, cite.quote)
+    if caveat:
+        return checks.Decision(Verdict.unclear, caveat + "; ask for a rating at the specified condition", False), cite, 0.5
     d = checks.decide(c, o, evidence=cite.quote)
     if o.get("negated") and d.verdict == Verdict.complies:
         # the required words are there, but so is a negation or a limit ('Included 300-500 kW', 'Not included
@@ -651,14 +707,22 @@ def decide_all(reqs: list[dict], offers: dict[str, dict], sub_doc: docs.Document
     for r in reqs:
         rid = r["req_id"]
         spec_cite = Citation(**r["spec_citation"]) if r.get("spec_citation") else None
-        parts = [_decide_condition(c, offers.get(c["cid"]), sub_doc) for c in r["conditions"]]
+        parts = [_decide_condition({**c, "_spec_quote": spec_cite.quote if spec_cite else ""},
+                                   offers.get(c["cid"]), sub_doc) for c in r["conditions"]]
         if not parts:
             verdict, why, conf = Verdict.unclear, r.get("error") or "requirement could not be turned into a checkable condition", \
                 0.0 if r.get("error") else 0.3
         else:
             verdict, why, conf = _combine(parts)
+        if verdict == Verdict.deviates and spec_cite and "or equal" in spec_cite.quote.lower() and any(
+                c.get("kind") == "text" for c in r["conditions"]):
+            conf = min(conf, JUDGEMENT_CAP)
+            why += "; the specification permits an equal: engineer must assess equivalence"
         if spec_cite is None:
             conf, why = min(conf, 0.5), why + "; spec quote not verified"
+        if any(c.get("source") == "schedule" and not c.get("schedule_citation") for c in r["conditions"]):
+            verdict, conf = Verdict.unclear, min(conf, 0.4)
+            why += "; scheduled requirement has no verified schedule value"
         cites = [spec_cite] if spec_cite else []
         cites += [Citation(**c["schedule_citation"]) for c in r["conditions"] if c.get("schedule_citation")]
         cites += [cite for _, cite, _ in parts if cite]
@@ -666,16 +730,30 @@ def decide_all(reqs: list[dict], offers: dict[str, dict], sub_doc: docs.Document
                    "verdict": d.verdict.value, "why": d.why,
                    "offered": {k: (offers.get(c["cid"]) or {}).get(k) for k in ("values", "unit", "selected", "quote", "page", "meets")}}
                   for c, (d, _, _) in zip(r["conditions"], parts)]
+        if not parts:
+            action = "Engineer: turn this cited clause into a checkable requirement and review the supplier document"
+        elif "selected option is not marked" in why or "listed as a choice" in why:
+            action = "Supplier: identify the exact option supplied for this project"
+        elif verdict == Verdict.missing:
+            action = "Supplier: provide the missing specification evidence or confirm the omission"
+        elif "no verified schedule value" in why:
+            action = "Reviewer: provide the equipment schedule value and rerun this requirement"
+        elif verdict == Verdict.unclear or conf < 0.70:
+            action = "Engineer: compare the cited words and resolve this requirement before approval"
+        else:
+            action = "No action needed for this requirement"
         findings.append(Finding(id=f"F-{rid}", claim=r.get("requirement", ""), status=verdict, confidence=round(conf, 3),
-                                citations=cites, why=why, data={"req_id": rid, "locator": r.get("locator"), "conditions": detail}))
+                                citations=cites, why=why, data={"req_id": rid, "locator": r.get("locator"),
+                                                              "conditions": detail, "next_action": action}))
         rows.append({"req_id": rid, "locator": r.get("locator"), "requirement": r.get("requirement"),
                      "verdict": verdict.value, "confidence": round(conf, 3)})
     return findings, rows
 
 
-def check_submittal(spec_path: str, submittal_path: str, tag: str, schedule_path: str,
+def check_submittal(spec_path: str, submittal_path: str, tag: str, schedule_path: str | None,
                     checklist: list[dict] | None = None, llm: LLM | None = None, ocr: bool = True,
-                    only: list[str] | None = None, commitment: bool = False) -> ToolResult:
+                    only: list[str] | None = None, commitment: bool = False,
+                    project_row: dict | None = None) -> ToolResult:
     """only: check just these requirement ids (product discovery screens a few key ratings this way).
     commitment: the document is the supplier's own bid or reply, read for what it commits to; a row under an
     'Options', 'Alternates' or 'Exclusions' heading is then not counted as supplied."""
@@ -687,8 +765,8 @@ def check_submittal(spec_path: str, submittal_path: str, tag: str, schedule_path
         reader = reader_from_env(meter=llm.meter)
     spec_doc, sub_doc = docs.load(spec_path, ocr=reader), docs.load(submittal_path, ocr=reader)
     sub_doc.commitment = commitment
-    schedule_id = docs.doc_id_for(schedule_path)
-    row = load_schedule(schedule_path, tag)
+    schedule_id = docs.doc_id_for(schedule_path) if schedule_path else ""
+    row = load_schedule(schedule_path, tag) if schedule_path else {"tag": tag, **(project_row or {})}
 
     use_cache = os.getenv("AMBER_RESULT_CACHE", "on").lower() != "off"
     cache_file = _result_file(spec_doc, sub_doc, row, checklist, (only or []) + (["<commitment>"] if commitment else []), llm) if use_cache else None
@@ -709,12 +787,25 @@ def check_submittal(spec_path: str, submittal_path: str, tag: str, schedule_path
     _flag_shared_evidence(reqs, offers)
 
     findings, rows = decide_all(reqs, offers, sub_doc)
+    clauses, scope = _review_clauses(spec_doc)
+    if not reqs:
+        opening = " ".join(spec_doc.pages[0].text.split()[:12]) if spec_doc.pages else ""
+        cite = verify(spec_doc, opening, 1) if opening else None
+        findings.append(Finding(id="F-coverage", claim="No checkable requirements were found in the spec",
+                                status=Verdict.unclear, confidence=0.0,
+                                citations=[cite] if cite else [],
+                                why="Engineer: inspect the uploaded spec and identify the product requirements",
+                                data={"next_action": "Engineer: identify the requirements before using this review"}))
 
     counts = {v.value: sum(1 for f in findings if f.status == v) for v in Verdict}
+    incomplete = [r["req_id"] for r in reqs if not r.get("conditions") or r.get("error")]
     res = ToolResult(tool="check_submittal", findings=findings,
                      result={"tag": tag, "spec": spec_doc.doc_id, "submittal": sub_doc.doc_id, "summary": counts,
                              "overall": "reject" if counts["deviates"] else
-                                        ("review" if counts["unclear"] or counts["missing"] else "approve"),
+                                        ("review" if counts["unclear"] or counts["missing"] or incomplete or not reqs else "approve"),
+                             "coverage": {"parsed_product_clauses": len(clauses),
+                                          "dispositions": len(reqs), "not_checkable": incomplete,
+                                          "scope": "checklist" if checklist else scope},
                              "rows": rows, "unread_scanned_pages": sub_doc.scanned_pages,
                              "provider_switches": list(llm.switched)},
                      run=RunInfo(models=llm.meter.models(), latency_ms=int((time.time() - t0) * 1000),

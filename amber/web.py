@@ -169,7 +169,12 @@ def _prepare(tool: str, a: dict) -> tuple[dict, list[Path]]:
     if tool == "check_submittal":
         if a.get("submittal") in _sealed():
             raise BadRequest("this datasheet is a held-out test document: it is opened only by the one final scored run")
-        spec, sub, sched = _data_path(a.get("spec")), _data_path(a.get("submittal")), _data_path(SCHEDULE)
+        spec, sub = _data_path(a.get("spec")), _data_path(a.get("submittal"))
+        if a.get("own_project"):
+            tag = str(a.get("tag") or "User project").strip()[:80]
+            return dict(spec_path=str(spec), submittal_path=str(sub), tag=tag,
+                        schedule_path=None, checklist=None, project_row={}), [spec, sub]
+        sched = _data_path(SCHEDULE)
         tag = a.get("tag") or ""
         if tag not in {r["tag"] for r in _schedule()}:
             raise BadRequest(f"unknown equipment tag: {tag}")
@@ -230,7 +235,7 @@ def _date(s: Any) -> str:
 def _call(tool: str, kw: dict, llm: LLM | None):
     if tool == "check_submittal":
         return check_submittal(kw["spec_path"], kw["submittal_path"], kw["tag"], kw["schedule_path"],
-                               checklist=kw["checklist"], llm=llm)
+                               checklist=kw["checklist"], llm=llm, project_row=kw.get("project_row"))
     if tool == "level_bids":
         return level_bids(kw["form_path"], kw["bid_paths"], llm=llm)
     if tool == "assess_delivery_risk":

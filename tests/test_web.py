@@ -37,6 +37,23 @@ def test_refuses_files_outside_the_data_folder(client):
     assert r.status_code == 400 and "data folder" in r.json()["error"]
 
 
+def test_own_project_review_uses_uploaded_documents_without_alpha_schedule(client, tmp_path, monkeypatch):
+    data = tmp_path / "data"
+    (data / "uploads" / "specs").mkdir(parents=True)
+    (data / "uploads" / "submittals").mkdir(parents=True)
+    spec = data / "uploads" / "specs" / "mine.pdf"
+    sub = data / "uploads" / "submittals" / "offer.pdf"
+    spec.write_bytes(b"%PDF-1.4\n")
+    sub.write_bytes(b"%PDF-1.4\n")
+    monkeypatch.setattr(web, "DATA", data)
+    monkeypatch.setattr(web, "_sealed", lambda: set())
+    kw, files = web._prepare("check_submittal", {"spec": "uploads/specs/mine.pdf",
+                                               "submittal": "uploads/submittals/offer.pdf",
+                                               "own_project": True})
+    assert kw["schedule_path"] is None and kw["checklist"] is None
+    assert files == [spec, sub]
+
+
 def test_refuses_the_paid_provider(client):
     r = client.post("/api/run", json={"tool": "check_submittal", "provider": "gemini",
                                       "args": {"spec": web.PRESET["spec"], "submittal": web.PRESET["submittals"]["B2"], "tag": "GEN-A"}})
