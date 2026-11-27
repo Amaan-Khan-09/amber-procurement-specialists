@@ -23,6 +23,26 @@ VERDICT_CLS = {"complies": "ok", "meets": "ok", "linked": "ok", "included": "ok"
                "silent": "mute", "excluded": "bad", "alternate": "info"}
 
 CSS = """
+.front{margin:6px 0 30px}
+.front .kicker{font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--brand);margin:0 0 8px}
+.front h1{font-size:clamp(26px,4.4vw,42px);line-height:1.15;margin:0 0 10px;letter-spacing:-.02em;max-width:900px}
+.front .sub{font-size:clamp(15px,1.8vw,18px);color:var(--mute);max-width:780px;margin:0 0 22px}
+.proofs{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.proof{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px 16px;display:flex;flex-direction:column;gap:8px}
+.proof .who{font-size:12px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:var(--mute)}
+.proof .words{font-size:17px;line-height:1.45;border-left:4px solid #e6b800;padding:2px 0 2px 12px;font-style:italic;flex:1}
+.proof .where{font-size:12px;color:var(--mute)}
+.sum{margin:12px 0 0;background:var(--badbg);border:1px solid var(--bad);border-radius:12px;padding:14px 18px;display:flex;gap:18px;align-items:center;flex-wrap:wrap}
+.sum .math{font-size:clamp(22px,3vw,30px);font-weight:800;color:var(--bad);font-variant-numeric:tabular-nums;white-space:nowrap}
+.sum .say{flex:1;min-width:240px}
+.three{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:26px 0 12px}
+.num{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px 16px}
+.num .v{font-size:clamp(28px,3.6vw,38px);font-weight:800;line-height:1.1;font-variant-numeric:tabular-nums}
+.num .v span{color:var(--mute);font-weight:600;font-size:.7em;padding:0 6px}
+.num .k{font-weight:600;margin-top:4px}
+.num .s{font-size:12.5px;color:var(--mute);margin-top:2px}
+.go{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}
+@media (max-width:760px){.proofs,.three{grid-template-columns:1fr}.sum .math{white-space:normal}}
 .wrap{max-width:1200px;margin:0 auto;padding:18px 16px 80px}
 .toc{display:flex;gap:6px;flex-wrap:wrap;margin:6px 0 18px}.toc a{font-size:13px;font-weight:600;padding:3px 10px;border:1px solid var(--line);border-radius:99px;text-decoration:none;background:var(--card)}
 .tag{display:inline-block;font-size:11px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;padding:1px 7px;border-radius:5px;margin-left:6px;vertical-align:2px}
@@ -236,6 +256,54 @@ def _public_record(pr: dict) -> str:
     return "".join(out)
 
 
+def _front(rec2: dict, ev: dict | None) -> str:
+    """The first screen: one story a judge can check in seconds (a footnote that fails a compliant-looking rating), and
+    three measured numbers. Everything else on the page is the detail behind it."""
+    cond = next((c for c in (rec2.get("B3") or {}).get("conditional", []) if c["req_id"] == "R09"), None)
+    f = next((x for x in (rec2.get("B3") or {}).get("findings", []) if x["data"]["req_id"] == "R09"), None)
+    m = re.search(r"(\d+) °F less (\d+) °F.*?= (\d+) °F.*?required (\d+) °F", cond["why"]) if cond else None
+    if not (f and m):
+        return ""
+    base, less, left, need = m.groups()
+    cites = f["citations"]
+    pick = lambda test: next((c for c in cites if test(c)), None)
+    sheet = pick(lambda c: c["quote"].lower().startswith("ambient temperature"))
+    note = pick(lambda c: "reduces ambient" in c["quote"].lower())
+    bid = pick(lambda c: c["doc_id"].startswith("b3-"))
+    if not (sheet and note and bid):
+        return ""
+    card = lambda who, c, shown, where: (f"<div class='proof'><div class='who'>{who}</div><div class='words'>&ldquo;{_e(shown)}&rdquo;</div>"
+                                         f"<div class='where'>{where}, page {_e(c['page'])}</div></div>")
+    clean = re.sub(r"^[\d)\s†*‡§]+", "", note["quote"])
+    out = ["<section class='front'><p class='kicker'>One datasheet, one bid, one footnote</p>",
+           "<h1>The datasheet says the radiator is good for 122&nbsp;&deg;F. Read with the bid, it is not.</h1>",
+           "<p class='sub'>The specification requires 122&nbsp;&deg;F. A check of the rating alone passes it. Our specialists read the "
+           "footnote and the supplier's own bid together, and show the exact words.</p><div class='proofs'>",
+           card("1 &middot; The rating", sheet, sheet["quote"], "Kohler KD2000 datasheet (real)"),
+           card("2 &middot; The footnote", note, clean, "Same datasheet"),
+           card("3 &middot; The bid", bid, bid["quote"], "Supplier's bid (fictional test document)"),
+           "</div>",
+           f"<div class='sum'><div class='math'>{base} &minus; {less} = {left}&nbsp;&deg;F &lt; {need}&nbsp;&deg;F</div><div class='say'>"
+           f"<b>Below what the spec requires.</b> Because a footnote has to be interpreted, the agent does not reject on its own: it "
+           f"hands an engineer the three quotes side by side to confirm.</div></div>"]
+    if ev:
+        S = ev["summary"]
+        L, F = S["like_for_like"], S.get("fresh_set6")
+        num = lambda v, k, s: f"<div class='num'><div class='v'>{v}</div><div class='k'>{k}</div><div class='s'>{s}</div></div>"
+        out.append("<div class='three'>"
+                   + num(f"{L['v3']['unresolved']}<span>&rarr;</span>{L['v4']['unresolved']}", "open items needing a person or supplier",
+                         f"of {L['v4']['n']} checks on documents we built against, previous version to this one")
+                   + num(f"{L['v3']['correct decisions']}<span>&rarr;</span>{L['v4']['correct decisions']}", "correct decisions made without a person",
+                         f"same {L['v4']['n']} checks, against our own answer keys")
+                   + (num(f"{F['v4']['unresolved']}<span>of</span>{F['v4']['n']}", "still open on datasheets it had never seen",
+                          "two new sheets, code frozen first; results and errors below") if F else "")
+                   + "</div>")
+    out.append("<div class='go'><a class='btn primary' href='#walk'>Follow one decision end to end</a>"
+               "<a class='btn' href='#measured'>All results, including errors</a>"
+               "<a class='btn' href='#public'>Real supplier records</a></div></section>")
+    return "".join(out)
+
+
 def _walkthrough(s2, state, disc, link, pq2, rec2, names, bv) -> str:
     """One purchase decision from vendor lookup to a verdict backed by exact words: B2's fuel tank."""
     b, rid = "B2", "R19"
@@ -302,7 +370,8 @@ def render(snap: Path = SNAP, eval_file: Path = EVAL, back_href: str = "./") -> 
                f"<path d='M9 1L3 9h4l-1 6 6-8H8l1-6z' fill='#fff'/></svg></div><div>Case file: four 2000 kW generators"
                f"<small>Project Alpha (fictional) · one purchase, end to end</small></div></div><div class='grow'></div>"
                f"<a class='btn sm' href='{_e(back_href)}'>Back to the specialists</a></div></header><div class='wrap'>")
-    out.append(f"<h1>{_e(state['goal'])}</h1><p class='lead'>Thirteen steps ran as one case file that remembers what each step "
+    out.append(_front(rec2, ev))
+    out.append(f"<h2 class='case'>The whole purchase: {_e(state['goal'])}</h2><p class='lead'>Thirteen steps ran as one case file that remembers what each step "
                "found and resumes where it stopped. Every answer below cites its source; every number in the measured section "
                "comes from <span class='mono'>scripts/eval_handoffs.py</span>. Labels: <span class='tag m'>measured</span> "
                "<span class='tag k'>mock data</span> <span class='tag a'>assumption</span>.</p>")

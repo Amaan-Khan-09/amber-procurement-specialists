@@ -13,7 +13,7 @@ federal records. Fictional (say so): bidder companies, bids, packets, replies.
 
 | Step | Time | On screen | Say |
 |---|---|---|---|
-| | 0:00 | Title | "Before a data center can buy generators, someone has to find suppliers, check them, and read every bid and datasheet against the spec. Our specialists do the reading and show the exact words behind each answer." |
+| | 0:00 | **Front screen** of the case page: the three quotes and 122 - 9 = 113 | "This datasheet says the radiator is good for 122 degrees, which is what the spec asks. But a footnote says an enclosed silencer takes 9 degrees off, and this supplier's bid puts the silencers inside. 113 degrees: below the spec. Our specialists read the documents together, show the exact words, and ask an engineer to confirm." (The bid is a fictional test document.) |
 | 1 | 0:20 | **Public records** and the scorecard | "These are real companies from federal award records, with their legal identifiers. This one has supplied 2000 kilowatt sets. It is flagged, not passed: the federal exclusion list needs a key we don't have, so it says not verified. Nothing is assumed clean." |
 | 2 | 1:00 | **Before and after**: G6 R01 | "This used to go to an engineer: the ratings table has several rows. The agent now takes the row for our 480 volt project, quotes it, and decides." |
 | 2 | 1:35 | Same section: G6 R11 | "This one still goes to an engineer, and should. Full rating at 122 degrees depends on how a derating clause is read, and the model's reading and the code's check disagree. Both are shown." |

@@ -191,3 +191,14 @@ def test_the_web_app_serves_the_case_page():
     from amber import web
     r = TestClient(web.app).get("/case.html")
     assert r.status_code == 200 and "Case file" in r.text
+
+
+def test_the_front_screen_tells_one_checkable_story_and_three_labelled_numbers():
+    from amber import case_page
+    page = case_page.render()
+    hero = page[page.index("<section class='front'>"):page.index("</section>")]
+    assert page.index("<section class='front'>") < page.index("id='walk'")
+    for words in ("Ambient temperature", "reduces ambient temperature capability", "silencers inside", "113&nbsp;&deg;F &lt; 122",
+                  "fictional test document", "documents we built against", "never seen"):
+        assert words in hero, words
+    assert hero.count("class='num'") == 3
