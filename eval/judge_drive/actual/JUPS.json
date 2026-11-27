@@ -1,0 +1,1129 @@
+{
+  "tool": "check_submittal",
+  "version": "1.0",
+  "result": {
+    "tag": "UPS-A",
+    "spec": "26-33-53-static-ups-alpha",
+    "submittal": "judge-ups-500kva",
+    "summary": {
+      "complies": 7,
+      "deviates": 0,
+      "missing": 0,
+      "unclear": 9
+    },
+    "overall": "review",
+    "rows": [
+      {
+        "req_id": "U01",
+        "locator": "2.1.A (Rating)",
+        "requirement": "Continuous output rating shall be at least 1200 kVA and 1200 kW at unity power factor, 480 V.",
+        "verdict": "unclear",
+        "confidence": 0.5
+      },
+      {
+        "req_id": "U02",
+        "locator": "2.1.B (Ambient Rating)",
+        "requirement": "Full rating shall be available at an ambient operating temperature of 40 °C.",
+        "verdict": "unclear",
+        "confidence": 0.5
+      },
+      {
+        "req_id": "U03",
+        "locator": "2.1.C (System Voltage)",
+        "requirement": "Input, bypass, and output electrical configuration shall be 480 V, 3-phase, 3-wire plus ground at 60 Hz.",
+        "verdict": "unclear",
+        "confidence": 0.65
+      },
+      {
+        "req_id": "U04",
+        "locator": "2.1.D (Topology)",
+        "requirement": "UPS shall feature a double-conversion online design classified as VFI per IEC 62040-3.",
+        "verdict": "complies",
+        "confidence": 0.65
+      },
+      {
+        "req_id": "U05",
+        "locator": "2.1.E (Efficiency)",
+        "requirement": "Double-conversion AC-to-AC efficiency shall be at least 96% at 100% load.",
+        "verdict": "complies",
+        "confidence": 0.95
+      },
+      {
+        "req_id": "U06",
+        "locator": "2.1.F (Input Characteristics)",
+        "requirement": "Input power factor shall be at least 0.99 and full-load input current distortion (THDi) shall not exceed 5%. ",
+        "verdict": "complies",
+        "confidence": 0.836
+      },
+      {
+        "req_id": "U07",
+        "locator": "2.1.G (Output Voltage Regulation)",
+        "requirement": "Steady-state output voltage regulation shall be within +/-1% for balanced load changes from 0 to 100%.",
+        "verdict": "complies",
+        "confidence": 0.95
+      },
+      {
+        "req_id": "U08",
+        "locator": "2.1.H (Overload)",
+        "requirement": "Inverter must carry 125 percent of rated load for at least 10 minutes",
+        "verdict": "complies",
+        "confidence": 0.95
+      },
+      {
+        "req_id": "U09",
+        "locator": "2.1.I (Static Bypass)",
+        "requirement": "Provide an automatic static bypass switch within the UPS",
+        "verdict": "complies",
+        "confidence": 0.836
+      },
+      {
+        "req_id": "U10",
+        "locator": "2.1.J (Maintenance Bypass)",
+        "requirement": "Provide a manual maintenance bypass furnished with the UPS",
+        "verdict": "complies",
+        "confidence": 0.95
+      },
+      {
+        "req_id": "U11",
+        "locator": "2.1.K (Batteries)",
+        "requirement": "Provide VRLA or lithium-ion batteries sized for not less than 10 minutes runtime at full load",
+        "verdict": "unclear",
+        "confidence": 0.5
+      },
+      {
+        "req_id": "U12",
+        "locator": "2.1.L (Paralleling)",
+        "requirement": "UPS must be capable of parallel operation with at least 3 additional units of the same rating",
+        "verdict": "unclear",
+        "confidence": 0.5
+      },
+      {
+        "req_id": "U13",
+        "locator": "2.1.M (Listing)",
+        "requirement": "UPS must be listed to UL 1778",
+        "verdict": "unclear",
+        "confidence": 0.5
+      },
+      {
+        "req_id": "U14",
+        "locator": "2.1.N (Seismic)",
+        "requirement": "UPS shall be certified for seismic installation per the International Building Code",
+        "verdict": "unclear",
+        "confidence": 0.5
+      },
+      {
+        "req_id": "U15",
+        "locator": "2.2.A (Dimensions)",
+        "requirement": "Each UPS shall fit within a maximum width of 110 inches, depth of 40 inches, and height of 84 inches.",
+        "verdict": "unclear",
+        "confidence": 0.4
+      },
+      {
+        "req_id": "U16",
+        "locator": "2.2.B (Heat Dissipation)",
+        "requirement": "Heat dissipation at full load shall not exceed 150,000 BTU per hour.",
+        "verdict": "unclear",
+        "confidence": 0.5
+      }
+    ],
+    "unread_scanned_pages": [
+      199
+    ],
+    "provider_switches": []
+  },
+  "findings": [
+    {
+      "id": "F-U01",
+      "claim": "Continuous output rating shall be at least 1200 kVA and 1200 kW at unity power factor, 480 V.",
+      "status": "unclear",
+      "confidence": 0.5,
+      "citations": [
+        {
+          "doc_id": "26-33-53-static-ups-alpha",
+          "page": 1,
+          "locator": "2.1.A (Rating)",
+          "quote": "continuous output rating of not less than 1200 kVA and 1200 kW at unity power factor, at 480 volts",
+          "match": "exact",
+          "ocr": false
+        }
+      ],
+      "needs_human": true,
+      "why": "no value found, but the submittal mentions output, continuous on page(s) [7, 14, 15, 16, 17, 18]; no value found, but the submittal mentions output, continuous on page(s) [7, 14, 15, 16, 17, 18]; no value found, but the submittal mentions power, output, factor on page(s) [3, 4, 5, 6, 7, 12]; no value found, but the submittal mentions output on page(s) [7, 14, 15, 16, 17, 18]",
+      "data": {
+        "req_id": "U01",
+        "locator": "2.1.A (Rating)",
+        "conditions": [
+          {
+            "cid": "U01a",
+            "attribute": "continuous_output_rating_kva",
+            "condition": ">= 1200 kVA",
+            "verdict": "unclear",
+            "why": "no value found, but the submittal mentions output, continuous on page(s) [7, 14, 15, 16, 17, 18]",
+            "offered": {
+              "values": [],
+              "unit": "kVA",
+              "selected": null,
+              "quote": null,
+              "page": null,
+              "meets": "no"
+            }
+          },
+          {
+            "cid": "U01b",
+            "attribute": "continuous_output_rating_kw",
+            "condition": ">= 1200 kW",
+            "verdict": "unclear",
+            "why": "no value found, but the submittal mentions output, continuous on page(s) [7, 14, 15, 16, 17, 18]",
+            "offered": {
+              "values": [],
+              "unit": "kW",
+              "selected": null,
+              "quote": null,
+              "page": null,
+              "meets": "no"
+            }
+          },
+          {
+            "cid": "U01c",
+            "attribute": "output_power_factor",
+            "condition": "== 1.0",
+            "verdict": "unclear",
+            "why": "no value found, but the submittal mentions power, output, factor on page(s) [3, 4, 5, 6, 7, 12]",
+            "offered": {
+              "values": [],
+              "unit": "",
+              "selected": null,
+              "quote": null,
+              "page": null,
+              "meets": "no"
+            }
+          },
+          {
+            "cid": "U01d",
+            "attribute": "output_voltage",
+            "condition": "== 480 V",
+            "verdict": "unclear",
+            "why": "no value found, but the submittal mentions output on page(s) [7, 14, 15, 16, 17, 18]",
+            "offered": {
+              "values": [],
+              "unit": "V",
+              "selected": null,
+              "quote": null,
+              "page": null,
+              "meets": "no"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "F-U02",
+      "claim": "Full rating shall be available at an ambient operating temperature of 40 °C.",
+      "status": "unclear",
+      "confidence": 0.5,
+      "citations": [
+        {
+          "doc_id": "26-33-53-static-ups-alpha",
+          "page": 1,
+          "locator": "2.1.B (Ambient Rating)",
+          "quote": "full rating in paragraph A shall be available at an ambient temperature of 40 degrees C",
+          "match": "exact",
+          "ocr": false
+        },
+        {
+          "doc_id": "judge-ups-500kva",
+          "page": 189,
+          "locator": "",
+          "quote": "Operating temperature 0 ~ 50. 0~40, at full load; 40~50, 80% load",
+          "match": "table",
+          "ocr": false
+        }
+      ],
+      "needs_human": true,
+      "why": "the submittal has a passage about it ('Operating temperature 0 ~ 50. 0~40, at full load; 40~50, 80% load') but no value that can be compared",
+      "data": {
+        "req_id": "U02",
+        "locator": "2.1.B (Ambient Rating)",
+        "conditions": [
+          {
+            "cid": "U02a",
+            "attribute": "max_ambient_operating_temperature_at_full_rating",
+            "condition": ">= 40 °C",
+            "verdict": "unclear",
+            "why": "the submittal has a passage about it ('Operating temperature 0 ~ 50. 0~40, at full load; 40~50, 80% load') but no value that can be compared",
+            "offered": {
+              "values": [],
+              "unit": "°C",
+              "selected": null,
+              "quote": "Operating temperature 0 ~ 50. 0~40, at full load; 40~50, 80% load",
+              "page": 189,
+              "meets": "yes"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "F-U03",
+      "claim": "Input, bypass, and output electrical configuration shall be 480 V, 3-phase, 3-wire plus ground at 60 Hz.",
+      "status": "unclear",
+      "confidence": 0.65,
+      "citations": [
+        {
+          "doc_id": "26-33-53-static-ups-alpha",
+          "page": 1,
+          "locator": "2.1.C (System Voltage)",
+          "quote": "Input, bypass and output shall be 480 volts, 3-phase, 3-wire plus ground, 60 Hz",
+          "match": "exact",
+          "ocr": false
+        },
+        {
+          "doc_id": "judge-ups-500kva",
+          "page": 190,
+          "locator": "",
+          "quote": "Rated AC input voltage1 Vac 380/400/415, 3-phase 4-wire (+PE) TN/TT/IT power distribution system",
+          "match": "exact",
+          "ocr": false
+        },
+        {
+          "doc_id": "judge-ups-500kva",
+          "page": 190,
+          "locator": "",
+          "quote": "Frequency 2 Hz 50/60 (range: 40 to 70)",
+          "match": "exact",
+          "ocr": false
+        }
+      ],
+      "needs_human": true,
+      "why": "the evidence shows 3-phase but does not mention 480 volts, 3-wire; nothing contradicts it, a person decides; options 50 Hz, 60 Hz offered, only some meet == 60 Hz; the selected option is not marked",
+      "data": {
+        "req_id": "U03",
+        "locator": "2.1.C (System Voltage)",
+        "conditions": [
+          {
+            "cid": "U03a",
+            "attribute": "electrical_configuration",
+            "condition": "all of: 480 volts, 3-phase, 3-wire",
+            "verdict": "unclear",
+            "why": "the evidence shows 3-phase but does not mention 480 volts, 3-wire; nothing contradicts it, a person decides",
+            "offered": {
+              "values": [
+                "380/400/415, 3-phase 4-wire (+PE)"
+              ],
+              "unit": "V",
+              "selected": null,
+              "quote": "Rated AC input voltage1  Vac  380/400/415, 3-phase 4-wire (+PE) TN/TT/IT power distribution system",
+              "page": 190,
+              "meets": "no"
+            }
+          },
+          {
+            "cid": "U03b",
+            "attribute": "frequency",
+            "condition": "== 60 Hz",
+            "verdict": "unclear",
+            "why": "options 50 Hz, 60 Hz offered, only some meet == 60 Hz; the selected option is not marked",
+            "offered": {
+              "values": [
+                50,
+                60
+              ],
+              "unit": "Hz",
+              "selected": null,
+              "quote": "Frequency 2  Hz  50/60 (range: 40 to 70)",
+              "page": 190,
+              "meets": "yes"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "F-U04",
+      "claim": "UPS shall feature a double-conversion online design classified as VFI per IEC 62040-3.",
+      "status": "complies",
+      "confidence": 0.65,
+      "citations": [
+        {
+          "doc_id": "26-33-53-static-ups-alpha",
+          "page": 1,
+          "locator": "2.1.D (Topology)",
+          "quote": "Topology: Double-conversion (online) design, classified VFI under IEC 62040-3",
+          "match": "exact",
+          "ocr": false
+        },
+        {
+          "doc_id": "judge-ups-500kva",
+          "page": 189,
+          "locator": "",
+          "quote": "Method of specifying the performance and test requirements of UPS EN62040-3/IEC62040-3/BS62040-3 (VFI SS 111)",
+          "match": "exact",
+          "ocr": false
+        }
+      ],
+      "needs_human": true,
+      "why": "model judgement on verified quote: 'Method of specifying the performance and test requirements of UPS EN62040-3/IEC62040-3/BS62040-3 (VFI SS 111)'",
+      "data": {
+        "req_id": "U04",
+        "locator": "2.1.D (Topology)",
+        "conditions": [
+          {
+            "cid": "U04a",
+            "attribute": "ups_topology",
+            "condition": "all of: double-conversion, online, vfi",
+            "verdict": "complies",
+            "why": "model judgement on verified quote: 'Method of specifying the performance and test requirements of UPS EN62040-3/IEC62040-3/BS62040-3 (VFI SS 111)'",
+            "offered": {
+              "values": [
+                "double-conversion",
+                "online",
+                "VFI"
+              ],
+              "unit": null,
+              "selected": null,
+              "quote": "Method of specifying the performance and test requirements of UPS EN62040-3/IEC62040-3/BS62040-3 (VFI SS 111)",
+              "page": 189,
+              "meets": "yes"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "F-U05",
+      "claim": "Double-conversion AC-to-AC efficiency shall be at least 96% at 100% load.",
+      "status": "complies",
+      "confidence": 0.95,
+      "citations": [
+        {
+          "doc_id": "26-33-53-static-ups-alpha",
+          "page": 1,
+          "locator": "2.1.E (Efficiency)",
+          "quote": "Double-conversion AC-to-AC efficiency shall be not less than 96 percent at 100 percent load",
+          "match": "exact",
+          "ocr": false
+        },
+        {
+          "doc_id": "judge-ups-500kva",
+          "page": 193,
+          "locator": "",
+          "quote": "Dual-conversion mode efficiency Up to 96.8%",
+          "match": "exact",
+          "ocr": false
+        }
+      ],
+      "needs_human": false,
+      "why": "offered 96.8 % meets >= 96 %",
+      "data": {
+        "req_id": "U05",
+        "locator": "2.1.E (Efficiency)",
+        "conditions": [
+          {
+            "cid": "U05a",
+            "attribute": "ac_to_ac_efficiency_at_100pct_load",
+            "condition": ">= 96 %",
+            "verdict": "complies",
+            "why": "offered 96.8 % meets >= 96 %",
+            "offered": {
+              "values": [
+                96.8
+              ],
+              "unit": "%",
+              "selected": null,
+              "quote": "Dual-conversion mode efficiency  Up to 96.8%",
+              "page": 193,
+              "meets": "yes"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "F-U06",
+      "claim": "Input power factor shall be at least 0.99 and full-load input current distortion (THDi) shall not exceed 5%. ",
+      "status": "complies",
+      "confidence": 0.836,
+      "citations": [
+        {
+          "doc_id": "26-33-53-static-ups-alpha",
+          "page": 1,
+          "locator": "2.1.F (Input Characteristics)",
+          "quote": "Input power factor shall be not less than 0.99 and input current distortion (THDi) shall not exceed 5 percent at full load",
+          "match": "exact",
+          "ocr": false
+        },
+        {
+          "doc_id": "judge-ups-500kva",
+          "page": 190,
+          "locator": "",
+          "quote": "Power factor 0.99 (0.99)",
+          "match": "table",
+          "ocr": false
+        },
+        {
+          "doc_id": "judge-ups-500kva",
+          "page": 190,
+          "locator": "",
+          "quote": "Total current harmonic distortion 4 % 3",
+          "match": "exact",
+          "ocr": false
+        }
+      ],
+      "needs_human": false,
+      "why": "offered 0.99 meets >= 0.99; offered 3 % meets <= 5 %",
+      "data": {
+        "req_id": "U06",
+        "locator": "2.1.F (Input Characteristics)",
+        "conditions": [
+          {
+            "cid": "U06a",
+            "attribute": "input_power_factor",
+            "condition": ">= 0.99",
+            "verdict": "complies",
+            "why": "offered 0.99 meets >= 0.99",
+            "offered": {
+              "values": [
+                0.99
+              ],
+              "unit": null,
+              "selected": null,
+              "quote": "Power factor  0.99 (0.99)",
+              "page": 190,
+              "meets": "yes"
+            }
+          },
+          {
+            "cid": "U06b",
+            "attribute": "input_current_distortion_thdi_at_full_load",
+            "condition": "<= 5 %",
+            "verdict": "complies",
+            "why": "offered 3 % meets <= 5 %",
+            "offered": {
+              "values": [
+                3
+              ],
+              "unit": "%",
+              "selected": null,
+              "quote": "Total current harmonic distortion  4  %  3",
+              "page": 190,
+              "meets": "yes"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "F-U07",
+      "claim": "Steady-state output voltage regulation shall be within +/-1% for balanced load changes from 0 to 100%.",
+      "status": "complies",
+      "confidence": 0.95,
+      "citations": [
+        {
+          "doc_id": "26-33-53-static-ups-alpha",
+          "page": 1,
+          "locator": "2.1.G (Output Voltage Regulation)",
+          "quote": "Steady-state output voltage shall be held within plus or minus 1 percent for balanced load changes from 0 to 100 percent",
+          "match": "exact",
+          "ocr": false
+        },
+        {
+          "doc_id": "judge-ups-500kva",
+          "page": 192,
+          "locator": "",
+          "quote": "Steady state voltage stability % ±1",
+          "match": "exact",
+          "ocr": false
+        }
+      ],
+      "needs_human": false,
+      "why": "offered 1 % meets <= 1 %",
+      "data": {
+        "req_id": "U07",
+        "locator": "2.1.G (Output Voltage Regulation)",
+        "conditions": [
+          {
+            "cid": "U07a",
+            "attribute": "steady_state_output_voltage_regulation_0_to_100pct_load",
+            "condition": "<= 1 %",
+            "verdict": "complies",
+            "why": "offered 1 % meets <= 1 %",
+            "offered": {
+              "values": [
+                1
+              ],
+              "unit": "%",
+              "selected": null,
+              "quote": "Steady state voltage stability  %  ±1",
+              "page": 192,
+              "meets": "yes"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "F-U08",
+      "claim": "Inverter must carry 125 percent of rated load for at least 10 minutes",
+      "status": "complies",
+      "confidence": 0.95,
+      "citations": [
+        {
+          "doc_id": "26-33-53-static-ups-alpha",
+          "page": 1,
+          "locator": "2.1.H (Overload)",
+          "quote": "inverter shall carry 125 percent of rated load for not less than 10 minutes",
+          "match": "exact",
+          "ocr": false
+        },
+        {
+          "doc_id": "judge-ups-500kva",
+          "page": 192,
+          "locator": "",
+          "quote": "<125, ≤10 min",
+          "match": "exact",
+          "ocr": false
+        }
+      ],
+      "needs_human": false,
+      "why": "offered ≤10 min meets >= 10 min",
+      "data": {
+        "req_id": "U08",
+        "locator": "2.1.H (Overload)",
+        "conditions": [
+          {
+            "cid": "U08a",
+            "attribute": "inverter_overload_duration_at_125pct",
+            "condition": ">= 10 min",
+            "verdict": "complies",
+            "why": "offered ≤10 min meets >= 10 min",
+            "offered": {
+              "values": [
+                "≤10"
+              ],
+              "unit": "min",
+              "selected": null,
+              "quote": "<125, ≤10 min",
+              "page": 192,
+              "meets": "yes"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "F-U09",
+      "claim": "Provide an automatic static bypass switch within the UPS",
+      "status": "complies",
+      "confidence": 0.836,
+      "citations": [
+        {
+          "doc_id": "26-33-53-static-ups-alpha",
+          "page": 1,
+          "locator": "2.1.I (Static Bypass)",
+          "quote": "Provide an automatic static bypass switch within the UPS",
+          "match": "exact",
+          "ocr": false
+        },
+        {
+          "doc_id": "judge-ups-500kva",
+          "page": 19,
+          "locator": "",
+          "quote": "automatic static bypass switch",
+          "match": "table",
+          "ocr": false
+        }
+      ],
+      "needs_human": false,
+      "why": "offered automatic automatic static bypass switch meets all of: automatic static bypass, static bypass switch",
+      "data": {
+        "req_id": "U09",
+        "locator": "2.1.I (Static Bypass)",
+        "conditions": [
+          {
+            "cid": "U09a",
+            "attribute": "static_bypass_switch",
+            "condition": "all of: automatic static bypass, static bypass switch",
+            "verdict": "complies",
+            "why": "offered automatic automatic static bypass switch meets all of: automatic static bypass, static bypass switch",
+            "offered": {
+              "values": [
+                "automatic"
+              ],
+              "unit": null,
+              "selected": null,
+              "quote": "automatic static bypass switch",
+              "page": 19,
+              "meets": "yes"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "F-U10",
+      "claim": "Provide a manual maintenance bypass furnished with the UPS",
+      "status": "complies",
+      "confidence": 0.95,
+      "citations": [
+        {
+          "doc_id": "26-33-53-static-ups-alpha",
+          "page": 1,
+          "locator": "2.1.J (Maintenance Bypass)",
+          "quote": "Provide a manual maintenance bypass, furnished with the UPS",
+          "match": "exact",
+          "ocr": false
+        },
+        {
+          "doc_id": "judge-ups-500kva",
+          "page": 19,
+          "locator": "",
+          "quote": "manual maintenance bypass switch",
+          "match": "exact",
+          "ocr": false
+        }
+      ],
+      "needs_human": false,
+      "why": "offered manual manual maintenance bypass switch meets one of: manual maintenance bypass, maintenance bypass",
+      "data": {
+        "req_id": "U10",
+        "locator": "2.1.J (Maintenance Bypass)",
+        "conditions": [
+          {
+            "cid": "U10a",
+            "attribute": "maintenance_bypass",
+            "condition": "one of: manual maintenance bypass, maintenance bypass",
+            "verdict": "complies",
+            "why": "offered manual manual maintenance bypass switch meets one of: manual maintenance bypass, maintenance bypass",
+            "offered": {
+              "values": [
+                "manual"
+              ],
+              "unit": null,
+              "selected": null,
+              "quote": "manual maintenance bypass switch",
+              "page": 20,
+              "meets": "yes"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "F-U11",
+      "claim": "Provide VRLA or lithium-ion batteries sized for not less than 10 minutes runtime at full load",
+      "status": "unclear",
+      "confidence": 0.5,
+      "citations": [
+        {
+          "doc_id": "26-33-53-static-ups-alpha",
+          "page": 1,
+          "locator": "2.1.K (Batteries)",
+          "quote": "Valve-regulated lead-acid or lithium-ion, sized for not less than 10 minutes at full load",
+          "match": "exact",
+          "ocr": false
+        },
+        {
+          "doc_id": "judge-ups-500kva",
+          "page": 31,
+          "locator": "",
+          "quote": "For VRLA batteries",
+          "match": "exact",
+          "ocr": false
+        }
+      ],
+      "needs_human": true,
+      "why": "offered VRLA For VRLA batteries meets one of: valve-regulated lead-acid, vrla, lithium-ion, li-ion; no value found, but the submittal mentions battery on page(s) [3, 4, 5, 6, 9, 11]",
+      "data": {
+        "req_id": "U11",
+        "locator": "2.1.K (Batteries)",
+        "conditions": [
+          {
+            "cid": "U11a",
+            "attribute": "battery_type",
+            "condition": "one of: valve-regulated lead-acid, vrla, lithium-ion, li-ion",
+            "verdict": "complies",
+            "why": "offered VRLA For VRLA batteries meets one of: valve-regulated lead-acid, vrla, lithium-ion, li-ion",
+            "offered": {
+              "values": [
+                "VRLA"
+              ],
+              "unit": null,
+              "selected": null,
+              "quote": "For VRLA batteries",
+              "page": 31,
+              "meets": "yes"
+            }
+          },
+          {
+            "cid": "U11b",
+            "attribute": "battery_runtime_at_full_load",
+            "condition": ">= 10 min",
+            "verdict": "unclear",
+            "why": "no value found, but the submittal mentions battery on page(s) [3, 4, 5, 6, 9, 11]",
+            "offered": {
+              "values": [],
+              "unit": "min",
+              "selected": null,
+              "quote": null,
+              "page": null,
+              "meets": "unknown"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "F-U12",
+      "claim": "UPS must be capable of parallel operation with at least 3 additional units of the same rating",
+      "status": "unclear",
+      "confidence": 0.5,
+      "citations": [
+        {
+          "doc_id": "26-33-53-static-ups-alpha",
+          "page": 1,
+          "locator": "2.1.L (Paralleling)",
+          "quote": "capable of operating in parallel with at least 3 additional units of the same rating",
+          "match": "exact",
+          "ocr": false
+        }
+      ],
+      "needs_human": true,
+      "why": "no value found, but the submittal mentions parallel, capacity, additional on page(s) [2, 3, 4, 5, 6, 10]",
+      "data": {
+        "req_id": "U12",
+        "locator": "2.1.L (Paralleling)",
+        "conditions": [
+          {
+            "cid": "U12a",
+            "attribute": "parallel_additional_units_capacity",
+            "condition": ">= 3",
+            "verdict": "unclear",
+            "why": "no value found, but the submittal mentions parallel, capacity, additional on page(s) [2, 3, 4, 5, 6, 10]",
+            "offered": {
+              "values": [],
+              "unit": null,
+              "selected": null,
+              "quote": null,
+              "page": null,
+              "meets": "unknown"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "F-U13",
+      "claim": "UPS must be listed to UL 1778",
+      "status": "unclear",
+      "confidence": 0.5,
+      "citations": [
+        {
+          "doc_id": "26-33-53-static-ups-alpha",
+          "page": 1,
+          "locator": "2.1.M (Listing)",
+          "quote": "The UPS shall be listed to UL 1778",
+          "match": "exact",
+          "ocr": false
+        }
+      ],
+      "needs_human": true,
+      "why": "no value found, but the submittal mentions safety on page(s) [3, 5, 7, 9, 10, 11]",
+      "data": {
+        "req_id": "U13",
+        "locator": "2.1.M (Listing)",
+        "conditions": [
+          {
+            "cid": "U13a",
+            "attribute": "safety_listing",
+            "condition": "all of: UL 1778",
+            "verdict": "unclear",
+            "why": "no value found, but the submittal mentions safety on page(s) [3, 5, 7, 9, 10, 11]",
+            "offered": {
+              "values": [],
+              "unit": "",
+              "selected": null,
+              "quote": "",
+              "page": "",
+              "meets": "unknown"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "F-U14",
+      "claim": "UPS shall be certified for seismic installation per the International Building Code",
+      "status": "unclear",
+      "confidence": 0.5,
+      "citations": [
+        {
+          "doc_id": "26-33-53-static-ups-alpha",
+          "page": 1,
+          "locator": "2.1.N (Seismic)",
+          "quote": "certified for seismic installation in accordance with the International Building Code",
+          "match": "exact",
+          "ocr": false
+        }
+      ],
+      "needs_human": true,
+      "why": "no value found, but the submittal mentions code, seismic, international on page(s) [2, 6, 11, 14, 40, 55]",
+      "data": {
+        "req_id": "U14",
+        "locator": "2.1.N (Seismic)",
+        "conditions": [
+          {
+            "cid": "U14a",
+            "attribute": "seismic_certification",
+            "condition": "one of: seismic, International Building Code, IBC",
+            "verdict": "unclear",
+            "why": "no value found, but the submittal mentions code, seismic, international on page(s) [2, 6, 11, 14, 40, 55]",
+            "offered": {
+              "values": [],
+              "unit": "",
+              "selected": null,
+              "quote": "",
+              "page": "",
+              "meets": "unknown"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "F-U15",
+      "claim": "Each UPS shall fit within a maximum width of 110 inches, depth of 40 inches, and height of 84 inches.",
+      "status": "unclear",
+      "confidence": 0.4,
+      "citations": [
+        {
+          "doc_id": "26-33-53-static-ups-alpha",
+          "page": 1,
+          "locator": "2.2.A (Dimensions)",
+          "quote": "Dimensions: Each UPS shall fit within 110 inches wide, 40 inches deep and 84 inches high.",
+          "match": "exact",
+          "ocr": false
+        },
+        {
+          "doc_id": "judge-ups-500kva",
+          "page": 42,
+          "locator": "",
+          "quote": "The UPS single switch contains the cabinet of 600 mm width",
+          "match": "exact",
+          "ocr": false
+        }
+      ],
+      "needs_human": true,
+      "why": "reported value(s) ['1200'] do not appear in the quote 'The UPS single switch contains the cabinet of 600 mm width'; discarded; not stated in the submittal; not stated in the submittal",
+      "data": {
+        "req_id": "U15",
+        "locator": "2.2.A (Dimensions)",
+        "conditions": [
+          {
+            "cid": "U15a",
+            "attribute": "width",
+            "condition": "<= 110 in",
+            "verdict": "unclear",
+            "why": "reported value(s) ['1200'] do not appear in the quote 'The UPS single switch contains the cabinet of 600 mm width'; discarded",
+            "offered": {
+              "values": [
+                "600",
+                "1200"
+              ],
+              "unit": "mm",
+              "selected": null,
+              "quote": "The UPS single switch contains the cabinet of 600 mm width",
+              "page": 42,
+              "meets": "no"
+            }
+          },
+          {
+            "cid": "U15b",
+            "attribute": "depth",
+            "condition": "<= 40 in",
+            "verdict": "missing",
+            "why": "not stated in the submittal",
+            "offered": {
+              "values": [],
+              "unit": "in",
+              "selected": null,
+              "quote": "",
+              "page": "",
+              "meets": "unknown"
+            }
+          },
+          {
+            "cid": "U15c",
+            "attribute": "height",
+            "condition": "<= 84 in",
+            "verdict": "missing",
+            "why": "not stated in the submittal",
+            "offered": {
+              "values": [],
+              "unit": "in",
+              "selected": null,
+              "quote": "",
+              "page": "",
+              "meets": "unknown"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "F-U16",
+      "claim": "Heat dissipation at full load shall not exceed 150,000 BTU per hour.",
+      "status": "unclear",
+      "confidence": 0.5,
+      "citations": [
+        {
+          "doc_id": "26-33-53-static-ups-alpha",
+          "page": 1,
+          "locator": "2.2.B (Heat Dissipation)",
+          "quote": "Heat Dissipation: Heat released at full load shall not exceed 150,000 BTU per hour.",
+          "match": "exact",
+          "ocr": false
+        }
+      ],
+      "needs_human": true,
+      "why": "no value found, but the submittal mentions heat, dissipation on page(s) [9, 37, 40, 41, 133, 134]",
+      "data": {
+        "req_id": "U16",
+        "locator": "2.2.B (Heat Dissipation)",
+        "conditions": [
+          {
+            "cid": "U16a",
+            "attribute": "heat_dissipation_at_full_load",
+            "condition": "<= 150000 BTU/h",
+            "verdict": "unclear",
+            "why": "no value found, but the submittal mentions heat, dissipation on page(s) [9, 37, 40, 41, 133, 134]",
+            "offered": {
+              "values": [],
+              "unit": "BTU/h",
+              "selected": null,
+              "quote": "",
+              "page": "",
+              "meets": "unknown"
+            }
+          }
+        ]
+      }
+    }
+  ],
+  "needs_human": [
+    {
+      "finding_id": "F-U01",
+      "reason": "no value found, but the submittal mentions output, continuous on page(s) [7, 14, 15, 16, 17, 18]; no value found, but the submittal mentions output, continuous on page(s) [7, 14, 15, 16, 17, 18]; no value found, but the submittal mentions power, output, factor on page(s) [3, 4, 5, 6, 7, 12]; no value found, but the submittal mentions output on page(s) [7, 14, 15, 16, 17, 18]"
+    },
+    {
+      "finding_id": "F-U02",
+      "reason": "the submittal has a passage about it ('Operating temperature 0 ~ 50. 0~40, at full load; 40~50, 80% load') but no value that can be compared"
+    },
+    {
+      "finding_id": "F-U03",
+      "reason": "the evidence shows 3-phase but does not mention 480 volts, 3-wire; nothing contradicts it, a person decides; options 50 Hz, 60 Hz offered, only some meet == 60 Hz; the selected option is not marked"
+    },
+    {
+      "finding_id": "F-U04",
+      "reason": "model judgement on verified quote: 'Method of specifying the performance and test requirements of UPS EN62040-3/IEC62040-3/BS62040-3 (VFI SS 111)'"
+    },
+    {
+      "finding_id": "F-U11",
+      "reason": "offered VRLA For VRLA batteries meets one of: valve-regulated lead-acid, vrla, lithium-ion, li-ion; no value found, but the submittal mentions battery on page(s) [3, 4, 5, 6, 9, 11]"
+    },
+    {
+      "finding_id": "F-U12",
+      "reason": "no value found, but the submittal mentions parallel, capacity, additional on page(s) [2, 3, 4, 5, 6, 10]"
+    },
+    {
+      "finding_id": "F-U13",
+      "reason": "no value found, but the submittal mentions safety on page(s) [3, 5, 7, 9, 10, 11]"
+    },
+    {
+      "finding_id": "F-U14",
+      "reason": "no value found, but the submittal mentions code, seismic, international on page(s) [2, 6, 11, 14, 40, 55]"
+    },
+    {
+      "finding_id": "F-U15",
+      "reason": "reported value(s) ['1200'] do not appear in the quote 'The UPS single switch contains the cabinet of 600 mm width'; discarded; not stated in the submittal; not stated in the submittal"
+    },
+    {
+      "finding_id": "F-U16",
+      "reason": "no value found, but the submittal mentions heat, dissipation on page(s) [9, 37, 40, 41, 133, 134]"
+    }
+  ],
+  "run": {
+    "models": [
+      {
+        "name": "openai/gpt-oss-120b",
+        "provider": "groq",
+        "tokens_in": 20994,
+        "tokens_out": 3214,
+        "cost_usd": 0.005077,
+        "calls": 6
+      }
+    ],
+    "latency_ms": 151624,
+    "steps": [
+      {
+        "step": 1,
+        "purpose": "read submittal: U01a, U01b, U01c, U01d, U02a, U03a",
+        "provider": "groq",
+        "model": "openai/gpt-oss-120b",
+        "tokens_in": 3250,
+        "tokens_out": 674,
+        "ms": 2373,
+        "ok": true
+      },
+      {
+        "step": 2,
+        "purpose": "read submittal: U03b, U04a, U05a, U06a, U06b, U07a",
+        "provider": "groq",
+        "model": "openai/gpt-oss-120b",
+        "tokens_in": 3393,
+        "tokens_out": 767,
+        "ms": 2186,
+        "ok": true
+      },
+      {
+        "step": 3,
+        "purpose": "read submittal: U08a, U09a, U10a, U11a, U11b, U12a",
+        "provider": "groq",
+        "model": "openai/gpt-oss-120b",
+        "tokens_in": 3172,
+        "tokens_out": 548,
+        "ms": 28113,
+        "ok": true
+      },
+      {
+        "step": 4,
+        "purpose": "read submittal: U13a, U14a, U15a, U15b, U15c, U16a",
+        "provider": "groq",
+        "model": "openai/gpt-oss-120b",
+        "tokens_in": 3170,
+        "tokens_out": 400,
+        "ms": 26670,
+        "ok": true
+      },
+      {
+        "step": 5,
+        "purpose": "second look for not stated: U01a, U01b, U01c, U01d, U11b, U12a, U13a, U14a",
+        "provider": "groq",
+        "model": "openai/gpt-oss-120b",
+        "tokens_in": 4271,
+        "tokens_out": 515,
+        "ms": 36783,
+        "ok": true
+      },
+      {
+        "step": 6,
+        "purpose": "second look for not stated: U15a, U15b, U15c, U16a",
+        "provider": "groq",
+        "model": "openai/gpt-oss-120b",
+        "tokens_in": 3738,
+        "tokens_out": 310,
+        "ms": 31522,
+        "ok": true
+      }
+    ]
+  }
+}

@@ -1,0 +1,810 @@
+{
+  "tool": "check_submittal",
+  "version": "1.0",
+  "result": {
+    "tag": "SWGR-A",
+    "spec": "judge-umb-product-excerpt",
+    "submittal": "judge-switchgear-abb",
+    "summary": {
+      "complies": 3,
+      "deviates": 0,
+      "missing": 0,
+      "unclear": 10
+    },
+    "overall": "review",
+    "rows": [
+      {
+        "req_id": "R07",
+        "locator": "2.2.A (Nominal System Voltage)",
+        "requirement": "System nominal voltage, wiring and frequency must match the specified values",
+        "verdict": "complies",
+        "confidence": 0.65
+      },
+      {
+        "req_id": "R08",
+        "locator": "2.2.B (Main-Bus Continuous)",
+        "requirement": "Main‑bus continuous rating must meet or exceed the scheduled bus ampere rating",
+        "verdict": "unclear",
+        "confidence": 0.4
+      },
+      {
+        "req_id": "R09",
+        "locator": "2.2.C (Short-Time and Short-Circuit Current)",
+        "requirement": "Short‑time and short‑circuit current rating must match the highest‑rated circuit breaker in the assembly",
+        "verdict": "unclear",
+        "confidence": 0.95
+      },
+      {
+        "req_id": "R10",
+        "locator": "2.3",
+        "requirement": "Fabrication shall comply with the project specifications",
+        "verdict": "unclear",
+        "confidence": 0.3
+      },
+      {
+        "req_id": "R11",
+        "locator": "2.3.A",
+        "requirement": "Factory assembled and tested in accordance with IEEE C37.20.1",
+        "verdict": "complies",
+        "confidence": 0.629
+      },
+      {
+        "req_id": "R12",
+        "locator": "2.3.B (Indoor Enclosure Material)",
+        "requirement": "Indoor enclosure material shall be steel",
+        "verdict": "complies",
+        "confidence": 0.95
+      },
+      {
+        "req_id": "R13",
+        "locator": "2.3.C (Outdoor Enclosure Material)",
+        "requirement": "Outdoor enclosure material shall be galvanized steel",
+        "verdict": "unclear",
+        "confidence": 0.5
+      },
+      {
+        "req_id": "R14",
+        "locator": "2.3.D (Outdoor Enclosure Fabrication Requirements)",
+        "requirement": "Outdoor enclosure must be weatherproof, have an integral structural‑steel base frame with factory‑applied asphaltic undercoating, and include all listed compartment features",
+        "verdict": "unclear",
+        "confidence": 0.5
+      },
+      {
+        "req_id": "R22",
+        "locator": "2.3.D.8",
+        "requirement": "Aisle access doors must have outside padlocking provisions and interior panic latches.",
+        "verdict": "unclear",
+        "confidence": 0.3
+      },
+      {
+        "req_id": "R23",
+        "locator": "2.3.D.9",
+        "requirement": "Aisle space heaters must operate at one-half or less of rated voltage and be thermostatically controlled.",
+        "verdict": "unclear",
+        "confidence": 0.3
+      },
+      {
+        "req_id": "R24",
+        "locator": "2.3.D.10",
+        "requirement": "Vapor proof fluorescent aisle lights must use low-temperature ballasts and be controlled by a wall switch at each entrance.",
+        "verdict": "unclear",
+        "confidence": 0.3
+      },
+      {
+        "req_id": "R25",
+        "locator": "2.3.D.11",
+        "requirement": "A minimum of two GFCI duplex receptacles must be located in the aisle.",
+        "verdict": "unclear",
+        "confidence": 0.3
+      },
+      {
+        "req_id": "R26",
+        "locator": "2.3.D.12",
+        "requirement": "Aisle ventilation louvers must have insect and rodent screen and filter, arranged to permit air circulation while excluding insects, rodents, and exterior dust.",
+        "verdict": "unclear",
+        "confidence": 0.3
+      }
+    ],
+    "unread_scanned_pages": [],
+    "provider_switches": []
+  },
+  "findings": [
+    {
+      "id": "F-R07",
+      "claim": "System nominal voltage, wiring and frequency must match the specified values",
+      "status": "complies",
+      "confidence": 0.65,
+      "citations": [
+        {
+          "doc_id": "judge-umb-product-excerpt",
+          "page": 2,
+          "locator": "2.2.A (Nominal System Voltage)",
+          "quote": "A. Nominal System Voltage: 480/277 V, 4 wire, 60 Hz.",
+          "match": "exact",
+          "ocr": false
+        },
+        {
+          "doc_id": "equipment-schedule",
+          "page": 1,
+          "locator": "SWGR-A / phases",
+          "quote": "phases = 3",
+          "match": "exact",
+          "ocr": false
+        },
+        {
+          "doc_id": "judge-switchgear-abb",
+          "page": 9,
+          "locator": "",
+          "quote": "3P3W and 3P4W – 600/347 Vac, 480/277 Vac",
+          "match": "exact",
+          "ocr": false
+        },
+        {
+          "doc_id": "judge-switchgear-abb",
+          "page": 5,
+          "locator": "",
+          "quote": "3PH-3W/4W–60 Hz",
+          "match": "exact",
+          "ocr": false
+        },
+        {
+          "doc_id": "judge-switchgear-abb",
+          "page": 5,
+          "locator": "",
+          "quote": "3PH-3W/4W–60 Hz",
+          "match": "exact",
+          "ocr": false
+        }
+      ],
+      "needs_human": true,
+      "why": "model judgement on verified quote: '3P3W and 3P4W – 600/347 Vac, 480/277 Vac'; offered 60 Hz meets == 60 Hz; offered 3 meets == 3",
+      "data": {
+        "req_id": "R07",
+        "locator": "2.2.A (Nominal System Voltage)",
+        "conditions": [
+          {
+            "cid": "R07a",
+            "attribute": "system_voltage_wiring",
+            "condition": "all of: 480/277, 4 wire",
+            "verdict": "complies",
+            "why": "model judgement on verified quote: '3P3W and 3P4W – 600/347 Vac, 480/277 Vac'",
+            "offered": {
+              "values": [
+                "480/277",
+                "4 wire"
+              ],
+              "unit": null,
+              "selected": null,
+              "quote": "3P3W and 3P4W – 600/347 Vac, 480/277 Vac",
+              "page": 9,
+              "meets": "yes"
+            }
+          },
+          {
+            "cid": "R07b",
+            "attribute": "frequency_hz",
+            "condition": "== 60 Hz",
+            "verdict": "complies",
+            "why": "offered 60 Hz meets == 60 Hz",
+            "offered": {
+              "values": [
+                60
+              ],
+              "unit": "Hz",
+              "selected": null,
+              "quote": "3PH-3W/4W–60 Hz",
+              "page": 5,
+              "meets": "yes"
+            }
+          },
+          {
+            "cid": "R07c",
+            "attribute": "phases",
+            "condition": "== 3",
+            "verdict": "complies",
+            "why": "offered 3 meets == 3",
+            "offered": {
+              "values": [
+                3
+              ],
+              "unit": null,
+              "selected": null,
+              "quote": "3PH-3W/4W–60 Hz",
+              "page": 5,
+              "meets": "yes"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "F-R08",
+      "claim": "Main‑bus continuous rating must meet or exceed the scheduled bus ampere rating",
+      "status": "unclear",
+      "confidence": 0.4,
+      "citations": [
+        {
+          "doc_id": "judge-umb-product-excerpt",
+          "page": 2,
+          "locator": "2.2.B (Main-Bus Continuous)",
+          "quote": "Main‑Bus Continuous: [4000] [3200] [2000] [1600]",
+          "match": "table",
+          "ocr": false
+        },
+        {
+          "doc_id": "equipment-schedule",
+          "page": 1,
+          "locator": "SWGR-A / bus_amps",
+          "quote": "bus_amps = 4000",
+          "match": "exact",
+          "ocr": false
+        },
+        {
+          "doc_id": "judge-switchgear-abb",
+          "page": 5,
+          "locator": "",
+          "quote": "Main bus 2000 A/4000 A",
+          "match": "exact",
+          "ocr": false
+        },
+        {
+          "doc_id": "judge-switchgear-abb",
+          "page": 5,
+          "locator": "",
+          "quote": "Main bus 2000 A/4000 A",
+          "match": "exact",
+          "ocr": false
+        }
+      ],
+      "needs_human": true,
+      "why": "reported value(s) ['8000'] do not appear in the quote 'Main bus 2000 A/4000 A'; discarded; offered 2000; 4000 Main bus 2000 A/4000 A does not meet all of: 480Y/277, 3 phase, 4 wire; the expected words are missing from the quote but nothing contradicts the requirement",
+      "data": {
+        "req_id": "R08",
+        "locator": "2.2.B (Main-Bus Continuous)",
+        "conditions": [
+          {
+            "cid": "R08a",
+            "attribute": "bus_amps",
+            "condition": ">= 4000 A",
+            "verdict": "unclear",
+            "why": "reported value(s) ['8000'] do not appear in the quote 'Main bus 2000 A/4000 A'; discarded",
+            "offered": {
+              "values": [
+                "2000",
+                "4000",
+                "8000"
+              ],
+              "unit": "A",
+              "selected": null,
+              "quote": "Main bus  2000 A/4000 A",
+              "page": 5,
+              "meets": "yes"
+            }
+          },
+          {
+            "cid": "R08b",
+            "attribute": "electrical_system",
+            "condition": "all of: 480Y/277, 3 phase, 4 wire",
+            "verdict": "unclear",
+            "why": "offered 2000; 4000 Main bus 2000 A/4000 A does not meet all of: 480Y/277, 3 phase, 4 wire; the expected words are missing from the quote but nothing contradicts the requirement",
+            "offered": {
+              "values": [
+                2000,
+                4000
+              ],
+              "unit": "A",
+              "selected": null,
+              "quote": "Main bus  2000 A/4000 A",
+              "page": 5,
+              "meets": "unknown"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "F-R09",
+      "claim": "Short‑time and short‑circuit current rating must match the highest‑rated circuit breaker in the assembly",
+      "status": "unclear",
+      "confidence": 0.95,
+      "citations": [
+        {
+          "doc_id": "judge-umb-product-excerpt",
+          "page": 2,
+          "locator": "2.2.C (Short-Time and Short-Circuit Current)",
+          "quote": "Short‑Time and Short‑Circuit Current: Match rating of highest-rated circuit breaker in switchgear assembly.",
+          "match": "fuzzy",
+          "ocr": false
+        },
+        {
+          "doc_id": "equipment-schedule",
+          "page": 1,
+          "locator": "SWGR-A / short_circuit_ka",
+          "quote": "short_circuit_ka = 65",
+          "match": "exact",
+          "ocr": false
+        },
+        {
+          "doc_id": "judge-switchgear-abb",
+          "page": 5,
+          "locator": "",
+          "quote": "ANSI short circuit rating 65 kA/85 kA/100 kA",
+          "match": "exact",
+          "ocr": false
+        }
+      ],
+      "needs_human": true,
+      "why": "options 65 kA, 85 kA, 100 kA offered, only some meet == 65 kA; the selected option is not marked",
+      "data": {
+        "req_id": "R09",
+        "locator": "2.2.C (Short-Time and Short-Circuit Current)",
+        "conditions": [
+          {
+            "cid": "R09a",
+            "attribute": "short_circuit_ka",
+            "condition": "== 65 kA",
+            "verdict": "unclear",
+            "why": "options 65 kA, 85 kA, 100 kA offered, only some meet == 65 kA; the selected option is not marked",
+            "offered": {
+              "values": [
+                "65",
+                "85",
+                "100"
+              ],
+              "unit": "kA",
+              "selected": null,
+              "quote": "ANSI short circuit rating  65 kA/85 kA/100 kA",
+              "page": 5,
+              "meets": "yes"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "F-R10",
+      "claim": "Fabrication shall comply with the project specifications",
+      "status": "unclear",
+      "confidence": 0.3,
+      "citations": [
+        {
+          "doc_id": "judge-umb-product-excerpt",
+          "page": 2,
+          "locator": "2.3",
+          "quote": "2.3 FABRICATION",
+          "match": "exact",
+          "ocr": false
+        }
+      ],
+      "needs_human": true,
+      "why": "requirement could not be turned into a checkable condition",
+      "data": {
+        "req_id": "R10",
+        "locator": "2.3",
+        "conditions": []
+      }
+    },
+    {
+      "id": "F-R11",
+      "claim": "Factory assembled and tested in accordance with IEEE C37.20.1",
+      "status": "complies",
+      "confidence": 0.629,
+      "citations": [
+        {
+          "doc_id": "judge-umb-product-excerpt",
+          "page": 2,
+          "locator": "2.3.A",
+          "quote": "Factory assembled and tested and complying with IEEE C37.20.1.",
+          "match": "exact",
+          "ocr": false
+        },
+        {
+          "doc_id": "judge-switchgear-abb",
+          "page": 13,
+          "locator": "",
+          "quote": "designed, built and tested to meet all applicable requirements for ... ANSI C37.20.1",
+          "match": "segments",
+          "ocr": false
+        }
+      ],
+      "needs_human": true,
+      "why": "model judgement on verified quote: 'designed, built and tested to meet all applicable requirements for ... ANSI C37.20.1'; the quote was shortened, confirm on the page",
+      "data": {
+        "req_id": "R11",
+        "locator": "2.3.A",
+        "conditions": [
+          {
+            "cid": "R11a",
+            "attribute": "standard",
+            "condition": "all of: ieee c37.20.1",
+            "verdict": "complies",
+            "why": "model judgement on verified quote: 'designed, built and tested to meet all applicable requirements for ... ANSI C37.20.1'; the quote was shortened, confirm on the page",
+            "offered": {
+              "values": [],
+              "unit": null,
+              "selected": null,
+              "quote": "designed, built and tested to meet all applicable requirements for ... ANSI C37.20.1",
+              "page": 13,
+              "meets": "yes"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "F-R12",
+      "claim": "Indoor enclosure material shall be steel",
+      "status": "complies",
+      "confidence": 0.95,
+      "citations": [
+        {
+          "doc_id": "judge-umb-product-excerpt",
+          "page": 2,
+          "locator": "2.3.B (Indoor Enclosure Material)",
+          "quote": "Indoor Enclosure Material: Steel.",
+          "match": "exact",
+          "ocr": false
+        },
+        {
+          "doc_id": "judge-switchgear-abb",
+          "page": 13,
+          "locator": "",
+          "quote": "Heavy-duty enclosure (12 AWG external) steel",
+          "match": "exact",
+          "ocr": false
+        }
+      ],
+      "needs_human": false,
+      "why": "offered Heavy-duty enclosure (12 AWG external) steel Heavy-duty enclosure (12 AWG external) steel meets all of: steel",
+      "data": {
+        "req_id": "R12",
+        "locator": "2.3.B (Indoor Enclosure Material)",
+        "conditions": [
+          {
+            "cid": "R12a",
+            "attribute": "enclosure_material",
+            "condition": "all of: steel",
+            "verdict": "complies",
+            "why": "offered Heavy-duty enclosure (12 AWG external) steel Heavy-duty enclosure (12 AWG external) steel meets all of: steel",
+            "offered": {
+              "values": [],
+              "unit": null,
+              "selected": null,
+              "quote": "Heavy-duty enclosure (12 AWG external) steel",
+              "page": 13,
+              "meets": "yes"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "F-R13",
+      "claim": "Outdoor enclosure material shall be galvanized steel",
+      "status": "unclear",
+      "confidence": 0.5,
+      "citations": [
+        {
+          "doc_id": "judge-umb-product-excerpt",
+          "page": 2,
+          "locator": "2.3.C (Outdoor Enclosure Material)",
+          "quote": "Outdoor Enclosure Material: Galvanized steel.",
+          "match": "exact",
+          "ocr": false
+        }
+      ],
+      "needs_human": true,
+      "why": "no value found, but the submittal mentions enclosure, material, steel on page(s) [9, 12, 13, 15]",
+      "data": {
+        "req_id": "R13",
+        "locator": "2.3.C (Outdoor Enclosure Material)",
+        "conditions": [
+          {
+            "cid": "R13a",
+            "attribute": "enclosure_material",
+            "condition": "all of: galvanized steel",
+            "verdict": "unclear",
+            "why": "no value found, but the submittal mentions enclosure, material, steel on page(s) [9, 12, 13, 15]",
+            "offered": {
+              "values": [],
+              "unit": null,
+              "selected": null,
+              "quote": null,
+              "page": null,
+              "meets": "unknown"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "F-R14",
+      "claim": "Outdoor enclosure must be weatherproof, have an integral structural‑steel base frame with factory‑applied asphaltic undercoating, and include all listed compartment features",
+      "status": "unclear",
+      "confidence": 0.5,
+      "citations": [
+        {
+          "doc_id": "judge-umb-product-excerpt",
+          "page": 2,
+          "locator": "2.3.D (Outdoor Enclosure Fabrication Requirements)",
+          "quote": "Outdoor Enclosure Fabrication Requirements: Weatherproof; integral structural-steel base frame with factory-applied asphaltic undercoating; and each compartment equipped with the following features:",
+          "match": "exact",
+          "ocr": false
+        }
+      ],
+      "needs_human": true,
+      "why": "no value found, but the submittal mentions features, structural, steel on page(s) [7, 9, 13, 14, 15]",
+      "data": {
+        "req_id": "R14",
+        "locator": "2.3.D (Outdoor Enclosure Fabrication Requirements)",
+        "conditions": [
+          {
+            "cid": "R14a",
+            "attribute": "fabrication_features",
+            "condition": "all of: weatherproof, structural-steel, asphaltic",
+            "verdict": "unclear",
+            "why": "no value found, but the submittal mentions features, structural, steel on page(s) [7, 9, 13, 14, 15]",
+            "offered": {
+              "values": [],
+              "unit": null,
+              "selected": null,
+              "quote": null,
+              "page": null,
+              "meets": "unknown"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "F-R22",
+      "claim": "Aisle access doors must have outside padlocking provisions and interior panic latches.",
+      "status": "unclear",
+      "confidence": 0.3,
+      "citations": [
+        {
+          "doc_id": "judge-umb-product-excerpt",
+          "page": 2,
+          "locator": "2.3.D.8",
+          "quote": "Aisle access doors with outside padlocking provisions and interior panic latches",
+          "match": "exact",
+          "ocr": false
+        }
+      ],
+      "needs_human": true,
+      "why": "requirement could not be turned into a checkable condition",
+      "data": {
+        "req_id": "R22",
+        "locator": "2.3.D.8",
+        "conditions": []
+      }
+    },
+    {
+      "id": "F-R23",
+      "claim": "Aisle space heaters must operate at one-half or less of rated voltage and be thermostatically controlled.",
+      "status": "unclear",
+      "confidence": 0.3,
+      "citations": [
+        {
+          "doc_id": "judge-umb-product-excerpt",
+          "page": 2,
+          "locator": "2.3.D.9",
+          "quote": "Aisle space heaters operating at one-half or less of rated voltage, thermostatically controlled",
+          "match": "exact",
+          "ocr": false
+        }
+      ],
+      "needs_human": true,
+      "why": "requirement could not be turned into a checkable condition",
+      "data": {
+        "req_id": "R23",
+        "locator": "2.3.D.9",
+        "conditions": []
+      }
+    },
+    {
+      "id": "F-R24",
+      "claim": "Vapor proof fluorescent aisle lights must use low-temperature ballasts and be controlled by a wall switch at each entrance.",
+      "status": "unclear",
+      "confidence": 0.3,
+      "citations": [
+        {
+          "doc_id": "judge-umb-product-excerpt",
+          "page": 2,
+          "locator": "2.3.D.10",
+          "quote": "Vapor proof fluorescent aisle lights with low-temperature ballasts, controlled by wall switch at each entrance",
+          "match": "exact",
+          "ocr": false
+        }
+      ],
+      "needs_human": true,
+      "why": "requirement could not be turned into a checkable condition",
+      "data": {
+        "req_id": "R24",
+        "locator": "2.3.D.10",
+        "conditions": []
+      }
+    },
+    {
+      "id": "F-R25",
+      "claim": "A minimum of two GFCI duplex receptacles must be located in the aisle.",
+      "status": "unclear",
+      "confidence": 0.3,
+      "citations": [
+        {
+          "doc_id": "judge-umb-product-excerpt",
+          "page": 2,
+          "locator": "2.3.D.11",
+          "quote": "GFCI duplex receptacles, a minimum of two (2), located in aisle",
+          "match": "exact",
+          "ocr": false
+        }
+      ],
+      "needs_human": true,
+      "why": "requirement could not be turned into a checkable condition",
+      "data": {
+        "req_id": "R25",
+        "locator": "2.3.D.11",
+        "conditions": []
+      }
+    },
+    {
+      "id": "F-R26",
+      "claim": "Aisle ventilation louvers must have insect and rodent screen and filter, arranged to permit air circulation while excluding insects, rodents, and exterior dust.",
+      "status": "unclear",
+      "confidence": 0.3,
+      "citations": [
+        {
+          "doc_id": "judge-umb-product-excerpt",
+          "page": 2,
+          "locator": "2.3.D.12",
+          "quote": "Aisle ventilation louvers equipped with insect and rodent screen and filter and arranged to permit air circulation while excluding insects, rodents, and exterior dust",
+          "match": "exact",
+          "ocr": false
+        }
+      ],
+      "needs_human": true,
+      "why": "requirement could not be turned into a checkable condition",
+      "data": {
+        "req_id": "R26",
+        "locator": "2.3.D.12",
+        "conditions": []
+      }
+    }
+  ],
+  "needs_human": [
+    {
+      "finding_id": "F-R07",
+      "reason": "model judgement on verified quote: '3P3W and 3P4W – 600/347 Vac, 480/277 Vac'; offered 60 Hz meets == 60 Hz; offered 3 meets == 3"
+    },
+    {
+      "finding_id": "F-R08",
+      "reason": "reported value(s) ['8000'] do not appear in the quote 'Main bus 2000 A/4000 A'; discarded; offered 2000; 4000 Main bus 2000 A/4000 A does not meet all of: 480Y/277, 3 phase, 4 wire; the expected words are missing from the quote but nothing contradicts the requirement"
+    },
+    {
+      "finding_id": "F-R09",
+      "reason": "options 65 kA, 85 kA, 100 kA offered, only some meet == 65 kA; the selected option is not marked"
+    },
+    {
+      "finding_id": "F-R10",
+      "reason": "requirement could not be turned into a checkable condition"
+    },
+    {
+      "finding_id": "F-R11",
+      "reason": "model judgement on verified quote: 'designed, built and tested to meet all applicable requirements for ... ANSI C37.20.1'; the quote was shortened, confirm on the page"
+    },
+    {
+      "finding_id": "F-R13",
+      "reason": "no value found, but the submittal mentions enclosure, material, steel on page(s) [9, 12, 13, 15]"
+    },
+    {
+      "finding_id": "F-R14",
+      "reason": "no value found, but the submittal mentions features, structural, steel on page(s) [7, 9, 13, 14, 15]"
+    },
+    {
+      "finding_id": "F-R22",
+      "reason": "requirement could not be turned into a checkable condition"
+    },
+    {
+      "finding_id": "F-R23",
+      "reason": "requirement could not be turned into a checkable condition"
+    },
+    {
+      "finding_id": "F-R24",
+      "reason": "requirement could not be turned into a checkable condition"
+    },
+    {
+      "finding_id": "F-R25",
+      "reason": "requirement could not be turned into a checkable condition"
+    },
+    {
+      "finding_id": "F-R26",
+      "reason": "requirement could not be turned into a checkable condition"
+    }
+  ],
+  "run": {
+    "models": [
+      {
+        "name": "openai/gpt-oss-120b",
+        "provider": "groq",
+        "tokens_in": 13791,
+        "tokens_out": 3843,
+        "cost_usd": 0.004374,
+        "calls": 7
+      }
+    ],
+    "latency_ms": 76516,
+    "steps": [
+      {
+        "step": 1,
+        "purpose": "structure spec requirements R01, R02, R03, R04, R05, R06, R07",
+        "provider": "groq",
+        "model": "openai/gpt-oss-120b",
+        "tokens_in": 1093,
+        "tokens_out": 550,
+        "ms": 1562,
+        "ok": true
+      },
+      {
+        "step": 2,
+        "purpose": "structure spec requirements R08, R09, R10, R11, R12, R13, R14",
+        "provider": "groq",
+        "model": "openai/gpt-oss-120b",
+        "tokens_in": 1118,
+        "tokens_out": 1052,
+        "ms": 2595,
+        "ok": true
+      },
+      {
+        "step": 3,
+        "purpose": "structure spec requirements R15, R16, R17, R18, R19, R20, R21",
+        "provider": "groq",
+        "model": "openai/gpt-oss-120b",
+        "tokens_in": 1092,
+        "tokens_out": 58,
+        "ms": 395,
+        "ok": true
+      },
+      {
+        "step": 4,
+        "purpose": "structure spec requirements R22, R23, R24, R25, R26",
+        "provider": "groq",
+        "model": "openai/gpt-oss-120b",
+        "tokens_in": 1035,
+        "tokens_out": 406,
+        "ms": 1291,
+        "ok": true
+      },
+      {
+        "step": 5,
+        "purpose": "read submittal: R07a, R07b, R07c, R08a, R08b, R09a",
+        "provider": "groq",
+        "model": "openai/gpt-oss-120b",
+        "tokens_in": 3192,
+        "tokens_out": 762,
+        "ms": 17285,
+        "ok": true
+      },
+      {
+        "step": 6,
+        "purpose": "read submittal: R11a, R12a, R13a, R14a",
+        "provider": "groq",
+        "model": "openai/gpt-oss-120b",
+        "tokens_in": 2178,
+        "tokens_out": 554,
+        "ms": 17992,
+        "ok": true
+      },
+      {
+        "step": 7,
+        "purpose": "second look for not stated: R08b, R13a, R14a",
+        "provider": "groq",
+        "model": "openai/gpt-oss-120b",
+        "tokens_in": 4083,
+        "tokens_out": 461,
+        "ms": 33589,
+        "ok": true
+      }
+    ]
+  }
+}
