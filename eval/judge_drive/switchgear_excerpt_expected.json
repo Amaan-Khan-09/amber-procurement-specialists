@@ -1,0 +1,12 @@
+{
+  "id": "JSWGR_EXCERPT",
+  "purpose": "Targeted expectation frozen before first run. The input spec is pages 4-5 extracted without edits from the public UMB Section 262300 PDF downloaded by the README; the complete 131-clause specification is left unrun to conserve model calls.",
+  "spec": "data/specs/judge_UMB_product_excerpt.pdf",
+  "submittal": "data/submittals/judge_switchgear_abb.pdf",
+  "tag": "SWGR-A",
+  "assertions": [
+    {"topic": "manufacturer selection", "expected": "handoff_or_deviates", "spec_quote": "Square D; Schneider Electric.", "reason": "The catalog is ABB, while the unedited template names Schneider and Eaton; a reviewer must resolve the source template before approval."},
+    {"topic": "main bus", "expected": "handoff", "spec_quote": "Main-Bus Continuous: [4000] [3200] [2000] [1600] <Insert other> A.", "reason": "The required rating has not been selected in the spec."},
+    {"topic": "project-specific approval", "expected": "handoff", "spec_quote": "Factory assembled and tested and complying with IEEE C37.20.1.", "reason": "A product catalog offers configurations but does not identify a project-specific selected assembly."}
+  ]
+}

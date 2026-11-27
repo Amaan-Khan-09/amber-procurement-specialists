@@ -1,0 +1,44 @@
+{
+  "purpose": "Phase 1 precommitted targeted assertions; public documents are new to the project evaluation, and were inspected to label these assertions before any run.",
+  "cases": [
+    {
+      "id": "JGEN",
+      "input": "data/submittals/judge_generator_800kw.pdf",
+      "spec": "data/specs/project_alpha/26_32_13_engine_generators_ALPHA.pdf",
+      "tag": "GEN-A",
+      "assertions": [
+        {"topic": "standby capacity", "expected": "deviates_or_handoff", "source_quote": "800 ekW/ 1000 kVA", "reason": "Project Alpha asks for 2000 kW standby; this is 800 ekW prime."},
+        {"topic": "rating type", "expected": "not_approved", "source_quote": "Rating Type: PRIME"}
+      ]
+    },
+    {
+      "id": "JUPS",
+      "input": "data/submittals/judge_ups_500kva.pdf",
+      "spec": "data/specs/project_alpha/26_33_53_static_ups_ALPHA.pdf",
+      "tag": "UPS-A",
+      "assertions": [
+        {"topic": "rated capacity", "expected": "deviates_or_handoff", "source_quote": "50-500 kVA UPS", "reason": "A family manual capped at 500 kVA cannot prove the Project Alpha 1200 kW unit is offered."},
+        {"topic": "project configuration", "expected": "handoff", "source_quote": "User Manual", "reason": "The manual is not a project-specific selected submittal."}
+      ]
+    },
+    {
+      "id": "JSWGR",
+      "input": "data/submittals/judge_switchgear_abb.pdf",
+      "spec": "data/specs/UMB_262300_LV_switchgear.pdf",
+      "tag": "SWGR-A",
+      "assertions": [
+        {"topic": "project-specific approval", "expected": "handoff", "source_quote": "SWITCHGEAR - LOW VOLTAGE", "reason": "A catalog of options is not the selected shop drawing that this unfamiliar spec requires."}
+      ]
+    },
+    {
+      "id": "JBID",
+      "input": "data/bids/judge_bid.txt",
+      "form": "data/bids/00_bid_form_generators.pdf",
+      "assertions": [
+        {"topic": "S8", "expected": "excluded", "source_quote": "S8 Start-up and checkout: EXCLUDED."},
+        {"topic": "S9", "expected": "excluded", "source_quote": "S9 Field load bank test: EXCLUDED."},
+        {"topic": "award", "expected": "no_award", "source_quote": "No base price is offered."}
+      ]
+    }
+  ]
+}
