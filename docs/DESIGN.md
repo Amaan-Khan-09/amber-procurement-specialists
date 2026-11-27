@@ -163,6 +163,6 @@ The plan above held up; these are the differences and the reasons, each one driv
   Both are documented in the README as negative results. Identical checks are also reused from a saved-check cache keyed to
   a fingerprint of the checking code, so a repeated review is not paid for twice and a stale answer cannot be served.
 - **A blind second reader (25 Nov).** A model of another family reads each whole datasheet without seeing our answers, and its verdict
-  is shown beside ours. Agreement predicts correctness for the answers handed to a person (87 % right when it agrees, 43 % when it does
+  is shown beside ours. Agreement predicts correctness for the answers handed to a person (84 % right when it agrees, 47 % when it does
   not), so contested answers are sorted first; a reader that only saw the quoted evidence shared our blind spots and did not work.
   The same blind labelling cross-checks the answer keys (70 % agreement, kappa 0.57) and produces the checklist for a human reviewer.

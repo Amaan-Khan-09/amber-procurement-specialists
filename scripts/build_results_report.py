@@ -55,6 +55,37 @@ def split(rows: list[dict], a: str = "v3", b: str = "v4"):
     return better, worse, [r for r in changed if r not in better and r not in worse]
 
 
+FRESH_NOTES = [
+    "HIPOWER HTW 2000 (G12) and a Gillette SPMI 1 MW sheet (G13). Candidate frozen at `4226fc1`, keys committed at `d4443bb` before "
+    "any model read them, each read once by `openai/gpt-oss-20b` (the larger model's daily free allowance was used up) with the "
+    "second reader Qwen 3.8 27B. All versions score the same readings.", "",
+    "What went wrong on them, checked against the pages:", "",
+    "* **G13 R10, the candidate's one new critical error as labelled, is a labelling error.** Page 2 says \"All emergency stationary "
+    "diesel engines are Tier II compliant.\" The key (written by the AI) says unclear. The key is NOT edited: it is on the blind "
+    "review sheet. As labelled: 0 critical (previous) to 1 (candidate).",
+    "* G12 R04 (missed escalation, every version): the sheet lists a PMG AVR but also calls the alternator self-excited; the agent "
+    "decided \"complies\".",
+    "* G13 R06 (missed escalation, previous and candidate): asked the supplier about \"isochronous\" where the key wants an engineer.", ""]
+
+
+def crossdoc() -> list[str]:
+    before = json.loads((SET / "frozen/fresh_crossdoc_frozen_4226fc1.json").read_text(encoding="utf-8"))["rows"]
+    after = json.loads((SET / "fresh_crossdoc.json").read_text(encoding="utf-8"))["rows"]
+    get = lambda rows, rid, v, variant: next(x for x in rows if (x["req_id"], x["version"], x["variant"]) == (rid, v, variant))
+    show = lambda x: f"{x['answer']}, {x['route']} ({x['outcome']})"
+    md = ["### Fresh cross-document cases (fictional bid on the HIPOWER sheet, identical routing)", "",
+          "| Case | Expected | Datasheet only (frozen) | + bid, previous | + bid, candidate frozen | + bid, after the fix |",
+          "|---|---|---|---|---|---|"]
+    for rid, what in (("R19", "bid resolves: UL 2085 tank"), ("R15", "bid resolves: heater"), ("R08", "real conflict: 159.4 vs 142 gph")):
+        a = get(before, rid, "v4", "datasheet + bid")
+        md.append(f"| {rid} {what} | {a['expected']}, {a['expected_route']} | {show(get(before, rid, 'v4', 'datasheet only'))} | "
+                  f"{show(get(before, rid, 'v3', 'datasheet + bid'))} | {show(a)} | {show(get(after, rid, 'v4', 'datasheet + bid'))} |")
+    md += ["", "**The frozen candidate (and the previous version) approved the conflicting figure.** It is a critical error. The "
+           "cause was a datasheet reading below the confidence line being overridden by the bid. Fixed afterwards with a "
+           "regression test; the fixed result is not an unseen result.", ""]
+    return md
+
+
 def main() -> None:
     res = json.loads((SET / "results.json").read_text(encoding="utf-8"))
     S, rows = res["summary"], res["results"]
@@ -74,6 +105,8 @@ def main() -> None:
                "Every case that differs between the previous version and the candidate:", "", cases([r for r in fresh if (r["v3"]["answer"], r["v3"]["route"]) != (r["v4"]["answer"], r["v4"]["route"])]),
                "Every wrong decision or missed escalation by any version on these sheets:", "",
                cases([r for r in fresh if any(r[v]["outcome"] in BAD for v in ("v2", "v3", "v4"))], "v2", "v4")]
+    md += FRESH_NOTES
+    md += crossdoc()
     md += ["## Fixed development set (documents seen while building: a repair record, not an unseen score)", "",
            table("All like-for-like cases", S["like_for_like"])]
     for g, label in (("datasheet", "Datasheet requirements"), ("package", "Bid and datasheet together"), ("link", "Product links"),

@@ -1,5 +1,5 @@
 {
- "key": "6d23c25f8f176b5edadf",
+ "key": "d42ef62696740e720934",
  "built": "2026-11-27",
  "proof": {
   "cases": [
@@ -56,6 +56,42 @@
     "auto_correct": 6,
     "cost_usd": 0.00268,
     "result_id": "example:G11"
+   },
+   {
+    "case_id": "G12",
+    "split": "heldout",
+    "heldout_set": 6,
+    "document": "hipower-htw2000-data-sheet",
+    "label": "against 26-32-13-engine-generators-alpha",
+    "n": 21,
+    "correct": 18,
+    "accuracy": 0.8571428571428571,
+    "false_approvals": 0,
+    "false_rejections": 0,
+    "fabrications": 0,
+    "handoff_rate": 0.7619047619047619,
+    "auto_total": 5,
+    "auto_correct": 4,
+    "cost_usd": 0.002652,
+    "result_id": "example:G12"
+   },
+   {
+    "case_id": "G13",
+    "split": "heldout",
+    "heldout_set": 6,
+    "document": "spmi-1mw-uls-data-sheet",
+    "label": "against 26-32-13-engine-generators-alpha",
+    "n": 21,
+    "correct": 11,
+    "accuracy": 0.5238095238095238,
+    "false_approvals": 0,
+    "false_rejections": 0,
+    "fabrications": 0,
+    "handoff_rate": 0.9047619047619048,
+    "auto_total": 2,
+    "auto_correct": 2,
+    "cost_usd": 0.00238,
+    "result_id": "example:G13"
    },
    {
     "case_id": "G2",
@@ -255,6 +291,13 @@
     "auto_total": 11,
     "auto_correct": 11,
     "false_approvals": 0
+   },
+   "6": {
+    "n": 42,
+    "correct": 29,
+    "auto_total": 7,
+    "auto_correct": 6,
+    "false_approvals": 0
    }
   },
   "fabrications": 0,
@@ -276,17 +319,19 @@
   },
   "cross": {
    "unclear_with_concrete_reader": {
-    "n": 32,
-    "right": 11
+    "n": 40,
+    "right": 15
    },
    "unclear_with_reader_missing": {
-    "n": 18,
-    "right": 15
+    "n": 25,
+    "right": 18
    },
    "model": "Qwen 3.8 27B",
    "documents": [
     "G10",
     "G11",
+    "G12",
+    "G13",
     "G2",
     "G4",
     "G5",
@@ -296,24 +341,24 @@
     "G9",
     "U1"
    ],
-   "n": 205,
-   "reviewer_agrees_with_key": 147,
-   "kappa": 0.58,
+   "n": 247,
+   "reviewer_agrees_with_key": 172,
+   "kappa": 0.55,
    "handed_agrees": {
-    "n": 76,
-    "right": 66
+    "n": 93,
+    "right": 78
    },
    "handed_disagrees": {
-    "n": 69,
-    "right": 30
+    "n": 87,
+    "right": 41
    },
    "auto_agrees": {
-    "n": 49,
-    "right": 48
+    "n": 54,
+    "right": 53
    },
    "auto_disagrees": {
-    "n": 11,
-    "right": 11
+    "n": 13,
+    "right": 12
    }
   }
  }

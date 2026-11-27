@@ -1,0 +1,803 @@
+{
+ "commit": "1d14f3e",
+ "results": [
+  {
+   "id": "G12/R01",
+   "v1": {
+    "answer": "complies",
+    "route": "decide"
+   },
+   "v2": {
+    "answer": "complies",
+    "route": "decide",
+    "kind": "decided",
+    "why": "offered 2000 kW meets >= 2000 kW; offered 2500 kVA meets >= 2500 kVA"
+   },
+   "v3": {
+    "answer": "complies",
+    "route": "decide",
+    "kind": "decided",
+    "why": "offered 2000 kW meets >= 2000 kW; offered 2500 kVA meets >= 2500 kVA"
+   }
+  },
+  {
+   "id": "G12/R02",
+   "v1": {
+    "answer": "unclear",
+    "route": "engineer"
+   },
+   "v2": {
+    "answer": "unclear",
+    "route": "engineer",
+    "kind": "judgement",
+    "why": "reported quote not found in the submittal ('480Y/277 V, 3-phase, 4-wire'); value discarded; offered 60 Hz meets == 60 Hz"
+   },
+   "v3": {
+    "answer": "unclear",
+    "route": "engineer",
+    "kind": "judgement",
+    "why": "reported quote not found in the submittal ('480Y/277 V, 3-phase, 4-wire'); value discarded; offered 60 Hz meets == 60 Hz"
+   }
+  },
+  {
+   "id": "G12/R03",
+   "v1": {
+    "answer": "unclear",
+    "route": "engineer"
+   },
+   "v2": {
+    "answer": "unclear",
+    "route": "engineer",
+    "kind": "judgement",
+    "why": "reported quote not found in the submittal ('3930 kVA'); value discarded"
+   },
+   "v3": {
+    "answer": "unclear",
+    "route": "engineer",
+    "kind": "judgement",
+    "why": "reported quote not found in the submittal ('3930 kVA'); value discarded"
+   }
+  },
+  {
+   "id": "G12/R04",
+   "v1": {
+    "answer": "complies",
+    "route": "decide"
+   },
+   "v2": {
+    "answer": "complies",
+    "route": "decide",
+    "kind": "decided",
+    "why": "offered PMG PMG AVR for Stamford Alternator meets one of: permanent magnet generator, PMG"
+   },
+   "v3": {
+    "answer": "complies",
+    "route": "decide",
+    "kind": "decided",
+    "why": "offered PMG PMG AVR for Stamford Alternator meets one of: permanent magnet generator, PMG"
+   }
+  },
+  {
+   "id": "G12/R05",
+   "v1": {
+    "answer": "complies",
+    "route": "engineer"
+   },
+   "v2": {
+    "answer": "complies",
+    "route": "engineer",
+    "kind": "confirm a reading",
+    "why": "model judgement on verified quote: 'Number of cylinders 16'; model judgement on verified quote: 'Type Diesel, 4-stroke'; offered Turbocharged, intercooled Aspiration Turbocharged, intercooled meets one of: turbocharged, aftercooled, normally aspirated"
+   },
+   "v3": {
+    "answer": "complies",
+    "route": "engineer",
+    "kind": "confirm a reading",
+    "why": "model judgement on verified quote: 'Number of cylinders 16'; model judgement on verified quote: 'Type Diesel, 4-stroke'; offered Turbocharged, intercooled Aspiration Turbocharged, intercooled meets one of: turbocharged, aftercooled, normally aspirated"
+   }
+  },
+  {
+   "id": "G12/R06",
+   "v1": {
+    "answer": "unclear",
+    "route": "engineer"
+   },
+   "v2": {
+    "answer": "unclear",
+    "route": "engineer",
+    "kind": "judgement",
+    "why": "reported quote not found in the submittal ('Governor  Electrical\\nFrequency regulation  Ischronous'); value discarded"
+   },
+   "v3": {
+    "answer": "unclear",
+    "route": "engineer",
+    "kind": "judgement",
+    "why": "reported quote not found in the submittal ('Governor  Electrical\\nFrequency regulation  Ischronous'); value discarded"
+   }
+  },
+  {
+   "id": "G12/R07",
+   "v1": {
+    "answer": "complies",
+    "route": "engineer"
+   },
+   "v2": {
+    "answer": "complies",
+    "route": "engineer",
+    "kind": "contested",
+    "why": "model judgement on verified quote: 'Starting motor voltage 24 V'"
+   },
+   "v3": {
+    "answer": "complies",
+    "route": "engineer",
+    "kind": "contested",
+    "why": "model judgement on verified quote: 'Starting motor voltage 24 V'"
+   }
+  },
+  {
+   "id": "G12/R08",
+   "v1": {
+    "answer": "deviates",
+    "route": "engineer"
+   },
+   "v2": {
+    "answer": "deviates",
+    "route": "engineer",
+    "kind": "confirm a reading",
+    "why": "offered 159.4 gph does not meet <= 145 gph; unit gph is not shown in the quote, confirm"
+   },
+   "v3": {
+    "answer": "deviates",
+    "route": "engineer",
+    "kind": "confirm a reading",
+    "why": "offered 159.4 gph does not meet <= 145 gph; unit gph is not shown in the quote, confirm"
+   }
+  },
+  {
+   "id": "G12/R09",
+   "v1": {
+    "answer": "unclear",
+    "route": "engineer"
+   },
+   "v2": {
+    "answer": "unclear",
+    "route": "ask_supplier",
+    "kind": "not established, read twice",
+    "why": "no value found, but the submittal mentions cooling, unit, radiator on page(s) [1, 2, 4]; no value found, but the submittal mentions temperature, ambient on page(s) [1, 3, 4]"
+   },
+   "v3": {
+    "answer": "unclear",
+    "route": "ask_supplier",
+    "kind": "not established, read twice",
+    "why": "no value found, but the submittal mentions cooling, unit, radiator on page(s) [1, 2, 4]; no value found, but the submittal mentions temperature, ambient on page(s) [1, 3, 4]"
+   }
+  },
+  {
+   "id": "G12/R10",
+   "v1": {
+    "answer": "complies",
+    "route": "decide"
+   },
+   "v2": {
+    "answer": "complies",
+    "route": "decide",
+    "kind": "decided",
+    "why": "offered Tier 2 EPA certified Tier 2 meets one of: tier 2, tier 4"
+   },
+   "v3": {
+    "answer": "complies",
+    "route": "decide",
+    "kind": "decided",
+    "why": "offered Tier 2 EPA certified Tier 2 meets one of: tier 2, tier 4"
+   }
+  },
+  {
+   "id": "G12/R11",
+   "v1": {
+    "answer": "unclear",
+    "route": "engineer"
+   },
+   "v2": {
+    "answer": "unclear",
+    "route": "ask_supplier",
+    "kind": "not established, read twice",
+    "why": "not stated in the submittal; no value found, but the submittal mentions temperature, range, ambient on page(s) [1, 3, 4]"
+   },
+   "v3": {
+    "answer": "unclear",
+    "route": "ask_supplier",
+    "kind": "not established, read twice",
+    "why": "not stated in the submittal; no value found, but the submittal mentions temperature, range, ambient on page(s) [1, 3, 4]"
+   }
+  },
+  {
+   "id": "G12/R12",
+   "v1": {
+    "answer": "complies",
+    "route": "decide"
+   },
+   "v2": {
+    "answer": "complies",
+    "route": "decide",
+    "kind": "decided",
+    "why": "offered 1800 rpm meets <= 1800 rpm"
+   },
+   "v3": {
+    "answer": "complies",
+    "route": "decide",
+    "kind": "decided",
+    "why": "offered 1800 rpm meets <= 1800 rpm"
+   }
+  },
+  {
+   "id": "G12/R13",
+   "v1": {
+    "answer": "complies",
+    "route": "engineer"
+   },
+   "v2": {
+    "answer": "complies",
+    "route": "engineer",
+    "kind": "confirm a reading",
+    "why": "model judgement on verified quote: 'Alternator Type Four pole, rotating field Excitation System Brushless. self-exciting Stator Pitch 2/3'"
+   },
+   "v3": {
+    "answer": "unclear",
+    "route": "ask_supplier",
+    "kind": "clarification",
+    "why": "the quote states brushless but not 4 pole, 2/3 pitch; not stated anywhere else in the document"
+   }
+  },
+  {
+   "id": "G12/R14",
+   "v1": {
+    "answer": "complies",
+    "route": "decide"
+   },
+   "v2": {
+    "answer": "complies",
+    "route": "decide",
+    "kind": "decided",
+    "why": "offered Class H Insulation Class H meets one of: class f, class h"
+   },
+   "v3": {
+    "answer": "complies",
+    "route": "decide",
+    "kind": "decided",
+    "why": "offered Class H Insulation Class H meets one of: class f, class h"
+   }
+  },
+  {
+   "id": "G12/R15",
+   "v1": {
+    "answer": "unclear",
+    "route": "engineer"
+   },
+   "v2": {
+    "answer": "unclear",
+    "route": "ask_supplier",
+    "kind": "not established, read twice",
+    "why": "no value found, but the submittal mentions phase, single, electrical on page(s) [1, 2, 3, 4]"
+   },
+   "v3": {
+    "answer": "unclear",
+    "route": "ask_supplier",
+    "kind": "not established, read twice",
+    "why": "no value found, but the submittal mentions phase, single, electrical on page(s) [1, 2, 3, 4]"
+   }
+  },
+  {
+   "id": "G12/R16",
+   "v1": {
+    "answer": "unclear",
+    "route": "engineer"
+   },
+   "v2": {
+    "answer": "unclear",
+    "route": "ask_supplier",
+    "kind": "not established, read twice",
+    "why": "no value found, but the submittal mentions circuit, pole, breaker on page(s) [1, 2, 3, 4]"
+   },
+   "v3": {
+    "answer": "unclear",
+    "route": "ask_supplier",
+    "kind": "not established, read twice",
+    "why": "no value found, but the submittal mentions circuit, pole, breaker on page(s) [1, 2, 3, 4]"
+   }
+  },
+  {
+   "id": "G12/R17",
+   "v1": {
+    "answer": "complies",
+    "route": "engineer"
+   },
+   "v2": {
+    "answer": "complies",
+    "route": "engineer",
+    "kind": "confirm a reading",
+    "why": "model judgement on verified quote: 'Voltage regulation \u2013 no load to full load plus or minus 1%'"
+   },
+   "v3": {
+    "answer": "complies",
+    "route": "decide",
+    "kind": "decided",
+    "why": "computed from the quote: 1 % meets <= 2 % ('Voltage regulation \u2013 no load to full load plus or minus 1%')"
+   }
+  },
+  {
+   "id": "G12/R18",
+   "v1": {
+    "answer": "complies",
+    "route": "engineer"
+   },
+   "v2": {
+    "answer": "complies",
+    "route": "engineer",
+    "kind": "confirm a reading",
+    "why": "model judgement on verified quote: 'Line harmonics 5% maximum'"
+   },
+   "v3": {
+    "answer": "complies",
+    "route": "decide",
+    "kind": "decided",
+    "why": "computed from the quote: <=5 % meets <= 5 % ('Line harmonics 5% maximum')"
+   }
+  },
+  {
+   "id": "G12/R19",
+   "v1": {
+    "answer": "unclear",
+    "route": "engineer"
+   },
+   "v2": {
+    "answer": "unclear",
+    "route": "ask_supplier",
+    "kind": "not established, read twice",
+    "why": "no value found, but the submittal mentions fuel, tank on page(s) [2, 3, 4]; no value found, but the submittal mentions fuel, capacity, tank on page(s) [1, 2, 3, 4]"
+   },
+   "v3": {
+    "answer": "unclear",
+    "route": "ask_supplier",
+    "kind": "not established, read twice",
+    "why": "no value found, but the submittal mentions fuel, tank on page(s) [2, 3, 4]; no value found, but the submittal mentions fuel, capacity, tank on page(s) [1, 2, 3, 4]"
+   }
+  },
+  {
+   "id": "G12/R20",
+   "v1": {
+    "answer": "unclear",
+    "route": "engineer"
+   },
+   "v2": {
+    "answer": "unclear",
+    "route": "ask_supplier",
+    "kind": "not established, read twice",
+    "why": "no value found, but the submittal mentions heater on page(s) [3]; no value found, but the submittal mentions heater on page(s) [3]; no value found, but the submittal mentions phase, electrical, heater on page(s) [1, 2, 3, 4]"
+   },
+   "v3": {
+    "answer": "unclear",
+    "route": "ask_supplier",
+    "kind": "not established, read twice",
+    "why": "no value found, but the submittal mentions heater on page(s) [3]; no value found, but the submittal mentions heater on page(s) [3]; no value found, but the submittal mentions phase, electrical, heater on page(s) [1, 2, 3, 4]"
+   }
+  },
+  {
+   "id": "G12/R21",
+   "v1": {
+    "answer": "unclear",
+    "route": "engineer"
+   },
+   "v2": {
+    "answer": "unclear",
+    "route": "engineer",
+    "kind": "contested",
+    "why": "no value found, but the submittal mentions enclosure on page(s) [3]; no value found, but the submittal mentions silencer on page(s) [3]"
+   },
+   "v3": {
+    "answer": "unclear",
+    "route": "engineer",
+    "kind": "contested",
+    "why": "no value found, but the submittal mentions enclosure on page(s) [3]; no value found, but the submittal mentions silencer on page(s) [3]"
+   }
+  },
+  {
+   "id": "G13/R01",
+   "v1": {
+    "answer": "complies",
+    "route": "engineer"
+   },
+   "v2": {
+    "answer": "complies",
+    "route": "engineer",
+    "kind": "contested",
+    "why": "offered 1000 kW meets >= 1000 kW; unit kW is not shown in the quote, confirm; offered 1250 kVA meets >= 1250 kVA; unit kVA is not shown in the quote, confirm"
+   },
+   "v3": {
+    "answer": "complies",
+    "route": "decide",
+    "kind": "decided",
+    "why": "offered 1000 kW meets >= 1000 kW; unit kW is not shown in the quote; the unit is in the table heading 'KW/KVA' (page 1); offered 1250 kVA meets >= 1250 kVA; unit kVA is not shown in the quote; the unit is in the table heading 'KW/KVA' (page 1)"
+   }
+  },
+  {
+   "id": "G13/R02",
+   "v1": {
+    "answer": "complies",
+    "route": "engineer"
+   },
+   "v2": {
+    "answer": "complies",
+    "route": "engineer",
+    "kind": "confirm a reading",
+    "why": "model judgement on verified quote: '277 480 3 60 1000/1250'; offered 60 Hz meets == 60 Hz; unit Hz is not shown in the quote, confirm"
+   },
+   "v3": {
+    "answer": "complies",
+    "route": "engineer",
+    "kind": "confirm a reading",
+    "why": "model judgement on verified quote: '277 480 3 60 1000/1250'; offered 60 Hz meets == 60 Hz; unit Hz is not shown in the quote, confirm"
+   }
+  },
+  {
+   "id": "G13/R03",
+   "v1": {
+    "answer": "unclear",
+    "route": "engineer"
+   },
+   "v2": {
+    "answer": "unclear",
+    "route": "engineer",
+    "kind": "judgement",
+    "why": "reported quote not found in the submittal ('3 \u00d8 Motor Starting @ 30% Voltage Dip (480-600V) 3100 kVA'); value discarded"
+   },
+   "v3": {
+    "answer": "complies",
+    "route": "decide",
+    "kind": "decided",
+    "why": "disputed clause inspected: the independent reader's quote is on page 2; computed from the quote: 3100 kVA meets >= 1500 kVA"
+   }
+  },
+  {
+   "id": "G13/R04",
+   "v1": {
+    "answer": "complies",
+    "route": "decide"
+   },
+   "v2": {
+    "answer": "complies",
+    "route": "decide",
+    "kind": "decided",
+    "why": "offered PMG Brushless, PMG excited meets one of: PMG, permanent magnet"
+   },
+   "v3": {
+    "answer": "complies",
+    "route": "decide",
+    "kind": "decided",
+    "why": "offered PMG Brushless, PMG excited meets one of: PMG, permanent magnet"
+   }
+  },
+  {
+   "id": "G13/R05",
+   "v1": {
+    "answer": "complies",
+    "route": "engineer"
+   },
+   "v2": {
+    "answer": "complies",
+    "route": "engineer",
+    "kind": "contested",
+    "why": "offered 12 12 Cylinders, V-12 meets one of: 8 cylinder, 12 cylinder, 16 cylinder; offered 4 cycle 4 cycle meets one of: 4 cycle, 4-cycle, four stroke; model judgement on verified quote: 'Turbo After Cooler'"
+   },
+   "v3": {
+    "answer": "complies",
+    "route": "engineer",
+    "kind": "contested",
+    "why": "offered 12 12 Cylinders, V-12 meets one of: 8 cylinder, 12 cylinder, 16 cylinder; offered 4 cycle 4 cycle meets one of: 4 cycle, 4-cycle, four stroke; model judgement on verified quote: 'Turbo After Cooler'"
+   }
+  },
+  {
+   "id": "G13/R06",
+   "v1": {
+    "answer": "complies",
+    "route": "engineer"
+   },
+   "v2": {
+    "answer": "complies",
+    "route": "engineer",
+    "kind": "confirm a reading",
+    "why": "model judgement on verified quote: 'Electronic, Bosch'"
+   },
+   "v3": {
+    "answer": "unclear",
+    "route": "ask_supplier",
+    "kind": "clarification",
+    "why": "the quote states electronic but not isochronous; not stated anywhere else in the document"
+   }
+  },
+  {
+   "id": "G13/R07",
+   "v1": {
+    "answer": "complies",
+    "route": "engineer"
+   },
+   "v2": {
+    "answer": "complies",
+    "route": "engineer",
+    "kind": "confirm a reading",
+    "why": "model judgement on verified quote: '24 VDC'"
+   },
+   "v3": {
+    "answer": "complies",
+    "route": "engineer",
+    "kind": "confirm a reading",
+    "why": "model judgement on verified quote: '24 VDC'"
+   }
+  },
+  {
+   "id": "G13/R08",
+   "v1": {
+    "answer": "deviates",
+    "route": "engineer"
+   },
+   "v2": {
+    "answer": "deviates",
+    "route": "engineer",
+    "kind": "confirm a reading",
+    "why": "offered 75.1 gph does not meet <= 75 gph; unit gph is not shown in the quote, confirm"
+   },
+   "v3": {
+    "answer": "deviates",
+    "route": "decide",
+    "kind": "decided",
+    "why": "offered 75.1 gph does not meet <= 75 gph; unit gph is not shown in the quote; the unit is in the table heading 'GAL/HR  (LITER/HR)' (page 2)"
+   }
+  },
+  {
+   "id": "G13/R09",
+   "v1": {
+    "answer": "complies",
+    "route": "engineer"
+   },
+   "v2": {
+    "answer": "complies",
+    "route": "engineer",
+    "kind": "confirm a reading",
+    "why": "model judgement on verified quote: 'Type of System ............................ Air to Air, Charged Air Cooler'; the quote was shortened, confirm on the page; offered 122 \u00b0F meets >= 122 \u00b0F; unit \u00b0F is not shown in the quote, confirm"
+   },
+   "v3": {
+    "answer": "complies",
+    "route": "engineer",
+    "kind": "confirm a reading",
+    "why": "model judgement on verified quote: 'Type of System ............................ Air to Air, Charged Air Cooler'; the quote was shortened, confirm on the page; offered 122 \u00b0F meets >= 122 \u00b0F; unit \u00b0F is not shown in the quote, confirm"
+   }
+  },
+  {
+   "id": "G13/R10",
+   "v1": {
+    "answer": "complies",
+    "route": "engineer"
+   },
+   "v2": {
+    "answer": "complies",
+    "route": "engineer",
+    "kind": "confirm a reading",
+    "why": "model judgement on verified quote: 'All engines are EPA emissions certified.'"
+   },
+   "v3": {
+    "answer": "complies",
+    "route": "engineer",
+    "kind": "confirm a reading",
+    "why": "model judgement on verified quote: 'All engines are EPA emissions certified.'"
+   }
+  },
+  {
+   "id": "G13/R11",
+   "v1": {
+    "answer": "unclear",
+    "route": "engineer"
+   },
+   "v2": {
+    "answer": "unclear",
+    "route": "engineer",
+    "kind": "judgement",
+    "why": "the submittal has a passage about it ('3% per 1000 ft. above 3000 ft.') but no value that can be compared; reported value(s) ['10'] do not appear in the quote 'Ambient Capacity of Radiator 122 (50)'; discarded"
+   },
+   "v3": {
+    "answer": "unclear",
+    "route": "engineer",
+    "kind": "judgement",
+    "why": "the submittal has a passage about it ('3% per 1000 ft. above 3000 ft.') but no value that can be compared; reported value(s) ['10'] do not appear in the quote 'Ambient Capacity of Radiator 122 (50)'; discarded"
+   }
+  },
+  {
+   "id": "G13/R12",
+   "v1": {
+    "answer": "complies",
+    "route": "decide"
+   },
+   "v2": {
+    "answer": "complies",
+    "route": "decide",
+    "kind": "decided",
+    "why": "offered 1800 rpm meets <= 1800 rpm"
+   },
+   "v3": {
+    "answer": "complies",
+    "route": "decide",
+    "kind": "decided",
+    "why": "offered 1800 rpm meets <= 1800 rpm"
+   }
+  },
+  {
+   "id": "G13/R13",
+   "v1": {
+    "answer": "unclear",
+    "route": "engineer"
+   },
+   "v2": {
+    "answer": "unclear",
+    "route": "engineer",
+    "kind": "judgement",
+    "why": "could not compare units: Cannot convert from 'rod' ([length]) to 'dimensionless' (dimensionless); model judgement on verified quote: 'Brushless, PMG excited'"
+   },
+   "v3": {
+    "answer": "unclear",
+    "route": "engineer",
+    "kind": "judgement",
+    "why": "could not compare units: Cannot convert from 'rod' ([length]) to 'dimensionless' (dimensionless); the quote states brushless but not 2/3 pitch; not stated anywhere else in the document"
+   }
+  },
+  {
+   "id": "G13/R14",
+   "v1": {
+    "answer": "unclear",
+    "route": "engineer"
+   },
+   "v2": {
+    "answer": "unclear",
+    "route": "engineer",
+    "kind": "judgement",
+    "why": "reported quote not found in the submittal ('Class H, 180\u00b0C insulation'); value discarded"
+   },
+   "v3": {
+    "answer": "unclear",
+    "route": "engineer",
+    "kind": "judgement",
+    "why": "reported quote not found in the submittal ('Class H, 180\u00b0C insulation'); value discarded"
+   }
+  },
+  {
+   "id": "G13/R15",
+   "v1": {
+    "answer": "unclear",
+    "route": "engineer"
+   },
+   "v2": {
+    "answer": "unclear",
+    "route": "ask_supplier",
+    "kind": "not established, read twice",
+    "why": "no value found, but the submittal mentions phase, single, electrical on page(s) [1, 2, 3, 4]"
+   },
+   "v3": {
+    "answer": "unclear",
+    "route": "ask_supplier",
+    "kind": "not established, read twice",
+    "why": "no value found, but the submittal mentions phase, single, electrical on page(s) [1, 2, 3, 4]"
+   }
+  },
+  {
+   "id": "G13/R16",
+   "v1": {
+    "answer": "unclear",
+    "route": "engineer"
+   },
+   "v2": {
+    "answer": "unclear",
+    "route": "engineer",
+    "kind": "judgement",
+    "why": "reported quote not found in the submittal ('3-pole generator output circuit breaker(s)'); value discarded; offered solid state Solid State, HZ/Volts meets all of: solid state"
+   },
+   "v3": {
+    "answer": "unclear",
+    "route": "engineer",
+    "kind": "judgement",
+    "why": "reported quote not found in the submittal ('3-pole generator output circuit breaker(s)'); value discarded; offered solid state Solid State, HZ/Volts meets all of: solid state"
+   }
+  },
+  {
+   "id": "G13/R17",
+   "v1": {
+    "answer": "unclear",
+    "route": "engineer"
+   },
+   "v2": {
+    "answer": "unclear",
+    "route": "engineer",
+    "kind": "judgement",
+    "why": "reported value(s) [0.5] do not appear in the quote '\u00bd%, No load to full load'; discarded"
+   },
+   "v3": {
+    "answer": "unclear",
+    "route": "engineer",
+    "kind": "judgement",
+    "why": "reported value(s) [0.5] do not appear in the quote '\u00bd%, No load to full load'; discarded"
+   }
+  },
+  {
+   "id": "G13/R18",
+   "v1": {
+    "answer": "unclear",
+    "route": "engineer"
+   },
+   "v2": {
+    "answer": "unclear",
+    "route": "engineer",
+    "kind": "judgement",
+    "why": "reported value(s) [3.5] do not appear in the quote 'Max 3\u00bd%'; discarded"
+   },
+   "v3": {
+    "answer": "unclear",
+    "route": "engineer",
+    "kind": "judgement",
+    "why": "reported value(s) [3.5] do not appear in the quote 'Max 3\u00bd%'; discarded"
+   }
+  },
+  {
+   "id": "G13/R19",
+   "v1": {
+    "answer": "unclear",
+    "route": "engineer"
+   },
+   "v2": {
+    "answer": "unclear",
+    "route": "ask_supplier",
+    "kind": "not established, read twice",
+    "why": "not stated in the submittal; no value found, but the submittal mentions fuel on page(s) [2, 3, 4]"
+   },
+   "v3": {
+    "answer": "unclear",
+    "route": "ask_supplier",
+    "kind": "not established, read twice",
+    "why": "not stated in the submittal; no value found, but the submittal mentions fuel on page(s) [2, 3, 4]"
+   }
+  },
+  {
+   "id": "G13/R20",
+   "v1": {
+    "answer": "unclear",
+    "route": "engineer"
+   },
+   "v2": {
+    "answer": "unclear",
+    "route": "ask_supplier",
+    "kind": "not established, read twice",
+    "why": "no value found, but the submittal mentions water, jacket on page(s) [3, 4]; no value found, but the submittal mentions power, water, jacket on page(s) [1, 2, 3, 4]; no value found, but the submittal mentions volt, phase, electrical on page(s) [1, 2, 3, 4]"
+   },
+   "v3": {
+    "answer": "unclear",
+    "route": "ask_supplier",
+    "kind": "not established, read twice",
+    "why": "no value found, but the submittal mentions water, jacket on page(s) [3, 4]; no value found, but the submittal mentions power, water, jacket on page(s) [1, 2, 3, 4]; no value found, but the submittal mentions volt, phase, electrical on page(s) [1, 2, 3, 4]"
+   }
+  },
+  {
+   "id": "G13/R21",
+   "v1": {
+    "answer": "unclear",
+    "route": "engineer"
+   },
+   "v2": {
+    "answer": "unclear",
+    "route": "engineer",
+    "kind": "contested",
+    "why": "no value found, but the submittal mentions enclosure, proof on page(s) [1, 2, 3, 4]; no value found, but the submittal mentions silencer, enclosure on page(s) [1, 3]"
+   },
+   "v3": {
+    "answer": "unclear",
+    "route": "engineer",
+    "kind": "contested",
+    "why": "no value found, but the submittal mentions enclosure, proof on page(s) [1, 2, 3, 4]; no value found, but the submittal mentions silencer, enclosure on page(s) [1, 3]"
+   }
+  }
+ ]
+}

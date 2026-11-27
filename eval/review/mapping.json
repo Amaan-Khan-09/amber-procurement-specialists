@@ -1,0 +1,646 @@
+{
+ "seed": 20261127,
+ "items": {
+  "1": {
+   "id": "G5/R03",
+   "selected_as": [
+    "changed"
+   ]
+  },
+  "2": {
+   "id": "G8/R07",
+   "selected_as": [
+    "changed",
+    "disputed"
+   ]
+  },
+  "3": {
+   "id": "BID/B4/S3",
+   "selected_as": [
+    "sample"
+   ]
+  },
+  "4": {
+   "id": "G5/R09",
+   "selected_as": [
+    "disputed"
+   ]
+  },
+  "5": {
+   "id": "G1/R17",
+   "selected_as": [
+    "changed"
+   ]
+  },
+  "6": {
+   "id": "G5/R13",
+   "selected_as": [
+    "changed",
+    "disputed"
+   ]
+  },
+  "7": {
+   "id": "G7/R08",
+   "selected_as": [
+    "changed"
+   ]
+  },
+  "8": {
+   "id": "G1/R15",
+   "selected_as": [
+    "disputed"
+   ]
+  },
+  "9": {
+   "id": "G6/R08",
+   "selected_as": [
+    "changed"
+   ]
+  },
+  "10": {
+   "id": "G1/R13",
+   "selected_as": [
+    "changed",
+    "disputed"
+   ]
+  },
+  "11": {
+   "id": "G6/R09",
+   "selected_as": [
+    "disputed"
+   ]
+  },
+  "12": {
+   "id": "G6/R01",
+   "selected_as": [
+    "changed"
+   ]
+  },
+  "13": {
+   "id": "G5/R18",
+   "selected_as": [
+    "changed"
+   ]
+  },
+  "14": {
+   "id": "U1/U16",
+   "selected_as": [
+    "disputed"
+   ]
+  },
+  "15": {
+   "id": "G13/R02",
+   "selected_as": [
+    "disputed"
+   ]
+  },
+  "16": {
+   "id": "G12/R18",
+   "selected_as": [
+    "changed"
+   ]
+  },
+  "17": {
+   "id": "G6/R16",
+   "selected_as": [
+    "sample"
+   ]
+  },
+  "18": {
+   "id": "G6/R07",
+   "selected_as": [
+    "changed",
+    "disputed"
+   ]
+  },
+  "19": {
+   "id": "G2/R18",
+   "selected_as": [
+    "sample"
+   ]
+  },
+  "20": {
+   "id": "G3/R18",
+   "selected_as": [
+    "changed"
+   ]
+  },
+  "21": {
+   "id": "G11/R06",
+   "selected_as": [
+    "changed"
+   ]
+  },
+  "22": {
+   "id": "G2/R03",
+   "selected_as": [
+    "disputed"
+   ]
+  },
+  "23": {
+   "id": "G5/R17",
+   "selected_as": [
+    "changed"
+   ]
+  },
+  "24": {
+   "id": "G2/R10",
+   "selected_as": [
+    "sample"
+   ]
+  },
+  "25": {
+   "id": "G4/R13",
+   "selected_as": [
+    "changed"
+   ]
+  },
+  "26": {
+   "id": "G3/R13",
+   "selected_as": [
+    "changed",
+    "disputed"
+   ]
+  },
+  "27": {
+   "id": "G5/R07",
+   "selected_as": [
+    "disputed"
+   ]
+  },
+  "28": {
+   "id": "G12/R01",
+   "selected_as": [
+    "sample"
+   ]
+  },
+  "29": {
+   "id": "U1/U05",
+   "selected_as": [
+    "disputed"
+   ]
+  },
+  "30": {
+   "id": "G5/R01",
+   "selected_as": [
+    "disputed"
+   ]
+  },
+  "31": {
+   "id": "G11/R17",
+   "selected_as": [
+    "changed"
+   ]
+  },
+  "32": {
+   "id": "G10/R20",
+   "selected_as": [
+    "sample"
+   ]
+  },
+  "33": {
+   "id": "G13/R11",
+   "selected_as": [
+    "disputed"
+   ]
+  },
+  "34": {
+   "id": "G13/R07",
+   "selected_as": [
+    "changed"
+   ]
+  },
+  "35": {
+   "id": "G4/R09",
+   "selected_as": [
+    "disputed"
+   ]
+  },
+  "36": {
+   "id": "G13/R08",
+   "selected_as": [
+    "changed"
+   ]
+  },
+  "37": {
+   "id": "G11/R13",
+   "selected_as": [
+    "changed"
+   ]
+  },
+  "38": {
+   "id": "BID/B1/S7",
+   "selected_as": [
+    "sample"
+   ]
+  },
+  "39": {
+   "id": "G7/R18",
+   "selected_as": [
+    "sample"
+   ]
+  },
+  "40": {
+   "id": "G8/R17",
+   "selected_as": [
+    "changed"
+   ]
+  },
+  "41": {
+   "id": "G13/R10",
+   "selected_as": [
+    "changed",
+    "critical",
+    "disputed"
+   ]
+  },
+  "42": {
+   "id": "G1/R09",
+   "selected_as": [
+    "disputed"
+   ]
+  },
+  "43": {
+   "id": "G3/R06",
+   "selected_as": [
+    "changed",
+    "disputed"
+   ]
+  },
+  "44": {
+   "id": "G1/R02",
+   "selected_as": [
+    "changed"
+   ]
+  },
+  "45": {
+   "id": "G9/R06",
+   "selected_as": [
+    "changed"
+   ]
+  },
+  "46": {
+   "id": "G3/R03",
+   "selected_as": [
+    "disputed"
+   ]
+  },
+  "47": {
+   "id": "U1/U10",
+   "selected_as": [
+    "changed"
+   ]
+  },
+  "48": {
+   "id": "G6/R03",
+   "selected_as": [
+    "disputed"
+   ]
+  },
+  "49": {
+   "id": "G10/R06",
+   "selected_as": [
+    "sample"
+   ]
+  },
+  "50": {
+   "id": "G4/R07",
+   "selected_as": [
+    "changed"
+   ]
+  },
+  "51": {
+   "id": "G8/R18",
+   "selected_as": [
+    "changed"
+   ]
+  },
+  "52": {
+   "id": "G12/R17",
+   "selected_as": [
+    "changed"
+   ]
+  },
+  "53": {
+   "id": "G10/R11",
+   "selected_as": [
+    "sample"
+   ]
+  },
+  "54": {
+   "id": "G13/R01",
+   "selected_as": [
+    "changed"
+   ]
+  },
+  "55": {
+   "id": "G13/R06",
+   "selected_as": [
+    "critical"
+   ]
+  },
+  "56": {
+   "id": "G4/R01",
+   "selected_as": [
+    "changed"
+   ]
+  },
+  "57": {
+   "id": "G2/R06",
+   "selected_as": [
+    "changed",
+    "disputed"
+   ]
+  },
+  "58": {
+   "id": "U1/U12",
+   "selected_as": [
+    "sample"
+   ]
+  },
+  "59": {
+   "id": "G4/R12",
+   "selected_as": [
+    "disputed"
+   ]
+  },
+  "60": {
+   "id": "G13/R14",
+   "selected_as": [
+    "disputed"
+   ]
+  },
+  "61": {
+   "id": "G10/R18",
+   "selected_as": [
+    "changed"
+   ]
+  },
+  "62": {
+   "id": "G10/R09",
+   "selected_as": [
+    "sample"
+   ]
+  },
+  "63": {
+   "id": "G3/R07",
+   "selected_as": [
+    "disputed"
+   ]
+  },
+  "64": {
+   "id": "G4/R05",
+   "selected_as": [
+    "changed"
+   ]
+  },
+  "65": {
+   "id": "G2/R13",
+   "selected_as": [
+    "changed",
+    "disputed"
+   ]
+  },
+  "66": {
+   "id": "G11/R07",
+   "selected_as": [
+    "changed"
+   ]
+  },
+  "67": {
+   "id": "G10/R17",
+   "selected_as": [
+    "changed"
+   ]
+  },
+  "68": {
+   "id": "G1/R01",
+   "selected_as": [
+    "changed"
+   ]
+  },
+  "69": {
+   "id": "G3/R01",
+   "selected_as": [
+    "sample"
+   ]
+  },
+  "70": {
+   "id": "G6/R13",
+   "selected_as": [
+    "changed",
+    "disputed"
+   ]
+  },
+  "71": {
+   "id": "G12/R04",
+   "selected_as": [
+    "critical"
+   ]
+  },
+  "72": {
+   "id": "G2/R04",
+   "selected_as": [
+    "changed"
+   ]
+  },
+  "73": {
+   "id": "G1/R18",
+   "selected_as": [
+    "changed"
+   ]
+  },
+  "74": {
+   "id": "G11/R04",
+   "selected_as": [
+    "changed"
+   ]
+  },
+  "75": {
+   "id": "G2/R05",
+   "selected_as": [
+    "sample"
+   ]
+  },
+  "76": {
+   "id": "G6/R20",
+   "selected_as": [
+    "sample"
+   ]
+  },
+  "77": {
+   "id": "G2/R20",
+   "selected_as": [
+    "disputed"
+   ]
+  },
+  "78": {
+   "id": "G2/R19",
+   "selected_as": [
+    "disputed"
+   ]
+  },
+  "79": {
+   "id": "G7/R13",
+   "selected_as": [
+    "disputed"
+   ]
+  },
+  "80": {
+   "id": "G10/R08",
+   "selected_as": [
+    "disputed"
+   ]
+  },
+  "81": {
+   "id": "G4/R11",
+   "selected_as": [
+    "sample"
+   ]
+  },
+  "82": {
+   "id": "G1/R07",
+   "selected_as": [
+    "changed"
+   ]
+  },
+  "83": {
+   "id": "G5/R15",
+   "selected_as": [
+    "sample"
+   ]
+  },
+  "84": {
+   "id": "G8/R13",
+   "selected_as": [
+    "changed"
+   ]
+  },
+  "85": {
+   "id": "G13/R03",
+   "selected_as": [
+    "changed"
+   ]
+  },
+  "86": {
+   "id": "G3/R19",
+   "selected_as": [
+    "disputed"
+   ]
+  },
+  "87": {
+   "id": "G11/R08",
+   "selected_as": [
+    "changed"
+   ]
+  },
+  "88": {
+   "id": "G4/R02",
+   "selected_as": [
+    "disputed"
+   ]
+  },
+  "89": {
+   "id": "G6/R06",
+   "selected_as": [
+    "changed"
+   ]
+  },
+  "90": {
+   "id": "G9/R20",
+   "selected_as": [
+    "disputed"
+   ]
+  },
+  "91": {
+   "id": "G2/R07",
+   "selected_as": [
+    "disputed"
+   ]
+  },
+  "92": {
+   "id": "G12/R07",
+   "selected_as": [
+    "changed"
+   ]
+  },
+  "93": {
+   "id": "G1/R12",
+   "selected_as": [
+    "disputed"
+   ]
+  },
+  "94": {
+   "id": "G7/R07",
+   "selected_as": [
+    "sample"
+   ]
+  },
+  "95": {
+   "id": "G4/R20",
+   "selected_as": [
+    "disputed"
+   ]
+  },
+  "96": {
+   "id": "G2/R09",
+   "selected_as": [
+    "disputed"
+   ]
+  },
+  "97": {
+   "id": "G2/R14",
+   "selected_as": [
+    "changed"
+   ]
+  },
+  "98": {
+   "id": "G2/R17",
+   "selected_as": [
+    "sample"
+   ]
+  },
+  "99": {
+   "id": "G6/R05",
+   "selected_as": [
+    "changed"
+   ]
+  },
+  "100": {
+   "id": "BID/B2/S2",
+   "selected_as": [
+    "critical"
+   ]
+  },
+  "101": {
+   "id": "G10/R03",
+   "selected_as": [
+    "sample"
+   ]
+  },
+  "102": {
+   "id": "G9/R09",
+   "selected_as": [
+    "critical"
+   ]
+  },
+  "103": {
+   "id": "G8/R05",
+   "selected_as": [
+    "changed"
+   ]
+  },
+  "104": {
+   "id": "G10/R07",
+   "selected_as": [
+    "changed"
+   ]
+  },
+  "105": {
+   "id": "G3/R09",
+   "selected_as": [
+    "disputed"
+   ]
+  }
+ }
+}

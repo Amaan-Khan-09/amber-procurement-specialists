@@ -9,6 +9,59 @@ Every number comes from `python scripts/eval_handoffs.py`. All versions read the
 
 **Unresolved** is every case sent to an engineer or put to a supplier. No fixed-set case has a supplier follow-up, so no question is counted as resolved. A **wrong decision** is critical when it approves what fails or is not shown, or rejects what complies. A **missed escalation** is any case the key gives to an engineer that was decided or merely asked (tightened this round; earlier versions have none under either definition). Answer keys were written by an AI before the code they score. **No person has reviewed them yet.**
 
+## Fresh datasheets (held-out set 6): candidate frozen first, read once
+
+### Both fresh sheets (n = 42)
+
+| Outcome | v1 | v2 original | v3 previous | v4 candidate |
+|---|---|---|---|---|
+| Sent to an engineer | 35 (83%) | 26 (62%) | 19 (45%) | 16 (38%) |
+| Question to the supplier | 0 (0%) | 9 (21%) | 9 (21%) | 9 (21%) |
+| Focused clarification | 0 (0%) | 0 (0%) | 1 (2%) | 1 (2%) |
+| **Unresolved (engineer + any question)** | 35 (83%) | 35 (83%) | 30 (71%) | 27 (64%) |
+| Correct decision made alone | 6 (14%) | 6 (14%) | 11 (26%) | 13 (31%) |
+| Wrong decision, critical | 0 (0%) | 0 (0%) | 0 (0%) | 1 (2%) |
+| Wrong decision, minor | 0 (0%) | 0 (0%) | 0 (0%) | 0 (0%) |
+| Missed mandatory escalation | 1 (2%) | 1 (2%) | 2 (5%) | 2 (5%) |
+| Questions the key agrees are needed | 0 (0%) | 9 (21%) | 9 (21%) | 9 (21%) |
+| Questions not needed | 0 (0%) | 0 (0%) | 1 (2%) | 1 (2%) |
+| Unnecessary hand-off | 24 (57%) | 15 (36%) | 10 (24%) | 8 (19%) |
+| Right action on any route | 32 (76%) | 32 (76%) | 33 (79%) | 33 (79%) |
+
+Every case that differs between the previous version and the candidate:
+
+| Case | Key | v3 | v4 | Why (v4) |
+|---|---|---|---|---|
+| G12/R07 | complies, decide | complies, engineer (unnecessary hand-off) | complies, decide (correct decision) | computed from the quote: it states 24 volt, electric starter ('Starting motor voltage 24 V') |
+| G13/R07 | complies, decide | complies, engineer (unnecessary hand-off) | complies, decide (correct decision) | two independent readings agree, and the second one's quote computes: computed from the quote: it states 24 volt, electric starter ('Eng. Alternator/St |
+| G13/R10 | unclear, ask_supplier | complies, engineer (justified hand-off) | complies, decide (incorrect decision) | two independent readings agree, and the second one's quote computes: computed from the quote: it states tier ('All emergency stationary diesel engines |
+
+Every wrong decision or missed escalation by any version on these sheets:
+
+| Case | Key | v2 | v4 | Why (v4) |
+|---|---|---|---|---|
+| G12/R04 | unclear, engineer | complies, decide (missed escalation) | complies, decide (missed escalation) | offered PMG PMG AVR for Stamford Alternator meets one of: permanent magnet generator, PMG |
+| G13/R06 | unclear, engineer | complies, engineer (justified hand-off) | unclear, ask_supplier (missed escalation) | the quote states electronic but not isochronous; not stated anywhere else in the document |
+| G13/R10 | unclear, ask_supplier | complies, engineer (justified hand-off) | complies, decide (incorrect decision) | two independent readings agree, and the second one's quote computes: computed from the quote: it states tier ('All emergency stationary diesel engines |
+
+HIPOWER HTW 2000 (G12) and a Gillette SPMI 1 MW sheet (G13). Candidate frozen at `4226fc1`, keys committed at `d4443bb` before any model read them, each read once by `openai/gpt-oss-20b` (the larger model's daily free allowance was used up) with the second reader Qwen 3.8 27B. All versions score the same readings.
+
+What went wrong on them, checked against the pages:
+
+* **G13 R10, the candidate's one new critical error as labelled, is a labelling error.** Page 2 says "All emergency stationary diesel engines are Tier II compliant." The key (written by the AI) says unclear. The key is NOT edited: it is on the blind review sheet. As labelled: 0 critical (previous) to 1 (candidate).
+* G12 R04 (missed escalation, every version): the sheet lists a PMG AVR but also calls the alternator self-excited; the agent decided "complies".
+* G13 R06 (missed escalation, previous and candidate): asked the supplier about "isochronous" where the key wants an engineer.
+
+### Fresh cross-document cases (fictional bid on the HIPOWER sheet, identical routing)
+
+| Case | Expected | Datasheet only (frozen) | + bid, previous | + bid, candidate frozen | + bid, after the fix |
+|---|---|---|---|---|---|
+| R19 bid resolves: UL 2085 tank | complies, decide | unclear, ask_supplier (supplier question: not needed) | complies, decide (correct decision) | complies, decide (correct decision) | complies, decide (correct decision) |
+| R15 bid resolves: heater | complies, decide | unclear, ask_supplier (supplier question: not needed) | complies, decide (correct decision) | complies, decide (correct decision) | complies, decide (correct decision) |
+| R08 real conflict: 159.4 vs 142 gph | unclear, ask_supplier | deviates, engineer (justified hand-off) | complies, decide (incorrect decision) | complies, decide (incorrect decision) | unclear, ask_supplier (supplier question: well-founded) |
+
+**The frozen candidate (and the previous version) approved the conflicting figure.** It is a critical error. The cause was a datasheet reading below the confidence line being overridden by the bid. Fixed afterwards with a regression test; the fixed result is not an unseen result.
+
 ## Fixed development set (documents seen while building: a repair record, not an unseen score)
 
 ### All like-for-like cases (n = 256)
@@ -214,5 +267,8 @@ The second reader read only the pages that mention each open item (`scripts/targ
 
 | Case | Key | v3 | v4 | Why (v4) |
 |---|---|---|---|---|
+| G12/R04 | unclear, engineer | complies, decide (missed escalation) | complies, decide (missed escalation) | offered PMG PMG AVR for Stamford Alternator meets one of: permanent magnet generator, PMG |
+| G13/R06 | unclear, engineer | unclear, ask_supplier (missed escalation) | unclear, ask_supplier (missed escalation) | the quote states electronic but not isochronous; not stated anywhere else in the document |
+| G13/R10 | unclear, ask_supplier | complies, engineer (justified hand-off) | complies, decide (incorrect decision) | two independent readings agree, and the second one's quote computes: computed from the quote: it states tier ('All emergency stationary diesel engines |
 | BID/B2/S2 | qualified, ask_supplier | included, decide (incorrect decision) | included, decide (incorrect decision) |  |
 

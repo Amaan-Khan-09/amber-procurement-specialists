@@ -74,6 +74,42 @@ What it adds, with what a judge can check:
   a metals surcharge); arrival P10/P50/P90 from weighted, cited reports with the dissenting source kept; assumptions
   and missing inputs listed.
 
+### Round three (27 Nov 2026): fewer open items, measured on fresh sheets
+
+Tables and every changed case: **`docs/RESULTS.md`**. Criteria map: `docs/SCORECARD.md`.
+
+| 256 fixed cases (documents we built against) | original `9cd1b4e` | previous `1d14f3e` | candidate |
+|---|---|---|---|
+| sent to an engineer | 102 | 77 | **68** |
+| unresolved (engineer + any supplier question) | 161 | 144 | **127** |
+| correct decisions made alone | 94 | 111 | **128** |
+| critical wrong decisions / missed escalations | 1 / 0 | 1 / 0 | 1 / 0 |
+| questions not needed | 3 | 11 | **3** |
+| right action on any route | 218 | 213 | **226** |
+
+| Two fresh sheets, candidate frozen first (42 requirements) | original | previous | candidate |
+|---|---|---|---|
+| sent to an engineer | 26 | 19 | **16** |
+| unresolved | 35 | 30 | **27** |
+| correct decisions | 6 | 11 | **13** |
+| critical wrong decisions, as labelled | 0 | 0 | **1** (a labelling error, under review) |
+| missed escalations | 1 | 2 | 2 |
+
+A fresh cross-document case also showed a **real critical error** in the previous version and the frozen candidate: a
+bid's passing fuel figure was accepted over the datasheet's failing one. Fixed afterwards, with a regression test.
+
+* What changed: distinctive terms are searched across the datasheet, bid and replies before anything is asked;
+  starting-system and table wordings are computed in code; a ratings table's row for the project voltage is the selected
+  option; a choice is never computed into an approval; two different ticked options are ambiguous; prime, flow and
+  battery figures never settle standby, consumption or starter requirements.
+* Large documents: a targeted second reading of the pages that mention each open item
+  (`scripts/targeted_read.py`). **It turned none of the 14 affected cases into a decision.** Its quotes can contradict
+  an answer; "not found" on selected pages is never treated as confirmation.
+* Real suppliers: `python -m amber.registries "<legal name>"` prints a public-record scorecard (pass / flag / fail /
+  not verified). The federal exclusion check is **not verified** without `SAM_API_KEY`.
+* Supplier replies: the challenge page says nothing, for this track, about contacting suppliers. Questions are drafted,
+  never sent; no figure above counts a question as resolved.
+
 ### Round two (26 Nov 2026): a second look at the clause, an evidence record, real registries
 
 Full tables and every case that changed: **`docs/RESULTS.md`**. Criteria map: `docs/SCORECARD.md`. Publishing:
@@ -441,22 +477,22 @@ unmarked option that needs a person.
 
 **The independent reader.** A model of another family (Qwen 3.8 27B) reads each whole datasheet **blind** (it never sees our answers
 or our keys) and answers every requirement; the result is shown next to each answer on the page, and answers it contradicts are
-filtered as "contested" and put first in the review queue. It never changes a verdict. On 205 labelled requirements from 10
+filtered as "contested" and put first in the review queue. It never changes a verdict. On 247 labelled requirements from 12
 datasheets (`python scripts/analyze_agreement.py`):
 
 | Our pipeline's answer | Independent reader | Answers | Pipeline right |
 |---|---|---|---|
-| decided by the agent alone | agrees | 49 | 48 (98 %) |
-| handed to a person | **agrees** | 76 | **66 (87 %)** |
-| handed to a person | **disagrees** | 69 | **30 (43 %)** |
+| decided by the agent alone | agrees | 54 | 53 (98 %) |
+| handed to a person | **agrees** | 93 | **78 (84 %)** |
+| handed to a person | **disagrees** | 87 | **41 (47 %)** |
 
 So a contested answer is far more likely to be wrong, and that is what the queue order uses. Agreement is not strong enough to approve
-anything on its own (87 % is well short of the answers the agent decides alone), so everything it does not settle still goes to a
+anything on its own (84 % is well short of the answers the agent decides alone), so everything it does not settle still goes to a
 person. Two negative results, kept because they shape the design: (1) a cheaper second opinion that only sees the *quoted evidence*
 did **not** work (agreement 14 right of 20, disagreement 20 of 24: the second model shares the first one's blind spots, such as a
 derating footnote or an unmarked option elsewhere in the sheet), so it is not used; (2) where the pipeline says "unclear" and the reader
-gives a concrete verdict (complies or deviates) the reader is right only 11 of 32 times, so it never overrules (when it says "missing" it
-is right 15 of 18). These figures are the saved readings decided with today's rules, as on the Proof tab. The reader costs about 8,000 to 18,000 tokens a datasheet on its own free allowance and reads one page-chunk a
+gives a concrete verdict (complies or deviates) the reader is right only 15 of 40 times, so it never overrules (when it says "missing" it
+is right 18 of 25). These figures are the saved readings decided with today's rules, as on the Proof tab. The reader costs about 8,000 to 18,000 tokens a datasheet on its own free allowance and reads one page-chunk a
 minute on a free tier, so it is run for datasheets of up to 20 pages (`scripts/cross_check_keys.py`); the 66- and 105-page packages are
 not cross-read.
 

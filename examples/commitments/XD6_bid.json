@@ -1,0 +1,242 @@
+{
+ "tool": "check_submittal",
+ "version": "1.0",
+ "result": {
+  "tag": "GEN-A",
+  "spec": "26-32-13-engine-generators-alpha",
+  "submittal": "cps-htw2000-bid",
+  "summary": {
+   "complies": 3,
+   "deviates": 0,
+   "missing": 0,
+   "unclear": 0
+  },
+  "overall": "approve",
+  "rows": [
+   {
+    "req_id": "R08",
+    "locator": "2.1.D.1 (Diesel Fuel System)",
+    "requirement": "Average fuel consumption at full standby load must not exceed 145 gph for a 2000 kW set.",
+    "verdict": "complies",
+    "confidence": 0.95
+   },
+   {
+    "req_id": "R15",
+    "locator": "2.1.G.5",
+    "requirement": "Provide a 120 V, single-phase space heater to prevent condensation in the generator.",
+    "verdict": "complies",
+    "confidence": 0.95
+   },
+   {
+    "req_id": "R19",
+    "locator": "2.1.K.1 (In Skid Diesel Fuel Tank)",
+    "requirement": "Provide a UL 2085 listed in-skid fuel tank with usable capacity for at least 24 hours of operation at full standby load.",
+    "verdict": "complies",
+    "confidence": 0.95
+   }
+  ],
+  "unread_scanned_pages": [],
+  "provider_switches": []
+ },
+ "findings": [
+  {
+   "id": "F-R08",
+   "claim": "Average fuel consumption at full standby load must not exceed 145 gph for a 2000 kW set.",
+   "status": "complies",
+   "confidence": 0.95,
+   "citations": [
+    {
+     "doc_id": "26-32-13-engine-generators-alpha",
+     "page": 4,
+     "locator": "2.1.D.1 (Diesel Fuel System)",
+     "quote": "Average fuel consumption at full standby load shall not exceed 145 gph for 2000 kW sets",
+     "match": "exact",
+     "ocr": false
+    },
+    {
+     "doc_id": "cps-htw2000-bid",
+     "page": 1,
+     "locator": "",
+     "quote": "Fuel consumption at full standby load: 142.0 gph.",
+     "match": "exact",
+     "ocr": false
+    }
+   ],
+   "needs_human": false,
+   "why": "offered 142.0 gph meets <= 145 gph",
+   "data": {
+    "req_id": "R08",
+    "locator": "2.1.D.1 (Diesel Fuel System)",
+    "conditions": [
+     {
+      "cid": "R08a",
+      "attribute": "average_fuel_consumption_full_standby_load",
+      "condition": "<= 145 gph",
+      "verdict": "complies",
+      "why": "offered 142.0 gph meets <= 145 gph",
+      "offered": {
+       "values": [
+        142.0
+       ],
+       "unit": "gph",
+       "selected": null,
+       "quote": "Fuel consumption at full standby load: 142.0 gph.",
+       "page": 1,
+       "meets": "yes"
+      }
+     }
+    ]
+   }
+  },
+  {
+   "id": "F-R15",
+   "claim": "Provide a 120 V, single-phase space heater to prevent condensation in the generator.",
+   "status": "complies",
+   "confidence": 0.95,
+   "citations": [
+    {
+     "doc_id": "26-32-13-engine-generators-alpha",
+     "page": 5,
+     "locator": "2.1.G.5",
+     "quote": "A 120 volt, single phase space heater shall be provided to prevent condensation in the generator.",
+     "match": "exact",
+     "ocr": false
+    },
+    {
+     "doc_id": "cps-htw2000-bid",
+     "page": 1,
+     "locator": "",
+     "quote": "Alternator space heater, 120 V single phase.",
+     "match": "exact",
+     "ocr": false
+    }
+   ],
+   "needs_human": false,
+   "why": "offered 120 V single phase Alternator space heater, 120 V single phase. meets all of: 120 v, single phase, heater",
+   "data": {
+    "req_id": "R15",
+    "locator": "2.1.G.5",
+    "conditions": [
+     {
+      "cid": "R15a",
+      "attribute": "space_heater_electrical",
+      "condition": "all of: 120 v, single phase, heater",
+      "verdict": "complies",
+      "why": "offered 120 V single phase Alternator space heater, 120 V single phase. meets all of: 120 v, single phase, heater",
+      "offered": {
+       "values": [
+        "120 V single phase"
+       ],
+       "unit": null,
+       "selected": null,
+       "quote": "Alternator space heater, 120 V single phase.",
+       "page": 1,
+       "meets": "yes"
+      }
+     }
+    ]
+   }
+  },
+  {
+   "id": "F-R19",
+   "claim": "Provide a UL 2085 listed in-skid fuel tank with usable capacity for at least 24 hours of operation at full standby load.",
+   "status": "complies",
+   "confidence": 0.95,
+   "citations": [
+    {
+     "doc_id": "26-32-13-engine-generators-alpha",
+     "page": 9,
+     "locator": "2.1.K.1 (In Skid Diesel Fuel Tank)",
+     "quote": "provided with a UL 2085 listed manufacturer's standard in skid fuel transfer day tank. The tank shall have usable capacity for not less than 24 hours of operation at full standby load,",
+     "match": "exact",
+     "ocr": false
+    },
+    {
+     "doc_id": "cps-htw2000-bid",
+     "page": 1,
+     "locator": "",
+     "quote": "24 hour UL 2085 sub-base fuel tank at full standby load.",
+     "match": "exact",
+     "ocr": false
+    },
+    {
+     "doc_id": "cps-htw2000-bid",
+     "page": 1,
+     "locator": "",
+     "quote": "24 hour UL 2085 sub-base fuel tank at full standby load.",
+     "match": "exact",
+     "ocr": false
+    }
+   ],
+   "needs_human": false,
+   "why": "offered UL 2085 24 hour UL 2085 sub-base fuel tank at full standby load. meets all of: ul 2085; offered 24 h meets >= 24 h",
+   "data": {
+    "req_id": "R19",
+    "locator": "2.1.K.1 (In Skid Diesel Fuel Tank)",
+    "conditions": [
+     {
+      "cid": "R19a",
+      "attribute": "fuel_tank_listing",
+      "condition": "all of: ul 2085",
+      "verdict": "complies",
+      "why": "offered UL 2085 24 hour UL 2085 sub-base fuel tank at full standby load. meets all of: ul 2085",
+      "offered": {
+       "values": [
+        "UL 2085"
+       ],
+       "unit": null,
+       "selected": null,
+       "quote": "24 hour UL 2085 sub-base fuel tank at full standby load.",
+       "page": 1,
+       "meets": "yes"
+      }
+     },
+     {
+      "cid": "R19b",
+      "attribute": "fuel_tank_capacity_at_full_standby_load",
+      "condition": ">= 24 h",
+      "verdict": "complies",
+      "why": "offered 24 h meets >= 24 h",
+      "offered": {
+       "values": [
+        24
+       ],
+       "unit": "h",
+       "selected": null,
+       "quote": "24 hour UL 2085 sub-base fuel tank at full standby load.",
+       "page": 1,
+       "meets": "yes"
+      }
+     }
+    ]
+   }
+  }
+ ],
+ "needs_human": [],
+ "run": {
+  "models": [
+   {
+    "name": "openai/gpt-oss-20b",
+    "provider": "groq",
+    "tokens_in": 944,
+    "tokens_out": 402,
+    "cost_usd": 0.000191,
+    "calls": 1
+   }
+  ],
+  "latency_ms": 2014,
+  "steps": [
+   {
+    "step": 1,
+    "purpose": "read submittal: R08a, R15a, R19a, R19b",
+    "provider": "groq",
+    "model": "openai/gpt-oss-20b",
+    "tokens_in": 944,
+    "tokens_out": 402,
+    "ms": 1096,
+    "ok": true
+   }
+  ]
+ },
+ "source_document": "data/replies_fresh/CPS_HTW2000_bid.txt"
+}

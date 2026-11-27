@@ -754,7 +754,68 @@
     "right action": 37
    }
   },
-  "fresh_set6": {},
+  "fresh_set6": {
+   "v1": {
+    "n": 42,
+    "to an engineer": 35,
+    "clarification requests": 0,
+    "supplier questions": 0,
+    "unresolved": 35,
+    "correct decisions": 6,
+    "well-founded questions": 0,
+    "incorrect decisions (critical)": 0,
+    "incorrect decisions (minor)": 0,
+    "questions not needed": 0,
+    "missed escalations": 1,
+    "unnecessary hand-offs": 24,
+    "right action": 32
+   },
+   "v2": {
+    "n": 42,
+    "to an engineer": 26,
+    "clarification requests": 0,
+    "supplier questions": 9,
+    "unresolved": 35,
+    "correct decisions": 6,
+    "well-founded questions": 9,
+    "incorrect decisions (critical)": 0,
+    "incorrect decisions (minor)": 0,
+    "questions not needed": 0,
+    "missed escalations": 1,
+    "unnecessary hand-offs": 15,
+    "right action": 32
+   },
+   "v3": {
+    "n": 42,
+    "to an engineer": 19,
+    "clarification requests": 1,
+    "supplier questions": 9,
+    "unresolved": 30,
+    "correct decisions": 11,
+    "well-founded questions": 9,
+    "incorrect decisions (critical)": 0,
+    "incorrect decisions (minor)": 0,
+    "questions not needed": 1,
+    "missed escalations": 2,
+    "unnecessary hand-offs": 10,
+    "right action": 33
+   },
+   "v4": {
+    "n": 42,
+    "to an engineer": 16,
+    "clarification requests": 1,
+    "supplier questions": 9,
+    "unresolved": 27,
+    "correct decisions": 13,
+    "well-founded questions": 9,
+    "incorrect decisions (critical)": 1,
+    "incorrect decisions (minor)": 0,
+    "questions not needed": 1,
+    "missed escalations": 2,
+    "unnecessary hand-offs": 8,
+    "right action": 33
+   }
+  },
   "new_specialist_prequal": {
    "v1": {
     "n": 36,
@@ -2182,7 +2243,7 @@
     "answer": "unclear",
     "route": "ask_supplier",
     "kind": "not established, read twice",
-    "why": "no value found, but the submittal mentions single, heater, electrical on page(s) [1, 2, 4]",
+    "why": "no value found, but the submittal mentions heater, single, electrical on page(s) [1, 2, 4]",
     "outcome": "supplier question: well-founded",
     "severity": null
    }
@@ -2980,7 +3041,7 @@
     "answer": "unclear",
     "route": "ask_supplier",
     "kind": "not established, read twice",
-    "why": "no value found, but the submittal mentions phase, heater, electrical on page(s) [1, 3]",
+    "why": "no value found, but the submittal mentions heater, phase, electrical on page(s) [1, 3]",
     "outcome": "supplier question: well-founded",
     "severity": null
    }
@@ -3018,7 +3079,7 @@
     "answer": "unclear",
     "route": "ask_supplier",
     "kind": "not established, read twice",
-    "why": "no value found, but the submittal mentions breaker, circuit, state on page(s) [1, 2]",
+    "why": "no value found, but the submittal mentions breaker, circuit, solid on page(s) [1, 2]",
     "outcome": "supplier question: well-founded",
     "severity": null
    }
@@ -3170,7 +3231,7 @@
     "answer": "unclear",
     "route": "ask_supplier",
     "kind": "not established, read twice",
-    "why": "no value found, but the submittal mentions water, heater, jacket on page(s) [1, 3, 4, 5]; no value found, but the submittal mentions water, heater, jacket on page(s) [1, 3, 4, 5]; no value found, but the submittal mentions water, phase, heater on page(s) [1, 3, 4, 5]",
+    "why": "no value found, but the submittal mentions water, heater, jacket on page(s) [1, 3, 4, 5]; no value found, but the submittal mentions water, heater, jacket on page(s) [1, 3, 4, 5]; no value found, but the submittal mentions water, heater, phase on page(s) [1, 3, 4, 5]",
     "outcome": "supplier question: well-founded",
     "severity": null
    }
@@ -3210,6 +3271,1602 @@
     "kind": "not stated",
     "why": "not stated in the submittal; not stated in the submittal",
     "outcome": "supplier question: well-founded",
+    "severity": null
+   }
+  },
+  {
+   "id": "G12/R01",
+   "group": "fresh set 6",
+   "case": "G12",
+   "req_id": "R01",
+   "expected": "complies",
+   "category": "routine",
+   "expected_route": "decide",
+   "v1": {
+    "answer": "complies",
+    "route": "decide",
+    "kind": null,
+    "outcome": "correct decision",
+    "severity": null
+   },
+   "v2": {
+    "answer": "complies",
+    "route": "decide",
+    "kind": "decided",
+    "outcome": "correct decision",
+    "severity": null
+   },
+   "v3": {
+    "answer": "complies",
+    "route": "decide",
+    "kind": "decided",
+    "outcome": "correct decision",
+    "severity": null
+   },
+   "v4": {
+    "answer": "complies",
+    "route": "decide",
+    "kind": "decided",
+    "why": "offered 2000 kW meets >= 2000 kW; offered 2500 kVA meets >= 2500 kVA",
+    "outcome": "correct decision",
+    "severity": null
+   }
+  },
+  {
+   "id": "G12/R02",
+   "group": "fresh set 6",
+   "case": "G12",
+   "req_id": "R02",
+   "expected": "unclear",
+   "category": "missing_info",
+   "expected_route": "ask_supplier",
+   "v1": {
+    "answer": "unclear",
+    "route": "engineer",
+    "kind": null,
+    "outcome": "unnecessary hand-off",
+    "severity": null
+   },
+   "v2": {
+    "answer": "unclear",
+    "route": "engineer",
+    "kind": "judgement",
+    "outcome": "unnecessary hand-off",
+    "severity": null
+   },
+   "v3": {
+    "answer": "unclear",
+    "route": "engineer",
+    "kind": "judgement",
+    "outcome": "unnecessary hand-off",
+    "severity": null
+   },
+   "v4": {
+    "answer": "unclear",
+    "route": "engineer",
+    "kind": "judgement",
+    "why": "reported quote not found in the submittal ('480Y/277 V, 3-phase, 4-wire'); value discarded; offered 60 Hz meets == 60 Hz",
+    "outcome": "unnecessary hand-off",
+    "severity": null
+   }
+  },
+  {
+   "id": "G12/R03",
+   "group": "fresh set 6",
+   "case": "G12",
+   "req_id": "R03",
+   "expected": "complies",
+   "category": "routine",
+   "expected_route": "decide",
+   "v1": {
+    "answer": "unclear",
+    "route": "engineer",
+    "kind": null,
+    "outcome": "justified hand-off",
+    "severity": null
+   },
+   "v2": {
+    "answer": "unclear",
+    "route": "engineer",
+    "kind": "judgement",
+    "outcome": "justified hand-off",
+    "severity": null
+   },
+   "v3": {
+    "answer": "unclear",
+    "route": "engineer",
+    "kind": "judgement",
+    "outcome": "justified hand-off",
+    "severity": null
+   },
+   "v4": {
+    "answer": "unclear",
+    "route": "engineer",
+    "kind": "judgement",
+    "why": "reported quote not found in the submittal ('3930 kVA'); value discarded",
+    "outcome": "justified hand-off",
+    "severity": null
+   }
+  },
+  {
+   "id": "G12/R04",
+   "group": "fresh set 6",
+   "case": "G12",
+   "req_id": "R04",
+   "expected": "unclear",
+   "category": "escalate",
+   "expected_route": "engineer",
+   "v1": {
+    "answer": "complies",
+    "route": "decide",
+    "kind": null,
+    "outcome": "missed escalation",
+    "severity": "missed escalation"
+   },
+   "v2": {
+    "answer": "complies",
+    "route": "decide",
+    "kind": "decided",
+    "outcome": "missed escalation",
+    "severity": "missed escalation"
+   },
+   "v3": {
+    "answer": "complies",
+    "route": "decide",
+    "kind": "decided",
+    "outcome": "missed escalation",
+    "severity": "missed escalation"
+   },
+   "v4": {
+    "answer": "complies",
+    "route": "decide",
+    "kind": "decided",
+    "why": "offered PMG PMG AVR for Stamford Alternator meets one of: permanent magnet generator, PMG",
+    "outcome": "missed escalation",
+    "severity": "missed escalation"
+   }
+  },
+  {
+   "id": "G12/R05",
+   "group": "fresh set 6",
+   "case": "G12",
+   "req_id": "R05",
+   "expected": "complies",
+   "category": "routine",
+   "expected_route": "decide",
+   "v1": {
+    "answer": "complies",
+    "route": "engineer",
+    "kind": null,
+    "outcome": "unnecessary hand-off",
+    "severity": null
+   },
+   "v2": {
+    "answer": "complies",
+    "route": "engineer",
+    "kind": "confirm a reading",
+    "outcome": "unnecessary hand-off",
+    "severity": null
+   },
+   "v3": {
+    "answer": "complies",
+    "route": "engineer",
+    "kind": "confirm a reading",
+    "outcome": "unnecessary hand-off",
+    "severity": null
+   },
+   "v4": {
+    "answer": "complies",
+    "route": "engineer",
+    "kind": "confirm a reading",
+    "why": "model judgement on verified quote: 'Number of cylinders 16'; model judgement on verified quote: 'Type Diesel, 4-stroke'; offered Turbocharged, intercooled Aspiration Turbocharged, intercooled meets one of: turbocharged, aftercooled, normally aspirated",
+    "outcome": "unnecessary hand-off",
+    "severity": null
+   }
+  },
+  {
+   "id": "G12/R06",
+   "group": "fresh set 6",
+   "case": "G12",
+   "req_id": "R06",
+   "expected": "unclear",
+   "category": "escalate",
+   "expected_route": "engineer",
+   "v1": {
+    "answer": "unclear",
+    "route": "engineer",
+    "kind": null,
+    "outcome": "justified hand-off",
+    "severity": null
+   },
+   "v2": {
+    "answer": "unclear",
+    "route": "engineer",
+    "kind": "judgement",
+    "outcome": "justified hand-off",
+    "severity": null
+   },
+   "v3": {
+    "answer": "unclear",
+    "route": "engineer",
+    "kind": "judgement",
+    "outcome": "justified hand-off",
+    "severity": null
+   },
+   "v4": {
+    "answer": "unclear",
+    "route": "engineer",
+    "kind": "judgement",
+    "why": "reported quote not found in the submittal ('Governor  Electrical\\nFrequency regulation  Ischronous'); value discarded",
+    "outcome": "justified hand-off",
+    "severity": null
+   }
+  },
+  {
+   "id": "G12/R07",
+   "group": "fresh set 6",
+   "case": "G12",
+   "req_id": "R07",
+   "expected": "complies",
+   "category": "routine",
+   "expected_route": "decide",
+   "v1": {
+    "answer": "complies",
+    "route": "engineer",
+    "kind": null,
+    "outcome": "unnecessary hand-off",
+    "severity": null
+   },
+   "v2": {
+    "answer": "complies",
+    "route": "engineer",
+    "kind": "contested",
+    "outcome": "unnecessary hand-off",
+    "severity": null
+   },
+   "v3": {
+    "answer": "complies",
+    "route": "engineer",
+    "kind": "contested",
+    "outcome": "unnecessary hand-off",
+    "severity": null
+   },
+   "v4": {
+    "answer": "complies",
+    "route": "decide",
+    "kind": "decided",
+    "why": "computed from the quote: it states 24 volt, electric starter ('Starting motor voltage 24 V')",
+    "outcome": "correct decision",
+    "severity": null
+   }
+  },
+  {
+   "id": "G12/R08",
+   "group": "fresh set 6",
+   "case": "G12",
+   "req_id": "R08",
+   "expected": "deviates",
+   "category": "routine",
+   "expected_route": "decide",
+   "v1": {
+    "answer": "deviates",
+    "route": "engineer",
+    "kind": null,
+    "outcome": "unnecessary hand-off",
+    "severity": null
+   },
+   "v2": {
+    "answer": "deviates",
+    "route": "engineer",
+    "kind": "confirm a reading",
+    "outcome": "unnecessary hand-off",
+    "severity": null
+   },
+   "v3": {
+    "answer": "deviates",
+    "route": "engineer",
+    "kind": "confirm a reading",
+    "outcome": "unnecessary hand-off",
+    "severity": null
+   },
+   "v4": {
+    "answer": "deviates",
+    "route": "engineer",
+    "kind": "confirm a reading",
+    "why": "offered 159.4 gph does not meet <= 145 gph; unit gph is not shown in the quote, confirm",
+    "outcome": "unnecessary hand-off",
+    "severity": null
+   }
+  },
+  {
+   "id": "G12/R09",
+   "group": "fresh set 6",
+   "case": "G12",
+   "req_id": "R09",
+   "expected": "unclear",
+   "category": "missing_info",
+   "expected_route": "ask_supplier",
+   "v1": {
+    "answer": "unclear",
+    "route": "engineer",
+    "kind": null,
+    "outcome": "unnecessary hand-off",
+    "severity": null
+   },
+   "v2": {
+    "answer": "unclear",
+    "route": "ask_supplier",
+    "kind": "not established, read twice",
+    "outcome": "supplier question: well-founded",
+    "severity": null
+   },
+   "v3": {
+    "answer": "unclear",
+    "route": "ask_supplier",
+    "kind": "not established, read twice",
+    "outcome": "supplier question: well-founded",
+    "severity": null
+   },
+   "v4": {
+    "answer": "unclear",
+    "route": "ask_supplier",
+    "kind": "not established, read twice",
+    "why": "no value found, but the submittal mentions cooling, radiator, unit on page(s) [1, 2, 4]; no value found, but the submittal mentions temperature, ambient on page(s) [1, 3, 4]",
+    "outcome": "supplier question: well-founded",
+    "severity": null
+   }
+  },
+  {
+   "id": "G12/R10",
+   "group": "fresh set 6",
+   "case": "G12",
+   "req_id": "R10",
+   "expected": "complies",
+   "category": "routine",
+   "expected_route": "decide",
+   "v1": {
+    "answer": "complies",
+    "route": "decide",
+    "kind": null,
+    "outcome": "correct decision",
+    "severity": null
+   },
+   "v2": {
+    "answer": "complies",
+    "route": "decide",
+    "kind": "decided",
+    "outcome": "correct decision",
+    "severity": null
+   },
+   "v3": {
+    "answer": "complies",
+    "route": "decide",
+    "kind": "decided",
+    "outcome": "correct decision",
+    "severity": null
+   },
+   "v4": {
+    "answer": "complies",
+    "route": "decide",
+    "kind": "decided",
+    "why": "offered Tier 2 EPA certified Tier 2 meets one of: tier 2, tier 4",
+    "outcome": "correct decision",
+    "severity": null
+   }
+  },
+  {
+   "id": "G12/R11",
+   "group": "fresh set 6",
+   "case": "G12",
+   "req_id": "R11",
+   "expected": "missing",
+   "category": "missing_info",
+   "expected_route": "ask_supplier",
+   "v1": {
+    "answer": "unclear",
+    "route": "engineer",
+    "kind": null,
+    "outcome": "unnecessary hand-off",
+    "severity": null
+   },
+   "v2": {
+    "answer": "unclear",
+    "route": "ask_supplier",
+    "kind": "not established, read twice",
+    "outcome": "supplier question: well-founded",
+    "severity": null
+   },
+   "v3": {
+    "answer": "unclear",
+    "route": "ask_supplier",
+    "kind": "not established, read twice",
+    "outcome": "supplier question: well-founded",
+    "severity": null
+   },
+   "v4": {
+    "answer": "unclear",
+    "route": "ask_supplier",
+    "kind": "not established, read twice",
+    "why": "not stated in the submittal; no value found, but the submittal mentions temperature, range, ambient on page(s) [1, 3, 4]",
+    "outcome": "supplier question: well-founded",
+    "severity": null
+   }
+  },
+  {
+   "id": "G12/R12",
+   "group": "fresh set 6",
+   "case": "G12",
+   "req_id": "R12",
+   "expected": "complies",
+   "category": "routine",
+   "expected_route": "decide",
+   "v1": {
+    "answer": "complies",
+    "route": "decide",
+    "kind": null,
+    "outcome": "correct decision",
+    "severity": null
+   },
+   "v2": {
+    "answer": "complies",
+    "route": "decide",
+    "kind": "decided",
+    "outcome": "correct decision",
+    "severity": null
+   },
+   "v3": {
+    "answer": "complies",
+    "route": "decide",
+    "kind": "decided",
+    "outcome": "correct decision",
+    "severity": null
+   },
+   "v4": {
+    "answer": "complies",
+    "route": "decide",
+    "kind": "decided",
+    "why": "offered 1800 rpm meets <= 1800 rpm",
+    "outcome": "correct decision",
+    "severity": null
+   }
+  },
+  {
+   "id": "G12/R13",
+   "group": "fresh set 6",
+   "case": "G12",
+   "req_id": "R13",
+   "expected": "complies",
+   "category": "routine",
+   "expected_route": "decide",
+   "v1": {
+    "answer": "complies",
+    "route": "engineer",
+    "kind": null,
+    "outcome": "unnecessary hand-off",
+    "severity": null
+   },
+   "v2": {
+    "answer": "complies",
+    "route": "engineer",
+    "kind": "confirm a reading",
+    "outcome": "unnecessary hand-off",
+    "severity": null
+   },
+   "v3": {
+    "answer": "unclear",
+    "route": "ask_supplier",
+    "kind": "clarification",
+    "outcome": "clarification: not needed",
+    "severity": "minor"
+   },
+   "v4": {
+    "answer": "unclear",
+    "route": "ask_supplier",
+    "kind": "clarification",
+    "why": "the quote states brushless but not 4 pole, 2/3 pitch; not stated anywhere else in the document",
+    "outcome": "clarification: not needed",
+    "severity": "minor"
+   }
+  },
+  {
+   "id": "G12/R14",
+   "group": "fresh set 6",
+   "case": "G12",
+   "req_id": "R14",
+   "expected": "complies",
+   "category": "routine",
+   "expected_route": "decide",
+   "v1": {
+    "answer": "complies",
+    "route": "decide",
+    "kind": null,
+    "outcome": "correct decision",
+    "severity": null
+   },
+   "v2": {
+    "answer": "complies",
+    "route": "decide",
+    "kind": "decided",
+    "outcome": "correct decision",
+    "severity": null
+   },
+   "v3": {
+    "answer": "complies",
+    "route": "decide",
+    "kind": "decided",
+    "outcome": "correct decision",
+    "severity": null
+   },
+   "v4": {
+    "answer": "complies",
+    "route": "decide",
+    "kind": "decided",
+    "why": "offered Class H Insulation Class H meets one of: class f, class h",
+    "outcome": "correct decision",
+    "severity": null
+   }
+  },
+  {
+   "id": "G12/R15",
+   "group": "fresh set 6",
+   "case": "G12",
+   "req_id": "R15",
+   "expected": "unclear",
+   "category": "missing_info",
+   "expected_route": "ask_supplier",
+   "v1": {
+    "answer": "unclear",
+    "route": "engineer",
+    "kind": null,
+    "outcome": "unnecessary hand-off",
+    "severity": null
+   },
+   "v2": {
+    "answer": "unclear",
+    "route": "ask_supplier",
+    "kind": "not established, read twice",
+    "outcome": "supplier question: well-founded",
+    "severity": null
+   },
+   "v3": {
+    "answer": "unclear",
+    "route": "ask_supplier",
+    "kind": "not established, read twice",
+    "outcome": "supplier question: well-founded",
+    "severity": null
+   },
+   "v4": {
+    "answer": "unclear",
+    "route": "ask_supplier",
+    "kind": "not established, read twice",
+    "why": "no value found, but the submittal mentions phase, electrical, single on page(s) [1, 2, 3, 4]",
+    "outcome": "supplier question: well-founded",
+    "severity": null
+   }
+  },
+  {
+   "id": "G12/R16",
+   "group": "fresh set 6",
+   "case": "G12",
+   "req_id": "R16",
+   "expected": "unclear",
+   "category": "missing_info",
+   "expected_route": "ask_supplier",
+   "v1": {
+    "answer": "unclear",
+    "route": "engineer",
+    "kind": null,
+    "outcome": "unnecessary hand-off",
+    "severity": null
+   },
+   "v2": {
+    "answer": "unclear",
+    "route": "ask_supplier",
+    "kind": "not established, read twice",
+    "outcome": "supplier question: well-founded",
+    "severity": null
+   },
+   "v3": {
+    "answer": "unclear",
+    "route": "ask_supplier",
+    "kind": "not established, read twice",
+    "outcome": "supplier question: well-founded",
+    "severity": null
+   },
+   "v4": {
+    "answer": "unclear",
+    "route": "ask_supplier",
+    "kind": "not established, read twice",
+    "why": "no value found, but the submittal mentions circuit, pole, breaker on page(s) [1, 2, 3, 4]",
+    "outcome": "supplier question: well-founded",
+    "severity": null
+   }
+  },
+  {
+   "id": "G12/R17",
+   "group": "fresh set 6",
+   "case": "G12",
+   "req_id": "R17",
+   "expected": "complies",
+   "category": "routine",
+   "expected_route": "decide",
+   "v1": {
+    "answer": "complies",
+    "route": "engineer",
+    "kind": null,
+    "outcome": "unnecessary hand-off",
+    "severity": null
+   },
+   "v2": {
+    "answer": "complies",
+    "route": "engineer",
+    "kind": "confirm a reading",
+    "outcome": "unnecessary hand-off",
+    "severity": null
+   },
+   "v3": {
+    "answer": "complies",
+    "route": "decide",
+    "kind": "decided",
+    "outcome": "correct decision",
+    "severity": null
+   },
+   "v4": {
+    "answer": "complies",
+    "route": "decide",
+    "kind": "decided",
+    "why": "computed from the quote: 1 % meets <= 2 % ('Voltage regulation \u2013 no load to full load plus or minus 1%')",
+    "outcome": "correct decision",
+    "severity": null
+   }
+  },
+  {
+   "id": "G12/R18",
+   "group": "fresh set 6",
+   "case": "G12",
+   "req_id": "R18",
+   "expected": "complies",
+   "category": "routine",
+   "expected_route": "decide",
+   "v1": {
+    "answer": "complies",
+    "route": "engineer",
+    "kind": null,
+    "outcome": "unnecessary hand-off",
+    "severity": null
+   },
+   "v2": {
+    "answer": "complies",
+    "route": "engineer",
+    "kind": "confirm a reading",
+    "outcome": "unnecessary hand-off",
+    "severity": null
+   },
+   "v3": {
+    "answer": "complies",
+    "route": "decide",
+    "kind": "decided",
+    "outcome": "correct decision",
+    "severity": null
+   },
+   "v4": {
+    "answer": "complies",
+    "route": "decide",
+    "kind": "decided",
+    "why": "computed from the quote: <=5 % meets <= 5 % ('Line harmonics 5% maximum')",
+    "outcome": "correct decision",
+    "severity": null
+   }
+  },
+  {
+   "id": "G12/R19",
+   "group": "fresh set 6",
+   "case": "G12",
+   "req_id": "R19",
+   "expected": "unclear",
+   "category": "missing_info",
+   "expected_route": "ask_supplier",
+   "v1": {
+    "answer": "unclear",
+    "route": "engineer",
+    "kind": null,
+    "outcome": "unnecessary hand-off",
+    "severity": null
+   },
+   "v2": {
+    "answer": "unclear",
+    "route": "ask_supplier",
+    "kind": "not established, read twice",
+    "outcome": "supplier question: well-founded",
+    "severity": null
+   },
+   "v3": {
+    "answer": "unclear",
+    "route": "ask_supplier",
+    "kind": "not established, read twice",
+    "outcome": "supplier question: well-founded",
+    "severity": null
+   },
+   "v4": {
+    "answer": "unclear",
+    "route": "ask_supplier",
+    "kind": "not established, read twice",
+    "why": "no value found, but the submittal mentions fuel, tank on page(s) [2, 3, 4]; no value found, but the submittal mentions fuel, capacity, tank on page(s) [1, 2, 3, 4]",
+    "outcome": "supplier question: well-founded",
+    "severity": null
+   }
+  },
+  {
+   "id": "G12/R20",
+   "group": "fresh set 6",
+   "case": "G12",
+   "req_id": "R20",
+   "expected": "unclear",
+   "category": "missing_info",
+   "expected_route": "ask_supplier",
+   "v1": {
+    "answer": "unclear",
+    "route": "engineer",
+    "kind": null,
+    "outcome": "unnecessary hand-off",
+    "severity": null
+   },
+   "v2": {
+    "answer": "unclear",
+    "route": "ask_supplier",
+    "kind": "not established, read twice",
+    "outcome": "supplier question: well-founded",
+    "severity": null
+   },
+   "v3": {
+    "answer": "unclear",
+    "route": "ask_supplier",
+    "kind": "not established, read twice",
+    "outcome": "supplier question: well-founded",
+    "severity": null
+   },
+   "v4": {
+    "answer": "unclear",
+    "route": "ask_supplier",
+    "kind": "not established, read twice",
+    "why": "no value found, but the submittal mentions heater on page(s) [3]; no value found, but the submittal mentions heater on page(s) [3]; no value found, but the submittal mentions phase, electrical, heater on page(s) [1, 2, 3, 4]",
+    "outcome": "supplier question: well-founded",
+    "severity": null
+   }
+  },
+  {
+   "id": "G12/R21",
+   "group": "fresh set 6",
+   "case": "G12",
+   "req_id": "R21",
+   "expected": "unclear",
+   "category": "missing_info",
+   "expected_route": "ask_supplier",
+   "v1": {
+    "answer": "unclear",
+    "route": "engineer",
+    "kind": null,
+    "outcome": "unnecessary hand-off",
+    "severity": null
+   },
+   "v2": {
+    "answer": "unclear",
+    "route": "engineer",
+    "kind": "contested",
+    "outcome": "unnecessary hand-off",
+    "severity": null
+   },
+   "v3": {
+    "answer": "unclear",
+    "route": "engineer",
+    "kind": "contested",
+    "outcome": "unnecessary hand-off",
+    "severity": null
+   },
+   "v4": {
+    "answer": "unclear",
+    "route": "engineer",
+    "kind": "contested",
+    "why": "no value found, but the submittal mentions enclosure on page(s) [3]; no value found, but the submittal mentions silencer on page(s) [3]",
+    "outcome": "unnecessary hand-off",
+    "severity": null
+   }
+  },
+  {
+   "id": "G13/R01",
+   "group": "fresh set 6",
+   "case": "G13",
+   "req_id": "R01",
+   "expected": "complies",
+   "category": "routine",
+   "expected_route": "decide",
+   "v1": {
+    "answer": "complies",
+    "route": "engineer",
+    "kind": null,
+    "outcome": "unnecessary hand-off",
+    "severity": null
+   },
+   "v2": {
+    "answer": "complies",
+    "route": "engineer",
+    "kind": "contested",
+    "outcome": "unnecessary hand-off",
+    "severity": null
+   },
+   "v3": {
+    "answer": "complies",
+    "route": "decide",
+    "kind": "decided",
+    "outcome": "correct decision",
+    "severity": null
+   },
+   "v4": {
+    "answer": "complies",
+    "route": "decide",
+    "kind": "decided",
+    "why": "offered 1000 kW meets >= 1000 kW; unit kW is not shown in the quote; the unit is in the table heading 'KW/KVA' (page 1); offered 1250 kVA meets >= 1250 kVA; unit kVA is not shown in the quote; the unit is in the table heading 'KW/KVA' (page 1)",
+    "outcome": "correct decision",
+    "severity": null
+   }
+  },
+  {
+   "id": "G13/R02",
+   "group": "fresh set 6",
+   "case": "G13",
+   "req_id": "R02",
+   "expected": "unclear",
+   "category": "missing_info",
+   "expected_route": "ask_supplier",
+   "v1": {
+    "answer": "complies",
+    "route": "engineer",
+    "kind": null,
+    "outcome": "justified hand-off",
+    "severity": null
+   },
+   "v2": {
+    "answer": "complies",
+    "route": "engineer",
+    "kind": "confirm a reading",
+    "outcome": "justified hand-off",
+    "severity": null
+   },
+   "v3": {
+    "answer": "complies",
+    "route": "engineer",
+    "kind": "confirm a reading",
+    "outcome": "justified hand-off",
+    "severity": null
+   },
+   "v4": {
+    "answer": "complies",
+    "route": "engineer",
+    "kind": "confirm a reading",
+    "why": "model judgement on verified quote: '277 480 3 60 1000/1250'; offered 60 Hz meets == 60 Hz; unit Hz is not shown in the quote; the same value with its unit is printed as '60 HZ MODEL'",
+    "outcome": "justified hand-off",
+    "severity": null
+   }
+  },
+  {
+   "id": "G13/R03",
+   "group": "fresh set 6",
+   "case": "G13",
+   "req_id": "R03",
+   "expected": "complies",
+   "category": "routine",
+   "expected_route": "decide",
+   "v1": {
+    "answer": "unclear",
+    "route": "engineer",
+    "kind": null,
+    "outcome": "justified hand-off",
+    "severity": null
+   },
+   "v2": {
+    "answer": "unclear",
+    "route": "engineer",
+    "kind": "judgement",
+    "outcome": "justified hand-off",
+    "severity": null
+   },
+   "v3": {
+    "answer": "complies",
+    "route": "decide",
+    "kind": "decided",
+    "outcome": "correct decision",
+    "severity": null
+   },
+   "v4": {
+    "answer": "complies",
+    "route": "decide",
+    "kind": "decided",
+    "why": "disputed clause inspected: the independent reader's quote is on page 2; computed from the quote: 3100 kVA meets >= 1500 kVA",
+    "outcome": "correct decision",
+    "severity": null
+   }
+  },
+  {
+   "id": "G13/R04",
+   "group": "fresh set 6",
+   "case": "G13",
+   "req_id": "R04",
+   "expected": "complies",
+   "category": "routine",
+   "expected_route": "decide",
+   "v1": {
+    "answer": "complies",
+    "route": "decide",
+    "kind": null,
+    "outcome": "correct decision",
+    "severity": null
+   },
+   "v2": {
+    "answer": "complies",
+    "route": "decide",
+    "kind": "decided",
+    "outcome": "correct decision",
+    "severity": null
+   },
+   "v3": {
+    "answer": "complies",
+    "route": "decide",
+    "kind": "decided",
+    "outcome": "correct decision",
+    "severity": null
+   },
+   "v4": {
+    "answer": "complies",
+    "route": "decide",
+    "kind": "decided",
+    "why": "offered PMG Brushless, PMG excited meets one of: PMG, permanent magnet",
+    "outcome": "correct decision",
+    "severity": null
+   }
+  },
+  {
+   "id": "G13/R05",
+   "group": "fresh set 6",
+   "case": "G13",
+   "req_id": "R05",
+   "expected": "complies",
+   "category": "routine",
+   "expected_route": "decide",
+   "v1": {
+    "answer": "complies",
+    "route": "engineer",
+    "kind": null,
+    "outcome": "unnecessary hand-off",
+    "severity": null
+   },
+   "v2": {
+    "answer": "complies",
+    "route": "engineer",
+    "kind": "contested",
+    "outcome": "unnecessary hand-off",
+    "severity": null
+   },
+   "v3": {
+    "answer": "complies",
+    "route": "engineer",
+    "kind": "contested",
+    "outcome": "unnecessary hand-off",
+    "severity": null
+   },
+   "v4": {
+    "answer": "complies",
+    "route": "engineer",
+    "kind": "contested",
+    "why": "offered 12 12 Cylinders, V-12 meets one of: 8 cylinder, 12 cylinder, 16 cylinder; offered 4 cycle 4 cycle meets one of: 4 cycle, 4-cycle, four stroke; model judgement on verified quote: 'Turbo After Cooler'",
+    "outcome": "unnecessary hand-off",
+    "severity": null
+   }
+  },
+  {
+   "id": "G13/R06",
+   "group": "fresh set 6",
+   "case": "G13",
+   "req_id": "R06",
+   "expected": "unclear",
+   "category": "escalate",
+   "expected_route": "engineer",
+   "v1": {
+    "answer": "complies",
+    "route": "engineer",
+    "kind": null,
+    "outcome": "justified hand-off",
+    "severity": null
+   },
+   "v2": {
+    "answer": "complies",
+    "route": "engineer",
+    "kind": "confirm a reading",
+    "outcome": "justified hand-off",
+    "severity": null
+   },
+   "v3": {
+    "answer": "unclear",
+    "route": "ask_supplier",
+    "kind": "clarification",
+    "outcome": "missed escalation",
+    "severity": "missed escalation"
+   },
+   "v4": {
+    "answer": "unclear",
+    "route": "ask_supplier",
+    "kind": "clarification",
+    "why": "the quote states electronic but not isochronous; not stated anywhere else in the document",
+    "outcome": "missed escalation",
+    "severity": "missed escalation"
+   }
+  },
+  {
+   "id": "G13/R07",
+   "group": "fresh set 6",
+   "case": "G13",
+   "req_id": "R07",
+   "expected": "complies",
+   "category": "routine",
+   "expected_route": "decide",
+   "v1": {
+    "answer": "complies",
+    "route": "engineer",
+    "kind": null,
+    "outcome": "unnecessary hand-off",
+    "severity": null
+   },
+   "v2": {
+    "answer": "complies",
+    "route": "engineer",
+    "kind": "confirm a reading",
+    "outcome": "unnecessary hand-off",
+    "severity": null
+   },
+   "v3": {
+    "answer": "complies",
+    "route": "engineer",
+    "kind": "confirm a reading",
+    "outcome": "unnecessary hand-off",
+    "severity": null
+   },
+   "v4": {
+    "answer": "complies",
+    "route": "decide",
+    "kind": "decided",
+    "why": "two independent readings agree, and the second one's quote computes: computed from the quote: it states 24 volt, electric starter ('Eng. Alternator/Starter: 24 VDC, negative ground')",
+    "outcome": "correct decision",
+    "severity": null
+   }
+  },
+  {
+   "id": "G13/R08",
+   "group": "fresh set 6",
+   "case": "G13",
+   "req_id": "R08",
+   "expected": "deviates",
+   "category": "routine",
+   "expected_route": "decide",
+   "v1": {
+    "answer": "deviates",
+    "route": "engineer",
+    "kind": null,
+    "outcome": "unnecessary hand-off",
+    "severity": null
+   },
+   "v2": {
+    "answer": "deviates",
+    "route": "engineer",
+    "kind": "confirm a reading",
+    "outcome": "unnecessary hand-off",
+    "severity": null
+   },
+   "v3": {
+    "answer": "deviates",
+    "route": "decide",
+    "kind": "decided",
+    "outcome": "correct decision",
+    "severity": null
+   },
+   "v4": {
+    "answer": "deviates",
+    "route": "decide",
+    "kind": "decided",
+    "why": "offered 75.1 gph does not meet <= 75 gph; unit gph is not shown in the quote; the unit is in the table heading 'GAL/HR  (LITER/HR)' (page 2)",
+    "outcome": "correct decision",
+    "severity": null
+   }
+  },
+  {
+   "id": "G13/R09",
+   "group": "fresh set 6",
+   "case": "G13",
+   "req_id": "R09",
+   "expected": "complies",
+   "category": "escalate",
+   "expected_route": "engineer",
+   "v1": {
+    "answer": "complies",
+    "route": "engineer",
+    "kind": null,
+    "outcome": "justified hand-off",
+    "severity": null
+   },
+   "v2": {
+    "answer": "complies",
+    "route": "engineer",
+    "kind": "confirm a reading",
+    "outcome": "justified hand-off",
+    "severity": null
+   },
+   "v3": {
+    "answer": "complies",
+    "route": "engineer",
+    "kind": "confirm a reading",
+    "outcome": "justified hand-off",
+    "severity": null
+   },
+   "v4": {
+    "answer": "complies",
+    "route": "engineer",
+    "kind": "confirm a reading",
+    "why": "model judgement on verified quote: 'Type of System ............................ Air to Air, Charged Air Cooler'; the quote was shortened, confirm on the page; offered 122 \u00b0F meets >= 122 \u00b0F; unit \u00b0F is not shown in the quote, confirm",
+    "outcome": "justified hand-off",
+    "severity": null
+   }
+  },
+  {
+   "id": "G13/R10",
+   "group": "fresh set 6",
+   "case": "G13",
+   "req_id": "R10",
+   "expected": "unclear",
+   "category": "missing_info",
+   "expected_route": "ask_supplier",
+   "v1": {
+    "answer": "complies",
+    "route": "engineer",
+    "kind": null,
+    "outcome": "justified hand-off",
+    "severity": null
+   },
+   "v2": {
+    "answer": "complies",
+    "route": "engineer",
+    "kind": "confirm a reading",
+    "outcome": "justified hand-off",
+    "severity": null
+   },
+   "v3": {
+    "answer": "complies",
+    "route": "engineer",
+    "kind": "confirm a reading",
+    "outcome": "justified hand-off",
+    "severity": null
+   },
+   "v4": {
+    "answer": "complies",
+    "route": "decide",
+    "kind": "decided",
+    "why": "two independent readings agree, and the second one's quote computes: computed from the quote: it states tier ('All emergency stationary diesel engines are Tier II compliant.')",
+    "outcome": "incorrect decision",
+    "severity": "critical"
+   }
+  },
+  {
+   "id": "G13/R11",
+   "group": "fresh set 6",
+   "case": "G13",
+   "req_id": "R11",
+   "expected": "deviates",
+   "category": "escalate",
+   "expected_route": "engineer",
+   "v1": {
+    "answer": "unclear",
+    "route": "engineer",
+    "kind": null,
+    "outcome": "justified hand-off",
+    "severity": null
+   },
+   "v2": {
+    "answer": "unclear",
+    "route": "engineer",
+    "kind": "judgement",
+    "outcome": "justified hand-off",
+    "severity": null
+   },
+   "v3": {
+    "answer": "unclear",
+    "route": "engineer",
+    "kind": "judgement",
+    "outcome": "justified hand-off",
+    "severity": null
+   },
+   "v4": {
+    "answer": "unclear",
+    "route": "engineer",
+    "kind": "judgement",
+    "why": "the submittal has a passage about it ('3% per 1000 ft. above 3000 ft.') but no value that can be compared; reported value(s) ['10'] do not appear in the quote 'Ambient Capacity of Radiator 122 (50)'; discarded",
+    "outcome": "justified hand-off",
+    "severity": null
+   }
+  },
+  {
+   "id": "G13/R12",
+   "group": "fresh set 6",
+   "case": "G13",
+   "req_id": "R12",
+   "expected": "complies",
+   "category": "routine",
+   "expected_route": "decide",
+   "v1": {
+    "answer": "complies",
+    "route": "decide",
+    "kind": null,
+    "outcome": "correct decision",
+    "severity": null
+   },
+   "v2": {
+    "answer": "complies",
+    "route": "decide",
+    "kind": "decided",
+    "outcome": "correct decision",
+    "severity": null
+   },
+   "v3": {
+    "answer": "complies",
+    "route": "decide",
+    "kind": "decided",
+    "outcome": "correct decision",
+    "severity": null
+   },
+   "v4": {
+    "answer": "complies",
+    "route": "decide",
+    "kind": "decided",
+    "why": "offered 1800 rpm meets <= 1800 rpm",
+    "outcome": "correct decision",
+    "severity": null
+   }
+  },
+  {
+   "id": "G13/R13",
+   "group": "fresh set 6",
+   "case": "G13",
+   "req_id": "R13",
+   "expected": "unclear",
+   "category": "missing_info",
+   "expected_route": "ask_supplier",
+   "v1": {
+    "answer": "unclear",
+    "route": "engineer",
+    "kind": null,
+    "outcome": "unnecessary hand-off",
+    "severity": null
+   },
+   "v2": {
+    "answer": "unclear",
+    "route": "engineer",
+    "kind": "judgement",
+    "outcome": "unnecessary hand-off",
+    "severity": null
+   },
+   "v3": {
+    "answer": "unclear",
+    "route": "engineer",
+    "kind": "judgement",
+    "outcome": "unnecessary hand-off",
+    "severity": null
+   },
+   "v4": {
+    "answer": "unclear",
+    "route": "engineer",
+    "kind": "judgement",
+    "why": "could not compare units: Cannot convert from 'rod' ([length]) to 'dimensionless' (dimensionless); the quote states brushless but not 2/3 pitch; not stated anywhere else in the document",
+    "outcome": "unnecessary hand-off",
+    "severity": null
+   }
+  },
+  {
+   "id": "G13/R14",
+   "group": "fresh set 6",
+   "case": "G13",
+   "req_id": "R14",
+   "expected": "complies",
+   "category": "routine",
+   "expected_route": "decide",
+   "v1": {
+    "answer": "unclear",
+    "route": "engineer",
+    "kind": null,
+    "outcome": "justified hand-off",
+    "severity": null
+   },
+   "v2": {
+    "answer": "unclear",
+    "route": "engineer",
+    "kind": "judgement",
+    "outcome": "justified hand-off",
+    "severity": null
+   },
+   "v3": {
+    "answer": "unclear",
+    "route": "engineer",
+    "kind": "judgement",
+    "outcome": "justified hand-off",
+    "severity": null
+   },
+   "v4": {
+    "answer": "unclear",
+    "route": "engineer",
+    "kind": "judgement",
+    "why": "reported quote not found in the submittal ('Class H, 180\u00b0C insulation'); value discarded",
+    "outcome": "justified hand-off",
+    "severity": null
+   }
+  },
+  {
+   "id": "G13/R15",
+   "group": "fresh set 6",
+   "case": "G13",
+   "req_id": "R15",
+   "expected": "missing",
+   "category": "missing_info",
+   "expected_route": "ask_supplier",
+   "v1": {
+    "answer": "unclear",
+    "route": "engineer",
+    "kind": null,
+    "outcome": "unnecessary hand-off",
+    "severity": null
+   },
+   "v2": {
+    "answer": "unclear",
+    "route": "ask_supplier",
+    "kind": "not established, read twice",
+    "outcome": "supplier question: well-founded",
+    "severity": null
+   },
+   "v3": {
+    "answer": "unclear",
+    "route": "ask_supplier",
+    "kind": "not established, read twice",
+    "outcome": "supplier question: well-founded",
+    "severity": null
+   },
+   "v4": {
+    "answer": "unclear",
+    "route": "ask_supplier",
+    "kind": "not established, read twice",
+    "why": "no value found, but the submittal mentions phase, single, electrical on page(s) [1, 2, 3, 4]",
+    "outcome": "supplier question: well-founded",
+    "severity": null
+   }
+  },
+  {
+   "id": "G13/R16",
+   "group": "fresh set 6",
+   "case": "G13",
+   "req_id": "R16",
+   "expected": "unclear",
+   "category": "missing_info",
+   "expected_route": "ask_supplier",
+   "v1": {
+    "answer": "unclear",
+    "route": "engineer",
+    "kind": null,
+    "outcome": "unnecessary hand-off",
+    "severity": null
+   },
+   "v2": {
+    "answer": "unclear",
+    "route": "engineer",
+    "kind": "judgement",
+    "outcome": "unnecessary hand-off",
+    "severity": null
+   },
+   "v3": {
+    "answer": "unclear",
+    "route": "engineer",
+    "kind": "judgement",
+    "outcome": "unnecessary hand-off",
+    "severity": null
+   },
+   "v4": {
+    "answer": "unclear",
+    "route": "engineer",
+    "kind": "judgement",
+    "why": "reported quote not found in the submittal ('3-pole generator output circuit breaker(s)'); value discarded; offered solid state Solid State, HZ/Volts meets all of: solid state",
+    "outcome": "unnecessary hand-off",
+    "severity": null
+   }
+  },
+  {
+   "id": "G13/R17",
+   "group": "fresh set 6",
+   "case": "G13",
+   "req_id": "R17",
+   "expected": "complies",
+   "category": "routine",
+   "expected_route": "decide",
+   "v1": {
+    "answer": "unclear",
+    "route": "engineer",
+    "kind": null,
+    "outcome": "justified hand-off",
+    "severity": null
+   },
+   "v2": {
+    "answer": "unclear",
+    "route": "engineer",
+    "kind": "judgement",
+    "outcome": "justified hand-off",
+    "severity": null
+   },
+   "v3": {
+    "answer": "unclear",
+    "route": "engineer",
+    "kind": "judgement",
+    "outcome": "justified hand-off",
+    "severity": null
+   },
+   "v4": {
+    "answer": "unclear",
+    "route": "engineer",
+    "kind": "judgement",
+    "why": "reported value(s) [0.5] do not appear in the quote '\u00bd%, No load to full load'; discarded",
+    "outcome": "justified hand-off",
+    "severity": null
+   }
+  },
+  {
+   "id": "G13/R18",
+   "group": "fresh set 6",
+   "case": "G13",
+   "req_id": "R18",
+   "expected": "complies",
+   "category": "routine",
+   "expected_route": "decide",
+   "v1": {
+    "answer": "unclear",
+    "route": "engineer",
+    "kind": null,
+    "outcome": "justified hand-off",
+    "severity": null
+   },
+   "v2": {
+    "answer": "unclear",
+    "route": "engineer",
+    "kind": "judgement",
+    "outcome": "justified hand-off",
+    "severity": null
+   },
+   "v3": {
+    "answer": "unclear",
+    "route": "engineer",
+    "kind": "judgement",
+    "outcome": "justified hand-off",
+    "severity": null
+   },
+   "v4": {
+    "answer": "unclear",
+    "route": "engineer",
+    "kind": "judgement",
+    "why": "reported value(s) [3.5] do not appear in the quote 'Max 3\u00bd%'; discarded",
+    "outcome": "justified hand-off",
+    "severity": null
+   }
+  },
+  {
+   "id": "G13/R19",
+   "group": "fresh set 6",
+   "case": "G13",
+   "req_id": "R19",
+   "expected": "unclear",
+   "category": "missing_info",
+   "expected_route": "ask_supplier",
+   "v1": {
+    "answer": "unclear",
+    "route": "engineer",
+    "kind": null,
+    "outcome": "unnecessary hand-off",
+    "severity": null
+   },
+   "v2": {
+    "answer": "unclear",
+    "route": "ask_supplier",
+    "kind": "not established, read twice",
+    "outcome": "supplier question: well-founded",
+    "severity": null
+   },
+   "v3": {
+    "answer": "unclear",
+    "route": "ask_supplier",
+    "kind": "not established, read twice",
+    "outcome": "supplier question: well-founded",
+    "severity": null
+   },
+   "v4": {
+    "answer": "unclear",
+    "route": "ask_supplier",
+    "kind": "not established, read twice",
+    "why": "not stated in the submittal; no value found, but the submittal mentions fuel on page(s) [2, 3, 4]",
+    "outcome": "supplier question: well-founded",
+    "severity": null
+   }
+  },
+  {
+   "id": "G13/R20",
+   "group": "fresh set 6",
+   "case": "G13",
+   "req_id": "R20",
+   "expected": "missing",
+   "category": "missing_info",
+   "expected_route": "ask_supplier",
+   "v1": {
+    "answer": "unclear",
+    "route": "engineer",
+    "kind": null,
+    "outcome": "unnecessary hand-off",
+    "severity": null
+   },
+   "v2": {
+    "answer": "unclear",
+    "route": "ask_supplier",
+    "kind": "not established, read twice",
+    "outcome": "supplier question: well-founded",
+    "severity": null
+   },
+   "v3": {
+    "answer": "unclear",
+    "route": "ask_supplier",
+    "kind": "not established, read twice",
+    "outcome": "supplier question: well-founded",
+    "severity": null
+   },
+   "v4": {
+    "answer": "unclear",
+    "route": "ask_supplier",
+    "kind": "not established, read twice",
+    "why": "no value found, but the submittal mentions water, jacket on page(s) [3, 4]; no value found, but the submittal mentions power, water, jacket on page(s) [1, 2, 3, 4]; no value found, but the submittal mentions volt, phase, electrical on page(s) [1, 2, 3, 4]",
+    "outcome": "supplier question: well-founded",
+    "severity": null
+   }
+  },
+  {
+   "id": "G13/R21",
+   "group": "fresh set 6",
+   "case": "G13",
+   "req_id": "R21",
+   "expected": "unclear",
+   "category": "missing_info",
+   "expected_route": "ask_supplier",
+   "v1": {
+    "answer": "unclear",
+    "route": "engineer",
+    "kind": null,
+    "outcome": "unnecessary hand-off",
+    "severity": null
+   },
+   "v2": {
+    "answer": "unclear",
+    "route": "engineer",
+    "kind": "contested",
+    "outcome": "unnecessary hand-off",
+    "severity": null
+   },
+   "v3": {
+    "answer": "unclear",
+    "route": "engineer",
+    "kind": "contested",
+    "outcome": "unnecessary hand-off",
+    "severity": null
+   },
+   "v4": {
+    "answer": "unclear",
+    "route": "engineer",
+    "kind": "contested",
+    "why": "no value found, but the submittal mentions enclosure, proof on page(s) [1, 2, 3, 4]; no value found, but the submittal mentions enclosure, silencer on page(s) [1, 3]",
+    "outcome": "unnecessary hand-off",
     "severity": null
    }
   },
@@ -5564,7 +7221,7 @@
     "answer": "unclear",
     "route": "engineer",
     "kind": "contested",
-    "why": "no value found, but the submittal mentions heater, water on page(s) [2]; no value found, but the submittal mentions power, heater, water on page(s) [1, 2, 3, 4]; no value found, but the submittal mentions volt, phase, water on page(s) [1, 2, 3, 4]",
+    "why": "no value found, but the submittal mentions water, heater on page(s) [2]; no value found, but the submittal mentions power, water, heater on page(s) [1, 2, 3, 4]; no value found, but the submittal mentions volt, phase, heater on page(s) [1, 2, 3, 4]",
     "outcome": "unnecessary hand-off",
     "severity": null
    }
@@ -6362,7 +8019,7 @@
     "answer": "unclear",
     "route": "ask_supplier",
     "kind": "not established, read twice",
-    "why": "no value found, but the submittal mentions jacket, water on page(s) [2, 3]; no value found, but the submittal mentions jacket, water on page(s) [2, 3]; no value found, but the submittal mentions phase, water, jacket on page(s) [1, 2, 3]",
+    "why": "no value found, but the submittal mentions water, jacket on page(s) [2, 3]; no value found, but the submittal mentions water, jacket on page(s) [2, 3]; no value found, but the submittal mentions phase, jacket, water on page(s) [1, 2, 3]",
     "outcome": "supplier question: well-founded",
     "severity": null
    }
@@ -7008,7 +8665,7 @@
     "answer": "unclear",
     "route": "ask_supplier",
     "kind": "not established, read twice",
-    "why": "no value found, but the submittal mentions circuit, breaker, state on page(s) [1, 2, 3, 4]",
+    "why": "no value found, but the submittal mentions circuit, breaker, solid on page(s) [1, 2, 3, 4]",
     "outcome": "supplier question: well-founded",
     "severity": null
    }
@@ -7160,7 +8817,7 @@
     "answer": "unclear",
     "route": "ask_supplier",
     "kind": "not established, read twice",
-    "why": "no value found, but the submittal mentions water, jacket, heater on page(s) [2, 3, 4]; no value found, but the submittal mentions water, jacket, heater on page(s) [2, 3, 4]; no value found, but the submittal mentions water, electrical, phase on page(s) [1, 2, 3, 4]",
+    "why": "no value found, but the submittal mentions water, jacket, heater on page(s) [2, 3, 4]; no value found, but the submittal mentions water, jacket, heater on page(s) [2, 3, 4]; no value found, but the submittal mentions electrical, water, phase on page(s) [1, 2, 3, 4]",
     "outcome": "supplier question: well-founded",
     "severity": null
    }
@@ -7768,7 +9425,7 @@
     "answer": "unclear",
     "route": "ask_supplier",
     "kind": "not established, read twice",
-    "why": "no value found, but the submittal mentions single, electrical, heater on page(s) [2]",
+    "why": "no value found, but the submittal mentions heater, electrical, single on page(s) [2]",
     "outcome": "supplier question: well-founded",
     "severity": null
    }
@@ -7806,7 +9463,7 @@
     "answer": "unclear",
     "route": "ask_supplier",
     "kind": "not established, read twice",
-    "why": "no value found, but the submittal mentions output, breaker, pole on page(s) [1, 2, 4]",
+    "why": "no value found, but the submittal mentions output, breaker, circuit on page(s) [1, 2, 4]",
     "outcome": "supplier question: well-founded",
     "severity": null
    }
@@ -7958,7 +9615,7 @@
     "answer": "unclear",
     "route": "ask_supplier",
     "kind": "not established, read twice",
-    "why": "no value found, but the submittal mentions jacket, water, count on page(s) [1, 2, 3]; no value found, but the submittal mentions jacket, water, heater on page(s) [2, 3]; no value found, but the submittal mentions water, jacket, electrical on page(s) [2, 3]",
+    "why": "no value found, but the submittal mentions water, jacket, count on page(s) [1, 2, 3]; no value found, but the submittal mentions water, jacket, heater on page(s) [2, 3]; no value found, but the submittal mentions jacket, water, heater on page(s) [2, 3]",
     "outcome": "supplier question: well-founded",
     "severity": null
    }
@@ -8756,7 +10413,7 @@
     "answer": "unclear",
     "route": "engineer",
     "kind": "contested",
-    "why": "no value found, but the submittal mentions heater, water on page(s) [2]; no value found, but the submittal mentions heater, water on page(s) [2]; no value found, but the submittal mentions electrical, phase, water on page(s) [1, 2, 3, 4, 7]",
+    "why": "no value found, but the submittal mentions water, heater on page(s) [2]; no value found, but the submittal mentions water, heater on page(s) [2]; no value found, but the submittal mentions electrical, phase, heater on page(s) [1, 2, 3, 4, 7]",
     "outcome": "unnecessary hand-off",
     "severity": null
    }
@@ -9288,7 +10945,7 @@
     "answer": "unclear",
     "route": "ask_supplier",
     "kind": "not established, read twice",
-    "why": "no value found, but the submittal mentions alternator, construction, pitch on page(s) [1, 2, 3, 4]",
+    "why": "no value found, but the submittal mentions alternator, pitch, construction on page(s) [1, 2, 3, 4]",
     "outcome": "supplier question: well-founded",
     "severity": null
    }
@@ -9554,7 +11211,7 @@
     "answer": "unclear",
     "route": "ask_supplier",
     "kind": "not established, read twice",
-    "why": "no value found, but the submittal mentions water, heater, jacket on page(s) [2, 3, 4, 5]; no value found, but the submittal mentions water, heater, jacket on page(s) [2, 3, 4, 5]; no value found, but the submittal mentions water, electrical, phase on page(s) [2, 3, 4, 5]",
+    "why": "no value found, but the submittal mentions water, heater, jacket on page(s) [2, 3, 4, 5]; no value found, but the submittal mentions water, heater, jacket on page(s) [2, 3, 4, 5]; no value found, but the submittal mentions electrical, water, phase on page(s) [2, 3, 4, 5]",
     "outcome": "supplier question: well-founded",
     "severity": null
    }

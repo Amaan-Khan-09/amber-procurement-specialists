@@ -92,3 +92,14 @@ def test_a_partial_second_read_never_confirms_that_a_document_says_nothing(tmp_p
     monkeypatch.setattr(C, "ROOT", tmp_path)
     assert C.second_readings()["BIG"] == {"R2": "deviates"}
     assert C.second_readings()["SMALL"] == {"R1": "missing", "R2": "deviates", "R3": "unclear"}
+
+
+def test_regression_fresh_set6_a_passing_promise_never_hides_a_quoted_failing_figure():
+    """Held-out set 6: datasheet 159.4 gph (read without confidence), bid 142 gph. The agent approved it. It is a conflict."""
+    cite = lambda d, q: {"doc_id": d, "page": 1, "quote": q, "match": "exact"}
+    ds = {"cid": "x", "verdict": "deviates", "conf": 0.65, "why": "159.4 gph does not meet <= 145", "doc": "ds", "cite": cite("ds", "100% 159.4")}
+    bid = {"cid": "x", "verdict": "complies", "conf": 0.95, "why": "142 gph meets <= 145", "doc": "v-bid", "cite": cite("v-bid", "142.0 gph")}
+    out = C.merge_condition(ds, [bid])
+    assert out["verdict"] == "unclear" and out["kind"] == "conflicting records"
+    choice = dict(ds, why="offered 12 h does not meet; but this is listed as a choice")
+    assert C.merge_condition(choice, [bid])["verdict"] == "complies"      # a commitment still settles an unmarked option

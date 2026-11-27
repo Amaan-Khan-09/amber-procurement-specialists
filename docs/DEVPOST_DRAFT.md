@@ -1,13 +1,14 @@
 # Devpost write-up (draft)
 
-> **Updated 26 Nov 2026, round two (this replaces the earlier note's numbers).** Measured on the same 256 cases against
-> our previous version: engineer hand-offs **102 to 77 (40 % to 30 %)**, correct decisions 94 to 111, wrong decisions 1 and
-> 1, no missed escalations; unneeded questions rose 3 to 11. Two fresh unseen datasheets: hand-offs 23 to 15 of 42, one
-> new wrong decision (then fixed). Reading the bid with the datasheet: 16 to 21 of 22 package answers right, hand-offs 8
-> to 6 (NOT "13 to 6"). The federal exclusion check is NOT performed (no SAM.gov key): never say a supplier is clear.
+> **Updated 27 Nov 2026 (use these numbers; they replace earlier notes).** Against our previous version on 256 cases
+> we built against: unresolved items 144 to 127, engineer hand-offs 77 to 68, correct decisions 111 to 128, wrong
+> decisions 1 and 1. On two fresh sheets: unresolved 30 to 27, but one wrong decision as labelled (our label's mistake,
+> under review) and 2 missed escalations; a fresh cross-document case showed a real error, since fixed. The federal
+> exclusion check is NOT performed. No supplier question counts as resolved.
 >
-> **Pitch:** "Specialists that check bids and datasheets against the spec, show which exact words control each answer,
-> and on our fixed set of 256 cases cut engineer hand-offs from 40 % to 30 % with no added wrong decisions."
+> **Pitch:** "Specialists that check bids and datasheets against the spec and show the exact words behind each answer:
+> on 256 fixed procurement cases the open items fell from 144 to 127 against our previous version, with correct unaided
+> decisions up from 111 to 128 and no added wrong decision."
 
 
 Paste into the Devpost project form, section by section. Amaan: edit anything that is not in your voice, then keep
@@ -67,7 +68,7 @@ about 2 cents.
 ## Handing off to a person, honestly
 About two answers in three go to a person, and we say so. 27 % of the requirements are genuinely unclear in the datasheet, so no
 honest system can settle them. To help the person, a model of another family reads each datasheet blind and its verdict sits beside
-ours: when it contradicts an answer, that answer is right only 43 % of the time (87 % when it agrees), so the queue shows the
+ours: when it contradicts an answer, that answer is right only 47 % of the time (84 % when it agrees), so the queue shows the
 contested ones first. We also tried a cheaper version that only shows the second model our quoted evidence; it did not work, and we
 say so in the README.
 

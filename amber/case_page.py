@@ -119,7 +119,7 @@ def _before_after(rows: list[dict]) -> str:
     if "G6/R01" in by:
         out.append(_case_card(by["G6/R01"], "Resolved: the ratings table has several rows; the project's voltage picks the row."))
     if "G6/R11" in by:
-        out.append(_case_card(by["G6/R11"], "Still escalates: full rating depends on how a derating clause is read, and two readings differ."))
+        out.append(_case_card(by["G6/R11"], "Still escalates: full rating depends on how a derating clause is read, and the model's reading and the code's check disagree."))
     out.append("<p class='small'>Both are on a real Kohler datasheet (documents seen while building).</p></div>")
     return "".join(out)
 
@@ -147,13 +147,18 @@ def _measured(ev: dict, pkg_file: Path) -> str:
     out.append("</div><div class='card scroll'>")
     if F:
         out.append(_versions("Fresh datasheets nobody had opened when the candidate was frozen", F))
+        out.append("<p class='small'>The candidate's one wrong decision here is a <b>labelling error</b> under review (the sheet says "
+                   "\"stationary diesel engines are Tier II compliant\"; the key said unclear); the key was not edited. Separately, a fresh "
+                   "cross-document case showed a <b>real critical error</b> in this and the previous version: a bid's passing fuel figure was "
+                   "accepted over the datasheet's failing one. Fixed afterwards with a regression test (docs/RESULTS.md).</p>")
     out.append(_versions("Fixed development set (documents seen while building: a repair record)", L))
     out.append("<p class='small'><b>v2</b> commit 9cd1b4e. <b>v3</b> commit 1d14f3e. <b>v4</b> this candidate. All read the same saved model "
                "output. No question is counted as resolved without a verified follow-up, and there is none in these sets. Answer keys "
                "were written by an AI before the code they score and are <b>not yet reviewed by a person</b>.</p>")
     like = [r for r in ev["results"] if r["group"] in ("datasheet", "package", "link", "bid scope", "decision")]
     changed = [r for r in like if (r["v3"]["answer"], r["v3"]["route"]) != (r["v4"]["answer"], r["v4"]["route"])]
-    worse = [r for r in changed if r["v4"]["outcome"] in ("incorrect decision", "missed escalation") or r["v4"]["outcome"].endswith("not needed")]
+    worse = [r for r in changed if r["v4"]["outcome"] in ("incorrect decision", "missed escalation") or r["v4"]["outcome"].endswith("not needed")
+             or (r["v4"]["outcome"] == "unnecessary hand-off" and r["v3"]["outcome"] != "unnecessary hand-off")]
     better = [r for r in changed if r not in worse]
 
     def lst(rows):

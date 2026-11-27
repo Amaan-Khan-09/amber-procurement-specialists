@@ -125,7 +125,7 @@
     "status": "complies",
     "confidence": 0.95,
     "needs_human": false,
-    "why": "committed in b1-northline-reply: offered 5840 kVA meets >= 3000 kVA (the datasheet: no value found, but the submittal mentions starting, motor, capacity on page(s) [1, 3])",
+    "why": "committed in b1-northline-reply: offered 5840 kVA meets >= 3000 kVA (the datasheet: no value found, but the submittal mentions motor, starting, capacity on page(s) [1, 3])",
     "citations": [
      {
       "doc_id": "26-32-13-engine-generators-alpha",
@@ -154,7 +154,7 @@
       {
        "cid": "R03a",
        "verdict": "complies",
-       "why": "committed in b1-northline-reply: offered 5840 kVA meets >= 3000 kVA (the datasheet: no value found, but the submittal mentions starting, motor, capacity on page(s) [1, 3])",
+       "why": "committed in b1-northline-reply: offered 5840 kVA meets >= 3000 kVA (the datasheet: no value found, but the submittal mentions motor, starting, capacity on page(s) [1, 3])",
        "source": "b1-northline-reply",
        "kind": "committed in writing"
       }
@@ -328,7 +328,7 @@
     "status": "complies",
     "confidence": 0.95,
     "needs_human": false,
-    "why": "committed in b1-northline-reply: offered 24 Starting: 24 volt DC electric starter meets all of: 24 volt, electric starter (the datasheet: no value found, but the submittal mentions electric, starting, volt on page(s) [1, 2, 3, 4])",
+    "why": "committed in b1-northline-reply: offered 24 Starting: 24 volt DC electric starter meets all of: 24 volt, electric starter (the datasheet: no value found, but the submittal mentions electric, starting, starter on page(s) [1, 2, 3, 4])",
     "citations": [
      {
       "doc_id": "26-32-13-engine-generators-alpha",
@@ -357,7 +357,7 @@
       {
        "cid": "R07a",
        "verdict": "complies",
-       "why": "committed in b1-northline-reply: offered 24 Starting: 24 volt DC electric starter meets all of: 24 volt, electric starter (the datasheet: no value found, but the submittal mentions electric, starting, volt on page(s) [1, 2, 3, 4])",
+       "why": "committed in b1-northline-reply: offered 24 Starting: 24 volt DC electric starter meets all of: 24 volt, electric starter (the datasheet: no value found, but the submittal mentions electric, starting, starter on page(s) [1, 2, 3, 4])",
        "source": "b1-northline-reply",
        "kind": "committed in writing"
       }
@@ -726,7 +726,7 @@
     "status": "complies",
     "confidence": 0.95,
     "needs_human": false,
-    "why": "committed in b1-northline-reply: offered 120 V; single phase Alternator space heater: 120 V, single phase, included meets all of: 120 v, single phase, heater (the datasheet: no value found, but the submittal mentions heater, electrical, single on page(s) [2])",
+    "why": "committed in b1-northline-reply: offered 120 V; single phase Alternator space heater: 120 V, single phase, included meets all of: 120 v, single phase, heater (the datasheet: no value found, but the submittal mentions single, electrical, heater on page(s) [2])",
     "citations": [
      {
       "doc_id": "26-32-13-engine-generators-alpha",
@@ -755,7 +755,7 @@
       {
        "cid": "R15a",
        "verdict": "complies",
-       "why": "committed in b1-northline-reply: offered 120 V; single phase Alternator space heater: 120 V, single phase, included meets all of: 120 v, single phase, heater (the datasheet: no value found, but the submittal mentions heater, electrical, single on page(s) [2])",
+       "why": "committed in b1-northline-reply: offered 120 V; single phase Alternator space heater: 120 V, single phase, included meets all of: 120 v, single phase, heater (the datasheet: no value found, but the submittal mentions single, electrical, heater on page(s) [2])",
        "source": "b1-northline-reply",
        "kind": "committed in writing"
       }
@@ -968,7 +968,7 @@
     "status": "deviates",
     "confidence": 0.95,
     "needs_human": false,
-    "why": "the supplier's own document commits to something that does not meet it: offered 1 does not meet == 2; the supplier's own document commits to something that does not meet it: offered 9000 W does not meet == 5000 W; committed in b1-northline-reply: offered 480 V; 1 phase one 9000 W, 480 V, 1 phase heater per set meets all of: 480 v, 1 phase (the datasheet: no value found, but the submittal mentions jacket, water, heater on page(s) [2, 3])",
+    "why": "the supplier's own document commits to something that does not meet it: offered 1 does not meet == 2; the supplier's own document commits to something that does not meet it: offered 9000 W does not meet == 5000 W; committed in b1-northline-reply: offered 480 V; 1 phase one 9000 W, 480 V, 1 phase heater per set meets all of: 480 v, 1 phase (the datasheet: no value found, but the submittal mentions water, jacket, electrical on page(s) [2, 3])",
     "citations": [
      {
       "doc_id": "26-32-13-engine-generators-alpha",
@@ -1011,7 +1011,7 @@
       {
        "cid": "R20c",
        "verdict": "complies",
-       "why": "committed in b1-northline-reply: offered 480 V; 1 phase one 9000 W, 480 V, 1 phase heater per set meets all of: 480 v, 1 phase (the datasheet: no value found, but the submittal mentions jacket, water, heater on page(s) [2, 3])",
+       "why": "committed in b1-northline-reply: offered 480 V; 1 phase one 9000 W, 480 V, 1 phase heater per set meets all of: 480 v, 1 phase (the datasheet: no value found, but the submittal mentions water, jacket, electrical on page(s) [2, 3])",
        "source": "b1-northline-reply",
        "kind": "committed in writing"
       }
@@ -2947,7 +2947,7 @@
      {
       "cid": "R03a",
       "verdict": "unclear",
-      "why": "no value found, but the submittal mentions starting, motor, capacity on page(s) [1, 3]",
+      "why": "no value found, but the submittal mentions motor, starting, capacity on page(s) [1, 3]",
       "conf": 0.5,
       "exact": false,
       "cite": null,
@@ -3042,7 +3042,7 @@
      {
       "cid": "R07a",
       "verdict": "unclear",
-      "why": "no value found, but the submittal mentions electric, starting, volt on page(s) [1, 2, 3, 4]",
+      "why": "no value found, but the submittal mentions electric, starting, starter on page(s) [1, 2, 3, 4]",
       "conf": 0.5,
       "exact": false,
       "cite": null,
@@ -3193,7 +3193,7 @@
      {
       "cid": "R15a",
       "verdict": "unclear",
-      "why": "no value found, but the submittal mentions heater, electrical, single on page(s) [2]",
+      "why": "no value found, but the submittal mentions single, electrical, heater on page(s) [2]",
       "conf": 0.5,
       "exact": false,
       "cite": null,
@@ -3290,7 +3290,7 @@
      {
       "cid": "R20c",
       "verdict": "unclear",
-      "why": "no value found, but the submittal mentions jacket, water, heater on page(s) [2, 3]",
+      "why": "no value found, but the submittal mentions water, jacket, electrical on page(s) [2, 3]",
       "conf": 0.5,
       "exact": false,
       "cite": null,
@@ -3446,7 +3446,7 @@
     "status": "complies",
     "confidence": 0.95,
     "needs_human": false,
-    "why": "committed in b1-northline-reply: offered 5840 kVA meets >= 3000 kVA (the datasheet: no value found, but the submittal mentions starting, motor, capacity on page(s) [1, 3])",
+    "why": "committed in b1-northline-reply: offered 5840 kVA meets >= 3000 kVA (the datasheet: no value found, but the submittal mentions motor, starting, capacity on page(s) [1, 3])",
     "citations": [
      {
       "doc_id": "26-32-13-engine-generators-alpha",
@@ -3475,7 +3475,7 @@
       {
        "cid": "R03a",
        "verdict": "complies",
-       "why": "committed in b1-northline-reply: offered 5840 kVA meets >= 3000 kVA (the datasheet: no value found, but the submittal mentions starting, motor, capacity on page(s) [1, 3])",
+       "why": "committed in b1-northline-reply: offered 5840 kVA meets >= 3000 kVA (the datasheet: no value found, but the submittal mentions motor, starting, capacity on page(s) [1, 3])",
        "source": "b1-northline-reply",
        "kind": "committed in writing"
       }
@@ -3649,7 +3649,7 @@
     "status": "complies",
     "confidence": 0.95,
     "needs_human": false,
-    "why": "committed in b1-northline-reply: offered 24 Starting: 24 volt DC electric starter meets all of: 24 volt, electric starter (the datasheet: no value found, but the submittal mentions electric, starting, volt on page(s) [1, 2, 3, 4])",
+    "why": "committed in b1-northline-reply: offered 24 Starting: 24 volt DC electric starter meets all of: 24 volt, electric starter (the datasheet: no value found, but the submittal mentions electric, starting, starter on page(s) [1, 2, 3, 4])",
     "citations": [
      {
       "doc_id": "26-32-13-engine-generators-alpha",
@@ -3678,7 +3678,7 @@
       {
        "cid": "R07a",
        "verdict": "complies",
-       "why": "committed in b1-northline-reply: offered 24 Starting: 24 volt DC electric starter meets all of: 24 volt, electric starter (the datasheet: no value found, but the submittal mentions electric, starting, volt on page(s) [1, 2, 3, 4])",
+       "why": "committed in b1-northline-reply: offered 24 Starting: 24 volt DC electric starter meets all of: 24 volt, electric starter (the datasheet: no value found, but the submittal mentions electric, starting, starter on page(s) [1, 2, 3, 4])",
        "source": "b1-northline-reply",
        "kind": "committed in writing"
       }
@@ -4047,7 +4047,7 @@
     "status": "complies",
     "confidence": 0.95,
     "needs_human": false,
-    "why": "committed in b1-northline-reply: offered 120 V; single phase Alternator space heater: 120 V, single phase, included meets all of: 120 v, single phase, heater (the datasheet: no value found, but the submittal mentions heater, electrical, single on page(s) [2])",
+    "why": "committed in b1-northline-reply: offered 120 V; single phase Alternator space heater: 120 V, single phase, included meets all of: 120 v, single phase, heater (the datasheet: no value found, but the submittal mentions single, electrical, heater on page(s) [2])",
     "citations": [
      {
       "doc_id": "26-32-13-engine-generators-alpha",
@@ -4076,7 +4076,7 @@
       {
        "cid": "R15a",
        "verdict": "complies",
-       "why": "committed in b1-northline-reply: offered 120 V; single phase Alternator space heater: 120 V, single phase, included meets all of: 120 v, single phase, heater (the datasheet: no value found, but the submittal mentions heater, electrical, single on page(s) [2])",
+       "why": "committed in b1-northline-reply: offered 120 V; single phase Alternator space heater: 120 V, single phase, included meets all of: 120 v, single phase, heater (the datasheet: no value found, but the submittal mentions single, electrical, heater on page(s) [2])",
        "source": "b1-northline-reply",
        "kind": "committed in writing"
       }
@@ -4289,7 +4289,7 @@
     "status": "deviates",
     "confidence": 0.95,
     "needs_human": false,
-    "why": "the supplier's own document commits to something that does not meet it: offered 1 does not meet == 2; the supplier's own document commits to something that does not meet it: offered 9000 W does not meet == 5000 W; committed in b1-northline-reply: offered 480 V; 1 phase one 9000 W, 480 V, 1 phase heater per set meets all of: 480 v, 1 phase (the datasheet: no value found, but the submittal mentions jacket, water, heater on page(s) [2, 3])",
+    "why": "the supplier's own document commits to something that does not meet it: offered 1 does not meet == 2; the supplier's own document commits to something that does not meet it: offered 9000 W does not meet == 5000 W; committed in b1-northline-reply: offered 480 V; 1 phase one 9000 W, 480 V, 1 phase heater per set meets all of: 480 v, 1 phase (the datasheet: no value found, but the submittal mentions water, jacket, electrical on page(s) [2, 3])",
     "citations": [
      {
       "doc_id": "26-32-13-engine-generators-alpha",
@@ -4332,7 +4332,7 @@
       {
        "cid": "R20c",
        "verdict": "complies",
-       "why": "committed in b1-northline-reply: offered 480 V; 1 phase one 9000 W, 480 V, 1 phase heater per set meets all of: 480 v, 1 phase (the datasheet: no value found, but the submittal mentions jacket, water, heater on page(s) [2, 3])",
+       "why": "committed in b1-northline-reply: offered 480 V; 1 phase one 9000 W, 480 V, 1 phase heater per set meets all of: 480 v, 1 phase (the datasheet: no value found, but the submittal mentions water, jacket, electrical on page(s) [2, 3])",
        "source": "b1-northline-reply",
        "kind": "committed in writing"
       }
@@ -4531,7 +4531,7 @@
     "status": "unclear",
     "confidence": 0.5,
     "needs_human": true,
-    "why": "no value found, but the submittal mentions starting, motor, capacity on page(s) [1, 3]",
+    "why": "no value found, but the submittal mentions motor, starting, capacity on page(s) [1, 3]",
     "citations": [
      {
       "doc_id": "26-32-13-engine-generators-alpha",
@@ -4552,7 +4552,7 @@
       {
        "cid": "R03a",
        "verdict": "unclear",
-       "why": "no value found, but the submittal mentions starting, motor, capacity on page(s) [1, 3]",
+       "why": "no value found, but the submittal mentions motor, starting, capacity on page(s) [1, 3]",
        "source": "datasheet",
        "kind": null
       }
@@ -4725,7 +4725,7 @@
     "status": "unclear",
     "confidence": 0.5,
     "needs_human": true,
-    "why": "no value found, but the submittal mentions electric, starting, volt on page(s) [1, 2, 3, 4]",
+    "why": "no value found, but the submittal mentions electric, starting, starter on page(s) [1, 2, 3, 4]",
     "citations": [
      {
       "doc_id": "26-32-13-engine-generators-alpha",
@@ -4746,7 +4746,7 @@
       {
        "cid": "R07a",
        "verdict": "unclear",
-       "why": "no value found, but the submittal mentions electric, starting, volt on page(s) [1, 2, 3, 4]",
+       "why": "no value found, but the submittal mentions electric, starting, starter on page(s) [1, 2, 3, 4]",
        "source": "datasheet",
        "kind": null
       }
@@ -5083,7 +5083,7 @@
     "status": "unclear",
     "confidence": 0.5,
     "needs_human": true,
-    "why": "no value found, but the submittal mentions heater, electrical, single on page(s) [2]",
+    "why": "no value found, but the submittal mentions single, electrical, heater on page(s) [2]",
     "citations": [
      {
       "doc_id": "26-32-13-engine-generators-alpha",
@@ -5104,7 +5104,7 @@
       {
        "cid": "R15a",
        "verdict": "unclear",
-       "why": "no value found, but the submittal mentions heater, electrical, single on page(s) [2]",
+       "why": "no value found, but the submittal mentions single, electrical, heater on page(s) [2]",
        "source": "datasheet",
        "kind": null
       }
@@ -5285,7 +5285,7 @@
     "status": "unclear",
     "confidence": 0.5,
     "needs_human": true,
-    "why": "no value found, but the submittal mentions water, jacket, count on page(s) [1, 2, 3]; no value found, but the submittal mentions water, jacket, heater on page(s) [2, 3]; no value found, but the submittal mentions jacket, water, heater on page(s) [2, 3]",
+    "why": "no value found, but the submittal mentions water, jacket, count on page(s) [1, 2, 3]; no value found, but the submittal mentions water, jacket, heater on page(s) [2, 3]; no value found, but the submittal mentions water, jacket, electrical on page(s) [2, 3]",
     "citations": [
      {
       "doc_id": "26-32-13-engine-generators-alpha",
@@ -5320,7 +5320,7 @@
       {
        "cid": "R20c",
        "verdict": "unclear",
-       "why": "no value found, but the submittal mentions jacket, water, heater on page(s) [2, 3]",
+       "why": "no value found, but the submittal mentions water, jacket, electrical on page(s) [2, 3]",
        "source": "datasheet",
        "kind": null
       }
@@ -11179,7 +11179,7 @@
     "status": "unclear",
     "confidence": 0.5,
     "needs_human": true,
-    "why": "no value found, but the submittal mentions capacity, starting, motor on page(s) [1, 2, 3]",
+    "why": "no value found, but the submittal mentions capacity, motor, starting on page(s) [1, 2, 3]",
     "citations": [
      {
       "doc_id": "26-32-13-engine-generators-alpha",
@@ -11200,7 +11200,7 @@
       {
        "cid": "R03a",
        "verdict": "unclear",
-       "why": "no value found, but the submittal mentions capacity, starting, motor on page(s) [1, 2, 3]",
+       "why": "no value found, but the submittal mentions capacity, motor, starting on page(s) [1, 2, 3]",
        "source": "datasheet",
        "kind": null
       }
@@ -13451,7 +13451,7 @@
      {
       "cid": "R03a",
       "verdict": "unclear",
-      "why": "no value found, but the submittal mentions capacity, starting, motor on page(s) [1, 2, 3]",
+      "why": "no value found, but the submittal mentions capacity, motor, starting on page(s) [1, 2, 3]",
       "conf": 0.5,
       "exact": false,
       "cite": null,
@@ -14022,7 +14022,7 @@
     "status": "unclear",
     "confidence": 0.5,
     "needs_human": true,
-    "why": "no value found, but the submittal mentions capacity, starting, motor on page(s) [1, 2, 3]",
+    "why": "no value found, but the submittal mentions capacity, motor, starting on page(s) [1, 2, 3]",
     "citations": [
      {
       "doc_id": "26-32-13-engine-generators-alpha",
@@ -14043,7 +14043,7 @@
       {
        "cid": "R03a",
        "verdict": "unclear",
-       "why": "no value found, but the submittal mentions capacity, starting, motor on page(s) [1, 2, 3]",
+       "why": "no value found, but the submittal mentions capacity, motor, starting on page(s) [1, 2, 3]",
        "source": "datasheet",
        "kind": null
       }
@@ -15104,7 +15104,7 @@
     "status": "unclear",
     "confidence": 0.5,
     "needs_human": true,
-    "why": "no value found, but the submittal mentions capacity, starting, motor on page(s) [1, 2, 3]",
+    "why": "no value found, but the submittal mentions capacity, motor, starting on page(s) [1, 2, 3]",
     "citations": [
      {
       "doc_id": "26-32-13-engine-generators-alpha",
@@ -15125,7 +15125,7 @@
       {
        "cid": "R03a",
        "verdict": "unclear",
-       "why": "no value found, but the submittal mentions capacity, starting, motor on page(s) [1, 2, 3]",
+       "why": "no value found, but the submittal mentions capacity, motor, starting on page(s) [1, 2, 3]",
        "source": "datasheet",
        "kind": null
       }
@@ -17058,7 +17058,7 @@
     "status": "unclear",
     "confidence": 0.5,
     "needs_human": true,
-    "why": "no value found, but the submittal mentions heater, water on page(s) [2]; no value found, but the submittal mentions heater, water on page(s) [2]; no value found, but the submittal mentions electrical, phase, heater on page(s) [1, 2, 3, 4, 7]",
+    "why": "no value found, but the submittal mentions heater, water on page(s) [2]; no value found, but the submittal mentions heater, water on page(s) [2]; no value found, but the submittal mentions electrical, phase, water on page(s) [1, 2, 3, 4, 7]",
     "citations": [
      {
       "doc_id": "26-32-13-engine-generators-alpha",
@@ -17093,7 +17093,7 @@
       {
        "cid": "R20c",
        "verdict": "unclear",
-       "why": "no value found, but the submittal mentions electrical, phase, heater on page(s) [1, 2, 3, 4, 7]",
+       "why": "no value found, but the submittal mentions electrical, phase, water on page(s) [1, 2, 3, 4, 7]",
        "source": "datasheet",
        "kind": null
       }
@@ -18894,7 +18894,7 @@
      {
       "cid": "R20c",
       "verdict": "unclear",
-      "why": "no value found, but the submittal mentions electrical, phase, heater on page(s) [1, 2, 3, 4, 7]",
+      "why": "no value found, but the submittal mentions electrical, phase, water on page(s) [1, 2, 3, 4, 7]",
       "conf": 0.5,
       "exact": false,
       "cite": null,
@@ -19901,7 +19901,7 @@
     "status": "unclear",
     "confidence": 0.5,
     "needs_human": true,
-    "why": "no value found, but the submittal mentions heater, water on page(s) [2]; no value found, but the submittal mentions heater, water on page(s) [2]; no value found, but the submittal mentions electrical, phase, heater on page(s) [1, 2, 3, 4, 7]",
+    "why": "no value found, but the submittal mentions heater, water on page(s) [2]; no value found, but the submittal mentions heater, water on page(s) [2]; no value found, but the submittal mentions electrical, phase, water on page(s) [1, 2, 3, 4, 7]",
     "citations": [
      {
       "doc_id": "26-32-13-engine-generators-alpha",
@@ -19936,7 +19936,7 @@
       {
        "cid": "R20c",
        "verdict": "unclear",
-       "why": "no value found, but the submittal mentions electrical, phase, heater on page(s) [1, 2, 3, 4, 7]",
+       "why": "no value found, but the submittal mentions electrical, phase, water on page(s) [1, 2, 3, 4, 7]",
        "source": "datasheet",
        "kind": null
       }
@@ -20973,7 +20973,7 @@
     "status": "unclear",
     "confidence": 0.5,
     "needs_human": true,
-    "why": "no value found, but the submittal mentions heater, water on page(s) [2]; no value found, but the submittal mentions heater, water on page(s) [2]; no value found, but the submittal mentions electrical, phase, heater on page(s) [1, 2, 3, 4, 7]",
+    "why": "no value found, but the submittal mentions heater, water on page(s) [2]; no value found, but the submittal mentions heater, water on page(s) [2]; no value found, but the submittal mentions electrical, phase, water on page(s) [1, 2, 3, 4, 7]",
     "citations": [
      {
       "doc_id": "26-32-13-engine-generators-alpha",
@@ -21008,7 +21008,7 @@
       {
        "cid": "R20c",
        "verdict": "unclear",
-       "why": "no value found, but the submittal mentions electrical, phase, heater on page(s) [1, 2, 3, 4, 7]",
+       "why": "no value found, but the submittal mentions electrical, phase, water on page(s) [1, 2, 3, 4, 7]",
        "source": "datasheet",
        "kind": null
       }

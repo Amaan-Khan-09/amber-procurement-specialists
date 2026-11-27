@@ -1103,5 +1103,231 @@
     "quote": ""
    }
   }
+ },
+ "G12": {
+  "case": "G12",
+  "doc_id": "hipower-htw2000-data-sheet",
+  "model": "qwen/qwen3.8-27b",
+  "pages": 4,
+  "answers": {
+   "R01": {
+    "verdict": "complies",
+    "page": 1,
+    "quote": "Standby ... 2000 kW 2500 kVA ... 0.8"
+   },
+   "R02": {
+    "verdict": "complies",
+    "page": 1,
+    "quote": "Voltage VAC ... 277/480 ... Phase 3 ... 60Hz"
+   },
+   "R03": {
+    "verdict": "complies",
+    "page": 2,
+    "quote": "skVA with 30% voltage dip at 480 volts (600V) 3930 (4750)"
+   },
+   "R04": {
+    "verdict": "unclear",
+    "page": null,
+    "quote": "chunks disagree: deviates p1; complies p3"
+   },
+   "R05": {
+    "verdict": "complies",
+    "page": 2,
+    "quote": "Diesel, 4-stroke ... Turbocharged, intercooled ... 16"
+   },
+   "R06": {
+    "verdict": "complies",
+    "page": 2,
+    "quote": "Frequency regulation Ischronous ... Governor Electrical"
+   },
+   "R07": {
+    "verdict": "unclear",
+    "page": null,
+    "quote": "mentioned or stated without a verifiable quote"
+   },
+   "R08": {
+    "verdict": "deviates",
+    "page": 3,
+    "quote": "100% load – US gallons/hour 159.4"
+   },
+   "R09": {
+    "verdict": "missing",
+    "page": null,
+    "quote": ""
+   },
+   "R10": {
+    "verdict": "complies",
+    "page": 2,
+    "quote": "EPA certified Tier 2"
+   },
+   "R11": {
+    "verdict": "missing",
+    "page": null,
+    "quote": ""
+   },
+   "R12": {
+    "verdict": "complies",
+    "page": 2,
+    "quote": "Crankshaft speed 1,800 rpm"
+   },
+   "R13": {
+    "verdict": "complies",
+    "page": 3,
+    "quote": "Four pole, rotating field... Brushless... Stator Pitch 2/3"
+   },
+   "R14": {
+    "verdict": "unclear",
+    "page": null,
+    "quote": "chunks disagree: deviates p1; complies p3"
+   },
+   "R15": {
+    "verdict": "unclear",
+    "page": null,
+    "quote": "mentioned or stated without a verifiable quote"
+   },
+   "R16": {
+    "verdict": "unclear",
+    "page": null,
+    "quote": "mentioned or stated without a verifiable quote"
+   },
+   "R17": {
+    "verdict": "complies",
+    "page": 2,
+    "quote": "Voltage regulation, no load to full load plus or minus 1%"
+   },
+   "R18": {
+    "verdict": "complies",
+    "page": 3,
+    "quote": "Line harmonics 5% maximum"
+   },
+   "R19": {
+    "verdict": "missing",
+    "page": null,
+    "quote": ""
+   },
+   "R20": {
+    "verdict": "missing",
+    "page": null,
+    "quote": ""
+   },
+   "R21": {
+    "verdict": "deviates",
+    "page": 1,
+    "quote": "Arrangement: Open skid with engine and alternator units"
+   }
+  }
+ },
+ "G13": {
+  "case": "G13",
+  "doc_id": "spmi-1mw-uls-data-sheet",
+  "model": "qwen/qwen3.8-27b",
+  "pages": 4,
+  "answers": {
+   "R01": {
+    "verdict": "unclear",
+    "page": null,
+    "quote": "chunks disagree: complies p1; deviates p2"
+   },
+   "R02": {
+    "verdict": "complies",
+    "page": 1,
+    "quote": "SPMI-1M-3-4 277 480 3 60"
+   },
+   "R03": {
+    "verdict": "complies",
+    "page": 2,
+    "quote": "3 Ø Motor Starting @ 30% Voltage Dip (480V-600V) 3100 kVA"
+   },
+   "R04": {
+    "verdict": "complies",
+    "page": 2,
+    "quote": "Exciter ..................................................... Brushless, PMG excited"
+   },
+   "R05": {
+    "verdict": "unclear",
+    "page": null,
+    "quote": "mentioned or stated without a verifiable quote"
+   },
+   "R06": {
+    "verdict": "complies",
+    "page": 2,
+    "quote": "Governor ........................................................... Electronic, Bosch"
+   },
+   "R07": {
+    "verdict": "complies",
+    "page": 2,
+    "quote": "Eng. Alternator/Starter: 24 VDC, negative ground"
+   },
+   "R08": {
+    "verdict": "deviates",
+    "page": 2,
+    "quote": "100% LOAD 75.1 (284)"
+   },
+   "R09": {
+    "verdict": "complies",
+    "page": 3,
+    "quote": "Ambient Capacity of Radiator °F (°C) ............................. 122 (50)"
+   },
+   "R10": {
+    "verdict": "complies",
+    "page": 2,
+    "quote": "All emergency stationary diesel engines are Tier II compliant."
+   },
+   "R11": {
+    "verdict": "unclear",
+    "page": null,
+    "quote": "mentioned or stated without a verifiable quote"
+   },
+   "R12": {
+    "verdict": "complies",
+    "page": 2,
+    "quote": "Engine Speed ................................................................. 1800 rpm"
+   },
+   "R13": {
+    "verdict": "unclear",
+    "page": null,
+    "quote": "mentioned or stated without a verifiable quote"
+   },
+   "R14": {
+    "verdict": "unclear",
+    "page": null,
+    "quote": "mentioned or stated without a verifiable quote"
+   },
+   "R15": {
+    "verdict": "missing",
+    "page": null,
+    "quote": ""
+   },
+   "R16": {
+    "verdict": "unclear",
+    "page": null,
+    "quote": "mentioned or stated without a verifiable quote"
+   },
+   "R17": {
+    "verdict": "complies",
+    "page": 2,
+    "quote": "Voltage Regulation ................................ ½%, No load to full load"
+   },
+   "R18": {
+    "verdict": "complies",
+    "page": 2,
+    "quote": "Total Harmonic Distortion ............... Max 3½% (MIL-STD705B)"
+   },
+   "R19": {
+    "verdict": "missing",
+    "page": null,
+    "quote": ""
+   },
+   "R20": {
+    "verdict": "missing",
+    "page": null,
+    "quote": ""
+   },
+   "R21": {
+    "verdict": "deviates",
+    "page": 1,
+    "quote": "There is no enclosure, so gen-set must be placed within a weather protected area"
+   }
+  }
  }
 }

@@ -178,7 +178,10 @@ def merge_condition(dpart: dict, commits: list[dict]) -> dict:
             if cur["verdict"] == "complies":
                 out = dict(b if b["conf"] >= cur["conf"] else cur, source=f"{cur['doc']} + {b['doc']}", kind="agree",
                            conf=max(b["conf"], cur["conf"]), why=f"{cur['why']} | confirmed by {b['doc']}: {b['why']}")
-            elif cur["verdict"] == "deviates" and cur["conf"] >= AUTO and cur.get("source") == "datasheet":
+            elif cur["verdict"] == "deviates" and cur.get("cite") and cur.get("source") == "datasheet" \
+                    and "listed as a choice" not in cur["why"]:
+                # a quoted datasheet figure that fails against a promise that passes is a conflict even when the datasheet
+                # reading was not confident enough to stand alone (found on the fresh cross-document case: 159.4 against 142 gph)
                 out = dict(cur, verdict="unclear", conf=0.5, source=f"{cur['doc']} vs {b['doc']}", kind="conflicting records",
                            why=f"conflicting records: {b['doc']} says {b['why']!r}, the datasheet shows {cur['why']!r}",
                            other_cite=b["cite"])

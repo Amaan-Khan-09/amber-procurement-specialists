@@ -569,6 +569,384 @@
    "expected_route": "ask_supplier"
   },
   {
+   "id": "G12/R01",
+   "group": "fresh set 6",
+   "case": "G12",
+   "req_id": "R01",
+   "expected": "complies",
+   "category": "routine",
+   "expected_route": "decide"
+  },
+  {
+   "id": "G12/R02",
+   "group": "fresh set 6",
+   "case": "G12",
+   "req_id": "R02",
+   "expected": "unclear",
+   "category": "missing_info",
+   "expected_route": "ask_supplier"
+  },
+  {
+   "id": "G12/R03",
+   "group": "fresh set 6",
+   "case": "G12",
+   "req_id": "R03",
+   "expected": "complies",
+   "category": "routine",
+   "expected_route": "decide"
+  },
+  {
+   "id": "G12/R04",
+   "group": "fresh set 6",
+   "case": "G12",
+   "req_id": "R04",
+   "expected": "unclear",
+   "category": "escalate",
+   "expected_route": "engineer"
+  },
+  {
+   "id": "G12/R05",
+   "group": "fresh set 6",
+   "case": "G12",
+   "req_id": "R05",
+   "expected": "complies",
+   "category": "routine",
+   "expected_route": "decide"
+  },
+  {
+   "id": "G12/R06",
+   "group": "fresh set 6",
+   "case": "G12",
+   "req_id": "R06",
+   "expected": "unclear",
+   "category": "escalate",
+   "expected_route": "engineer"
+  },
+  {
+   "id": "G12/R07",
+   "group": "fresh set 6",
+   "case": "G12",
+   "req_id": "R07",
+   "expected": "complies",
+   "category": "routine",
+   "expected_route": "decide"
+  },
+  {
+   "id": "G12/R08",
+   "group": "fresh set 6",
+   "case": "G12",
+   "req_id": "R08",
+   "expected": "deviates",
+   "category": "routine",
+   "expected_route": "decide"
+  },
+  {
+   "id": "G12/R09",
+   "group": "fresh set 6",
+   "case": "G12",
+   "req_id": "R09",
+   "expected": "unclear",
+   "category": "missing_info",
+   "expected_route": "ask_supplier"
+  },
+  {
+   "id": "G12/R10",
+   "group": "fresh set 6",
+   "case": "G12",
+   "req_id": "R10",
+   "expected": "complies",
+   "category": "routine",
+   "expected_route": "decide"
+  },
+  {
+   "id": "G12/R11",
+   "group": "fresh set 6",
+   "case": "G12",
+   "req_id": "R11",
+   "expected": "missing",
+   "category": "missing_info",
+   "expected_route": "ask_supplier"
+  },
+  {
+   "id": "G12/R12",
+   "group": "fresh set 6",
+   "case": "G12",
+   "req_id": "R12",
+   "expected": "complies",
+   "category": "routine",
+   "expected_route": "decide"
+  },
+  {
+   "id": "G12/R13",
+   "group": "fresh set 6",
+   "case": "G12",
+   "req_id": "R13",
+   "expected": "complies",
+   "category": "routine",
+   "expected_route": "decide"
+  },
+  {
+   "id": "G12/R14",
+   "group": "fresh set 6",
+   "case": "G12",
+   "req_id": "R14",
+   "expected": "complies",
+   "category": "routine",
+   "expected_route": "decide"
+  },
+  {
+   "id": "G12/R15",
+   "group": "fresh set 6",
+   "case": "G12",
+   "req_id": "R15",
+   "expected": "unclear",
+   "category": "missing_info",
+   "expected_route": "ask_supplier"
+  },
+  {
+   "id": "G12/R16",
+   "group": "fresh set 6",
+   "case": "G12",
+   "req_id": "R16",
+   "expected": "unclear",
+   "category": "missing_info",
+   "expected_route": "ask_supplier"
+  },
+  {
+   "id": "G12/R17",
+   "group": "fresh set 6",
+   "case": "G12",
+   "req_id": "R17",
+   "expected": "complies",
+   "category": "routine",
+   "expected_route": "decide"
+  },
+  {
+   "id": "G12/R18",
+   "group": "fresh set 6",
+   "case": "G12",
+   "req_id": "R18",
+   "expected": "complies",
+   "category": "routine",
+   "expected_route": "decide"
+  },
+  {
+   "id": "G12/R19",
+   "group": "fresh set 6",
+   "case": "G12",
+   "req_id": "R19",
+   "expected": "unclear",
+   "category": "missing_info",
+   "expected_route": "ask_supplier"
+  },
+  {
+   "id": "G12/R20",
+   "group": "fresh set 6",
+   "case": "G12",
+   "req_id": "R20",
+   "expected": "unclear",
+   "category": "missing_info",
+   "expected_route": "ask_supplier"
+  },
+  {
+   "id": "G12/R21",
+   "group": "fresh set 6",
+   "case": "G12",
+   "req_id": "R21",
+   "expected": "unclear",
+   "category": "missing_info",
+   "expected_route": "ask_supplier"
+  },
+  {
+   "id": "G13/R01",
+   "group": "fresh set 6",
+   "case": "G13",
+   "req_id": "R01",
+   "expected": "complies",
+   "category": "routine",
+   "expected_route": "decide"
+  },
+  {
+   "id": "G13/R02",
+   "group": "fresh set 6",
+   "case": "G13",
+   "req_id": "R02",
+   "expected": "unclear",
+   "category": "missing_info",
+   "expected_route": "ask_supplier"
+  },
+  {
+   "id": "G13/R03",
+   "group": "fresh set 6",
+   "case": "G13",
+   "req_id": "R03",
+   "expected": "complies",
+   "category": "routine",
+   "expected_route": "decide"
+  },
+  {
+   "id": "G13/R04",
+   "group": "fresh set 6",
+   "case": "G13",
+   "req_id": "R04",
+   "expected": "complies",
+   "category": "routine",
+   "expected_route": "decide"
+  },
+  {
+   "id": "G13/R05",
+   "group": "fresh set 6",
+   "case": "G13",
+   "req_id": "R05",
+   "expected": "complies",
+   "category": "routine",
+   "expected_route": "decide"
+  },
+  {
+   "id": "G13/R06",
+   "group": "fresh set 6",
+   "case": "G13",
+   "req_id": "R06",
+   "expected": "unclear",
+   "category": "escalate",
+   "expected_route": "engineer"
+  },
+  {
+   "id": "G13/R07",
+   "group": "fresh set 6",
+   "case": "G13",
+   "req_id": "R07",
+   "expected": "complies",
+   "category": "routine",
+   "expected_route": "decide"
+  },
+  {
+   "id": "G13/R08",
+   "group": "fresh set 6",
+   "case": "G13",
+   "req_id": "R08",
+   "expected": "deviates",
+   "category": "routine",
+   "expected_route": "decide"
+  },
+  {
+   "id": "G13/R09",
+   "group": "fresh set 6",
+   "case": "G13",
+   "req_id": "R09",
+   "expected": "complies",
+   "category": "escalate",
+   "expected_route": "engineer"
+  },
+  {
+   "id": "G13/R10",
+   "group": "fresh set 6",
+   "case": "G13",
+   "req_id": "R10",
+   "expected": "unclear",
+   "category": "missing_info",
+   "expected_route": "ask_supplier"
+  },
+  {
+   "id": "G13/R11",
+   "group": "fresh set 6",
+   "case": "G13",
+   "req_id": "R11",
+   "expected": "deviates",
+   "category": "escalate",
+   "expected_route": "engineer"
+  },
+  {
+   "id": "G13/R12",
+   "group": "fresh set 6",
+   "case": "G13",
+   "req_id": "R12",
+   "expected": "complies",
+   "category": "routine",
+   "expected_route": "decide"
+  },
+  {
+   "id": "G13/R13",
+   "group": "fresh set 6",
+   "case": "G13",
+   "req_id": "R13",
+   "expected": "unclear",
+   "category": "missing_info",
+   "expected_route": "ask_supplier"
+  },
+  {
+   "id": "G13/R14",
+   "group": "fresh set 6",
+   "case": "G13",
+   "req_id": "R14",
+   "expected": "complies",
+   "category": "routine",
+   "expected_route": "decide"
+  },
+  {
+   "id": "G13/R15",
+   "group": "fresh set 6",
+   "case": "G13",
+   "req_id": "R15",
+   "expected": "missing",
+   "category": "missing_info",
+   "expected_route": "ask_supplier"
+  },
+  {
+   "id": "G13/R16",
+   "group": "fresh set 6",
+   "case": "G13",
+   "req_id": "R16",
+   "expected": "unclear",
+   "category": "missing_info",
+   "expected_route": "ask_supplier"
+  },
+  {
+   "id": "G13/R17",
+   "group": "fresh set 6",
+   "case": "G13",
+   "req_id": "R17",
+   "expected": "complies",
+   "category": "routine",
+   "expected_route": "decide"
+  },
+  {
+   "id": "G13/R18",
+   "group": "fresh set 6",
+   "case": "G13",
+   "req_id": "R18",
+   "expected": "complies",
+   "category": "routine",
+   "expected_route": "decide"
+  },
+  {
+   "id": "G13/R19",
+   "group": "fresh set 6",
+   "case": "G13",
+   "req_id": "R19",
+   "expected": "unclear",
+   "category": "missing_info",
+   "expected_route": "ask_supplier"
+  },
+  {
+   "id": "G13/R20",
+   "group": "fresh set 6",
+   "case": "G13",
+   "req_id": "R20",
+   "expected": "missing",
+   "category": "missing_info",
+   "expected_route": "ask_supplier"
+  },
+  {
+   "id": "G13/R21",
+   "group": "fresh set 6",
+   "case": "G13",
+   "req_id": "R21",
+   "expected": "unclear",
+   "category": "missing_info",
+   "expected_route": "ask_supplier"
+  },
+  {
    "id": "G2/R01",
    "group": "datasheet",
    "case": "G2",
